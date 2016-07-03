@@ -225,6 +225,18 @@ static const struct file_operations twa_fops = {
 	.release	= NULL,
 	.llseek		= noop_llseek,
 };
+ 
+/*
+ * The controllers use an inline buffer instead of a mapped SGL for small,
+ * single entry buffers.  Note that we treat a zero-length transfer like
+ * a mapped SGL.
+ */
+static bool twa_command_mapped(struct scsi_cmnd *cmd)
+{
+	return scsi_sg_count(cmd) != 1 ||
+		scsi_bufflen(cmd) >= TW_MIN_SGL_LENGTH;
+}
+
 
 /* This function will complete an aen request from the isr */
 static int twa_aen_complete(TW_Device_Extension *tw_dev, int request_id)
