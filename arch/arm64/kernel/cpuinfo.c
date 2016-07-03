@@ -45,12 +45,3 @@ bool system_supports_mixed_endian_el0(void)
 	return mixed_endian_el0;
 }
 
-static void update_mixed_endian_el0_support(struct cpuinfo_arm64 *info)
-{
-	mixed_endian_el0 &= id_aa64mmfr0_mixed_endian_el0(info->reg_id_aa64mmfr0);
-}
-
-static void update_cpu_features(struct cpuinfo_arm64 *info)
-{
-	update_mixed_endian_el0_support(info);
-}
