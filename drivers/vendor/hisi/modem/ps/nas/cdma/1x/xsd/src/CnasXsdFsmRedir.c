@@ -39,30 +39,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvXsdRedirInd_Redir_Init
-Description     :   .
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   m00270891
-        Modify content :    Create
-
-    2.日    期   : 2015年1月05日
-      作    者   : y00245242
-      修改内容   : 增加OOC搜索策略
-    3.日    期   : 2015年4月20日
-      作    者   : w00242748
-      修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                   情况下会导致死循环搜网。
-    4.日    期   : 2015年8月25日
-      作    者   : w00176964
-      修改内容   : DTS2015082606848:重定向流程参考标杆处理
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvXsdRedirInd_Redir_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -183,9 +160,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_Redir_WaitCasSysSyncCnf(
 )
 {
     /* Clear the Cache buffer and save the MMA Power off request in the buffer. Start Camp-On Protect timer*/
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
 
@@ -266,22 +241,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_Redir_WaitCasSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_SYNC_CNF状态收到TI_CNAS_XSD_EMC_CALLBACK_MODE_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -311,22 +271,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasSysSync
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_SYNC_CNF状态收到ID_MSCC_XSD_END_EMC_CALLBACK_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -356,22 +301,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasSysSyncCnfOrigSys
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_SYNC_CNF_RET_ORIG_SYS状态收到TI_CNAS_XSD_EMC_CALLBACK_MODE_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasSysSyncCnfOrigSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -401,22 +331,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasSysSync
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasSysSyncCnfOrigSys
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_SYNC_CNF_RET_ORIG_SYS状态收到ID_MSCC_XSD_END_EMC_CALLBACK_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasSysSyncCnfOrigSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -447,22 +362,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasSysSyncCnfOrigSys(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasOhmInd
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_OHM_IND状态收到TI_CNAS_XSD_EMC_CALLBACK_MODE_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -482,22 +382,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasOhmInd
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_OHM_RET_ORIG_SYS_IND状态收到TI_CNAS_XSD_EMC_CALLBACK_MODE_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasOhmIndRetOrigSysInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -517,22 +402,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasOhmIndR
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasOhmInd
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_OHM_RET_ORIG_SYS_IND状态收到ID_MSCC_XSD_END_EMC_CALLBACK_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasOhmIndRetOrigSysInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -553,22 +423,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasOhmIndRetOrigSysInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasOhmInd
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_OHM_IND状态收到ID_MSCC_XSD_END_EMC_CALLBACK_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -588,22 +443,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_STOP_SYNC_CNF状态收到TI_CNAS_XSD_EMC_CALLBACK_MODE_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -623,22 +463,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasStopSys
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_STOP_SYNC_CNF状态收到ID_MSCC_XSD_END_EMC_CALLBACK_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -658,22 +483,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasStopSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasStopSysSyncCnfOrigSys
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_STOP_SYNC_CNF_RET_ORIG_SYS状态收到TI_CNAS_XSD_EMC_CALLBACK_MODE_PROTECT_TIMER消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasStopSysSyncCnfOrigSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -693,22 +503,7 @@ VOS_UINT32 CNAS_XSD_RcvTiEmcCallBackModeProtectTimerExpired_Redir_WaitCasStopSys
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasStopSysSyncCnfOrigSys
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_STOP_SYNC_CNF_RET_ORIG_SYS状态收到ID_MSCC_XSD_END_EMC_CALLBACK_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasStopSysSyncCnfOrigSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -729,28 +524,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndEmcCallBackReq_Redir_WaitCasStopSysSyncCnfOrigSys(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvCasStopSysSyncCnf_Redir_WaitCasStopSysSyncCnf
-Description     :   Performs abort procedure if the abort flag is true. Otherwise continues Redirection flow by
-                    getting the next Redirection scan list.
-Input parameters:   ulEventType  - The event type of the Stop Sync Cnf message from CAS.
-                    pstMsg       - pointer to Stop Sync Cnf message from CAS.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
 
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   a00295761
-        Modify content :    Create
-
-    2.日    期   : 2015年1月05日
-      作    者   : y00245242
-      修改内容   : 增加OOC搜索策略
-    3.日    期   : 2015年4月20日
-      作    者   : w00242748
-      修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                   情况下会导致死循环搜网。
-*****************************************************************************/
 
 VOS_UINT32 CNAS_XSD_RcvCasStopSysSyncCnf_Redir_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
@@ -809,9 +583,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_Redir_WaitCasStopSysSyncCnf(
 )
 {
     /* Clear the Cache message buffer */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* Save the Power off request in the Buffer */
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
@@ -836,28 +608,7 @@ VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_Redir_WaitCasStopSysS
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvTiWaitCasStopSysSyncCnfExpired_Redir_WaitCasStopSysSyncCnf
-Description     :   Abort the Redirection FSM if the Abort flag is true.
-                    Otherwise continue Redirection flow by getting the next Redirection scan list.
-Input parameters:   ulEventType  - The event type of the Wait Cas Stop Sync Timer expired message
-                    pstMsg       - pointer to Wait Cas Stop Sync Timer expired message structure.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
 
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   a00295761
-        Modify content :    Create
-
-    2.日    期   : 2015年1月05日
-      作    者   : y00245242
-      修改内容   : 增加OOC搜索策略
-    3.日    期   : 2015年4月20日
-      作    者   : w00242748
-      修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                   情况下会导致死循环搜网。
-*****************************************************************************/
 
 VOS_UINT32 CNAS_XSD_RcvTiWaitCasStopSysSyncCnfTimerExpired_Redir_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
@@ -925,29 +676,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_Redir_WaitCasStopSysSyncCnf(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvCasOhmInd_Redir_WaitCasOhmInd
-Description     :   Process the OHM Indication message received from CAS.
-                    Send Notification to XREG And MMA, about the current camped system details.
-                    Quit Redirection FSM with Success result.
-Input parameters:   ulEventType  - The event type of the OHM Indication message
-                    pstMsg       - pointer to OHM Indication message structure.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
 
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   a00295761
-        Modify content :    Create
-
-    2.日    期   : 2015年7月17日
-      作    者   : y00245242
-      修改内容   : iteration 17开发
-
-    3.日    期   : 2015年08月20日
-      作    者   : t00323010
-      修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 
 VOS_UINT32 CNAS_XSD_RcvCasOhmInd_Redir_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
@@ -1001,9 +730,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_Redir_WaitCasOhmInd(
 {
 
     /* clear the Cache message buffer and save the power off request message */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
 
@@ -1013,22 +740,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_Redir_WaitCasOhmInd(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_Redir_WaitCasOhmInd
-Description     :   Sets the Redirection FSM abort flag to True.
-Input parameters:   ulEventType  - The event type of the power off camp on protect timer expired message
-                    pstMsg       - pointer to power off camp on protect timer expired message structure.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
 
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-3-7
-        Author  :   w00176964
-        Modify content : DTS2015012608600:关机定时器超时不再继续等OHM消息,直接退出处理缓存
-*****************************************************************************/
 
 VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_Redir_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
@@ -1046,28 +758,7 @@ VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectTimerExpired_Redir_WaitCasOhmInd(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvTiWaitCasOhmIndExpired_Redir_WaitCasOhmInd
-Description     :   If Abort flag is true, the Redirection FSM is quit.
-                    Else the next scan Redirection scan list is synced.
-Input parameters:   ulEventType  - The event type of the power off camp on protect timer expired message
-                    pstMsg       - pointer to power off camp on protect timer expired message structure.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
 
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   a00295761
-        Modify content :    Create
-
-    2.日    期   : 2015年1月05日
-      作    者   : y00245242
-      修改内容   : 增加OOC搜索策略
-    3.日    期   : 2015年4月20日
-      作    者   : w00242748
-      修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                   情况下会导致死循环搜网。
-*****************************************************************************/
 
 VOS_UINT32 CNAS_XSD_RcvTiWaitCasOhmIndExpired_Redir_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
@@ -1120,28 +811,7 @@ VOS_UINT32 CNAS_XSD_RcvTiWaitCasOhmIndExpired_Redir_WaitCasOhmInd(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvCasSysDeterminInd_Redir_WaitCasOhmInd
-Description     :   If Abort flag is true, the Redirection FSM is quit.
-                    Else process the System determine Ind message from CAS.
-Input parameters:   ulEventType  - The event type of the power off camp on protect timer expired message
-                    pstMsg       - pointer to power off camp on protect timer expired message structure.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
 
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   a00295761
-        Modify content :    Create
-
-    2.日    期   : 2015年1月4日
-      作    者   : y00245242
-      修改内容   : 增加NDSS ORIG功能
-
-  3.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : DSDS Determine Ind No RF的处理
-*****************************************************************************/
 
 VOS_UINT32 CNAS_XSD_RcvCasSysDeterminInd_Redir_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
@@ -1231,21 +901,7 @@ VOS_UINT32 CNAS_XSD_RcvCasSysDeterminInd_Redir_WaitCasOhmInd(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvMsccPowerSaveReq_Redir_WaitCasOhmInd
-Description     :   The function handles the Power Save Request in the Wait OHM Ind state.
-Input parameters:   ulEventType   - Event type of the message.
-                    pstMsg        - POinter to the message.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
-Modify History:
-    1)  Date    :   2015-04-04
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-05-28
-        Author  :   w00176964
-        Modify content :DTS2015052903319:power save在等OHM消息时需要延迟打断
-*****************************************************************************/
+
 
 VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_Redir_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
@@ -1261,30 +917,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_Redir_WaitCasOhmInd(
 
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvCasSysSyncCnf_Redir_WaitCasSysSyncCnfOrigSys
-Description     :   1) Receives sync conf result from CAS is SUCCESS or FAILURE
-                    2) If SUCESS: Compares the synced system is original syste or not.
-                                If SID ans NID are matched, sends campon request with synced sys to CAS, start timer.
-                                If not matched send internal message and quit FSM
-                    3) If FAILURE: Quit FSM
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2014-12-25
-        Author  :   k902809
-        Modify content :    Create
-  2.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : DSDS SyncCnf NO RF的处理
-
-  3.日    期   : 2015年7月20日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasSysSyncCnf_Redir_WaitCasSysSyncCnfOrigSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1370,9 +1003,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_Redir_WaitCasSysSyncCnfOrigSys(
 )
 {
     /* Clearing the message queue */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* Saving Power off event in message queue */
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
@@ -1489,9 +1120,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_Redir_WaitCasStopSysSyncCnfOrigSys(
 )
 {
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
 
@@ -1552,31 +1181,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_Redir_WaitCasStopSysSyncCnfOrigSys(
 
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvCasOhmInd_Redir_WaitCasOhmIndRetOrigSysInd
-Description     :   1) Stop Wait OHM protect timer
-                    2) Process OHM message
-                    3) Send ind to XREG
-                    4) Send ind to MMA
-                    5) Send result to XSD with success
-                    6) Quit FSM
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   k902809
-        Modify content :    Create
-
-    2.日    期   : 2015年7月17日
-      作    者   : y00245242
-      修改内容   : iteration 17开发
-    3.日    期   : 2015年08月20日
-      作    者   : t00323010
-      修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasOhmInd_Redir_WaitCasOhmIndRetOrigSysInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1632,9 +1237,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_Redir_WaitCasOhmIndRetOrigSysInd(
 {
 
     /* clear the Cache message buffer and save the power off request message */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_XSD_InitCacheMsgQueue(CNAS_XSD_INIT_CTX_POWEROFF, &(CNAS_XSD_GetXsdCtxAddr()->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     CNAS_XSD_SaveCacheMsg(ulEventType, pstMsg);
 
@@ -1643,22 +1246,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerOffReq_Redir_WaitCasOhmIndRetOrigSysInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvTiPowerOffCampOnProtectExpired_Redir_WaitCasOhmIndRetOrigSysInd
-Description     :   1) Set Abort flag to 1
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   k902809
-        Modify content :    Create
-    2)  Date    :   2015-3-7
-        Author  :   w00176964
-        Modify content : DTS2015012608600:关机定时器超时不再继续等OHM消息,直接退出处理缓存
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiPowerOffCampOnProtectExpired_Redir_WaitCasOhmIndRetOrigSysInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1697,27 +1285,7 @@ VOS_UINT32 CNAS_XSD_RcvTiWaitCasOhmIndExpired_Redir_WaitCasOhmIndRetOrigSysInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvCasSysDeterminInd_Redir_WaitCasOhmIndRetOrigSysInd
-Description     :   1) Check the SD message id
-                    1) Check the FLAG and invalid message
-                        Quit FSM
-                    2) Else :
-                        Search for redir message inside message queue and clear
-                        Save to message queue and return
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2014-12-26
-        Author  :   k902809
-        Modify content :    Create
-  2.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : DSDS Determin Ind NO RF的处理
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasSysDeterminInd_Redir_WaitCasOhmIndRetOrigSysInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1784,21 +1352,7 @@ VOS_UINT32 CNAS_XSD_RcvCasSysDeterminInd_Redir_WaitCasOhmIndRetOrigSysInd(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_RcvMsccPowerSaveReq_Redir_WaitCasOhmIndRetOrigSysInd
-Description     :   The function handles the Power Save Request in the Wait OHM Ind Ret Orig Sys state.
-Input parameters:   ulEventType   - Event type of the message.
-                    pstMsg        - POinter to the message.
-Outout parameters:  None
-Return Value    :   VOS_TRUE
-Modify History:
-    1)  Date    :   2015-04-04
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-05-28
-        Author  :   w00176964
-        Modify content :DTS2015052903319:power save在等OHM消息时需要延迟打断
-*****************************************************************************/
+
 
 VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_Redir_WaitCasOhmIndRetOrigSysInd(
     VOS_UINT32                          ulEventType,
@@ -1815,27 +1369,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_Redir_WaitCasOhmIndRetOrigSysInd(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_ProcCasSyncCnfSucc_Redir
-Description     :   1. Updates the sync status Redirection scan list
-                    2. Compares the expected SID, NID with synced SID, NID.
-                    3. Sends Camp on notify to CAS if the comparison is success.
-                    4. Gets next Redirection scan list if the comparison is failure.
-Input parameters:   pstSyncCnf - The Sync result details of Redirection scan list sent by CAS.
-Outout parameters:  None
-Return Value    :   None
 
-Modify History:
-    1)  Date    :   2014-12-25
-        Author  :   a00295761
-        Modify content :    Create
-    2)  Date    :   2015-07-13
-        Author  :   m00312079
-        Modify content :    DTS2015063003186 add returnCause logicals
-     3.日    期   : 2015年7月20日
-       作    者   : h00313353
-       修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 
 VOS_VOID CNAS_XSD_ProcCasSyncCnfSucc_Redir(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
@@ -1987,31 +1521,7 @@ VOS_VOID CNAS_XSD_ProcCasSyncCnfSucc_Redir(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_ProcCasSyncCnfFail_Redir
-Description     :   Gets next redirection scan list and continues to sync.
-                    If the redirection scan list is empty, the RETURN_IF_FAIL value is judged
-                    to determine the next state.
-Input parameters:   pstSyncCnf - pointer to Sync Cnf structure
-Outout parameters:  None
-Return Value    :   None
 
-Modify History:
-    1)  Date    :   2014-12-25
-        Author  :   a00295761
-        Modify content :    Create
-
-    2.日    期   : 2015年1月05日
-      作    者   : y00245242
-      修改内容   : 增加OOC搜索策略
-    3.日    期   : 2015年4月20日
-      作    者   : w00242748
-      修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                   情况下会导致死循环搜网。
-    4.日    期   : 2015年07月13日
-      作    者   : m00312079
-      修改内容   : DTS2015063003186 添加维护returnCause的逻辑
-*****************************************************************************/
 
 VOS_VOID CNAS_XSD_ProcCasSyncCnfFail_Redir(
     CAS_CNAS_1X_SYSTEM_SYNC_CNF_STRU   *pstSyncCnf
@@ -2175,26 +1685,7 @@ VOS_UINT32 CNAS_XSD_ProcCasSystemDetermineIndWithProtoMisReason_Redir(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_XSD_ContinueRedir_Redir
-Description     :   Continues the Redirection flow by getting the next Redirection scan list
-Input parameters:   None
-Output parameters:  None
-Return Value    :   VOS_TRUE
 
-Modify History:
-    1)  Date    :   2014-12-29
-        Author  :   a00295761
-        Modify content :    Create
-
-    2.日    期   : 2015年1月05日
-      作    者   : y00245242
-      修改内容   : 增加OOC搜索策略
-    3.日    期   : 2015年4月20日
-      作    者   : w00242748
-      修改内容   : DTS2015041609529:插入MRU0后，如果MRU0同步成功，但没办法驻留的
-                   情况下会导致死循环搜网。
-*****************************************************************************/
 
 VOS_VOID CNAS_XSD_ContinueRedir_Redir(VOS_VOID)
 {
@@ -2261,22 +1752,7 @@ VOS_VOID CNAS_XSD_QuitFsmRedir_Redir(VOS_VOID)
     CNAS_XSD_QuitFsmL2();
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasSysSyncCnf
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_SYNC_CNF状态收到ID_MSCC_XSD_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2294,22 +1770,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasSysSyncCnfOrigSys
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_SYNC_CNF_RET_ORIG_SYS状态收到ID_MSCC_XSD_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasSysSyncCnfOrigSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2327,22 +1788,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasSysSyncCnfOrigSys(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasOhmInd
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_OHM_IND状态收到ID_MSCC_XSD_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasOhmInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2360,22 +1806,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasOhmInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasOhmIndRetOrigSysInd
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_OHM_RET_ORIG_SYS_IND状态收到ID_MSCC_XSD_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasOhmIndRetOrigSysInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2393,22 +1824,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasOhmIndRetOrigSysInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasStopSysSyncCnf
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_STOP_SYNC_CNF状态收到ID_MSCC_XSD_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasStopSysSyncCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2426,22 +1842,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasStopSysSyncCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasStopSysSyncCnfOrigSys
- 功能描述  : CNAS_XSD_REDIR_STA_WAIT_CAS_STOP_SYNC_CNF_RET_ORIG_SYS状态收到ID_MSCC_XSD_MO_CALL_END_NTF消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallEndNtf_Redir_WaitCasStopSysSyncCnfOrigSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

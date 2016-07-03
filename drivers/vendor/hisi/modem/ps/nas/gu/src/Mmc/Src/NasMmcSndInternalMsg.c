@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcSndInternalMsg.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2010年5月9日
-  最近修改   :
-  功能描述   : MMC发给MMC的消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年05月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -49,29 +32,7 @@ extern "C" {
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAbortFsmMsg
- 功能描述  : 发送状态机退出消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年11月29日
-   作    者   : w00167002
-   修改内容   : DTS2011112301233:增加打断事件ID，状态机可以知道是什么事件
-                打断自己的。
-                修改原因:用户下发关机命令后，当前可能在等注册结果或者在等连接
-                释放，可能需要比较久的时间才能处理关机命令，通过增加打断事件，
-                如归当前在等注册结果或者等链接释放状态，若收到关机命令，则直接
-                退出当前状态机，处理用户的关机命令。
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndAbortFsmMsg(
     VOS_UINT32                          ulEventType,
     NAS_MMC_ABORT_FSM_TYPE_UINT8        enAbortFsmType
@@ -106,24 +67,7 @@ VOS_VOID  NAS_MMC_SndAbortFsmMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndInterAnyCellSearchReq
- 功能描述  : 构建内部的Anycell搜网请求
- 输入参数  : pstAnycellSrchRatList - 接入技术优先级
-             enAnycellSearchScene - 搜网场景
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月12日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月30日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndInterAnyCellSearchReq(
     NAS_MML_PLMN_RAT_PRIO_STRU                             *pstAnycellSrchRatList,
     NAS_MMC_ANYCELL_SEARCH_SCENE_ENUM_UINT8                 enAnycellSearchScene
@@ -177,24 +121,7 @@ VOS_VOID NAS_MMC_SndInterAnyCellSearchReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndInterPlmnSearchReq
- 功能描述  : 构建内部的Plmn搜网请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月18日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月10日
-    作    者   : z00161729
-    修改内容   : 增加接入技术的个数参数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndInterPlmnSearchReq(
     NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32    enPlmnSearchScene,
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU    *pstIntraPlmnSrchInfo,
@@ -223,21 +150,7 @@ VOS_VOID NAS_MMC_SndInterPlmnSearchReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndInterPlmnSearchReq
- 功能描述  : 构建内部的Plmn搜网请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月20日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndInterPlmnListReq(VOS_VOID)
 {
     NAS_MMC_INTER_PLMN_LIST_REQ_STRU   *pstInternalMsg;
@@ -266,27 +179,7 @@ VOS_VOID NAS_MMC_SndInterPlmnListReq(VOS_VOID)
     NAS_MML_SndInternalMsg(pstInternalMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndSwitchOnRlst
- 功能描述  : 收到L模开机后的确认后发送消息给MMC指示开机结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月22日
-    作    者   : luokaihui /l00167671
-    修改内容   : 新生成函数
-  2.日    期   : 2011年8月04日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase II 内部消息发送机制修改
-
-  3.日    期   : 2012年8月30日
-    作    者   : z40661
-    修改内容   : DTS2012081703433，状态机的退出消息需要放在最前面
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndSwitchOnRlst(VOS_UINT32 ulResult)
 {
     NAS_MMC_SWITCHON_RLST_STRU         *pstMsg              = VOS_NULL_PTR;
@@ -316,33 +209,7 @@ VOS_VOID NAS_MMC_SndSwitchOnRlst(VOS_UINT32 ulResult)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndPowerOffRslt
- 功能描述  : 发送关机状态机完成结果消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月30日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-
-  3.日    期   : 2012年8月30日
-    作    者   : z40661
-    修改内容   : DTS2012081703433，状态机的退出消息需要放在最前面
-  4.日    期   : 2013年7月4日
-    作    者   : z00234330
-    修改内容   : 增加开机LOG
-  5.日    期   : 2014年1月28日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目:增加获取和注册请求的处理
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndPowerOffRslt(
     NAS_MMC_POWEROFF_RSLT_ENUM_UINT32   enRslt
 )
@@ -368,49 +235,18 @@ VOS_VOID NAS_MMC_SndPowerOffRslt(
     pstMsg->stMsgHeader.ulMsgName       = MMCMMC_POWER_OFF_RSLT_CNF;
     pstMsg->stMsgHeader.ulLength        = sizeof(NAS_MMCMMC_POWEROFF_RSLT_STRU) - VOS_MSG_HEAD_LENGTH;
 
-    /* Modified by s00246516 for L-C互操作项目, 2014-01-28, Begin */
     pstMsg->enRslt                      = enRslt;
-    /* Modified by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 
 
     NAS_MML_InsertInternalMsgHead(pstMsg);
 
 
-    /* Modified by z00234330 for 开机LOG, 2013-6-24, begin */
     (VOS_VOID)vos_printf("NAS_MMC_SndPowerOffRslt:0x%x",VOS_GetSlice());
-    /* Modified by z00234330 for 开机LOG, 2013-6-24, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndPlmnListRslt
- 功能描述  : 发送PLMN LIST状态机完成结果消息
- 输入参数  : enRslt:状态机退出结果
-             ulNeedPlmnSearch:是否需要搜网
-             enPlmnListSearchScene:搜网场景
-             pstListInfo:搜索到的网络列表信息
-             pstRegRsltInfo:注册结果信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年5月8日
-    作    者   : t00212959
-    修改内容   : V7R1C50 GUL BG搜网修改,增加搜网场景入参
-
-  3.日    期   : 2012年8月30日
-    作    者   : z40661
-    修改内容   : DTS2012081703433，状态机的退出消息需要放在最前面
-  4.日    期   : 2015年9月26日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndPlmnListRslt(
     NAS_MMC_PLMN_LIST_RESULT_ENUM_UINT32                    enRslt,
     VOS_UINT8                                               ucNeedPlmnSearch,
@@ -480,23 +316,7 @@ VOS_VOID NAS_MMC_SndPlmnListRslt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAnycellSearchRlst
- 功能描述  : 发送anycell搜网的结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : l0013025
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月30日
-    作    者   : z40661
-    修改内容   : DTS2012081703433，状态机的退出消息需要放在最前面
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndAnycellSearchRslt(
     NAS_MMC_ANYCELL_SEARCH_RESULT_ENUM_UINT32               enResult
 )
@@ -529,32 +349,8 @@ VOS_VOID NAS_MMC_SndAnycellSearchRslt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndPlmnSelectionRlst
- 功能描述  : 发送PlmnSelection的搜网的结果
- 输入参数  :
-             NAS_MMC_PLMN_SELECTION_RESULT_ENUM_UINT32               enPlmnSelectionRslt
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月11日
-   作    者   : l00130025
-   修改内容   : 新生成函数
 
- 2.日    期   : 2012年8月30日
-   作    者   : z40661
-   修改内容   : DTS2012081703433，状态机的退出消息需要放在最前面
-
- 3.日    期   : 2014年1月21日
-   作    者   : w00167002
-   修改内容   : SVLTE共天线项目:调整函数参数，扩展可复用性。
-
-*****************************************************************************/
-
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-2, begin */
 VOS_VOID  NAS_MMC_SndPlmnSelectionRslt(
     NAS_MMC_PLMN_SELECTION_RESULT_ENUM_UINT32               enPlmnSelectionRslt,
     VOS_UINT32                                              ulCampFlg,
@@ -562,7 +358,6 @@ VOS_VOID  NAS_MMC_SndPlmnSelectionRslt(
     VOS_UINT32                                              ulRatNum,
     NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32                   ulPlmnSearchScene
 )
-/* Added by c00318887 for 预置频点搜网优化, 2015-9-2, end */
 {
     NAS_MMCMMC_PLMN_SELECTION_RSLT_STRU                    *pstInternalMsg = VOS_NULL_PTR;
 
@@ -582,9 +377,7 @@ VOS_VOID  NAS_MMC_SndPlmnSelectionRslt(
     pstInternalMsg->MsgHeader.ulLength        = sizeof(NAS_MMCMMC_PLMN_SELECTION_RSLT_STRU) - VOS_MSG_HEAD_LENGTH;
     pstInternalMsg->enResult                  = enPlmnSelectionRslt;
     pstInternalMsg->ulCampFlg                 = ulCampFlg;
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-2, begin */
     pstInternalMsg->ulPlmnSearchScene         = ulPlmnSearchScene;
-    /* Added by c00318887 for 预置频点搜网优化, 2015-9-2, end */
 
     /* 填充网络覆盖信息 */
     pstInternalMsg->ulRatNum = ulRatNum;
@@ -600,26 +393,7 @@ VOS_VOID  NAS_MMC_SndPlmnSelectionRslt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndInterSkipSearchWIndMsg
- 功能描述  : 发送PlmnSelection的搜网的结果
- 输入参数  :
-             NAS_MMC_PLMN_SELECTION_RESULT_ENUM_UINT32               enPlmnSelectionRslt
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月11日
-    作    者   : w00167002
-    修改内容   : 跳过搜网W结果.
-                 注:SVLTE共天线，在W下搜网NO RF后，在G下搜网成功国内驻留成功后，
-                 后续再发起搜网时候不能搜WAS,否则G会丢网。但在UTRANCTRL状态机时候
-                 ，NO RF时候当前是FDD模式的，因而MMC再发起搜网时候，会先给WAS发送，
-                 UTRAN构造SKIP W消息，在UTRANCTRL状态机搜索TDD.
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndInterSkipSearchWIndMsg(VOS_VOID)
 {
     NAS_MMCMMC_INTER_SKIP_SEARCH_W_IND_STRU                *pstInternalMsg      = VOS_NULL_PTR;
@@ -645,21 +419,7 @@ VOS_VOID  NAS_MMC_SndInterSkipSearchWIndMsg(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndInterSkipSearchTdsIndMsg
- 功能描述  : 发送MMCMMC_INTER_SKIP_SEARCH_TDS_IND消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndInterSkipSearchTdsIndMsg(VOS_VOID)
 {
     NAS_MMCMMC_INTER_SKIP_SEARCH_TDS_IND_STRU              *pstInternalMsg = VOS_NULL_PTR;
@@ -688,21 +448,7 @@ VOS_VOID  NAS_MMC_SndInterSkipSearchTdsIndMsg(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndInterAbortUtranCtrlPlmnSearchReqMsg
- 功能描述  : 发送NAS_MMCMMC_INTER_ABORT_UTRAN_CTRL_PLMN_SEARCH_REQ消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndInterAbortUtranCtrlPlmnSearchReqMsg(VOS_VOID)
 {
     NAS_MMCMMC_INTER_ABORT_UTRAN_CTRL_PLMN_SEARCH_REQ_STRU *pstInternalMsg = VOS_NULL_PTR;
@@ -729,21 +475,7 @@ VOS_VOID  NAS_MMC_SndInterAbortUtranCtrlPlmnSearchReqMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndInterAbortUtranCtrlPlmnSearchCnfMsg
- 功能描述  : 发送NAS_MMCMMC_INTER_ABORT_UTRAN_CTRL_PLMN_SEARCH_CNF消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndInterAbortUtranCtrlPlmnSearchCnfMsg(VOS_VOID)
 {
     NAS_MMCMMC_INTER_ABORT_UTRAN_CTRL_PLMN_SEARCH_CNF_STRU *pstInternalMsg = VOS_NULL_PTR;
@@ -772,31 +504,7 @@ VOS_VOID  NAS_MMC_SndInterAbortUtranCtrlPlmnSearchCnfMsg(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndBgPlmnSearchRslt
- 功能描述  : 发送BgPlmnSearch的结果
- 输入参数  : enPlmnSelectionRslt
-             ulNeedPlmnSearch
-             ulBgSearchCompleted
-             stInterPlmnSearchInfo
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月27日
-   作    者   : s46746
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月26日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改,增加搜网场景入参
-
- 3.日    期   : 2012年8月30日
-   作    者   : z40661
-   修改内容   : DTS2012081703433，状态机的退出消息需要放在最前面
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndBgPlmnSearchRslt(
     NAS_MMC_BG_PLMN_SEARCH_RSLT_ENUM_UINT32                 enPlmnSelectionRslt,
     VOS_UINT32                                              ulNeedPlmnSearch,
@@ -846,31 +554,7 @@ VOS_VOID  NAS_MMC_SndBgPlmnSearchRslt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndSuspendRsltMsg
- 功能描述  : 发送重选,HO,CCO状态机退出消息
- 输入参数  : enSuspendCause  挂起原因
-             enSuspendRslt   挂起结果
-             enSuspendFailCause  挂起失败原因
-             pstListInfo         接入层上报的列表
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月18日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年8月30日
-   作    者   : z40661
-   修改内容   : DTS2012081703433，状态机的退出消息需要放在最前面
- 3.日    期   : 2012年10月23日
-   作    者   : s00217060
-   修改内容   : DTS2012102301482，挂起原因为小区重选时，enRatType填的不正确
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndSuspendRsltMsg(
     MMC_SUSPEND_CAUSE_ENUM_UINT8                            enSuspendCause,
     NAS_MMC_SUSPEND_RSLT_ENUM_UINT32                        enSuspendRslt,
@@ -928,33 +612,7 @@ VOS_VOID  NAS_MMC_SndSuspendRsltMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndSysCfgRslt
- 功能描述  : 通知上层状态机SYSCFG运行结果
- 输入参数  : VOS_UINT32                          ulSysCfgRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月18日
-   作    者   : W00167002
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年8月30日
-   作    者   : z40661
-   修改内容   : DTS2012081703433，状态机的退出消息需要放在最前面
-
- 3.日    期   : 2015年2月26日
-   作    者   : w00167002
-   修改内容   : DTS2015021604972:在SYSCFG设置完后，MMA进行ATTACH流程。MMC已经退出
-                 SYSCFG状态机，并触发搜网。在搜网时候，如果PS不准许ATTACH，则不搜索LTE.
-                 现修改为在SYSCFG后,如果需要搜网，则判别是否ATTACH PS需要先ENABLE LTE。
-4.日    期   : 2015年8月6日
-  作    者   : c00318887
-  修改内容   : DTS2015041401965，syscfg设置只在增加接入技术且新增接入技术优先级高于当前接入技术才触发搜网
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndSysCfgRslt(
     VOS_UINT32                          ulSysCfgRslt,
     VOS_UINT32                          ulNeedPlmnSrch,
@@ -993,26 +651,7 @@ VOS_VOID  NAS_MMC_SndSysCfgRslt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BulidInterPlmnSearchReqMsg
- 功能描述  : 构建内部的Plmn搜网请求消息
- 输入参数  : enPlmnSearchScene 搜网场景
-             pstIntraPlmnSrchInfo 搜网信息
-             ucRatNum:接入技术的个数
- 输出参数  : pstInterPlmnSrchMsg 内部搜网消息
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月06日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月10日
-    作    者   : z00161729
-    修改内容   : 增加接入技术的个数参数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BulidInterPlmnSearchReqMsg(
     NAS_MMC_PLMN_SEARCH_SCENE_ENUM_UINT32                   enPlmnSearchScene,
     NAS_MMC_SEARCHED_PLMN_LIST_INFO_STRU                   *pstIntraPlmnSrchInfo,
@@ -1052,24 +691,7 @@ VOS_VOID NAS_MMC_BulidInterPlmnSearchReqMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildInterDplmnSetReqMsg
- 功能描述  : 构造MMCMMC_INTER_DPLMN_SET_REQ消息
- 输入参数  : VOS_UINT8                                              *pucVersion
-             VOS_UINT8                                               ucEhPlmnNum
-             NAS_MSCC_PIF_PLMN_ID_STRU                              *pstEhPlmnInfo
-             NAS_MMC_INTER_DPLMN_SET_REQ_STRU                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月9日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildInterDplmnSetReqMsg(
     VOS_UINT8                                              *pucVersion,
     VOS_UINT8                                               ucEhPlmnNum,
@@ -1104,21 +726,7 @@ VOS_VOID NAS_MMC_BuildInterDplmnSetReqMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndInterNvimOPlmnRefreshInd
- 功能描述  : 构建内部的OPlmn刷新请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月15日
-    作    者   : x65241
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndInterNvimOPlmnRefreshInd(VOS_VOID)
 {
     VOS_UINT32                                   ulLen;
@@ -1146,21 +754,7 @@ VOS_VOID NAS_MMC_SndInterNvimOPlmnRefreshInd(VOS_VOID)
     NAS_MML_SndInternalMsg(pstInternalMsg);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndGetGeoRsltMsg
- 功能描述  : 发送GET GEO状态机退出消息
- 输入参数  : NAS_MMC_GET_GEO_RSLT_ENUM_UINT32  GetGeo的结果
-             NAS_MML_PLMN_ID_STRU*             获取到的PLMN ID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  : 调用者必须保证GetGeo结果为成功时入参不能为NULL指针
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年05月08日
-   作    者   : sunjitan 00193151
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndGetGeoRsltMsg(
     NAS_MMC_GET_GEO_RSLT_ENUM_UINT32    enGetGeoRslt,
     NAS_MML_PLMN_ID_STRU               *pstGeoPlmn

@@ -25,14 +25,7 @@ using namespace testing;
 //12、比较异常 EXPECT_THROW
 //13、结构体类型比较ASSERT_SAME_DATA ASSERT_SAME_MEMORY
 
-/*****************************************************************************
-类名     : Test_At_SendData
-功能描述 : At_SendData UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SendData: public ::testing::Test
 {
 public:
@@ -47,15 +40,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SendData_001
-测试用例标题      : CLIENT_NUM不对
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_001)
 {
     VOS_UINT8                           ucIndex;
@@ -67,15 +52,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_001)
     EXPECT_EQ(ulRlst, AT_FAILURE);
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendData_002
-测试用例标题      : DATAMODE不对
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_002)
 {
     VOS_UINT8                           ucIndex;
@@ -91,15 +68,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_SendData_003
-测试用例标题      : DATAMODE不一致
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_003)
 {
     VOS_UINT8                           ucIndex;
@@ -117,15 +86,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_003)
     EXPECT_EQ(ulRlst, AT_FAILURE);
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendData_004
-测试用例标题      : USBCOM_USER模式
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_004)
 {
     VOS_UINT8                           ucIndex;
@@ -155,15 +116,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendData_005
-测试用例标题      : CTR_USER模式
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_005)
 {
     VOS_UINT8                           ucIndex;
@@ -193,15 +146,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_005)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_SendData_006
-测试用例标题      : MODEM_USER模式
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_006)
 {
     VOS_UINT8                           ucIndex;
@@ -230,15 +175,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendData_007
-测试用例标题      : NDIS_USER模式
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_007)
 {
     VOS_UINT8                           ucIndex;
@@ -263,15 +200,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_007)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendData_008
-测试用例标题      : 其它模式
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_008)
 {
     VOS_UINT8                           ucIndex;
@@ -296,15 +225,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_008)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendData_009
-测试用例标题      : HSIC USER模式
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_009)
 {
     VOS_UINT8                           ucIndex;
@@ -328,15 +249,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_009)
     EXPECT_EQ(ulRlst, AT_FAILURE);
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_SendData_010
-测试用例标题      : APP USER模式
-预期结果          : 返回AT_SUCCESS
-修改历史     :
-1.日   期  : 2012-12-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_010)
 {
     VOS_UINT8                           ucIndex;
@@ -366,15 +279,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_010)
 }
 
 #if (FEATURE_ON == FEATURE_AT_HSIC)
-/*******************************************************************
-测试用例编号      : Test_At_SendData_011
-测试用例标题      : HSIC USER模式，通道为AT_HSIC4_USER
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日    期   : 2012年07月18日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_011)
 {
     VOS_UINT8                           ucIndex;
@@ -404,15 +309,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_011)
 
     EXPECT_EQ(ulRlst, AT_SUCCESS);
 }
-/*******************************************************************
-测试用例编号      : Test_At_SendData_012
-测试用例标题      : MUX USER模式
-预期结果          : 返回AT_SUCCESS
-修改历史     :
-1.日   期  : 2012-08-10
-  作   者  : L60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendData,Test_At_SendData_012)
 {
     VOS_UINT8                           ucIndex;
@@ -475,14 +372,7 @@ TEST_F(Test_At_SendData,Test_At_SendData_012)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_DisplayResultData
-功能描述 : AT_DisplayResultData UT工程类
-修改历史     :
-1.日   期  : 2013-05-30
-作   者  :   f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_DisplayResultData: public ::testing::Test
 {
 public:
@@ -497,15 +387,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_001
-测试用例标题      : 1数传状态直接返回
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-05-30
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_001)
 {
     VOS_UINT8                           ucIndex;
@@ -519,15 +401,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_001)
     AT_DisplayResultData(ucIndex, 0);
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_002
-测试用例标题      : 3USBCOM_USER
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-05-30
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_002)
 {
     VOS_UINT8                           ucIndex;
@@ -551,15 +425,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_003
-测试用例标题      : CTR_USER
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-05-30
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_003)
 {
     VOS_UINT8                           ucIndex;
@@ -583,15 +449,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_004
-测试用例标题      : MODEM_USER
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-05-30
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_004)
 {
     VOS_UINT8                           ucIndex;
@@ -617,15 +475,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_005
-测试用例标题      : AT_HSUART_USER
-预期结果          : 直接返回
-修改历史     :
-  1.日   期  : 2013-05-30
-    作   者  : f00179208
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_005)
 {
     VOS_UINT8                           ucIndex;
@@ -650,15 +500,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_006
-测试用例标题      : NDIS_USER
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-05-30
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_006)
 {
     VOS_UINT8                           ucIndex;
@@ -679,15 +521,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_006)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_007
-测试用例标题      : APP_USER
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-05-30
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_007)
 {
     VOS_UINT8                           ucIndex;
@@ -711,15 +545,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_007)
 }
 
 #if (FEATURE_ON == FEATURE_AT_HSIC)
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_008
-测试用例标题      : HSIC_USER
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-05-30
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_008)
 
 {
@@ -743,15 +569,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_008)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_009
-测试用例标题      : MUX_USER
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-05-30
-作   者  :   f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_009)
 {
     VOS_UINT8                           ucIndex;
@@ -811,15 +629,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_009)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplayResultData_010
-测试用例标题      : AT_UART_USER
-预期结果          : 直接返回
-修改历史     :
-  1.日   期  : 2013-11-10
-    作   者  : A00165503
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_010)
 {
     VOS_UINT8                           ucIndex;
@@ -844,14 +654,7 @@ TEST_F(Test_AT_DisplayResultData,Test_AT_DisplayResultData_010)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_DisplaySelResultData
-功能描述 : AT_DisplaySelResultData UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_AT_DisplaySelResultData: public ::testing::Test
 {
 public:
@@ -866,15 +669,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:          2。USBCOM用户CMD模式
-*被测函数功能描述: 将Taf返回的AT命令数据分发给相应的端口
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_01)
 {
     gastAtClientTab[0].Mode     = AT_CMD_MODE;
@@ -892,15 +687,7 @@ TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          3。CTR用户CMD模式
-*被测函数功能描述: 将Taf返回的AT命令数据分发给相应的端口
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_02)
 {
     gastAtClientTab[0].Mode     = AT_CMD_MODE;
@@ -918,15 +705,7 @@ TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_02)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          4。MODEM用户CMD模式
-*被测函数功能描述: 将Taf返回的AT命令数据分发给相应的端口
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_03)
 {
     TTF_MEM_ST                          stDataMem;
@@ -948,15 +727,7 @@ TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_03)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          7.APP用户CMD模式
-*被测函数功能描述: 将Taf返回的AT命令数据分发给相应的端口
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_04)
 {
     gastAtClientTab[0].Mode     = AT_CMD_MODE;
@@ -974,15 +745,7 @@ TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_04)
 
 #if(FEATURE_ON == FEATURE_NDIS)
 
-/*******************************************************************
-*测试项:          8.NDIS用户CMD模式
-*被测函数功能描述: 将Taf返回的AT命令数据分发给相应的端口
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_05)
 {
     gastAtClientTab[0].Mode     = AT_CMD_MODE;
@@ -1001,18 +764,7 @@ TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_05)
 
 #if((FEATURE_ON == FEATURE_GNA)||(FEATURE_ON == FEATURE_RNIC))
 
-/*******************************************************************
-*测试项:          9.APP用户CMD模式
-*被测函数功能描述: 将Taf返回的AT命令数据分发给相应的端口
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2010年9月15日
-#    作    者: lijun 00171473
-#    修改内容: 新建CASE
-#  2.日    期: 2012年12月6日
-#    作    者: l00227485
-#    修改内容: 调用APP_VCOM_Send
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_06)
 {
     gastAtClientTab[0].Mode     = AT_CMD_MODE;
@@ -1029,15 +781,7 @@ TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_06)
 }
 #endif
 
-/*******************************************************************
-*测试项:          HSIC用户CMD模式
-*被测函数功能描述: 将Taf返回的AT命令数据分发给HSIC的端口
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2012年2月25日
-#    作    者: L47619
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_07)
 {
     gastAtClientTab[0].Mode     = AT_CMD_MODE;
@@ -1050,15 +794,7 @@ TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_07)
 }
 
 #if (FEATURE_ON == FEATURE_AT_HSIC)
-/*******************************************************************
-测试用例编号      : Test_AT_DisplaySelResultData_001
-测试用例标题      : HSIC USER模式，通道为AT_HSIC4_USER
-预期结果          : 将HSIC AT通道的下行发送数据发送给HSIC,AT_SendDataToHsic()被调用一次
-修改历史     :
-1.日    期   : 2012年07月17日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData, Test_AT_DisplaySelResultData_08)
 {
     gastAtClientTab[0].Mode     = AT_CMD_MODE;
@@ -1073,15 +809,7 @@ TEST_F(Test_AT_DisplaySelResultData, Test_AT_DisplaySelResultData_08)
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-*测试项:          MUX用户CMD模式
-*被测函数功能描述: 将Taf返回的AT命令数据分发给MUX的端口
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2012年8月10日
-#    作    者: L60609
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_09)
 {
     VOS_UINT32                          ulNvId;
@@ -1135,15 +863,7 @@ TEST_F(Test_AT_DisplaySelResultData,Test_AT_DisplaySelResultData_09)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisplaySelResultData_010
-测试用例标题      : 向HSUART发送消息成功
-预期结果          : 发送消息成功
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DisplaySelResultData, Test_AT_DisplaySelResultData_010)
 {
     // 变量声明
@@ -1171,14 +891,7 @@ TEST_F(Test_AT_DisplaySelResultData, Test_AT_DisplaySelResultData_010)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_FormatResultData
-功能描述 : Test_At_FormatResultData UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_FormatResultData: public ::testing::Test
 {
 public:
@@ -1214,15 +927,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_At_FormatResultData_001
-测试用例标题    : UART端口格式化输出NO_CARRIER
-预期结果        : 输出NO_CARRIER字符串
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData, Test_At_FormatResultData_001)
 {
     // 变量声明
@@ -1265,15 +970,7 @@ TEST_F(Test_At_FormatResultData, Test_At_FormatResultData_001)
 }
 
 #if 1
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode非法
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_002)
 {
     //参数定义
@@ -1298,15 +995,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_CMD_NOT_SUPPORT
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_003)
 {
     //参数定义
@@ -1335,15 +1024,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_TOO_MANY_PARA
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_004)
 {
     //参数定义
@@ -1372,15 +1053,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_WAIT_SMS_INPUT
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_005)
 {
     //参数定义
@@ -1406,15 +1079,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode大于AT_CMS_ERROR_ENUM_BEGAIN小于AT_CMS_ERROR_ENUM_END
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_006)
 {
     //参数定义
@@ -1450,16 +1115,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode大于AT_CMS_ERROR_ENUM_BEGAIN小于AT_CMS_ERROR_ENUM_END
-gucAtCmeeType为AT_CMEE_ERROR_CODE
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_007)
 {
     //参数定义
@@ -1495,16 +1151,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_CMS_UNASSIGNED_UNALLOCATED_NUMBER
-gucAtCmeeType为初始值
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_008)
 {
     //参数定义
@@ -1540,16 +1187,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_CONNECT,G下PPP拨号
 
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_010)
 {
     //参数定义
@@ -1595,16 +1233,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_010)
 }
 
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_NO_CARRIER,G下PPP拨号
 
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_011)
 {
     //参数定义
@@ -1646,16 +1275,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_CONNECT,可视电话场景
 
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_012)
 {
     //参数定义
@@ -1701,15 +1321,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_CME_SIM_BUSY，gucAtCmeeType为AT_CMEE_ONLY_ERROR
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_013)
 {
     //参数定义
@@ -1744,15 +1356,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_013)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_CME_SIM_BUSY，gucAtCmeeType为AT_CMEE_ERROR_CODE
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_014)
 {
     //参数定义
@@ -1789,15 +1393,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_014)
 }
 
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_CME_SIM_BUSY，gucAtCmeeType为AT_CMEE_ERROR_CONTENT
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_015)
 {
     //参数定义
@@ -1833,15 +1429,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_015)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:At_JudgeCombineCmdSubSequentProcess返回AT_COM_CMD_SUB_PROC_CONTINUE
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_016)
 {
     //参数定义
@@ -1874,16 +1462,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_016)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:At_JudgeCombineCmdSubSequentProcess返回AT_COM_CMD_SUB_PROC_CONTINUE,
-At_CmdProc返回AT_WAIT_ASYNC_RETURN
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_017)
 {
     //参数定义
@@ -1916,15 +1495,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_017)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:gucAtVType为AT_V_BREVITE_TYPE,ReturnCode为AT_OK
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_018)
 {
     //参数定义
@@ -1960,15 +1531,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_018)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:gucAtVType为AT_V_BREVITE_TYPE,ReturnCode为AT_CME_SIM_FAILURE
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_019)
 {
     //参数定义
@@ -2004,15 +1567,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_019)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:gucAtVType为AT_V_BREVITE_TYPE,ReturnCode为AT_OK
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_020)
 {
     //参数定义
@@ -2045,15 +1600,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_020)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:gucAtVType为AT_V_BREVITE_TYPE,ReturnCode为AT_OK
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_021)
 {
     //参数定义
@@ -2083,15 +1630,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_021)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:at_CmdProc返回AT_WAIT_ASYNC_RETURN
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2010年09月17日
-#    作    者: z00161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_022)
 {
     //参数定义
@@ -2120,15 +1659,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_022)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          根据V,+CMEE,对结果进行格式化
-*被测函数功能描述:returnCode为AT_WAIT_XML_INPUT
-*预期结果：       成功
-************************* 修改记录 ********************************
-#  1.日    期: 2012年07月19日
-#    作    者: L47619
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_023)
 {
     //参数定义
@@ -2156,15 +1687,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_023)
 
 #endif
 
-/*******************************************************************
-测试用例编号  : returnCode_CMD_NOT_SUPPORT
-测试用例标题  : CMD_NOT_SUPPORT错误码的上报
-预期结果      : 输出对应字符串
-修改历史      :
-1.日    期    : 2012年09月25日
-  作    者    : L00171473
-  修改内容    : 新增 for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_024)
 {
     VOS_UINT8                           aucDataAt[50];
@@ -2216,15 +1739,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_024)
     EXPECT_STREQ((char*)pgucAtSndCodeAddr, (char*)aucDataAt);
 }
 
-/*******************************************************************
-测试用例编号  : returnCode TOO_MANY_PARA
-测试用例标题  : TOO_MANY_PARA错误码的上报
-预期结果      : 输出对应字符串
-修改历史      :
-1.日    期    : 2012年09月25日
-  作    者    : L00171473
-  修改内容    : 新增 for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_025)
 {
     VOS_UINT8                           aucDataAt[50];
@@ -2268,16 +1783,7 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_025)
 }
 
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-17, begin */
-/*******************************************************************
-测试用例编号  : Get_SysMode_Succ
-测试用例标题  : 跨核API获取系统模式成功
-预期结果      : 输出对应字符串
-修改历史      :
-1.日    期    : 2013年04月18日
-  作    者    : s00217060
-  修改内容    : 新增 for 主动上报AT命令控制下移至C核
-*******************************************************************/
+
 TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_026)
 {
     VOS_UINT16                          usLength;
@@ -2315,16 +1821,8 @@ TEST_F(Test_At_FormatResultData,Test_At_FormatResultData_026)
     GlobalMockObject::verify();
 
 }
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-17, end */
 
-/******************************************************************************
-类名     : Test_At_BufferorSendResultData
-功能描述 : At_BufferorSendResultData UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_At_BufferorSendResultData: public ::testing::Test
 {
 public:
@@ -2339,15 +1837,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:              待追加新的信息字段长度与缓冲中已有数据长度之和大于缓冲最大最大容量
-*被测函数功能描述:    缓存待发送数据到组合AT命令发送缓存
-*预期结果：           调用At_SendResultData输出已有缓存信息同时缓存当前信息
-************************* 修改记录 *************************
-#  1.日    期: 2010年12月30日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_BufferorSendResultData,Test_At_BufferorSendResultData_01)
 {
     VOS_UINT8                           ucIndex = 0;
@@ -2371,15 +1861,7 @@ TEST_F(Test_At_BufferorSendResultData,Test_At_BufferorSendResultData_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:              待追加新的信息字段长度与缓冲中已有数据长度之和小于或等于缓冲最大最大容量
-*被测函数功能描述:    缓存待发送数据到组合AT命令发送缓存
-*预期结果：           缓存当前信息
-************************* 修改记录 *************************
-#  1.日    期: 2010年12月30日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_BufferorSendResultData,Test_At_BufferorSendResultData_02)
 {
     VOS_UINT8                           ucIndex = 0;
@@ -2406,14 +1888,7 @@ TEST_F(Test_At_BufferorSendResultData,Test_At_BufferorSendResultData_02)
 
 
 #ifdef NAS_STUB
-/******************************************************************************
-类名     : Test_At_SndResult_Stub
-功能描述 : At_SndResult_Stub UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_At_SndResult_Stub: public ::testing::Test
 {
 public:
@@ -2428,15 +1903,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:             输入参数指针为空函数直接返回
-*被测函数功能描述:   将AT命令回复发给AT_STUB PID中
-*预期结果：          WARNING告警"At_SndResult_Stub :pData is null ptr!"
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_01)
 {
     const char          cWarning[] = "At_SndResult_Stub :pData is null ptr!";
@@ -2466,15 +1933,7 @@ TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_01)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项: 输入参数的消息长度为0函数直接返回
-*被测函数功能描述:   将AT命令回复发给AT_STUB PID中
-*预期结果：           WARNING告警"At_SndResult_Stub ulLength = 0"
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_02)
 {
     const char          cWarning[] = "At_SndResult_Stub ulLength = 0";
@@ -2500,15 +1959,7 @@ TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_02)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项: 输入参数的消息长度超过最大值1600函数直接返回
-*被测函数功能描述:   将AT命令回复发给AT_STUB PID中
-*预期结果：           WARNING告警"At_SndResult_Stub ulLength > AT_COM_BUFF_LEN"
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_03)
 {
     const char          cWarning[] = "At_SndResult_Stub ulLength > AT_COM_BUFF_LEN";
@@ -2534,15 +1985,7 @@ TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_03)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:             内存申请失败函数直接返回
-*被测函数功能描述:   将AT命令回复发给AT_STUB PID中
-*预期结果：          WARNING告警"At_SndResult_Stub:ERROR:Alloc Msg"
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_04)
 {
     const char          cWarning[] = "At_SndResult_Stub:ERROR:Alloc Msg";
@@ -2572,15 +2015,7 @@ TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_04)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:             消息发送失败
-*被测函数功能描述:   将AT命令回复发给AT_STUB PID中
-*预期结果：          WARNING告警"At_SndResult_Stub:ERROR:VOS_SendMsg"
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_05)
 {
     const char          cWarning[] = "At_SndResult_Stub:ERROR:VOS_SendMsg";
@@ -2607,15 +2042,7 @@ TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_05)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:             消息正常处理
-*被测函数功能描述:   将AT命令回复发给AT_STUB PID中
-*预期结果：          WARNING告警"At_SndResult_Stub:ERROR:VOS_SendMsg"
-************************* 修改记录 *************************
-#  1.日    期: 2011年4月22日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_06)
 {
     TAF_UINT8           ucIndex = 0;
@@ -2638,15 +2065,7 @@ TEST_F(Test_At_SndResult_Stub, Test_At_SndResult_Stub_06)
 }
 
 
-/*******************************************************************
-*测试项:          消息为广播消息
-*被测函数功能描述:结果返回
-*预期结果：       进入广播消息处理
-************************* 修改记录 ********************************
-#  1.日    期: 2013-01-05
-#    作    者: z00220246
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendResultData,Test_At_SendResultData_001)
 {
     VOS_UINT8                           ucIndex;
@@ -2668,14 +2087,7 @@ TEST_F(Test_At_SendResultData,Test_At_SendResultData_001)
 #endif
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/******************************************************************************
-类名     : Test_AT_SendBroadCastResultData
-功能描述 : AT_SendBroadCastResultData UT工程类
-修改历史 :
- 1.日   期  : 2014-05-28
-   作   者  : Y00213812
-   修改内容 : 64bit ut修改
-******************************************************************************/
+
 class Test_AT_SendBroadCastResultData: public ::testing::Test
 {
 public:
@@ -2690,15 +2102,7 @@ public:
     }
 
 };
-/*******************************************************************
-*测试项:         通道广播消息
-*被测函数功能描述:对应通道进行广播
-*预期结果：       进入广播消息处理
-************************* 修改记录 ********************************
-#  1.日    期: 2013-01-05
-#    作    者: z00220246
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SendBroadCastResultData,Test_AT_SendBroadCastResultData_001)
 {
     VOS_UINT8                           ucIndex;
@@ -2739,14 +2143,7 @@ TEST_F(Test_AT_SendBroadCastResultData,Test_AT_SendBroadCastResultData_001)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_SmsStartRingTe
-功能描述 : Test_AT_SmsStartRingTe UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SmsStartRingTe: public ::testing::Test
 {
 public:
@@ -2762,15 +2159,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_SmsStartRingTe_001
-测试用例标题    : 当前正在输出来电波形
-预期结果        : 短信计数加1, 不影响来电波形输出
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_SmsStartRingTe, Test_AT_SmsStartRingTe_001)
 {
     // 变量声明
@@ -2797,15 +2186,7 @@ TEST_F(Test_AT_SmsStartRingTe, Test_AT_SmsStartRingTe_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_SmsStartRingTe_002
-测试用例标题    : 当前无波形输出, 不是协议栈上报新短信触发的RING
-预期结果        : 短信计数不增加, 设置RI信号为高电平
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_SmsStartRingTe, Test_AT_SmsStartRingTe_002)
 {
     // 变量声明
@@ -2850,14 +2231,7 @@ TEST_F(Test_AT_SmsStartRingTe, Test_AT_SmsStartRingTe_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_SmsStopRingTe
-功能描述 : Test_AT_SmsStopRingTe UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SmsStopRingTe: public ::testing::Test
 {
 public:
@@ -2873,15 +2247,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_SmsStopRingTe_001
-测试用例标题    : 当前正在输出短信波形
-预期结果        : 短信计数不变, 停止短信输出
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_SmsStopRingTe, Test_AT_SmsStopRingTe_001)
 {
     // 变量声明
@@ -2923,15 +2289,7 @@ TEST_F(Test_AT_SmsStopRingTe, Test_AT_SmsStopRingTe_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_SmsStopRingTe_002
-测试用例标题    : 短信波形完整输出
-预期结果        : 短信计数减1
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_SmsStopRingTe, Test_AT_SmsStopRingTe_002)
 {
     // 变量声明
@@ -2970,14 +2328,7 @@ TEST_F(Test_AT_SmsStopRingTe, Test_AT_SmsStopRingTe_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvTiSmsRiExpired
-功能描述 : Test_AT_RcvTiSmsRiExpired UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvTiSmsRiExpired: public ::testing::Test
 {
 public:
@@ -2993,15 +2344,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiSmsRiExpired_001
-测试用例标题    : 短信通知波形输出已经停止
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_001)
 {
     // 变量声明
@@ -3044,15 +2387,7 @@ TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiSmsRiExpired_002
-测试用例标题    : 正在输出短信高电平波形, 有1条短信通知
-预期结果        : 输出短信通知低电平波形
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_002)
 {
     // 变量声明
@@ -3104,15 +2439,7 @@ TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiSmsRiExpired_003
-测试用例标题    : 正在输出短信低电平波形, 有1条短信通知
-预期结果        : 短信通知波形输出结束
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_003)
 {
     // 变量声明
@@ -3158,15 +2485,7 @@ TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiSmsRiExpired_004
-测试用例标题    : 正在输出短信低电平波形, 有2条短信通知
-预期结果        : 继续输出下一条短信通知波形
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_004)
 {
     // 变量声明
@@ -3223,15 +2542,7 @@ TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiSmsRiExpired_005
-测试用例标题    : 正在输出短信高电平波形, 低电平持续时间配置为0s
-预期结果        : 拉低电平后, 再次输出高电平
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_005)
 {
     // 变量声明
@@ -3289,14 +2600,7 @@ TEST_F(Test_AT_RcvTiSmsRiExpired, Test_AT_RcvTiSmsRiExpired_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_GetRiStatusByCallId
-功能描述 : Test_AT_GetRiStatusByCallId UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_GetRiStatusByCallId: public ::testing::Test
 {
 public:
@@ -3312,15 +2616,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_GetRiStatusByCallId_001
-测试用例标题    : CALLID对应的RI状态为RINGING
-预期结果        : 返回AT_UART_RI_STATUS_RINGING
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_GetRiStatusByCallId, Test_AT_GetRiStatusByCallId_001)
 {
     // 变量声明
@@ -3346,15 +2642,7 @@ TEST_F(Test_AT_GetRiStatusByCallId, Test_AT_GetRiStatusByCallId_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_GetRiStatusByCallId_002
-测试用例标题    : CALLID对应的RI状态为RINGING
-预期结果        : 返回AT_UART_RI_STATUS_RINGING
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_GetRiStatusByCallId, Test_AT_GetRiStatusByCallId_002)
 {
     // 变量声明
@@ -3380,14 +2668,7 @@ TEST_F(Test_AT_GetRiStatusByCallId, Test_AT_GetRiStatusByCallId_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_VoiceStartRingTe
-功能描述 : Test_AT_VoiceStartRingTe UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_VoiceStartRingTe: public ::testing::Test
 {
 public:
@@ -3412,15 +2693,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_VoiceStartRingTe_001
-测试用例标题    : CALLID无效
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_VoiceStartRingTe, Test_AT_VoiceStartRingTe_001)
 {
     // 变量声明
@@ -3449,15 +2722,7 @@ TEST_F(Test_AT_VoiceStartRingTe, Test_AT_VoiceStartRingTe_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_VoiceStartRingTe_002
-测试用例标题    : 正在输出来电通知波形
-预期结果        : 直接返回, 不影响来电波形输出
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_VoiceStartRingTe, Test_AT_VoiceStartRingTe_002)
 {
     // 变量声明
@@ -3489,15 +2754,7 @@ TEST_F(Test_AT_VoiceStartRingTe, Test_AT_VoiceStartRingTe_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_VoiceStartRingTe_003
-测试用例标题    : 无短信波形输出
-预期结果        : 输出来电通知波形
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_VoiceStartRingTe, Test_AT_VoiceStartRingTe_003)
 {
     // 变量声明
@@ -3543,15 +2800,7 @@ TEST_F(Test_AT_VoiceStartRingTe, Test_AT_VoiceStartRingTe_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_VoiceStartRingTe_004
-测试用例标题    : 正在输出短信通知波形
-预期结果        : 停止短信波形输出, 输出来电通知波形
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_VoiceStartRingTe, Test_AT_VoiceStartRingTe_004)
 {
     // 变量声明
@@ -3602,14 +2851,7 @@ TEST_F(Test_AT_VoiceStartRingTe, Test_AT_VoiceStartRingTe_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_VoiceStopRingTe
-功能描述 : Test_AT_VoiceStopRingTe UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_VoiceStopRingTe: public ::testing::Test
 {
 public:
@@ -3634,15 +2876,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_VoiceStopRingTe_001
-测试用例标题    : CALLID无效
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_VoiceStopRingTe, Test_AT_VoiceStopRingTe_001)
 {
     // 变量声明
@@ -3680,15 +2914,7 @@ TEST_F(Test_AT_VoiceStopRingTe, Test_AT_VoiceStopRingTe_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_VoiceStopRingTe_002
-测试用例标题    : 没有输出来电通知波形
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_VoiceStopRingTe, Test_AT_VoiceStopRingTe_002)
 {
     // 变量声明
@@ -3726,15 +2952,7 @@ TEST_F(Test_AT_VoiceStopRingTe, Test_AT_VoiceStopRingTe_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_VoiceStopRingTe_003
-测试用例标题    : CALLID对应的RI状态为STOP
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_VoiceStopRingTe, Test_AT_VoiceStopRingTe_003)
 {
     // 变量声明
@@ -3773,15 +2991,7 @@ TEST_F(Test_AT_VoiceStopRingTe, Test_AT_VoiceStopRingTe_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_VoiceStopRingTe_004
-测试用例标题    : 正在输出来电通知波形
-预期结果        : 停止波形输出, 恢复短信波形输出
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_VoiceStopRingTe, Test_AT_VoiceStopRingTe_004)
 {
     // 变量声明
@@ -3843,14 +3053,7 @@ TEST_F(Test_AT_VoiceStopRingTe, Test_AT_VoiceStopRingTe_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvTiVoiceRiExpired
-功能描述 : Test_AT_RcvTiVoiceRiExpired UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvTiVoiceRiExpired: public ::testing::Test
 {
 public:
@@ -3866,15 +3069,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiVoiceRiExpired_001
-测试用例标题    : 来电通知波形输出已经停止
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_001)
 {
     // 变量声明
@@ -3925,15 +3120,7 @@ TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiVoiceRiExpired_002
-测试用例标题    : 正在输出来电通知高电平, CALLID对应的RI已经停止
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_002)
 {
     // 变量声明
@@ -3987,15 +3174,7 @@ TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiVoiceRiExpired_003
-测试用例标题    : 正在输出来电通知高电平
-预期结果        : 输出来电通知低电平波形
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_003)
 {
     // 变量声明
@@ -4053,15 +3232,7 @@ TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiVoiceRiExpired_004
-测试用例标题    : 正在输出来电通低电平, 未达到周期输出次数
-预期结果        : 输出来电通知高电平波形
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_004)
 {
     // 变量声明
@@ -4118,15 +3289,7 @@ TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTiVoiceRiExpired_005
-测试用例标题    : 正在输出来电通低电平, 达到周期输出次数
-预期结果        : 停止输出来电通知波形
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_005)
 {
     // 变量声明
@@ -4180,14 +3343,7 @@ TEST_F(Test_AT_RcvTiVoiceRiExpired, Test_AT_RcvTiVoiceRiExpired_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ProcFormatResultMsc
-功能描述 : AT_ProcFormatResultMsc UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcFormatResultMsc: public ::testing::Test
 {
 public:
@@ -4203,15 +3359,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcFormatResultMsc_001
-测试用例标题      : 在MODEM下, AT返回AT_CONNECT
-预期结果          : MODEM下拉高DCD管脚成功
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcFormatResultMsc, Test_AT_ProcFormatResultMsc_001)
 {
     // 变量声明
@@ -4235,15 +3383,7 @@ TEST_F(Test_AT_ProcFormatResultMsc, Test_AT_ProcFormatResultMsc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcFormatResultMsc_002
-测试用例标题      : 在MODEM下, AT返回AT_NO_CARRIER
-预期结果          : MODEM下拉低DCD管脚成功
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcFormatResultMsc, Test_AT_ProcFormatResultMsc_002)
 {
     // 变量声明
@@ -4267,15 +3407,7 @@ TEST_F(Test_AT_ProcFormatResultMsc, Test_AT_ProcFormatResultMsc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcFormatResultMsc_003
-测试用例标题      : 在UART下,AT返回AT_CONNECT
-预期结果          : UART下拉高DCD,DSR管脚成功
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcFormatResultMsc, Test_AT_ProcFormatResultMsc_003)
 {
     // 变量声明
@@ -4304,15 +3436,7 @@ TEST_F(Test_AT_ProcFormatResultMsc, Test_AT_ProcFormatResultMsc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcFormatResultMsc_004
-测试用例标题      : 在UART下,AT返回AT_NO_CARRIER
-预期结果          : AURT下拉低DCD DSR管脚成功
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcFormatResultMsc, Test_AT_ProcFormatResultMsc_004)
 {
     // 变量声明
@@ -4341,15 +3465,7 @@ TEST_F(Test_AT_ProcFormatResultMsc, Test_AT_ProcFormatResultMsc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcFormatResultMsc_005
-测试用例标题      : 在MODEM下, AT返回AT_NO_CARRIER
-预期结果          : MODEM下拉低DCD管脚成功
-修改历史          :
-1.日   期  : 2013-10-15
-  作   者  : j00174725
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcFormatResultMsc, Test_AT_ProcFormatResultMsc_005)
 {
     // 变量声明

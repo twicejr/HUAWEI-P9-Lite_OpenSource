@@ -53,21 +53,7 @@ static const char* const modem_state_str[] = {
 /*To make modem poweroff called only once when there are two rilds.*/
 static int modem_power_off_flag = 0; 
 
-/*****************************************************************************
- 函 数 名  : balong_power_reset_work
- 功能描述  : 调用C核单独复位函数，执行单独复位操作
- 输入参数  : struct work_struct *work
- 输出参数  : 无
- 返 回 值  : static void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月25日
-    作    者   : 陈易超
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static void balong_power_reset_work(struct work_struct *work)
 {
     /*modem single reset function to be added */
@@ -96,24 +82,7 @@ void modem_wdt_disable(void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : modem_reset_set
- 功能描述  : 设备节点写函数
- 输入参数  : struct device *dev
-             struct device_attribute *attr
-             const char *buf
-             size_t count
- 输出参数  : 无
- 返 回 值  : static ssize_t
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月25日
-    作    者   : 陈易超
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static ssize_t modem_reset_set(struct device *dev,
                  struct device_attribute *attr,
                  const char *buf, size_t count)
@@ -167,22 +136,7 @@ static ssize_t modem_reset_set(struct device *dev,
     }
 }
 
-/*****************************************************************************
- 函 数 名  : modem_state_get
- 功能描述  : get modem state
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : <0     failed
-             >=0    success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月25日
-    作    者   : 陈易超
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int modem_state_get(void)
 {
     if (!balong_driver_plat_data){
@@ -192,22 +146,7 @@ int modem_state_get(void)
     return (int)balong_driver_plat_data->modem_state;
 }
 
-/*****************************************************************************
- 函 数 名  : modem_state_set
- 功能描述  : 提供ttf设置modem状态的API
- 输入参数  : unsigned int state
- 输出参数  : 无
- 返 回 值  : <0     failed,invalid state
-             =0     success
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月25日
-    作    者   : 陈易超
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 int modem_state_set(unsigned int state)
 {
     if (!balong_driver_plat_data){
@@ -222,23 +161,7 @@ int modem_state_set(unsigned int state)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : balong_power_get
- 功能描述  : 设备节点modem_state 的读函数
- 输入参数  : struct device *dev
-             struct device_attribute *attr
-             char *buf
- 输出参数  : 无
- 返 回 值  : static ssize_t
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月25日
-    作    者   : 陈易超
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 static ssize_t balong_power_get(struct device *dev,
         struct device_attribute *attr, char *buf)
 {

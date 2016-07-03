@@ -1,13 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LRrcCmmcaInterface.h
-  Description     : LTE RRC与CMMCA之间接口文件
-  History         :
-      1.liutao 00222817       2013-12-30   Draft Enact
-******************************************************************************/
 
 #ifndef __LRRC_CMMCA_INTERFACE_H__
 #define __LRRC_CMMCA_INTERFACE_H__

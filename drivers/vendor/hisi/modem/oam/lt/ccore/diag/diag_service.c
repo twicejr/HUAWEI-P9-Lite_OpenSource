@@ -52,14 +52,7 @@ DIAG_SRVC_MAIN_STRU  g_stDiagSrvc;
 
 
 
-/*****************************************************************************
- Function Name   : diag_PktTimeoutClear
- Description     : 查看链表中是否有超时的节点，如果有则删除
 
- History         :
-    1.c00326366         2015-08-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_PktTimeoutClear(VOS_VOID)
 {
     LIST_S* me = NULL;

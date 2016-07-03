@@ -364,21 +364,7 @@ VOS_VOID TTF_LinkRemoveNode(VOS_UINT32 ulPid, TTF_LINK_ST * pLink, TTF_NODE_ST *
 
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_LinkPeekTail
- 功能描述  : 查看链表的尾部，返回尾节点
- 输入参数  : pLink   -- 链表指针
- 输出参数  : 无
- 返 回 值  : pNode   -- 链表节点
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰，蒋丽萍
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_NODE_ST* TTF_LinkPeekTail(VOS_UINT32 ulPid, const TTF_LINK_ST * pLink)
 {
     if ( VOS_NULL_PTR == pLink )
@@ -395,23 +381,7 @@ TTF_NODE_ST* TTF_LinkPeekTail(VOS_UINT32 ulPid, const TTF_LINK_ST * pLink)
     return pLink->stHead.pPrev;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_LinkPeekNext
- 功能描述  : 查看链表中指定节点后一个节点，返回该节点的地址。
-                若该节点是尾节点，则返回空
- 输入参数  : pLink   -- 链表指针
-             pCurr   -- 链表中指定的节点
- 输出参数  : pCurr后一个节点
- 返 回 值  : PS_SUCC, PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰，蒋丽萍
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_LinkPeekNext(VOS_UINT32 ulPid, const TTF_LINK_ST * pLink,
         TTF_NODE_ST *pCurr, TTF_NODE_ST **ppCurrNext)
 {
@@ -465,23 +435,7 @@ VOS_UINT32 TTF_LinkPeekNext(VOS_UINT32 ulPid, const TTF_LINK_ST * pLink,
 
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_LinkPeekPrev
- 功能描述  : 查看链表中指定节点前一个节点，返回该节点的地址
-                若该节点是头节点，则返回空
- 输入参数  : pLink   -- 链表指针
-             pCurr   -- 链表中指定的节点
- 输出参数  : 无
- 返 回 值  : pCurr前一个节点
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰，蒋丽萍
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_LinkPeekPrev(VOS_UINT32 ulPid, TTF_LINK_ST * pLink,
     TTF_NODE_ST *pCurr, TTF_NODE_ST **ppCurrPrev)
 {
@@ -802,21 +756,7 @@ VOS_UINT32 TTF_LinkIsEmpty(VOS_UINT32 ulPid, const TTF_LINK_ST *pLink)
 } /* TTF_LinkIsEmpty */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_LinkPeekHead
- 功能描述  : 查看链表的头部，返回头节点
- 输入参数  : pLink   -- 链表指针
- 输出参数  : 无
- 返 回 值  : pNode   -- 链表节点
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰，蒋丽萍
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -esym( 528, TTF_LinkPeekHead )*/
 TTF_NODE_ST* TTF_LinkPeekHead(VOS_UINT32 ulPid, const TTF_LINK_ST * pLink)
 {
@@ -882,17 +822,7 @@ VOS_UINT32  TTF_RING_Q_Init(VOS_UINT32 ulPid, TTF_RING_Q_ST *pstRingQ, VOS_UINT3
 } /* TTF_RING_Q_Init */
 
 
-/******************************************************************************
- Prototype       : TTF_RING_Q_NodeAddrInit
- Description     : Linux用户面开发，初始化环形队列
- Input           :
- Output          :
- Return Value    :
- History         :
-  1.Date         : 2011-08-21
-    Author       : c00191211
-    Modification : Created function
-******************************************************************************/
+
 VOS_UINT32  TTF_RING_Q_NodeAddrInit(VOS_UINT32 ulPid, TTF_RING_Q_ST *pstRingQ, VOS_VOID **ppNodeAddr,VOS_UINT32 ulNodeCnt,VOS_UINT8 ucSize)
 {
     VOS_UINT32      ulNodeLoop;
@@ -939,21 +869,9 @@ VOS_UINT32  TTF_RING_Q_NodeAddrInit(VOS_UINT32 ulPid, TTF_RING_Q_ST *pstRingQ, V
     return PS_SUCC;
 }
 
-/*Linux add end，caikai 00191211 */
 
 
-/*Linux add begin，葛百章 00178567 */
-/******************************************************************************
- Prototype       : TTF_RING_Q_InitAndNodeAddrSet
- Description     : Linux用户面开发，初始化环形队列
- Input           :
- Output          :
- Return Value    :
- History         :
-  1.Date         : 2011-08-21
-    Author       : g00178567
-    Modification : Created function
-******************************************************************************/
+
 VOS_UINT32  TTF_RING_Q_InitAndNodeAddrSet(VOS_UINT32 ulPid,
                                                         TTF_RING_Q_ST *pstRingQ,
                                                         VOS_VOID **ppNode,

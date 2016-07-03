@@ -1,65 +1,4 @@
-/*******************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : Extern.h
-  Description :
-  History     :
-      1.  张志勇   2003.11.27   新版作成
-      2.  张志勇   2005.03.15   将()替换成(VOS_VOID)
-      3.  s46746   2005.11.08   修改
-      4. s46746    2006-03-29   根据问题单A32D02486修改
-      5. s46746    2006-03-30   根据问题单A32D02606修改
-      6. s46746    2006-04-20   根据问题单A32D03040修改
-      7  x51137 2006/5/5 A32D03487
-      8. s46746  2006-07-27 根据问题单A32D03975修改
-      9.日    期   : 2006年10月6日
-        作    者   : s46746
-        修改内容   : 问题单号:A32D05960
 
-      10.x51137 2006/11/3 A32D06511
-      11.x51137 2006/11/3 A32D06821
-      12.日    期   : 2006年11月6日
-        作    者   : s46746
-        修改内容   : 问题单号:A32D06442
-      13.日    期   : 2006年11月23日
-         作    者   : d49431
-         修改内容   : 问题单号:A32D07452
-      14.日    期   : 2007年03月09日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单A32D09099修改
-      15.日    期   : 2007年03月29日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单A32D09756修改
-      16.日    期   : 2007年06月01日
-         作    者   : luojian id:60022475
-         修改内容   : 根据问题单A32D10964修改
-      17.日    期   : 2007年9月29日
-         作    者   : luojian id:107747
-         修改内容   : 根据问题单号：A32D12966,增加部分状态对RRMM_REL_IND的处理
-      18.日    期   : 2007年10月06日
-         作    者   : l65478
-         修改内容   : 问题单号：A32D12977
-      19.日    期   : 2007年12月11日
-         作    者   : s46746
-         修改内容   : 根据问题单号：A32D13845,出服务区后，MMC立即启动异系统相同PLMN
-                      搜索
-      20.日    期   : 2008年5月27日
-         作    者   : s46746
-         修改内容   : 问题单号:AT2D03209,增加列表搜索时响应寻呼处理
-      21.日    期   : 2008年8月22日
-         作    者   : o00132663
-         修改内容   : 问题单号:AT2D05008,增加函数 Mm_Cell_S4_E31
-      22.日    期   : 2008年12月2日
-         作    者   : s62952
-         修改内容   : 问题单号:AT2D07110
-
-      23.日    期   : 2009年07月24日
-        作    者   : z40661
-        修改内容   : 异系统重选后，紧急呼叫不能接通
-      24.日    期   : 2009年08月6日
-        作    者   : l65478
-        修改内容   : 问题单号：AT2D13610，测试GCF用例26.7.4.3.1失败，原因是在重选到原来的小区后发起了LAU
-
-*******************************************************************************/
 
 #ifndef __MM_EXT_H__
 #define __MM_EXT_H__
@@ -75,18 +14,12 @@
 #include "UsimPsInterface.h"
 #include "MM_Share.h"
 
-/* Added by l00208543 STK升级 2013-07-23 begin */
 #include "NasStkInterface.h"
-/* Added by l00208543 STK升级 2013-07-23 end */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 #include "MmLmmInterface.h"
 #endif
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-15, begin */
 #include "MmSsInterface.h"
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-15, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
 #include "NasErrorLog.h"
@@ -151,13 +84,7 @@ typedef struct
 }CSFB_RSLT_TO_MMCC_REL_CAUSE_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MM_LAU_EST_CNF_TO_T3212_START_SCEAN_STRU
- 结构说明  : LAU建联失败值转换为T3212启动场景配置表
-  1.日    期   : 2015年3月14日
-    作    者   : W00167002
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     RRC_NAS_EST_RESULT_ENUM_UINT32                          enEstRslt;
@@ -165,13 +92,7 @@ typedef struct
 }NAS_MM_LAU_EST_CNF_TO_T3212_START_SCENE_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_MM_T3212_START_SCEAN_CFG_TBL_STRU
- 结构说明  : T3212启动场景控制BIT索引配置表，若改变，需要更新NV手册描述
-  1.日    期   : 2015年3月14日
-    作    者   : W00167002
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                              ulT3212StartSceneCtrlBitIndex;
@@ -224,9 +145,7 @@ extern RRMM_SYNC_IND_ST                      g_RrMmSyncInd;
 
 /* MM内部全局变量的外部声明 */
 extern MM_GLOBAL_CTRL_STRU                     g_MmGlobalInfo;
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
 extern MM_TIMER_STRU                           gstMmTimer[MM_TIMER_MAX];
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
 
 extern MM_SUB_LAYER_SHARE_STRU     g_MmSubLyrShare;
 
@@ -249,9 +168,7 @@ extern  VOS_VOID Mm_SndMmcInfoInd(VOS_VOID);
 extern  VOS_VOID Mm_SndMmcCmSvcInd( VOS_UINT32 );
 extern  VOS_VOID Mm_SndMmcCmSvcRejInd(VOS_UINT32);
 extern  VOS_VOID Mm_SndMmcStartCnf(VOS_VOID);
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-11, begin */
 
-/* Deleted by s00261364 for V3R360_eCall项目, 2014-4-11, end */
 extern  VOS_VOID Mm_SndCcEstCnf(VOS_UINT32 , VOS_UINT32);
 extern  VOS_VOID Mm_SndCcEstInd(VOS_UINT32, VOS_UINT32 , VOS_UINT8*);
 extern  VOS_VOID Mm_SndCcRelInd(VOS_UINT32,VOS_UINT32);
@@ -263,10 +180,8 @@ extern  VOS_VOID Mm_SndCcErrInd(
     NAS_MMCM_REL_CAUSE_ENUM_UINT32      enCause
 );
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
 VOS_VOID NAS_Mm_SndCcGetCallInfoReq(VOS_VOID);
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
 extern VOS_VOID NAS_MM_SndMmcPlmnSearchInd(MM_MMC_PLMN_SEARCH_TYPE_ENUM_U32 enPlmnSearchType);
 extern VOS_VOID NAS_MM_SndMmcCsfbAbortInd(VOS_VOID);
@@ -274,13 +189,11 @@ extern VOS_VOID NAS_MM_SndMmcCsfbAbortInd(VOS_VOID);
 
 VOS_VOID Mm_SndCcEmergencyNumberList(NAS_MML_EMERGENCY_NUM_LIST_STRU *pEmergencyList);
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 extern VOS_VOID NAS_MM_SndCcSrvccStatusInd(
     NAS_MMCC_SRVCC_STATUS_ENUM_UINT32   enSrvccSta
 );
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, end */
 
 extern  VOS_VOID Mm_SndRrEstReq(VOS_UINT32,VOS_UINT8,VOS_UINT32,VOS_UINT8*);
 extern  VOS_VOID Mm_SndRrDataReq(VOS_UINT32,VOS_UINT8 *,VOS_UINT8);
@@ -294,12 +207,8 @@ extern VOS_VOID NAS_MM_NotifyAsInfoChgReq(VOS_VOID);
 
 extern VOS_VOID MM_SndMmcRrRelInd(VOS_UINT32 ulRelCause);
 extern VOS_VOID NAS_MM_SndMmcResumeRsp(VOS_VOID);
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
 extern VOS_VOID NAS_MM_SndMmcSuspendRsp(VOS_VOID);
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-29, begin */
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-29, end */
 extern  VOS_VOID Mm_ComAttachRejectCause2(VOS_VOID);
 extern  VOS_VOID Mm_ComAuthenRcvAuthenRej(VOS_VOID);
 extern  VOS_VOID Mm_ComAttachRejectCause3(VOS_VOID);
@@ -342,14 +251,12 @@ extern  VOS_UINT8   Mm_RcvMmcStartReq( VOS_VOID* );
 extern  VOS_UINT8   Mm_RcvMmcReStartReq( VOS_VOID* );
 extern  VOS_UINT8   Mm_RcvMmcPlmnSrchIni( VOS_VOID* );
 extern  VOS_UINT8   Mm_RcvMmcPlmnUserSelReq( VOS_VOID* );
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-4, begin */
 extern VOS_UINT8    NAS_MM_CheckMmcMmSysInfoIE( VOS_VOID* );
 extern VOS_VOID     NAS_MM_UpdateNetworkInfo_GasSysInfo ( VOS_VOID* );
 extern VOS_VOID     NAS_MM_UpdateNetworkInfo_WasSysInfo ( VOS_VOID* );
 extern VOS_UINT8    NAS_MM_IsClassAAndNmoIMode(
     VOS_UINT8                               ucCurNtMod
 );
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-4, end */
 extern  VOS_UINT8   Mm_RcvGmmCombinedAttachIni( VOS_VOID* );
 extern  VOS_UINT8   Mm_RcvGmmCombinedAttachAccept( VOS_VOID* );
 extern  VOS_UINT8   NAS_MM_RcvGmmCombinedAttachRej( VOS_VOID* );
@@ -475,13 +382,11 @@ extern VOS_VOID NAS_MM_HandleVplmnRejCauseChange(
     VOS_UINT8                          *pucRcvMsg);
 extern VOS_VOID NAS_MM_ResetRejCauseChangedCounter(VOS_VOID);
 
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
 
 extern VOS_VOID NAS_MM_ConvertMmlLaiFormatToMMFormat(
     NAS_MML_LAI_STRU                   *pstSrcLai,
     MM_LAI_STRU                        *pstDstLai
 );
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 
 extern  VOS_UINT8 Mm_ComMsgAbortRcv (
                             VOS_UINT8      *pucRcvMsg,                              /* 当前处理的消息                           */
@@ -610,9 +515,7 @@ extern  VOS_VOID    Mm_ComRejectCause15(VOS_UINT8);
 extern  VOS_VOID    Mm_ComAttUsimSav(VOS_UINT8,VOS_UINT8);
 extern  VOS_VOID    MM_Fill_IE_ClassMark1(VOS_UINT8 *pClassMark1);
 extern  VOS_VOID    MM_Fill_IE_ClassMark2(VOS_UINT8 *pClassMark2);
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-29, begin */
 extern  VOS_VOID    Mm_ComSetMmState(NAS_MM_STATE_ENUM_UINT8 ulState);
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-29, end */
 extern MMCC_CHANNEL_MODE_ENUM_U32 MM_ComGetChanMode(NAS_RR_CHANNEL_MODE_ENUM_U8 enChanMode);
 
 extern NAS_MM_COM_SERVICE_STATUS_ENUM_UINT8 NAS_MM_GetLauUptNeededCsSrvStatus(VOS_VOID);
@@ -620,12 +523,10 @@ extern VOS_VOID NAS_MM_ProcCsAcChgRegisterNetModeII(VOS_VOID);
 extern VOS_UINT32 NAS_MM_IsLaiChange();
 VOS_VOID NAS_MM_UpdateMmStateCsRegRestrictBarToUnbar(VOS_VOID);
 
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-26, begin */
 VOS_VOID NAS_MM_ProcEccNumList_RcvSysinfo(
     VOS_UINT32                          ulMcc
 );
 
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-4-26, end */
 
 
 VOS_UINT32  NAS_MM_IsLauNeededLaiNoChange_LInterSys(VOS_VOID);
@@ -817,9 +718,7 @@ extern  VOS_VOID    Mm_ComDelRandRes(VOS_VOID);
 extern VOS_UINT8    Mm_Get_UserSpecificSearchFlg_From_SysInfo(VOS_VOID *);
 
 /* extern  const   MM_CELL_FUN_TYPE*       aMmStateTable[82]; */
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-2, begin */
 extern  const   MM_CELL_FUN_TYPE*       gaMmStateTable[91];
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-2, end */
 
 
 
@@ -829,9 +728,7 @@ extern  VOS_VOID    Mm_Nop(VOS_VOID*);
 
 extern VOS_VOID     Mm_MakeCcEstReq(MMCC_EST_REQ_STRU *);
 extern VOS_VOID     Mm_MakeSmsEstReq(MMSMS_EST_REQ_STRU *);
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-15, begin */
 extern VOS_VOID     Mm_MakeSsEstReq(MMSS_EST_REQ_STRU *);
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-15, end */
 extern VOS_VOID     Mm_DealWithBuffMsg(VOS_VOID);
 
 extern VOS_VOID     Mm_MakeGPagingInd(GRRMM_PAGING_IND_ST *pMsg);
@@ -895,18 +792,14 @@ extern  VOS_VOID    Mm_Cell_S24_E44 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S26_E44 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S27_E44 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S23_E45 (VOS_VOID*);
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
 extern VOS_VOID NAS_MM_SndStkLauRej(VOS_UINT8 ucCause);
-/* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
 VOS_VOID Mm_Cell_S12_E25(VOS_VOID  *pRcvMsg);
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-22, begin */
 extern NAS_STK_UPDATE_TYPE_ENUM_UINT8 NAS_MM_ConvertMmLuTypeToStkLuType (LAU_TYPE_ENUM_UINT8 enMmLuType);
 
 extern TAF_MMA_RAT_TYPE_ENUM_UINT8 NAS_MM_ConvertMmRatTypeToStkRatType (NAS_MML_NET_RAT_TYPE_ENUM_UINT8 enMmRatType);
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-22, end */
 
 extern  VOS_VOID    Mm_Cell_S23_E46 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S9_E47  (VOS_VOID*);
@@ -1062,9 +955,7 @@ extern  VOS_VOID    Mm_Cell_S22_E1 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S22_E4 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S23_E4 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S26_E4 (VOS_VOID*);
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 extern  VOS_VOID    Mm_Cell_S18_E13 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S3_E23 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S9_E23 (VOS_VOID*);
@@ -1123,9 +1014,7 @@ extern  VOS_VOID    Mm_ComDelLai (VOS_VOID);
 
 extern  VOS_VOID    Mm_Cell_S22_E5 (VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S23_E5 (VOS_VOID*);
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, begin */
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-1, end */
 
 
 extern  VOS_VOID    Mm_ComT3212(VOS_UINT32);
@@ -1199,9 +1088,7 @@ extern  VOS_VOID    Mm_Cell_S1_E24( VOS_VOID*);
 
 extern  VOS_UINT8    Mm_ComChkLu( VOS_VOID );
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-18, begin */
 
-/* Deleted by w00176964 for V3R3C60_eCall项目, 2014-4-18, end */
 extern  VOS_VOID    Mm_Cell_S9_E71( VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S31_E72( VOS_VOID*);
 extern  VOS_VOID    Mm_Cell_S9_E73( VOS_VOID*);
@@ -1388,9 +1275,7 @@ extern  VOS_VOID NAS_MM_UpdateConnCtrlInfo(
     NAS_MM_CONN_CTRL_ENUM_UINT8         ucMmConnCtrl
 );
 
-/* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, begin */
 extern  VOS_UINT32 NAS_MM_IsCcServiceNeedTriggerPlmnSearch(VOS_VOID);
-/* Modified by c00318887 for 预置频点搜网优化, 2015-9-9, end */
 
 
 extern  VOS_VOID NAS_MM_GetCMSvcType(
@@ -1505,9 +1390,7 @@ extern VOS_VOID NAS_MM_RcvSsEstReq_CSFB(VOS_VOID);
 extern VOS_VOID NAS_MM_RcvCcEstReq_CSFB(VOS_VOID);
 extern VOS_VOID NAS_MM_SndLmmCsfbServiceStartNotify(VOS_VOID);
 extern VOS_VOID NAS_MM_SndLmmCsfbServiceAbortNotify(VOS_VOID);
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-11, begin */
 extern VOS_VOID NAS_MM_SndLmmHoSecuInfoReq(VOS_VOID);
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-11, end */
 extern VOS_VOID NAS_MM_RcvSysInfo_CSFB(VOS_VOID);
 extern VOS_VOID NAS_MM_ResumeBackToGU_CSFB(
     MMCMM_RESUME_IND_STRU                                  *pstResumeInd,
@@ -1572,14 +1455,12 @@ VOS_UINT8 NAS_MM_GetStaOfRcvXXEstReq_CSFB(VOS_VOID);
 
 VOS_UINT8 NAS_MM_GetLuType(VOS_VOID);
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-20, begin */
 extern VOS_UINT32 NAS_MM_IsCcTiValid(VOS_VOID);
 extern VOS_VOID NAS_MM_ProcBufferedEmgCallOrLau_RcvSysinfo(
     VOS_UINT32                          ulLaiChangeFlag,
     VOS_UINT8                           ucLuType
 );
 extern  VOS_VOID NAS_MM_ClearConnCtrlInfoExcEmgCall(VOS_UINT8 ucMMConnEstingPD);
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-20, end */
 
 VOS_UINT32  NAS_MM_IsCsEnableLau( VOS_VOID );
 
@@ -1736,21 +1617,17 @@ VOS_VOID  NAS_MM_ClearAuthInfo(VOS_VOID);
 RRC_NAS_EST_RESULT_ENUM_UINT32 NAS_MM_GetEstCnfResult(VOS_VOID);
 VOS_VOID NAS_MM_SetEstCnfResult(RRC_NAS_EST_RESULT_ENUM_UINT32 enEstCnfFailCause);
 
-/* Added by n00355355 for 呼叫重建, 2015-9-29, begin */
 VOS_UINT32 NAS_MM_GetTransactionEnqSenderPid(VOS_VOID);
 VOS_VOID NAS_MM_SetTransactionEnqSenderPid(VOS_UINT32 ulSenderPid);
-/* Added by n00355355 for 呼叫重建, 2015-9-29, end */
 
 
 VOS_VOID NAS_MM_RcvProtectingMtCsfbPagingProcedureExpired(VOS_VOID);
 
 
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, begin */
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_VOID NAS_MM_RcvMmTimerGetHoSecuInfoCnfExpired(VOS_VOID);
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, begin */
 VOS_VOID NAS_MM_ConvertToLmmSrvccStatus(
     NAS_MMCC_SRVCC_STATUS_ENUM_UINT32   enSrvccStatus,
     MM_LMM_SRVCC_STATUS_ENUM_UINT32    *penMmlSrvccStatus
@@ -1760,7 +1637,6 @@ VOS_VOID NAS_MM_SndLmmSrvccStatusNotify(
     NAS_MMCC_SRVCC_STATUS_ENUM_UINT32   enSrvccStatus
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-25, end */
 
 VOS_UINT8 NAS_MM_IsNeedSetCsmtFlg(VOS_VOID);
 VOS_UINT8 NAS_MM_IsNeedSetCsmoFlg(VOS_VOID);
@@ -1794,7 +1670,6 @@ VOS_VOID NAS_MM_RcvCcSrvccCallInfoNtf(
     MMCC_SRVCC_CALL_INFO_NOTIFY_STRU   *pstCcMsg
 );
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-22, end */
 
 VOS_VOID NAS_MM_RcvMmcLauReq(
     VOS_VOID                           *pstRcvMsg
@@ -1808,15 +1683,12 @@ VOS_VOID NAS_MM_SetCsfbMtLauFlg(
 
 
 VOS_UINT32 Mm_IsMultiSrvCollisionAllow(NAS_MM_CONN_CTRL_ENUM_UINT8 ucMmConnCtrl);
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, Begin */
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
 VOS_VOID NAS_MM_ProcResumeToHRPD(
     MMCMM_RESUME_IND_STRU              *pstResumeMsg
 );
 #endif
-/* Added by s00246516 for L-C互操作项目, 2014-01-27, End */
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-17, begin */
 VOS_VOID NAS_MM_ProcMmcMmSysInfoInd_CsAttachNotAllow( VOS_VOID );
 
 
@@ -1864,7 +1736,6 @@ VOS_VOID NAS_MM_SndMmcForbidenRslt(VOS_VOID);
 
 VOS_VOID NAS_MM_RcvSysInfoAccessBar_ProcBufferedCsService(VOS_VOID);
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-17, end */
 
 MM_LAI_STRU *NAS_MM_GetAttemptUpdateLaiInfo(VOS_VOID);
 
@@ -1984,12 +1855,10 @@ VOS_VOID NAS_MM_ParseT3246IE(
     VOS_UINT8                          *pucIsT3246Exist
 );
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
 VOS_VOID NAS_MM_RcvMmccGetCallInfoCnf(
     MMCC_GET_CALL_INFO_CNF_STRU        *pstMsg
 );
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
 
 
@@ -2063,7 +1932,6 @@ VOS_VOID NAS_MM_UpdateSsStatus_RcvSsStatusNty(
     MMSS_STATUS_ENUM_UINT8              enSsStatus
 );
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, begin */
 VOS_VOID NAS_MM_SndAsCsTransactionStatus(
     RRC_NAS_CS_TRANSACTION_ENUM_UINT8   enCsTransactionStatus,
     VOS_UINT32                          ulSenderEnqPid,
@@ -2075,7 +1943,6 @@ VOS_VOID NAS_MM_RcvRrMmGetTransactionReq(
 );
 
 
-/* Added by n00355355 for 呼叫重建, 2015-9-17, end */
 
 VOS_VOID NAS_MM_ProcT3213AttemptCounter(
     VOS_UINT32  ulT3213Status
@@ -2094,6 +1961,8 @@ VOS_VOID NAS_MM_ConvertToMmlSessionType(
     RRC_NAS_SESSION_TYPE_ENUM_UINT8   enMmSessionType,
     NAS_MML_SESSION_TYPE_ENUM_UINT8  *penMmlSessionType
 );
+
+NAS_MMCM_REL_CAUSE_ENUM_UINT32 NAS_MM_GetMmCmRelCause(VOS_VOID);
 
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()

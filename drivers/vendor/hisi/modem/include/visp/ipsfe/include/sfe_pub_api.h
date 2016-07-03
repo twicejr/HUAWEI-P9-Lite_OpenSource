@@ -68,7 +68,6 @@ typedef enum enumSfePubErrCode
 }SFE_PUB_ERR_CODE_E;
 
 /* IPFWD模块错误码 */
-/* 问题单:DTS2010110502669,遗漏typedef */
 typedef enum enumSfeIPFwdRetCode
 {
     SFE_IPFWD_OK = SFE_OK,
@@ -136,23 +135,7 @@ extern UINT32 SFE_RegFuncAclFilterHook(g_pfSfePktAclFilterHook pfRegFunc);
 
 
 typedef UINT32 (*g_pfSfeLocalPktHook)(SFE_MBUF_S *pstMbuf);
-/*******************************************************************************
-*    Func Name: SFE_RegFuncLocalPkt
-* Date Created: 2009-08-21
-*       Author: L00105073
-*  Description: 注册FWD本地报文过滤钩子
-*        Input: g_pfSfeLocalPktHook pfRegFunc:待注册的钩子
-*       Output: 
-*       Return: 成功:0
-*               失败:其它
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                                          DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-08-21   L00105073                                     Create
-*
-*******************************************************************************/
+
 extern UINT32 SFE_RegFuncLocalPkt(g_pfSfeLocalPktHook pfRegFunc);
 
 /*******************************************************************************
@@ -257,112 +240,16 @@ extern UINT32 SFE_BoxRecordWrite(VOID);
 /* 报文由产品处理,产品需要负责释放报文 */
 #define SFE_PKT_USER_HANDLE      1
 
-/*******************************************************************************
-*    Func Name: g_pfSfePktRcvUserPreProcHook
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 数据面用户态报文接收入口产品预处理钩子
-*  Description: 数据面用户态报文接收入口产品预处理钩子
-*        Input: SFE_MBUF_S *pstMbuf: MBUF报文<非空>
-*       Output: UINT32 *pu32RcvPolicy: 该报文由VISP处理还是由产品直接处理,
-*               产品只能输出以下取值: 0:由VISP处理；1:由产品直接处理(产品需要负责释放该MBUF).
-*       Return: 成功: 0
-*               失败: 其它
-*      Caution: 1.VISP在用户态接收报文入口将报文交给产品进行定制特性预处理,
-*                 如果产品不注册该钩子则报文默认由VISP协议栈处理。
-*               2.该钩子函数返回失败时,VISP会释放该报文,所以如果该报文由产
-*                 品处理则必须返回成功0,并且需要负责释放报文.
-*               3.当前在SCG产品的应用下,该钩子需要实现以下功能:
-*                 (1)解析产品FCB信息并将相关信息设置到MBUF中,当前有报文分发KEY值,
-*                    连接ID,报文上下行属性,产品自有信息FCB.产品需要在该钩子函数中将报文尾部的产品自有数据砍掉.
-*                    产品需要保证FCB信息设置正确.
-*                 (2)还原报文信息.LC与SPU之间的报文分发机制会将IP头中的TOS修改为报文分发KEY值
-*                    以保证同一个用户的数据流分发到同一个核上处理.
-*                    所以产品必须将其还原为原始报文并重新计算IP校验和.
-*                 (3)该钩子也作为LC与SPU之间产品控制报文的接收通道.
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_RegFuncPktRcvUserPreProcHook
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 typedef UINT32 (*g_pfSfePktRcvUserPreProcHook)(SFE_MBUF_S * pstMbuf, UINT32 *pu32RcvPolicy);
 
-/*******************************************************************************
-*    Func Name: SFE_RegFuncPktRcvUserPreProcHook
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 注册数据面用户态报文接收入口产品预处理钩子
-*  Description: 注册数据面用户态报文接收入口产品预处理钩子
-*        Input: g_pfSfePktRcvUserPreProcHook pfRegFunc:待注册的钩子函数指针 <非空>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 其它
-*      Caution:
-*        Since: DOPRA VISP V2R3C02
-*    Reference: g_pfSfePktRcvUserPreProcHook
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 extern UINT32 SFE_RegFuncPktRcvUserPreProcHook(g_pfSfePktRcvUserPreProcHook pfRegFunc);
 
-/*******************************************************************************
-*    Func Name: g_pfSfePktSndUserPreProcHook
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 数据面用户态报文报文发送产品预处理钩子
-*  Description: 数据面用户态报文报文发送产品预处理钩子
-*        Input: SFE_MBUF_S *pstMbuf: MBUF报文<非空>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 其它
-*      Caution: 1.该钩子函数返回失败时,VISP会释放该报文.
-*               2.当前在SCG产品的应用下,该钩子需要实现以下功能:
-*                 (1)产品需要在该函数中从MBUF中获取FCB信息并将FCB信息添加到报文尾部,以将这些信息带到LC线卡
-*                 (2)产品分发KEY值在显示代理场景下由VISP设置到MBUF中.在其它场景下使用接收时产品告知的分发KEY值.
-*                 (3)对于TCP显示代理场景下的连接ID,VISP MBUF中填写的连接ID是产品设置到VISP的连接ID.正确性由产品保证.
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_RegFuncPktSndUserPreProcHook
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 typedef UINT32 (*g_pfSfePktSndUserPreProcHook)(SFE_MBUF_S * pstMbuf);
 
-/*******************************************************************************
-*    Func Name: SFE_RegFuncPktSndUserPreProcHook
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 注册数据面用户态报文发送出口产品预处理钩子
-*  Description: 注册数据面用户态报文发送出口产品预处理钩子
-*        Input: g_pfSfePktSndUserPreProcHook pfRegFunc:待注册的钩子函数指针 <非空>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 其它
-*      Caution:
-*        Since: DOPRA VISP V2R3C02
-*    Reference: g_pfSfePktSndUserPreProcHook
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 extern UINT32 SFE_RegFuncPktSndUserPreProcHook(g_pfSfePktSndUserPreProcHook pfRegFunc);
 
 /* IP报文接收处理策略,产品只能返回以下几种策略取值 */
@@ -376,49 +263,10 @@ typedef enum enumSfeIpPktRcvPolicy
     SFE_IPPKTRCV_POLICY_MAX,                         /* 边界值,非法无效值 */
 }SFE_IPPKTRCV_POLICY_E;
 
-/*******************************************************************************
-*    Func Name: g_pfSfeIpPktRcvProcPolicyHook
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 从产品获取三层报文接收处理策略钩子函数原型
-*  Description: 从产品获取三层报文接收处理策略钩子函数原型
-*        Input: SFE_MBUF_S *pstMbuf: MBUF报文<非空>
-*       Output: 
-*       Return: IP报文接收处理策略,取值参见SFE_IPPKTRCV_POLICY_E枚举定义
-*      Caution:
-*        Since: DOPRA VISP V2R3C02
-*    Reference: SFE_RegFuncIpPktRcvProcPolicyHook
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 typedef UINT32 (*g_pfSfeIpPktRcvProcPolicyHook)(SFE_MBUF_S * pstMbuf);
 
-/*******************************************************************************
-*    Func Name: SFE_RegFuncIpPktRcvProcPolicyHook
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 注册从产品获取三层报文接收处理策略的钩子函数
-*  Description: 注册从产品获取三层报文接收处理策略的钩子函数
-*        Input: g_pfSfeIpPktRcvProcPolicyHook pfRegFunc:待注册的钩子函数指针 <非空>
-*       Output: 
-*       Return: 成功: 0
-*               失败: 其它
-*      Caution:
-*        Since: DOPRA VISP V2R3C02
-*    Reference: g_pfSfeIpPktRcvProcPolicyHook
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 extern UINT32 SFE_RegFuncIpPktRcvProcPolicyHook(g_pfSfeIpPktRcvProcPolicyHook pfRegFunc);
 
 /*******************************************************************************
@@ -615,7 +463,7 @@ typedef enum enumSfeUserStatisticReason
     SFE_USTAT_REASON_DROP_TCP_PROXY_RCV_ACK_TOOMUCH,                 /* 113丢弃报文统计,原因:收到对未发送数据的ACK，回复ACK后丢弃报文*/
     SFE_USTAT_REASON_SIACK_PROC_END,                                 /* 114协议栈直接发送的报文 */
     SFE_USTAT_REASON_DROP_TCP_PROXY_REASS_FIN_PKT,                   /* 115 丢弃报文统计,原因:收到乱序的FIN报文*/
-    SFE_USTAT_REASON_SEND_TCP_REORDER_REASSRXMT,                     /* 116主动发送报文统计,原因:重传乱序包 DTS2012110907656 l00177467*/
+    SFE_USTAT_REASON_SEND_TCP_REORDER_REASSRXMT,
 
     SFE_USTAT_REASON_NO_MAX,                                         /* 统计原因边界无效值 */
 }SFE_USER_STATISTIC_REASON_E;
@@ -707,51 +555,10 @@ typedef UINT32 (*g_pfSfeStatisticInfoNotifyHook)(SFE_MBUF_S *pstMbuf,
 *******************************************************************************/
 extern UINT32 SFE_RegFuncStatisticInfoNotifyHook(g_pfSfeStatisticInfoNotifyHook pfRegFunc);
 
-/*******************************************************************************
-*    Func Name: g_pfSfeGetVlanIdHook
-* Date Created: 2010-06-10
-*       Author: w00161372
-*      Purpose: 获取VLAN ID钩子函数原型
-*  Description: 获取VLAN ID钩子函数原型
-*        Input: SFE_MBUF_S *pstMbuf:Mbuf报文指针<非空>
-*       Output: UINT32 *pu32VlanId:VLAN ID<非空>
-*       Return: 成功 :0
-*               失败 :其它
-*      Caution: 1.在该钩子中如果需要获取连接ID和报文分发KEY值则应从MBUF中获取不能从FCB中获取,
-*                 因为在显示代理情况下此时的连接ID和报文分发KEY值还没有设置到MBUF的自有数据区中的FCB中.
-*        Since: DOPRA VISP V2R3C02
-*    Reference:
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-10   w00161372               Create
-*
-*******************************************************************************/
+
 typedef UINT32 (*g_pfSfeGetVlanIdHook)(SFE_MBUF_S *pstMbuf, UINT32 *pu32VlanId);
 
-/*******************************************************************************
-*    Func Name: SFE_RegFuncGetVlanIdHook
-* Date Created: 2010-06-10
-*       Author: w00161372
-*      Purpose: 注册从产品获取VLAN ID的钩子函数
-*  Description: 注册从产品获取VLAN ID的钩子函数
-*        Input: g_pfSfeGetVlanIdHook pfHook:g_pfSfeGetVlanIdHook钩子 <非空>
-*       Output: 
-*       Return: 成功 :0
-*               失败 :其它
-*      Caution: 
-*        Since: DOPRA VISP V2R3C02
-*    Reference:
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-10   w00161372               Create
-*
-*******************************************************************************/
+
 extern UINT32 SFE_RegFuncGetVlanIdHook(g_pfSfeGetVlanIdHook pfHook);
 
 /*******************************************************************************

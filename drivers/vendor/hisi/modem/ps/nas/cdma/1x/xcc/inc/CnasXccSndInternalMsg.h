@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccSndInternalMsg.h
-  版 本 号   : 初稿
-  作    者   : w00242748
-  生成日期   : 2014年9月6日
-  最近修改   :
-  功能描述   : CnasXccSndInternalMsg.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年9月6日
-    作    者   : w00242748
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_XCC_SND_INTERNAL_MSG_H__
 #define __CNAS_XCC_SND_INTERNAL_MSG_H__
@@ -44,17 +27,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_XCC_INTERNAL_MSG_TYPE_ENUM
- 枚举说明  : 内部消息名枚举定义
- 1.日    期   : 2014年9月7日
-   作    者   : w00242748
-   修改内容   : 新建
 
- 2.日    期   : 2015年1月3日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
 enum CNAS_XCC_INTERNAL_MSG_TYPE_ENUM
 {
     ID_CNAS_XCC_XCC_ABORT_REQ                = 0x0000, /* _H2ASN_MsgChoice CNAS_XCC_XCC_ABORT_REQ_STRU */
@@ -73,13 +46,7 @@ enum CNAS_XCC_INTERNAL_MSG_TYPE_ENUM
 typedef VOS_UINT16 CNAS_XCC_INTERNAL_MSG_TYPE_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_XCC_MT_CALLING_RESULT_ENUM
- 枚举说明  : MT CALLING状态机退状态机结果枚举值
- 1.日    期   : 2014年9月6日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XCC_MT_CALLING_RESULT_ENUM
 {
     CNAS_XCC_MT_CALLING_RESULT_SUCCESS          = 0x00000000,                   /* 说明电话打通 */
@@ -89,13 +56,7 @@ enum CNAS_XCC_MT_CALLING_RESULT_ENUM
 };
 typedef VOS_UINT32 CNAS_XCC_MT_CALLING_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XCC_MO_CALLING_RESULT_ENUM
- 枚举说明  : MT CALLING状态机退状态机结果枚举值
- 1.日    期   : 2014年9月6日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XCC_MO_CALLING_RESULT_ENUM
 {
     CNAS_XCC_MO_CALLING_RESULT_SUCCESS          = 0x00000000,                   /* 说明电话打通 */
@@ -105,13 +66,7 @@ enum CNAS_XCC_MO_CALLING_RESULT_ENUM
 };
 typedef VOS_UINT32 CNAS_XCC_MO_CALLING_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XCC_MO_CALLING_END_REASON_ENUM
- 枚举说明  : MO CALLING状态机退状态机结束的原因
- 1.日    期   : 2014年9月19日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XCC_MO_CALLING_END_REASON_ENUM
 {
     CNAS_XCC_MO_CALLING_END_REASON_NORMAL_END      = 0x00000000,                /* 说明电话打通 */
@@ -120,13 +75,7 @@ enum CNAS_XCC_MO_CALLING_END_REASON_ENUM
 };
 typedef VOS_UINT8 CNAS_XCC_MO_CALLING_END_REASON_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_XCC_MT_CALLING_END_REASON_ENUM
- 枚举说明  : MT CALLING状态机退状态机结束的原因
- 1.日    期   : 2014年9月19日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XCC_MT_CALLING_END_REASON_ENUM
 {
     CNAS_XCC_MT_CALLING_END_REASON_NORMAL_END      = 0x00000000,                /* 说明电话正常挂断 */
@@ -153,13 +102,7 @@ typedef VOS_UINT8 CNAS_XCC_MT_CALLING_END_REASON_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_XCC_XCC_MO_CALLING_RSLT_CNF_STRU
- 结构说明  : XCC MO CALLING退状态机结果结构
- 1.日    期   : 2014年9月9日
-   作    者   : w00242748
-   修改内容   : 终止状态机消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -171,13 +114,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];
 }CNAS_XCC_XCC_MO_CALLING_RSLT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_XCC_MT_CALLING_RSLT_CNF_STRU
- 结构说明  : XCC MT CALLING退状态机结果结构
- 1.日    期   : 2014年9月9日
-   作    者   : w00242748
-   修改内容   : 终止状态机消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -189,13 +126,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];
 }CNAS_XCC_XCC_MT_CALLING_RSLT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_XCC_ABORT_REQ_STRU
- 结构说明  : XCC发送终止状态机消息的结构
- 1.日    期   : 2014年9月9日
-   作    者   : w00242748
-   修改内容   : 终止状态机消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                      /* _H2ASN_Skip */
@@ -209,14 +140,7 @@ typedef struct
 }CNAS_XCC_XCC_ABORT_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_XCC_POWER_DOWN_IND_STRU
- 结构说明  : 内部关机指示
- 1.日    期   : 2014年9月11日
-   作    者   : y00245242
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                      /* _H2ASN_Skip */
@@ -226,14 +150,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[3];
 }CNAS_XCC_XCC_POWER_DOWN_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XCC_XCC_NDSS_REDIAL_IND_STRU
- 结构说明  : 内部NDSS重拨指示
- 1.日    期   : 2015年1月3日
-   作    者   : y00245242
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                      /* _H2ASN_Skip */
@@ -244,14 +161,7 @@ typedef struct
 }CNAS_XCC_XCC_NDSS_REDIAL_IND_STRU;
 
 #ifdef DMT
-/*****************************************************************************
- 结构名    : CNAS_XCC_XCC_TEST_CONFIG_IND_STRU
- 结构说明  : XCC测试配置消息
- 1.日    期   : 2014年9月28日
-   作    者   : y00245242
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                      /* _H2ASN_Skip */
@@ -261,14 +171,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[3];
 }CNAS_XCC_XCC_TEST_CONFIG_IND_STRU;
 #endif
-/*****************************************************************************
- 结构名    : CNAS_XCC_XCC_CALL_STATE_IND_STRU
- 结构说明  : XCC  call state 更新上报
- 1.日    期   : 2015年7月21日
-   作    者   : y00322978
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                      /* _H2ASN_Skip */

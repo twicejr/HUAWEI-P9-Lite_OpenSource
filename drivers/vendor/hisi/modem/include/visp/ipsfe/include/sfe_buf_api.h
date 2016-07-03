@@ -165,87 +165,15 @@ extern UINT32 SFE_MBUF_CreateBySysDB(SFE_MBUF_S **ppstMbuf, SFE_MBUF_DATABLOCKDE
                                      UINT32 u32DataSource,
                                      UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_CreateByCopyBuffer
-* Date Created: 2009-9-12
-*       Author: w60786/h00121208
-*      Purpose: 拷贝数据创建MBUF
-*  Description: 拷贝数据创建MBUF
-*        Input: UINT32 u32ReserveHeadSpace: MBUF数据块头部预留的空间长度,<无符号32位值>
-*               产品在创建MBUF时必须预留足够长度用于VISP协议栈处理时添加头部信息.如128字节.
-*               UINT32 u32DataLength: 缓存数据长度<无符号32位值>
-*               UINT8 *pu8DataBuffer: 缓存地址<非空指针>
-*               UINT32 u32ModuleID: 调用此函数的模块号<无符号32位值>
-*       Output: SFE_MBUF_S **ppstMbuf: 成功时返回新创建的MBUF地址<非空指针>
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 1.产品创建MBUF时必须指定预留长度.
-*                 预留的长度必须大于协议栈处理需要添加的头部长度,建议预留128字节。
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-9-12    w60786/h00121208         Creat the first version.
-*
-*******************************************************************************/
+
 extern UINT32 SFE_MBUF_CreateByCopyBuffer(SFE_MBUF_S **ppstMbuf, UINT32 u32ReserveHeadSpace,
                                           UINT32 u32DataLength, UINT8 *pu8DataBuffer, UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_CreateForControlPacket
-* Date Created: 2009-9-12
-*       Author: w60786/h00121208
-*      Purpose: 创建指定长度的无数据MBUF
-*  Description: 创建指定长度的无数据MBUF
-*        Input: UINT32 u32ReserveHeadSpace: MBUF数据块头部预留的空间长度<无符号32位值>
-*               UINT32 u32DataLength: 创建MBUF之后将要填充的数据长度<无符号32位值>
-*               UINT32 u32ModuleID: 调用此函数的模块号<无符号32位值>
-*       Output: SFE_MBUF_S **ppstMbuf: 成功时返回新创建的MBUF地址<非空指针>
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 1.产品创建MBUF时必须指定预留长度.
-*                 预留的长度必须大于协议栈处理需要添加的头部长度,建议预留128字节。
-*               2.该接口只支持创建一个DB的无数据MBUF。
-*               3.产品在使用该接口创建无数据的MBUF后,产品向该MBUF中填写的数据长度一定要与创建MBUF
-*                 时指定的长度相等.如果不相等则必须调用SFE_MBUF_ModifyControlPacketLen接口修改
-*                 MBUF中记录的数据长度。
-*    Reference: SFE_MBUF_CreateBySysDB
-*               SFE_MBUF_CreateByCopyBuffer
-*               SFE_MBUF_Destroy
-*               SFE_MBUF_ModifyControlPacketLen
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-9-12    w60786/h00121208         Creat the first version.
-*
-*******************************************************************************/
+
 extern UINT32 SFE_MBUF_CreateForControlPacket(SFE_MBUF_S **ppstMbuf, UINT32 u32ReserveHeadSpace,
                                               UINT32 u32DataLength, UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_ModifyControlPacketLen
-* Date Created: 2009-9-12
-*       Author: w60786/h00121208
-*      Purpose: 修改使用SFE_MBUF_CreateForControlPacket接口创建的MBUF中记录的数据长度.
-*  Description: 修改使用SFE_MBUF_CreateForControlPacket接口创建的MBUF中记录的数据长度.
-*        Input: SFE_MBUF_S *pstMbuf: MBUF指针<非空指针>
-*               UINT32 u32DataLength: MBUF中当前存储的数据长度<32位无符号整数>
-*               UINT32 u32ModuleID: 调用此函数的模块号<32位无符号整数>
-*       Output: 
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 1.产品必须保证传入的MBUF只能是通过SFE_MBUF_CreateForControlPacket接口创建的MBUF。
-*               2.产品必须保证传入的MBUF中有且只有一个DB。
-*    Reference: SFE_MBUF_CreateForControlPacket
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-9-12    w60786/h00121208         Creat the first version.
-*
-*******************************************************************************/
+
 extern UINT32 SFE_MBUF_ModifyControlPacketLen(SFE_MBUF_S *pstMbuf, UINT32 u32DataLength, UINT32 u32ModuleID);
 
 /*******************************************************************************
@@ -290,274 +218,40 @@ extern UINT32 SFE_MBUF_Destroy(SFE_MBUF_S *pstMBuf);
 *******************************************************************************/
 extern UINT32 SFE_MBUF_GetPktPriority(SFE_MBUF_S *pstMBuf, UINT32 *pu32PktPriority);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_InsertData
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 在MBUF指定位置插入指定长度数据
-*  Description: 在MBUF指定位置插入指定长度数据
-*        Input: SFE_MBUF_S *pstMbuf:  待插入数据的MBUF<非空指针>
-*               UINT32 u32StartPo:    待插入的数据在MBUF中的起始存储位置<[0,Mbuf数据长度]>
-*               UINT8 *pu8DataBuffer: 待插入数据缓冲区<非空指针>
-*               UINT32 u32DataLength: 待插入的数据长度<32位无符号整数>
-*               UINT32 u32ModuleID:   模块ID<32位无符号整数>
-*       Output: 
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 1.调用该接口后数据起始指针可能会发生变化,所以如果在该接口调用之后用户
-*                 希望访问MBUF中的数据,则必须重新获取数据的起始地址.
-*    Reference: SFE_MBUF_DeleteData
-*               SFE_MBUF_ReplaceData
-*               SFE_MBUF_GetTailData
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_InsertData(SFE_MBUF_S *pstMbuf, UINT32 u32StartPos, UINT8 *pu8DataBuffer,
                            UINT32 u32DataLength, UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_DeleteData
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 在MBUF指定位置删除指定长度数据
-*  Description: 在MBUF指定位置删除指定长度数据
-*        Input: SFE_MBUF_S *pstMbuf:  待删除数据的MBUF<非空>
-*               UINT32 u32StartPo:    待删除数据的起始位置<[0,Mbuf数据长度]>
-*               UINT32 u32DataLength: 待删除的数据长度<32位无符号整数>
-*               UINT32 u32ModuleID:   模块ID<32位无符号整数>
-*       Output: 
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 1.调用该接口后数据起始指针可能会发生变化,所以如果在该接口调用之后用户
-*                 希望访问MBUF中的数据,则必须重新获取数据的起始地址.
-*    Reference: SFE_MBUF_DeleteData
-*               SFE_MBUF_ReplaceData
-*               SFE_MBUF_GetTailData
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_DeleteData(SFE_MBUF_S *pstMbuf, UINT32 u32StartPos,
                            UINT32 u32DataLen, UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_ReplaceData
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 在MBUF指定位置替换指定长度数据
-*  Description: 在MBUF指定位置替换指定长度数据
-*        Input: SFE_MBUF_S *pstMbuf:  待替换数据的MBUF<非空指针>
-*               UINT32 u32StartPo:    待替换的数据在MBUF中的起始存储位置<[0,Mbuf数据长度]>
-*               UINT8 *pu8DataBuffer: 待替换数据缓冲区<32非空指针
-*               UINT32 u32DataLength: 待替换的数据长度<32位无符号整数>
-*               UINT32 u32ModuleID:   模块ID<32位无符号整数>
-*       Output: 
-*       Return: 成功:0
-*               失败:其它
-*      Caution:
-*    Reference: SFE_MBUF_DeleteData
-*               SFE_MBUF_ReplaceData
-*               SFE_MBUF_GetTailData
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_ReplaceData(SFE_MBUF_S *pstMbuf, UINT32 u32StartPos,
                             UINT8 *pu8DataBuffer, UINT32 u32DataLength, UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_Fragment
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 将一个MBUF拆分成多个MBUF
-*  Description: 将一个MBUF拆分成多个MBUF
-*        Input: SFE_MBUF_S *pstOriginMbuf:      要拆分的原始MBUF报文<非空指针>
-*               UINT32 u32ReserveLen:           在每个MBuf 第一个DB头部预留的长度<32位无符号整数>
-*               UINT32 u32FragLen:              要拆分的数据长度<非0,32位无符号整数>
-*               UINT32 u32ModuleID:             模块ID<32位无符号整数>
-*       Output: SFE_MBUF_S **ppstFragMbufChain: 拆分后的MBuf链表头<非空指针>
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 1.按照指定的长度拆分MBUF，在拆分后新的MBUF 第一个DB头部预留指定的长度。
-*               2.拆分后的最后一个MBUF大小可能小于指定的拆分长度。
-*               3.该函数无论返回成功还是失败,该函数都不会释放原始的报文MBUF,报文由调用者负责释放.
-*               4.如果原始报文的长度小于等于需要分片的长度则返回失败.产品调用该函数时要保证原始报文
-*                 长度要比分片长度大.
-*    Reference: SFE_MBUF_Concatenate
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_Fragment(SFE_MBUF_S *pstOriginMbuf, SFE_MBUF_S **ppstFragMbufChain,
                          UINT32 u32ReserveLen, UINT32 u32FragLen, UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_Concatenate
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 合并两个MBUF，将一个MBUF中的数据连接到另一个MBUF的后面
-*  Description: 合并两个MBUF，将一个MBUF中的数据连接到另一个MBUF的后面
-*        Input: SFE_MBUF_S *pstDstMbuf: 目的MBUF<非空>
-*               SFE_MBUF_S *pstSrcMbuf: 要合并的MBUF
-*               UINT32 u32ModuleID:     模块ID
-*       Output: 
-*       Return: 成功:0
-*               失败:其它
-*      Caution:
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_Concatenate(SFE_MBUF_S *pstDstMbuf, SFE_MBUF_S *pstSrcMbuf, UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_SetUserPrivateData
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 设置产品自有信息到MBUF中
-*  Description: 设置产品自有信息到MBUF中
-*        Input: SFE_MBUF_S *pstMbuf: MBUF报文<非空>
-*               UINT8 *pu8DataBuf:   产品自有数据起始地址
-*               UINT32 u32DataLen:   数据长度<[0,64]>
-*               UINT32 u32ModuleID:  模块ID<32位无符号整数>
-*       Output: 
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 
-*    Reference: SFE_MBUF_SetUserPrivateDataLen
-*               SFE_MBUF_GetUserPrivateBufInfo
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_SetUserPrivateData(SFE_MBUF_S *pstMbuf, UINT8 *pu8DataBuf,
                                    UINT32 u32DataLen, UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_GetUserPrivateBufInfo
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 获取报文中的产品自有信息
-*  Description: 获取报文中的产品自有信息
-*        Input: pstMbuf: MBUF报文<非空>
-*       Output: ppu8UserBufAddr MBUF中存放产品自有数据缓存的起始地址
-*               pu32UserBufLen: MBUF中存放产品自有数据缓存的长度<[0,64]>
-*               pu32UserDataLen: MBUF中存放的实际自有数据长度
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 1.用户必须保证在操作私有缓存时不能越界,不能超过最大长度*pu32UserBufLen
-*               2.用户使用SFE_MBUF_GetUserPrivateBufInfo获取用户私有缓存并向其填写数据后,
-*                 必须调用SFE_MBUF_SetUserPrivateDataLen接口将自有数据长度设置到MBUF中.
-*    Reference: SFE_MBUF_SetUserPrivateDataLen
-*               SFE_MBUF_GetUserPrivateBufInfo
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_GetUserPrivateBufInfo(SFE_MBUF_S *pstMbuf, UINT8 **ppu8UserBufAddr,
                                       UINT32 *pu32UserBufLen, UINT32 *pu32UserDataLen);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_SetUserPrivateDataLen
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 设置报文中的产品实际自有数据长度
-*  Description: 设置报文中的产品实际自有数据长度
-*        Input: SFE_MBUF_S *pstMbuf: MBUF报文<非空>
-*               UINT32 u32UserDataLen: MBUF中存放的实际自有数据长度
-*       Output: 
-*       Return: 成功:0
-*               失败:其它
-*      Caution: 用户必须保证设置的长度参数合法,不能超过MBUF中的产品私有缓存最大长度
-*    Reference: SFE_MBUF_GetUserPrivateBufInfo
-*               SFE_MBUF_SetUserPrivateData
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_SetUserPrivateDataLen(SFE_MBUF_S *pstMbuf, UINT32 u32UserDataLen);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_GetTailData
-* Date Created: 2010-06-07
-*       Author: wuxiaowei 00161372 hexianjun 00121208
-*      Purpose: 获取MBUF尾部指定长度的数据
-*  Description: 获取MBUF尾部指定长度的数据
-*        Input: SFE_MBUF_S *pstMbuf: MBUF报文<非空>
-*               UINT32 u32DataLen: 要获取的尾部数据长度 <32位无符号整数>
-*               UINT32 u32ModuleID:  模块ID<32位无符号整数>
-*       Output: UINT8 *pu8DataBuf: 存放获取数据的缓冲区,产品必须保证缓冲区至少有u32DataLen大<非空指针>
-*       Return: 成功:0
-*               失败:其它
-*      Caution:
-*    Reference: SFE_MBUF_InsertData
-*               SFE_MBUF_ReplaceData
-*               SFE_MBUF_DeleteData
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-06-07   wuxiaowei 00161372      Create
-*               hexianjun 00121208
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_GetTailData(SFE_MBUF_S *pstMbuf, UINT8 *pu8DataBuf, UINT32 u32DataLen, UINT32 u32ModuleID);
 
-/*******************************************************************************
-*    Func Name: SFE_MBUF_GetPoolTotalAndFreeUnitNum
-* Date Created: 2011-07-26
-*       Author: zhukun 00166124 
-*      Purpose: 获取MBUF资源池总的和剩余的单元数
-*  Description: 获取MBUF资源池总的和剩余的单元数
-*        Input: 
-*       Output: UINT32 *pu32TotalUnitNum: MBUF资源池总的单元数
-*               UINT32 *pu32FreeUnitNum: MBUF资源池剩余的单元数
-*       Return: 成功:SFE_MBUF_OK
-*               失败:错误码
-*      Caution: 1.MBUF资源池总单元数为初始化配置值加上为网卡预留的单元数SFE_MBUF_RESERVE_MBUF_NUM
-*               2.该接口要在系统启动完成后调用才能生效
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-07-26   zhukun 00166124         Create
-*
-*******************************************************************************/
+
 UINT32 SFE_MBUF_GetPoolTotalAndFreeUnitNum(UINT32 *pu32TotalUnitNum, UINT32 *pu32FreeUnitNum);
 
 #ifdef  __cplusplus

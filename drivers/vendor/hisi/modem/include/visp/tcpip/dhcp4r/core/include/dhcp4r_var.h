@@ -121,7 +121,6 @@ extern ULONG g_ulDR4TaskScheduleSwitch;
 extern ULONG g_ulDR4PacketProCount;
 extern ULONG g_ulDR4TaskDelayTime;
 
-/* Added by likaikun00213099 at 20140806 for dhcp4r port security,dhcp4r使能计数 */
 extern ULONG g_ulDhcp4rEnableCount;
 
 #ifdef __cplusplus

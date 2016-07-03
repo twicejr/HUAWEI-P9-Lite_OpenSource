@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : IpsMntnCCore.c
-  版 本 号   : 初稿
-  作    者   : caikai
-  生成日期   : 2013年7月22日
-  最近修改   :
-  功能描述   : IPS MNTN模块实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月22日
-    作    者   : caikai
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -94,24 +77,7 @@ extern VOS_UINT32 VISP_InitTCPIPStack(VOS_VOID);
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_SndTransInd2Om
- 功能描述  : 向OM发送透传消息
- 输入参数  : pTransMsgContent       透传消息内容指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月30日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_TransMsg
 (
     VOS_UINT8                                       *pucTransMsg,
@@ -142,26 +108,7 @@ VOS_VOID IPS_MNTN_CCORE_TransMsg
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_SndCfgCnf2Om
- 功能描述  : 向OM发送配置确认消息
- 输入参数  : usPrimId               消息ID
-             usTransMsgContentLen   透传消息长度
-             pTransMsgContent       透传消息内容指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_SndCfgCnf2Om
 (
     VOS_UINT16      usPrimId,
@@ -191,25 +138,7 @@ VOS_VOID IPS_MNTN_CCORE_SndCfgCnf2Om
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_ChkMntnInfoIsStart
- 功能描述  : 检测是否启动捕获TCP/IP协议栈基础信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_YES    -   已启动
-             VOS_NO     -   未启动
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_ChkMntnInfoIsStart(VOS_VOID)
 {
     /*判断定时器是否启动*/
@@ -227,30 +156,7 @@ VOS_UINT32 IPS_MNTN_CCORE_ChkMntnInfoIsStart(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_StartRelTimer
- 功能描述  : 启定时器，如果该定时器已启动，则将其重新启动
- 输入参数  : HTIMER     *phTm
-             VOS_PID     Pid
-             VOS_UINT32  ulLength
-             VOS_UINT32  ulName
-             VOS_UINT32  ulParam
-             VOS_UINT8   ucMode
-             VOS_TIMER_PRECISION_ENUM_UINT32 enPrecision  指示26M 还是 32K时钟精度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_StartRelTimer
 (
     HTIMER                         *phTm,
@@ -294,24 +200,7 @@ VOS_UINT32 IPS_MNTN_CCORE_StartRelTimer
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_StopMntnInfoTimer
- 功能描述  : 停止捕获TCP/IP协议栈的定时器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_StopMntnInfoTimer(VOS_VOID)
 {
     VOS_UINT32  ulErrCode;
@@ -332,27 +221,7 @@ VOS_VOID IPS_MNTN_CCORE_StopMntnInfoTimer(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_GetPktLenByTraceCfg
- 功能描述  : 根据消息配置信息，获取捕获报文长度
- 输入参数  : pstTraceCfg        消息配置信息
-             usDataLen          报文长度
 
- 输出参数  : pulTraceCfgLen     捕获报文长度
- 返 回 值  : PS_TRUE        -   捕获报文
-             PS_FALSE       -   不捕获报文
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_GetPktLenByTraceCfg
 (
     IPS_MNTN_CCORE_TRACE_CONFIG_STRU     *pstTraceCfg,
@@ -382,28 +251,7 @@ VOS_UINT32 IPS_MNTN_CCORE_GetPktLenByTraceCfg
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_CCORE_BridgePktInfo
- 功能描述  : 捕获网桥中转报文函数
- 输入参数  : aucSrcPort     发送虚拟网卡信息
-             aucDestPort    接受虚拟网卡信息
-             aucPktData     线性数据指针,内容为报文信息
-             usLen          报文数据长度
-             usType         可维可测消息类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_BridgePktInfo
 (
     VOS_UINT8                                   *pucSrcPort,
@@ -480,21 +328,7 @@ VOS_VOID IPS_MNTN_CCORE_BridgePktInfo
     PS_MEM_FREE(UEPS_PID_IPS_CCORE, pucTraceData);
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_BridgePktInfoCB
- 功能描述  : 捕获网桥中转报文回调函数
- 输入参数  : pstIpsMntnCapturePara  回调函数参数结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_BridgePktInfoCB
 (
     IPS_MNTN_CCORE_CAPTURE_PARA_STRU *pstIpsMntnCapturePara
@@ -522,27 +356,7 @@ VOS_VOID IPS_MNTN_CCORE_BridgePktInfoCB
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_CtrlPktInfo
- 功能描述  : 捕获TCP/IP协议栈控制报文函数
- 输入参数  : aucNetIfName   虚拟网卡信息
-             aucPktData     线性数据指针,内容为报文信息
-             usLen          报文数据长度
-             usType         可维可测消息类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_CtrlPktInfo
 (
     VOS_UINT8                                     *pucNetIfName,
@@ -593,21 +407,7 @@ VOS_VOID IPS_MNTN_CCORE_CtrlPktInfo
     PS_MEM_FREE(UEPS_PID_IPS_CCORE, pucTraceData);
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_ArpRecvPktInfoCB
- 功能描述  : 捕获TCP/IP协议栈接收的ARP控制报文回调函数
- 输入参数  : pstIpsMntnCapturePara  回调函数参数结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_ArpRecvPktInfoCB
 (
     IPS_MNTN_CCORE_CAPTURE_PARA_STRU *pstIpsMntnCapturePara
@@ -633,21 +433,7 @@ VOS_VOID IPS_MNTN_CCORE_ArpRecvPktInfoCB
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_ArpSendPktInfoCB
- 功能描述  : 捕获TCP/IP协议栈发送的ARP控制报文回调函数
- 输入参数  : pstIpsMntnCapturePara  回调函数参数结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_ArpSendPktInfoCB
 (
     IPS_MNTN_CCORE_CAPTURE_PARA_STRU *pstIpsMntnCapturePara
@@ -673,21 +459,7 @@ VOS_VOID IPS_MNTN_CCORE_ArpSendPktInfoCB
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_DhcpcRecvPktInfoCB
- 功能描述  : 捕获TCP/IP协议栈接收的DHCP控制报文回调函数
- 输入参数  : pstIpsMntnCapturePara  回调函数参数结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_DhcpcRecvPktInfoCB
 (
     IPS_MNTN_CCORE_CAPTURE_PARA_STRU *pstIpsMntnCapturePara
@@ -713,21 +485,7 @@ VOS_VOID IPS_MNTN_CCORE_DhcpcRecvPktInfoCB
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_DhcpcSendPktInfoCB
- 功能描述  : 捕获TCP/IP协议栈发送的DHCP控制报文回调函数
- 输入参数  : pstIpsMntnCapturePara  回调函数参数结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_DhcpcSendPktInfoCB
 (
     IPS_MNTN_CCORE_CAPTURE_PARA_STRU *pstIpsMntnCapturePara
@@ -753,21 +511,7 @@ VOS_VOID IPS_MNTN_CCORE_DhcpcSendPktInfoCB
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_DhcpsRecvktInfoCB
- 功能描述  : 捕获TCP/IP协议栈接收的DHCPS控制报文回调函数
- 输入参数  : pstIpsMntnCapturePara  回调函数参数结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_DhcpsRecvPktInfoCB
 (
     IPS_MNTN_CCORE_CAPTURE_PARA_STRU *pstIpsMntnCapturePara
@@ -793,21 +537,7 @@ VOS_VOID IPS_MNTN_CCORE_DhcpsRecvPktInfoCB
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_DhcpsSendPktInfoCB
- 功能描述  : 捕获TCP/IP协议栈发送的DHCPS控制报文回调函数
- 输入参数  : pstIpsMntnCapturePara  回调函数参数结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_DhcpsSendPktInfoCB
 (
     IPS_MNTN_CCORE_CAPTURE_PARA_STRU *pstIpsMntnCapturePara
@@ -833,23 +563,7 @@ VOS_VOID IPS_MNTN_CCORE_DhcpsSendPktInfoCB
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_AppCmdInfoCB
- 功能描述  : 捕获APP控制命令函数
- 输入参数  : aucData        线性数据指针,内容为APP命令
-             usLen          报文数据长度
-             usType         可维可测消息类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_AppCmdInfo
 (
     VOS_UINT8                                    *pucData,
@@ -898,21 +612,7 @@ VOS_VOID IPS_MNTN_CCORE_AppCmdInfo
     PS_MEM_FREE(UEPS_PID_IPS_CCORE, pucTraceData);
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_AppCmdInfoCB
- 功能描述  : 捕获APP控制命令回调函数
- 输入参数  : pstIpsMntnCapturePara  回调函数参数结构
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_AppCmdInfoCB
 (
     IPS_MNTN_CCORE_CAPTURE_PARA_STRU *pstIpsMntnCapturePara
@@ -937,21 +637,7 @@ VOS_VOID IPS_MNTN_CCORE_AppCmdInfoCB
 }
 
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_PrintInfoCB
- 功能描述  : 提供给VISP输出可维可测信息回调接口
- 输入参数  : VOS_UINT8                              *pucData;
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月1日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_PrintInfoCB
 (
     VOS_CHAR                               *pucData
@@ -971,21 +657,7 @@ VOS_VOID IPS_MNTN_CCORE_PrintInfoCB
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_TCPIP_FixlenLogOutput
- 功能描述  : 提供给VISP输出可维可测信息回调接口
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月16日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID IPS_MNTN_CCORE_TCPIP_FixlenLogOutput(ULONG ulLogCode, ULONG ulLogLevel, ULONG ulLogType, VOID *ucMessage,
                         ULONG ulPara1, ULONG ulPara2, ULONG ulPara3, ULONG ulPara4)
 {
@@ -1026,21 +698,7 @@ VOID IPS_MNTN_CCORE_TCPIP_FixlenLogOutput(ULONG ulLogCode, ULONG ulLogLevel, ULO
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_TCPIP_VarlenLogOutput
- 功能描述  : 提供给VISP输出可维可测信息回调接口
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月16日
-    作    者   : g00178567
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID IPS_MNTN_CCORE_TCPIP_VarlenLogOutput(ULONG ulLogCode, ULONG ulLogLevel,
                         ULONG ulLogType, VOID* pcFormat, VOID* pData)
 {
@@ -1079,24 +737,7 @@ VOID IPS_MNTN_CCORE_TCPIP_VarlenLogOutput(ULONG ulLogCode, ULONG ulLogLevel,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_BridgeTraceCfgChkParam
- 功能描述  : 网桥中转钩包配置参数检查
- 输入参数  : pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8  IPS_MNTN_CCORE_BridgeTraceCfgChkParam(IPS_MNTN_CCORE_TRACE_CONFIG_REQ_STRU *pRcvMsg)
 {
     if ( (IPS_MNTN_CCORE_TRACE_NULL_CHOSEN !=pRcvMsg->stBridgeTraceCfg.ulChoice)
@@ -1110,24 +751,7 @@ PS_BOOL_ENUM_UINT8  IPS_MNTN_CCORE_BridgeTraceCfgChkParam(IPS_MNTN_CCORE_TRACE_C
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_TraceCfgChkParam
- 功能描述  : TCP/IP协议栈报文钩包配置参数检查
- 输入参数  : pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8  IPS_MNTN_CCORE_TraceCfgChkParam(IPS_MNTN_CCORE_TRACE_CONFIG_REQ_STRU *pRcvMsg)
 {
     if ( (IPS_MNTN_CCORE_TRACE_NULL_CHOSEN != pRcvMsg->stInputTraceCfg.ulChoice)
@@ -1149,24 +773,7 @@ PS_BOOL_ENUM_UINT8  IPS_MNTN_CCORE_TraceCfgChkParam(IPS_MNTN_CCORE_TRACE_CONFIG_
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_TraceAdvancedCfgChkParam
- 功能描述  : 钩包配置参数检查
- 输入参数  : pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8  IPS_MNTN_CCORE_TraceAdvancedCfgChkParam(IPS_MNTN_CCORE_TRACE_CONFIG_REQ_STRU *pRcvMsg)
 {
     /*TCP/IP协议栈报文钩包配置参数检查*/
@@ -1185,21 +792,7 @@ PS_BOOL_ENUM_UINT8  IPS_MNTN_CCORE_TraceAdvancedCfgChkParam(IPS_MNTN_CCORE_TRACE
 
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_OutputRouteIpv4Info
- 功能描述  : 输出IPV4路由信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_OutputRouteIpv4Info(VOS_UINT8 *pucData, VOS_UINT16 usType)
 {
     VOS_UINT32                          ulRet;
@@ -1266,21 +859,7 @@ VOS_VOID IPS_MNTN_CCORE_OutputRouteIpv4Info(VOS_UINT8 *pucData, VOS_UINT16 usTyp
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_OutputUdpInfo
- 功能描述  : 输出UDP网络状态信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_OutputUdpInfo(VOS_UINT8 *pucData, VOS_UINT16 usType)
 {
     VOS_UINT32                          ulRet;
@@ -1334,21 +913,7 @@ VOS_VOID IPS_MNTN_CCORE_OutputUdpInfo(VOS_UINT8 *pucData, VOS_UINT16 usType)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_OutputTcpInfo
- 功能描述  : 输出TCP网络状态信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_OutputTcpInfo(VOS_UINT8 *pucData, VOS_UINT16 usType)
 {
     VOS_UINT32                          ulRet;
@@ -1402,21 +967,7 @@ VOS_VOID IPS_MNTN_CCORE_OutputTcpInfo(VOS_UINT8 *pucData, VOS_UINT16 usType)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_OutputNetIfInfo
- 功能描述  : 输出接口信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_OutputNetIfInfo(VOS_UINT8 *pucData, VOS_UINT16 usType)
 {
     VOS_UINT32                          ulRet;
@@ -1476,21 +1027,7 @@ VOS_VOID IPS_MNTN_CCORE_OutputNetIfInfo(VOS_UINT8 *pucData, VOS_UINT16 usType)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_OutputIpv4AddrInfo
- 功能描述  : 输出IPV4地址信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月26日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_OutputIpv4AddrInfo(VOS_UINT8 *pucData, VOS_UINT16 usType)
 {
     VOS_UINT32                          ulWaitlist;
@@ -1562,21 +1099,7 @@ VOS_VOID IPS_MNTN_CCORE_OutputIpv4AddrInfo(VOS_UINT8 *pucData, VOS_UINT16 usType
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_IpsMntnInfoTimeoutProc
- 功能描述  : 捕获TCP/IP协议栈基本信息定时器超时处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月20日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_IpsMntnInfoTimeoutProc(VOS_VOID)
 {
     VOS_UINT8                          *pucTraceData;
@@ -1621,30 +1144,7 @@ VOS_VOID IPS_MNTN_CCORE_IpsMntnInfoTimeoutProc(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_PktInfo
- 功能描述  : 捕获TCP/IP协议栈接收和发送报文函数
- 输入参数  : aucNetIfName   虚拟网卡信息
-             aucPktData     线性数据指针,内容为报文信息
-             usLen          报文数据长度
-             usType         可维可测消息类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-  3.日    期   : 2014年3月20日
-    作    者   : c00184031
-    修改内容   : 适配IP栈移植到RTOSck
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_PktInfo
 (
     VOS_UINT8                                    *pucPktData,
@@ -1731,21 +1231,7 @@ VOS_VOID IPS_MNTN_CCORE_PktInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_IpLayerUpCapCB
- 功能描述  : RTOSck平台IP层上行抓包回调函数
- 输入参数  : pMBuf   报文数据
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月29日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_IpLayerUpCapCB(MBUF_S *pMBuf)
 {
     VOS_UINT16                          usPktLen;
@@ -1764,21 +1250,7 @@ VOS_UINT32 IPS_MNTN_CCORE_IpLayerUpCapCB(MBUF_S *pMBuf)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_IpLayerDownCapCB
- 功能描述  : RTOSck平台IP层下行抓包回调函数
- 输入参数  : pMBuf   报文数据
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月29日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_IpLayerDownCapCB(MBUF_S *pMBuf)
 {
     VOS_UINT16                          usPktLen;
@@ -1798,21 +1270,7 @@ VOS_UINT32 IPS_MNTN_CCORE_IpLayerDownCapCB(MBUF_S *pMBuf)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_UnregHooks
- 功能描述  : RTOSck平台去注册钩子函数
- 输入参数  : ulMask
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月20日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_UnregHooks(VOS_UINT32 ulMask)
 {
     VOS_UINT32                          ulIndex;
@@ -1836,21 +1294,7 @@ VOS_VOID IPS_MNTN_CCORE_UnregHooks(VOS_UINT32 ulMask)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_RegHooks
- 功能描述  : RTOSck平台注册钩子函数
- 输入参数  : ulMask
- 输出参数  : 无
- 返 回 值  : VOS_INT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月20日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_RegHooks(VOS_UINT32 ulMask)
 {
     VOS_UINT32                          ulRet;
@@ -1889,21 +1333,7 @@ VOS_UINT32 IPS_MNTN_CCORE_RegHooks(VOS_UINT32 ulMask)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_ReRegHooks
- 功能描述  : RTOSck平台重新注册钩子函数
- 输入参数  : ulMask
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月20日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_ReRegHooks(VOS_UINT32 ulMask)
 {
     VOS_UINT32                          ulRet;
@@ -1921,22 +1351,7 @@ VOS_UINT32 IPS_MNTN_CCORE_ReRegHooks(VOS_UINT32 ulMask)
 }
 
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_SetCallbackFunc
- 功能描述  : RTOSck平台注册回调函数
- 输入参数  : pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月20日
-    作    者   : c00184031
-    修改内容   : 新生成函数
-
-
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 IPS_MNTN_CCORE_SetCallbackFunc(IPS_MNTN_CCORE_TRACE_CONFIG_REQ_STRU *pstTraceCfgReq)
 {
     VOS_UINT32                          ulMask = 0;
@@ -1980,24 +1395,7 @@ PS_BOOL_ENUM_UINT8 IPS_MNTN_CCORE_SetCallbackFunc(IPS_MNTN_CCORE_TRACE_CONFIG_RE
 }
 
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_TraceAdvancedCfgReq
- 功能描述  : 保存钩包配置
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_TraceAdvancedCfgReq(VOS_VOID *pMsg)
 {
     PS_BOOL_ENUM_UINT8                            enResult;
@@ -2137,25 +1535,7 @@ VOS_VOID IPS_MNTN_CCORE_TraceAdvancedCfgReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_RcvIpsMntnInfoCfgReq
- 功能描述  : 接收到OM配置的Ips可维可测信息捕获配置请求
- 输入参数  : MsgBlock *pMsg,
-             VOS_VOID *pPara
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_RcvIpsMntnInfoCfgReq(VOS_VOID *pMsg)
 {
     OM_IPS_CCORE_MNTN_INFO_CONFIG_REQ_STRU  *pRcvMsg;
@@ -2237,21 +1617,7 @@ VOS_UINT32 IPS_MNTN_CCORE_RcvIpsMntnInfoCfgReq(VOS_VOID *pMsg)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_OutputImsNicStatsInfo
- 功能描述  : 输出虚拟网卡的上下行统计信息
- 输入参数  : pucData    -- 数据内存
-             usType     -- 可维可测消息类型
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月16日
-    作    者   : caikai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_OutputImsNicStatsInfo
 (
     VOS_UINT8                          *pucData,
@@ -2286,24 +1652,7 @@ VOS_VOID IPS_MNTN_CCORE_OutputImsNicStatsInfo
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_RcvOmMsgProc
- 功能描述  : IPS MNTN接收到来自OM模块的消息处理
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_RcvOmMsgProc(VOS_VOID *pMsg)
 {
     VOS_UINT32          usMsgId;
@@ -2328,24 +1677,7 @@ VOS_VOID IPS_MNTN_CCORE_RcvOmMsgProc(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_RcvTimerExpireMsgProc
- 功能描述  : 定时器超时处理
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_RcvTimerExpireMsgProc(REL_TIMER_MSG *pTimerMsg)
 {
     switch ( pTimerMsg->ulName)
@@ -2363,24 +1695,7 @@ VOS_VOID IPS_MNTN_CCORE_RcvTimerExpireMsgProc(REL_TIMER_MSG *pTimerMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_MsgProc
- 功能描述  : IPS可维可测控制消息处理函数
- 输入参数  : pMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月3日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_VOID IPS_MNTN_CCORE_MsgProc( struct MsgCB * pMsg )
 {
     if(VOS_NULL_PTR == pMsg)
@@ -2407,25 +1722,7 @@ VOS_VOID IPS_MNTN_CCORE_MsgProc( struct MsgCB * pMsg )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_FidInit
- 功能描述  : Interpeak可维可测FID任务初始化
- 输入参数  : ip   - 初始化阶段
- 输出参数  : 无
- 返 回 值  : VOS_OK - 成功
-             VOS_ERR - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月1日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_FidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
     VOS_UINT32  ulReturnCode;
@@ -2502,25 +1799,7 @@ VOS_UINT32 IPS_MNTN_CCORE_FidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 } /* ISP_MNTN_CCORE_FidInit */
 
 #else /*FEATURE_ON == FEATURE_IMS*/
-/*****************************************************************************
- 函 数 名  : IPS_MNTN_CCORE_FidInit
- 功能描述  : FID初始化桩函数
- 输入参数  : ip   - 初始化阶段
- 输出参数  : 无
- 返 回 值  : VOS_OK     - 成功
-             VOS_ERR    - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月1日
-    作    者   : f00166181
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月30日
-    作    者   : caikai
-    修改内容   : VoLTE特性需要将其移植至V9
-
-*****************************************************************************/
 VOS_UINT32 IPS_MNTN_CCORE_FidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
     switch( ip )

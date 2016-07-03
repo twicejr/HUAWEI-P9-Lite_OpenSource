@@ -1,23 +1,6 @@
 
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : SCMSoftDecode.c
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   :
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年5月25日
-    作    者   : L00256032
-    修改内容   : V8R1 OM_Optimize项目新增
-
-***************************************************************************** */
 
 /*****************************************************************************
   1 头文件包含
@@ -68,18 +51,7 @@ extern VOS_UINT32 CBT_AcpuRcvData(VOS_UINT8 *pucData, VOS_UINT32 ulSize);
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CBTSCM_SoftDecodeDataRcvProc
- 功能描述  : SCM软解码数据接收函数
- 输入参数  : pucBuffer:数据内容
-             ulLen:数据长度
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTSCM_SoftDecodeDataRcvProc(VOS_UINT8 *pucBuffer, VOS_UINT32 ulLen)
 {
     VOS_INT32                           sRet;
@@ -112,18 +84,7 @@ VOS_UINT32 CBTSCM_SoftDecodeDataRcvProc(VOS_UINT8 *pucBuffer, VOS_UINT32 ulLen)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CBTSCM_SoftDecodeDataRcv
- 功能描述  : GU CBT数据接收函数
- 输入参数  : pucBuffer:数据内容
-             ulLen:数据长度
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTSCM_SoftDecodeDataRcv(VOS_UINT8 *pucBuffer, VOS_UINT32 ulLen)
 {
     VOS_UINT32                          ulRstl;
@@ -138,19 +99,7 @@ VOS_UINT32 CBTSCM_SoftDecodeDataRcv(VOS_UINT8 *pucBuffer, VOS_UINT32 ulLen)
     return ulRstl;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTSCM_SoftDecodeAcpuRcvData
- 功能描述  : SCM软解码CBT数据接收函数
- 输入参数  : pstHdlcCtrl: HDLC控制结构
-             pucData:   需要发送的数据内容
-             ulLen: 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTSCM_SoftDecodeAcpuRcvData(
     OM_HDLC_STRU                       *pstHdlcCtrl,
     VOS_UINT8                          *pucData,
@@ -192,17 +141,7 @@ VOS_UINT32 CBTSCM_SoftDecodeAcpuRcvData(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTSCM_SoftDecodeHdlcInit
- 功能描述  : CBT数据SCM软解码HDLC解封装初始化函数
- 输入参数  : pstHdlc:指向HDLC控制结构的指针
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTSCM_SoftDecodeHdlcInit(OM_HDLC_STRU *pstHdlc)
 {
     /* 申请用于HDLC解封装的缓存 */
@@ -226,20 +165,7 @@ VOS_UINT32 CBTSCM_SoftDecodeHdlcInit(OM_HDLC_STRU *pstHdlc)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CBTSCM_SoftDecodeReqRcvSelfTask
- 功能描述  : SCM软解码CBT数据接收任务
- 输入参数  : ulPara1:参数1
-             ulPara2:参数2
-             ulPara3:参数3
-             ulPara4:参数4
- 输出参数  : 无
- 返 回 值  : 无
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID CBTSCM_SoftDecodeReqRcvSelfTask(
     VOS_UINT32                          ulPara1,
     VOS_UINT32                          ulPara2,
@@ -331,17 +257,7 @@ VOS_VOID CBTSCM_SoftDecodeReqRcvSelfTask(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CBTSCM_SoftDecodeReqRcvTaskInit
- 功能描述  : SCM软解码CBT数据接收函数初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK/VOS_ERR
- 修改历史  :
-   1.日    期  : 2014年5月21日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_UINT32 CBTSCM_SoftDecodeReqRcvTaskInit(VOS_VOID)
 {
     VOS_UINT32                              ulRslt;

@@ -48,7 +48,6 @@ typedef VOS_UINT8 MN_CALLBACK_TYPE_T;   /* Type of callback functions for event 
 
 
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
 #define TAF_CALL_APP_MSG_BASE           (0x0000)                                /* AT与CALL模块间消息起始 */
 #define TAF_MSG_APP_MSG_BASE            (0x1000)                                /* AT与MSG模块间消息起始 */
 #define TAF_SSA_APP_MSG_BASE            (0x2000)                                /* AT与SSA模块间消息起始 */
@@ -63,20 +62,11 @@ typedef VOS_UINT8 MN_CALLBACK_TYPE_T;   /* Type of callback functions for event 
 #define TAF_IMSA_COMM_MSG_BASE          (0xc000)                                /* TAF与IMSA公共消息起始 */
 
 #define TAF_IMSA_MSG_MASK               (0xf000)                                /* IMSA与TAF间的MASK */
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
 /*****************************************************************************
   3 类型定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_APP_CTRL_STRU
- 结构说明  : APP控制结构体
 
- 修改历史      :
-  1.日    期   : 2015年11月6日
-    作    者   : y00245242
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulModuleId;         /* 填入PID */
@@ -85,15 +75,7 @@ typedef struct
     VOS_UINT8                           aucReserved[1];
 }TAF_APP_CTRL_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_APP_MSG_HEADER_STRU
- 结构说明  : 应用头消息控制结构体
 
- 修改历史      :
-  1.日    期   : 2015年11月6日
-    作    者   : y00245242
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER

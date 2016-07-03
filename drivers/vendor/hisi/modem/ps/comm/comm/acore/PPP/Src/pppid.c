@@ -46,22 +46,7 @@
 PPP_ID* pgPppId     = VOS_NULL_PTR;
 
 
-/*****************************************************************************
- Prototype      : pppid_init
- Description    : PPP模块初始化函数，在系统初始化时需要系统分配一个PPP_MAX_ID_NUM+1
-                  个字节的空间，并将首地址传给该函数
- Input          : ---ppp_id
- Output         : ---
- Return Value   : ---VOS_VOID
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-11-17
-    Author      : ---
-    Modification: Created function
-  2. 2006-03-13 MODIFY BY F49086 FOR A32D02473
-*****************************************************************************/
 VOS_VOID PppIdInit(VOS_VOID)
 {
     PPP_ID i;
@@ -140,20 +125,7 @@ VOS_VOID PppFreeId(PPP_ID id_be_free)
     return;
 }
 
-/*****************************************************************************
- Prototype      : PppGetAllocedId
- Description    : 当前实现只有一个PPP链接，返回第一个已分配的PPP ID
- Input          : ---
- Output         : ---
- Return Value   : ---ppp_id
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2011-03-09
-    Author      : l00164359
-    Modification: Created function
-*****************************************************************************/
 PPP_ID PppGetAllocedId(VOS_VOID)
 {
     PPP_ID i;
@@ -169,20 +141,7 @@ PPP_ID PppGetAllocedId(VOS_VOID)
     return PPP_ID_TAIL_FLAG;
 }
 
-/*****************************************************************************
- Prototype      : PppIsIdValid
- Description    : 检查PPP ID是否合法
- Input          : ---
- Output         : ---
- Return Value   : ---VOS_OK 合法；VOS_ERR非法
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2011-03-09
-    Author      : l00164359
-    Modification: Created function
-*****************************************************************************/
 VOS_UINT32 PppIsIdValid ( PPP_ID usPppId)
 {
     if((usPppId < 1)

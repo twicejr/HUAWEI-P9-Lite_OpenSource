@@ -1,15 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
-******************************************************************************
-    File name   : ImsaProcRnicMsg.h
-    Description : ImsaProcRnicMsg.cÍ·ÎÄ¼þ
-    History     :
-      1.wangchen 00209181   2014-07-31  Draft Enact
-
-******************************************************************************/
 
 #ifndef __IMSAPROCRNICMSG_H__
 #define __IMSAPROCRNICMSG_H__

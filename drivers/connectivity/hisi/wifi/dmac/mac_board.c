@@ -1,22 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mac_board.c
-  版 本 号   : 初稿
-  作    者   : h00217255
-  生成日期   : 2014年10月17日
-  最近修改   :
-  功能描述   :board级别操作函数实现的源文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月17日
-    作    者   : 侯寅
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -120,21 +103,7 @@ dfx_performance_log_switch_enum_uint8 g_auc_dfx_performance_log_switch[DFX_PERFO
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : dmac_event_fsm_table_register
- 功能描述  : dmac模块事件处理表注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : h00217255
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 oal_void  event_fsm_table_register(oal_void)
 {
@@ -191,21 +160,7 @@ oal_void  event_fsm_table_register(oal_void)
     frw_event_table_register(FRW_EVENT_TYPE_HOST_SDT_REG, FRW_EVENT_PIPELINE_STAGE_1, g_ast_hmac_wlan_ctx_event_sub_table);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_event_fsm_unregister
- 功能描述  : 去注册事件处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  event_fsm_unregister(oal_void)
 {
     /* Part1: 以下是Dmac侧的事件*/
@@ -287,41 +242,12 @@ oal_module_symbol(event_fsm_unregister);
 DFX公用函数实现
 *****************************************************************************/
 #ifdef _PRE_WLAN_DFT_STAT
-/*****************************************************************************
- 函 数 名  : dfx_get_performance_log_switch_enable
- 功能描述  : 获取性能维测开关值
- 输入参数  : dfx_performance_log_switch_enum_uint8 uc_performance_log_switch_type
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dfx_get_performance_log_switch_enable(dfx_performance_log_switch_enum_uint8 uc_performance_log_switch_type)
 {
     return g_auc_dfx_performance_log_switch[uc_performance_log_switch_type];
 }
-/*****************************************************************************
- 函 数 名  : dfx_set_performance_log_switch_enable
- 功能描述  : 设置性能维测开关值
- 输入参数  : dfx_performance_log_switch_enum_uint8 uc_performance_log_switch_type
-             oal_uint8 uc_value
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : z00185449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dfx_set_performance_log_switch_enable(dfx_performance_log_switch_enum_uint8 uc_performance_log_switch_type, oal_uint8 uc_value)
 {
     if(DFX_PERFORMANCE_LOG_BUTT <= uc_performance_log_switch_type)

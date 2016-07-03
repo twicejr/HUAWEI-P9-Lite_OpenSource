@@ -32,7 +32,6 @@ extern "C"{
 /* 每次从MP接收队列中取出报文的数目; from 40 to 200 */
 #define MP_GET_FROM_QUE                 200 
 
-/* y43322 add for visp3 2005/09/24 重新定义的SHOW的消息类型*/
 #define MSG_BASE_MP_SHOW                20
 #define MSG_MP_DISP_GROUP               (MSG_BASE_MP_SHOW +1)   /*获取MP-group的MP信息*/
 #define MSG_MP_DISP_FIRST_VA            (MSG_BASE_MP_SHOW +2)   /*获取第一个VA的MP信息*/

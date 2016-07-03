@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2013, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcComm.h
-  版 本 号   : 初稿
-  作    者   : l00198894
-  生成日期   : 2013年8月13日
-  最近修改   :
-  功能描述   : MtcComm.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年8月13日
-    作    者   : l00198894
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MTCCOMM_H__
 #define __MTCCOMM_H__
@@ -32,9 +15,7 @@
 #include "MtcRcmInterface.h"
 
 #include "CmmcaMtcInterface.h"
-/* Added by wx270776 for OM融合, 2015-8-23, begin */
 #include "TafNvInterface.h"
-/* Added by wx270776 for OM融合, 2015-8-23, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -77,10 +58,8 @@ extern "C" {
                 MTC_ERROR_LOG("MTC_SEND_MSG: Send message fail!\n");\
             }
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #define MTC_CFG_RCM_MSG_HDR(pstMsg, ulMsgId)\
             MTC_CFG_MSG_HDR(pstMsg, DSP_PID_RCM, ulMsgId)
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 #define MTC_CFG_IMSA_MSG_HDR(pstMsg, ulMsgId)\
             MTC_CFG_MSG_HDR(pstMsg, PS_PID_IMSA, ulMsgId)
@@ -92,14 +71,7 @@ extern "C" {
   3 枚举定义
 *****************************************************************************/
 #if 0
-/*****************************************************************************
- 枚举名    : CMMCA_RAT_ID_ENUM_UINT8
- 枚举说明  : CDMA接口枚举: 接入技术
 
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 enum CMMCA_RAT_ID_ENUM
 {
     CMMCA_RAT_NULL,
@@ -114,14 +86,7 @@ enum CMMCA_RAT_ID_ENUM
 };
 typedef VOS_UINT8 CMMCA_RAT_ID_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CMMCA_MMC_RAT_CMD_ID_ENUM_UINT16
- 枚举说明  : CDMA接口枚举: cmd id
 
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 enum CMMCA_MMC_RAT_CMD_ID_ENUM
 {
     ID_CMMCA_MMC_RAT_OTHER_RAT_INFO_IND             = 0x18,
@@ -146,14 +111,7 @@ typedef VOS_UINT8 CMMCA_MMC_RAT_CMD_ID_ENUM_UINT16;
   7 STRUCT定义
 *****************************************************************************/
 #if 0
-/*****************************************************************************
- 结构名    : CMMCA_OTHER_RAT_INFO_STRU
- 结构说明  : CDMA发来的数据结构: LTE邻区信息
 
- 1.日    期   : 2014年01月17日
-   作    者   : l00198894
-   修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                          usEarfcn;                               /* EUTRA channel number */
@@ -178,14 +136,7 @@ typedef struct
 } CMMCA_OTHER_RAT_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : CMMCA_OTHER_RAT_INFO_IND_STRU
- 结构说明  : CDMA发来的数据结构: LTE邻区信息指示消息结构体
 
- 1.日    期   : 2014年01月17日
-   作    者   : l00198894
-   修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 typedef struct
 {
     CMMCA_MMC_RAT_CMD_ID_ENUM_UINT16    enCmdId;
@@ -282,7 +233,6 @@ VOS_UINT32 MTC_GetLteNcellInfoFromOtherRatInfoInd(
 
 VOS_VOID MTC_RcvCmmcaOtherRatInfoInd(VOS_VOID* pMsg);
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 VOS_VOID MTC_ProcSetCdmaExtModemConnStateInfo(VOS_VOID* pMsg);
 
 VOS_VOID MTC_ProcModemServiceConnStateInd(VOS_VOID *pMsg);
@@ -291,7 +241,6 @@ VOS_VOID MTC_ProcImsaSrvConnStateInfo(VOS_VOID* pMsg);
 
 VOS_VOID MTC_ProcUsimmStateInd(VOS_VOID *pMsg);
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 VOS_VOID MTC_RcvGsmCellInfoExInd(VOS_VOID *pMsg);
 

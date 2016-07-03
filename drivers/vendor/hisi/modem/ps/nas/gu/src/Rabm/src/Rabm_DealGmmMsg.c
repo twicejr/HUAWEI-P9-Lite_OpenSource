@@ -453,21 +453,7 @@ VOS_VOID  NAS_Rabm2GRoutingAreaUpdate( GMMRABM_ROUTING_AREA_UPDATE_IND_MSG   *pM
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_RABM_GetLPdcpNpduNumList
- 功能描述  : 获取LPDCP N-PDU Number List
- 输入参数  : pstLPdcpNpduNumList        - PDCP N-PDU Number List
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月23日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_RABM_GetLPdcpNpduNumList(
     RABM_PDCP_GET_N_PDU_NUM_LIST_ST    *pstPdcpNpduNumList
 )
@@ -487,28 +473,7 @@ VOS_VOID NAS_RABM_GetLPdcpNpduNumList(
 }
 #endif
 
-/*****************************************************************************
- Prototype      : NAS_Rabm3GTo2GRoutingAreaUpdate()
- Description    : 处理3G向2G切换过程中的路由区更新流程
- Input          : pMsg                路由区更新消息指针
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-08-30
-    Author      : l47619
-    Modification: Created function
-  2.Date        : 2006-05-08
-    Author      : l47619
-    Modification: 根据问题单修改: A32D03487
-  2.Date        : 2006-06-27
-    Author      : l47619
-    Modification: 根据问题单修改: A32D05709
-  3.日    期   : 2012年3月26日
-    作    者   : A00165503
-    修改内容   : DTS2012032604109: L->G(确认模式)后, 数传无法恢复
-*****************************************************************************/
+
 VOS_VOID  NAS_Rabm3GTo2GRoutingAreaUpdate( GMMRABM_ROUTING_AREA_UPDATE_IND_MSG   *pMsg )
 {
     VOS_UINT8                               ucLoop;
@@ -826,31 +791,7 @@ VOS_VOID  NAS_RabmDeal2GTo3GSuspendIndMsg( VOS_VOID )
 
 
 
-/*****************************************************************************
- Prototype      : NAS_RabmDeal3GTo2GSuspendIndMsg()
- Description    : 处理收到MMC模块发送过来的3G到2G系统切换开始消息
- Input          : 无
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-09-18
-    Author      : l47619
-    Modification: Created function
-  2.Date        : 2006-05-05
-    Author      : l47619
-    Modification: 根据问题单修改: A32D03487
-  3.Date        : 2006-06-26
-    Author      : l47619
-    Modification: 根据问题单修改: A32D05709
-  4.Date        : 2007-01-04
-    Author      : l47619
-    Modification: 根据问题单修改: A32D06408
-  5.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
-*****************************************************************************/
+
 VOS_VOID  NAS_RabmDeal3GTo2GSuspendIndMsg( VOS_VOID )
 {
     VOS_UINT8               ucLoop;
@@ -1299,22 +1240,7 @@ VOS_VOID  NAS_RabmRcvPdcpSaveDataRsp(VOS_VOID *pMsg)
 
 
 
-/*****************************************************************************
- Prototype      : NAS_RabmSaveNsapiMapRbInfo()
- Description    : 3G向2G切换过程开始，RABM保存NSAPI和RB的映射关系
- Input          : 无
- Output         :
- Return Value   : 无
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2006-06-26
-    Author      : l47619
-    Modification: Created function
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
+
 VOS_VOID  NAS_RabmSaveNsapiMapRbInfo(VOS_VOID)
 {
     VOS_UINT8       ucLoop;

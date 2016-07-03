@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsSndL4a.h
-  版 本 号   : 初稿
-  作    者   : s62952
-  生成日期   : 2011年12月16日
-  最近修改   :
-  功能描述   : TafApsSndL4a.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月16日
-    作    者   : s62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAFAPSSNDL4A_H__
 #define __TAFAPSSNDL4A_H__
@@ -143,7 +126,6 @@ VOS_VOID TAF_APS_SndL4aSetAuthdataReq(
 VOS_VOID TAF_APS_SndL4aAbortReq(
     VOS_UINT8                           ucCid
 );
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 VOS_VOID TAF_APS_SndL4aGetLteCsReq(
     VOS_VOID                           *pMsgData
 );
@@ -155,7 +137,6 @@ VOS_VOID TAF_APS_SndL4aGetCemodeReq(
 VOS_VOID TAF_APS_SndL4aSetPdprofReq(
     VOS_VOID                           *pMsgData
 );
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 #endif
 

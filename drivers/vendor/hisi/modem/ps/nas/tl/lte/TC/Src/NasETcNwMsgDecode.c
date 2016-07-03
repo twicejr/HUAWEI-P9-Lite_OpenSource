@@ -37,19 +37,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
-  Function Name  : NAS_ETC_DecodeNwMsg()
-  Description    : TC模块解析空口消息函数
-  Input          : VOS_UINT8             *pucMsg,
-                      VOS_UINT32         *ulMsgLen,
-                      NAS_ETC_NW_MSG_STRU *pstMsgIE
-  Output         : VOS_VOID
-  Return Value   : VOS_VOID
 
-  History        :
-      1.lihong00150010  2009-10-14  Draft Enact
-
-*****************************************************************************/
 NAS_ETC_CAUSE_ENUM_UINT8 NAS_ETC_DecodeNwMsg
 (
     VOS_UINT8                          *pucMsg,
@@ -168,17 +156,7 @@ NAS_ETC_CAUSE_ENUM_UINT8 NAS_ETC_DecodeNwMsg
     return enTcCause;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_DecodeNwActTestModeMsg
- Description     : 译码ACTIVATE TEST MODE空口消息
- Input           : None
- Output          : None
- Return          : NAS_ETC_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 NAS_ETC_CAUSE_ENUM_UINT8  NAS_ETC_DecodeNwActTestModeMsg
 (
     const VOS_UINT8                    *pucMsg,
@@ -222,17 +200,7 @@ NAS_ETC_CAUSE_ENUM_UINT8  NAS_ETC_DecodeNwActTestModeMsg
 }
 
 /*lint -e662*/
-/*****************************************************************************
- Function Name   : NAS_ETC_DecodeNwCloseUeTestLoopModeA
- Description     : 译码CLOSE UE TEST LOOP空口消息模式A
- Input           : None
- Output          : None
- Return          : NAS_ETC_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2010-06-23  Draft Enact
-
-*****************************************************************************/
 NAS_ETC_CAUSE_ENUM_UINT8  NAS_ETC_DecodeNwCloseUeTestLoopModeA
 (
     const VOS_UINT8                    *pucMsg,
@@ -301,17 +269,7 @@ NAS_ETC_CAUSE_ENUM_UINT8  NAS_ETC_DecodeNwCloseUeTestLoopModeA
     return NAS_ETC_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_DecodeNwCloseUeTestLoopMsg
- Description     : 译码CLOSE UE TEST LOOP空口消息
- Input           : None
- Output          : None
- Return          : NAS_ETC_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 NAS_ETC_CAUSE_ENUM_UINT8  NAS_ETC_DecodeNwCloseUeTestLoopMsg
 (
     const VOS_UINT8                    *pucMsg,

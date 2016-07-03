@@ -72,13 +72,7 @@ extern "C" {
 #define NV_WRITE_SLICE_RECORD_SIZE      (100*1024)
 
 #define NV_INIT_ERROR                   0x2fffffff /* (NVIM模块) 复位文件 MODID */
-/*****************************************************************************
- 枚举名    :  NV_SYSTEM_ERROR_ENUM
- 结构说明  :  NV模块中单板复位点枚举
-  1.日    期   : 2013年4月2日
-    作    者   : d00212987
-    修改内容   : 新增
-*****************************************************************************/
+
 enum NV_SYSTEM_ERROR_ENUM
 {
     NV_GET_DRV_FIX_DDR_ADDR_FAIL = 0x01,    /* 获取段内存熟悉失败，导致单板复位点 */

@@ -1353,7 +1353,6 @@ typedef struct
 
 typedef   APP_ESM_DT_INQ_CMD_REQ_STRU APP_ESM_INQ_PDP_INFO_REQ_STRU;
 
-/*V7R2-DT ,l00195322,2014/4/24, CNF 不上报消息体，在IND上报,begin*/
 typedef struct
 {
     VOS_MSG_HEADER                                           /*_H2ASN_Skip*/
@@ -1362,7 +1361,6 @@ typedef struct
     VOS_UINT32                          ulOpId;
     VOS_UINT32                          ulRslt;
 } APP_ESM_INQ_PDP_INFO_CNF_STRU;
-/*V7R2-DT ,l00195322,2014/4/24, CNF 不上报消息体，在IND上报,end*/
 
 typedef struct
 {

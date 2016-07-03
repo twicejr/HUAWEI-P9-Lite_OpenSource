@@ -1,23 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : LRrcLNasInterface.h
-    Description : 描述RRC与NAS之间的接口
-    History     :
-      1.  hanlufeng   41410  2008-09-06  Draft Enact
-      2.  liutao      38432  2008-09-06  修改
-      3.  Wang Yangcai 49178  2008-12-22  BA8D00775
-      4.  Wang Yangcai 49178  2009-04-24  BJ9D00479:修改NAS INFO CHANGE结构体
-      5.  hanlufeng    41410  2009-04-29  BJ9D00156 增加AC接口
-      6.  leili      00132387 2009-06-04  BJ9D00867 增加PLMN ID接口
-      7.  zhengjunyan 00148421 2009-06-18 BJ9D00709 修改接口
-      8.  xuruimei    49630    2009-09-29 BJ9D02012 明确RRC_MM_REL_IND原语各原因值携带的场景和处理方式
-      9.  lidui 00143774      2009-03-12  BJ9D02807:将最大NAS消息长度设置为1024
-      10. wangyue 00151278    2011-11-02 DTS2011103103096:SYSCFG特性合入
-******************************************************************************/
 
 #ifndef __LRRCLNASINTERFACE_H__
 #define __LRRCLNASINTERFACE_H__
@@ -78,9 +59,7 @@ extern "C" {
 /* 指定plmn搜索失败后，上报的plmn最大数  */
 #define LRRC_LNAS_MAX_SEARCHED_PLMN_NUM   16
 
-/*begin:add by wangmiao00272217 for 漫游搜网优化*/
 #define LRRC_LMM_MAX_SEARCHED_TAI_NUM    16
-/*end:add by wangmiao00272217 for 漫游搜网优化*/
 
 /* NAS数据最大长度 */
 #define LRRC_LNAS_MAX_DATA_LENGTH         1024
@@ -320,10 +299,8 @@ enum LRRC_LNAS_PLMN_SEARCH_TYPE_ENUM
     /* ncell spec search begin */
     LRRC_LNAS_PLMN_SEARCH_NCELL_SPEC      = 4,
     /* ncell spec search end */
-    /*modified by wangchen 00209181  for 搜网优化,2015-04-28,begin*/
     LRRC_LNAS_PLMN_SRCH_HISTORY             = 5,                /* 历史信息搜索 */
     LRRC_LNAS_PLMN_GET_GEO                  = 6,                /* 获取地理位置信息 */
-    /*modified by wangchen 00209181  for 搜网优化,2015-04-28,end*/
     LRRC_LNAS_PLMN_SEARCH_PREF_BAND         = 7,                /* 预置BAND搜 */
     LRRC_LNAS_PLMN_SRCH_USER_CSG_SPEC     = 8,               /* 用户手动CSG搜索 */
     LRRC_LNAS_PLMN_SRCH_FAST_CSG_SPEC     = 9,               /* 快速CSG指定的PLMN的搜索 */
@@ -379,14 +356,12 @@ enum LRRC_LNAS_PLMN_SEARCH_RLT_ENUM
     LRRC_LNAS_PLMN_SEARCH_RLT_SPEC_NO_RF   = 5,/* 新增 */
     LRRC_LNAS_PLMN_SEARCH_RLT_LIST_NO_RF   = 6,/* 新增 */
 
-    /*modified by wangchen 00209181  for 搜网优化,2015-04-28,begin*/
     LRRC_LNAS_PLMN_SRCH_RLT_HISTORY_FAIL    = 7,
     LRRC_LNAS_PLMN_SRCH_RLT_HISTORY_SUCC    = 8,
     LRRC_LNAS_PLMN_SRCH_RLT_HISTORY_NO_RF   = 9,
     LRRC_LNAS_PLMN_SRCH_RLT_GET_GEO_FAIL    = 10,
     LRRC_LNAS_PLMN_SRCH_RLT_GET_GEO_SUCC    = 11,
     LRRC_LNAS_PLMN_SRCH_RLT_GET_GEO_NO_RF   = 12,
-    /*modified by wangchen 00209181  for 搜网优化,2015-04-28,end*/
 
     LRRC_LNAS_PLMN_SRCH_RLT_PREF_BAND_FAIL  = 13,
     LRRC_LNAS_PLMN_SRCH_RLT_PREF_BAND_SUCC  = 14,
@@ -1116,13 +1091,7 @@ enum LRRC_LNAS_COVERAGE_TYPE_ENUM
 typedef VOS_UINT32  LRRC_LNAS_COVERAGE_TYPE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : LRRC_LNAS_SESSION_TYPE_ENUM_UINT8
- 枚举说明  : SESSION类型
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 enum LRRC_LNAS_SESSION_TYPE_ENUM
 {
     LRRC_LNAS_SESSION_TYPE_MO_NORMAL_CALL           =0,
@@ -1290,13 +1259,7 @@ typedef VOS_UINT8 LRRC_LNAS_CSG_LIST_SRCH_RLT_ENUM_UINT8;
 
 
 
-/*****************************************************************************
- 结构名    : LRRC_LMM_BEGIN_SESSION_NOTIFY_STRU
- 结构说明  : SESSION开始指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -1305,13 +1268,7 @@ typedef struct
     VOS_UINT8                                       aucReserved[3];
 }LRRC_LMM_BEGIN_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_LMM_END_SESSION_NOTIFY_STRU
- 结构说明  : SESSION终止指示
- 1.日    期   : 2014年5月22日
-   作    者   : h00246512
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -1320,13 +1277,7 @@ typedef struct
     VOS_UINT8                                       aucReserved[3];
 }LRRC_LMM_END_SESSION_NOTIFY_STRU;
 
-/*****************************************************************************
- 结构名    : LRRC_LMM_DETACH_IND_STRU
- 结构说明  : DETACH指示
- 1.日    期   : 2014年11月14日
-   作    者   : w00209181
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -1586,9 +1537,7 @@ typedef struct
 
     /* 搜索类型 */
     LRRC_LNAS_PLMN_SEARCH_TYPE_ENUM_UINT32    enSearchType;
-    /*modified by wangchen 00209181  for 搜网优化,2015-04-28,begin*/
     LRRC_LNAS_FFT_SCAN_TYPE_ENUM_UINT8        enFftScanType;
-    /*modified by wangchen 00209181  for 搜网优化,2015-04-28,end*/
 
     LRRC_LNAS_PLMN_SEARCH_SCENE_ENUM_UINT8    enPlmnSrchScene;
     VOS_UINT8                                 aucReserve[2];
@@ -3318,19 +3267,7 @@ extern LRRC_LNAS_SMC_CTRL_ENUM_UINT8 LRRC_LNAS_GetSmcState( VOS_VOID );
 extern LRRC_LNAS_RESULT_ENUM_UINT32  LRRC_GetEutraUeCap(
         const LRRC_LNAS_PLMN_ID_STRU stPlmnId, VOS_UINT16 *pusDataLen, VOS_UINT8 *pucEncData );
 
-/*****************************************************************************
- Function Name   : LRRC_LNAS_GetPowerOffFlag
- Description     : LRRC通过该接口获取EMM关机标识，用于判断LRRC收到的空口是否是关机detach
-                   该标志在LMM收到MMC关机请求置上，在收到LRRC power off cnf、收到开机请求
-                   或者等待LRRC power off cnf超时时清除
- Input           : None
- Output          : None
- Return          : 1 表示标识有效，即LMM正在关机过程中
-                   0 表示标识无效
- History         :
-    1.leixiantiao 00258641      2014-07-14  Draft Enact
 
-*****************************************************************************/
 
 extern VOS_UINT8 LRRC_LNAS_GetPowerOffFlag(VOS_VOID);
 

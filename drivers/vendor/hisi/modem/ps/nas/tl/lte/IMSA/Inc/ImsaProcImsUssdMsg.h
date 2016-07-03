@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
-******************************************************************************
-    File name   : ImsaProcImsUssdMsg.h
-    Description : ImsaProcImsUssdMsg.cÍ·ÎÄ¼þ
-    History     :
-      1.leili 00132387    2013-12-27  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSAPROCIMSUSSDMSG_H__
 #define __IMSAPROCIMSUSSDMSG_H__

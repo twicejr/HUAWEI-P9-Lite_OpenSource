@@ -1,15 +1,5 @@
 
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LNasStkInterface.h
-  Description     : LNAS与STK的接口头文件
-  History           :
-      1. lifuxin 00253982 2013.10.11
-
-******************************************************************************/
 
 #ifndef __LNASSTKINTERFACE_H__
 #define __LNASSTKINTERFACE_H__
@@ -97,13 +87,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : LNAS_STK_NETWORK_REJECTION_EVENT_INFO_STRU
- 结构说明  : LNAS通过此消息通知Network Rejction事件
- 1.日    期   : 2013年8月14日
-   作    者   : H59254
-   修改内容   : 新增，为支持Network Rejection功能
-*****************************************************************************/
+
 typedef struct
 {
     LNAS_STK_UPDATE_TYPE_ENUM_UINT8         enUpdateAttachType;

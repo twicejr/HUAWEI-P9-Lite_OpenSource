@@ -540,6 +540,21 @@ static int charge_core_parse_dts(struct device_node* np, struct charge_core_info
         return -EINVAL;
     }
     hwlog_debug("ichg_bc_usb = %d\n",di->data.ichg_bc_usb);
+    /*VR Charge current*/
+    ret = of_property_read_u32(np, "iin_vr", &(di->data.iin_vr));
+    if(ret)
+    {
+        hwlog_err("get iin_vr failed\n");
+        return -EINVAL;
+    }
+    hwlog_debug("iin_vr = %d\n",di->data.iin_vr);
+    ret = of_property_read_u32(np, "ichg_vr", &(di->data.ichg_vr));
+    if(ret)
+    {
+        hwlog_err("get ichg_vr failed\n");
+        return -EINVAL;
+    }
+    hwlog_debug("ichg_vr = %d\n",di->data.ichg_vr);
     /*terminal current*/
     ret = of_property_read_u32(np, "iterm", &(di->data.iterm));
     if(ret)

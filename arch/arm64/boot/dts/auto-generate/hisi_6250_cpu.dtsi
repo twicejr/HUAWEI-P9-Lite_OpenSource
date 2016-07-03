@@ -1,0 +1,169 @@
+
+
+  /{
+		cpus {
+		#address-cells = <2>;
+		#size-cells = <0>;
+
+		little0: cpu@0 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x0>;
+			enable-method = "psci";
+			clock-frequency = <0>;
+			clock-latency = <0>;
+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+			operating-points = <
+				480000	700000
+				807000	800000
+				1306000	900000
+				1709000	1000000
+			>;
+		};
+		little1:cpu@1 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x1>;
+			enable-method = "psci";
+			clock-frequency = <0>;
+			clock-latency = <0>;
+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+		};
+		little2:cpu@2 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x2>;
+			enable-method = "psci";
+			clock-frequency = <0>;
+			clock-latency = <0>;
+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+		};
+		little3:cpu@3 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a53", "arm,armv8";
+			reg = <0x0 0x3>;
+			enable-method = "psci";
+			clock-frequency = <0>;
+			clock-latency = <0>;
+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_0>;
+		};
+
+
+		big0:cpu@100 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a5x", "arm,armv8";
+			reg = <0x0 0x100>;
+			enable-method = "psci";
+			clock-frequency = <0>;
+			clock-latency = <0>;
+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_1>;
+			operating-points = <
+				1402000	800000
+				1805000	900000
+				2016000	1000000
+				2112000	1000000
+			>;
+		};
+		big1:cpu@101 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a5x", "arm,armv8";
+			reg = <0x0 0x101>;
+			clock-frequency = <0>;
+			clock-latency = <0>;
+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_1>;
+			enable-method = "psci";
+		};
+		big2:cpu@102 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a5x", "arm,armv8";
+			reg = <0x0 0x102>;
+			clock-frequency = <0>;
+			clock-latency = <0>;
+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_1>;
+			enable-method = "psci";
+		};
+		big3:cpu@103 {
+			device_type = "cpu";
+			compatible = "arm,cortex-a5x", "arm,armv8";
+			reg = <0x0 0x103>;
+			clock-frequency = <0>;
+			clock-latency = <0>;
+			cpu-idle-states = <&CPU_SLEEP_0 &CLUSTER_SLEEP_1>;
+			enable-method = "psci";
+		};
+
+		idle-states {
+			entry-method = "arm,psci";
+
+			CPU_SLEEP_0: cpu-sleep-0 {
+				compatible = "arm,idle-state";
+				arm,psci-suspend-param = <0x0010000>;
+				entry-latency-us = <40>;
+				exit-latency-us = <70>;
+				min-residency-us = <3000>;
+				local-timer-stop;
+			};
+
+			CLUSTER_SLEEP_0: cluster-sleep-0 {
+				compatible = "arm,idle-state";
+				arm,psci-suspend-param = <0x1010000>;
+				entry-latency-us = <500>;
+				exit-latency-us = <5000>;
+				min-residency-us = <12000>;
+				local-timer-stop;
+			};
+			CLUSTER_SLEEP_1: cluster-sleep-1 {
+				compatible = "arm,idle-state";
+				arm,psci-suspend-param = <0x1010000>;
+				entry-latency-us = <1000>;
+				exit-latency-us = <5000>;
+				min-residency-us = <10000>;
+				local-timer-stop;
+			};
+		};
+		cpu-map {
+			cluster0: cluster0 {
+				#cooling-cells = <2>; /* min followed by max */
+				core0 {
+					cpu = <&little0>;
+				};
+				core1 {
+					cpu = <&little1>;
+				};
+				core2 {
+					cpu = <&little2>;
+				};
+				core3 {
+					cpu = <&little3>;
+				};
+			};
+			cluster1: cluster1 {
+				#cooling-cells = <2>; /* min followed by max */
+				core0 {
+					cpu = <&big0>;
+				};
+				core1 {
+					cpu = <&big1>;
+				};
+				core2 {
+					cpu = <&big2>;
+				};
+				core3 {
+					cpu = <&big3>;
+				};
+			};
+		};
+	};
+
+	support-target {
+		compatible = "hisi,supportedtarget";
+		support_name = "Kirin 650","Kirin 655";
+		support_value = <2016000>, <2112000>;
+		support_efuse = "false";
+	};
+
+	target-cpu {
+		compatible = "hisi,targetcpu";
+		target_cpu = "Kirin 655";
+	};
+  };

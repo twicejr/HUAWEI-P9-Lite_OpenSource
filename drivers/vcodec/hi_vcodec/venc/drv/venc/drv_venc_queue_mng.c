@@ -103,7 +103,6 @@ queue_info_s* VENC_DRV_MngQueueInit( HI_U32 depth,HI_BOOL bOMX)     //申请内存，
 
 	if (bOMX)
 	{
-	   // 等待队列 l00214825
 	   init_waitqueue_head(&queue->wait);       // just for omxvenc
 	}
 
@@ -119,7 +118,6 @@ queue_info_s* VENC_DRV_MngQueueInit( HI_U32 depth,HI_BOOL bOMX)     //申请内存，
 		return NULL;
 	}
     queue->alloc_data = data;
-    //开始都push到空队列里面去  l00214825
 	for (; num; data++, num--)
 	{
 		list_add(&data->list, &queue->free);

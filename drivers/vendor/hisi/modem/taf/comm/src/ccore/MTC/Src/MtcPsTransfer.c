@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2013, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcPsTransfer.c
-  版 本 号   : 初稿
-  作    者   : l00198894
-  生成日期   : 2013年10月21日
-  最近修改   :
-  功能描述   : 处理PS域切换相关功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -35,9 +18,7 @@ extern "C" {
 
 /*lint -e958*/
 
-/*lint -e767 修改人: l00198894; */
 #define    THIS_FILE_ID        PS_FILE_ID_MTC_PS_TRANSFER_C
-/*lint +e767 修改人: l00198894; */
 
 /*****************************************************************************
   2 全局变量定义
@@ -47,20 +28,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MTC_SndModem0MtaPsTransferInd
- 功能描述  : 通知Modem0 MTA模块上报^PSTRANSFER命令
- 输入参数  : enPsTransferCause    -- PS域切换原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-*****************************************************************************/
 VOS_VOID MTC_SndModem0MtaPsTransferInd(
     MTC_PS_TRANSFER_CAUSE_ENUM_UINT8    enPsTransferCause
 )
@@ -68,12 +36,10 @@ VOS_VOID MTC_SndModem0MtaPsTransferInd(
     VOS_UINT16                          ulLenth;
     MTC_MTA_PS_TRANSFER_IND_STRU       *pstPsTransferInd = VOS_NULL_PTR;
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     MTC_PS_TRANSFER_CTX_STRU           *pstPsTransferCtx = VOS_NULL_PTR;
 
     pstPsTransferCtx                    = MTC_GetPsTransferCtxAddr();
     pstPsTransferCtx->enReportCause     = enPsTransferCause;
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
     ulLenth = sizeof(MTC_MTA_PS_TRANSFER_IND_STRU) - VOS_MSG_HEAD_LENGTH;
 
@@ -107,20 +73,7 @@ VOS_VOID MTC_SndModem0MtaPsTransferInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SndModem0GmmRrcAreaLostInd
- 功能描述  : 通知Modem0 gmm rrc假丢网指示
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月8日
-    作    者   : z00161729
-    修改内容   : SVLTE优化G-TL ps切换性能修改
-*****************************************************************************/
 VOS_VOID MTC_SndModem0GmmRrcAreaLostInd(VOS_VOID)
 {
     VOS_UINT16                          ulLenth;
@@ -154,23 +107,7 @@ VOS_VOID MTC_SndModem0GmmRrcAreaLostInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_SndModem0MmaPsTransferInd
- 功能描述  : 通知Modem0的mma ps transfer消息
- 输入参数  : enPsTransferCause - MTC模块PS域切换原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月25日
-    作    者   : z00161729
-    修改内容   : SVLTE优化G-TL ps切换性能修改
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_VOID MTC_SndModem0MmaPsTransferInd(
     MTC_PS_TRANSFER_CAUSE_ENUM_UINT8    enPsTransferCause
 )
@@ -208,32 +145,7 @@ VOS_VOID MTC_SndModem0MmaPsTransferInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvRrcAreaLostInd
- 功能描述  : 收到接入层上报丢网消息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : l00198894
-    修改内容   : V9R1C50 SVLTE离网重选项目新增
-  2.日    期   : 2013年11月22日
-    作    者   : z00161729
-    修改内容   : SVLTE优化G-TL ps切换性能修改
-  3.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-  4.日    期   : 2014年1月23日
-    作    者   : z00161729
-    修改内容   : DTS2014012305088:svlte特性开启卡无效场景mtc无需上报pstransfer:0
-  5.日    期   : 2014年4月09日
-    作    者   : Y00213812
-    修改内容   : 主动离网重选需需要记录是否上报过pstransfer:0
-*****************************************************************************/
 VOS_VOID MTC_RcvRrcAreaLostInd(VOS_VOID * pMsg)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
@@ -242,10 +154,8 @@ VOS_VOID MTC_RcvRrcAreaLostInd(VOS_VOID * pMsg)
     MTC_OPERATOR_CUST_SOLUTION_ENUM_UINT8   enOperatorCustSolution;
     VOS_BOOL                            enTestCardFlg;
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     MTC_PS_TRANSFER_CTX_STRU           *pstPsTransferCtx    = VOS_NULL_PTR;
     pstPsTransferCtx                    = MTC_GetPsTransferCtxAddr();
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
     /* GCF测试时不需要启动PSTRANSFER流程，否则导致GCF测试部不通过 */
     enTestCardFlg = USIMM_IsTestCard();
@@ -282,7 +192,6 @@ VOS_VOID MTC_RcvRrcAreaLostInd(VOS_VOID * pMsg)
        && (MTC_MODEM_POWER_ON == enModem1PowerState))
       || (MTC_OPERATOR_CUST_CT_LC == enOperatorCustSolution) ))
     {
-        /* Modified by Y00213812 for 主动离网重选, 2014-04-10, begin */
         if (MTC_PS_TRANSFER_CAUSE_AREA_LOST != pstPsTransferCtx->enReportCause)
         {
             MTC_SndModem0MtaPsTransferInd(MTC_PS_TRANSFER_CAUSE_AREA_LOST);
@@ -290,12 +199,9 @@ VOS_VOID MTC_RcvRrcAreaLostInd(VOS_VOID * pMsg)
             /* 通知modem0 gmm丢网，gmm记录全局变量后续detach只做一次减少detach时间 */
             MTC_SndModem0GmmRrcAreaLostInd();
         }
-        /* Modified by Y00213812 for 主动离网重选, 2014-04-10, end */
     }
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     pstPsTransferCtx->enRrcCause = MTC_PS_TRANSFER_CAUSE_AREA_LOST;
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
     /* 可维可测: 记录接收到丢网指示的次数 */
     MTC_DEBUG_RcvRrcAreaLostInd(pstAreaLostInd->stMsgHeader.ulSenderPid);
@@ -303,42 +209,18 @@ VOS_VOID MTC_RcvRrcAreaLostInd(VOS_VOID * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_RcvRrcAreaAvaliableInd
- 功能描述  : 收到接入层上报网络恢复消息
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-
-  2.日    期   : 2014年4月09日
-    作    者   : Y00213812
-    修改内容   : 主动离网重选需需要记录主模是否Avaliable
-
-  3.日    期   : 2014年5月29日
-    作    者   : x00203213
-    修改内容   : 增加NCELL搜网RAT 顺序更改；当驻留LTE 的时候，NCELL 搜索先搜索TDS，防止LTE差信号始终没有机会搜索TDS；
-                              为保证离网的时候有足够的时间评估，驻留的时候不发消息给mma停艘网定时器
-*****************************************************************************/
 VOS_VOID MTC_RcvRrcAreaAvaliableInd(VOS_VOID * pMsg)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
     RRC_MTC_AREA_AVALIABLE_IND_STRU    *pstAreaAvaliableInd = VOS_NULL_PTR;
     MTC_MODEM_NETWORK_INFO_STRU        *pstNetworkInfo      = VOS_NULL_PTR;
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     VOS_UINT8                           ucUsimValidFlag;
     MTC_PS_TRANSFER_CTX_STRU           *pstPsTransferCtx    = VOS_NULL_PTR;
 
     pstPsTransferCtx    = MTC_GetPsTransferCtxAddr();
     ucUsimValidFlag     = MTC_GetModemUsimValidFlag(MODEM_ID_0);
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
     pstAreaAvaliableInd = (RRC_MTC_AREA_AVALIABLE_IND_STRU*)pMsg;
     enModemId           = VOS_GetModemIDFromPid(pstAreaAvaliableInd->stMsgHeader.ulSenderPid);
@@ -355,7 +237,6 @@ VOS_VOID MTC_RcvRrcAreaAvaliableInd(VOS_VOID * pMsg)
     {
         pstNetworkInfo = MTC_GetModemNetworkInfoAddr(enModemId);
 
-        /* Modified by Y00213812 for 主动离网重选, 2014-04-10, begin */
         /* 当前驻留网络非禁止PLMN、非禁止GPRS接入、卡状态有效、不重复上报 */
         if ( (VOS_FALSE == pstNetworkInfo->ucIsForbiddenPlmnFlag)
           && (VOS_TRUE == pstNetworkInfo->stPsDomainInfo.ucPsSupportFlg)
@@ -367,7 +248,6 @@ VOS_VOID MTC_RcvRrcAreaAvaliableInd(VOS_VOID * pMsg)
         }
 
         pstPsTransferCtx->enRrcCause = MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE;
-        /* Modified by Y00213812 for 主动离网重选, 2014-04-10, end */
 
         MTC_SndModem0MmaPsTransferInd(MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE);
  
@@ -379,31 +259,7 @@ VOS_VOID MTC_RcvRrcAreaAvaliableInd(VOS_VOID * pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcCurrCampPlmnInfoForSvlte
- 功能描述  : SVLTE方案Modem0网络恢复时PS域迁移流程处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-  2.日    期   : 2014年1月23日
-    作    者   : z00161729
-    修改内容   : DTS2014012305088:svlte特性开启卡无效场景mtc无需上报pstransfer:0和1
-  3.日    期   : 2014年4月09日
-    作    者   : Y00213812
-    修改内容   : 主动离网重选:主模注册成功后上报pstransfer:1
-
-    4.日    期   : 2014年5月29日
-    作    者   : x00203213
-    修改内容   : 增加NCELL搜网RAT 顺序更改；当驻留LTE 的时候，NCELL 搜索先搜索TDS，防止LTE差信号始终没有机会搜索TDS；
-                              为保证离网的时候有足够的时间评估，驻留的时候不发消息给mma停艘网定时器
-*****************************************************************************/
 VOS_VOID MTC_ProcCurrCampPlmnInfoForSvlte(VOS_VOID)
 {
     MTC_MODEM_POWER_STATE_ENUM_UINT8    enModem1PowerState;
@@ -413,10 +269,8 @@ VOS_VOID MTC_ProcCurrCampPlmnInfoForSvlte(VOS_VOID)
 
     VOS_UINT8                           ucUsimValidFlag;
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     MTC_PS_TRANSFER_CTX_STRU           *pstPsTransferCtx    = VOS_NULL_PTR;
     pstPsTransferCtx                    = MTC_GetPsTransferCtxAddr();
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
     enModem1PowerState      = MTC_GetModemPowerState(MODEM_ID_1);
     pstModem0NetworkInfo    = MTC_GetModemNetworkInfoAddr(MODEM_ID_0);
@@ -451,7 +305,6 @@ VOS_VOID MTC_ProcCurrCampPlmnInfoForSvlte(VOS_VOID)
             MTC_SndModem0MmaPsTransferInd(MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE);
         }
 
-        /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
         /* PS域迁移策略离网重选，上报网络恢复指示AT命令 */
         if ((MTC_PS_TRANSFER_OFF_AREA == enPsTransferSolution)
          && (MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE == pstPsTransferCtx->enRrcCause))
@@ -459,7 +312,6 @@ VOS_VOID MTC_ProcCurrCampPlmnInfoForSvlte(VOS_VOID)
             MTC_SndModem0MtaPsTransferInd(MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE);
             MTC_SndModem0MmaPsTransferInd(MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE);
         }
-        /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
         //MTC_SndModem0MmaPsTransferInd(MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE);
 
     }
@@ -467,33 +319,15 @@ VOS_VOID MTC_ProcCurrCampPlmnInfoForSvlte(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ProcCurrCampPlmnInfoForLC
- 功能描述  : C+L方案Modem0网络恢复时PS域迁移流程处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-  2.日    期   : 2014年4月09日
-    作    者   : Y00213812
-    修改内容   : 主动离网重选:主模注册成功后上报pstransfer:1
-*****************************************************************************/
 VOS_VOID MTC_ProcCurrCampPlmnInfoForLC(VOS_VOID)
 {
     MTC_MODEM_NETWORK_INFO_STRU        *pstModem0NetworkInfo = VOS_NULL_PTR;
     MTC_PS_TRANSFER_ENUM_UINT8          enPsTransferSolution;
     MTC_RATMODE_ENUM_UINT8              enModem0RateMode;
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     MTC_PS_TRANSFER_CTX_STRU           *pstPsTransferCtx    = VOS_NULL_PTR;
     pstPsTransferCtx                    = MTC_GetPsTransferCtxAddr();
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
 
     pstModem0NetworkInfo    = MTC_GetModemNetworkInfoAddr(MODEM_ID_0);
@@ -512,14 +346,12 @@ VOS_VOID MTC_ProcCurrCampPlmnInfoForLC(VOS_VOID)
             MTC_SndModem0MtaPsTransferInd(MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE);
         }
 
-        /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
         /* PS域迁移策略离网重选，上报网络恢复指示AT命令 */
         if ((MTC_PS_TRANSFER_OFF_AREA == enPsTransferSolution)
          && (MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE == pstPsTransferCtx->enRrcCause))
         {
             MTC_SndModem0MtaPsTransferInd(MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE);
         }
-        /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
         MTC_SndModem0MmaPsTransferInd(MTC_PS_TRANSFER_CAUSE_AREA_AVALIABLE);
     }
@@ -527,21 +359,7 @@ VOS_VOID MTC_ProcCurrCampPlmnInfoForLC(VOS_VOID)
     return;
 }
 
-/* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
-/*****************************************************************************
- 函 数 名  : MTC_RcvGsmCellInfoInd
- 功能描述  : 接收到ID_MTC_RRC_GSM_CELL_INFO_IND上报频点和信号强度消息的处理
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月08日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-*****************************************************************************/
 VOS_VOID MTC_RcvGsmCellInfoInd(VOS_VOID *pMsg)
 {
     RRC_MTC_GSM_CELL_INFO_IND_STRU     *pstGsmInfoInd  = VOS_NULL_PTR;
@@ -596,7 +414,6 @@ VOS_VOID MTC_RcvGsmCellInfoInd(VOS_VOID *pMsg)
     return;
 
 }
-/* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 
 /*lint +e958*/
 

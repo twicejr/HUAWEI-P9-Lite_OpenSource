@@ -471,7 +471,6 @@ typedef struct tagTCP6CB
     ULONG                 ulRtFlags;            /*FIB6 Route flags*/
     USHORT                usFlags;
     CHAR                  cForce;
-    /*Added by likaikun213099, MCCP-MSSø…≈‰÷√, 2013/12/18 */
     UCHAR                 ucIsUserSetMSS;
 
     ULONG                 ulSendTick;      /* The time last pkt is sent, 10ms. Added for Qos Info*/

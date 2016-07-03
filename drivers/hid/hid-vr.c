@@ -373,10 +373,11 @@ static int ovr_hidraw_open(struct inode *inode, struct file *file)
 
 out_unlock:
 	mutex_unlock(&minors_lock);
-	D("OVR: open(%d) err %d <<<\n", monitor->opens, err);
 out:
-	if (err < 0)
+	if (err < 0) {
+		pr_err("OVR: open(%d) err %d <<<\n", monitor->opens, err);
 		kfree(list);
+	}
 	return err;
 }
 
@@ -778,12 +779,6 @@ static int ovr_raw_event(struct hid_device *hdev,
 
 static const struct hid_device_id ovr_devices[] = {
 	{ HID_USB_DEVICE(USB_VENDOR_ID_HUAWEI_VR, USB_DEVICE_ID_HUAWEI_VR) },
-	{ HID_USB_DEVICE(0x04e8, 0xa500) },
-	{ HID_USB_DEVICE(0x04e8, 0xa501) },
-	{ HID_USB_DEVICE(0x04e8, 0xa502) },
-	{ HID_USB_DEVICE(0x04e8, 0xa503) },
-	{ HID_USB_DEVICE(0x04e8, 0xa504) },
-	{ HID_USB_DEVICE(0x04e8, 0xa505) },
 	{ }
 };
 

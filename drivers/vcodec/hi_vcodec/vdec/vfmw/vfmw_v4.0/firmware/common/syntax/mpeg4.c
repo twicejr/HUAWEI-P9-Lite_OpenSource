@@ -3603,9 +3603,7 @@ SINT32 MPEG4DEC_Decode(MP4_CTX_S *pCtx, const DEC_STREAM_PACKET_S *ptr_strm_para
                 {
                     /* 容错处理，但在回归标准码流时，码流有I 后面紧接着可解的B帧，这样做会丢掉该B,
                     而导致后面出错，回归时注释掉*/
-                    /*
-                        对于 I I BBBB I BBBB 这种流，不应该丢掉B帧  c00277632 20150706
-                    */
+                    
                     if (I_VOP == pCtx->MP4Syntax.syn_vop.vop_coding_type)
                     {
                         if (pCtx->PPicFound == 0)

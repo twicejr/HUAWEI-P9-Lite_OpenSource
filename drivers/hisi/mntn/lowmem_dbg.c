@@ -16,6 +16,7 @@
 #include <linux/freezer.h>
 #include <linux/ksm.h>
 #include <linux/ion.h>
+#include <linux/hisi/hisi_ion.h>
 
 #define LMK_PRT_TSK_RSS 10000
 #define LMK_DBG_SECONDS 3
@@ -82,10 +83,9 @@ static void dump_meminfo_wk(struct work_struct *work)
 {
 	before_jiffies = get_jiffies_64();
 #ifdef CONFIG_ION
-	if (need_to_log_ion) {
+	hisi_ion_memory_info(need_to_log_ion);
+	if (need_to_log_ion)
 		need_to_log_ion = false;
-		hisi_ion_memory_info();
-	}
 #endif
 	show_mem(SHOW_MEM_FILTER_NODES | SHOW_MEM_FILTER_PAGE_COUNT);
 	dump_tasks();

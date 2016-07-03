@@ -749,6 +749,13 @@ s32 load_and_verify_dtb_data(TEEC_Session *session)
 
 	if (0 != dt_entry_ptr.vrl_size) {
 		mutex_lock(&load_image_lock);
+		if (dt_entry_ptr.vrl_size > SECBOOT_BUFLEN) {
+			sec_print_err("modem dtb vrl size is error\n");
+			ret = SEC_ERROR;
+			mutex_unlock(&load_image_lock);
+			goto err_out;
+		}
+
 		ret = bsp_read_bin((const char*)PTN_MODEM_DTB_NAME, dt_entry_ptr.vrl_offset, dt_entry_ptr.vrl_size, SECBOOT_BUFFER);
 	    if (SEC_ERROR == ret) {
 			sec_print_err("fail to read the dtb image\n");

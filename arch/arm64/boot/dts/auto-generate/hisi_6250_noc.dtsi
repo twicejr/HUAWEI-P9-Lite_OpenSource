@@ -1,0 +1,229 @@
+/{
+	hisi_noc@0 {
+		#address-cells = <1>;
+		#size-cells = <1>;
+		ranges;
+		compatible = "hisilicon,noc";
+		interrupts = <0 130 0x4>,<0 134 0x4>;
+		pctrl-irq-mask = <0xF0400000 0x0807ABFB>;
+		pctrl-peri-stat0-offset = <0x094>;
+		pctrl-peri-stat3-offset = <0x0A0>;
+		smp_stop_cpu_bit_mask = <0x00000000 0x00000002>;  /* 0x8: 0000 0010B, Sys Bus NoC Error need stop cpu immediately.*/
+		stop_cpu_bus_node_name = "sys_bus";
+		noc_acpu_init_flow_array = <0x1F0000 0x40000>; /*Mask, Value*/
+		platform_id = <0x2>;  /* hisi6250(dallas) platform */
+		error_enable;
+		noc_timeout_enable;
+		fama-mask = <0x1F>;
+		/*noc_debug;*/
+		
+        dma_bus@E9860000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "cfg_sys_noc_bus";
+			reg = <0xE9860000 0x2000>;
+			eprobe-hwirq = <0>;
+			hwirq-type = <0>;
+			eprobe-offset = <0x1C00>;
+			eprobe-autoenable;
+			pwrack-bit = <8>;
+			crg_clk0=<0x0c 22>;
+			crg_clk1=<0x0c 23>;
+		};
+		
+		sys_bus@E9840000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "cfg_sys_noc_bus";
+			reg = <0xE9840000 0x2000>;
+			eprobe-hwirq = <1>;
+			hwirq-type = <0>;
+			eprobe-offset = <0x1C00>;
+			eprobe-autoenable;
+			pwrack-bit = <6>;
+			crg_clk0=<0xc 9>;
+			crg_clk1=<0x104 12>;
+		};
+		
+		modem_bus@E9820000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "cfg_sys_noc_bus";
+			reg = <0xE9820000 0x2000>;
+			eprobe-hwirq = <3>;
+			hwirq-type = <0>;
+			eprobe-offset = <0x1C00>;
+			eprobe-autoenable;
+			pwrack-bit = <3>;
+		};
+		
+        dbg_bus@E9870000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "cfg_sys_noc_bus";
+			reg = <0xE9870000 0x2000>;
+			eprobe-hwirq = <4>;
+			hwirq-type = <0>;
+			eprobe-offset = <0x1C00>;
+			eprobe-autoenable;
+			pwrack-bit = <9>;
+			crg_clk0=<0xc 26>;
+		};
+
+		peri_vcodec_bus@E8920000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "vcodec_bus";
+			reg = <0xE8920000 0x2000>;
+			eprobe-hwirq = <5>;
+			hwirq-type = <0>;
+			eprobe-offset = <0x1C00>;
+			eprobe-autoenable;
+			pwrack-bit = <4>;
+			crg_clk0=<0xc 5>;
+		};
+
+		dss_bus@E86C0000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "vivo_bus";
+			reg = <0xE86C0000 0x2000>;
+			eprobe-hwirq = <6>;
+			hwirq-type = <0>;
+			eprobe-offset = <0x1C00>;
+			eprobe-autoenable;
+			pwrack-bit = <13>;
+			crg_clk0=<0x3c 12>;
+		};
+    
+		cfg_bus@E9800000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "cfg_sys_noc_bus";
+			reg = <0xE9800000 0x2000>;
+			eprobe-hwirq = <7>;
+			hwirq-type = <0>;
+			eprobe-offset = <0x1C00>;
+			eprobe-autoenable;
+			pwrack-bit = <7>;
+			crg_clk0=<0xc 10>;
+			crg_clk1=<0xc 11>;
+		};
+		mmc0_bus@E9890000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "cfg_sys_noc_bus";
+			reg = <0xE9890000 0x2000>;
+			eprobe-hwirq = <8>;
+			hwirq-type = <0>;
+			eprobe-offset = <0x1C00>;
+			eprobe-autoenable;
+			pwrack-bit = <1>;
+			crg_clk0=<0xc 17>;
+			crg_clk1=<0xc 18>;
+		};
+		mmc1_bus@E9880000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "cfg_sys_noc_bus";
+			reg = <0xE9880000 0x2000>;
+			eprobe-hwirq = <9>;
+			hwirq-type = <0>;
+			eprobe-offset = <0x1C00>;
+			eprobe-autoenable;
+			pwrack-bit = <2>;
+			crg_clk0=<0xc 14>;
+			crg_clk1=<0xc 15>;
+		};
+    
+		modem_transcation_bus@E9828000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "cfg_sys_noc_bus";
+			reg = <0xE9828000 0x800>;
+			eprobe-hwirq = <13>;
+			hwirq-type = <2>;
+			eprobe-offset = <0x0>;
+			eprobe-autoenable;
+			pwrack-bit = <3>;
+		};
+		
+        dss0_rd_transcation_bus@E86C8000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "vivo_bus";
+			reg = <0xE86C8000 0x800>;
+			eprobe-hwirq = <15>;
+			hwirq-type = <2>;
+			eprobe-offset = <0x0>;
+			eprobe-autoenable;
+			pwrack-bit = <13>; 
+		};
+
+		dss1_rd_transcation_bus@E86CA000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "vivo_bus";
+			reg = <0xE86CA000 0x800>;
+			eprobe-hwirq = <17>;
+			hwirq-type = <2>;
+			eprobe-offset = <0x0>;
+			eprobe-autoenable;
+			pwrack-bit = <13>;
+		};
+
+		dss1_wr_transcation_bus@E86CB000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "vivo_bus";
+			reg = <0xE86CB000 0x800>;
+			eprobe-hwirq = <18>;
+			hwirq-type = <2>;
+			eprobe-offset = <0x0>;
+			eprobe-autoenable;
+			pwrack-bit = <13>;
+		};
+		
+		isp_rd_transcation_bus@E86E8000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "vivo_bus";
+			reg = <0xE86E8000 0x800>;
+			eprobe-hwirq = <61>;
+			hwirq-type = <2>;
+			eprobe-offset = <0x0>;
+			eprobe-autoenable;
+			pwrack-bit = <5>; 
+		};
+
+		isp_wr_transcation_bus@E86E9000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "vivo_bus";
+			reg = <0xE86E9000 0x800>;
+			eprobe-hwirq = <60>;
+			hwirq-type = <2>;
+			eprobe-offset = <0x0>;
+			eprobe-autoenable;
+			pwrack-bit = <5>; 
+		};
+
+		a7_rd_transcation_bus@E86EA000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "vivo_bus";
+			reg = <0xE86EA000 0x800>;
+			eprobe-hwirq = <63>;
+			hwirq-type = <2>;
+			eprobe-offset = <0x0>;
+			eprobe-autoenable;
+			pwrack-bit = <5>; 
+		};
+
+		a7_wr_transcation_bus@E86EB000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "vivo_bus";
+			reg = <0xE86EB000 0x800>;
+			eprobe-hwirq = <62>;
+			hwirq-type = <2>;
+			eprobe-offset = <0x0>;
+			eprobe-autoenable;
+			pwrack-bit = <5>; 
+		};
+		
+        sysbus_packet_bus@E9842000 {
+			compatible = "hisilicon,noc-node";
+			bus-name = "cfg_sys_noc_bus";
+			reg = <0xe9842000 0x2000>;
+			eprobe-hwirq = <27>;
+			hwirq-type = <1>;
+			eprobe-offset = <0x0>;
+			eprobe-autoenable;
+			pwrack-bit = <6>;
+		};
+	}; /* end of hisi_noc */
+};

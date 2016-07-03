@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              ethvln_public.h
-*
-*  Project Code: VISPV100R007
-*   Module Name: Ethvlan  
-*  Date Created: 2008-08-01
-*        Author: qinyun(62011)
-*   Description: ethvln_public.h
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME           DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2008-08-01   qinyun(62011)  Create the first version.
-*  2008-11-18   qinyun(62011)      Modify for BC3D00737,错误码以及配置接口所用的
-*                                  宏定义(TagFormat,VLAN_ERR_E)要移到API头文件中
-*******************************************************************************/
+
 #ifndef _ETHVLN_PUBLIC_H_
 #define _ETHVLN_PUBLIC_H_
 #ifdef  __cplusplus
@@ -36,7 +13,6 @@ enum
     ETHVLAN_DEBUG_SEND
 };
 
-/* Begin Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 /* VLAN一致性告警查找时的匹配方式,完全匹配 */
 #define ETHVLAN_WARN_MATCH_EXACT        0
 /* VLAN一致性告警查找时的匹配方式,只匹配本地IP */
@@ -46,7 +22,6 @@ enum
 /* VLAN一致性告警查找时的匹配方式,通配 */
 #define ETHVLAN_WARN_MATCH_WILD         3
 
-/* End Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 
 typedef  struct tagETHVLAN_VID_NODE
 {
@@ -71,7 +46,6 @@ typedef  struct tagETHVLAN_VID_NODE
     UCHAR        ucRsv[3];
 }ETHVLAN_VID_NODE_S;
 
-/* Begin Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 /* VLAN一致性告警节点 */
 typedef struct tagVLAN_CONSISTENCY_WARN_NODE
 {
@@ -91,7 +65,6 @@ typedef struct tagVLAN_CONSISTENCY_WARN_LIST
     ULONG  ulCurWarningNum; /* 队列中的当前告警数目 */
     ULONG  ulMaxWarningNum; /* 配置的最大告警数目 */
 }VLAN_CONSISTENCY_WARN_LIST_S;
-/* End Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 
 typedef  struct tagETHVLAN_PORTINFO
 {
@@ -111,7 +84,6 @@ typedef  struct tagETHVLAN_PORTINFO
     ETHVLAN_VID_NODE_S * pstHeadNode;           /*指向VLAN的子接配置的VLAN的头结点*/
     ETHVLAN_VID_NODE_S * pstTailNode;           /*指向VLAN的子接配置的VLAN的尾结点*/
     
-    /* Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
     VLAN_CONSISTENCY_WARN_LIST_S stVlanWarningList; /* VLAN配置不一致告警队列 */
  }ETHVLAN_PORTINFO_S;
 
@@ -135,7 +107,6 @@ typedef  struct tagETHVLAN_PORTINFO
     }\
 }
 
-/* Begin Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 /* 从VLAN告警链表中取出最前面的告警节点 */
 #define ETHVLN_WARNINGLIST_REMOVE_FIRSTNODE(pstWarningList, pstWarningNode) \
 {\
@@ -172,7 +143,6 @@ typedef  struct tagETHVLAN_PORTINFO
     (pstWarningList)->ulCurWarningNum++;\
 }
 
-/* End Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 
 #ifdef __cplusplus
 }

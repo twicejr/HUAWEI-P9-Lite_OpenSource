@@ -74,14 +74,7 @@ VOS_VOID diag_CBT(DIAG_CBT_ID_ENUM ulType,
 
 DIAG_LNR_INFO_TBL_STRU g_astLNRInfoTbl[EN_DIAG_LNR_INFO_MAX] = {{0}};
 
-/*****************************************************************************
- Function Name   : diag_LNR
- Description     : 最后NV条信息的记录接口
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_LNR(DIAG_LNR_ID_ENUM ulType, VOS_UINT32 ulRserved1, VOS_UINT32 ulRserved2)
 {
     g_astLNRInfoTbl[ulType].ulRserved1[g_astLNRInfoTbl[ulType].ulCur] = ulRserved1;
@@ -104,15 +97,7 @@ VOS_VOID DIAG_ShowLNR(DIAG_LNR_ID_ENUM ulType, VOS_UINT32 n)
 }
 
 
-/*****************************************************************************
- Function Name   : diag_CreateDFR
- Description     : 创建码流录制录制的缓存buffer(初始化时调用)
-                    申请的空间长度必须四字节对齐
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_CreateDFR(VOS_CHAR *name, VOS_UINT32 ulLen, DIAG_DFR_INFO_STRU *pDfr)
 {
     if((VOS_NULL == name)
@@ -151,14 +136,7 @@ VOS_UINT32 diag_CreateDFR(VOS_CHAR *name, VOS_UINT32 ulLen, DIAG_DFR_INFO_STRU *
 }
 
 
-/*****************************************************************************
- Function Name   : diag_SaveDFR
- Description     : 码流录制接口(接收命令和上报命令时调用)
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_SaveDFR(DIAG_DFR_INFO_STRU *pDfr, VOS_UINT8 *pData, VOS_UINT32 ulLen)
 {
     VOS_UINT32 ulSize;
@@ -214,14 +192,7 @@ VOS_VOID diag_SaveDFR(DIAG_DFR_INFO_STRU *pDfr, VOS_UINT8 *pData, VOS_UINT32 ulL
 }
 
 
-/*****************************************************************************
- Function Name   : diag_GetDFR
- Description     : 码流录制接口(接收命令和上报命令时调用)
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_GetDFR(DIAG_DFR_INFO_STRU *pDfr)
 {
     void *pFile;
@@ -308,14 +279,7 @@ VOS_VOID diag_GetDFR(DIAG_DFR_INFO_STRU *pDfr)
 
 DIAG_THRPUT_INFO_STRU g_astThroughput[EN_DIAG_THRPUT_MAX] = {{0,0,0,0,{{0,0},}}};
 
-/*****************************************************************************
- Function Name   : diag_ThroughputIn
- Description     : 吞吐率记录
 
- History         :
-    1.c00326366    2015-07-11 Draft Enact
-
-*****************************************************************************/
 VOS_VOID diag_ThroughputSave(DIAG_THRPUT_ID_ENUM enChn, VOS_UINT32 bytes)
 {
     VOS_UINT32 slice = mdrv_timer_get_normal_timestamp();
@@ -851,14 +815,7 @@ VOS_VOID diag_ReportLost(DIAG_LOST_ID_ENUM enLostId)
 
 
 #if ((VOS_OS_VER == VOS_RTOSCK) || (VOS_OS_VER == VOS_VXWORKS))
-/*****************************************************************************
- Function Name   : diag_DebugMsgProc
- Description     : 处理A核发过来的保存debug信息的请求
 
- History         :
-    1.c00326366    2015-06-21 Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_DebugMsgProc(MsgBlock* pMsgBlock)
 {
     DIAG_A_DEBUG_C_REQ_STRU *pstFlag;

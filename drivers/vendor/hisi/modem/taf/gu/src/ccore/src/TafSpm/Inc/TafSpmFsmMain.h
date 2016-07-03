@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmFsmMain.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年5月8日
-  最近修改   :
-  功能描述   : TafSpmFsmMain.C 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月8日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef _TAF_SPM_FSM_MAIN_H
 #define _TAF_SPM_FSM_MAIN_H
@@ -24,11 +7,9 @@
   1 其他头文件包含
 *****************************************************************************/
 #include "vos.h"
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, begin */
 #if (FEATURE_IMS == FEATURE_ON)
 #include "SpmImsaInterface.h"
 #endif
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-18, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -79,34 +60,27 @@ extern "C" {
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, begin */
 VOS_UINT32 TAF_SPM_RcvAppReqMsg_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, end */
 
 VOS_UINT32 TAF_SPM_RcvSpmServiceCtrlResultInd_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, end */
 
 VOS_UINT32 TAF_SPM_RcvPbFdnInd_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-14, end */
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-30, begin */
 VOS_VOID TAF_SPM_SendServiceRequetFail_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg,
     VOS_UINT32                          ulCause
 );
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-30, end */
 
 
 

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : wal_linux_rx_rsp.c
-  版 本 号   : 初稿
-  作    者   : y00184180
-  生成日期   : 2013年8月26日
-  最近修改   :
-  功能描述   : 接收驱动上报过来的消息，上报给内核
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年8月26日
-    作    者   : y00184180
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -70,24 +53,7 @@ extern  wal_dfr_info_stru    g_st_dfr_info;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : wal_scan_comp_proc_sta
- 功能描述  : STA上报扫描完成事件处理
- 输入参数  : pst_event_mem: 事件内存
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-  2.日    期   : 2013年9月9日
-    作    者   : y00184180
-    修改内容   : 增加上报内核部分函数
-
-*****************************************************************************/
 oal_uint32  wal_scan_comp_proc_sta(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru                 *pst_event;
@@ -155,9 +121,7 @@ oal_uint32  wal_scan_comp_proc_sta(frw_event_mem_stru *pst_event_mem)
     {
         /* 通知完内核，释放资源后解锁 */
         oal_spin_unlock(&(pst_scan_mgmt->st_scan_request_spinlock));
-        /*lint -e801*/
-        goto scan_comp;
-        /*lint +e801*/
+        return OAL_SUCC;
     }
 
     /* 上层下发的普通扫描进行对应处理 */
@@ -185,26 +149,11 @@ oal_uint32  wal_scan_comp_proc_sta(frw_event_mem_stru *pst_event_mem)
     /* 通知完内核，释放资源后解锁 */
     oal_spin_unlock(&(pst_scan_mgmt->st_scan_request_spinlock));
 
-scan_comp:
-   return OAL_SUCC;
+    return OAL_SUCC;
 }
 
 
-/*****************************************************************************
- 函 数 名  : wal_asoc_comp_proc_sta
- 功能描述  : STA上报关联完成事件处理
- 输入参数  : pst_event_mem: 事件内存
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_asoc_comp_proc_sta(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru              *pst_event;
@@ -273,27 +222,16 @@ oal_uint32  wal_asoc_comp_proc_sta(frw_event_mem_stru *pst_event_mem)
         return ul_ret;
     }
 
+    /* 启动发送队列，防止发送队列被漫游关闭后无法恢复 */
+    oal_net_tx_wake_all_queues(pst_net_device);
+
     OAM_WARNING_LOG1(pst_event->st_event_hdr.uc_vap_id, OAM_SF_ASSOC, "{wal_asoc_comp_proc_sta status_code[%d] OK!}\r\n", st_connet_result.us_status_code);
 
     return OAL_SUCC;
 }
 
 #ifdef _PRE_WLAN_FEATURE_ROAM
-/*****************************************************************************
- 函 数 名  : wal_roam_comp_proc_sta
- 功能描述  : STA上报漫游完成事件处理
- 输入参数  : pst_event_mem: 事件内存
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月18日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_roam_comp_proc_sta(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru              *pst_event;
@@ -384,21 +322,7 @@ oal_uint32  wal_roam_comp_proc_sta(frw_event_mem_stru *pst_event_mem)
 }
 #endif //_PRE_WLAN_FEATURE_ROAM
 #ifdef _PRE_WLAN_FEATURE_11R
-/*****************************************************************************
- 函 数 名  : wal_ft_event_proc_sta
- 功能描述  : STA上报FT事件处理
- 输入参数  : pst_event_mem: 事件内存
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月18日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_ft_event_proc_sta(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru              *pst_event;
@@ -441,21 +365,7 @@ oal_uint32  wal_ft_event_proc_sta(frw_event_mem_stru *pst_event_mem)
 }
 #endif //_PRE_WLAN_FEATURE_11R
 
-/*****************************************************************************
- 函 数 名  : wal_disasoc_comp_event_proc
- 功能描述  : STA上报去关联完成事件处理
- 输入参数  : pst_event_mem: 事件内存
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_disasoc_comp_proc_sta(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru              *pst_event;
@@ -506,21 +416,7 @@ oal_uint32  wal_disasoc_comp_proc_sta(frw_event_mem_stru *pst_event_mem)
 }
 
 
-/*****************************************************************************
- 函 数 名  : wal_connect_new_sta_proc_ap
- 功能描述  : 驱动上报内核bss网络中新加入了一个STA
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月9日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_connect_new_sta_proc_ap(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru              *pst_event;
@@ -590,21 +486,7 @@ oal_uint32  wal_connect_new_sta_proc_ap(frw_event_mem_stru *pst_event_mem)
 }
 
 
-/*****************************************************************************
- 函 数 名  : wal_disconnect_sta_proc_ap
- 功能描述  : 驱动上报内核bss网络中删除了一个STA
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月9日
-    作    者   : y00184180
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_disconnect_sta_proc_ap(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru            *pst_event;
@@ -645,21 +527,7 @@ oal_uint32  wal_disconnect_sta_proc_ap(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : wal_mic_failure_proc
- 功能描述  : 驱动上报内核mic错误
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月28日
-    作    者   : g00260350
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_mic_failure_proc(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru               *pst_event;
@@ -693,21 +561,7 @@ oal_uint32  wal_mic_failure_proc(frw_event_mem_stru *pst_event_mem)
 }
 
 
-/*****************************************************************************
- 函 数 名  : wal_send_mgmt_to_host
- 功能描述  : 驱动上报内核接收到管理帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  wal_send_mgmt_to_host(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru               *pst_event;
@@ -781,21 +635,7 @@ oal_uint32  wal_send_mgmt_to_host(frw_event_mem_stru *pst_event_mem)
 }
 
 
-/*****************************************************************************
- 函 数 名  : wal_p2p_listen_timeout
- 功能描述  : HMAC上报监听超时
- 输入参数  : frw_event_mem_stru *pst_event_mem
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 wal_p2p_listen_timeout(frw_event_mem_stru *pst_event_mem)
 {
 #if (_PRE_PRODUCT_ID != _PRE_PRODUCT_ID_HI1151)

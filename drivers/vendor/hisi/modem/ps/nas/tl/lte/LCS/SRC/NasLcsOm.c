@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLcsOm.c
-    Description : LCS的可谓可测
-    History     :
-            1.lihong  00150010       2015-09-28  Draft Enact
-******************************************************************************/
 
 
 
@@ -150,19 +141,7 @@ NAS_COMM_PRINT_MSG_LIST_STRU g_astLcsTimerArray[] =
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_LCS_SndOmEntityStateInfo
- Description     : 发送实体状态OM信息
- Input           : ulEntityIndex----------------实体索引
-                   enOldEntityState-------------上次实体状态
-                   enNewEntityState-------------这次实体状态
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2015-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndOmEntityStateInfo
 (
     VOS_UINT32                          ulEntityIndex,
@@ -192,19 +171,7 @@ VOS_VOID  NAS_LCS_SndOmEntityStateInfo
     NAS_LCS_INFO_LOG1("NAS_LCS_SndOmEntityStateInfo:ulEntityIndex=", ulEntityIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_SndOmEntityConnStateInfo
- Description     : 发送实体时连接状态OM信息
- Input           : ulEntityIndex----------------实体索引
-                   enOldConnState---------------上次连接状态
-                   enNewConnState---------------这次连接状态
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2015-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndOmEntityConnStateInfo
 (
     VOS_UINT32                          ulEntityIndex,
@@ -234,19 +201,7 @@ VOS_VOID  NAS_LCS_SndOmEntityConnStateInfo
     NAS_LCS_INFO_LOG1("NAS_LCS_SndOmEntityConnStateInfo:ulEntityIndex=", ulEntityIndex);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_SndOmTimerStart
- Description     : 发送定时器启动OM信息
- Input           : ulEntityIndex----------------实体索引
-                   enLcsTimerType---------------定时器类型
-                   ulTimerLen-------------------定时器时长
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2015-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndOmTimerStart
 (
     VOS_UINT32                          ulEntityIndex,
@@ -288,19 +243,7 @@ VOS_VOID  NAS_LCS_SndOmTimerStart
     NAS_LCS_INFO_LOG2("NAS_LCS_SndOmTimerStart:ulTimerLen=, usPara=", ulTimerLen, stOmTimerStart.usPara);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_SndOmTimerStop
- Description     : 发送定时器停止OM信息
- Input           : ulEntityIndex----------------实体索引
-                   enLcsTimerType---------------定时器类型
-                   ulRemainTime-----------------定时器剩余时长
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2015-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndOmTimerStop
 (
     VOS_UINT32                          ulEntityIndex,
@@ -330,18 +273,7 @@ VOS_VOID  NAS_LCS_SndOmTimerStop
     NAS_LCS_INFO_LOG1("NAS_LCS_SndOmTimerStop:ulRemainTime=", ulRemainTime);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_SndOmTimerExpire
- Description     : 发送定时器超时OM信息
- Input           : ulEntityIndex----------------实体索引
-                   enLcsTimerType---------------定时器类型
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2015-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndOmTimerExpire
 (
     VOS_UINT32                          ulEntityIndex,
@@ -381,17 +313,7 @@ VOS_VOID  NAS_LCS_SndOmTimerExpire
     NAS_LCS_INFO_LOG1("NAS_LCS_SndOmTimerExpire:usPara=", stOmTimerExpire.usPara);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_SndOmNvCommonConfig
- Description     : 发送NV的基本配置OM信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2015-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndOmNvCommonConfig( VOS_VOID )
 {
     NAS_LCS_OM_NV_COMMON_CONFIG_STRU    stOmNvCommonConfig = {0};
@@ -422,16 +344,7 @@ VOS_VOID  NAS_LCS_SndOmNvCommonConfig( VOS_VOID )
                         stOmNvCommonConfig.stLcsNvCommConfig.usRetryTimerLen);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_SndOmDomainSelectInfo
- Description     : 发送域选择的OM信息
- Input           : enSelectedDomain--------------------选择的域
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.lihong00150010      2015-10-15  Draft Enact
 
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndOmDomainSelectInfo
 (
     NAS_LCS_DOMAIN_TYPE_ENUM_UINT8      enSelectedDomain
@@ -517,17 +430,7 @@ VOS_VOID NAS_LCS_SndOmDecodeDbgInfo
     (VOS_VOID)LTE_MsgHook( (VOS_VOID*)&stDebugInfo);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_SndOmEntityInfo
- Description     : 发送实体的OM信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2015-10-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndOmEntityInfo( VOS_VOID )
 {
     NAS_LCS_OM_ENITY_INFO_STRU          stOmEntityInfo  = {0};
@@ -571,17 +474,7 @@ VOS_VOID  NAS_LCS_SndOmEntityInfo( VOS_VOID )
     (VOS_VOID)LTE_MsgHook( (VOS_VOID*)(&stOmEntityInfo));
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_SndAirMsgReportInd
- Description     : 发送空口消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2015-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_SndAirMsgReportInd
 (
     const VOS_UINT8                    *pucData,
@@ -604,7 +497,6 @@ VOS_VOID NAS_LCS_SndAirMsgReportInd
 
     NAS_LCS_MEM_CPY_S(pucTmpData, ulLength, pucData, ulLength);
 
-    /*z00282933, 多模OM融合添加 - BEGIN*/
     /*设置空口消息方向*/
     if(NAS_LCS_AIR_MSG_DIR_ENUM_UP == enMsgDir)
     {
@@ -628,7 +520,6 @@ VOS_VOID NAS_LCS_SndAirMsgReportInd
         NAS_LCS_WARN_LOG("NAS_LCS_SndAirMsgReportInd: Send Msg Fail!");
         TLPS_PRINT2LAYER_WARNING(NAS_LCS_SndAirMsgReportInd_ENUM, LNAS_LCS_ReportAirMsgFail);
     }
-    /*z00282933, 多模OM融合添加 - END*/
 
     /*释放空口消息空间*/
     NAS_LCS_MEM_FREE(pucTmpData);
@@ -640,17 +531,7 @@ VOS_VOID NAS_LCS_SndAirMsgReportInd
     TLPS_PRINT2LAYER_INFO(NAS_LCS_SndAirMsgReportInd_ENUM, 1);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_PrintTimer
- Description     : 打印收到定时器超时消息(文件内部调用函数)
- Input           : None
- Output          : None
- Return          : VOS_INT32
 
- History         :
-    1.lihong 00150010      2015-10-17  Draft Enact
-
-*****************************************************************************/
 VOS_INT32  NAS_LCS_PrintTimer
 (
     VOS_CHAR                            *pcBuff,
@@ -692,20 +573,7 @@ VOS_INT32  NAS_LCS_PrintTimer
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LCS_PrintTafMsg
- Description     : 打印收到TAF消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   pstMsg   -- 消息指针
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lihong 00150010      2015-10-17  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LCS_PrintTafMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -766,20 +634,7 @@ VOS_INT32   NAS_LCS_PrintTafMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_PrintLppMsg
- Description     : 打印收到LPP消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   pstMsg   -- 消息指针
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lihong 00150010      2015-10-17  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LCS_PrintLppMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -841,20 +696,7 @@ VOS_INT32   NAS_LCS_PrintLppMsg
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LCS_PrintMmMsg
- Description     : 打印收到MM消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   pstMsg   -- 消息指针
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lihong 00150010      2015-10-17  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LCS_PrintMmMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -915,20 +757,7 @@ VOS_INT32   NAS_LCS_PrintMmMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_PrintEmmMsg
- Description     : 打印收到EMM消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   pstMsg   -- 消息指针
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lihong 00150010      2015-10-17  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LCS_PrintEmmMsg
 (
     VOS_CHAR                                *pcBuff,
@@ -989,17 +818,7 @@ VOS_INT32   NAS_LCS_PrintEmmMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LCS_PrintLcsSendMsg
- Description     : 打印发送的消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2015-10-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_PrintLcsSendMsg
 (
     const PS_MSG_HEADER_STRU           *pstMsg,
@@ -1103,17 +922,7 @@ VOS_VOID NAS_LCS_PrintLcsSendMsg
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LCS_PrintLcsRevMsg
- Description     : 打印收到的消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2015-10-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LCS_PrintLcsRevMsg
 (
     const PS_MSG_HEADER_STRU           *pstMsg,

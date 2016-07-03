@@ -384,17 +384,14 @@ static int dual_role_set_mode_prop(struct dual_role_phy_instance *dual_role,
 
         hwlog_err("%s: try reversing, form Source to Sink\n", __func__);
 
-        disable_irq(di->irq_intb);
-
         di->reverse_state = REVERSE_ATTEMPT;
         di->sink_attached = 0;
 
         /* turns off VBUS first */
         typec_close_otg();
+        msleep(WAIT_VBUS_OFF_MS);
 
         di->ops->ctrl_port_mode(TYPEC_HOST_PORT_MODE_UFP);
-
-        enable_irq(di->irq_intb);
 
 	/* AS UFP now, try reversing, form Sink to Source */
     } else if (port_mode == TYPEC_DEV_PORT_MODE_UFP) {
@@ -402,7 +399,6 @@ static int dual_role_set_mode_prop(struct dual_role_phy_instance *dual_role,
         hwlog_err("%s: try reversing, form Sink to Source\n", __func__);
 
         /* reverse to DFP, from Sink to Source  */
-        disable_irq(di->irq_intb);
 
         di->reverse_state = REVERSE_ATTEMPT;
         /* set current advertisement to default */
@@ -410,7 +406,6 @@ static int dual_role_set_mode_prop(struct dual_role_phy_instance *dual_role,
 
         di->ops->ctrl_port_mode(TYPEC_HOST_PORT_MODE_DFP);
 
-        enable_irq(di->irq_intb);
     }
 
     mutex_unlock(&di->typec_lock);
@@ -422,13 +417,9 @@ static int dual_role_set_mode_prop(struct dual_role_phy_instance *dual_role,
     if (!timeout) {
         hwlog_err("%s: reverse failed, set mode to DRP\n", __func__);
 
-        disable_irq(di->irq_intb);
-
         /* set mode to DRP */
         di->ops->ctrl_port_mode(TYPEC_HOST_PORT_MODE_DRP);
         di->reverse_state = 0;
-
-        enable_irq(di->irq_intb);
 
         hwlog_err("%s: wait for the attached state\n", __func__);
         INIT_COMPLETION(di->reverse_completion);

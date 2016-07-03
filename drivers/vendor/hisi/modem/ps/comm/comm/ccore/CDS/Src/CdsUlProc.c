@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CdsUlProc.c
-  版 本 号   : 初稿
-  作    者   : y00151394
-  生成日期   : 2011年12月12日
-  最近修改   :
-  功能描述   : CDS上行处理
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年3月9日
-    作    者   : l00164359
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -67,23 +49,7 @@ extern VOS_VOID TL_OM_CdsStatInfoIndRpt(VOS_VOID);
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CDS_ULStorePkt
- 功能描述  : 缓存上行IP包
- 输入参数  : CDS_ENTITY_STRU *pstCdsEntity,
-             TTF_MEM_ST  *pstIpPkt
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e960*/
 
 VOS_VOID CDS_ULStorePkt(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST  *pstIpPkt)
@@ -117,28 +83,7 @@ VOS_VOID CDS_ULStorePkt(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST  *pstIpPkt)
 
 extern VOS_VOID L2_UlAppThrStatProc(VOS_UINT32 ulLength);
 
-/*****************************************************************************
- 函 数 名  : CDS_UlLteDispatchData
- 功能描述  : L模按EPSBID分发数据,由用户保证输入合法
- 输入参数  : VOS_UINT8 ucEpsbID,
-             TTF_MEM_ST *pstIpPkt,
-             CDS_ENTITY_STRU *pstCdsEntity
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-    2.日    期   : 2012年04月06日
-      作    者   : y00151394
-      修改内容   : 规避GU MMC问题，只统计ACTIVE状态，见问题单DTS2012033006788.
-
-*****************************************************************************/
 VOS_VOID CDS_UlLteDispatchData(VOS_UINT8 ucEpsbID,TTF_MEM_ST *pstIpPkt,CDS_ENTITY_STRU *pstCdsEntity)
 {
     VOS_UINT8                                 ucDrbId;
@@ -193,23 +138,7 @@ VOS_VOID CDS_UlLteDispatchData(VOS_UINT8 ucEpsbID,TTF_MEM_ST *pstIpPkt,CDS_ENTIT
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_LTEPktProc
- 功能描述  : LTE模处理IP包
- 输入参数  : pstCdsEntity: CDS上行实体
-             pstIpPkt :    上行IP包
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年12月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_LTEPktProc(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST  *pstIpPkt)
 {
     VOS_UINT8                                 ucEpsbId;
@@ -249,22 +178,7 @@ VOS_VOID CDS_LTEPktProc(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST  *pstIpPkt)
 #endif
 
 #if (CDS_FEATURE_ON == CDS_FEATURE_CDMA)
-/*****************************************************************************
- 函 数 名  : CDS_APS_GetCdataBearStatus
- 功能描述  : CDS封装APS接口
 
- 输入参数  : VOS_UINT8 ucRabId, CDS_ENTITY_STRU *pstCdsEntity
- 输出参数  : 无
- 返 回 值  : APS_CDS_CDATA_BEAR_STATUS_ENUM_UINT8 enCDMABearStatus
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2015年10月27日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 APS_CDS_CDATA_BEAR_STATUS_ENUM_UINT8 CDS_APS_GetCdataBearStatus(VOS_UINT8 ucRabId, CDS_ENTITY_STRU *pstCdsEntity)
 {
     APS_CDS_CDATA_BEAR_STATUS_ENUM_UINT8             enCDMABearStatus;
@@ -285,22 +199,7 @@ APS_CDS_CDATA_BEAR_STATUS_ENUM_UINT8 CDS_APS_GetCdataBearStatus(VOS_UINT8 ucRabI
     return enCDMABearStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_APS_MapRabIdToPdnId
- 功能描述  : CDS封装APS接口
 
- 输入参数  : VOS_UINT8 ucRabId, VOS_UINT16 usModemId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 ucPdnId
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2015年10月27日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CDS_APS_MapRabIdToPdnId(VOS_UINT8 ucRabId, VOS_UINT16 usModemId)
 {
     VOS_UINT8                                      ucPdnId;
@@ -321,26 +220,7 @@ VOS_UINT8 CDS_APS_MapRabIdToPdnId(VOS_UINT8 ucRabId, VOS_UINT16 usModemId)
     return ucPdnId;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_UlCDMADataReq
- 功能描述  : CDMA 按ucRabId分发数据,由用户保证输入合法
- 输入参数  : VOS_UINT8 ucRabId,
-             TTF_MEM_ST *pstIpPkt,
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年12月30日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-    2.日    期   : 2015年06月12日
-      作    者   : l00304941
-      修改内容   : 新增HRPD接口
-
-*****************************************************************************/
 VOS_VOID CDS_UlCDMADataReq(VOS_UINT8 ucRabId,TTF_MEM_ST *pstIpPkt,CDS_ENTITY_STRU *pstCdsEntity)
 {
     CDS_CDMA_1X_TRANS_DATA_STRU          st1xUlData;
@@ -374,24 +254,7 @@ VOS_VOID CDS_UlCDMADataReq(VOS_UINT8 ucRabId,TTF_MEM_ST *pstIpPkt,CDS_ENTITY_STR
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_UlCDMARlpDispatchData
- 功能描述  : CDMA 按ucRabId分发数据,由用户保证输入合法
- 输入参数  : VOS_UINT8 ucRabId,
-             TTF_MEM_ST *pstIpPkt,
-             CDS_ENTITY_STRU *pstCdsEntity
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年12月30日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_UlCDMADispatchData(VOS_UINT8 ucRabId,TTF_MEM_ST *pstIpPkt,CDS_ENTITY_STRU *pstCdsEntity)
 {
     APS_CDS_CDATA_BEAR_STATUS_ENUM_UINT8             enCDMABearStatus;
@@ -448,23 +311,7 @@ VOS_VOID CDS_UlCDMADispatchData(VOS_UINT8 ucRabId,TTF_MEM_ST *pstIpPkt,CDS_ENTIT
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_CDMAPktProc
- 功能描述  : CDMA处理PPP帧
- 输入参数  : pstCdsEntity: CDS上行实体
-             pstIpPkt :    上行PPP帧
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年10月25日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_CDMAPktProc(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST  *pstIpPkt)
 {
     VOS_UINT8                                     ucRabId;
@@ -487,22 +334,7 @@ VOS_VOID CDS_CDMAPktProc(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST  *pstIpPkt)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_CheckUlBuffDataToSend
- 功能描述  : 检查CDS实体上行缓存队列中是否有对应Rab的数据
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年11月15日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_CheckUlBuffDataToSend(CDS_ENTITY_STRU *pstCdsEntity,VOS_UINT8 ucRabId)
 {
     VOS_UINT32                          ulCnt;
@@ -546,22 +378,7 @@ VOS_UINT32 CDS_CheckUlBuffDataToSend(CDS_ENTITY_STRU *pstCdsEntity,VOS_UINT8 ucR
     return ucDataExist;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_CheckUlDataToSend
- 功能描述  : CDS检查是否有上行数据待发送
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年11月15日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_CheckUlDataToSend(MODEM_ID_ENUM_UINT16 enModemId,VOS_UINT8 ucRabId)
 {
     CDS_ENTITY_STRU                               *pstCdsEntity;
@@ -583,21 +400,7 @@ VOS_UINT32 CDS_CheckUlDataToSend(MODEM_ID_ENUM_UINT16 enModemId,VOS_UINT8 ucRabI
 #endif
 
 #if (CDS_FEATURE_OFF == CDS_FEATURE_MULTI_MODEM)
-/*****************************************************************************
- 函 数 名  : I1_NAS_RABM_GetRabIdStatus
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem1上函数进行打桩处理。
- 输入参数  : VOS_UINT8 ucRabId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 RABM_RAB_STATUS_ENUM_UINT32 I1_NAS_RABM_GetRabIdStatus(VOS_UINT8 ucRabId)
 {
     (VOS_VOID)ucRabId;
@@ -605,21 +408,7 @@ RABM_RAB_STATUS_ENUM_UINT32 I1_NAS_RABM_GetRabIdStatus(VOS_UINT8 ucRabId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : I1_NAS_RABM_UL_DataReq
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem1上函数进行打桩处理。
- 输入参数  : CDS_RABM_TRANS_DATA_STRU *pstUlData
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID I1_NAS_RABM_UL_DataReq(CDS_RABM_TRANS_DATA_STRU *pstUlData)
 {
     if (VOS_NULL_PTR == pstUlData)
@@ -631,42 +420,14 @@ VOS_VOID I1_NAS_RABM_UL_DataReq(CDS_RABM_TRANS_DATA_STRU *pstUlData)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : I1_TAF_APS_MapRabIdToPdnId
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem1上函数进行打桩处理。
- 输入参数  : VOS_UINT8 ucRabId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 I1_TAF_APS_MapRabIdToPdnId(VOS_UINT8 ucRabId)
 {
     (VOS_VOID)ucRabId;
     return APS_CDS_INVALID_PDN_ID;
 }
 
-/*****************************************************************************
- 函 数 名  : I1_TAF_APS_GetCdataBearStatus
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem1上函数进行打桩处理。
- 输入参数  : VOS_UINT8 ucRabId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 I1_TAF_APS_GetCdataBearStatus(VOS_UINT8 ucRabId)
 {
     (VOS_VOID)ucRabId;
@@ -677,21 +438,7 @@ VOS_UINT8 I1_TAF_APS_GetCdataBearStatus(VOS_UINT8 ucRabId)
 
 #if (CDS_FEATURE_OFF == CDS_FEATURE_MODEM_2)
 
-/*****************************************************************************
- 函 数 名  : I2_NAS_RABM_GetRabIdStatus
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem2上函数进行打桩处理。
- 输入参数  : VOS_UINT8 ucRabId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 RABM_RAB_STATUS_ENUM_UINT32 I2_NAS_RABM_GetRabIdStatus(VOS_UINT8 ucRabId)
 {
     (VOS_VOID)ucRabId;
@@ -699,21 +446,7 @@ RABM_RAB_STATUS_ENUM_UINT32 I2_NAS_RABM_GetRabIdStatus(VOS_UINT8 ucRabId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : I2_NAS_RABM_UL_DataReq
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem2上函数进行打桩处理。
- 输入参数  : CDS_RABM_TRANS_DATA_STRU *pstUlData
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID I2_NAS_RABM_UL_DataReq(CDS_RABM_TRANS_DATA_STRU *pstUlData)
 {
     if (VOS_NULL_PTR == pstUlData)
@@ -725,42 +458,14 @@ VOS_VOID I2_NAS_RABM_UL_DataReq(CDS_RABM_TRANS_DATA_STRU *pstUlData)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : I2_TAF_APS_MapRabIdToPdnId
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem2上函数进行打桩处理。
- 输入参数  : VOS_UINT8 ucRabId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 I2_TAF_APS_MapRabIdToPdnId(VOS_UINT8 ucRabId)
 {
     (VOS_VOID)ucRabId;
     return APS_CDS_INVALID_PDN_ID;
 }
 
-/*****************************************************************************
- 函 数 名  : I2_TAF_APS_GetCdataBearStatus
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem2上函数进行打桩处理。
- 输入参数  : VOS_UINT8 ucRabId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 I2_TAF_APS_GetCdataBearStatus(VOS_UINT8 ucRabId)
 {
     (VOS_VOID)ucRabId;
@@ -769,21 +474,7 @@ VOS_UINT8 I2_TAF_APS_GetCdataBearStatus(VOS_UINT8 ucRabId)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : CDS_GUGetRabIdStatus
- 功能描述  : CDS对GU接口函数进行封装，根据ModemId调用不同的接口函数.
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年12月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 RABM_RAB_STATUS_ENUM_UINT32 CDS_GUGetRabIdStatus(VOS_UINT8  ucRabId, VOS_UINT16 usModemId)
 {
     if (MODEM_ID_0 == usModemId)
@@ -804,21 +495,7 @@ RABM_RAB_STATUS_ENUM_UINT32 CDS_GUGetRabIdStatus(VOS_UINT8  ucRabId, VOS_UINT16 
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_GUGetRabIdStatus
- 功能描述  : CDS对GU接口函数进行封装，根据ModemId调用不同的接口函数.
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年12月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_GUUlDataReq(CDS_RABM_TRANS_DATA_STRU *pstUlData, VOS_UINT16 usModemId)
 {
     CDS_ASSERT(VOS_NULL_PTR != pstUlData);
@@ -845,23 +522,7 @@ VOS_VOID CDS_GUUlDataReq(CDS_RABM_TRANS_DATA_STRU *pstUlData, VOS_UINT16 usModem
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_UlGUDispatchData
- 功能描述  : GU模按RABID分发数据,由用户保证输入合法
- 输入参数  : VOS_UINT8 ucRabId,
-             TTF_MEM_ST *pstIpPkt,
-             CDS_ENTITY_STRU *pstCdsEntity
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年12月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_UlGUDispatchData(VOS_UINT8 ucRabId, TTF_MEM_ST *pstIpPkt, CDS_ENTITY_STRU *pstCdsEntity)
 {
     RABM_RAB_STATUS_ENUM_UINT32      enRabStatus;
@@ -915,23 +576,7 @@ VOS_VOID CDS_UlGUDispatchData(VOS_UINT8 ucRabId, TTF_MEM_ST *pstIpPkt, CDS_ENTIT
 
 
 
-/*****************************************************************************
- 函 数 名  : CDS_GUPktProc
- 功能描述  : GU模处理IP包
- 输入参数  : pstCdsEntity: CDS上行实体
-             pstIpPkt :    上行IP包
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年12月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_GUPktProc(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST  *pstIpPkt)
 {
     VOS_UINT8                        ucRabId;
@@ -971,23 +616,7 @@ VOS_VOID CDS_GUPktProc(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST  *pstIpPkt)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_UlDispatchDataByRanMode
- 功能：上行数据按接入模式分发处理，调用者保证输入合法
- 输入参数  : CDS_ENTITY_STRU *pstCdsEntity,
-             TTF_MEM_ST *pstIpPkt
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_UlDispatchDataByRanMode(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST *pstIpPkt)
 {
 
@@ -1043,23 +672,7 @@ VOS_VOID CDS_UlDispatchDataByRanMode(CDS_ENTITY_STRU *pstCdsEntity, TTF_MEM_ST *
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_PreProcUlRD
- 功能描述  : 预先处理RD，根据过滤结果将RD进行分类。对IP分片，将本地处理的结果
-             放到IPF Result的usBearedId中
- 输入参数  : IPF_RD_DESC_S *pstRdDesc ，调用者保证参数非NULL
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 CDS_UL_IP_PKT_TYPE_ENUM_UINT32 CDS_PreProcUlRD(TTF_MEM_ST *pstIpPkt)
 {
     IPF_RESULT_STRU       *pstIpfRslt;
@@ -1111,21 +724,7 @@ CDS_UL_IP_PKT_TYPE_ENUM_UINT32 CDS_PreProcUlRD(TTF_MEM_ST *pstIpPkt)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_UlProcIpfResult
- 功能描述  : 处理上行IPF过滤结果
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_UlProcIpfResult(VOS_VOID)
 {
     VOS_UINT32                            ulRdNum = IPF_ULRD_DESC_SIZE;
@@ -1227,25 +826,7 @@ VOS_VOID CDS_UlProcIpfResult(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_TriggerUlProcOnFinalRD
- 功能描述  : 上行最后一个RD处理完之后，通过发送事件触发上行数传
- 输入参数  : VOS_VOID
 
-
- 输出参数  : None
- 返 回 值  : VOS_VOID
-
-
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年4月22日
-      作    者   : h00218138
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_TriggerUlProcOnFinalRD(VOS_VOID)
 {
     CDS_ENTITY_STRU *pstCdsEntity = CDS_GetCdsEntity(MODEM_ID_0);
@@ -1273,21 +854,7 @@ VOS_VOID CDS_TriggerUlProcOnFinalRD(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_ClearUlBuffData
- 功能描述  : 清空上行缓存数据.调用者保证入参正确性.
- 输入参数  : CDS_ENTITY_STRU *pstCdsEntity
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年1月4日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_ClearUlBuffData(CDS_ENTITY_STRU *pstCdsEntity)
 {
     VOS_UINT32           ulCnt;
@@ -1317,21 +884,7 @@ VOS_VOID CDS_ClearUlBuffData(CDS_ENTITY_STRU *pstCdsEntity)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_SendUlBuffData
- 功能描述  : 发送上行缓存数据.调用者保证入参正确性.
- 输入参数  : CDS_ENTITY_STRU *pstCdsEntity
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年1月4日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_SendUlBuffData(CDS_ENTITY_STRU *pstCdsEntity)
 {
     VOS_UINT32                  ulCnt;
@@ -1377,20 +930,7 @@ VOS_VOID CDS_SendUlBuffData(CDS_ENTITY_STRU *pstCdsEntity)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_UlGUClearBuffData
- 功能描述  : GU清空指定承载的上行缓存数据
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月22日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_SendUlBuffDataToRabm(CDS_ENTITY_STRU *pstCdsEntity,VOS_UINT8 ucSendRabId)
 {
     VOS_UINT32                  ulCnt;
@@ -1440,21 +980,7 @@ VOS_VOID CDS_SendUlBuffDataToRabm(CDS_ENTITY_STRU *pstCdsEntity,VOS_UINT8 ucSend
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_CDMASendUlBuffData
- 功能描述  : CDMA发送上行缓存数据.调用者保证入参正确性.
- 输入参数  : CDS_ENTITY_STRU *pstCdsEntity
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年1月4日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_CDMASendUlBuffData(CDS_ENTITY_STRU *pstCdsEntity, VOS_UINT8 ucSendRabId)
 {
     VOS_UINT32                  ulCnt;
@@ -1507,20 +1033,7 @@ VOS_VOID CDS_CDMASendUlBuffData(CDS_ENTITY_STRU *pstCdsEntity, VOS_UINT8 ucSendR
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_UlGUClearBuffData
- 功能描述  : GU清空指定承载的上行缓存数据
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年07月22日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_UlGUClearBuffData(CDS_ENTITY_STRU *pstCdsEntity,VOS_UINT8 ucRabId)
 {
 
@@ -1572,20 +1085,7 @@ VOS_VOID CDS_UlGUClearBuffData(CDS_ENTITY_STRU *pstCdsEntity,VOS_UINT8 ucRabId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IsPsDataAvail
- 功能描述  : 判断CDS上行是否存在PS缓存数据。
- 输入参数  :
- 输出参数  :
- 返 回 值  : PS_TRUE : CDS存在上行缓存数据
-             PS_FALSE: CDS没有上行缓存数据
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2013年09月16日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 CDS_IsPsDataAvail(VOS_VOID)
 {
 
@@ -1611,21 +1111,7 @@ VOS_UINT32 CDS_IsPsDataAvail(VOS_VOID)
 }
 /*lint +e960*/
 
-/*****************************************************************************
- 函 数 名  : CDS_APS_CdsOmReport
- 功能描述  : 在非LTE模式下上报CDS统计量，供APS调用
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2016年1月20日
-      作    者   : c00253308
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_APS_CdsOmReport(VOS_VOID)
 {
     CDS_ENTITY_STRU *pstCdsEntity;

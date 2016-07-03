@@ -109,6 +109,7 @@ struct usb_dfu {
 	int can_upload;
 	int can_dnload;
 	int dev_open;
+	int dev_exist;
 
 	unsigned int transfer_size;
 	unsigned int detach_timeout;
@@ -339,8 +340,7 @@ static ssize_t dfu_read(struct file *file, char __user *buf,
 	struct usb_dfu *dfu = miscdev_to_dfu(miscdev);
 	size_t left = count;
 	int ret;
-	int blocknum = 0;
-	int blocknum_max;
+	int blocknum = 1;
 
 	if (!buf) {
 		dev_err(&dfu->usb_dev->dev, "dfu_read buf invalid!\n");
@@ -352,8 +352,13 @@ static ssize_t dfu_read(struct file *file, char __user *buf,
 		return -EINVAL;
 	}
 
-	blocknum_max = (count + dfu->transfer_size - 1) / dfu->transfer_size;
 	mutex_lock(&dfu_access_lock);
+	if (!dfu->dev_exist) {
+		dev_err(&dfu->usb_dev->dev, "dfu_read when no dev!\n");
+		mutex_unlock(&dfu_access_lock);
+		return -ENODEV;
+	}
+
 	while (left > 0) {
 		size_t len;
 		size_t size = (left < dfu->transfer_size) ?
@@ -366,7 +371,8 @@ static ssize_t dfu_read(struct file *file, char __user *buf,
 			goto err;
 		}
 
-		ret = dfu_upload(dfu, dfu->load_buf, size, blocknum);
+		/* quirk: vr's dfu protocol require blocknum start from 2 */
+		ret = dfu_upload(dfu, dfu->load_buf, size, blocknum + 1);
 		if (ret < 0) {
 			pr_err("dfu_upload failed\n");
 			goto err;
@@ -400,7 +406,6 @@ err:
 
 static int dfu_update_firmware(struct usb_dfu *dfu, void *image, size_t size)
 {
-	struct dfu_status status;
 	void *buffer = image;
 	size_t left = size;
 	int blocknum = 1;
@@ -434,34 +439,11 @@ static int dfu_update_firmware(struct usb_dfu *dfu, void *image, size_t size)
 		left -= xfer_size;
 	}
 
-	/* After the final block of firmware has been sent to the device and the
-	 * status solicited, the host sends a DFU_DNLOAD request with the
-	 * wLengthfield cleared to 0 and then solicits the status again. */
 	ret = wait_for_state_idle(dfu, CHECK_IDLE | CHECK_DNLOAD_IDLE);
 	if (ret) {
 		dev_err(&dfu->usb_dev->dev, "wait for dfu idle failed\n");
 		return ret;
 	}
-
-	ret = dfu_abort(dfu);
-	if (ret < 0) {
-		dev_err(&dfu->usb_dev->dev, "dfu abort failed\n");
-		return ret;
-	}
-
-	ret = wait_for_state_idle(dfu, CHECK_IDLE);
-	if (ret) {
-		dev_err(&dfu->usb_dev->dev, "wait for dfu idle failed\n");
-		return ret;
-	}
-
-	ret = dfu_download(dfu, NULL, 0, 0);
-	if (ret < 0)
-		return ret;
-
-	/* There is no response for last get_status,
-	 * vr device will reset itself */
-	dfu_getstatus(dfu, &status);
 
 	return 0;
 }
@@ -485,6 +467,12 @@ static ssize_t dfu_write(struct file *file, const char __user *buf,
 	}
 
 	mutex_lock(&dfu_access_lock);
+	if (!dfu->dev_exist) {
+		dev_err(&dfu->usb_dev->dev, "dfu_write when no dev!\n");
+		mutex_unlock(&dfu_access_lock);
+		return -ENODEV;
+	}
+
 	buffer = vmalloc(count);
 	if (!buffer) {
 		dev_err(&dfu->usb_dev->dev, "vmalloc failed\n");
@@ -522,6 +510,12 @@ static long dfu_ioctl(struct file *fp, unsigned cmd, unsigned long arg)
 	dev_info(&dfu->usb_dev->dev, "[%s] cmd 0x%08x\n", __func__, cmd);
 
 	mutex_lock(&dfu_access_lock);
+	if (!dfu->dev_exist) {
+		dev_err(&dfu->usb_dev->dev, "dfu_ioctl when no dev!\n");
+		mutex_unlock(&dfu_access_lock);
+		return -ENODEV;
+	}
+
 	switch (cmd) {
 	case DFUIOCDETACH:
 		ret = dfu_detach(dfu);
@@ -572,6 +566,37 @@ static long dfu_ioctl(struct file *fp, unsigned cmd, unsigned long arg)
 			break;
 		}
 
+		break;
+	case DFUIOCFINISHDNLOAD:
+		{
+			struct dfu_status status;
+
+			/* After the final block of firmware has been sent to
+			 * the device and the status solicited, the host sends
+			 * a DFU_DNLOAD request with the wLengthfield cleared
+			 * to 0 and then solicits the status again. */
+			ret = dfu_abort(dfu);
+			if (ret < 0) {
+				dev_err(&dfu->usb_dev->dev, "dfu abort failed\n");
+				break;
+			}
+
+			ret = wait_for_state_idle(dfu, CHECK_IDLE);
+			if (ret) {
+				dev_err(&dfu->usb_dev->dev,
+						"wait for dfu idle failed\n");
+				break;
+			}
+
+			ret = dfu_download(dfu, NULL, 0, 0);
+			if (ret < 0)
+				break;
+
+			/* There is no response for last get_status,
+			 * vr device will reset itself */
+			dfu_getstatus(dfu, &status);
+			ret = 0;
+		}
 		break;
 	default:
 		if (_IOC_TYPE(cmd) != 'D') {
@@ -683,6 +708,14 @@ static int dfu_release(struct inode *ip, struct file *file)
 	dev_info(&udev->dev, "release device\n");
 	mutex_lock(&dfu_access_lock);
 	dfu->dev_open = 0;
+
+	if (!dfu->dev_exist) {
+		if (dfu->dfu_dev.name)
+			misc_deregister(&dfu->dfu_dev);
+
+		kfree(dfu->load_buf);
+		kfree(dfu);
+	}
 	mutex_unlock(&dfu_access_lock);
 
 	return 0;
@@ -802,6 +835,7 @@ static int usbdfu_probe(struct usb_interface *intf,
 	}
 
 	dfu->dev_open = 0;
+	dfu->dev_exist = 1;
 
 	/* register char device */
 	dfu->dfu_dev.minor = MISC_DYNAMIC_MINOR;
@@ -830,12 +864,19 @@ static void usbdfu_disconnect(struct usb_interface *intf)
 	if (!dfu)
 		return;
 
-	if (dfu->dfu_dev.name)
-		misc_deregister(&dfu->dfu_dev);
+	mutex_lock(&dfu_access_lock);
 
-	kfree(dfu->load_buf);
-	kfree(dfu);
+	dfu->dev_exist = 0;
 
+	if (!dfu->dev_open) {
+		if (dfu->dfu_dev.name)
+			misc_deregister(&dfu->dfu_dev);
+
+		kfree(dfu->load_buf);
+		kfree(dfu);
+	}
+
+	mutex_unlock(&dfu_access_lock);
 #ifdef DFU_UNIT_TEST
 	dfu_test = NULL;
 #endif

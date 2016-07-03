@@ -27,14 +27,7 @@ using namespace testing;
 
 
 #if (FEATURE_OFF == FEATURE_SKB_EXP)            
-/*****************************************************************************
-类名       : Test_ADS_DL_StartAdqEmptyTimer
-功能描述   : ADS_DL_StartAdqEmptyTimer UT工程类
-修改历史   :
-1.日   期  : 2013-1-4
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_StartAdqEmptyTimer: public ::testing::Test
 {
 public:
@@ -49,15 +42,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_StartAdqEmptyTimer_001
-测试用例标题      : 当前无可用的定时器资源时直接返回
-预期结果          : 直接返回,记录出错日志
-修改历史          :
-1.日   期  : 2013-1-4
-  作   者  : l60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_StartAdqEmptyTimer, Test_ADS_DL_StartAdqEmptyTimer_001)
 {
     VOS_UINT32                          i;
@@ -79,15 +64,7 @@ TEST_F(Test_ADS_DL_StartAdqEmptyTimer, Test_ADS_DL_StartAdqEmptyTimer_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_StartAdqEmptyTimer_002
-测试用例标题      : 启动定时器失败
-预期结果          : 直接返回,记录出错日志
-修改历史          :
-1.日   期  : 2013-1-4
-  作   者  : l60609
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_StartAdqEmptyTimer, Test_ADS_DL_StartAdqEmptyTimer_002)
 {
     MOCKER(V_StartCallBackRelTimer)
@@ -101,14 +78,7 @@ TEST_F(Test_ADS_DL_StartAdqEmptyTimer, Test_ADS_DL_StartAdqEmptyTimer_002)
 }
 #endif
 
-/*****************************************************************************
-类名       : Test_ADS_StartTimer
-功能描述   : ADS_StartTimer UT工程类
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_StartTimer: public ::testing::Test
 {
 public:
@@ -123,15 +93,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_StartTimer_001
-测试用例标题      : 当前无可用的定时器资源时直接返回
-预期结果          : 直接返回,记录出错日志
-修改历史          :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_001)
 {
     VOS_UINT32                          i;
@@ -147,15 +109,7 @@ TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_StartTimer_002
-测试用例标题      : 定时器长度VOS_TIMER_MAX_LENGTH时，启动VOS_TIMER_MAX_LENGTH的定时器时长
-预期结果          : 启动VOS_TIMER_MAX_LENGTH的定时器时长,启动定时器失败,不更新定时器状态
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_002)
 {
     VOS_UINT32                          i;
@@ -185,16 +139,7 @@ TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_StartTimer_003
-测试用例标题      : 有空闲资源时,启动TI_ADS_UL_SEND定时器正常
-预期结果          : TI_ADS_UL_SEND定时器正常启动
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_003)
 {
 
@@ -222,16 +167,7 @@ TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_StartTimer_004
-测试用例标题      : TI_ADS_UL_SEND定时器已经启动时,再次启动该定时器直接返回
-预期结果          : 再次启动该定时器直接返回
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_004)
 {
     VOS_UINT32                          i;
@@ -259,16 +195,7 @@ TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_004)
 
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_StartTimer_005
-测试用例标题      : TI_ADS_UL_SEND定时器启动时长为0
-预期结果          : 启动失败
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_005)
 {
     VOS_UINT32                          i;
@@ -291,14 +218,7 @@ TEST_F(Test_ADS_StartTimer, Test_ADS_StartTimer_005)
     //检查调用时, 需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名       : Test_ADS_StopTimer
-功能描述   : Test_ADS_StopTimer UT工程类
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_StopTimer: public ::testing::Test
 {
 public:
@@ -313,16 +233,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_StopTimer_001
-测试用例标题      : TI_ADS_UL_SEND该定时器未启动直接返回
-预期结果          : 直接返回
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_ADS_StopTimer, Test_ADS_StopTimer_001)
 {
     VOS_UINT32                          i;
@@ -343,16 +254,7 @@ TEST_F(Test_ADS_StopTimer, Test_ADS_StopTimer_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_StopTimer_002
-测试用例标题      : TI_ADS_UL_SEND定时器运行过程中停止TI_ADS_UL_SEND定时器
-预期结果          : 停止TI_ADS_UL_SEND定时器
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_ADS_StopTimer, Test_ADS_StopTimer_002)
 {
     VOS_UINT32                          i;
@@ -383,14 +285,7 @@ TEST_F(Test_ADS_StopTimer, Test_ADS_StopTimer_002)
     }
 }
 
-/*****************************************************************************
-类名       : Test_ADS_GetTimerStatus
-功能描述   : ADS_GetTimerStatus UT工程类
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_GetTimerStatus: public ::testing::Test
 {
 public:
@@ -405,15 +300,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_GetTimerStatus_001
-测试用例标题      : 当前TI_ADS_UL_SEND定时器停止时查询定时器状态返回停止
-预期结果          : 定时器状态返回停止
-修改历史   :
-1.日   期  : 2011-12-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_GetTimerStatus, Test_ADS_GetTimerStatus_001)
 {
     VOS_UINT32                          i;

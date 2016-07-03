@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaFsmMain.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月9日
-  最近修改   :
-  功能描述   : 主状态机处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -31,9 +14,7 @@
 #include "TafMmaComFunc.h"
 
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-20, begin */
 #include "TafMmaMntn.h"
-/* Added by w00167002 for L-C互操作项目, 2014-2-20, end */
 #include "NasComm.h"
 #include "TafMmaFsmMain.h"
 #include "TafMmaFsmMainTbl.h"
@@ -71,21 +52,7 @@ extern MMA_ME_PERSONALISATION_STATUS_STRU      g_stMmaMePersonalisationStatus;
   6 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAppPhoneModeSetReq_Main
- 功能描述  : 收到OM或AT的模式设置和查询消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAppPhoneModeSetReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -110,23 +77,8 @@ VOS_UINT32 TAF_MMA_RcvAppPhoneModeSetReq_Main(
     return VOS_TRUE;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafPhoneModeSetReq_Main
- 功能描述  : 收到TAF的模式设置消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月14日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafPhoneModeSetReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -149,29 +101,9 @@ VOS_UINT32 TAF_MMA_RcvTafPhoneModeSetReq_Main(
     return VOS_TRUE;
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvSysCfgSetReq_Main
- 功能描述  : 收到OM或AT的模式设置和查询消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月14日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2014年02月14日
-    作    者   : w00167002
-    修改内容   : DTS2014060305973:在PHONE MODE状态机时候，用户设置SYSCFG设置，会
-                进行缓存，在处理缓存时候出错，导致后续无法下发SYSCFG设置。
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvSysCfgSetReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -225,25 +157,10 @@ VOS_UINT32 TAF_MMA_RcvSysCfgSetReq_Main(
 }
 
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
 #if (FEATURE_ON == FEATURE_CSG)
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafCsgListSearchReq_Main
- 功能描述  : 收到OM或AT的模式CSG列表搜的主处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月6日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafCsgListSearchReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -313,21 +230,7 @@ VOS_UINT32 TAF_MMA_RcvTafCsgListSearchReq_Main(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccCsgListSearchCnf_Main
- 功能描述  : 收到mscc的csg list搜网回复消息的处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月8日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccCsgListSearchCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -415,21 +318,7 @@ VOS_UINT32 TAF_MMA_RcvMsccCsgListSearchCnf_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccCsgListRej_Main
- 功能描述  : 收到mscc的csg list rej消息的处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月12日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccCsgListRej_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -468,21 +357,7 @@ VOS_UINT32 TAF_MMA_RcvMsccCsgListRej_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMsccCsgListAbortCnf_Main
- 功能描述  : 收到mscc的csg list abort回复消息的处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月8日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMsccCsgListAbortCnf_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -593,21 +468,7 @@ VOS_UINT32 TAF_MMA_RcvMsccCsgListAbortCnf_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafCsgListAbortReq_Main
- 功能描述  : 收到OM或AT的模式CSG列表搜打断消息的主处理
- 输入参数  : ulEventType - 事件类型
-             pstMsg      - 消息类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月6日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafCsgListAbortReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -682,21 +543,7 @@ VOS_UINT32 TAF_MMA_RcvTafCsgListAbortReq_Main(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaPlmnListReq_Main
- 功能描述  : 收到OM或AT的模式列表搜的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月12日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaPlmnListReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -784,21 +631,7 @@ VOS_UINT32 TAF_MMA_RcvMmaPlmnListReq_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaInterPowerInit_Main
- 功能描述  : 收到MMA的内部上电消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaInterPowerInit_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -810,29 +643,7 @@ VOS_UINT32 TAF_MMA_RcvMmaInterPowerInit_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaInterUsimStatusChangeInd_Main
- 功能描述  : 收到MMA的内部卡状态改变消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年2月19日
-    作    者   : w00167002
-    修改内容   : 开机后解PIN，STK IMSI改变，3G session或掉卡触发重新关机和开机流
-                 程中，USIM模块分别上报卡状态消息到MMA和CDMA modem，此时，由CDMA
-                 modem再触发Balong modem关机开机流程, Balong modem不自动进行关机
-                 和开机操作；由于Balong modem没有开启锁卡锁网特性，锁卡锁网始终由
-                 CDMA modem完成.
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaInterUsimStatusChangeInd_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -843,14 +654,12 @@ VOS_UINT32 TAF_MMA_RcvMmaInterUsimStatusChangeInd_Main(
         TAF_MMA_ProcPhoneStop_NotEnableStatus();
     }
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-19, begin */
 
     /* 如果当前为CL模式，则等待CDMA触发关机 */
     if (VOS_TRUE == TAF_SDC_IsConfigCLInterWorkCOutside())
     {
         return VOS_TRUE;
     }
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-19, end */
 
 
 
@@ -860,21 +669,7 @@ VOS_UINT32 TAF_MMA_RcvMmaInterUsimStatusChangeInd_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaSimlockStatusChangeInd_Main
- 功能描述  : 收到MMA的锁网锁卡状态改变消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月12日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaSimlockStatusChangeInd_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -891,37 +686,17 @@ VOS_UINT32 TAF_MMA_RcvMmaSimlockStatusChangeInd_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaPhoneModeRsltInd_Main
- 功能描述  : 收到MMA的模式设置状态机退出消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年2月18日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:在关机时候，初始化CL互操作内容
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaPhoneModeRsltInd_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-18, begin */
     TAF_MMA_PHONE_MODE_RSLT_IND_STRU   *pstPhoneModeRslt    = VOS_NULL_PTR;
     TAF_SDC_CTX_STRU                   *pstSdcCtx           = VOS_NULL_PTR;
 
     pstPhoneModeRslt = (TAF_MMA_PHONE_MODE_RSLT_IND_STRU*)pstMsg;
     pstSdcCtx = TAF_SDC_GetSdcCtx();
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-18, end */
 
     if (TAF_MMA_PHONE_MODE_RESULT_SWITCH_ON_SUCC == pstPhoneModeRslt->enRslt)
     {
@@ -935,9 +710,7 @@ VOS_UINT32 TAF_MMA_RcvMmaPhoneModeRsltInd_Main(
 
         TAF_SDC_InitServiceInfo(&pstSdcCtx->stServiceInfo);
 
-        /* Added by w00167002 for L-C互操作项目, 2014-2-18, begin */
         TAF_SDC_InitLcConfigPara(&(pstSdcCtx->stMsCfgInfo.stMsCapInfo.stLcConfigPara));
-        /* Added by w00167002 for L-C互操作项目, 2014-2-18, end */
 
         g_StatusContext.ulFsmState = STA_FSM_NULL;
     }
@@ -945,21 +718,7 @@ VOS_UINT32 TAF_MMA_RcvMmaPhoneModeRsltInd_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaSysCfgRsltInd_Main
- 功能描述  : 收到MMA的SysCfg状态机退出消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月5日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaSysCfgRsltInd_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1068,22 +827,7 @@ VOS_UINT32 TAF_MMA_RcvMmaSysCfgRsltInd_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaInterSysCfgSetReq_Main
- 功能描述  : 收到MMA的内部SYS CFG设置请求的主处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaInterSysCfgSetReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1098,22 +842,7 @@ VOS_UINT32 TAF_MMA_RcvMmaInterSysCfgSetReq_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPihUsimStatusInd_Main
- 功能描述  : 收到PB模块上报的卡状态指示消息的主处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1125,22 +854,7 @@ VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvUsimRefreshIndMsg_Main
- 功能描述  : 收到usim的文件刷新指示消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月10日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvUsimRefreshIndMsg_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1152,26 +866,7 @@ VOS_UINT32 TAF_MMA_RcvUsimRefreshIndMsg_Main(
     return VOS_TRUE;
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvDetachReq_Main
- 功能描述  : 收到Detach消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年2月14日
-   作    者   : s00246516
-   修改内容   : 新生成函数
- 2.日    期   : 2015年4月20日
-   作    者   : h00313353
-   修改内容   : SysCfg Reconsitution
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvDetachReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1201,26 +896,10 @@ VOS_UINT32 TAF_MMA_RcvDetachReq_Main(
 
     return VOS_TRUE;
 }
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvAttachReq_Main
- 功能描述  :  主状态机收到ID_TAF_MMA_ATTACH_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月11日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvAttachReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1246,21 +925,7 @@ VOS_UINT32 TAF_MMA_RcvAttachReq_Main(
 
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsRefreshTrigger_PreProc
- 功能描述  : 是否是refresh触发
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月03日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_IsRefreshTrigger_Main(VOS_VOID)
 {
     TAF_MMA_AUTO_PLMN_SEL_USER_ENUM_UINT8 enAutoPlmnSelUser;
@@ -1280,21 +945,7 @@ VOS_UINT32 TAF_MMA_IsRefreshTrigger_Main(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcImsSwitchOff_PreProc
- 功能描述  : IMS关闭的预处理
- 输入参数  : pstImsSwitchSet
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息未处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月03日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcImsSwitchOff_Main(
     TAF_MMA_IMS_SWITCH_SET_REQ_STRU     *pstImsSwitchSet
 )
@@ -1353,21 +1004,7 @@ VOS_UINT32 TAF_MMA_ProcImsSwitchOff_Main(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcImsSwitchOn_PreProc
- 功能描述  : IMS打开的预处理
- 输入参数  : pstImsSwitchSet
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:消息处理完成
-             VOS_FALSE:消息未处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月03日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_ProcImsSwitchOn_Main(
     TAF_MMA_IMS_SWITCH_SET_REQ_STRU     *pstImsSwitchSet
 )
@@ -1405,21 +1042,7 @@ VOS_UINT32 TAF_MMA_ProcImsSwitchOn_Main(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvTafImsSwitchSetReq_Main
- 功能描述  : 收到TAF的IMS开关消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvTafImsSwitchSetReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1470,21 +1093,7 @@ VOS_UINT32 TAF_MMA_RcvTafImsSwitchSetReq_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvMmaImsSwitchRsltInd_Main
- 功能描述  : 收到MMA的IMS SWITCH状态机退出消息的主处理
- 输入参数  : ulEventType
-             pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-02-04
-    作    者   : n00269697
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvMmaImsSwitchRsltInd_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1498,21 +1107,7 @@ VOS_UINT32 TAF_MMA_RcvMmaImsSwitchRsltInd_Main(
 
 
 
-/**********************************************************
- 函 数 名  : TAF_MMA_RcvPlmnSpecialSelReq_Main
- 功能描述  : 处理用户指定搜请求
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月25日
-    作    者   : f00279542
-    修改内容   : CDMA Iteration 11 重构修改
-*************************************************************/
 VOS_UINT32 TAF_MMA_RcvPlmnSpecialSelReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1572,20 +1167,7 @@ VOS_UINT32 TAF_MMA_RcvPlmnSpecialSelReq_Main(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPlmnAutoReselReq_Main
- 功能描述  : 处理PLMN自动重选请求
- 输入参数  : ulOpID   -- operation ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年12月26日
-   作    者   : y00245242
-   修改内容   : 新建
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcPlmnAutoReselReq_Main(
     VOS_UINT32                          ulOpID
 )
@@ -1669,25 +1251,7 @@ VOS_VOID TAF_MMA_ProcPlmnAutoReselReq_Main(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_RcvPlmnAutoReselReq_Main
- 功能描述  : PLMN重选
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月25日
-    作    者   : f00279542
-    修改内容   : CDMA Iteration 11 重构修改
-
- 2.日    期   : 2015年12月25日
-   作    者   : y00245242
-   修改内容   : CL模式下，亮屏触发搜网特性开发
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_RcvPlmnAutoReselReq_Main(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

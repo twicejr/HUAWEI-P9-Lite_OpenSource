@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmAnyCellSearchTbl.c
-  版 本 号   : 初稿
-  作    者   : likelai /00130025
-  生成日期   : 2011年07月19日
-  最近修改   :
-  功能描述   : NAS 层状态机AnycellSearch状态处理表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年07月19日
-    作    者   : likelai /00130025
-    修改内容   : Added for V7R1 phase II
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -28,13 +11,9 @@
 #include "NasMmcTimerMgmt.h"
 
 #include "NasMmcSndInternalMsg.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
 #ifdef __cplusplus
@@ -56,11 +35,9 @@ NAS_FSM_DESC_STRU                       g_stNasMmcAnyCellSearchFsmDesc;
 NAS_ACT_STRU   g_astNasAnyCellSearchInitActTbl[]        =
 {
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_PLMN_SEARCH_REQ,
                       NAS_MMC_RcvTafPlmnSrchReq_AnyCellSearch_Init),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
                       MMCMMC_INTER_ANYCELL_SEARCH_REQ,
@@ -378,41 +355,13 @@ NAS_STA_STRU g_astNasMmcAnyCellSearchStaTbl[] =
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetAnyCellSearchStaTblSize
- 功能描述  : 获取anycell搜网状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:anycell搜网状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetAnyCellSearchStaTblSize(VOS_VOID)
 {
     return (sizeof(g_astNasMmcAnyCellSearchStaTbl)/sizeof(NAS_STA_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetAnyCellSearchFsmDescAddr
- 功能描述  : 获取手动动搜网状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向手动搜网状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_MMC_GetAnyCellSearchFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasMmcAnyCellSearchFsmDesc);

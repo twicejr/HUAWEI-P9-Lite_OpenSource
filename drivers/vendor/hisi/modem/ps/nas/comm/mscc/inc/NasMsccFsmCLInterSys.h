@@ -1,19 +1,4 @@
-/******************************************************************************
 
-            Copyright 2014, Huawei Technologies Co. Ltd.
-
- ******************************************************************************
-File Name       :   NasMsccFsmCLInterSys.h
-Author          :   W00176964
-Version         :
-Date            :   2015-11-05
-Description     :   CL异系统流程的各状态的消息处理头文件
-Function list   :
-History         :
-    1) Date :
-       Author:
-       Modification:
-******************************************************************************/
 
 #ifndef _NAS_MSCC_FSM_CL_INTERSYS_H_
 #define _NAS_MSCC_FSM_CL_INTERSYS_H_

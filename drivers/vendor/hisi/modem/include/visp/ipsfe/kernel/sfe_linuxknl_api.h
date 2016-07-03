@@ -232,74 +232,13 @@ typedef UINT32 (*pf_sfekernel_rcv_pre_proc_hook)(struct sk_buff *skb, UINT32 *pu
 *******************************************************************************/
 UINT32 sfekernel_reg_rcv_pre_proc_hook(pf_sfekernel_rcv_pre_proc_hook pfRegFunc);
 
-/*******************************************************************************
-*    Func Name: sfekernel_set_sample_statinfo
-* Date Created: 2011-02-22
-*       Author: z00166124
-*      Purpose: 
-*  Description: 设置数据面内核态采样方式和采样参数
-*        Input: SFE_KNL_SAMPLE_PARA_S* pstSamplePara: 采样参数指针
-*       Output: 
-*       Return: 成功返回 0
-*               失败返回 错误码
-*      Caution: 1.不论手动或定时采样,用户都需要手动关闭采样
-*               2.采样周期为每次的采样时长与采样次数的乘积,加上采样间隔
-*               3.采样时长的定时器在采样周期完毕时停止
-*        Since: DOPRA VISP V2R3C03
-*    Reference: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-02-22   z00166124               Create
-*
-*******************************************************************************/
+
 UINT32 sfekernel_set_sample_statinfo(SFE_KNL_SAMPLE_PARA_S* pstSamplePara);
 
-/*******************************************************************************
-*    Func Name: pf_sfekernel_sample_output_hook
-* Date Created: 2011-02-22
-*       Author: z00166124
-*      Purpose: 
-*  Description: 数据面内核态采样结果输出给产品的钩子
-*        Input: UINT32 u32Type: 采样类型:输入流量采样,处理时延采样
-*               VOID *pstSampleStatInfo:采样结果输出指针
-*       Output: N/A
-*       Return: 成功返回 0
-*               失败返回 错误码
-*      Caution: 1.用户根据输出的采样类型解析采样结果
-*        Since: DOPRA VISP V2R3C03
-*    Reference: 
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-02-22   z00166124               Create
-*
-*******************************************************************************/
+
 typedef UINT32 (*pf_sfekernel_sample_output_hook)(UINT32 u32Type, VOID *pstSampleStatInfo);
 
-/*******************************************************************************
-*    Func Name: sfekernel_reg_sample_output_hook
-* Date Created: 2011-02-22
-*       Author: z00166124
-*      Purpose: 
-*  Description: 注册数据面内核态采样输出钩子
-*        Input: pf_sfekernel_sample_output_hook pfRegFunc:待注册的钩子函数指针 <非空>
-*       Output: 
-*       Return: 成功返回 0
-*               失败返回 错误码
-*      Caution: 
-*    Reference:
-*
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-02-22   z00166124               Create
-*
-*******************************************************************************/
+
 UINT32 sfekernel_reg_sample_output_hook(pf_sfekernel_sample_output_hook pfRegFunc);
 
 #ifdef  __cplusplus

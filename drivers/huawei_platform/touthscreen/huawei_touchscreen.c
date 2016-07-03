@@ -3080,6 +3080,15 @@ static inline int ts_glove_switch(struct ts_cmd_node *in_cmd, struct ts_cmd_node
 
 	TS_LOG_DEBUG("glove action :%d, value:%d", info->op_action, info->glove_switch);
 
+#if defined (CONFIG_HUAWEI_DSM)
+	if (true == info->glove_switch) {
+		if (!dsm_client_ocuppy(tp_dclient)) {
+			dsm_client_record(tp_dclient, "TP works in glove mode,switch = %d.\n",\
+			info->glove_switch);
+			dsm_client_notify(tp_dclient, DSM_TP_GLOVE_ON_COUNT_ERROR_NO);
+		}
+	}
+#endif
 	if (dev->ops->chip_glove_switch)
 		error = dev->ops->chip_glove_switch(info);
 

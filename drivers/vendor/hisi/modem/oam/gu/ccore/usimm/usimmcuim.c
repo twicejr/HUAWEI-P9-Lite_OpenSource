@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmBase.c
-  Author       : zhuli 00100318
-  Version      : v00R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---Base模块实现
-  Function List:
-  History      :
-************************************************************************/
+
 #include "vos_Id.h"
 #include "usimmbase.h"
 #include "usimmapdu.h"
@@ -40,17 +31,7 @@ VOS_UINT8                       g_ucCSIMESTInfo;
 
 VOS_UINT8                       g_ucStoreEsMeidResult;
 
-/*****************************************************************************
-函 数 名  :UICC_InitCsimGlobal
-功能描述  :初始CSIM卡全局变量
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID UICC_InitCsimGlobal(VOS_VOID)
 {
     gstUSIMMBaseInfo.ucCLA        = USIMM_USIM_CLA;
@@ -66,18 +47,7 @@ VOS_VOID UICC_InitCsimGlobal(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitUimGlobal
-功能描述  :初始UIM卡全局变量
-输入参数  :无
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID UICC_InitUimGlobal(VOS_VOID)
 {
     /*lint -e534*/
@@ -100,18 +70,7 @@ VOS_VOID UICC_InitUimGlobal(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitUICCGlobal
-功能描述  :初始CSIM/USIM卡全局变量
-输入参数  :无
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID UICC_InitUICCGlobal(VOS_VOID)
 {
     UICC_InitCsimGlobal();
@@ -125,18 +84,7 @@ VOS_VOID UICC_InitUICCGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitICCGlobal
-功能描述  :初始SIM/UIM卡全局变量
-输入参数  :无
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID UICC_InitICCGlobal(VOS_VOID)
 {
     UICC_InitUimGlobal();
@@ -150,19 +98,7 @@ VOS_VOID UICC_InitICCGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : UICC_SaveDFPinInfo
-功能描述  :
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-调用函数  :无
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID UICC_SaveDFPinInfo(USIMM_ADF_INFO_STRU *pstADFInfo)
 {
     /*lint -e534*/
@@ -176,19 +112,7 @@ VOS_VOID UICC_SaveDFPinInfo(USIMM_ADF_INFO_STRU *pstADFInfo)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitDecodeEFDIR
-功能描述  : 解析EFDIR内容，并且选中其中的3GPP应用
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : z00100318
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 UICC_InitDecodeEFDIR(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -287,19 +211,7 @@ VOS_UINT32 UICC_InitDecodeEFDIR(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCommResetStep
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCommResetStep(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -320,19 +232,7 @@ VOS_UINT32 UICC_InitCommResetStep(VOS_VOID)
     return VOS_OK ;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetTerminalProfile
-功能描述  :读取nv项当前终端参数设置
-输入参数  :无
-输出参数  :无
-返 回 值  :
 
-修订记录  :
-1. 日    期   : 2011年6月20日
-   作    者   : j00168360
-   修改内容   : Creat[DTS2011042900838]卡初始化流程优化
-
-*****************************************************************************/
 VOS_VOID UICC_GetTerminalProfile(USIMM_STK_CFG_STRU *pstProfileContent)
 {
     VOS_UINT32                          ulResult;
@@ -416,19 +316,7 @@ VOS_UINT32 UICC_TerminalProfileDownload(VOS_VOID)
     return USIMM_INIT_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCommStep
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCommCSIMStep(VOS_VOID)
 {
     VOS_UINT32          ulResult;
@@ -468,19 +356,7 @@ VOS_UINT32 UICC_InitCommCSIMStep(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCommStep
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCommUIMStep(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -499,19 +375,7 @@ VOS_UINT32 UICC_InitCommUIMStep(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCommStep
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCommStep(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -553,19 +417,7 @@ VOS_UINT32 UICC_InitCommStep(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_SelectCSIMADF
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_SelectCSIMADF(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -606,19 +458,7 @@ VOS_UINT32 UICC_SelectCSIMADF(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCUIMFile
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCUIMTFileContent(VOS_UINT16 usFileID, USIMM_U8_LVDATA_STRU *pstFileData)
 {
     USIMM_GET_COMM_FILE_STRU    stFileInfo;
@@ -674,19 +514,7 @@ VOS_UINT32 UICC_InitCUIMTFileContent(VOS_UINT16 usFileID, USIMM_U8_LVDATA_STRU *
     return VOS_OK ;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCUIMFile
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID UICC_InitCUIMTFile(VOS_UINT16 usFileID)
 {
     USIMM_U8_LVDATA_STRU                stContent;
@@ -714,19 +542,7 @@ VOS_VOID UICC_InitCUIMTFile(VOS_UINT16 usFileID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCUIMEccFile
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID UICC_InitCUIMEccFile(VOS_VOID)
 {
     USIMM_U8_LVDATA_STRU            stContent;
@@ -746,19 +562,7 @@ VOS_VOID UICC_InitCUIMEccFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCUIMCstFile
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID UICC_InitCUIMCstFile(VOS_VOID)
 {
     USIMM_U8_LVDATA_STRU                stContent;
@@ -787,19 +591,7 @@ VOS_VOID UICC_InitCUIMCstFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCSIMEstFile
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID UICC_InitCSIMEstFile(VOS_VOID)
 {
     USIMM_U8_LVDATA_STRU               stContent;
@@ -827,19 +619,7 @@ VOS_VOID UICC_InitCSIMEstFile(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCUIMEsnMeid
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCUIMEsnMeid(VOS_VOID)
 {
     VOS_UINT32              ulResult;
@@ -897,20 +677,7 @@ VOS_UINT32 UICC_InitCUIMEsnMeid(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_GetPUKRemainTime
-功能描述  :获取当前的PUK的剩余次数
-输入参数  :PUK对应的PIN的索引号
-输出参数  :全局变量中PUK剩余次数
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_UnblockPIN_APDU
-修订记录  :
-1. 日    期   : 2007年7月11日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_GetPUKRemainTime(VOS_UINT8 ucPINNo, USIMM_ADF_INFO_STRU *pstADFInfo)
 {
     VOS_UINT32 ulResult;
@@ -950,20 +717,7 @@ VOS_UINT32 UICC_GetPUKRemainTime(VOS_UINT8 ucPINNo, USIMM_ADF_INFO_STRU *pstADFI
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_GetPINRemainTime
-功能描述  :获取当前的PIN剩余次数
-输入参数  :ucPINNo:当前PIN的索引号
-输出参数  :全局变量中的PIN剩余次数
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_VerifyPIN_APDU
-修订记录  :
-1. 日    期   : 2007年7月11日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_GetPINRemainTime(VOS_UINT8 ucPINNo, USIMM_ADF_INFO_STRU *pstADFInfo)
 {
     VOS_UINT32  ulResult;
@@ -1003,21 +757,7 @@ VOS_UINT32 UICC_GetPINRemainTime(VOS_UINT8 ucPINNo, USIMM_ADF_INFO_STRU *pstADFI
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitPINRemainTime
-功能描述  :初始化当前USIM卡的PIN剩余次数
-输入参数  :无
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_GetPINRemainTime
-           USIMM_GetPUKRemainTime
-修订记录  :
-1. 日    期   : 2007年7月10日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitPINRemainTime(USIMM_ADF_INFO_STRU *pstADFInfo)
 {
     VOS_UINT32 ulResult;
@@ -1085,19 +825,7 @@ VOS_UINT32 UICC_InitPINRemainTime(USIMM_ADF_INFO_STRU *pstADFInfo)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCSIM
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCardAppPINInfo(USIMM_CARD_VERSION_TYPE_UINT8 enCardVersionType, USIMM_ADF_INFO_STRU *pstADFInfo)
 {
     VOS_UINT32 ulResult;
@@ -1129,19 +857,7 @@ VOS_UINT32 UICC_InitCardAppPINInfo(USIMM_CARD_VERSION_TYPE_UINT8 enCardVersionTy
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_AdjudgeAppState
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID UICC_AdjudgeAppState(USIMM_CARD_APP_INFO_ST *pstAppState, USIMM_ADF_INFO_STRU *pstADFInfo)
 {
     USIMM_CARD_SERVIC_ENUM_UINT32 enProCardService;
@@ -1232,19 +948,7 @@ VOS_VOID UICC_AdjudgeAppState(USIMM_CARD_APP_INFO_ST *pstAppState, USIMM_ADF_INF
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCSIM
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCSIMNeedPINStep(VOS_VOID)
 {
     VOS_UINT16  aucFileList[] = {EF_CUIM_USGIND, EF_CUIM_SP, EF_CUIM_IMSIM, EF_CUIM_IMSIT, EF_CUIM_ACCOLC, EF_CUIM_PRL, EF_CUIM_EPRL, EF_CUIM_MAXPRL, EF_CUIM_TMSI};
@@ -1286,19 +990,7 @@ VOS_UINT32 UICC_InitCSIMNeedPINStep(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCSIM
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCSIM(VOS_VOID)
 {
     if (VOS_NULL == g_astAidInfo[USIMM_AID_TYPE_CSIM].ulAIDLen)
@@ -1345,17 +1037,7 @@ VOS_UINT32 UICC_InitCSIM(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_UIMFdnRequest
-功能描述  :初始化SIM卡FDN能力请求　
-输入参数  :无
-输出参数  :USIMM_FDNSTATUS_ENUM_UINT32 *pulFdnStatus
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年5月7日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID UICC_UIMFdnRequest(USIMM_FDNSTATUS_ENUM_UINT32 *pulFdnStatus)
 {
     VOS_UINT16                          ausPath[] = {MF, DFCDMA, EFADN};
@@ -1401,19 +1083,7 @@ VOS_VOID UICC_UIMFdnRequest(USIMM_FDNSTATUS_ENUM_UINT32 *pulFdnStatus)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_UimFDNProcedure
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_VOID UICC_UimFDNProcedure(VOS_VOID)
 {
@@ -1452,19 +1122,7 @@ VOS_VOID UICC_UimFDNProcedure(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_CsimFDNProcedure
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_VOID UICC_CsimFDNCheck(VOS_VOID)
 {
@@ -1496,19 +1154,7 @@ VOS_VOID UICC_CsimFDNCheck(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitUIMNeedPINStep
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 
 VOS_UINT32 UICC_InitUIMNeedPINStep(VOS_VOID)
 {
@@ -1548,19 +1194,7 @@ VOS_UINT32 UICC_InitUIMNeedPINStep(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitUIM
-功能描述  :完成卡初始化类型判断函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitUIM(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -1631,19 +1265,7 @@ VOS_UINT32 UICC_InitUIM(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :UICC_InitCardHandle
-功能描述  :完成卡初始化的主控函数
-输入参数  :pMsg ->消息指针
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2014年7月1日
-   作    者   : z00100318
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 UICC_InitCardHandle(USIMM_MsgBlock *pMsg)
 {
     VOS_UINT32          ulResult;
@@ -1674,23 +1296,7 @@ VOS_UINT32 UICC_InitCardHandle(USIMM_MsgBlock *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SelectCdmaFile
-功能描述  :实现了文件的选择控制
-输入参数  :enEfFcpFlag: 针对EF文件是否需要带FCP
-           ulPathLen:   文件路径长度
-           pusFilePath: 选择文件路径
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :USIMM_SelectFileHandle
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_SelectCdmaFile(USIMM_FILE_NEED_FCP_ENUM_UINT32     enEfFcpFlag,
                                         VOS_UINT32                          ulPathLen,
                                         VOS_UINT16                         *pusFilePath)
@@ -1750,21 +1356,7 @@ VOS_UINT32 USIMM_SelectCdmaFile(USIMM_FILE_NEED_FCP_ENUM_UINT32     enEfFcpFlag,
 
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetCdmaFileHandle
-功能描述  :实现了更新CDMA文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_SetCdmaFileHandle(USIMM_MsgBlock *pMsg, USIMM_UPDATEFILE_REQ_STRU *pstNewMsg)
 {
     USIMM_SETFILE_REQ_STRU                 *pstSetFileMsg;
@@ -1837,21 +1429,7 @@ VOS_UINT32 USIMM_SetCdmaFileHandle(USIMM_MsgBlock *pMsg, USIMM_UPDATEFILE_REQ_ST
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCdmaFileFromCard
-功能描述  :实现了获取CDMA文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_GetCdmaFileFromCard(USIMM_GET_COMM_FILE_STRU *pstFileInfo, USIMM_GETCNF_INFO_STRU *pstCnfInfo)
 {
     VOS_UINT32                          ulResult;
@@ -1901,21 +1479,7 @@ VOS_UINT32 USIMM_GetCdmaFileFromCard(USIMM_GET_COMM_FILE_STRU *pstFileInfo, USIM
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCdmaFileHandle
-功能描述  :实现了获取CDMA文件的操作和结果的返回
-输入参数  :API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : g00256031
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 USIMM_GetCdmaFileHandle(USIMM_MsgBlock *pstMsg, USIMM_CMDHEADER_REQ_STRU *pstReqMsg)
 {
     USIMM_GET_COMM_FILE_STRU            stFileInfo;
@@ -1964,20 +1528,7 @@ VOS_UINT32 USIMM_GetCdmaFileHandle(USIMM_MsgBlock *pstMsg, USIMM_CMDHEADER_REQ_S
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_BSChallengeHandle
-功能描述  :实现了BASE STATION CHALLENGE的操作和结果的返回
-输入参数  :pstMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_BSChallengeHandle(USIMM_CMDHEADER_REQ_STRU *pstMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2042,20 +1593,7 @@ VOS_UINT32 USIMM_BSChallengeHandle(USIMM_CMDHEADER_REQ_STRU *pstMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ManageSsdHandle
-功能描述  :实现了MANAGE SSD的操作和结果的返回
-输入参数  :pMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_ManageSsdHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2194,20 +1732,7 @@ VOS_UINT32 USIMM_ManageSsdHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GenerateKeyVpmHandle
-功能描述  :实现了GENERATE KEY/VPM的操作和结果的返回
-输入参数  :pMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_GenerateKeyVpmHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
 {
     VOS_UINT32                          ulResult;
@@ -2279,20 +1804,7 @@ VOS_UINT32 USIMM_GenerateKeyVpmHandle(USIMM_CMDHEADER_REQ_STRU *pMsg)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CdmaAuthHandle
-功能描述  :实现了获取CDMA文件的操作和结果的返回
-输入参数  :pMsg:API层下发消息内容
-输出参数  :无
-返 回 值  :VOS_ERR
-           VOS_OK
-调用函数  :
 
-修订记录  :
-1. 日    期   : 2014年7月4日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
 VOS_UINT32 USIMM_CdmaAuthHandle(USIMM_AUTH_REQ_STRU *pstMsg)
 {
     USIMM_CDMA_AUTH_INFO_STRU           stCnfInfo;
@@ -2448,20 +1960,7 @@ VOS_UINT32 USIMM_CdmaAuthHandle(USIMM_AUTH_REQ_STRU *pstMsg)
     return VOS_OK ;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_IsUimServiceAvailable
-功能描述  :获取UIM卡服务状态　
-输入参数  :enService:服务ID
-输出参数  :无
-返 回 值  :PS_USIM_SERVICE_NOT_AVAILIABLE
-           PS_USIM_SERVICE_NOT_AVAILIABLE
-被调函数  :
-修订记录  :
-1. 日    期   : 2014年7月15日
-   作    者   : g47350
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_IsUIMServiceAvailable(UICC_SERVICES_TYPE_ENUM_UINT32 enService)
 {
     VOS_UINT32                          ulResult;
@@ -2496,20 +1995,7 @@ VOS_UINT32 USIMM_IsUIMServiceAvailable(UICC_SERVICES_TYPE_ENUM_UINT32 enService)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_IsCSIMServiceAvailable
-功能描述  :获取CSIM卡服务状态　
-输入参数  :enService:服务ID
-输出参数  :无
-返 回 值  :PS_USIM_SERVICE_NOT_AVAILIABLE
-           PS_USIM_SERVICE_NOT_AVAILIABLE
-被调函数  :
-修订记录  :
-1. 日    期   : 2014年7月15日
-   作    者   : g47350
-   修改内容   : Creat
 
-*****************************************************************************/
 VOS_UINT32 USIMM_IsCSIMServiceAvailable(UICC_SERVICES_TYPE_ENUM_UINT32 enService)
 {
     VOS_UINT32                          ulResult;

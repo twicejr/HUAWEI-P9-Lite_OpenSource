@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              bfd_ext_com.h
-*
-*  Project Code: VISPV100R007
-*   Module Name: BFD EXTERN
-*  Date Created: 
-*        Author: 
-*   Description: 
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME         DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2008-07-24   qinyun       Create
-*  2008-11-03   Q62011       Add for BC3D00658, BFD_OSPF_RULE_TYPE_INTF,
-*                            BFD_OSPF_RULE_TYPE_PROC转移到api头文件中供用户使用
-*******************************************************************************/
+
 #ifndef _BFD_EXT_COM_H_
 #define _BFD_EXT_COM_H_
 
@@ -85,15 +62,13 @@ typedef enum tagBFD_EXT_TABLE_NUM_E
     BFD_EXT_TABLE_MAX_NUM
 }BFD_EXT_TABLE_NUM;
 
-/* End of Added by qinyun62011, 2011/2/9   问题单号:V2R3C03-ROTUE-MERGE */
 
 typedef struct tagBFD_ENTRY_S
 {
     struct tagBFD_ENTRY_S   *pstNextEntry;        
 } BFD_ENTRY_S;
 
-/* Modified by likaikun213099, 解决staticnode资源释放后异步访问问题，采用了异步延迟释放，
-   统一垃圾回收机制, 2014/12/25   问题单号:DTS2014122404643  */
+
 typedef struct tagBFD_STATIC_NODE_S
 {
     struct tagBFD_STATIC_NODE_S   *pstNextNode;  
@@ -116,7 +91,6 @@ typedef struct tagBFD_STATIC_NODE_GC_S
     SLL_NODE_S  stSllNode;
     BFD_STATIC_NODE_S  *pFreeHandle;
 }BFD_STATIC_NODE_GC_S; /*BFD静态联动数据 垃圾回收数据*/
-/*End of Modified by likaikun213099, 2014/12/25   问题单号:DTS2014122404643  */
 
 /*modify by q62011 for ospfv3 */
 typedef struct tagBFD_OSPF_NODE_S
@@ -128,7 +102,6 @@ typedef struct tagBFD_OSPF_NODE_S
     ULONG   ulIfIndex;            
     ULONG   ulProcId;           /*OSPF/OSPFV3实例号*/
 } BFD_OSPF_NODE_S ;
-/* End of Added by qinyun62011, 2011/2/9   问题单号:V2R3C03-ROTUE-MERGE */
 
 typedef union unBFD_RELATION_PARA_U
 {
@@ -188,7 +161,6 @@ typedef struct tagOspfMsg
     ULONG ulLocalIp[LEN_4];        /*本端地址*/
     ULONG ulPeerIp[LEN_4];         /*对端地址*/
     ULONG ulIpType;                /*地址类型，BFD_OVER_IPV4(0)-IPv4地址,BFD_OVER_IPV6(1)-IPv6地址*/
-    /* End of Added by qinyun62011, 2011/2/9   问题单号:V2R3C03-ROTUE-MERGE */
 }BFD_TO_OSPF_MSG_S;/*与BFD_NTY_OSPF保持一致*/
 typedef struct tagRtmMsg
 {

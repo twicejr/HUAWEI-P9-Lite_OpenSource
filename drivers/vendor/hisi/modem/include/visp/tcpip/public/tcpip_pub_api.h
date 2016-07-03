@@ -1,29 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              tcpip_pub_api.h
-*
-*  Project Code: VISPV100R005
-*   Module Name: public
-*  Date Created: 2008-03-07
-*        Author: zhoutong(43740)
-*   Description: public模块(包括公共查询显示函数，HA,NP特性)对外头文件
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008-03-07   zhoutong(43740)         Create
-*  2008-08-13   f54882                  Modify for BC3D00237
-*  2008-08-25   f54882                  Modify for BC3D00262
-*  2008-08-25   f54882                  Modify for BC3D00263
-*
-*******************************************************************************/
+
 
 #ifndef _TCPIP_PUB_API_H_
 #define _TCPIP_PUB_API_H_
@@ -203,7 +178,6 @@ enum tagPPIOprType
     PPI_OAM1AG_SETGLOBALVLANPRITOMA,    /*42 设置全局VLAN优先级到使用全局VLAN优先级的MA中*/
     /* VISP1.8.1 支持1AG标准协议开发*/
     PPI_OAM1AG_SET1AGVERSION,    /* 43 设置MEP使用的1AG协议版本 */
-    /* Added for 支持接收不带VLAN头的1AG报文2009-05-14 */
     PPI_OAM1AG_SETMEPVLANFLAG,   /* 44 设置MEP下发送报文时是否需要带VLAN头标志.
                                        0:表示不需要带VLAN头,1表示需要带VLAN*/
     PPI_OAM1AG_CREATE_MD,            /* 45 创建维护域 */
@@ -311,18 +285,14 @@ enum tagPPIOprType
     PPI_MAP_ADD,                           /* 123 MAP ADD*/
     PPI_MAP_DEL,                           /* 124 MAP DEL*/
 
-    /*  Add for 新需求, by mengzechao176865, at 2011-02-23.
-        修改原因: 将VLAN与子接口对应关系下发给tran */
+    
     PPI_IF_SUBIF_JOIN_VLAN,         /* 125 将子接口加入VLAN通知tran */
     PPI_IF_SUBIF_LEAVE_VLAN,        /* 126 将子接口离开VLAN通知tran */
 
-    /* Add by zhaoyue00171897, at 2011-08-17. 修改原因: 支持获取动态FDB表项 */
     PPI_DYNAMIC_FDB_GET,            /* 127 从NP获取动态FDB表项 */
 
-    /* Add for V2R3C06, by shuxie liu00176784, at 2011-10-04. 修改原因:  支持EOAM协议版本全局设置  */
     PPI_OAM1AG_SETGLBVERSION,     /* 128 EOAM协议全局版本设置 */
 
-    /* Add for V2R3C06, by z00171897/p00193127, at 2011-10-17. 修改原因: 支持Y1731使能/去使性能检测 */
     PPI_OAMY1731_ENABLEDLM,        /* 129 使能双端帧丢失检测 */
     PPI_OAMY1731_DISABLEDLM,       /* 130 去使能双端帧丢失检测 */
     PPI_OAMY1731_ENABLESLM,        /* 131 使能单端帧丢失检测 */
@@ -330,19 +300,15 @@ enum tagPPIOprType
     PPI_OAMY1731_ENABLEDDM,        /* 133 使能双向延时检测 */
     PPI_OAMY1731_DISABLEDDM,       /* 134 去使能双向延时检测 */
 
-    /* Add for VISPV2R3C05STACK-127, by zhaoyue00171897, at 2012-02-03. 修改原因: 增加使能/去使能3AH时NP下发 */
     PPI_3AH_ENABLE,                /* 135 使能3AH功能 */
     PPI_3AH_DISABLE,               /* 136 去使能3AH功能 */
 
-    /* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
     PPI_ADD_LINK,                  /*137 TRUNK下发ADD操作*/
     PPI_DEL_LINK,                  /*138 TRUNK下发DEL操作*/
     PPI_UPDATE_LINK,               /*139 TRUNK下发UPDATE操作*/
 
-    /*Added by limin00188004, 支持全局和VRF域的控制License, 2012/9/26   问题单号:S.VRF.02.01 */
     PPI_VRF_GLOBAL_LICENCE,        /*140 VRF licence特性使能/去使能命令字*/
     PPI_VRF_SINGLE_LICENCE,        /*141 某个VRF的licence开关*/
-    /* End of Added by limin00188004, 2012/9/26   问题单号:S.VRF.02.01 */
     PPI_OAM1AG_START_RMEP_DETECT,  /*142  通知底层启动RMEP的探测*/
     PPI_OAM1AG_STOP_RMEP_DETECT,   /*143  通知底层停止RMEP的探测*/
 
@@ -408,7 +374,6 @@ enum tagPPIMsgType
     PPI_TYPE_RT6MSG,
     PPI_TYPE_PPPOE,
     PPI_TYPE_MAP,
-    /*Added by z00208058/w00207740, TRUNK LACP下移需求开发, 2012/5/2 */
     PPI_TYPE_TRUNKUPDATE,
     PPI_TYPE_POLICYRTUPDATE,  /*CHANDRA */
     PPI_TYPE_VRF6,    /*Added by apurba for VRF6*/
@@ -514,7 +479,6 @@ enum tagPUBLICRetCode
     PUBLIC_ERR_VISP_NOT_INIT,           /*37,协议栈还没有初始化*/
 };
 
-/*定义错误码 added by l61496 2007-8-1*/
 enum  enTcpIpEntryErrorCode
 {
     TCPIP_ENTRY_OK = 0,
@@ -525,7 +489,6 @@ enum  enTcpIpEntryErrorCode
     TCPIP_ENTRY_INPUT_VALUE_INVALID,    /* 5  输入参数值不合法 */
 };
 
-/*定义错误码 added by l61496 2007-8-1*/
 enum  enTcpIpHAErrorCode
 {
     TCPIP_HA_OK = 0,
@@ -603,7 +566,6 @@ enum  enTcpIpHAErrorCode
     TCPIP_HA_TWAMP_BATCH_BACKUP_FAIL,  /*70 Batch backup for TWAMP Module is failed*/
 };
 
-/*定义tcpip_debug.c中函数错误码 added by l61496 2007-8-1*/
 typedef enum enTcpIpDbgErrorCode
 {
     TCPIP_DBG_OK = 0,
@@ -884,9 +846,7 @@ typedef struct tagVRF_PPI_S
 {
     ULONG ulVrfIndex;               /* VRF索引 */
     ULONG ulIfIndex;                /* 接口索引 */
-    /*Added by limin00188004, 支持全局和VRF域的控制License, 2012/9/26   问题单号:S.VRF.02.01 */
     ULONG ulLicence;                /* Licence标识，0是关闭，1是打开*/
-    /* End of Added by limin00188004, 2012/9/26   问题单号:S.VRF.02.01 */
 }VRF_PPI_S;
 /* End:VISP1.7C03 VRF wangchengyang , 2009-02-04 */
 
@@ -978,7 +938,6 @@ typedef struct tagPPI_IPADDR_INFO
     ULONG   ulFlag;         /* 主从地址标记,1 从IP标记, 2 主IP标记 */
 }PPI_IPADDR_INFO_S;
 
-/* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
 /*TRUNK LACP链路保活设置PPI信息下发*/
 typedef struct tagPPI_TRUNK_LACP
 {
@@ -1035,7 +994,6 @@ typedef struct tagTCPIP_PPI_HOOK
     /* Trunk Port NP下发函数 */
     ULONG (*pfTCPIP_PPI_TRUNKPORT_Update)(ULONG ulPortIfIndex, ULONG ulCmd, ULONG ulTrunkIfIndex);
 
-    /*Add by z62474 for 2007-09-11,OSI NP报文发送处理处理 */
     ULONG (*pfTCPIP_PPI_OSI_Output)(MBUF_S *pstMbuf);
 
     /* 3ah NP 下发函数 */
@@ -1099,7 +1057,6 @@ typedef struct tagTCPIP_PPI_HOOK
 
     /* 下发通知NP PPPOE会话的相关信息 */
     ULONG (*pfTCPIP_PPI_PPPOE_Update)(ULONG ulSessionId, ULONG ulPpiCmd, VOID *pData);
-    /* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
     /*TRUNK 下发通知NP LACP链路保活相关信息*/
     ULONG (*pfTCPIP_PPI_TRUNK_LACP_Update)(ULONG ulOperType, PPI_TRUNK_LACP_S *pstRtMsg);
 
@@ -1328,7 +1285,6 @@ typedef struct tagPpi_1AGGlobalMsg
     ULONG  ulCompatibleSwitch; /*协议兼容性开关*/
 }PPI_1AGGLOBALMSG_S;
 
-/* Add for V2R3C06, by shuxieliu00176784, at 2011-10-04. 修改原因: 1AG全局协议版本 支持EOAM协议版本全局设置  */
 typedef struct tagPpi_1AGVersionMsg
 {
     ULONG  ulGlobalVersion;  /* 全局协议版本 */
@@ -1437,12 +1393,10 @@ typedef struct tagTCPIP_PPI_COUNT
     /*NP报文处理失败次数 */
     ULONG ulNPOutputFailure;
 
-/*Begin:Add by z62474 for 2007-09-10 ,增加OSI对NP的支持*/
     /*OSI NP报文处理总次数 */
     ULONG ulOSINPOutputTotal;
     /*OSI NP报文处理失败次数 */
     ULONG ulOSINPOutputFailure;
-/*End:Add by z62474 for 2007-09-10 ,增加OSI对NP的支持*/
 
     /* 3AH NP报文处理总次数 */
     ULONG ul3ahNpOutputTotal;
@@ -1454,7 +1408,6 @@ typedef struct tagTCPIP_PPI_COUNT
     /*1AG 通知NP失败次数*/
     ULONG ul1agNPOutputFailure;
 
-    /*IGMP 通知NP总次数 byz00104207*/
     ULONG ulIGMPNPOutputTotal;
     /*IGMP 通知NP失败次数*/
     ULONG ulIGMPNPOutputFailure;
@@ -1527,12 +1480,10 @@ typedef struct tagTCPIP_PPI_COUNT
     ULONG ulMapUpdateTotal;
     /* Map更新通知失败次数 */
     ULONG ulMapUpdateFailure;
-    /*Added by z00208058/w00207740, TRUNK LACP下移需求开发, 2012/5/2 */
     /* 下发TRUNK PPI命令字总次数*/
     ULONG ulTrunkUpdateTotal;
     /* 下发TRUNK PPI命令字失败总次数*/
     ULONG ulTrunkUpdateFailure;
-    /*Added by w00207740, NSR TRUNK,添加PPI统计信息, 2013/6/6 */
     ULONG ulPolicyRtUpdateTotal;
     ULONG ulPolicyRtUpdateFailure;
 
@@ -1579,7 +1530,7 @@ typedef enum TCPIP_WARING_Etag
     WARNING_ARPGUARD_RESTORE,       /* 30 ARP防攻击告警恢复 */
     WARNING_ARP_CONFLICT,           /* 31 静态ARP和动态ARP冲突 */
     WARNING_LACP_PARAM_WRONG,       /* 32 TRUNK成员端口参数不正确导致协商失败告警产生或消除 SGSN需求 BC3D02743 20100224 */
-    WARNING_BFD_SESSION_CONFLICT,   /* 33 BFD会话创建冲突 *//*SGSN需求DTS2010090200956: BFD 多会话和应用共用问题*/
+    WARNING_BFD_SESSION_CONFLICT,
     WARNING_VLAN_CONSISTENCY,       /* 34 VLAN ID 不一致告警 */
     WARNING_ARPGUARD_ARPCONFLICT,   /* 35 ARP防攻击告警 */
     WARNING_Y1731_AIS,              /* 36   Y1731 AIS 告警*/
@@ -1639,7 +1590,6 @@ typedef struct tagETH_IPCONFLICT_PARAM
     ULONG ulIPAddr;     /* 网络序地址 */
     UCHAR szMacAddr[6]; /* 冲突者的physical地址,6字节 */
     CHAR  ucReserved[2];
-    /* Added by fengjing209023, DTS2014022106314 地址冲突告警(消除)上报携带VRF索引 */
     ULONG ulVrfIndex;   /* VRF索引 */
 }ETH_IPCONFLICT_PARAM_S;
 
@@ -1687,8 +1637,7 @@ typedef struct tagDHCP_FAILURE_PARAM
 
 typedef struct tagBFD_WARNING_PARAM
 {
-    /* Modified by q62011 for A82D13314,2007-04-04
-       change description from 'BFD会话所在的接口索引'to'地址所在的接口索引'*/
+    
     ULONG ulIfIndex;     /* 地址所在的接口索引;或者为trunk成员端口索引 */
     ULONG ulBfdSessionID;/* BFD会话ID */
     ULONG ulIPAddr[4];      /* 地址值，网络序 */
@@ -1699,7 +1648,6 @@ typedef struct tagBFD_WARNING_PARAM
 #define BFD_WARN_DSTADRRISLOCAL 2 /* BFD会话使用的目的地址变为了本地地址 */
 #define BFD_WARN_ADDPORT        3 /* 接口增加到trunk中 */
 #define BFD_WARN_REMOVEPORT     4 /* 接口从trunk中移除 */
-/*SGSN需求DTS2010090200956: BFD 多会话和应用共用问题*/
 #define BFD_WARN_STATICSESSIONEXIST  5 /* 已经存在静态Session，不能创建动态Session*/
 #define BFD_WARN_DYNAMICSESSIONEXIST 6 /* 已经存在动态Session，不能创建静态Session */
 
@@ -1739,7 +1687,6 @@ typedef struct tagPPP_IPHC_PARA_WARNING_S
 }PPP_IPHC_PARA_WARNING_S;
 
 
-/*增加PPP协商地址冲突告警、ED描述符不一致告警、环回冲突告警及相应的告警消除,add by wuhailan,2008-04-11.*/
 
 /*支持PPP协商地址冲突告警*/
 typedef struct tagPPP_IPCONFLICT_PARAM
@@ -1872,7 +1819,6 @@ typedef struct tagOAM_1AG_RDIPARA
     UCHAR szLocalMAName[OAM_1AG_MAX_MANAME_LEN + 1];/*本地MA名*/
 }OAM_1AG_RDIPARA_S;
 
-/* Add for V2R3C06, by z00171897/p00193127, at 2011-10-06. 修改原因: 扩展告警类型 */
 typedef enum enumTcpipOAMWarn1AGType
 {
     OAM_1AG_MEPIDREPEAT = 0, /*mep id重复*/
@@ -2045,7 +1991,6 @@ typedef struct tagPPI_PPPOE_INFO
 }PPI_PPPOE_INFO_S;
 
 
-/* Add by zhaoyue00171897, at 2011-08-17. 修改原因: 支持获取动态FDB表项 */
 /* 获取动态FDB表项PPI结构体 */
 typedef struct tagPPI_L2IF_DYNAMIC_FDB_INFO
 {
@@ -2082,9 +2027,7 @@ typedef ULONG (*gpfTCPIPUserStop)(VOID);
 typedef ULONG (*gpfTCPIPTrrtUserStopEx )(ULONG ulExecID);
 typedef ULONG (*gpfTCPIPPingUserStopEx )(ULONG ulExecID);
 typedef ULONG (*gpfGetSockMaxNum)(VOID);
-/*Added by yanlei00216869, 使以.so方式提供给bluestar的visp，不依赖产品代码, 2014/11/26   问题单号:DTS2014112500391 */
 typedef ULONG (*gpfRegAllAppInfo)(VOID);
-/* End of Added by yanlei00216869, 2014/11/26   问题单号:DTS2014112500391 */
 typedef ULONG (*CreateMutex_HOOK_FUNC)(CHAR *pMutexName, ULONG *pulMutexID);
 typedef ULONG (*CreateSm_HOOK_FUNC)(CHAR *pCountName, ULONG ulSmInit, ULONG *pulCountID);
 typedef ULONG (*SmP_HOOK_FUNC)(ULONG ulMutexID);
@@ -2524,22 +2467,7 @@ extern ULONG TCPIP_HA_RegisterCallBack (TCPIP_HA_CALLBACK_S  * pfBatchCallBack);
 *   2007-08-01  l61496          增加返回错误码
 *******************************************************************************/
 extern ULONG TCPIP_HA_NotifySwitch(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_HA_SlavePlugOut
-*  Description: 备板拔出处理接口(主板运行)
-*        Input: VOID
-*       Output: 无
-*       Return: VOS_OK  成功
-*               VOS_ERR 失败
-*      Caution:
-*------------------------------------------------------------------------------*
-*  Modification History
-*   DATE        NAME            DESCRIPTION
-*------------------------------------------------------------------------------*
-*   2006-12-04  xiehuaguo       create
-*   2007-04-04  xiehuaguo       modify by defect A82D13585
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_HA_SlavePlugOut(VOID);
 /*******************************************************************************
 *    Func Name: TCPIP_HA_VerifyInterface
@@ -2573,22 +2501,7 @@ extern ULONG TCPIP_HA_SlavePlugOut(VOID);
 *
 *******************************************************************************/
 extern ULONG TCPIP_HA_VerifyInterface(ULONG ulIfIndex);
-/*******************************************************************************
-*    Func Name: TCPIP_HA_BatchBackup
-*  Description: VISP HA批量备份处理总入口(主板运行)
-*        Input: VOID
-*       Output: 无
-*       Return: VOS_OK  成功
-*               VOS_ERR 失败
-*      Caution:
-*------------------------------------------------------------------------------*
-* Modification History
-*  DATE        NAME            DESCRIPTION
-*------------------------------------------------------------------------------*
-*  2006-12-04  xiehuaguo       create
-*  2007-07-30  jiangtao(51916) modify
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_HA_BatchBackup(VOID);
 /*******************************************************************************
 *    Func Name: TCPIP_HA_Smooth
@@ -2692,40 +2605,9 @@ extern ULONG TCPIP_HA_GetStat(HASTAT_S *pstStat);
 *
 *************************************************************************/
 extern VOID  TCPIP_HA_ResetStat(VOID);
-/*************************************************************************
-*    Func Name: TCPIP_HA_SetAllDbg
-*  Description: 设置HA全部调试开关
-*        Input: ULONG ulDbg 开关标志,0 关闭 1 打开
-*       Output: 无
-*       Return: VOS_OK  成功
-*               VOS_ERR 失败
-*               others  其他错误码
-*       Caution:
-*------------------------------------------------------------------------*
-*  Modification History
-*   DATE        NAME            DESCRIPTION
-*------------------------------------------------------------------------*
-*   2006-12-06  zhangchunyu(62474)     Create
-*   2007-04-16  zhangchunyu(62474)     Modify for A82D13954.
-*   2007-08-01  l61496                 增加返回错误码
-*************************************************************************/
+
 extern ULONG TCPIP_HA_SetAllDbg(ULONG ulDbg);
-/*************************************************************************
-*    Func Name: TCPIP_HA_GetDbg
-*  Description: 获取HA全部调试开关
-*        Input: 无
-*       Output: HADBG_S  *pstDbg 各个模块调试开关
-*       Return: VOS_OK  成功
-*               VOS_ERR 失败
-*      Caution:
-*------------------------------------------------------------------------*
-*  Modification History
-*   DATE        NAME            DESCRIPTION
-*------------------------------------------------------------------------*
-*   2006-12-06  zhangchunyu(62474)     Create
-*   2007-04-16  zhangchunyu(62474)     Modify for A82D13954.
-*   2007-08-01   l61496                增加返回错误码
-*************************************************************************/
+
 extern ULONG TCPIP_HA_GetDbg(HADBG_S *pstDbg);
 
 /*******************************************************************************
@@ -2756,21 +2638,7 @@ extern ULONG TCPIP_HA_GetDbg(HADBG_S *pstDbg);
 *******************************************************************************/
 extern ULONG TCPIP_HA_RegisterModule(ULONG ulLayer, ULONG ulModId, ULONG ulPriority, UCHAR *pucModuleName,
                                          TCPIP_HA_MODULE_CALLBACK_S *pstModCallback);
-/*******************************************************************************
-*    Func Name: TCPIP_HA_TravelRegisteredLayer
-*  Description: query the registered module
-*        Input: ULONG ulLayer:need for inquring
-*       Output:
-*       Return:
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2007-07-31   jiangtao(51916)         Create
-*  2007-09-19   y(62007)                Modify for A82D20238修改打印消息
-*  2008-06-04   luowentong(00105073)    按照可维可测规范进行整改
-*******************************************************************************/
+
 extern VOID TCPIP_HA_TravelRegisteredLayer(ULONG ulLayer);
 /*******************************************************************************
 *    Func Name: TCPIP_HA_ModuleSendMsg
@@ -2966,24 +2834,7 @@ extern ULONG TCPIP_GetPublicHAVerboseDbg(ULONG *pulDbg);
 *
 *******************************************************************************/
 extern ULONG TCPIP_PPI_HookRegister(TCPIP_PPI_HOOK_S *pstHookFunc);
-/****************************************************************************
-*    Func Name: TCPIP_PPI_HookRegisterByType
-* Date Created: 2010-07-19
-*       Author: fKF30046
-*  Description: 注册PPI钩子函数，在系统中只能注册一次(用户保证)
-*        Input:ULONG ulType:要注册的函数所属的子系统类别；
-                VOID *pfhook:要注册的钩子函数；
-*       Output: 
-*       Return: VOS_ERR:失败
-*               VOS_OK:成功
-*      Caution:   协议栈启动前可以重复注册，函数以最后一次注册成功为准
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-07-29  fKF30046            Create
-*  2010-08-03  zKF23859           Modify
-*******************************************************************************/
+
 ULONG TCPIP_PPI_HookRegisterByType(ULONG ulType, VOID *pfHook);
 /****************************************************************************
 *    Func Name: TCPIP_PPI_Count_Get
@@ -3206,23 +3057,7 @@ extern VOID TCPIP_ShowIPAddr(VOID);
 *
 *******************************************************************************/
 extern VOID TCPIP_ShowNetStatus(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_ShowPacketStatics
-*  Description: 查询报文统计信息
-*        Input: ULONG ulMid, 模块ID
-*               ULONG ulIfIndex, 接口索引
-*       Output:
-*       Return: VOID
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-4-28    sunmo(44939)     Create the first version.
-*  2006-5-17    sunmo(44939)     Modify output info format.
-*  2007-5-17    wujie(61195)     Modified for A82D15480，显示函数无返回值
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowPacketStatics(ULONG ulMid, ULONG ulIfIndex);
 /*******************************************************************************
 *    Func Name: TCPIP_ShowPPPNegoInfo
@@ -3702,38 +3537,9 @@ extern VOID  TCPIP_ShowMemInfo(VOID);
 *******************************************************************************/
 extern VOID TCPIP_ShowMbufInfo(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SystemEntry
-*  Description: VISP协议栈的入口函数
-*        Input: None
-*       Output: None
-*       Return: 成功返回VOS_OK，失败返回VOS_ERR
-*      Caution: 该函数被VISP_InitTCPIPStack所调用,用于初始化协议栈
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-11-01  X36317         Creat the first version.
-*  2007-03-23  J51916         Modify for A82D12837
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SystemEntry(VOID);
-/*******************************************************************************
-*    Func Name: TCPIP_Set_PreConfigPara
-*  Description: VISP 预配置参数值设置函数
-*        Input: ULONG ulKey:   预配置项,取值范围见枚举定义TCPIP_PRECONFIG_INFO_E
-*               ULONG ulValue: 参数值
-*       Output: None
-*       Return: 成功返回VOS_OK, 失败返回VOS_ERR
-*      Caution: 此函数提供给产品用户VISP参数预配置
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2006-11-1  X36317         Creat the first version.
-*  2007-04-2  z62474         Modified for A82D12602(预配置设置时即检查合法性)
-*  2007-7-17  wuhailan       modify for A82D17105,调整输出函数
-*******************************************************************************/
+
 extern ULONG TCPIP_Set_PreConfigPara(ULONG ulKey, ULONG ulValue);
 /*******************************************************************************
 *    Func Name: TCPIP_GetVersion
@@ -4224,24 +4030,7 @@ extern ULONG TCPIP_RegFuncGetLinkControlPacketHook(GetLinkControlPacket_HOOK_FUN
 *******************************************************************************/
 extern ULONG TCPIP_UnRegFuncGetLinkControlPacketHook(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetResLimitRestrainTime
-* Date Created: 2009-03-02
-*       Author: z00104207
-*  Description: 资源占用超过阈值时，VISP会记录日志，如果资源占用超过阈值出现反复
-*               抖动时，就会记录多条日志，因此需要在规定时间内对这类日志进行抑制，
-*               本接口提供设置该规定时间的功能。
-*        Input: ULONG ulTime: 时间值，范围0~60，单位秒。0表示不抑制。
-*       Output: 
-*       Return: 成功VOS_OK，失败返回其他错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-03-02   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetResLimitRestrainTime(ULONG ulTime);
 
 /*******************************************************************************
@@ -4385,61 +4174,16 @@ extern ULONG TCPIP_ShowSockRunSchedNum( VOID );
 /*********************************全局变量定义********************************/
 
 
-/*****************************************************************************
- 函 数 名  : TCPIP_GetInterfaceInfo
- 功能描述  : 获取接口详细信息
- 输入参数  : ULONG ulIfIndex  :接口索引
-             UCHAR *szBuf     :buf指针
-             ULONG ulBufLen   :buf大小
-             ULONG ulLen      :大小
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年4月20日
-    作    者   : w62223
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 extern ULONG TCPIP_GetInterfaceInfo(ULONG ulIfIndex,CHAR *szBuf,ULONG ulBufLen,ULONG *pulLen);
 
-/*****************************************************************************
- 函 数 名  : TCPIP_RegFuncTrrtUserStopHook
- 功能描述  :  注册用户traceroute停止命令函数
- 输入参数  : gpfTCPIPUserStopEx pfHookFunc
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年4月28日
-    作    者   : w62223
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 extern ULONG TCPIP_RegFuncTrrtUserStopHook(gpfTCPIPTrrtUserStopEx pfHookFunc);
 
 
-/*****************************************************************************
- 函 数 名  : TCPIP_RegFuncPingUserStopHook
- 功能描述  :  注册用户Ping停止命令函数
- 输入参数  : g_pfTCPIPPingUserStopEx pfHookFunc
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年4月28日
-    作    者   : w62223
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 extern ULONG TCPIP_RegFuncPingUserStopHook(gpfTCPIPPingUserStopEx pfHookFunc);
 
@@ -4518,22 +4262,7 @@ ULONG TCPIP_GetInterfaceInfoByIfIndex(ULONG ulIfIndex, ULONG *pulPortType, ULONG
 *******************************************************************************/
 ULONG TCPIP_RegFuncGetSockMaxNum(gpfGetSockMaxNum pfHookFunc);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncRegAllAppInfo
-* Date Created: 2014-11-26
-*       Author: yanlei00216869
-*  Description: 产品注册组件注册的钩子函数
-*        Input: gpfRegAllAppInfo pfHookFunc
-*       Output:
-*       Return:
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME             DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2014-11-26   yanlei00216869   Create the first version.
-*
-*******************************************************************************/
+
 ULONG TCPIP_RegFuncRegAllAppInfo(gpfRegAllAppInfo pfHookFunc);
 
 
@@ -4579,66 +4308,21 @@ extern VOID TCPIP_ShowAllVrfIPAddr(VOID);
    口上的某个Master备份组的虚IP冲突（即是否相等，相等则返回1，否则返回0）；入参地址是网络序 */
 typedef ULONG (*TCPIP_VirtualIpAddrConflict_HOOKFUNC)(ULONG ulIfIndex, ULONG ulIpAddr);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncVirtualIpAddrConflict
-* Date Created: 2010-01-07
-*       Author: z00104207
-*  Description: 注册TCPIP_VirtualIpAddrConflict_HOOKFUNC钩子函数
-*        Input: TCPIP_VirtualIpAddrConflict_HOOKFUNC pfHookFunc: 钩子函数
-*       Output:
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 请参考TCPIP_VirtualIpAddrConflict_HOOKFUNC的定义描述
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncVirtualIpAddrConflict(TCPIP_VirtualIpAddrConflict_HOOKFUNC pfHookFunc);
 
 
 /* 钩子函数原型，实现的功能是:判断physical地址是否与指定接口上某个备份组的虚MAC相同，是则返回1，否则返回0 */
 typedef ULONG (*TCPIP_CompareVirtualMac_HOOKFUNC)(ULONG ulIfIndex, UCHAR *aucMacAddr);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncCompareVirtualMac
-* Date Created: 2010-01-07
-*       Author: z00104207
-*  Description: 注册TCPIP_CompareVirtualMac_HOOKFUNC钩子函数
-*        Input: TCPIP_CompareVirtualMac_HOOKFUNC pfHookFunc:钩子函数
-*       Output:
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 请参考TCPIP_CompareVirtualMac_HOOKFUNC的定义描述
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncCompareVirtualMac(TCPIP_CompareVirtualMac_HOOKFUNC pfHookFunc);
 
 /* 钩子函数原型，实现的功能是:判断地址是否虚地址，是则返回1，否则返回0；
    在入参aucMacAddr不为空时，需返回对应虚地址的虚MAC，否则无需返回，获取虚MAC成功也是返回1，否则返回0；入参地址是网络序 */
 typedef ULONG (*TCPIP_IsVipInIf_HOOKFUNC)(ULONG ulIfIndex, ULONG ulIpAddr, UCHAR *aucMacAddr);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncIsVipInIf
-* Date Created: 2010-01-07
-*       Author: z00104207
-*  Description: 注册TCPIP_IsVipInIf_HOOKFUNC钩子函数
-*        Input: TCPIP_IsVipInIf_HOOKFUNC pfHookFunc:钩子函数
-*       Output:
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 请参考TCPIP_IsVipInIf_HOOKFUNC的定义描述
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncIsVipInIf(TCPIP_IsVipInIf_HOOKFUNC pfHookFunc);
 
 
@@ -4647,44 +4331,14 @@ extern ULONG TCPIP_RegFuncIsVipInIf(TCPIP_IsVipInIf_HOOKFUNC pfHookFunc);
    入参地址是网络序 */
 typedef ULONG (*TCPIP_GetVirtualMacByIpAddr_HOOKFUNC)(ULONG ulIfIndex, ULONG ulIpAddr, UCHAR *aucMacAddr);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncGetVirtualMacByIpAddr
-* Date Created: 2010-01-07
-*       Author: z00104207
-*  Description: 注册TCPIP_GetVirtualMacByIpAddr_HOOKFUNC钩子函数
-*        Input: TCPIP_GetVirtualMacByIpAddr_HOOKFUNC pfHookFunc:钩子函数
-*       Output:
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 请参考TCPIP_GetVirtualMacByIpAddr_HOOKFUNC的定义描述
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-07   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncGetVirtualMacByIpAddr(TCPIP_GetVirtualMacByIpAddr_HOOKFUNC pfHookFunc);
 
 
 /* 钩子函数原型，实现的功能是:根据VRF索引和地址，判断指定的地址是否VRF内某个VRRP备份组的虚地址，是则返回1，否则返回0 */
 typedef ULONG (*TCPIP_IsVipInVrf_HOOKFUC)(ULONG ulVrfIndex, ULONG ulIpAddr);
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncIsVipInVrf
-* Date Created: 2010-01-08
-*       Author: z00104207
-*  Description: 注册TCPIP_IsVipInVrf_HOOKFUC钩子函数
-*        Input: TCPIP_IsVipInVrf_HOOKFUC pfHookFunc:钩子函数
-*       Output:
-*       Return: 成功则返回VOS_OK，失败则返回其他错误码
-*      Caution: 请参考TCPIP_IsVipInVrf_HOOKFUC的定义描述
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-08   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncIsVipInVrf(TCPIP_IsVipInVrf_HOOKFUC pfHookFunc);
 
 
@@ -4697,41 +4351,10 @@ typedef enum tagTCPIP_VRRP_DEBUG
     TCPIP_VRRP_DEBUG_ISVIPINVRF  = 0x10     /* 判断地址是否指定VRF内的虚IP的调试开关 */
 }TCPIP_VRRP_DEBUG_E;
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetVrrpDebug
-* Date Created: 2010-01-09
-*       Author: z00104207
-*  Description: 设置调用VRRP回调钩子函数时的调试开关
-*        Input: ULONG ulDebugFlag: 调试开关取值，取值范围见枚举TCPIP_VRRP_DEBUG_E
-*       Output:
-*       Return: VOS_OK
-*      Caution: 调试开关通过按位与的方式来判断是否生效
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-09   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_SetVrrpDebug(ULONG ulDebugFlag);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetVrrpDebug
-* Date Created: 2010-01-09
-*       Author: z00104207
-*  Description: 获取调用VRRP回调钩子函数时的调试开关
-*        Input:
-*       Output: ULONG *pulDebugFlag: 调试开关取值输出地址，调试开关取值范围见
-*                                    枚举TCPIP_VRRP_DEBUG_E
-*       Return: 成功则返回VOS_OK，否则返回VOS_ERR
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-01-09   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_GetVrrpDebug(ULONG *pulDebugFlag);
 /* IPV6规格预配置KEY值,为字符串 */
 /* Total number of PMTU entries */
@@ -5002,22 +4625,7 @@ extern ULONG TCPIP_ShowSockSchedule(VOID);
 
 /* 获取是否释放CPU的钩子函数 */
 typedef ULONG (*CHECK_TASKDELAY_HOOK)(ULONG ulTaskId,ULONG *pulDelayTime);
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncCheckTaskDelayHook
-* Date Created: 2009-07-22
-*       Author: z00104207
-*  Description: 注册是否释放CPU的钩子函数
-*        Input: CHECK_TASKDELAY_HOOK pfHookFunc: 钩子函数指针
-*       Output:
-*       Return:
-*      Caution: 该钩子函数可注销，传入空指针即注销
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-07-22   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncCheckTaskDelayHook(CHECK_TASKDELAY_HOOK pfHookFunc);
 
 /*******************************************************************************
@@ -5039,22 +4647,7 @@ extern ULONG TCPIP_RegFuncCheckTaskDelayHook(CHECK_TASKDELAY_HOOK pfHookFunc);
 *******************************************************************************/
 extern ULONG TCPIP_CheckTaskDelay(ULONG ulTaskId,ULONG *pulDelayTime);
 
-/*******************************************************************************
-*    Func Name: TCPIP_HA_EventNotify
-* Date Created: 2010-05-17
-*       Author: z00104207
-*  Description: 供产品调用，通知VISP处理HA事件
-*        Input: ULONG ulMsgType: 事件类型
-*       Output:
-*       Return: 成功则返回VOS_OK，否则返回其他错误码
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2010-05-17   z00104207               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_HA_EventNotify(ULONG ulEventType);
 
 /*******************************************************************************
@@ -5114,83 +4707,19 @@ extern ULONG TCPIP_GetLogOutputMod(ULONG *pulMod);
 extern ULONG TCPIP_AddVlanHead(MBUF_S *pMBuf, ULONG ulVlanHead);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncHATaskDelayHook
-* Date Created: 2011-03-02
-*       Author: zKF23859
-*  Description: 注册HA中是否释放CPU的钩子函数
-*        Input: CHECK_TASKDELAY_HOOK pfHookFunc: 钩子函数指针
-*       Output:
-*       Return: 成功则返回VOS_OK，否则返回其他错误码
-*      Caution: 该钩子函数可注销，传入空指针即注销
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-02   zKF23859               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_RegFuncHATaskDelayHook(CHECK_TASKDELAY_HOOK pfHookFunc);
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_HA_SetDelaySetting
-* Date Created: 2011-03-02
-*       Author: zKF23859
-*  Description: 设置HA任务的延时开关,时间,包数
-*        Input: ULONG ulHADelaySwitch  延时选择开关1--设置延时0---钩子延时
-*               ULONG ulDelayTime     延迟时间
-*               ULONG ulDelayPacket       包后延数
-*       Output:
-*       Return: VOS_OK 设置正确,其他失败
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-02   zKF23859               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_HA_SetDelaySetting(ULONG ulHADelaySwitch, ULONG ulDelayTime, ULONG ulDelayPacket);
 
-/*******************************************************************************
-*    Func Name: TCPIP_HA_GetDelaySetting
-* Date Created: 2011-03-02
-*       Author: zKF23859
-*  Description: 获取HA任务设置的延时开关,时间,包数
-*        Input:
-*       Output: ULONG *pulDelaySwitch  延迟选择开关
-*               ULONG pulDelayTime     延迟时间
-*               ULONG pulDelayPacket   包后延时:
-*       Return: VOS_OK获取正确,其他失败
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-02   zKF23859               Create
-*
-*******************************************************************************/
+
 extern ULONG TCPIP_HA_GetDelaySetting(ULONG *pulDelaySwitch, ULONG *pulDelayTime, ULONG *pulDelayPacket);
 
 
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowHADelaySetting
-* Date Created: 2011-03-02
-*       Author: zKF23859
-*  Description: 显示HA任务设置的延时开关,时间,包数,钩子地址
-*        Input:
-*       Output
-*       Return:
-*      Caution:
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-03-02   zKF23859               Create
-*
-*******************************************************************************/
+
 extern VOID TCPIP_ShowHADelaySetting(VOID);
 
 /*******************************************************************************
@@ -5233,25 +4762,9 @@ extern ULONG TCPIP_SetSockRateTime(ULONG ulSwitch, ULONG ulRunTime, ULONG ulFree
 *******************************************************************************/
 extern ULONG TCPIP_GetSockRateTime(ULONG *pulSwitch, ULONG *pulRunTime, ULONG *pulFreeTime);
 
-/* Add by shuxieliu00176784, at 2011-08-31. 修改原因:  DTS2011083101231
-   SGSN需求: 新增钩子函数，在上报告警前，查询是否可以处理告警。返回值: True(上报), False(不用上报) */
+
 typedef LONG  (*TCPIP_IsNeedWarning_HOOK_FUNC)(ULONG ulWarningID, VOID *pWarnParam);
-/*******************************************************************************
-*    Func Name: TCPIP_RegFuncIsNeedWarningHook
-* Date Created: 2011-08-31
-*       Author: shuxieliu00176784
-*  Description: DTS2011083101231 SGSN需求 注册钩子函数:在上报告警前，查询是否可以处理告警
-*        Input: TCPIP_IsNeedWarning_HOOK_FUNC pfHookFunc: 钩子函数
-*       Output: 
-*       Return: VOS_OK成功,其他返回失败
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-08-31   shuxieliu00176784       Create the first version.
-*
-*******************************************************************************/
+
 extern ULONG  TCPIP_RegFuncIsNeedWarningHook(TCPIP_IsNeedWarning_HOOK_FUNC pfHookFunc);
 
 /*******************************************************************************
@@ -5360,46 +4873,10 @@ Restriction  :
 *************************************************************************/
 ULONG TCPIP_RegTaskMonitorFuncHook(TCPIP_TASK_MONITOR_PARA_S *pfHookFunc);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetSockCpuScheTimeWay
-* Date Created: 2014-05-28
-*       Author: l00213099
-*  Description: 设置SOCK任务获取时间方式开关
-*        Input: ULONG ulSwitch:调度次数处理开关
-*                              默认0- VOS_TmNow
-*                                  1- VOS_GetCpuTick
-*       Output:
-*       Return:
-*      Caution: 传送网USP平台,VOS_TmNow获取的时间由任务刷新,对于不可抢占的SOCK
-*               任务获取的时间将不准,所以提供VOS_GetCpuTick方式获取时间
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-17   Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_SetSockCpuScheTimeWay(ULONG ulSwitch);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetSockCpuScheTimeWay
-* Date Created: 2014-05-28
-*       Author: l00213099
-*  Description: 获取SOCK任务获取时间方式开关
-*        Input: 
-*       Output: ULONG *pulSwitch:调度次数处理开关
-*                               默认0- VOS_TmNow
-*                                  1- VOS_GetCpuTick
-*       Return:
-*      Caution: 传送网USP平台,VOS_TmNow获取的时间由任务刷新,对于不可抢占的SOCK
-*               任务获取的时间将不准,所以提供VOS_GetCpuTick方式获取时间
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2013-12-17   Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetSockCpuScheTimeWay(ULONG* pulSwitch);
 
 ULONG TCPIP_SetShutIFFlagForVRFChange(ULONG ulShutFlag);

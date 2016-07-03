@@ -96,8 +96,8 @@ enum NV_ITEM_ID_ENUM
     EN_NV_ID_RRC_RESELECT_3DB_SWITCH                = 0xD233,
     EN_NV_ID_UE_RFRD_TYPE                           = 0xD234,
     EN_NV_ID_LTE_IRAT_TDS_CAPABILITY_INFO           = 0xD235,
-    EN_NV_ID_UE_EXTBAND_INFO                        = 0xD236,/*BEGIN DTS2014041603793 c00203521 modify for B28全频段特性*/
-    EN_NV_ID_EXTBAND_INFO_WITH_BANDWIDTH		    = 0xD237,/*END DTS2014041603793 c00203521 modify for B28全频段特性*/
+    EN_NV_ID_UE_EXTBAND_INFO                        = 0xD236,
+    EN_NV_ID_EXTBAND_INFO_WITH_BANDWIDTH		    = 0xD237,
     EN_NV_ID_DSDS_CFG_INFO                          = 0xD238,
     EN_NV_ID_FIX_MUTI_PLMNS_CAND_INFO               = 0xD239,
     EN_NV_ID_DYN_MUTI_PLMNS_CAND_INFO               = 0xD23A,

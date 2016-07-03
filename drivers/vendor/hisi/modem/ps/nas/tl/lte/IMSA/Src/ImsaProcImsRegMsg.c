@@ -49,17 +49,7 @@ extern "C" {
 extern VOS_UINT32 IMSA_RegProcImsMsgState(const IMSA_IMS_OUTPUT_SERVICE_EVENT_STRU *pstOutputService);
 
 /*lint -e961*/
-/*****************************************************************************
- Function Name  : IMSA_RegProcImsMsgAuth()
- Description    : IMS鉴权消息处理
- Input          : CSM_OutputService* pstCsmOutputService
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-07-01  Draft Enact
-      2.zhaochen 00308719  2015-02-09  Modify for USIM Interface change
-*****************************************************************************/
 VOS_VOID IMSA_RegProcImsMsgAuth(IMSA_IMS_OUTPUT_SERVICE_EVENT_STRU* pstOutputService)
 {
     VOS_UINT8                           ulOpId;
@@ -173,16 +163,7 @@ VOS_VOID IMSA_ImsMsgServiceEvent(VOS_VOID *pSeriveEvent)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ImsMsgSystemEvent()
- Description    : IMS SYSTEM 类型的事件处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-10-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ImsMsgSystemEvent(VOS_VOID *pSystemEvent)
 {
     IMSA_IMS_OUTPUT_SYSTEM_EVENT_STRU       *pstOutSystem;
@@ -201,16 +182,7 @@ VOS_VOID IMSA_ImsMsgSystemEvent(VOS_VOID *pSystemEvent)
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ImsMsgParaEvent()
- Description    : IMS PARA 类型的事件处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-10-11  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ImsMsgParaEvent(VOS_VOID *pParaEvent)
 {
     IMSA_IMS_OUTPUT_PARA_EVENT_STRU       *pstOutPara;
@@ -233,33 +205,13 @@ VOS_VOID IMSA_ImsMsgParaEvent(VOS_VOID *pParaEvent)
                 IMSA_ImsInputParaMsgClear();
             }
             break;
-
-        case IMAS_IMS_INPUT_PARA_REASON_SET_CALL_WAITING:
-
-            if (pstImsaEntity->stImsaControlManager.stImsMsg.ulCsmId == pstOutPara->ulOpId)
-            {
-                IMSA_ProcImsMsgCcwaiSetCnf(pstOutPara);
-
-                IMSA_ImsInputParaMsgClear();
-            }
-            break;
-
         default:
             break;
     }
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ImsMsgParaEvent()
- Description    : IMS PARA 类型的事件处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-10-11  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ImsMsgNvInfoEvent(VOS_VOID *pParaEvent)
 {
     IMSA_IMS_OUTPUT_NV_INFO_EVENT_STRU       *pstOutNvInfo;

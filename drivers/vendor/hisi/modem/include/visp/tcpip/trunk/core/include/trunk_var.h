@@ -91,7 +91,6 @@ extern struct IIF_COMP_TRUNK_ComIntCFGVtbl *g_pstTrunkCfgTable;
 /*增加SyncE组件虚表*/
 extern struct IIF_COMP_SYNCE_ComIntFUNVtbl *g_pstTrunkSyncEFunVtbl;
 
-/*Added by w00207740, NSR TRUNK,添加与NSR模块配合需要的虚表, 2013/10/9 */
 extern struct IIF_COMP_NSR_ComIntFUNVtbl *g_pstNsrTrunkFunTable;
 
 /* 全局分发策略钩子函数  */
@@ -135,7 +134,6 @@ extern ULONG g_ulTrunkNegPhyTimer;
 /* TURNK LACP状态变化通知钩子函数*/
 extern TrunkLacpChangeNotify g_pfTrunkLacpNotify;
 
-/* Add for V2R3C07, by z00208058/w00207740, at 2012-4-16. 修改原因: TRUNK LACP下移需求开发 */
 extern ULONG g_ulTrunkNPMode ;
 
 extern ULONG g_ulTkParnterMacRefreshDropSwitch;

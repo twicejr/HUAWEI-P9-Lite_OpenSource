@@ -6,25 +6,7 @@ mSMf7J4FkTpfv/JzwTgKEHe/9N4yU5rqhEDlG50G/Vcvyq2txYFjqt/X5GLe/SnYbE4r/A06
 LABw5QT6aTBE2WLB1/meeWZmsf3FcL+w7ehf4hF56Qz5NmBbxluDT29RS/BrGg==*/
 /*--------------------------------------------------------------------------------------------------------------------------*/
 
-/******************************************************************************
 
-  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-    文 件 名   : vdmv300plus_hal.h
-    版 本 号   : 初稿
-    作    者   : 
-    生成日期   : 
-    最近修改   :
-    功能描述   : VDMV300plus硬件抽象
-     
-
- 修改历史   :
-    1.日    期 : 2009-03-04
-    作    者   : 
-    修改内容   : 
-
-******************************************************************************/
 
 #ifndef _DECPARAM_HEADER_
 #define _DECPARAM_HEADER_
@@ -329,10 +311,10 @@ typedef struct
 #define HEVC_PMV_TOP_ADDR_LEN                        (64*4*HEVC_MAX_PIX_WIDTH)
 #define HEVC_PMV_LEFT_ADDR_LEN                       (64*4*HEVC_MAX_PIX_HEIGHT)
 #define HEVC_RCN_TOP_ADDR_LEN                        (64*4*HEVC_MAX_PIX_WIDTH)
-#define HEVC_CA_MN_ADDR_LEN                          (1024)         //z00290437  20141016   H265协议CA_MN可减为1K
+#define HEVC_CA_MN_ADDR_LEN                          (1024)
 #define HEVC_ONEMB_PMV_COLMB_ADDR_LEN                (260*14)
 #define HEVC_PPFD_BUFFER_LEN                         (64*4*800)                      //8192 words
-#define HEVC_TILE_SEGMENT_INFO_LEN                	 (2048)     //(512*2+20*4+22*4=1192, 1024对齐)  z00290437  20141024
+#define HEVC_TILE_SEGMENT_INFO_LEN                	 (2048)
 #define HEVC_SAO_LEFT_ADDR_LEN                       (64*4*HEVC_MAX_PIX_HEIGHT)
 #define HEVC_DBLK_LEFT_ADDR_LEN                      (64*4*HEVC_MAX_PIX_HEIGHT)
 #define HEVC_SAO_TOP_ADDR_LEN                        (64*4*HEVC_MAX_PIX_WIDTH)

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dhcpc_pkt.c
-  版 本 号   : 初稿
-  作    者   : yuqingping(25027)
-  生成日期   : 2002年11月21日
-  最近修改   :
-  功能描述   : dhcpc模块的报文处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2002年11月21日
-    作    者   : yuqingping(25027)
-    修改内容   : 创建文件
-
-******************************************************************************/
 #include "dhcp_inc.h"
 #include "dhcpc_def.h"
 #include "dhcpc.h"
@@ -38,20 +21,7 @@
 
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetOneContextByteidc
- 功能描述  : 根据Teidc获取1个上下文。上下文存在则返回指向上下文的指针，不存在
-             则返回NULL。获取到的指针不需要释放。
- 输入参数  : ULONG ulTeidc,
- 输出参数  : 无
- 返 回 值  : SDB_GSPU_CONTEXT_S * 上下文的指针
- 调用函数  : SDB_GTPC_GetRelatedContextsByTeidc
- 被调函数  : DHCPC_Pkt_ProcDHCP
 
- 日    期   : 2011-07-20
- 作    者   : jixiaoming
-
-*****************************************************************************/
 SDB_GSPU_CONTEXT_S * DHCPC_GetOneContextByteidc(ULONG ulTeidc)
 {
     ULONG ulRet = 0;
@@ -67,19 +37,7 @@ SDB_GSPU_CONTEXT_S * DHCPC_GetOneContextByteidc(ULONG ulTeidc)
     return NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_PGWPerfStat
- 功能描述  : PGW性能统计
- 输入参数  : UCHAR ucMsgType
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 日    期   : 2011-06-22
- 作    者   : 纪晓明
-
-*****************************************************************************/
 VOID DHCPC_PGWPerfStat(UCHAR ucMsgType)
 {
     switch(ucMsgType)
@@ -138,19 +96,7 @@ VOID DHCPC_PGWPerfStat(UCHAR ucMsgType)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Pkt_CheckPkt
- 功能描述  : 处理收到的DHCP的报文，进行地址合法性检查
- 输入参数  : DHCP_S  *pstDHCPPkt
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 日    期   : 2010-09-10
- 作    者   : w00140934
-
-*****************************************************************************/
 ULONG DHCPC_Pkt_CheckPkt(DHCP_S  *pstDHCPPkt)
 {
     ULONG ulHostOrderAddress = 0;
@@ -190,22 +136,7 @@ ULONG DHCPC_Pkt_CheckPkt(DHCP_S  *pstDHCPPkt)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_TransMsisdnToCallFromID
- 功能描述  : MSISDN BCD->ASSIC
- 输入参数  : UCHAR *pucMsisdn
-             UCHAR *pucCallFromId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月27日
-    作    者   : caopu
-    修改内容   : 移植from gtpc
-
-*****************************************************************************/
 UCHAR DHCPC_TransMsisdnToCallFromID ( UCHAR *pucMsisdn, UCHAR *pucCallFromId )
 {
     int   i = 0;
@@ -236,22 +167,7 @@ UCHAR DHCPC_TransMsisdnToCallFromID ( UCHAR *pucMsisdn, UCHAR *pucCallFromId )
     return ucCallFromIdLen;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_FillClientIdOption
- 功能描述  : 封装dhcp clientid信元
- 输入参数  : UCHAR *pucOption
-             ULONG aulMsisdn[]
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月9日
-    作    者   : mengyuanhui 00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_FillClientIdOption(UCHAR *pucOption, ULONG aulMsisdn[])
 {
     UCHAR   szMSISDN[DHCP_MAX_MSISDN_STRING_LEN + 1] = {0};
@@ -280,21 +196,7 @@ ULONG DHCPC_FillClientIdOption(UCHAR *pucOption, ULONG aulMsisdn[])
     return ulMsisdnLen + 3;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Pkt_ProcDHCPRELEASE
- 功能描述  : 处理Release报文
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月23日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 ULONG DHCPC_Pkt_ProcDHCPRELEASE ( DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode )
 {
@@ -338,22 +240,7 @@ ULONG DHCPC_Pkt_ProcDHCPRELEASE ( DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_PktProc_RcvDHCP
- 功能描述  : 处理收到的DHCP的报文，进行分类
- 输入参数  : DHCP_S  *pstDHCPPkt
-             ULONG       ulOptionLen
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月22日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpAddr )
 {
     DHCPC_TEMPCTRLBLK   *pstHashItem = NULL;
@@ -405,10 +292,8 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
     if( NULL == pstDhcpCtrBlk )
     {
         DHCP_InternalBranchCounter(DCHP_INTERNAL_BRANCH_115);
-        /* zhangjinquan DTS2011072204836  对于spud板需要能够抓到异常的ack包 2012-01-09 start */
         if (VOS_TRUE == TrcGetTraceFlag(TRC_TYPE_V))
         {
-            /* z00175135 DTS2011120504839 全pclint修改 2012-02-18 start */
 
             DHCPC_OmVIfMsgTrc((ULONG)*(stDhcpOption.pucDHCPMsgType),
                                 TRC_DIRECTION_RIGHT_IN_UGW_ERR,
@@ -416,9 +301,7 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
                                 (USHORT)(DHCPC_PKT_FIXEDFIELD_LEN + ulOptionLen),
                                 LAP_IPV4,
                                 &ulSrvIpAddr);
-            /* z00175135 DTS2011120504839 全pclint修改 2012-02-18 end   */
         }
-        /* zhangjinquan DTS2011072204836  对于spud板需要能够抓到异常的ack包 2012-01-09 end   */
         DHCPC_DebugPrint(PTM_LOG_DEBUG,
                                 "\r\nDHCPC_Pkt_ProcDHCP get DhcpCtrlBlk error ulDHCPCtxIdx = %u!",ulDHCPCtxIdx );
         /*当前用户没有创建dhcp控制块，或者当前用户索引不正确*/
@@ -468,17 +351,14 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
         pstHashItem->usDhcpStatus= pstDhcpCtrBlk->usDhcpStatus;
         pstHashItem->ulUserIpAddr = ulUserIpAddr;
         pstHashItem->ulPdpIndex = pstDhcpCtrBlk->ulPDPIndex;    /*ST*/
-        /*added start by z00113478 把值都赋完整*/
         pstHashItem->ulDHCPCtlIdx = pstDhcpCtrBlk->ulDHCPCtxIdx;
         pstHashItem->ucUserType = pstDhcpCtrBlk->ucUserType;
         pstHashItem->aulMSISDN[0] = pstDhcpCtrBlk->aulMSISDN[0];
         pstHashItem->aulMSISDN[1] = pstDhcpCtrBlk->aulMSISDN[1];
         pstHashItem->aulIMSI[0] = pstDhcpCtrBlk->aulIMSI[0];
         pstHashItem->aulIMSI[1] = pstDhcpCtrBlk->aulIMSI[1];
-        /* BEGIN: Added by jixiaoming for  IMEI跟踪 at 2012-8-17 */
         pstHashItem->aulIMEI[0] = pstDhcpCtrBlk->aulIMEI[0];
         pstHashItem->aulIMEI[1] = pstDhcpCtrBlk->aulIMEI[1];
-        /* END: Added by jixiaoming for IMEI跟踪 at 2012-8-17 */
 
         pstHashItem->ulAgetIP = pstDhcpCtrBlk->aulAgentIpAddr[0];
         pstHashItem->usPoolIndex = pstDhcpCtrBlk->usPoolIndex;
@@ -519,10 +399,8 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
         /*用户表项中的ulXid与报文中是否相符*/
         if ( VOS_HTONL(pstDHCPPkt->ulXid) != pstHashItem->ulXid )
         {
-            /* zhangjinquan DTS2011072204836  对于spud板需要能够抓到异常的ack包 2012-01-09 start */
             if (VOS_TRUE == TrcGetTraceFlag(TRC_TYPE_V))
             {
-                /* z00175135 DTS2011120504839 全pclint修改 2012-02-18 start */
 
                 DHCPC_OmVIfMsgTrc((ULONG)*(stDhcpOption.pucDHCPMsgType),
                                     TRC_DIRECTION_RIGHT_IN_UGW_ERR,
@@ -530,9 +408,7 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
                                     (USHORT)(DHCPC_PKT_FIXEDFIELD_LEN + ulOptionLen),
                                     LAP_IPV4,
                                     &ulSrvIpAddr);
-                /* z00175135 DTS2011120504839 全pclint修改 2012-02-18 end   */
             }
-            /* zhangjinquan DTS2011072204836  对于spud板需要能够抓到异常的ack包 2012-01-09 end   */
             DHCP_InternalBranchCounter(DCHP_INTERNAL_BRANCH_121);
             DHCPC_DebugPrint(PTM_LOG_DEBUG, "\r\n DHCPC_Pkt_ProcDHCP Xid different!" );
             return VOS_ERR;
@@ -542,10 +418,8 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
 {
 //        ULONG ulRet = 0;
         SDB_GSPU_CONTEXT_S *pstContext = VOS_NULL_PTR;
-        /* BEGIN: Added for PN:全网跟踪  by LiHairong, 2010/4/8 */
         RM_SOCKET_PATH_S stPath = {0};
         S_OM_EMS_TRC_PARA stTrcPara = {0};
-        /* END:   Added for PN:全网跟踪  by LiHairong, 2010/4/8 */
         ULONG ulDirection = TRC_DIRECTION_RIGHT_IN_PGW;
 
         DHCPC_DebugPrint(PTM_LOG_DEBUG, "\r\n DHCPC_Pkt_ProcDHCP Trace !" );
@@ -580,7 +454,6 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
         /* DHCP信令消息V接口跟踪 */ /* 将TrcGetTraceFlag()调用放在跟踪函数之外,提升效率 */
         if (VOS_TRUE == TrcGetTraceFlag(TRC_TYPE_V))
         {
-            /* z00175135 DTS2011120504839 全pclint修改 2012-02-18 start */
 
             DHCPC_OmVIfMsgTrc((ULONG)*(stDhcpOption.pucDHCPMsgType),
                                 ulDirection,
@@ -588,10 +461,8 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
                                 (USHORT)(DHCPC_PKT_FIXEDFIELD_LEN + ulOptionLen),
                                 LAP_IPV4,
                                 &ulSrvIpAddr);
-            /* z00175135 DTS2011120504839 全pclint修改 2012-02-18 end   */
         }
 
-        /* BEGIN: Added for PN:全网跟踪  by LiHairong, 2010/4/10 */
         stPath.ulLocalAddr = pstHashItem->ulAgetIP;
         stPath.ulPeerAddr = ulSrvIpAddr;
         if (g_ucSoftParaDHCPKPN & ((UCHAR)0x02))
@@ -623,7 +494,6 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
         {
             UGW_OmEmsTrcMsgTrc(&stTrcPara,&stPath);
         }
-        /* END:   Added for PN:全网跟踪  by LiHairong, 2010/4/10 */
 
         /* PGW性能统计 */
         if ((E_NET_ELEMENT_ROLE_PGW == pstContext->ucUgwRole) || (E_NET_ELEMENT_ROLE_PGW_AND_SGW == pstContext->ucUgwRole))
@@ -632,8 +502,6 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
         }
 }
 
-    /* 移动到消息跟踪之后. Modified by jixiaoming at 2011-10-15 for DTS2011071801195 */
-    /* Added start by w00140934 at 2010-09-10 for 地址判断后移，续租时如果Server回复nak，地址无法释放 */
     if( DHCP_NAK != *( stDhcpOption.pucDHCPMsgType ) )
     {
         ulRet = DHCPC_Pkt_CheckPkt(pstDHCPPkt);
@@ -642,13 +510,11 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
             if ( VRP_YES == ucRenewFlg )
             {
                 DHCP_Free( DHCPC_HANDLE, pstDhcpCtrlBlkNode );
-                /* zhangjinquan DTS2011073004013 释放后置空 */
                 pstDhcpCtrlBlkNode = NULL;
             }
             return VOS_ERR;
         }
     }
-    /* Added start by w00140934 at 2010-09-10 for 地址判断后移，续租时如果Server回复nak，地址无法释放 */
 
     switch ( *( stDhcpOption.pucDHCPMsgType ) )
     {
@@ -682,29 +548,13 @@ ULONG  DHCPC_Pkt_ProcDHCP( DHCP_S  *pstDHCPPkt, ULONG ulOptionLen,ULONG ulSrvIpA
     if ( VRP_YES == ucRenewFlg )
     {
         DHCP_Free( DHCPC_HANDLE, pstDhcpCtrlBlkNode );
-        /* zhangjinquan DTS2011073004013 释放后置空 */
         pstDhcpCtrlBlkNode = NULL;
     }
     return VOS_OK;
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_PktProc_OFFER
- 功能描述  : 处理offer报文
- 输入参数  : DHCP_S  *pstDHCPPkt
-             DHCPC_INFO_S* pItemInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月23日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_Pkt_ProcDHCPOFFER ( DHCP_S *pstDHCPPkt, DHCP_OPTION_S *pstDhcpOption, DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode )
 {
     ULONG               ulRet = 0;
@@ -732,14 +582,12 @@ ULONG DHCPC_Pkt_ProcDHCPOFFER ( DHCP_S *pstDHCPPkt, DHCP_OPTION_S *pstDhcpOption
 
     /*报文中的内容保存到item中*/
     pItemInfo->ulUserIpAddr        = pstDHCPPkt->ulYiaddr;
-    /* z00175135 DTS2012051105936 dhcp分配地址和agent-ip相同时发送Decline 2012-07-03 start */
     if (pItemInfo->ulAgetIP == pstDHCPPkt->ulYiaddr)
     {
         DHCP_InternalBranchCounter(DCHP_INTERNAL_BRANCH_225);
         (VOID)DHCPC_Pkt_Send(DHCP_DECLINE, pItemInfo);
         return VOS_ERR;
     }
-    /* z00175135 DTS2012051105936 dhcp分配地址和agent-ip相同时发送Decline 2012-07-03 end   */
 
     if ( NULL != pstDhcpOption->pulLeaseTime )
     {
@@ -779,7 +627,6 @@ ULONG DHCPC_Pkt_ProcDHCPOFFER ( DHCP_S *pstDHCPPkt, DHCP_OPTION_S *pstDhcpOption
             VOS_MemCpy( ( VOID* )&pItemInfo->ulSecDNSIP,( VOID* )( pstDhcpOption->pulDNSIp + 1 ),4 );
 
             pItemInfo->ulSecDNSIP = *(pstDhcpOption->pulDNSIp + 1) ;
-            /* Added start by y00170683 at 2012-08-27 UGW10.0 for DTS2012082700731,主备相同时只携带主 */
             if (pItemInfo->ulPriDNSIP == pItemInfo->ulSecDNSIP)
             {
                 pItemInfo->ulSecDNSIP = 0;
@@ -832,22 +679,7 @@ ULONG DHCPC_Pkt_ProcDHCPOFFER ( DHCP_S *pstDHCPPkt, DHCP_OPTION_S *pstDhcpOption
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_PktProc_ACK
- 功能描述  : 处理ack报文
- 输入参数  : DHCP_S  *pstDHCPPkt
-             DHCPC_INFO_S* pItemInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月23日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_Pkt_ProcDHCPACK ( DHCP_S  *pstDHCPPkt, DHCP_OPTION_S *pstDhcpOption, DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode )
 {
     /*
@@ -914,7 +746,6 @@ ULONG DHCPC_Pkt_ProcDHCPACK ( DHCP_S  *pstDHCPPkt, DHCP_OPTION_S *pstDhcpOption,
             VOS_MemCpy( ( VOID* )&pItemInfo->ulSecDNSIP,( VOID* )( pstDhcpOption->pulDNSIp + 1 ),4 );
 
             pItemInfo->ulSecDNSIP = * ( pstDhcpOption->pulDNSIp + 1) ;
-            /* Added start by y00170683 at 2012-08-27 UGW10.0 for DTS2012082700731,主备相同时只携带主 */
             if (pItemInfo->ulPriDNSIP == pItemInfo->ulSecDNSIP)
             {
                 pItemInfo->ulSecDNSIP = 0;
@@ -1006,7 +837,6 @@ ULONG DHCPC_Pkt_ProcDHCPACK ( DHCP_S  *pstDHCPPkt, DHCP_OPTION_S *pstDhcpOption,
                 {
                     DHCP_InternalBranchCounter(DCHP_INTERNAL_BRANCH_136);
                     DHCPC_DebugPrint(PTM_LOG_DEBUG, "\r\n DHCPC_Pkt_ProcDHCPACK save SDB after renew err!" );
-                    /*add by z00113478 此时错误应把控制块删除*/
                     DHCPC_FreeDhcpCtrlBlk( pItemInfo->ulDHCPCtlIdx, pItemInfo->ulTEIDC, pItemInfo->ucUser, pItemInfo->ulPdpIndex );
                     return VOS_ERR;
                 }
@@ -1045,22 +875,7 @@ ULONG DHCPC_Pkt_ProcDHCPACK ( DHCP_S  *pstDHCPPkt, DHCP_OPTION_S *pstDhcpOption,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_PktProc_NACK
- 功能描述  : 处理nack报文
- 输入参数  : DHCP_S  *pstDHCPPkt
-             DHCPC_INFO_S* pItemInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月23日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_Pkt_ProcDHCPNACK ( DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode )
 {
     /*
@@ -1126,20 +941,7 @@ ULONG DHCPC_Pkt_ProcDHCPNACK ( DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SendMsgToLAP2
- 功能描述  : DHCPC向LAP2发送消息函数，根据单板类型选择不同的发送方式
- 输入参数  : DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode, UCHAR MsgType
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年11月25日
-    作    者   : zhangyang 00142225
-    修改内容   : 新生成函数
-*****************************************************************************/
 ULONG DHCPC_SendMsgToLAP2 ( DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode, UCHAR MsgType )
 {
     ULONG ulRetValue = 0;
@@ -1179,10 +981,8 @@ ULONG DHCPC_SendMsgToLAP2 ( DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode, UCHAR MsgTyp
     stLapDhcpcMsg.usPoolIndex = pItemInfo->usPoolIndex;
     stLapDhcpcMsg.ucSCID = DHCPC_SELF_CMPIDX_INSG;
     stLapDhcpcMsg.aulAgentIP[0] = pItemInfo->ulAgetIP;
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-14 start */
     /* 对于V4的发消息接口，直接将第二个ULONG置全F */
     stLapDhcpcMsg.aulAgentIP[1] = VOS_NULL_LONG;
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-14 end   */
     stLapDhcpcMsg.ulIndex = pItemInfo->ulPdpIndex;
     stLapDhcpcMsg.usDhcpGroupIndex = pItemInfo->usDhcpGroupIndex;
     stLapDhcpcMsg.ucMsgType = MsgType;
@@ -1213,23 +1013,7 @@ ULONG DHCPC_SendMsgToLAP2 ( DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode, UCHAR MsgTyp
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SendMsgToLAP2_WithOriginalMsg
- 功能描述  : DHCPC向LAP2发送消息函数，直接通过LAP2发送过来的消息构造消息内容，根据单板类型选择不同的发送方式
- 输入参数  : LAP2_DHCPC_MSG_S *pstLapDhcpcMsg, UCHAR ucMsgType
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年01月25日
-    作    者   : zhangjinquan z00175135
-    修改内容   : 新生成函数
-  2.日    期   : 2012年02月15日
-    作    者   : z00175135
-    修改内容   : 修改函数 删除无实际使用的变量
-*****************************************************************************/
 ULONG DHCPC_SendMsgToLAP2_WithOriginalMsg(LAP2_DHCPC_MSG_S *pstLapDhcpcMsg, UCHAR ucMsgType)
 {
     ULONG ulRet = 0;
@@ -1282,10 +1066,8 @@ ULONG DHCPC_SendMsgToLAP2_WithOriginalMsg(LAP2_DHCPC_MSG_S *pstLapDhcpcMsg, UCHA
     pstLapDhcpcMsgOut->ucAddressType = pstLapDhcpcMsg->ucAddressType;
     pstLapDhcpcMsgOut->usPoolIndex = pstLapDhcpcMsg->usPoolIndex;
     pstLapDhcpcMsgOut->ucSCID = DHCPC_SELF_CMPIDX_INSG;
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-14 start */
     pstLapDhcpcMsgOut->aulAgentIP[0] = pstLapDhcpcMsg->aulAgentIP[0];
     pstLapDhcpcMsgOut->aulAgentIP[1] = pstLapDhcpcMsg->aulAgentIP[1];
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-14 end   */
     pstLapDhcpcMsgOut->ulIndex = pstLapDhcpcMsg->ulIndex;
     pstLapDhcpcMsgOut->usDhcpGroupIndex = pstLapDhcpcMsg->usDhcpGroupIndex;
     /* 修改消息类型 */
@@ -1307,29 +1089,7 @@ ULONG DHCPC_SendMsgToLAP2_WithOriginalMsg(LAP2_DHCPC_MSG_S *pstLapDhcpcMsg, UCHA
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Pkt_Send
- 功能描述  : 发送DHCP报文
- 输入参数  : UCHAR ucPktType
-             DHCPC_INFO_S* pItemInfo
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月22日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-    ---------------------------------
-  2.VOS_ERR:发送失败，需要调用函数删临时控制块
-    ---------------------------------
-
-  3. 2007年11月21日 caopu 110903
-
-  发送失败，需要调用函数释放控制块结构内存
-
-*****************************************************************************/
 ULONG DHCPC_Pkt_Send( UCHAR ucPktType, DHCPC_TEMPCTRLBLK* pItemInfo )
 {
     LONG        lRet  = -1;
@@ -1447,7 +1207,6 @@ ULONG DHCPC_Pkt_Send( UCHAR ucPktType, DHCPC_TEMPCTRLBLK* pItemInfo )
                                 &(pItemInfo->ulSrvIp));
         }
 
-        /* BEGIN: Added for PN:全网跟踪  by LiHairong, 2010/4/10 */
         stPath.ulLocalAddr = pItemInfo->ulAgetIP;
         stPath.ulPeerAddr  = pItemInfo->ulSrvIp;
         if (g_ucSoftParaDHCPKPN & ((UCHAR)0x02))
@@ -1484,7 +1243,6 @@ ULONG DHCPC_Pkt_Send( UCHAR ucPktType, DHCPC_TEMPCTRLBLK* pItemInfo )
                 UGW_OmEmsTrcMsgTrc(&stTrcPara,&stPath);
             }
         }
-        /* END:   Added for PN:全网跟踪  by LiHairong, 2010/4/10 */
 
         /* PGW性能统计*/
         if ((E_NET_ELEMENT_ROLE_PGW == pItemInfo->ucRole) || (E_NET_ELEMENT_ROLE_PGW_AND_SGW == pItemInfo->ucRole))
@@ -1497,27 +1255,7 @@ ULONG DHCPC_Pkt_Send( UCHAR ucPktType, DHCPC_TEMPCTRLBLK* pItemInfo )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Pkt_EncapDiscovry
- 功能描述  : 封装discovery报文
- 输入参数  : IP_S *pstIpPkt
-             DHCPC_INFO_S* pItemInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月22日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-  ---------------------------------------------------------------------------
-  2. 2007年11月21日 caopu 110903
-    修改内容   : client identifier 字段改为携带 MSISDN
-      ---------------------------------------------------------------------------
-  3. 2010年08月07日 w00140934
-    修改内容   : 修改控制块索引与Xid的封装方式
-*****************************************************************************/
 VOID DHCPC_Pkt_EncapDiscovry ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo )
 {
     /*增加lease time选项的发送*/
@@ -1534,7 +1272,6 @@ VOID DHCPC_Pkt_EncapDiscovry ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo
         return;
     }
 
-    /* zhangjinquan DTS2011122601821 review问题-去掉多余的初始化处理 2012-01-02 */
     //PGP_MemZero(szChaddrr, sizeof(UCHAR)*6);
     //PGP_MemZero(szMSISDN, sizeof(UCHAR)*16);
     DHCPC_DebugPrint(PTM_LOG_DEBUG, "\r\n-->DHCPC_Pkt_EncapDiscovry()" );
@@ -1633,28 +1370,12 @@ VOID DHCPC_Pkt_EncapDiscovry ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Pkt_EncapRequest
- 功能描述  : 封装request报文
- 输入参数  : IP_S *pstIpPkt
-             DHCPC_INFO_S* pItemInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月22日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_Pkt_EncapRequest ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo )
 {
     DHCP_S        *pDhcp = NULL;
     ULONG        *pulMagicCookie = NULL;
     UCHAR        *pucDhcpOption = NULL;
-    /* zhangjinquan DTS2011122601821 review问题-去掉多余的初始化处理 2012-01-02 */
     UCHAR        szChaddrr[6] = {0};
     ULONG        ulClientIdLen = 0;
 
@@ -1681,7 +1402,6 @@ VOID DHCPC_Pkt_EncapRequest ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo 
     DHCP_FILLMESSAGETYPEOPTION( pucDhcpOption, DHCP_REQUEST );
 
     /*"client identifier" */
-    /* z00175135 DTS2012041905330 无msisdn的情况不携带 2012-04-20 start */
     if((!(g_ucSoftParaDHCPKPN & ((UCHAR)0x20)))
         && ((VOS_NULL_DWORD != pItemInfo->aulMSISDN[0])
             || (VOS_NULL_DWORD != pItemInfo->aulMSISDN[1])))
@@ -1692,7 +1412,6 @@ VOID DHCPC_Pkt_EncapRequest ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo 
             pucDhcpOption += ulClientIdLen;
         }
     }
-    /* z00175135 DTS2012041905330 无msisdn的情况不携带 2012-04-20 end   */
 
     switch ( pItemInfo->usDhcpStatus )
     {
@@ -1797,22 +1516,7 @@ VOID DHCPC_Pkt_EncapRequest ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo 
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Pkt_EncapDecline
- 功能描述  : 封装decline报文
- 输入参数  : IP_S *pstIpPkt
-             DHCPC_INFO_S* pItemInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月22日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_Pkt_EncapDecline( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo )
 {
     DHCP_S        *pDhcp = NULL;
@@ -1857,7 +1561,6 @@ VOID DHCPC_Pkt_EncapDecline( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo )
 
 
     /*"client identifier" */
-    /* z00175135 DTS2012041905330 无msisdn的情况不携带 2012-04-20 start */
     if ((!(g_ucSoftParaDHCPKPN & ((UCHAR)0x20)))
         && ((VOS_NULL_DWORD != pItemInfo->aulMSISDN[0])
             || (VOS_NULL_DWORD != pItemInfo->aulMSISDN[1])))
@@ -1868,7 +1571,6 @@ VOID DHCPC_Pkt_EncapDecline( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo )
             pucDhcpOption += ulClientIdLen;
         }
     }
-    /* z00175135 DTS2012041905330 无msisdn的情况不携带 2012-04-20 end   */
 
     DHCPC_SetTmpCtrlBlkSrvIp(pItemInfo);
 
@@ -1886,29 +1588,13 @@ VOID DHCPC_Pkt_EncapDecline( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo )
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Pkt_EncapRelease
- 功能描述  : 封装release报文
- 输入参数  : IP_S *pstIpPkt
-             DHCPC_INFO_S* pItemInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月22日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_Pkt_EncapRelease ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo )
 {
     DHCP_S       *pDhcp = NULL;
     ULONG        *pulMagicCookie = NULL;
     ULONG        ulXid = 0;
     UCHAR        *pucDhcpOption = NULL;
-    /* zhangjinquan DTS2011122601821 review问题-增加初始化处理 2012-01-02 */
     UCHAR        szChaddrr[6] = {0};
     ULONG        ulClientIdLen = 0;
 
@@ -1947,7 +1633,6 @@ VOID DHCPC_Pkt_EncapRelease ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo 
     DHCP_FILLMESSAGETYPEOPTION( pucDhcpOption, DHCP_RELEASE );
 
     /*"client identifier" */
-    /* z00175135 DTS2012041905330 无msisdn的情况不携带 2012-04-20 start */
     if((!(g_ucSoftParaDHCPKPN & ((UCHAR)0x20)))
         && ((VOS_NULL_DWORD != pItemInfo->aulMSISDN[0])
             || (VOS_NULL_DWORD != pItemInfo->aulMSISDN[1])))
@@ -1958,7 +1643,6 @@ VOID DHCPC_Pkt_EncapRelease ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo 
             pucDhcpOption += ulClientIdLen;
         }
     }
-    /* z00175135 DTS2012041905330 无msisdn的情况不携带 2012-04-20 end   */
 
     DHCPC_SetTmpCtrlBlkSrvIp(pItemInfo);
 
@@ -1971,23 +1655,7 @@ VOID DHCPC_Pkt_EncapRelease ( DHCP_S * pstDhcpPkt, DHCPC_TEMPCTRLBLK* pItemInfo 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_Pkt_GetTransId
- 功能描述  : 获取报文的Xid，
- 输入参数  : 无
- 输出参数  : 报文的xid
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月24日
-    作    者   : yuqingping(25027)
-    修改内容   : 新生成函数
-  ---------------------------------------------------------------------------
-  2. 2007年11月21日 caopu 110903
-    修改内容   : Xid 修改为 SCID(4 bit)+PDPIndex(24 bit)+DHCPTransID(4 bit)
-*****************************************************************************/
 ULONG  DHCPC_Pkt_GetTransId( DHCPC_TEMPCTRLBLK* pItemInfo )
 {
     ULONG ulXid = 0;
@@ -2029,23 +1697,7 @@ ULONG  DHCPC_Pkt_GetTransId( DHCPC_TEMPCTRLBLK* pItemInfo )
     return ulXid;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPR_RecordAllOption
- 功能描述  : 记录DHCP OPTION的指针
- 输入参数  : DHCPOPTION_S stDhcpOption
-             DHCP_S *pstDhcp
-             ULONG ulOptionLen
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2002年11月23日
-    作    者   : 马洪波
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG  DHCPR_RecordAllOption( DHCP_OPTION_S *pstDhcpOpt, DHCP_S *pstDhcp, ULONG ulOptionLen )
 {
     ULONG  ulMagicCookie = NULL;
@@ -2423,7 +2075,6 @@ optionnumchk:
     /*根据属性计数，判断有属性出现过两次，如果出现两次，出错*/
     for ( i = 0; ( i < DHCP_OPTION_COUNT ) && ( a_ucCount[i] <= 1 ); i++ ) ;
 
-    /* Deleted for DTS2014040204742 PS11.0 裁决合入 TR5 */
     /*
     if ( i < DHCP_OPTION_COUNT )
     {

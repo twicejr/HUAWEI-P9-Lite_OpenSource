@@ -1085,6 +1085,31 @@ int hi6421v500_coul_get_hltherm_flag(void)
         return 0;
     }
 }
+static void hi6421v500_coul_save_last_soc(short soc)
+{
+    short val = soc;
+    HI6421V500_REG_WRITE(HI6421V500_SAVE_LAST_SOC, SAVE_LAST_SOC_FALG | (val & SAVE_LAST_SOC));
+}
+
+static void hi6421v500_coul_get_last_soc(short *soc)
+{
+    short val = 0;
+    val = HI6421V500_REG_READ(HI6421V500_SAVE_LAST_SOC );
+    *soc = val & SAVE_LAST_SOC;
+}
+
+static void hi6421v500_coul_clear_last_soc_flag(void)
+{
+    HI6421V500_REG_WRITE(HI6421V500_SAVE_LAST_SOC, 0);
+    HI6421V500_COUL_ERR("%s clear last soc flag!!!\n", __FUNCTION__);
+}
+
+static void hi6421v500_coul_get_last_soc_flag(bool *valid)
+{
+    bool val;
+    val = SAVE_LAST_SOC_FALG & HI6421V500_REG_READ(HI6421V500_SAVE_LAST_SOC);
+    *valid = val;
+}
 
 #ifdef CONFIG_SYSFS
 
@@ -1182,6 +1207,10 @@ struct coul_device_ops hi6421v500_coul_ops =
     .enter_eco                    = hi6421v500_coul_enter_eco,
     .exit_eco                     = hi6421v500_coul_exit_eco,
     .calculate_eco_leak_uah       = hi6421v500_coul_calculate_eco_leak_uah,
+    .get_last_soc                 = hi6421v500_coul_get_last_soc,
+    .save_last_soc                = hi6421v500_coul_save_last_soc,
+    .get_last_soc_flag            = hi6421v500_coul_get_last_soc_flag,
+    .clear_last_soc_flag           = hi6421v500_coul_clear_last_soc_flag,
 };
 
 

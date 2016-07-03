@@ -49,15 +49,7 @@ extern "C"{
 /*****************************************************************************
   2 The Define Of The Gloabal Variable
 *****************************************************************************/
-/*****************************************************************************
- Variable Name       : g_astHsmSessionDeactReasonProcTbl
- Description         : Session deactive reason process table
-                       如果是ABORT原因值，不在deactive结束之后马上做重试处理，
-                       在缓存处理完之后根据不同场景做重试处理
- 1.DATE              : 2015-05-29
-   AUTHOR            : y00174758
-   Modification      : Create
-*****************************************************************************/
+
 CNAS_HSM_SESSION_DEACT_REASON_PROC_TBL_STRU g_astHsmSessionDeactReasonProcTbl[] =
 {
     {   CNAS_HSM_SESSION_DEACT_REASON_SCP_NEG_FAIL,
@@ -563,23 +555,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdIratFromLteNtf_Inactive(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsmHrpdPaRatModeNtf_Inactive
-Description     :   process ID_CNAS_HSM_HSM_HRPD_PA_RAT_MODE_NTF msg from cache queue
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED-------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED---the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-06-11
-    Author         : x00314862
-    Modify content : Create
-2)  Date           : 2015-08-15
-    Author         : y00307564
-    Modify content : DTS2015081302622修改函数名
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsmHrpdPaRatModeNtf_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -719,25 +695,7 @@ VOS_UINT32 CNAS_HSM_RcvHsmSessionActiveResultInd_Inactive(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsmSessionCloseInd_Inactive
-Description     :   Inactive状态处理内部消息: ID_CNAS_HSM_HSM_SESSION_CLOSE_IND
-                    在子状态收到网络发的SessionClose消息，在预处理会先回复SessionClose，
-                    然后缓存该消息，退出当前的状态机，开始HSM deacitve流程，deactive完成之后，
-                    在inactive状态处理该内部消息
-                    触发该内部消息的场景: 1) 网络下发SessionClose
-                                          2) 收到ID_CAS_CNAS_HRPD_SESSION_NEG_RSLT_IND消息
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED------------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED--------the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-06-11
-    Author         : y00307564
-    Modify content : Create
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsmSessionCloseInd_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -988,24 +946,7 @@ VOS_UINT32 CNAS_HSM_GetNoMonitorDistance_Open(
     return usNoMonitorDistance;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_IsNeedStartDeactProcedure
-Description     :   judge whether need start deact procedure or not when AT receives an InitializationState.NetworkAcquire
-                    indication followed by an OverheadMessages.Updated indication
-Input parameters:   VOS_VOID
-Outout parameters:  None
-Return Value    :   VOS_UINT8
 
-
-Modify History  :
-1)  Date           : 2015-06-06
-    Author         : m00312079
-    Modify content : Create
-
-2.  日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_UINT8 CNAS_HSM_IsNeedStartDeactProcedure(VOS_VOID)
 {
     CNAS_HSM_UATI_INFO_STRU                               *pstUatiInfo;
@@ -1112,36 +1053,7 @@ VOS_VOID CNAS_HSM_HandleMonitorDistance_Open(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsdOhmInd_Open
-Description     :   open state process HSD overhead message
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED------------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED--------the current event need to further process
 
-
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-05-29
-    Author         : m00312079
-    Modify content : add process overhead message in open state
-3)  Date           : 2015-06-02
-    Author         : t00323010
-    Modify content : Iteration 12: add quit Slave State first rcv OHM msg
-4)  Date           : 2015-08-20
-    Author         : t00323010
-    Modify content : DTS2015081904804 clear coverity
-5)  Date           : 2015-09-18
-    Author         : m00312079
-    Modify content : DTS2015091705555:为了通过RF和CCF2.2.2.8用例，只要subnet发生变化就启动UATI申请流程
-6)  Date           : 2015-09-23
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): log session operate ctrl info
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsdOhmInd_Open(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1218,18 +1130,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdOhmInd_Open(
     }
     else
     {
-        /*****************************************************************************************
-          C.S0024-A V3.0 7.3.7.1.6.1:
-          If the access terminal receives a RouteUpdate.IdleHO indication or a ConnectedState.ConnectionClosed,
-          and then it receives an OverheadMessages.Updated indication,
-          access terminal shall send a UATIRequest, if both of the following two conditions are true
-          1: the subnet associated with UATI and the current subnet are different;
-          2: supportSecondaryColorCodes is set to 0x00 or UATIColorCode is different from all of the
-             secondaryColorCode values provided as public data by the Overhead Messages protocol
-          完全按照协议处理CCF用例C.S0038 2.2.2.8将会Failed并且RF自动化测试(DTS2015091705555)也不会通过。
-          因此如果CNAS_HSM_GetStartUatiReqAfterSectorIdChgFlg()返回TRUE(NV可控)，则CNAS参照标杆处理，
-          不判断CNAS_HSM_RCV_OHM_SCENE_FOLLOW_CONN_CLOSE 和 CNAS_HSM_RCV_OHM_SCENE_FOLLOW_IDLE_HO两个条件。
-          *****************************************************************************************/
+        
 
         if ((VOS_TRUE == CNAS_HSM_GetStartUatiReqAfterSectorIdChgFlg())
          || (CNAS_HSM_RCV_OHM_SCENE_FOLLOW_IDLE_HO    == enRcvOhmScene)
@@ -1269,27 +1170,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdOhmInd_Open(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_ProcAmpMsg_Open
-Description     :   Process the AMP message in Open
-Input parameters:   CTTF_CNAS_HRPD_SNP_DATA_IND_STRU    *pstSnpDataInd
-Outout parameters:  None
-Return Value    :   VOS_UINT8;
 
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-05-31
-    Author         : m00312079
-    Modify content : process UATI assignment in open state
-3)  Date           : 2015-06-08
-    Author         : y00346957
-    Modify content : UATI assign成功后将状态切换至uati comp wait snp data cnf
-4)  Date           : 2015-06-18
-    Author         : t00323010
-    Modify content : Iteration 12: add session begin ntf send
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_ProcAmpMsg_Open(
     CTTF_CNAS_HRPD_SNP_DATA_IND_STRU                       *pstSnpDataInd
 )
@@ -1372,35 +1253,7 @@ VOS_UINT32 CNAS_HSM_RcvCttfSnpDataInd_Open(
     return enRlst;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsmSessionActiveResultInd_Open
-Description     :   open state process HSM session active result indication message
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED------------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED--------the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-05-30
-    Author         : y00174758
-    Modify content : Add handle of different scp reason
-3)  Date           : 2015-06-02
-    Author         : y00346957
-    Modify content : set session neg flag
-4)  Date           : 2015-06-03
-    Author         : a00295761
-    Modify content : Register traffic flow monitor callback function
-5)  Date           : 2015-08-20
-    Author         : t00323010
-    Modify content : DTS2015081904804 clear coverity
-6)  Date           : 2015-09-18
-    Author         : m00312079
-    Modify content : DTS2015091604029: session协商成功后，将session seed写入nv
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsmSessionActiveResultInd_Open(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1520,30 +1373,7 @@ VOS_UINT32 CNAS_HSM_RcvHsmSessionDeactiveResultInd_Open(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvUatiRequestResultInd_Open
-Description     :   open state process uati request result indication message
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED------------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED--------the current event need to further process
 
-
-Modify History  :
-1)  Date           : 2015-02-07
-    Author         : y00174758
-    Modify content : Create
-2)  Date           : 2015-05-31
-    Author         : m00312079
-    Modify content : add process uati assignment in open state
-3)  Date           : 2015-06-02
-    Author         : y00346957
-    Modify content : set session neg flag
-4)  Date           : 2015-11-27
-    Author         : m00312079
-    Modify content : DTS2015111102189:按照C.S0024协议要求，UATI req只允许在AC上发送，CNAS需添加保护
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvUatiRequestResultInd_Open(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1656,24 +1486,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdHrpdPilotSearchFailNtf_Open(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvApsOrigReq_Open
-Description     :   process the Aps orig req in open state
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED------------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED--------the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-05-31
-    Author         : m00312079
-    Modify content : Create
-
-  2.日    期   : 2015年10月22日
-    作    者   : Y00213812
-    修改内容   : 删除为DTS2015081101470打的桩
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvApsOrigReq_Open(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2039,27 +1852,7 @@ VOS_VOID CNAS_HSM_StartSessionActiveProcedure_L1Main(
     CNAS_HSM_SndInternalSessionActiveReq(enSessionActiveReason);
 }
 
-/*****************************************************************************
-Function Name   :  CNAS_HSM_StartSessionDeactiveProcedure_L1Main
-Description     :  HSM start session deactive procedure
-Input parameters:  enReason -- session deactive reasons
-Outout parameters: VOS_VOID
-Return Value    :  VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-02-07
-    Author         : w00176964
-    Modify content : Create
-2)  Date           : 2015-05-30
-    Author         : y00174758
-    Modify content : Change session deacitve reason to session close reason
-3)  Date           : 2015-10-19
-    Author         : m00312079
-    Modify content : DTS2015101606193,session无效时，将keep alive的nv信息及全局变量清空(NVID=2029)
-4)  Date           : 2015-01-05
-    Author         : w00351686
-    Modify content : DTS2015110200394 del UatiComplete SubState modify
-*****************************************************************************/
 /* Change session deacitve reason to session close reason */
 VOS_VOID CNAS_HSM_StartSessionDeactiveProcedure_L1Main(
     CNAS_HSM_SESSION_DEACT_REASON_ENUM_UINT8                enSessionDeactReason
@@ -2428,23 +2221,7 @@ VOS_UINT8 CNAS_HSM_IsNeedSndUatiReq(VOS_VOID)
 
 }
 
-/*****************************************************************************
-Function Name   :  CNAS_HSM_IsSubnetChanged
-Description     :  HSM check whether the subnet changed or not
-Input parameters:  VOS_VOID
-Outout parameters: VOS_VOID
-Return Value    :  VOS_UINT8
 
-Modify History  :
-1)  Date           : 2015-05-31
-    Author         : m00312079
-    Modify content : Create
-
-2.  日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-
-*****************************************************************************/
 VOS_UINT8 CNAS_HSM_IsSubnetChanged(VOS_VOID)
 {
     CNAS_HSM_UATI_INFO_STRU            *pstUatiInfo;
@@ -2504,21 +2281,7 @@ VOS_UINT8 CNAS_HSM_IsSubnetChanged(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_IsCardChanged
-Description     :   Check card changed
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   None
 
-Modify History  :
-1)  Date           : 2015-06-08
-    Author         : y00307564
-    Modify content : Create
-2)  Date           : 2015-10-12
-    Author         : y00307564
-    Modify content : DTS2015082403731修改，增加判断ESN_MEID_ME和ppp an鉴权用户名判断逻辑
-*****************************************************************************/
 VOS_UINT8  CNAS_HSM_IsCardChanged(VOS_VOID)
 {
     VOS_UINT8                                              *pucCardIccId         = VOS_NULL_PTR;
@@ -3709,22 +3472,7 @@ VOS_VOID CNAS_HSM_ProcMsgForFirstSysAcq_L1Main(VOS_VOID)
     return ;
 }
 
-/*****************************************************************************
-Function Name   :  CNAS_HSM_ProcSessionRecoverySucc_L1Main
-Description     :  The function is used to proc session recovery succ in inactive or slave state.
-Input parameters:  VOS_VOID
-Outout parameters: VOS_VOID
-Return Value    :  VOS_VOID
 
-
-Modify History  :
-1)  Date           : 2015-06-25
-    Author         : w00176964
-    Modify content : Create
-2)  Date           : 2015-09-18
-    Author         : m00312079
-    Modify content : DTS2015091604029:将恢复后的session seed下发给CAS
-*****************************************************************************/
 
 VOS_VOID CNAS_HSM_ProcSessionRecoverySucc_L1Main(VOS_VOID)
 {

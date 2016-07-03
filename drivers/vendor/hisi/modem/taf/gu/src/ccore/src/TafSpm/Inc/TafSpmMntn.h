@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmMntn.h
-  版 本 号   : 初稿
-  作    者   : W00176964
-  生成日期   : 2013年5月8日
-  最近修改   :
-  功能描述   : TafSpmMntn.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月8日
-    作    者   : W00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAF_SPM_MNTN_H__
 #define __TAF_SPM_MNTN_H__
@@ -28,12 +11,10 @@
 #include "UsimPsInterface.h"
 #include  "TafMntn.h"
 
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-22, begin */
 #if (FEATURE_IMS == FEATURE_ON)
 #include "TafSdcCtx.h"
 #include "SpmImsaInterface.h"
 #endif
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-22, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -54,22 +35,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : TAF_SPM_MNTN_MSG_ID_ENUM
- 结构说明  : MMC发送给OM的可维可测消息
-  1.日    期   : 2013年5月16日
-    作    者   : s46746
-    修改内容   : SPM的可维可测消息ID枚举
-  2.日    期   : 2013年6月17日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  3.日    期   : 2013年10月15日
-    作    者   : y00245242
-    修改内容   : 为VOLTE开发增加消息
-  4.日    期   : 2014年2月10日
-    作    者   : y00245242
-    修改内容   : 增加重拨消息
-*****************************************************************************/
+
 enum TAF_SPM_MNTN_MSG_ID_ENUM
 {
     TAF_SPM_LOG_FSM_INFO_IND                              = ID_TAF_MNTN_MSG_SPM_BASE,  /*_H2ASN_MsgChoice TAF_SPM_LOG_FSM_INFO_STRU */
@@ -106,16 +72,7 @@ typedef VOS_UINT32 TAF_SPM_MNTN_MSG_ID_ENUM_UINT32;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : TAF_SPM_LOG_FSM_INFO_STRU
- 结构说明  : SPM状态机可维可测消息
 
- 修改记录  :
- 1.日    期   : 2013年05月16日
-   作    者   : s46746
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -126,18 +83,7 @@ typedef struct
     VOS_UINT8                           aucRsv[1];
 }TAF_SPM_LOG_FSM_INFO_STRU;
 
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-15, begin */
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, begin */
-/*****************************************************************************
- 结构名    : TAF_SPM_LOG_SRV_DOMAIN_SEL_QUEUE_INFO_STRU
- 结构说明  : SPM业务域选择可维可测消息
 
- 修改记录  :
- 1.日    期   : 2013年10月15日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -149,25 +95,9 @@ typedef struct
     VOS_UINT8                           ucMaxSsMsgQueueNum;
     VOS_UINT8                           aucRsv[2];
 }TAF_SPM_LOG_SRV_DOMAIN_SEL_QUEUE_INFO_STRU;
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, end */
 
 #if ( FEATURE_ON == FEATURE_IMS )
-/*****************************************************************************
- 结构名    : TAF_SPM_SRV_DOMAIN_SEL_NV_INFO_STRU
- 结构说明  : 业务域选择时与NV相关信息
 
- 修改记录  :
- 1.日    期   : 2013年10月22日
-   作    者   : y00245242
-   修改内容   : 新增
- 2.日    期   : 2014年2月10日
-   作    者   : y00245242
-   修改内容   : 增加漫游NV控制信息
-  3.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为DTS2014040203732修改，增加NV控制USSD业务域选择；USSD业务NV打开，
-                 进行正常域选择，否则选择CS域
-*****************************************************************************/
 typedef struct
 {
     TAF_SDC_VOICE_DOMAIN_ENUM_UINT32    enVociceDomain;             /* voice domain prefer */
@@ -188,16 +118,7 @@ typedef struct
 
 }TAF_SPM_SRV_DOMAIN_SEL_NV_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SPM_SRV_DOMAIN_SEL_NW_INFO_STRU
- 结构说明  : 业务域选择时与网络相关信息
 
- 修改记录  :
- 1.日    期   : 2013年10月22日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     TAF_SDC_NW_IMS_VOICE_CAP_ENUM_UINT8   enNwImsVoCap;             /* IMS voice capability supported by network */
@@ -209,16 +130,7 @@ typedef struct
     VOS_UINT8                             aucReserved[3];
 }TAF_SPM_SRV_DOMAIN_SEL_NW_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SPM_SRV_DOMAIN_SEL_SRV_STATUS_INFO_STRU
- 结构说明  : 业务域选择时与服务状态相关的信息
 
- 修改记录  :
- 1.日    期   : 2013年10月22日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     IMSA_NORMAL_REG_STATUS_ENUM_UINT32  enImsRegStatus;             /* IMS register status */
@@ -228,16 +140,7 @@ typedef struct
     VOS_UINT8                           aucReserved[1];
 }TAF_SPM_SRV_DOMAIN_SEL_SRV_STATUS_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SPM_SRV_DOMAIN_SEL_SRV_EXIST_INFO_STRU
- 结构说明  : 业务域选择时，与业务存在相关信息
 
- 修改记录  :
- 1.日    期   : 2013年10月22日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCsCallExistFlag;          /* cs call exist */
@@ -250,16 +153,7 @@ typedef struct
     VOS_UINT8                           aucReserved[1];
 }TAF_SPM_SRV_DOMAIN_SEL_SRV_EXIST_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SPM_LOG_SRV_DOMAIN_SEL_PRECONDITION_INFO_STRU
- 结构说明  : SPM业务域选择可维可测消息
 
- 修改记录  :
- 1.日    期   : 2013年10月15日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -269,16 +163,7 @@ typedef struct
     TAF_SPM_SRV_DOMAIN_SEL_SRV_EXIST_INFO_STRU              stSrvExistInfo;
 }TAF_SPM_LOG_SRV_DOMAIN_SEL_PRECONDITION_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SPM_LOG_SRV_DOMAIN_SEL_REDIAL_INFO_IND_STRU
- 结构说明  : SPM业务域选择换域重拨可维可测消息
 
- 修改记录  :
- 1.日    期   : 2014年2月10日
-   作    者   : y00245242
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -294,16 +179,7 @@ typedef struct
     
 }TAF_SPM_LOG_SRV_DOMAIN_SEL_REDIAL_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SPM_LOG_REDIAL_CALL_INFO_IND_STRU
- 结构说明  : SPM业务域选择换域重拨可维可测消息
 
- 修改记录  :
- 1.日    期   : 2014年06月06日
-   作    者   : s00217060
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -313,7 +189,6 @@ typedef struct
 }TAF_SPM_LOG_REDIAL_CALL_INFO_IND_STRU;
 
 #endif
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-15, end */
 
 /*****************************************************************************
   8 UNION定义
@@ -328,16 +203,11 @@ typedef struct
 /*****************************************************************************
   10 函数声明
 *****************************************************************************/
-/* Deleted by wx270776 for OM融合, 2015-7-16, begin */
-/* Deleted by wx270776 for OM融合, 2015-7-16, end */
 
 
 VOS_VOID  TAF_SPM_LogFsmInfo(VOS_VOID);
 
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-15, begin */
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, begin */
 VOS_VOID  TAF_SPM_LogSrvDomainSelQueueInfo(VOS_VOID);
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, end */
 #if ( FEATURE_ON == FEATURE_IMS )
 VOS_VOID  TAF_SPM_LogSrvDomainSelPreconditionInfo(VOS_VOID);
 
@@ -348,7 +218,6 @@ VOS_VOID TAF_SPM_LogRedialCallInfo(
 );
 
 #endif
-/* Added by y00245242 for VoLTE_PhaseII 项目, 2013-10-15, end */
 
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()

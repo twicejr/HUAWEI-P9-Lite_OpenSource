@@ -2317,7 +2317,6 @@ s32 bsp_socp_set_timeout (SOCP_TIMEOUT_EN_ENUM_UIN32 eTmOutEn, u32 u32Timeout)
 
 #if (FEATURE_SOCP_DECODE_INT_TIMEOUT == FEATURE_ON)
             /* 传输超时时间设置不需要涉及通道ID*/
-            /*2014年2月22日15:13:46 l00258701 modify begin*/
             /*
                             当GLOBAL_CTRL[1]=0, bit[7:0]有效
                             当GLOBAL_CTRL[1]=1, bit[31:0]有效
@@ -2339,13 +2338,11 @@ s32 bsp_socp_set_timeout (SOCP_TIMEOUT_EN_ENUM_UIN32 eTmOutEn, u32 u32Timeout)
                 /*SOCP_REG_SETBITS(SOCP_REG_INTTIMEOUT, 0, 31, u32Timeout);*/
                 SOCP_REG_WRITE(SOCP_REG_INTTIMEOUT, u32Timeout);
             }
-             /*2014年2月22日15:13:46 l00258701 modify end*/
 #else
 			SOCP_REG_WRITE(SOCP_REG_INTTIMEOUT, u32Timeout);
 #endif
             break;
         }
-        /*2014年2月22日15:13:46 l00258701 modify begin*/
 #if (FEATURE_SOCP_DECODE_INT_TIMEOUT == FEATURE_ON)
         case SOCP_TIMEOUT_DECODE_TRF:
         {
@@ -2359,7 +2356,6 @@ s32 bsp_socp_set_timeout (SOCP_TIMEOUT_EN_ENUM_UIN32 eTmOutEn, u32 u32Timeout)
 			break;
         }
 #endif
-        /*2014年2月22日15:13:46 l00258701 modify end*/
         default:
         {
             socp_printf("SetTimeout: invalid timeout choice type!\n");
@@ -4946,20 +4942,7 @@ void socp_logbuffer_cfgshow(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : socp_logbuffer_memremap
- 功能描述  : 用于LOG延迟写入时把数据从SOCP通道的缓冲中发送到VCOM端口把实地址转换成虚地址
-             底软实现，仅做移植到COMM
- 输入参数  : phys_addr:需要REMAP的物理地址
-             size:     需要REMAP的数据大小
- 输出参数  : 无
- 返 回 值  : REMAP后的虚拟地址
 
- 修改历史      :
-  1.日    期   : 2014年8月11日
-    作    者   : h59254
-    修改内容   : V8R1 LOG延迟写入新增
-*****************************************************************************/
 void *socp_logbuffer_memremap(unsigned long phys_addr, size_t size)
 {
     int i;

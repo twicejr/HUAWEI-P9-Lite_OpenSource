@@ -174,8 +174,15 @@ static int maxim_do_ioctl(struct file *file, unsigned int cmd, void __user *p, i
     unsigned int value = 0;
     struct maxim_reg_ops reg_val;
     unsigned int __user *pUser = (unsigned int __user *) p;
-    struct list_head *maxim = (struct list_head *)file->private_data;
+    struct list_head *maxim = NULL;
     hwlog_info("%s: enter, cmd:%x, maxim_num:%d\n", __func__, cmd, get_maxim_num());
+
+    if(NULL == file)
+    {
+        return -EFAULT;
+    }
+
+    maxim = (struct list_head *)file->private_data;
 
     switch (cmd) {
         case MAXIM_GET_VERSION:
@@ -190,21 +197,33 @@ static int maxim_do_ioctl(struct file *file, unsigned int cmd, void __user *p, i
             ret |= put_user(value, pUser);
             break;
 
-        case MAXIM_GET_REG_VAL:
+/*        case MAXIM_GET_REG_VAL:
+            if(NULL == pUser)
+            {
+                return -EFAULT;
+            }
             CHECK_IOCTL_OPS(max_io_ops, maxim_get_reg_val);
             ret = max_io_ops->maxim_get_reg_val(maxim, MAXIM_L, &reg_val, pUser);
             break;
 
         case MAXIM_R_GET_REG_VAL:
+            if(NULL == pUser)
+            {
+                return -EFAULT;
+            }
             CHECK_IOCTL_OPS(max_io_ops, maxim_get_reg_val);
             ret = max_io_ops->maxim_get_reg_val(maxim, MAXIM_R, &reg_val, pUser);
             break;
 
         case MAXIM_SET_REG_VAL:
+            if(NULL == pUser)
+            {
+                return -EFAULT;
+            }
             CHECK_IOCTL_OPS(max_io_ops, maxim_set_reg_val);
             ret = max_io_ops->maxim_set_reg_val(maxim, &reg_val, pUser);
             break;
-
+*/
         case MAXIM_POWER_ON:
             CHECK_IOCTL_OPS(max_io_ops, maxim_digital_mute);
             ret = max_io_ops->maxim_digital_mute(maxim, MUTE_ON);
@@ -234,7 +253,7 @@ static int maxim_do_ioctl(struct file *file, unsigned int cmd, void __user *p, i
             CHECK_IOCTL_OPS(max_io_ops, maxim_single_digital_mute);
             ret = max_io_ops->maxim_single_digital_mute(maxim, MAXIM_R, MUTE_OFF);
             break;
-
+/*
         case MAXIM_GET_VOLUME:
             CHECK_IOCTL_OPS(max_io_ops, maxim_get_volume);
             ret = max_io_ops->maxim_get_volume(maxim, MAXIM_L, &value);
@@ -253,7 +272,7 @@ static int maxim_do_ioctl(struct file *file, unsigned int cmd, void __user *p, i
             ret |= max_io_ops->maxim_set_volume(maxim, value);
             hwlog_info("%s:  maxim smartpa set volume: 0x%x\n", __func__, value);
             break;
-
+*/
         case MAXIM_GET_DAICLOCK:
             CHECK_IOCTL_OPS(max_io_ops, maxim_get_daiclock);
             ret = max_io_ops->maxim_get_daiclock(maxim, MAXIM_L, &value);
@@ -272,7 +291,7 @@ static int maxim_do_ioctl(struct file *file, unsigned int cmd, void __user *p, i
             hwlog_info("%s: maxim smartpa set daiclock: %d\n", __func__, value);
             ret |= max_io_ops->maxim_set_daiclock(maxim, value);
             break;
-        case MAXIM_GET_BOOSTVOLT:
+/*        case MAXIM_GET_BOOSTVOLT:
             CHECK_IOCTL_OPS(max_io_ops, maxim_get_boostvolt);
             ret = max_io_ops->maxim_get_boostvolt(maxim, MAXIM_L, &value);
             ret |= put_user(value, pUser);
@@ -346,6 +365,10 @@ static int maxim_do_ioctl(struct file *file, unsigned int cmd, void __user *p, i
             hwlog_info("%s: maxim smartpa set gainramp: 0x%x\n",__func__, value);
             ret |= max_io_ops->maxim_set_gainramp(maxim, value);
             break;
+*/  
+      default:
+            hwlog_err("%s: cmd input is not support\n",__func__);
+            return -EFAULT;
     }
 
     if(ret && !dsm_client_ocuppy(maxim_dclient))

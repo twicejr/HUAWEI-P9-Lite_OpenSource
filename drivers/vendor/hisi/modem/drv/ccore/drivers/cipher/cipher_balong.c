@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名 :  cipher_balong.c
-*
-*   作    者 :  w00228729
-*
-*   描    述 :  cipher功能实现
-*
-*   修改记录 :  2013年03月12日  v1.00  w00228729 创建
-*************************************************************************/
+
 #include <of.h>
 #include <osl_common.h>
 #include <osl_cache.h>
@@ -421,6 +411,9 @@ static void fifo_move_bd_widx(struct fifo_ctl * f_ctl, unsigned int nn)
 
 	f_ctl->write_idx += nn;
 	f_ctl->write_idx %= f_ctl->elem_cnt;
+	if (!(f_ctl->write_idx)) {
+		cipher_record_chn_srtatus(f_ctl->chn_id, CIPHER_SW, __LINE__);
+	}
 
 	spin_unlock_irqrestore(&f_ctl->lock, flag);
 }
@@ -549,6 +542,31 @@ static inline void cipher_move_rdq_r_ptr(struct cipher_chn_ctl * chn_ctl)
 	writel(r_ptr, cipher_reg_base + CIPHER_CHNRDQ_RWPTR(chn_ctl->chn_id));
 }
 
+void cipher_record_chn_srtatus(unsigned int chn_id, unsigned int own,
+													unsigned int line)
+{
+	struct cipher_chn_ctl *cur_chn;
+	unsigned int ridx, widx;
+	struct cipher_qstatus *status;
+
+	cur_chn = cipher_module_ctl.cipher_chn + chn_id;
+	status = cur_chn->q_status + (cur_chn->q_idx % CIPHER_QSTATUS_DEPTH);
+
+	if (own == CIPHER_SW) {
+		ridx = cur_chn->bd_fifo.read_idx;
+		widx = cur_chn->bd_fifo.write_idx;
+	} else {
+		cipher_get_bdq_rwptr(cur_chn, &ridx, &widx);
+	}
+
+	status->own = own;
+	status->line = line;
+	status->bd_ridx = ridx;
+	status->bd_widx = widx;
+	status->time_stamp = bsp_get_slice_value();
+	cur_chn->q_idx++;
+}
+
 static inline int cipher_move_bdq_w_ptr(struct cipher_chn_ctl * chn_ctl)
 {
 	unsigned int reg_rwptr;
@@ -566,6 +584,7 @@ static inline int cipher_move_bdq_w_ptr(struct cipher_chn_ctl * chn_ctl)
 		int ret;
 		reg_rwptr = chn_ctl->bd_fifo.write_idx & CIPHER_WMASK;
 		ret = bsp_psam_move_cbdq_ptr(reg_rwptr);
+		cipher_record_chn_srtatus(chn_ctl->chn_id, CIPHER_HW, __LINE__);
 		spin_unlock_irqrestore(&f_ctl->lock, flag);
 
 		return ret;
@@ -574,6 +593,7 @@ static inline int cipher_move_bdq_w_ptr(struct cipher_chn_ctl * chn_ctl)
 		reg_rwptr = (reg_rwptr & ~ CIPHER_WMASK);
 		reg_rwptr = reg_rwptr | (chn_ctl->bd_fifo.write_idx & CIPHER_WMASK);
 		writel(reg_rwptr, cipher_reg_base + CIPHER_CHNBDQ_RWPTR(chn_id));
+		cipher_record_chn_srtatus(chn_ctl->chn_id, CIPHER_HW, __LINE__);
 		spin_unlock_irqrestore(&f_ctl->lock, flag);
 	}
 
@@ -861,6 +881,7 @@ int mdrv_cipher_set_key(const void * pKeyAddr, CIPHER_KEY_LEN_E enKeyLen,
 	unsigned int i = 0;
 	unsigned int value = 0;
 	unsigned int cipher_reg_base;
+	int ret;
 
 	cipher_reg_base = (unsigned int)cipher_module_ctl.reg_virt_base;
 	void * dest_addr = (void *)(cipher_reg_base + HI_KEY_RAM_OFFSET	  +
@@ -869,9 +890,15 @@ int mdrv_cipher_set_key(const void * pKeyAddr, CIPHER_KEY_LEN_E enKeyLen,
 	if (!cipher_module_ctl.init_flag)
 		return CIPHER_NOT_INIT;
 
+	ret = cipher_inc_ref(LTE_KEY_OPT_CHANNEL_KDF);
+	if (ret) {
+		return ret;
+	}
+
 	if(mdrv_cipher_enable())
 	{
 		CIPHER_ERR_PRINT("ERR: fail to open clk\n");
+		cipher_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 		return CIPHER_ENABLE_FAILED;
 	}
 	while(i < key_length_table[enKeyLen])
@@ -884,6 +911,8 @@ int mdrv_cipher_set_key(const void * pKeyAddr, CIPHER_KEY_LEN_E enKeyLen,
 		pKeyAddr  = (void *)((unsigned int)pKeyAddr + sizeof(u32));
 		i         += sizeof(u32);
 	}
+
+	cipher_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 	return MDRV_OK;
 }
 
@@ -894,6 +923,7 @@ int mdrv_cipher_get_key(unsigned int u32KeyIndex, KEY_GET_S *pstKeyGet)
 	unsigned int i     = 0;
 	u32 value = 0;
 	unsigned int cipher_reg_base;
+	int ret;
 
 	cipher_reg_base = (unsigned int)cipher_module_ctl.reg_virt_base;
 	src_addr = (void *)(cipher_reg_base + HI_KEY_RAM_OFFSET      +
@@ -905,9 +935,15 @@ int mdrv_cipher_get_key(unsigned int u32KeyIndex, KEY_GET_S *pstKeyGet)
 	if (!cipher_module_ctl.init_flag)
 		return CIPHER_NOT_INIT;
 
+	ret = cipher_inc_ref(LTE_KEY_OPT_CHANNEL_KDF);
+	if (ret) {
+		return ret;
+	}
+
 	if(mdrv_cipher_enable())
 	{
 		CIPHER_ERR_PRINT("ERR: fail to open clk\n");
+		cipher_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 		return CIPHER_ENABLE_FAILED;
 	}
 	while(i < key_length_table[pstKeyGet->enKeyLen])
@@ -925,9 +961,11 @@ int mdrv_cipher_get_key(unsigned int u32KeyIndex, KEY_GET_S *pstKeyGet)
 	if (i >= 16) {
 		*(pstKeyGet->penOutKeyLen) = (i-16)/8;
 	} else {
+		cipher_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 		return CIPHER_INVALID_NUM;
 	}
-	
+
+	cipher_dec_ref(LTE_KEY_OPT_CHANNEL_KDF);
 	return MDRV_OK;
 }
 
@@ -948,9 +986,15 @@ int mdrv_cipher_purge_chan(unsigned int chn_id)
 	if (!cipher_module_ctl.init_flag)
 		return CIPHER_NOT_INIT;
 
+	ret = cipher_inc_ref(chn_id);
+	if (ret) {
+		return ret;
+	}
+
 	if(mdrv_cipher_enable())
 	{
 		CIPHER_ERR_PRINT("ERR: fail to open clk\n");
+		cipher_dec_ref(chn_id);
 		return CIPHER_ENABLE_FAILED;
 	}
 
@@ -982,6 +1026,7 @@ int mdrv_cipher_purge_chan(unsigned int chn_id)
 	(void)(*cur_chn->rd_fifo.ops.rst_rwidx)(&(cur_chn->rd_fifo));
 	(void)(*cur_chn->cd_fifo.ops.rst_rwidx)(&(cur_chn->cd_fifo));
 	cur_chn->pre_check_bd_idx = 0;
+	cipher_record_chn_srtatus(chn_id, CIPHER_SW, __LINE__);
 
 	local_irq_restore(irq_flag);
 
@@ -993,6 +1038,7 @@ int mdrv_cipher_purge_chan(unsigned int chn_id)
 	if (!cur_chn->need_purge)
 		cur_chn->need_purge = 1;
 
+	cipher_dec_ref(chn_id);
 	return MDRV_OK;
 }
 
@@ -1149,8 +1195,8 @@ int cipher_prepare_cdlist(struct cipher_chn_ctl *cur_chn,
 	return MDRV_OK;
 }
 
-int cipher_start_channel(unsigned int chn, unsigned int rd_num,
-												CIPHER_SUBMIT_TYPE_E subm_attr)
+int cipher_start_channel(unsigned int chn, unsigned int num,
+					unsigned int *roll_back, CIPHER_SUBMIT_TYPE_E subm_attr)
 {
 	struct cipher_chn_ctl * cur_chn = &cipher_module_ctl.cipher_chn[chn];
 	int ret = 0;
@@ -1181,10 +1227,11 @@ int cipher_start_channel(unsigned int chn, unsigned int rd_num,
 	if(CIPHER_SUBM_BLK_HOLD != subm_attr)
 		return CIPHER_SUCCESS;
 
+	*roll_back = 1;
 	time_record = bsp_get_slice_value();
 	do{
 		time_out = get_timer_slice_delta(time_record, bsp_get_slice_value());
-		if (time_out > (rd_num * TEN_MS)) {
+		if (time_out > (num * TEN_MS)) {
 			cipher_dbg_log.set_bd_timeout[chn]++;
 			return CIPHER_TIME_OUT;
 		}
@@ -1195,21 +1242,132 @@ int cipher_start_channel(unsigned int chn, unsigned int rd_num,
 		/* wait for this bd being compeleted */
 		reg_en = readl(cipher_reg_base + CIPHER_CHN_ENABLE(chn));
 		reg_en &= (0x1U << 31);
-		
+
 	}while((r_idx != w_idx) || reg_en);
 
 	/*
 	 *Confirm : Maybe the current rd is currently on the bus, not reach the ddr yet!
 	 *So, should it be waited for a while ?
 	 */
-	ret = cipher_get_rds(cur_chn, &err_cnt, tmp_rdinfo, rd_num);
+	ret = cipher_get_rds(cur_chn, &err_cnt, tmp_rdinfo, num);
 	if(ret == 0)			/*Get no RD*/
 		return CIPHER_RDQ_NULL;
 
 	if(err_cnt > 0)			/*RD checked error*/
 		return CIPHER_INVALID_RD;
 
+	*roll_back = 0;
 	return CIPHER_SUCCESS;
+}
+
+int cipher_inc_ref(unsigned int chn_id)
+{
+	struct cipher_chn_ctl * cur_chn;
+	spinlock_t        *lock;
+	unsigned long flag = 0;
+
+	cur_chn = cipher_module_ctl.cipher_chn + chn_id;
+	lock = &(cur_chn->bd_fifo.lock);
+
+	spin_lock_irqsave(lock, flag);
+	if (cur_chn->working < CIPHER_WORKING_LIMIT) {
+		cur_chn->working++;	//ref count, to avoid close clock when cipher is working.
+	} else {
+		CIPHER_ERR_PRINT("ERR: working ref overflowed!\n");
+		cipher_dbg_log.working_overflow[chn_id]++;
+		spin_unlock_irqrestore(lock, flag);
+		return CIPHER_INVALID_OPT;
+	}
+
+	spin_unlock_irqrestore(lock, flag);
+	return MDRV_OK;
+}
+
+void cipher_dec_ref(unsigned int chn_id)
+{
+	struct cipher_chn_ctl * cur_chn;
+	spinlock_t        *lock;
+	unsigned long flag = 0;
+
+	cur_chn = cipher_module_ctl.cipher_chn + chn_id;
+	lock = &(cur_chn->bd_fifo.lock);
+
+	spin_lock_irqsave(lock, flag);
+	if (cur_chn->working > 0) {
+		cur_chn->working--;	//ref count, to avoid close clock when cipher is working.
+	} else {
+		cipher_dbg_log.working_underflow[chn_id]++;
+	}
+
+	spin_unlock_irqrestore(lock, flag);
+}
+
+unsigned int get_cipher_working_ref(unsigned int chn_id)
+{
+	struct cipher_chn_ctl * cur_chn;
+
+	cur_chn = cipher_module_ctl.cipher_chn + chn_id;
+	return cur_chn->working;
+}
+
+/* 1:busy 0:idle*/
+int check_cipher_status(void)
+{
+	unsigned int i;
+	unsigned int reg_base;
+	unsigned int reg_val;
+	int status = 0;
+
+	reg_val = bsp_psam_cbdq_idle();
+	if (!reg_val) {
+		status = (int)(LTE_SECURITY_CHANNEL_DL_DRB_ACORE | BIT(27));
+		cipher_dbg_log.psam_busy++;
+	}
+
+	reg_base = (unsigned int)cipher_module_ctl.reg_virt_base;
+	for(i = 0; i < cipher_module_ctl.chn_cnt; i++)
+	{
+		/*Check if the ith channel is busy*/
+		reg_val = readl(reg_base + CIPHER_CHN_ENABLE(i));
+		if(reg_val & (0x1U << 31)) {
+			cipher_dbg_log.chn_busy[i]++;
+			status = (int)(i | BIT(31));
+			return status;
+		} else {
+			status = 0;
+		}
+
+		/*Check if BDQ is empty*/
+		reg_val = readl(reg_base + CIPHER_CHNBDQ_RWPTR(i));
+		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF)) {
+			status = (int)(i | BIT(30));
+			cipher_dbg_log.chn_bd_unclear[i]++;
+			return status;
+		} else {
+			status = 0;
+		}
+
+		/*Check if RDQ is empty*/
+		reg_val = readl(reg_base + CIPHER_CHNRDQ_RWPTR(i));
+		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF)) {
+			status = (int)(i | BIT(29));
+			cipher_dbg_log.chn_rd_unclear[i]++;
+			return status;
+		} else {
+			status = 0;
+		}
+
+		/* Check if the ith channel's working ref */
+		if(get_cipher_working_ref(i)) {
+			status = (int)(i | BIT(28));
+			cipher_dbg_log.working_ref_unclear[i]++;
+			return status;
+		} else {
+			status = 0;
+		}
+	}
+
+	return status;
 }
 
 int mdrv_cipher_set_bdinfo(unsigned int chn_id, unsigned int num,
@@ -1224,6 +1382,7 @@ int mdrv_cipher_set_bdinfo(unsigned int chn_id, unsigned int num,
 	unsigned int bd_widx = 0;
 	unsigned int cd_ridx = 0;
 	unsigned int free_bd_cnt = 0;
+	unsigned int bd_roll_back = 0;
 
 #ifdef CIPHER_DEBUG_BD_CD_QUEUE
 	struct cipher_debug_bd_cd *bd_cd_idx;
@@ -1247,10 +1406,23 @@ int mdrv_cipher_set_bdinfo(unsigned int chn_id, unsigned int num,
 	}
 
 	timestamp = bsp_get_slice_value_hrt();
+	ret = cipher_inc_ref(chn_id);
+	if (ret) {
+		return ret;
+	}
+
 	if(mdrv_cipher_enable())
 	{
 		CIPHER_ERR_PRINT("ERR: fail to open clk\n");
+	    cipher_dec_ref(chn_id);
 		return CIPHER_ENABLE_FAILED;
+	}
+
+	/*If num > 1, backup bd and cd's status to rollback in case of failure.*/
+	if(num > 1){
+		bd_widx = cur_chn->bd_fifo.write_idx;
+		cd_widx = cur_chn->cd_fifo.write_idx;
+		cd_ridx = cur_chn->cd_fifo.read_idx;
 	}
 
 	if(cur_chn->purging)
@@ -1263,13 +1435,6 @@ int mdrv_cipher_set_bdinfo(unsigned int chn_id, unsigned int num,
 	}
 
 	fifo_update_rw_idx(cur_chn);
-
-	/*If num > 1, backup bd and cd's status to rollback in case of failure.*/
-	if(num > 1){
-		bd_widx = cur_chn->bd_fifo.write_idx;
-		cd_widx = cur_chn->cd_fifo.write_idx;
-		cd_ridx = cur_chn->cd_fifo.read_idx;
-	}
 
 	for(i = 0; i < num; i++)
 	{
@@ -1292,9 +1457,9 @@ int mdrv_cipher_set_bdinfo(unsigned int chn_id, unsigned int num,
 		(*cur_chn->bd_fifo.ops.move_bd_widx)(&(cur_chn->bd_fifo), 1);
 	}
 
-	ret = cipher_start_channel(chn_id, num, pstCfg->enSubmAttr);
+	ret = cipher_start_channel(chn_id, num, &bd_roll_back, pstCfg->enSubmAttr);
 	if(ret)
-		CIPHER_ERR_PRINT("cipher_start_channel fail\n");
+		CIPHER_ERR_PRINT("cipher_start_channel fail(0x%x)\n", ret);
 
 SUBMIT_EXT:
 
@@ -1307,11 +1472,15 @@ SUBMIT_EXT:
 
 	/*If failed, rollback.*/
 	if((num > 1) && ret){
-		cur_chn->bd_fifo.write_idx = bd_widx;
-		cur_chn->cd_fifo.write_idx = cd_widx;
-		cur_chn->cd_fifo.read_idx  = cd_ridx;
+		if (!bd_roll_back) {
+			cur_chn->bd_fifo.write_idx = bd_widx;
+			cur_chn->cd_fifo.write_idx = cd_widx;
+			cur_chn->cd_fifo.read_idx  = cd_ridx;
+			cipher_record_chn_srtatus(chn_id, CIPHER_SW, __LINE__);
+		}
 	}
 
+	cipher_dec_ref(chn_id);
 	return ret;
 }
 
@@ -1319,6 +1488,7 @@ int mdrv_cipher_get_rdinfo(unsigned int chn_id, CIPHER_RD_INFO_S * pstRd,
 													unsigned int * pstRdNum)
 {
 	int rd_cnt;
+	int ret;
 	unsigned int err_cnt = 0;
 	struct cipher_chn_ctl * cur_chn = NULL;
 
@@ -1328,9 +1498,15 @@ int mdrv_cipher_get_rdinfo(unsigned int chn_id, CIPHER_RD_INFO_S * pstRd,
 	if (chn_id > cipher_module_ctl.chn_cnt - 1)
 		return CIPHER_CHECK_ERROR;
 
+	ret = cipher_inc_ref(chn_id);
+	if (ret) {
+		return ret;
+	}
+
 	if(mdrv_cipher_enable())
 	{
 		CIPHER_ERR_PRINT("ERR: fail to open clk\n");
+		cipher_dec_ref(chn_id);
 		return CIPHER_ENABLE_FAILED;
 	}
 
@@ -1340,18 +1516,24 @@ int mdrv_cipher_get_rdinfo(unsigned int chn_id, CIPHER_RD_INFO_S * pstRd,
 	/*lint +e713*/
 
 	*pstRdNum = rd_cnt;
-	if(rd_cnt == 0)
+	if(rd_cnt == 0) {
+		cipher_dec_ref(chn_id);
 		return CIPHER_RDQ_NULL;
+	}
 
-	if(err_cnt > 0)
+	if(err_cnt > 0){
+		cipher_dec_ref(chn_id);
 		return CIPHER_CHECK_ERROR;
+	}
 
+	cipher_dec_ref(chn_id);
 	return CIPHER_SUCCESS;
 }
 
 int mdrv_cipher_get_bd_num(unsigned int chn_id, BD_TYPE_E bd_type)
 {
 	int bd_num = 0;
+	int ret;
 	struct cipher_chn_ctl *cur_chn = &cipher_module_ctl.cipher_chn[chn_id];
 
 	if (!cipher_module_ctl.init_flag)
@@ -1367,9 +1549,15 @@ int mdrv_cipher_get_bd_num(unsigned int chn_id, BD_TYPE_E bd_type)
 	if (!cur_chn->bd_fifo.ops.get_filled_bd_cnt)
 		return CIPHER_NULL_PTR;
 
+	ret = cipher_inc_ref(chn_id);
+	if (ret) {
+		return ret;
+	}
+
 	if(mdrv_cipher_enable())
 	{
 		CIPHER_ERR_PRINT("ERR: fail to open clk\n");
+		cipher_dec_ref(chn_id);
 		return CIPHER_ENABLE_FAILED;
 	}
 
@@ -1377,14 +1565,17 @@ int mdrv_cipher_get_bd_num(unsigned int chn_id, BD_TYPE_E bd_type)
 	if(BD_TYPE_FREE == bd_type)
 	{
 		bd_num = (int)(*cur_chn->bd_fifo.ops.get_free_bd_cnt)(&(cur_chn->bd_fifo));
+		cipher_dec_ref(chn_id);
 		return bd_num;
 	}
 	else if(BD_TYPE_CFG == bd_type)
 	{
 		bd_num = (int)(*cur_chn->bd_fifo.ops.get_filled_bd_cnt)(&(cur_chn->bd_fifo));
+		cipher_dec_ref(chn_id);
 		return bd_num;
 	}
 
+	cipher_dec_ref(chn_id);
 	return (int)cur_chn->bd_fifo.elem_cnt;
 }
 
@@ -1401,22 +1592,53 @@ int mdrv_cipher_enable(void)
 		spin_unlock_irqrestore(&cipher_module_ctl.clk_lock, flag);
 		return MDRV_ERROR;
 	}
+
 	cipher_module_ctl.clk_en = 1;
+	cipher_dbg_log.enable_clk++;
 	spin_unlock_irqrestore(&cipher_module_ctl.clk_lock, flag);
 	return MDRV_OK;
 }
 
-int  mdrv_cipher_disable(void)
+int  mdrv_cipher_disable(unsigned int timeout)
 {
 	unsigned long flag = 0;
+	unsigned int time_record;
+	unsigned int time_out;
+	int status;
 
 	if(!cipher_module_ctl.clk_en)
 		return MDRV_OK;
 
+	time_record = bsp_get_slice_value();
+	do{
+		/* check if cipher is in idle */
+		status = check_cipher_status();
+
+		if (status) {	//if it isn't in idle, check time.
+			time_out = get_timer_slice_delta(time_record, bsp_get_slice_value());
+			if (time_out > (timeout * ONE_MS)) {
+				cipher_dbg_log.d_clk_timeout++;
+				return status;
+			}
+		}
+
+	} while(status);
+
 	spin_lock_irqsave(&cipher_module_ctl.clk_lock, flag);
+
+	status = check_cipher_status();	//Check again.
+	if (status) {
+		cipher_dbg_log.d_clk_check++;
+		spin_unlock_irqrestore(&cipher_module_ctl.clk_lock, flag);
+		return (status | (int)BIT(28));
+	}
+
 	clk_disable(cipher_module_ctl.pclk);
 	cipher_module_ctl.clk_en = 0;
+	cipher_dbg_log.disable_clk++;
+
 	spin_unlock_irqrestore(&cipher_module_ctl.clk_lock, flag);
+
 	return MDRV_OK;
 }
 
@@ -1442,6 +1664,22 @@ int mdrv_cipher_chn_idle(unsigned int chn)
 	}
 
 	return ((*cur_chn->ops.chn_idle)(cur_chn));
+}
+
+int close_cipher_clk(void)
+{
+	unsigned long flag = 0;
+
+	if(!cipher_module_ctl.clk_en)
+		return MDRV_OK;
+
+	spin_lock_irqsave(&cipher_module_ctl.clk_lock, flag);
+	clk_disable(cipher_module_ctl.pclk);
+
+	cipher_module_ctl.clk_en = 0;
+	cipher_dbg_log.disable_clk++;
+	spin_unlock_irqrestore(&cipher_module_ctl.clk_lock, flag);
+	return MDRV_OK;
 }
 
 static int cipher_fifo_init(struct fifo_ctl *f_ctl, enum fifo_type ftype,
@@ -1535,6 +1773,7 @@ static int cipher_chn_init(void)
 			CIPHER_ERR_PRINT("cipher_fifo_init err\n");
 			return CIPHER_NOT_INIT;
 		}
+
 		if(chn_ctl->straight)
 		{
 			cipher_addr_s psam_info;
@@ -1593,9 +1832,9 @@ void cipher_init_reg(void)
 		int_reg_num =  3;
 		cipher_chn_pri.u32 = CIPHER_THRESHOLD;	//set flow threshold
 	}
-	
+
 	writel(cipher_chn_pri.u32, cipher_reg_base + HI_CIPHER_PRI_OFFSET);
-	
+
 #ifdef HI_CIPHER_DIRECT
 	if (cipher_module_ctl.fama_enable) {
 		val = readl(cipher_reg_base + HI_CIPHER_DIRECT);
@@ -1645,6 +1884,8 @@ void cipher_init_reg(void)
 		writel(chn_ctl->rd_fifo.elem_cnt - 1,cipher_reg_base +
 														CIPHER_CHNRDQ_SIZE(i));
 		writel(0,cipher_reg_base + CIPHER_CHNRDQ_RWPTR(i));
+
+		cipher_record_chn_srtatus(i, CIPHER_SW, __LINE__);
 
 		val  = (0x1U << 3) | (0x3U << 5);
 		val |= (((CIPHER_IV_NUM & 0x1) << 1) | CIPHER_IV_SEL);
@@ -1762,6 +2003,8 @@ static void cipher_dump_cb(void)
 {
 	unsigned int i;
 	unsigned int ptr;
+    unsigned int dbg_size = sizeof(cipher_dbg_log);
+    unsigned int reg_ptr;
 	unsigned int reg_base;
 
 	reg_base= (unsigned int)cipher_module_ctl.reg_virt_base;
@@ -1770,8 +2013,15 @@ static void cipher_dump_cb(void)
 	if(mdrv_cipher_enable())
 		CIPHER_ERR_PRINT("fail to open clk\n");
 
-	for (i = 0; i < CIPHER_DUMP_SIZE; i += 4){
-		*(unsigned int *)(ptr + i) = readl(reg_base + i);
+    /* rec debug info */
+    if (dbg_size > CIPHER_DBG_INFO_MAX_SIZE)
+        dbg_size = CIPHER_DBG_INFO_MAX_SIZE;
+    memcpy_s((void *)ptr, dbg_size, &cipher_dbg_log, dbg_size);
+
+    /* rec cipher reg */
+    reg_ptr = ptr + CIPHER_DBG_INFO_MAX_SIZE;
+	for (i = 0; i < CIPHER_DUMP_SIZE - CIPHER_DBG_INFO_MAX_SIZE; i += 4){
+		*(unsigned int *)(reg_ptr + i) = readl(reg_base + i);
 	}
 }
 
@@ -1808,14 +2058,14 @@ int cipher_om_dump_init(void)
 }
 
 void cipher_clear_keyram(void)
-{	
+{
 	int i;
 	unsigned int cipher_reg_base;
 	unsigned int *keyram_base;
-	
+
 	cipher_reg_base = (unsigned int)cipher_module_ctl.reg_virt_base;
 	keyram_base =(unsigned int *)(cipher_reg_base + HI_KEY_RAM_OFFSET);
-	
+
 	for(i = 0; i < (int)(CIPHER_KEYRAM_SIZE / sizeof(unsigned int)); i++){
 		writel(0, (unsigned long)(keyram_base + i));
 	}
@@ -1880,7 +2130,7 @@ int cipher_init(void)
 	cipher_init_reg();
 	cipher_clear_keyram();	//clear keyram to 0
 
-	(void)mdrv_cipher_disable();
+	(void)close_cipher_clk();
 
 	retval = cipher_set_psam();
 	if (retval){
@@ -1906,7 +2156,7 @@ int cipher_init(void)
 		return CIPHER_UNKNOWN_ERROR;
 	}
 #endif
-	
+
 	retval = cipher_om_dump_init();
 	if(retval)
 		cipher_dbg_log.dump_init_failed = 1;
@@ -1940,24 +2190,40 @@ int cipher_reg_backup(void)
 	unsigned int * keyram_base;
 	unsigned int cipher_reg_base;
 
+	reg_val = bsp_psam_cbdq_idle();
+	if (!reg_val) {
+		cipher_dbg_log.psam_busy++;
+		return CIPHER_ENABLE_FAILED;
+	}
 	cipher_reg_base = (unsigned int)cipher_module_ctl.reg_virt_base;
 	keyram_base = (unsigned int *)(cipher_reg_base + HI_KEY_RAM_OFFSET);
-
-	/*Check whether cipher is busy*/
-	reg_val = readl(cipher_reg_base + HI_CIPHER_CTRL_OFFSET);
-	if(reg_val & (0x1U << 31))
-		return CIPHER_PERR_BUSY;
 
 	/*Check if BDQ or RDQ  is empty to backup registers*/
 	for(i = 0; i < cipher_module_ctl.chn_cnt; i++)
 	{
+		/*Check if the ith channel is busy*/
+		reg_val = readl(cipher_reg_base + CIPHER_CHN_ENABLE(i));
+		if(reg_val & (0x1U << 31)) {
+			cipher_dbg_log.chn_busy[i]++;
+			return CIPHER_PERR_BUSY;
+		}
+
 		reg_val = readl(cipher_reg_base + CIPHER_CHNBDQ_RWPTR(i));
-		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF))
+		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF)) {
+			cipher_dbg_log.chn_bd_unclear[i]++;
 			return CIPHER_PERR_BDNOTEMPTY;
+		}
 
 		reg_val = readl(cipher_reg_base + CIPHER_CHNRDQ_RWPTR(i));
-		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF))
+		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF)) {
+			cipher_dbg_log.chn_rd_unclear[i]++;
 			return CIPHER_PERR_RDNOTEMPTY;
+		}
+
+		if (get_cipher_working_ref(i)) {
+			cipher_dbg_log.working_ref_unclear[i]++;
+			return CIPHER_UNKNOWN_ERROR;
+		}
 	}
 
 	/* Disable channels */
@@ -1975,6 +2241,46 @@ int cipher_reg_backup(void)
 	return CIPHER_SUCCESS;
 }
 
+void cipher_rec_susp_fail_info(void)
+{
+	unsigned int i;
+    unsigned int pos;
+	unsigned int reg_base;
+	unsigned int reg_val;
+
+	reg_base = (unsigned int)cipher_module_ctl.reg_virt_base;
+	for(i = 0; i < cipher_module_ctl.chn_cnt; i++)
+	{
+	    pos = cipher_dbg_log.bd_rec_susp_fail[i].cur_pos;
+
+        cipher_dbg_log.bd_rec_susp_fail[i].timestamp[pos] = bsp_get_slice_value();
+
+		/*rec channel status*/
+		reg_val = readl(reg_base + CIPHER_CHN_ENABLE(i));
+        cipher_dbg_log.bd_rec_susp_fail[i].chn_status[pos] = reg_val;
+
+
+		/*rec bd info*/
+		reg_val = readl(reg_base + CIPHER_CHNBDQ_RWPTR(i));
+        cipher_dbg_log.bd_rec_susp_fail[i].bd_info[pos] = reg_val;
+
+
+		/*rec rd info*/
+		reg_val = readl(reg_base + CIPHER_CHNRDQ_RWPTR(i));
+        cipher_dbg_log.bd_rec_susp_fail[i].rd_info[pos] = reg_val;
+
+		/*rec working ref info*/
+        reg_val = get_cipher_working_ref(i);
+        cipher_dbg_log.bd_rec_susp_fail[i].working_ref[pos] = reg_val;
+
+        /*pos inc*/
+        pos = (pos + 1)%CIPHER_SUSP_FAIL_REC_NUM;
+        cipher_dbg_log.bd_rec_susp_fail[i].cur_pos = pos;
+	}
+
+	return;
+}
+
 int cipher_suspend(struct dpm_device *dev)
 {
 	int ret;
@@ -1988,10 +2294,11 @@ int cipher_suspend(struct dpm_device *dev)
 	ret = cipher_reg_backup();
 	if (ret) {
 		cipher_dbg_log.suspend_failed++;
+        cipher_rec_susp_fail_info();
 		return ret;
 	}
 
-	(void)mdrv_cipher_disable();
+	(void)close_cipher_clk();
 	return MDRV_OK;
 }
 
@@ -2006,7 +2313,7 @@ int cipher_resume(struct dpm_device *dev)
 		return CIPHER_ENABLE_FAILED;
 	}
 	cipher_init_reg();
-	(void)mdrv_cipher_disable();
+	(void)close_cipher_clk();
 	for(i = 0; i < cipher_module_ctl.chn_cnt; i++)
 	{
 		if(cipher_special_chn(i))
@@ -2016,6 +2323,7 @@ int cipher_resume(struct dpm_device *dev)
 		(void)(*cur_chn->rd_fifo.ops.rst_rwidx)(&(cur_chn->rd_fifo));
 		(void)(*cur_chn->cd_fifo.ops.rst_rwidx)(&(cur_chn->cd_fifo));
 		cur_chn->pre_check_bd_idx = 0;
+		cipher_record_chn_srtatus(i, CIPHER_SW, __LINE__);
 	}
 	kdf_ctl.bd_w_idx = kdf_ctl.rd_r_idx = 0;
 	(void)bsp_psam_cipher_ch_srst(1);
@@ -2030,23 +2338,39 @@ int cipher_prepare_backup(void)
 	u32 reg_val = 0;
 	unsigned int cipher_reg_base;
 
+	reg_val = bsp_psam_cbdq_idle();
+	if (!reg_val) {
+		cipher_dbg_log.psam_busy++;
+		return CIPHER_ENABLE_FAILED;
+	}
 	cipher_reg_base = (unsigned int)cipher_module_ctl.reg_virt_base;
-	
-	/*Check whether cipher is busy*/
-	reg_val = readl(cipher_reg_base + HI_CIPHER_CTRL_OFFSET);
-	if(reg_val & (0x1U << 31))
-		return CIPHER_PERR_BUSY;
 
 	/*Check if BDQ or RDQ  is empty to backup registers*/
 	for(i = 0; i < cipher_module_ctl.chn_cnt; i++)
 	{
+		/*Check if the ith channel is busy*/
+		reg_val = readl(cipher_reg_base + CIPHER_CHN_ENABLE(i));
+		if(reg_val & (0x1U << 31)) {
+			cipher_dbg_log.chn_busy[i]++;
+			return CIPHER_PERR_BUSY;
+		}
+
 		reg_val = readl(cipher_reg_base + CIPHER_CHNBDQ_RWPTR(i));
-		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF))
+		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF)) {
+			cipher_dbg_log.chn_bd_unclear[i]++;
 			return CIPHER_PERR_BDNOTEMPTY;
+		}
 
 		reg_val = readl(cipher_reg_base + CIPHER_CHNRDQ_RWPTR(i));
-		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF))
+		if((reg_val & 0x3FF) != ((reg_val >> 16) & 0x3FF)) {
+			cipher_dbg_log.chn_rd_unclear[i]++;
 			return CIPHER_PERR_RDNOTEMPTY;
+		}
+
+		if (get_cipher_working_ref(i)) {
+			cipher_dbg_log.working_ref_unclear[i]++;
+			return CIPHER_UNKNOWN_ERROR;
+		}
 	}
 
 	/* Disable channels */
@@ -2077,7 +2401,7 @@ int cipher_suspend_begin(rsr_acc_description *bd_descri)
 }
 void cipher_suspend_end(rsr_acc_description *bd_descri)
 {
-	(void)mdrv_cipher_disable();
+	(void)close_cipher_clk();
 }
 
 void cipher_resume_begin(rsr_acc_description *bd_descri)
@@ -2087,7 +2411,6 @@ void cipher_resume_begin(rsr_acc_description *bd_descri)
 		CIPHER_INFO("CIPHER:fail to open clk\n");
 		return;
 	}
-	cipher_init_reg();
 }
 
 void cipher_resume_end(rsr_acc_description *bd_descri)
@@ -2097,6 +2420,7 @@ void cipher_resume_end(rsr_acc_description *bd_descri)
 	unsigned int reg_val;
 	struct cipher_chn_ctl * cur_chn = NULL;
 
+	cipher_init_reg();
 	for(i = 0; i < cipher_module_ctl.chn_cnt; i++)
 	{
 		if(cipher_special_chn(i))
@@ -2106,6 +2430,7 @@ void cipher_resume_end(rsr_acc_description *bd_descri)
 		(void)(*cur_chn->rd_fifo.ops.rst_rwidx)(&(cur_chn->rd_fifo));
 		(void)(*cur_chn->cd_fifo.ops.rst_rwidx)(&(cur_chn->cd_fifo));
 		cur_chn->pre_check_bd_idx = 0;
+		cipher_record_chn_srtatus(i, CIPHER_SW, __LINE__);
 	}
 	kdf_ctl.bd_w_idx = kdf_ctl.rd_r_idx = 0;
 	(void)bsp_psam_cipher_ch_srst(1);
@@ -2117,7 +2442,7 @@ void cipher_resume_end(rsr_acc_description *bd_descri)
 		writel(reg_val | (0x1U), cipher_reg_base + CIPHER_CHN_ENABLE(i));
 	}
 
-	(void)mdrv_cipher_disable();
+	(void)close_cipher_clk();
 }
 #endif
 int mdrv_cipher_get_chn_status(unsigned int chn_id)

@@ -48,76 +48,31 @@ NAS_LPP_UP_STATE_TIME_STRU g_astLppUpStateTime[LPP_UP_STATE_BUTT] =
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppUpEntityCtx
- Description    : LPP模块的用户面实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_USER_PLANE_ENTITY_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_USER_PLANE_ENTITY_STRU*  NAS_LPP_GetLppUpEntityCtx( VOS_VOID )
 {
     return (&g_stNasLppEntity.stUserPlaneEntity);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppUpOtdoaCtx
- Description    : LPP模块的用户面OTDOA实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_UP_OTDOA_INFO_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_OTDOA_INFO_STRU*  NAS_LPP_GetLppUpOtdoaCtx( VOS_VOID )
 {
     return &(NAS_LPP_GetLppUpEntityCtx()->stOtdoaUpEntity);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppUpMultiPosTechCtx
- Description    : LPP模块的用户面同时请求ECID&OTDOA实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_UP_MULTI_POS_TECH_INFO_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_MULTI_POS_TECH_INFO_STRU*  NAS_LPP_GetLppUpMultiPosTechCtx( VOS_VOID )
 {
     return &(NAS_LPP_GetLppUpEntityCtx()->stMultiPosTechEntity);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppUpEcidCtx
- Description    : LPP模块的用户面ECID实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_UP_ECID_INFO_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_ECID_INFO_STRU*  NAS_LPP_GetLppUpEcidCtx( VOS_VOID )
 {
     return &(NAS_LPP_GetLppUpEntityCtx()->stEcidUpEntity);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_LppUpEntityInit
- Description    : 初始化LPP UP 实体
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangensheng 00324863 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_LppUpEntityInit( VOS_VOID )
 {
     NAS_LPP_USER_PLANE_ENTITY_STRU     *pstLppUserPlane = NAS_LPP_NULL_PTR;
@@ -133,46 +88,19 @@ VOS_VOID  NAS_LPP_LppUpEntityInit( VOS_VOID )
     pstLppUserPlane->stOtdoaUpEntity.enLppUpState = LPP_UP_STATE_IDLE;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetOtdoaPosType
- Description    : Get OTDOA定位技术是走用户面还是信令面
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_POSITION_PROCESS_TYPE_ENUM_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8  NAS_LPP_GetOtdoaPosType( VOS_VOID )
 {
     return NAS_LPP_GetLppEntityCtx()->stUserPlaneEntity.stOtdoaUpEntity.enReqPosTechType;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetOtdoaAssistDataCtx
- Description    : Get OTDOA定位技术是走用户面还是信令面
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_OTDOA_ASSIST_CFG_STRU*
 
- History        :
-      1.wangensheng 00324863 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_OTDOA_ASSIST_CFG_STRU*  NAS_LPP_GetOtdoaAssistDataCtx( VOS_VOID )
 {
     return &(NAS_LPP_GetLppEntityCtx()->stUserPlaneEntity.stOtdoaUpEntity.stOtdoaAssisCfg);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SetOtdoaPosType
- Description    : Set OTDOA定位技术是走用户面还是信令面
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_POSITION_PROCESS_TYPE_ENUM_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SetOtdoaPosType
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8 enOtodaPosType
@@ -183,31 +111,13 @@ VOS_VOID  NAS_LPP_SetOtdoaPosType
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetOtdoaPosReqTechType
- Description    : Get OTDOA的定位技术是否被请求了
- Input          :
- Output         : VOS_VOID
- Return Value   : NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8  NAS_LPP_GetOtdoaPosReqTechType(VOS_VOID)
 {
     return NAS_LPP_GetLppUpOtdoaCtx()->enReqPosTechType;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SetEcidPosReqTechType
- Description    : Set ECID的定位技术是否被请求了
- Input          : enUpPosReqTech 对应的定位技术
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SetEcidPosReqTechType
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8 enUpPosReqTech
@@ -218,106 +128,43 @@ VOS_VOID  NAS_LPP_SetEcidPosReqTechType
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetEcidPosReqTechType
- Description    : Get ECID的定位技术是否被请求了
- Input          :
- Output         : VOS_VOID
- Return Value   : NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8  NAS_LPP_GetEcidPosReqTechType(VOS_VOID)
 {
     return NAS_LPP_GetLppUpEcidCtx()->enReqPosTechType;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetEcidAndOtdoaMeasFlag
- Description    : Get ECID以及OTDOA同时请求的flag
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_BOOL
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_BOOL  NAS_LPP_GetEcidAndOtdoaMeasFlag(VOS_VOID)
 {
     return  NAS_LPP_GetLppUpMultiPosTechCtx()->bReqEcidAndOtdoaFlag;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetOtodaLrrcMeasFlag
- Description    : Get OTDOA测量是否上报
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_BOOL
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_BOOL  NAS_LPP_GetOtodaLrrcMeasFlag(VOS_VOID)
 {
     return NAS_LPP_GetLppUpOtdoaCtx()->stOtdoaMeasRslt.bMeasRsltFlag;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetOtodaLrrcMeasAddr
- Description    : Get OTDOA测量地址
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_BOOL
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_OTDOA_MEAS_RESLT_STRU*  NAS_LPP_GetOtodaLrrcMeasAddr(VOS_VOID)
 {
     return &(NAS_LPP_GetLppUpOtdoaCtx()->stOtdoaMeasRslt);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetEcidLrrcMeasAddr
- Description    : Get ECID测量上报的地址
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_BOOL
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_ECID_MEAS_RESULT_STRU*  NAS_LPP_GetEcidLrrcMeasAddr(VOS_VOID)
 {
     return &(NAS_LPP_GetLppUpEcidCtx()->stEcidMeasRslt);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetEcidReqMeasType
- Description    : Get ECID测量上报TYPE
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_BOOL
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_LPP_GetEcidReqMeasType(VOS_VOID)
 {
     return NAS_LPP_GetLppUpEcidCtx()->stRequestedMeasurements.ucRequestedMeas;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetNeighberMeasRsltElement
- Description    : 得到空口ecid的测量地址
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 LPP_MEAS_RESULT_ELEMENT_STRU* NAS_LPP_UpGetNeighberMeasRsltElement
 (
     LPP_MTA_ECID_SIGNAL_MEAS_INFO_STRU      *pstEcidSignalMeasInfo,
@@ -327,16 +174,7 @@ LPP_MEAS_RESULT_ELEMENT_STRU* NAS_LPP_UpGetNeighberMeasRsltElement
     return &(pstEcidSignalMeasInfo->stMeasResultList.astMeasResultsList[ulLoop]);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetPrimaryMeasRsltElement
- Description    : 得到空口ecid的测量地址
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 LPP_MEAS_RESULT_ELEMENT_STRU* NAS_LPP_UpGetPrimaryMeasRsltElement
 (
     LPP_MTA_ECID_SIGNAL_MEAS_INFO_STRU      *pstEcidSignalMeasInfo
@@ -345,31 +183,13 @@ LPP_MEAS_RESULT_ELEMENT_STRU* NAS_LPP_UpGetPrimaryMeasRsltElement
     return &(pstEcidSignalMeasInfo->stPrimaryCellMeasResult);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetEcidLrrcMeasFlag
- Description    : Get ECID测量是否上报
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_BOOL
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_BOOL  NAS_LPP_GetEcidLrrcMeasFlag(VOS_VOID)
 {
     return NAS_LPP_GetLppUpEcidCtx()->stEcidMeasRslt.bHaveEcidMeasFlag;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SetEcidAndOtdoaMeasFlag
- Description    : Set ECID以及OTDOA同时请求的flag
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_BOOL
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SetEcidAndOtdoaMeasFlag(VOS_BOOL bReqEcidAndOtdoaFlag)
 {
     NAS_LPP_GetLppUpMultiPosTechCtx()->bReqEcidAndOtdoaFlag = bReqEcidAndOtdoaFlag;
@@ -377,76 +197,31 @@ VOS_VOID  NAS_LPP_SetEcidAndOtdoaMeasFlag(VOS_BOOL bReqEcidAndOtdoaFlag)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_EcidReportTypeAddr
- Description    : Get Ecid存储上报方式的地址
- Input          :
- Output         : VOS_VOID
- Return Value   : NAS_LPP_REPORT_CRITERIA_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_REPORT_CRITERIA_STRU*  NAS_LPP_EcidReportTypeAddr(VOS_VOID)
 {
     return &(NAS_LPP_GetLppUpEcidCtx()->stReportCriteria);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_OtdoaReportTypeAddr
- Description    : Get OTDOA存储上报方式的地址
- Input          :
- Output         : VOS_VOID
- Return Value   : NAS_LPP_REPORT_CRITERIA_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_REPORT_CRITERIA_STRU*  NAS_LPP_OtdoaReportTypeAddr(VOS_VOID)
 {
     return &(NAS_LPP_GetLppUpOtdoaCtx()->stReportCriteria);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_MultiPosTechReportTypeAddr
- Description    : Get ECID&OTDOA同时请求存储上报方式的地址
- Input          :
- Output         : VOS_VOID
- Return Value   : NAS_LPP_REPORT_CRITERIA_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_REPORT_CRITERIA_STRU*  NAS_LPP_MultiPosTechReportTypeAddr(VOS_VOID)
 {
     return &(NAS_LPP_GetLppUpMultiPosTechCtx()->stReportCriteria);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetEcidPosType
- Description    : Get ECID定位技术是走用户面还是信令面
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_POSITION_PROCESS_TYPE_ENUM_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8  NAS_LPP_GetEcidPosType( VOS_VOID )
 {
     return NAS_LPP_GetLppEntityCtx()->stUserPlaneEntity.stEcidUpEntity.enReqPosTechType;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SetEcidPosType
- Description    : Set ECID定位技术是走用户面还是信令面
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_POSITION_PROCESS_TYPE_ENUM_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SetEcidPosType
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8 enEcidPosType
@@ -457,31 +232,13 @@ VOS_VOID  NAS_LPP_SetEcidPosType
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetOtdoaAssistDataFlag
- Description    : Get OTDOA辅助数据是否存在的标识
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_POSITION_PROCESS_TYPE_ENUM_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_BOOL  NAS_LPP_GetOtdoaAssistDataFlag( VOS_VOID )
 {
     return NAS_LPP_GetLppUpOtdoaCtx()->stOtdoaAssisCfg.bOtdoaAssistDataFlag;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpResponseTimer
- Description    : Get LPP用户面的Response Timer
- Input          : enUpPosTechType 表示请求的定位技术类型
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetUpResponseTimer
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8 enUpPosTechType
@@ -515,16 +272,7 @@ NAS_LPP_TIMER_STRU*  NAS_LPP_GetUpResponseTimer
     return NAS_LPP_NULL_PTR;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpPeriodicalTimer
- Description    : Get LPP用户面的periodical Timer
- Input          : enUpPosTechType 表示请求的定位技术类型
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetUpPeriodicalTimer
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8 enUpPosTechType
@@ -557,16 +305,7 @@ NAS_LPP_TIMER_STRU*  NAS_LPP_GetUpPeriodicalTimer
     return NAS_LPP_NULL_PTR;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpDurationTimer
- Description    : Get LPP用户面的Duration Timer
- Input          : enUpPosTechType 表示请求的定位技术类型
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetUpDurationTimer
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8 enUpPosTechType
@@ -584,16 +323,7 @@ NAS_LPP_TIMER_STRU*  NAS_LPP_GetUpDurationTimer
     return NAS_LPP_NULL_PTR;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpStateTimer
- Description    : Get LPP用户面的状态 Timer
- Input          : enUpPosTechType 表示请求的定位技术类型
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-11-24  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetUpStateTimer
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8 enUpPosTechType
@@ -704,16 +434,7 @@ VOS_UINT32  NAS_LPP_GetUpPrtcTimeLen
     return ulLen;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_UpTimerStart
- Discription    : 用户面启动定时器
- Input          : enPosTechType  表示当前是ECID还是OTDOA定位技术
-                  enTimerType    表示当前定时器ID
- Output         : VOS_VOID
- Return         : None
- History:
-    lifuxin 00253982 2015-11-24 新开发
-*****************************************************************************/
+
 VOS_VOID NAS_LPP_UpTimerStart
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8 enPosTechType,
@@ -796,16 +517,7 @@ VOS_VOID NAS_LPP_UpTimerStart
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_UpTimerStop
- Discription    : 用户面停止定时器
- Input          : enPosTechType  表示当前是ECID还是OTDOA定位技术
-                  enTimerType    表示当前定时器ID
- Output         : VOS_VOID
- Return         : None
- History:
-    lifuxin 00253982 2015-11-24 新开发
-*****************************************************************************/
+
 VOS_VOID NAS_LPP_UpTimerStop
 (
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8 enPosTechType,
@@ -970,16 +682,7 @@ VOS_VOID NAS_LPP_UPSndOtdoaMeasReq
     }
     NAS_LPP_SND_MSG(pstOtdoaMeasReq);
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_UPClrEcidCtx
- Description    : LPP模块的用户面ECID实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangensheng 00324863 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_UPClrEcidCtx(VOS_VOID)
 {
     NAS_LPP_UP_ECID_INFO_STRU          *pstUpEcidInfo   = NAS_LPP_NULL_PTR;
@@ -1018,16 +721,7 @@ VOS_VOID  NAS_LPP_UPClrEcidCtx(VOS_VOID)
     pstUpEcidInfo->enReqPosTechType = NAS_LPP_UP_POS_REQ_TECH_TYPE_NULL;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_UPClrOtdoaCtx
- Description    : 清空LPP模块的用户面OTDOA实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangensheng 00324863 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_UPClrOtdoaCtx( VOS_VOID )
 {
     NAS_LPP_UP_OTDOA_INFO_STRU         *pstLppUpOtdoaInfo = NAS_LPP_NULL_PTR;
@@ -1063,16 +757,7 @@ VOS_VOID  NAS_LPP_UPClrOtdoaCtx( VOS_VOID )
                         sizeof(NAS_LPP_UP_REPORT_CRITERIA_STRU));
     pstLppUpOtdoaInfo->enReqPosTechType = NAS_LPP_UP_POS_REQ_TECH_TYPE_NULL;
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_UPClrEntity
- Description    : 清空LPP模块的用户面实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangensheng 00324863 2015-11-24  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_UPClrEntity( VOS_VOID )
 {
     NAS_LPP_USER_PLANE_ENTITY_STRU     *pstLppUpEntity = NAS_LPP_NULL_PTR;

@@ -246,24 +246,7 @@ VOS_VOID NAS_MSCC_SetPowerSaveModuleOrder_SysCfg(VOS_VOID)
 
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SetSysCfgModuleOrder_SysCfg
-Description     :   This function is used to set the Power save module order global structure address. The Power Save order is
-                    written in the list by reading the Platform Rat Cap global strucuture in the MSCC global context and the existing
-                    system config details.
 
-Input parameters:   None.
-Output parameters:  None.
-Return Value    :   None.
-Modify History:
-    1)  Date    :   2015-04-08
-        Author  :   m00270891
-        Modify content :    Create
-
-    2.日    期   : 2015年5月12日
-      作    者   : y00245242
-      修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SetSysCfgModuleOrder_SysCfg(VOS_VOID)
 {
     NAS_MSCC_PREF_ORDER_MODULE_LIST    *pstSysCfgModuleOrder = VOS_NULL_PTR;
@@ -518,19 +501,7 @@ VOS_VOID NAS_MSCC_SndPowerSaveReq_SysCfg(
 }
 
 #if (FEATURE_ON == FEATURE_TDS_WCDMA_DYNAMIC_LOAD)
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetRatModeChangeType_SysCfg
-Description     :   用于获取当前接入模式变化，如CL->GUL,GUL->CL等
-Input parameters:   pstLastUserRatPrio
-                    pstCurrUserRatPrio
-Output parameters:  None
-Return Value    :   NAS_MSCC_RAT_MODE_TYPE_ENUM_UINT8
 
-Modify History:
-    1)  Date    :   2015-08-21
-        Author  :   w00242748
-        Modify content :    Create
-*****************************************************************************/
 NAS_MSCC_RAT_MODE_CHG_TYPE_ENUM_UINT8 NAS_MSCC_GetRatModeChangeType_SysCfg(
     NAS_MSCC_PIF_RAT_PRIO_STRU        *pstLastUserRatPrio,
     NAS_MSCC_PIF_RAT_PRIO_STRU        *pstCurrUserRatPrio
@@ -569,18 +540,7 @@ NAS_MSCC_RAT_MODE_CHG_TYPE_ENUM_UINT8 NAS_MSCC_GetRatModeChangeType_SysCfg(
     return enRatModeType;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_ProcDynamicLoad_SysCfg
-Description     :   SYSCFG状态机中，处理动态加载信息
-Input parameters:   VOS_VOID
-Output parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History:
-    1)  Date    :   2015-08-21
-        Author  :   w00242748
-        Modify content :    Create
-*****************************************************************************/
 VOS_VOID NAS_MSCC_ProcDynamicLoad_SysCfg(VOS_VOID)
 {
     VOS_RATMODE_ENUM_UINT32                                 enRatMode;
@@ -614,22 +574,7 @@ VOS_VOID NAS_MSCC_ProcDynamicLoad_SysCfg(VOS_VOID)
 #endif
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMmaSysCfgReq_SysCfg_Init
-Description     :   This function deals with the init of the System config FSM
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2015-04-09
-        Author  :   m00270891
-        Modify content :    Create
-    2)  Date    :   2015-08-29
-        Author  :   w00242748
-        Modify content :动态加载项目
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMmaSysCfgReq_SysCfg_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

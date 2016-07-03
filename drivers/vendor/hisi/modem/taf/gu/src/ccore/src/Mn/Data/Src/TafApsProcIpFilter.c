@@ -1,24 +1,5 @@
 
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsProcIpFilter.c
-  版 本 号   : 初稿
-  作    者   : S62952
-  生成日期   : 2011年12月14日
-  最近修改   :
-  功能描述   : 本文件为RABM TFT功能在IP Filter硬件加速上的适配，主要包括将TFT
-               参数转换为硬件识别的IP Filter格式，以及Filter排序，Filter
-               配置等功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月14日
-    作    者   : S62952
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -118,20 +99,7 @@ VOS_UINT32 TAF_APS_IpfConfigUlFilterDebug(
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfUlNdisFilterInit
- 功能描述  : 定义上行 NDIS模块使用的Filter类型和参数，保存在全局变量中
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月3日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_IpfUlNdisFilterInit( VOS_VOID )
 {
     TAF_APS_IPF_UL_NDIS_FILTER_INFO *pstFilter;
@@ -173,21 +141,7 @@ VOS_VOID TAF_APS_IpfUlNdisFilterInit( VOS_VOID )
     TAF_APS_IPF_DEF_UL_NDIS_LOC_FF_FILTER();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfGetFreeFilter
- 功能描述  : 从IP Filter 队列中查找空闲的IP Filter
- 输入参数  : TAF_APS_IPF_DIRECTION_UINT32 enDir
- 输出参数  : 无
- 返 回 值  : IPF_FILTER_CONFIG_S *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IPF_FILTER_CONFIG_S * TAF_APS_IpfGetFreeFilter(
     TAF_APS_IPF_DIRECTION_UINT32        enDir
 )
@@ -206,22 +160,7 @@ IPF_FILTER_CONFIG_S * TAF_APS_IpfGetFreeFilter(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfCompare
- 功能描述  : IPF中 Filter按优先级排序功能
- 输入参数  : const VOS_VOID *arg1
-             const VOS_VOID *arg2
- 输出参数  : 无
- 返 回 值  : VOS_INT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_INT32 TAF_APS_IpfCompare(
     const VOS_VOID                     *arg1,
     const VOS_VOID                     *arg2
@@ -253,22 +192,7 @@ VOS_INT32 TAF_APS_IpfCompare(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfGenerateFilterWithoutTFT
- 功能描述  : 产生不携带TFT参数的承载的FILTER信息
- 输入参数  : APS_PDP_ADDR_ST           *pstPdnAddr
-             VOS_UINT8                  ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IpfGenerateFilterWithoutTFT(
     VOS_UINT8                           ucPdpId
 )
@@ -315,21 +239,7 @@ VOS_UINT32 TAF_APS_IpfGenerateFilterWithoutTFT(
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfGenerateUlNdisFilters
- 功能描述  : 将所有UL NDIS所需数据包的FILTER配置到上行FILTER队列中
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IpfGenerateUlNdisFilters(VOS_VOID)
 {
     VOS_UINT32                          ulIndex        = 0;
@@ -347,21 +257,7 @@ VOS_UINT32 TAF_APS_IpfGenerateUlNdisFilters(VOS_VOID)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfGenerateFilters
- 功能描述  : 遍历所有承载，生成IP FIlter参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IpfGenerateFilters(VOS_VOID)
 {
     VOS_UINT8                           ucPdpId         = VOS_NULL;
@@ -405,22 +301,7 @@ VOS_UINT32 TAF_APS_IpfGenerateFilters(VOS_VOID)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfFilterSort
- 功能描述  : IP Filter 优先级比较函数
- 输入参数  : IPF_FILTER_CONFIG_S       *pstFilter
-             VOS_UINT32                 ulNum
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_IpfFilterSort(
     IPF_FILTER_CONFIG_S                *pstFilter,
     VOS_UINT32                          ulNum
@@ -432,21 +313,7 @@ VOS_VOID TAF_APS_IpfFilterSort(
     /*lint +e586*/
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetUlNdisFilterValidFlag
- 功能描述  : 设置全局变量g_enUlNdisFilterValidFlag
- 输入参数  : TAF_APS_UL_NDIS_FILTER_FLAG_ENUM_UINT32   enUlNdisFilterFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetUlNdisFilterValidFlag(
     TAF_APS_UL_NDIS_FILTER_FLAG_ENUM_UINT32   enUlNdisFilterFlag
 )
@@ -454,21 +321,7 @@ VOS_VOID TAF_APS_SetUlNdisFilterValidFlag(
     TAF_APS_IPF_SET_UL_NDIS_FILTER_FLAG(enUlNdisFilterFlag);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfAddUlNdisFilter
- 功能描述  : 用于添加上行NDIS的几种FILTER类型
- 输入参数  : VOS_UINT32                 ulFilterId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IpfAddUlNdisFilter(
     VOS_UINT32                          ulFilterId
 )
@@ -539,25 +392,7 @@ VOS_UINT32 TAF_APS_IpfAddUlNdisFilter(
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfGenerateBaseIpv4Filter
- 功能描述  : 产生IPv4类型的基本参数的Filter
- 输入参数  : const APS_PDP_ADDR_ST     *pstPdpAddr,
-             VOS_UINT8                  ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月21日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IpfGenerateBaseIpv4Filter(
     const APS_PDP_ADDR_ST              *pstPdpAddr,
     VOS_UINT8                           ucRabId
@@ -604,25 +439,7 @@ VOS_UINT32 TAF_APS_IpfGenerateBaseIpv4Filter(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfGenerateBaseIpv6Filter
- 功能描述  : 产生IPv6格式的基本参数的Filter
- 输入参数  : VOS_UINT8                 *pstPdpAddr,
-             VOS_UINT8                  ucRabId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月21日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IpfGenerateBaseIpv6Filter(
     VOS_UINT8                          *pucPdpAddr,
     VOS_UINT8                           ucRabId
@@ -681,21 +498,7 @@ VOS_UINT32 TAF_APS_IpfGenerateBaseIpv6Filter(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ChangeUlIpfFilterType
- 功能描述  : 更改过滤器类型
- 输入参数  : MODEM_ID_ENUM_UINT16                enModemId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月23日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ChangeUlIpfFilterType(
     MODEM_ID_ENUM_UINT16                enModemId
 )
@@ -718,27 +521,7 @@ VOS_VOID TAF_APS_ChangeUlIpfFilterType(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_IpfConfigUlFilter
- 功能描述  : 遍历所有上行TFT, 生成IP Filter, 并配置到硬件加速器
- 输出参数  : VOS_UINT8 ucPdpId
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月15日
-    作    者   : l60609
-    修改内容   : DSDA Phase II
-
-  3.日    期   : 2015年6月9日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_VOID TAF_APS_IpfConfigUlFilter(VOS_UINT8 ucPdpId)
 {
     VOS_UINT32                          ulIpFilterNum   = 0;

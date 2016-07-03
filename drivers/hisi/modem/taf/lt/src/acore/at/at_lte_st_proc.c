@@ -135,8 +135,7 @@ VOS_UINT32 atSetSSYNCPara(VOS_UINT8 ucClientId)
     stSetReq.usdlChannel = (VOS_UINT16)(gastAtParaList[3].ulParaValue);
 
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SSYNC_REQ,ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -173,8 +172,7 @@ VOS_UINT32 atQrySSYNCPara(VOS_UINT8 ucClientId)
     FTM_RD_SSYNC_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SSYNC_REQ,ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -240,8 +238,7 @@ VOS_UINT32 atSetSTXBWPara(VOS_UINT8 ucClientId)
     stSetReq.ulBandwide = (gastAtParaList[0].ulParaValue);
 
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_STXBW_REQ, ucClientId,(VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -277,8 +274,7 @@ VOS_UINT32 atQrySTXBWPara(VOS_UINT8 ucClientId)
     FTM_RD_STXBW_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-	/* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+	
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_STXBW_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -344,8 +340,7 @@ VOS_UINT32 atSetSTXCHANPara(VOS_UINT8 ucClientId)
     stSetReq.ulStxChannel= (gastAtParaList[0].ulParaValue);
 
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_STXCHAN_REQ,ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -381,8 +376,7 @@ VOS_UINT32 atQrySTXCHANPara(VOS_UINT8 ucClientId)
     FTM_RD_STXCHAN_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-	/* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+	
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_STXCHAN_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -452,8 +446,7 @@ VOS_UINT32 atSetSSUBFRAMEPara(VOS_UINT8 ucClientId)
     }
     stSetReq.usSubFramePattern= (VOS_UINT16)(gastAtParaList[1].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SSUBFRAME_REQ,ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -489,8 +482,7 @@ VOS_UINT32 atQrySSUBFRAMEPara(VOS_UINT8 ucClientId)
     FTM_RD_SSUBFRAME_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SSUBFRAME_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -560,8 +552,7 @@ VOS_UINT32 atSetSPARAPara(VOS_UINT8 ucClientId)
     }
     stSetReq.usValue = (VOS_UINT16)(gastAtParaList[1].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SPARA_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -599,8 +590,7 @@ VOS_UINT32 atQrySPARAPara(VOS_UINT8 ucClientId)
     FTM_RD_SPARA_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SPARA_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -674,8 +664,7 @@ VOS_UINT32 atSetSSEGNUMPara(VOS_UINT8 ucClientId)
     }
     stSetReq.usSegNum = (VOS_UINT16)(gastAtParaList[0].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SSEGNUM_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -713,8 +702,7 @@ VOS_UINT32 atQrySSEGNUMPara(VOS_UINT8 ucClientId)
     FTM_RD_SSEGNUM_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SSEGNUM_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -788,8 +776,7 @@ VOS_UINT32 atSetSTXMODUSPara(VOS_UINT8 ucClientId)
         }
     }
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_STXMODUS_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -827,8 +814,7 @@ VOS_UINT32 atQrySTXMODUSPara(VOS_UINT8 ucClientId)
     FTM_RD_STXMODUS_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_STXMODUS_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -918,8 +904,7 @@ VOS_UINT32 atSetSTXRBNUMSPara(VOS_UINT8 ucClientId)
         }
     }
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_STXRBNUMS_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -957,8 +942,7 @@ VOS_UINT32 atQrySTXRBNUMSPara(VOS_UINT8 ucClientId)
     FTM_RD_STXRBNUMS_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_STXRBNUMS_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1048,8 +1032,7 @@ VOS_UINT32 atSetSTXRBPOSSPara(VOS_UINT8 ucClientId)
         }
     }
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_STXRBPOSS_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1087,8 +1070,7 @@ VOS_UINT32 atQrySTXRBPOSSPara(VOS_UINT8 ucClientId)
     FTM_RD_STXRBPOSS_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_STXRBPOSS_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1178,8 +1160,7 @@ VOS_UINT32 atSetSTXPOWSPara(VOS_UINT8 ucClientId)
         }
     }
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_STXPOWS_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1217,8 +1198,7 @@ VOS_UINT32 atQrySTXPOWSPara(VOS_UINT8 ucClientId)
     FTM_RD_STXPOWS_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_STXPOWS_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1308,8 +1288,7 @@ VOS_UINT32 atSetSTXCHANTYPESPara(VOS_UINT8 ucClientId)
         }
     }
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_STXCHANTYPES_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1347,8 +1326,7 @@ VOS_UINT32 atQrySTXCHANTYPESPara(VOS_UINT8 ucClientId)
     FTM_RD_STXCHANTYPES_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_STXCHANTYPES_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1428,8 +1406,7 @@ VOS_UINT32 atSetSSEGLENPara(VOS_UINT8 ucClientId)
     }
     stSetReq.ussegment_len= (VOS_UINT16)(gastAtParaList[0].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SSEGLEN_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1467,8 +1444,7 @@ VOS_UINT32 atQrySSEGLENPara(VOS_UINT8 ucClientId)
     FTM_RD_SSEGLEN_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SSEGLEN_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1545,8 +1521,7 @@ VOS_UINT32 atSetSRXSETPara(VOS_UINT8 ucClientId)
     stSetReq.usRBNum = (VOS_UINT16)(gastAtParaList[3].ulParaValue);
     stSetReq.usRBPos = (VOS_UINT16)(gastAtParaList[4].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SRXSET_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1583,8 +1558,7 @@ VOS_UINT32 atQrySRXSETPara(VOS_UINT8 ucClientId)
     FTM_RD_SRXSET_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SRXSET_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1661,8 +1635,7 @@ VOS_UINT32 atSetSRXPOWPara(VOS_UINT8 ucClientId)
         }
     }
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SRXPOW_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1700,8 +1673,7 @@ VOS_UINT32 atQrySRXPOWPara(VOS_UINT8 ucClientId)
     FTM_RD_SRXPOW_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SRXPOW_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1765,8 +1737,7 @@ VOS_UINT32 atSetSRXSUBFRAPara(VOS_UINT8 ucClientId)
     }
     stSetReq.ussubFrameNum= (VOS_UINT16)(gastAtParaList[0].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SRXSUBFRA_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1804,8 +1775,7 @@ VOS_UINT32 atQrySRXSUBFRAPara(VOS_UINT8 ucClientId)
     FTM_RD_SRXSUBFRA_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SRXSUBFRA_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1850,8 +1820,7 @@ VOS_UINT32 atQrySRXBLERPara(VOS_UINT8 ucClientId)
     FTM_RD_SRXBLER_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SRXBLER_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1918,8 +1887,7 @@ VOS_UINT32 atSetSSTARTPara(VOS_UINT8 ucClientId)
     }
     stSetReq.usType = (VOS_UINT16)(gastAtParaList[0].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SSTART_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -1957,8 +1925,7 @@ VOS_UINT32 atQrySSTARTPara(VOS_UINT8 ucClientId)
     FTM_RD_SSTART_REQ_STRU stQryReq = {0};
     VOS_UINT32 ulRst;
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_SSTART_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -2022,8 +1989,7 @@ VOS_UINT32 atSetSSTOPPara(VOS_UINT8 ucClientId)
     }
     stSetReq.usType = (VOS_UINT16)(gastAtParaList[0].ulParaValue);
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_SET_SSTOP_REQ, ucClientId, (VOS_VOID*)(&stSetReq), sizeof(stSetReq));
 
     if(AT_SUCCESS == ulRst)
@@ -2111,8 +2077,7 @@ VOS_UINT32 atQrySTRXBERPara(VOS_UINT8 ucClientId)
 	
 
 
-    /* lkf58113 @ 20110929 采用新的发送函数:atSendFtmDataMsg
- */
+    
     ulRst = atSendFtmDataMsg(MSP_SYS_FTM_PID, ID_MSG_FTM_RD_STRXBER_REQ, ucClientId, (VOS_VOID*)(&stQryReq), sizeof(stQryReq));
 
     if(AT_SUCCESS == ulRst)
@@ -2207,24 +2172,7 @@ VOS_VOID TranslateTpduIntoAsciiChar(VOS_UINT8 * tpduContent, VOS_UCHAR * asciiRe
 	}
 }
 
-/*****************************************************************************
- 函 数 名  : CreateCnfStr
- 功能描述  : 根据数据类型、band类型构建AT返回字符串
- 输入参数  : dataType   --- 数据类型
-             bandType   --- band类型
-             strSrc     --- 待输出原始数据地址
-             strLength  --- 原始数据长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月06日
-    作    者   : z00212940
-    修改内容   : TDS新增函数
-
-*****************************************************************************/
 VOS_VOID CreateCnfStr(VOS_UINT32 dataType, VOS_UINT32 bandType, VOS_UCHAR * strSrc, VOS_UINT32 strLength)
 {
     VOS_UINT8    a_conversion[AT_CALIB_PARAM_APC];
@@ -2279,21 +2227,7 @@ VOS_VOID CreateCnfStr(VOS_UINT32 dataType, VOS_UINT32 bandType, VOS_UCHAR * strS
                                 "^SCALIB:%s,%s\r\n", g_AtTdsCnfStr[cnfStrIndex], a_Assicconversion);
 }
 
-/*****************************************************************************
- 函 数 名  : atTdsCreateCnfStr
- 功能描述  : 根据数据类型、band类型构建AT返回字符串
- 输入参数  : pstCnf  --- FTM应答消息数据结构
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月06日
-    作    者   : z00212940
-    修改内容   : TDS新增函数
-
-*****************************************************************************/
 VOS_UINT32 atTdsCreateCnfStr(FTM_SET_SCALIB_CNF_STRU * pstCnf)
 {
     AT_TDS_OPT_TYPE_ENUM_U32    opType;
@@ -2484,21 +2418,7 @@ VOS_UINT32 atTdsCreateCnfStr(FTM_SET_SCALIB_CNF_STRU * pstCnf)
     return ERR_MSP_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : At_SetTdsScalibPara
- 功能描述  : ^SCALIB 设置命令处理函数，将设置命令发送到FTM
- 输入参数  : VOS_UINT8 ucClientId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月06日
-    作    者   : z00212940
-    修改内容   : TDS新增函数
-
-*****************************************************************************/
 VOS_UINT32 At_SetTdsScalibPara(VOS_UINT8 ucClientId)
 {
     FTM_SET_SCALIB_REQ_STRU stSetReq = {0};
@@ -2579,21 +2499,7 @@ VOS_UINT32 At_SetTdsScalibPara(VOS_UINT8 ucClientId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryTdsScalibPara
- 功能描述  : ^SCALIB 查询命令处理函数，将查询命令发送到FTM
- 输入参数  : VOS_UINT8 ucClientId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月06日
-    作    者   : z00212940
-    修改内容   : TDS新增函数
-
-*****************************************************************************/
 VOS_UINT32 At_QryTdsScalibPara(VOS_UINT8 ucClientId)
 {
     FTM_RD_SCALIB_REQ_STRU stQryReq = {0};
@@ -2612,21 +2518,7 @@ VOS_UINT32 At_QryTdsScalibPara(VOS_UINT8 ucClientId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : atQrySCALIBParaCnfProc
- 功能描述  : ^SCALIB 查询命令处理函数，处理FTM返回的查询应答
- 输入参数  : VOS_UINT8 ucClientId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月06日
-    作    者   : z00212940
-    修改内容   : TDS新增函数
-
-*****************************************************************************/
 VOS_UINT32 atQrySCALIBParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID * pMsgBlock)
 {
 	FTM_RD_SCALIB_CNF_STRU * pstCnf = NULL;
@@ -2640,21 +2532,7 @@ VOS_UINT32 atQrySCALIBParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID * pMsgBlock)
     return AT_FW_CLIENT_STATUS_READY;
 }
 
-/*****************************************************************************
- 函 数 名  : atSetSCALIBParaCnfProc
- 功能描述  : ^SCALIB 设置命令处理函数，处理FTM返回的设置应答
- 输入参数  : VOS_UINT8 ucClientId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月06日
-    作    者   : z00212940
-    修改内容   : TDS新增函数
-
-*****************************************************************************/
 VOS_UINT32 atSetSCALIBParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID * pMsgBlock)
 {
     VOS_UINT32 ret = ERR_MSP_FAILURE;
@@ -2720,21 +2598,7 @@ VOS_UINT32 atSetSCALIBParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID * pMsgBlock)
 
 }
 
-/*****************************************************************************
- 函 数 名  : At_QryTdsScalibPara
- 功能描述  : ^SCALIB 查询命令处理函数，将查询命令发送到FTM
- 输入参数  : VOS_UINT8 ucClientId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月06日
-    作    者   : z00212940
-    修改内容   : TDS新增函数
-
-*****************************************************************************/
 VOS_UINT32 At_QryTdsScellinfoPara(VOS_UINT8 ucClientId)
 {
     FTM_RD_SCELLINFO_REQ_STRU stQryReq = {0};
@@ -2753,21 +2617,7 @@ VOS_UINT32 At_QryTdsScellinfoPara(VOS_UINT8 ucClientId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : atQrySCALIBParaCnfProc
- 功能描述  : ^SCALIB 查询命令处理函数，处理FTM返回的查询应答
- 输入参数  : VOS_UINT8 ucClientId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月06日
-    作    者   : z00212940
-    修改内容   : TDS新增函数
-
-*****************************************************************************/
 VOS_UINT32 atQryScellinfoParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID * pMsgBlock)
 {
 	FTM_RD_SCELLINFO_CNF_STRU * pstCnf    = NULL;
@@ -2795,21 +2645,7 @@ VOS_UINT32 atQryScellinfoParaCnfProc(VOS_UINT8 ucClientId, VOS_VOID * pMsgBlock)
 }
 
 
-/*****************************************************************************
- 函 数 名  : At_QryCmtm
- 功能描述  : 查询温度
- 输入参数  : VOS_UINT8 ucClientId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : z00212940
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_QryCmtm(VOS_UINT8 ucClientId)
 {
     FTM_RD_TEMPERATURE_REQ_STRU stQryReq = {0};
@@ -2828,22 +2664,7 @@ VOS_UINT32 At_QryCmtm(VOS_UINT8 ucClientId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : atQryCmtmCnfProc
- 功能描述  : CMTM获取温度应答消息处理
- 输入参数  : VOS_UINT8 ucClientId
-             VOS_VOID * pMsgBlock
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : z00212940
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 atQryCmtmCnfProc(VOS_UINT8 ucClientId, VOS_VOID * pMsgBlock)
 {
     FTM_RD_TEMPERATURE_CNF_STRU * pstCnf    = NULL;

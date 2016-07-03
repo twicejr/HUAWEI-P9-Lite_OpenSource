@@ -78,7 +78,6 @@
 #define RM_PROTO_OSPF       0xD
 #define RM_PROTO_VLINK      0x12
 #define RM_PROTO_DHCP       0x13
-/* Modified by lixs00177467, for rtm net route, VISPV2R3C03SPC010-G2 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 #define RM_PROTO_NET        0x14
 #define RM_PROTO_RIPNG      0x18
 #define RM_PROTO_OSPF6      0x1D
@@ -102,7 +101,6 @@
 #define RM_STATIC_ROUTE_ENABLE        1
 #define RM_STATIC_ROUTE_DISABLE       0
 
-/*Add begin by t00110672 for BC3D01783,   质量活动，消除魔鬼数字*/
 #define RM_TRUE        1
 #define RM_FALSE       0
 
@@ -228,12 +226,10 @@ typedef struct tagRM_STATIC_FILTER
     /* End: VISP1.7C03 VRF qinyun , 2009-01-20 */
 }RM_STATIC_FILTER_S;
 
-/* Modified by lixs00177467, for rtm net route, VISPV2R3C03SPC010-G2 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 typedef struct tagRM_NETRT_FILTER
 {
     ULONG ulIfIndex;/*接口索引,0为不过滤,非0为指定接口索引*/
 }RM_NETRT_FILTER_S;
-/*End of Modified by lixs00177467, 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 
 /*********************注意******************************
 l61496: RM_DSP_ACRT_S的结构和RM_DSP_RIB_S始终只相差一个字段
@@ -261,9 +257,7 @@ typedef struct tagRM_DSP_RIB
     CHAR szVrfName[RM_MAX_VRF_NAME_LENGTH + 1];/*根据路由目的地址过滤*/
     /* End: VISP1.7C03 VRF qinyun , 2009-01-20 */
 
-    /* Begin BC3D01402 l00147446 增加ulType(区别IPV4/IPV6) 09-04-13*/
     ULONG ulType;
-    /* End BC3D01402 l00147446 增加ulType(区别IPV4/IPV6) 09-04-13*/
 }RM_DSP_RIB_S;
 
 
@@ -288,9 +282,7 @@ typedef struct tagRM_DSP_ACRT
     CHAR szVrfName[RM_MAX_VRF_NAME_LENGTH + 1];/*根据路由目的地址过滤*/
     /* End: VISP1.7C03 VRF qinyun , 2009-01-20 */
     
-    /* Begin BC3D01402 l00147446 增加ulType(区别IPV4/IPV6) 09-04-13*/
     ULONG ulType;
-    /* End BC3D01402 l00147446 增加ulType(区别IPV4/IPV6) 09-04-13*/
 }RM_DSP_ACRT_S;
 
 
@@ -308,10 +300,8 @@ typedef struct tagRM_DSP_STATICRT
     ULONG ulAdminStat; /*管理状态，1-使能状态，0-去使能状态*/
     UCHAR aucDescription[RM_USR_DSCP_LEN + 1];/*路由描述 19 chars*/
     
-    /* Begin BC3D01402 l00147446 增加ulType(区别IPV4/IPV6) 09-04-13*/
     CHAR szVrfName[RM_MAX_VRF_NAME_LENGTH + 1];/*根据路由目的地址过滤*/
     ULONG ulType;
-    /* End BC3D01402 l00147446 增加ulType(区别IPV4/IPV6) 09-04-13*/
     
     ULONG loose_num;
     /*Mod End*/
@@ -343,7 +333,6 @@ typedef struct tagRM_BRIEF_FILTER
     CHAR szVrfName[RM_MAX_VRF_NAME_LENGTH + 1];/*根据VRF过滤，如果不填，显示所有的*/
 }RM_BRIEF_FILTER_S;
 
-/* Modified by lixs00177467, for rtm net route, VISPV2R3C03SPC010-G2 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 typedef struct tagRM_DSP_NETRT
 {
     UCHAR szDestAddr[RM_IPV6_ADDRESS_WORD_LEN];/*目的地址*/
@@ -351,13 +340,11 @@ typedef struct tagRM_DSP_NETRT
     UCHAR szNextHopAddr[RM_IPV6_ADDRESS_WORD_LEN];/*下一跳或网关地址*/
     ULONG ulIfIndex; /*出接口*/
 }RM_DSP_NETRT_S;
-/*End of Modified by lixs00177467, 2011/1/22   问题单号:V2R3C03-ROTUE-MERGE  */
 
 typedef enum enumRMError
 {
     RM_OK = 0,
     /*以下错误码由DCL通过mib机制直接返回,只有IPS返回的时候才使用*/
-    /*Modified begin by t00110672 for BC3D01783,   质量活动，错误码基数调整*/
     RM_NO_ERROR,                 /*成功*/
     RM_ERR_GEN_ERROR = MID_COMP_RTM + 2,
     /*End*/
@@ -469,9 +456,7 @@ typedef enum enumRMError
     RM_ERR_GET_INST_NUM,
     RM_ERR_GET_VRF_NAME,
     /* End: VISP1.7C03 VRF qinyun , 2009-01-20 */
-    /*Begin BC3D01416 直连路由设置支持VRF l00147446 09-04-13*/
     RM_ERR_DIRECT_ROUTE,                            /*110*/
-    /*End BC3D01416 直连路由设置支持VRF l00147446 09-04-13*/
     RM_ERR_IPV_TYPE,                      /*错误的IPV类型(非IPV4/IPV6)*/
 
     /* BEGIN V2R3TEST */
@@ -584,7 +569,6 @@ typedef struct tagRM_RPM_PLCYREDIS
 typedef ULONG (*DCL_SET_RT4_FUNC)(RM_CFG_USR4_S * pstUsrIpTable);
 /* End: VISP1.7C03 VRF qinyun , 2009-01-20 */
 
-/*Modified by liangjicheng 00103192, Calc Delay, 2011/10/27   问题单号: REQ-201106295399-OSPF-PER */
 #define NBASE_CPU_SWITCH_VALUE_MIN  1     
 #define NBASE_CPU_SWITCH_VALUE_MAX  1000 
 
@@ -605,50 +589,11 @@ typedef struct tagDCL_CPUSW
     ULONG ulOspfPerTenLSACalcDelay; /* OSPF 两次路由计算的延时控制，单位:每10条LSA最小延时时间(ms)。默认50 (ms/10-lsa) 范围:1~100 */
 }DCL_CPUSW_S;
 
-/*******************************************************************************
-*    Func Name: TCPIP_SetDclCpuSwitchValue
-* Date Created: 2011-10-28
-*       Author: liangjicheng 00103192
-*  Description: 设置DCL相关性能控制参数
-*        Input: DCL_CPUSW_S *pstSwitchValue:
-*    ULONG ulNbaseCpuSwitchValue;     Nbase消息处理计数门限，默认10个IPS   范围:1~1000
-*    ULONG ulSckStubCpuSwitchValue;   SckStub任务处理计数门限，默认10个IPS 范围:1~1000
-*    ULONG ulSwitchTime;              切换CPU的休眠时间，默认为1ms         范围:1~100 
-*    ULONG ulOspfPerTenLSACalcDelay;  OSPF 两次路由计算的延时控制，单位:每10条LSA最小延时时间(ms)。默认50 (ms/10-lsa) 范围:1~100
-*       Output: 
-*       Return: 成功返回 RM_OK; 失败返回  RM_ERR_PARA RM_ERR_WRONG_VALUE; 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-10-28   liangjicheng 00103192   Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_SetDclCpuSwitchValue(DCL_CPUSW_S *pstSwitchValue);
 
-/*******************************************************************************
-*    Func Name: TCPIP_GetDclCpuSwitchValue
-* Date Created: 2011-10-28
-*       Author: liangjicheng 00103192
-*  Description: 设置DCL相关性能控制参数
-*        Input: 
-*       Output: DCL_CPUSW_S *pstSwitchValue:
-*    ULONG ulNbaseCpuSwitchValue;     Nbase消息处理计数门限，默认10个IPS   范围:1~1000
-*    ULONG ulSckStubCpuSwitchValue;   SckStub任务处理计数门限，默认10个IPS 范围:1~1000
-*    ULONG ulSwitchTime;              切换CPU的休眠时间，默认为1ms         范围:1~100 
-*    ULONG ulOspfPerTenLSACalcDelay;  OSPF 两次路由计算的延时控制，单位:每10条LSA最小延时时间(ms)。默认50 (ms/10-lsa) 范围:1~100
-*       Return: 成功返回 RM_OK; 失败返回  RM_ERR_PARA; 
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-10-28   liangjicheng 00103192   Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetDclCpuSwitchValue(DCL_CPUSW_S *pstSwitchValue);
-/*End of Modified by liangjicheng 00103192, 2011/10/27   问题单号: REQ-201106295399-OSPF-PER */
 
 /*******************************************************************************
 *    Func Name: TCPIP_SetDclCpuSwitchValue

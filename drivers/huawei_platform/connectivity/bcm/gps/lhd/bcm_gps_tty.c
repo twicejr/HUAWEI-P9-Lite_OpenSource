@@ -92,7 +92,7 @@ static struct txalarm_base {
 
 #endif
 
-
+struct bcm_tty_priv *priv;
 /*
  *  Misc. functions
  * bcm4773_hello - wakeup chip by toggling mcu_req while monitoring mcu_resp to check if awake
@@ -292,10 +292,8 @@ static int timer_idle_try_to_cancel(void)
 	pr_info( "[SSPBBD]gpstty driver txalarm_try_to_cancel\n");
 #endif
 
-	spin_lock_irqsave(&base->lock, flags);
         /*to void timer null point*/
 	ret = del_timer_sync( &base->timer_idle );
-	spin_unlock_irqrestore(&base->lock, flags);
 
 #ifdef BCM_TTY_DEBUG
 	if (ret)
@@ -384,9 +382,13 @@ static int bcm_tty_open(struct inode *inode, struct file *filp)
 #endif
 	struct bcm_tty_priv *priv = container_of(filp->private_data, struct bcm_tty_priv, misc);
 
-#ifdef BCM_TTY_DEBUG_INFO
 	pr_info("%s++\n", __func__);
-#endif
+
+	if(priv->tty)
+	{
+		pr_err("%s-- has opened, open failed !\n", __func__);
+		return -1;
+	}
 
 	/* Open tty */
 	priv->tty = filp_open(PORT_NAME, O_RDWR, 0);
@@ -422,6 +424,8 @@ static int bcm_tty_release(struct inode *inode, struct file *filp)
 {
 	struct bcm_tty_priv *priv = (struct bcm_tty_priv*) filp->private_data;
 	struct file *tty = priv->tty;
+
+	pr_info("%s--\n", __func__);
 #ifdef USE_TIMER
 	timer_idle_cancel();
 #endif
@@ -483,6 +487,101 @@ static unsigned int bcm_tty_poll(struct file *filp, poll_table *wait)
 	return tty->f_op->poll(tty, wait);
 }
 
+static int bcm_tty_config_close(struct file *f)
+{
+	struct termios termios;
+	mm_segment_t fs;
+	long ret;
+
+	/* Change address limit */
+	fs = get_fs();
+	set_fs(KERNEL_DS);
+
+	/* Get termios */
+	ret = f->f_op->unlocked_ioctl(f, TCGETS, (unsigned long)&termios);
+	if (ret) {
+		pr_err("%s TCGETS failed, err=%ld\n",__func__,ret);
+		return -1;
+	}
+
+	termios.c_iflag = 0;
+	termios.c_oflag = 0;
+	termios.c_lflag = 0;
+	termios.c_cflag &= ~CRTSCTS;
+	termios.c_cc[VMIN ] = 0;
+	termios.c_cc[VTIME] = 1;
+	termios.c_cflag |= B921600;
+	/* Set termios */
+	ret = f->f_op->unlocked_ioctl(f, TCSETS, (unsigned long)&termios);
+	if (ret) {
+		pr_err("%s TCSETS failed, err=%ld\n",__func__,ret);
+		return -1;
+	}
+
+	/* Restore address limit */
+	set_fs(fs);
+	return 0;
+}
+
+int bcm4774_suspend(struct platform_device *p, pm_message_t state)
+{
+	struct tty_struct *ttypoint;
+	struct file *ttyfile;
+
+	if((NULL == priv) || (NULL == priv->tty) || (NULL == priv->tty->private_data))
+	{
+		pr_err("%s priv is NOT init \n", __func__);
+		return -1;
+	}
+
+	ttyfile = priv->tty;
+	ttypoint = ((struct tty_file_private *)ttyfile->private_data)->tty;
+	if((NULL == ttypoint) || (NULL == ttypoint->port))
+	{
+		pr_err("%s ttypoint is NULL \n", __func__);
+		return -1;
+	}
+	/* DisEnable uart flow control */
+	if (bcm_tty_config_close(ttyfile)) {
+		pr_err("%s can not change %s setting.\n", __func__, PORT_NAME);
+		return -EIO;
+	}
+	/* DisEnable  uart RTS  */
+	tty_port_raise_dtr_rts(ttypoint->port);
+	pr_info("%s entry ++ :%s\n", __func__, ttypoint->name);
+	return 0;
+}
+
+int bcm4774_resume(struct platform_device *p)
+{
+	struct tty_struct *ttypoint;
+	struct file *ttyfile;
+
+	if((NULL == priv) || (NULL == priv->tty) || (NULL == priv->tty->private_data))
+	{
+		pr_err("%s priv is NOT init \n", __func__);
+		return -1;
+	}
+
+	ttyfile = priv->tty;
+	ttypoint = ((struct tty_file_private *)ttyfile->private_data)->tty;
+	if((NULL == ttypoint) || (NULL == ttypoint->port))
+	{
+		pr_err("%s ttypoint is NULL \n", __func__);
+		return -1;
+	}
+	/* Enable  uart RTS  */
+	tty_port_lower_dtr_rts(ttypoint->port);
+	/* Enable uart flow control */
+	if (bcm_tty_config(ttyfile)) {
+		pr_err("%s can not change %s setting.\n", __func__, PORT_NAME);
+		return -EIO;
+	}
+
+	pr_info("%s -- :%s\n", __func__, ttypoint->name);
+	return 0;
+}
+
 static long bcm_tty_ioctl( struct file *filp,
         unsigned int cmd, unsigned long arg)
 {
@@ -507,7 +606,7 @@ static const struct file_operations bcm_tty_fops = {
 //               Module init/exit
 //
 //--------------------------------------------------------------
-struct bcm_tty_priv *priv;
+
 static int __init bcm_tty_init(void)
 {
 

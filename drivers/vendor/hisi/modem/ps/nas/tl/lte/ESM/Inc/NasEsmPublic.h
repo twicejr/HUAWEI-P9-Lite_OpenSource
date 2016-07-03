@@ -1,20 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEsmPublic.h
-  Description     : NasEsmPublic.h header file
-  History           :
-      1.丁丽 00128736    2008-08-20  Draft   Enact
-      2.杨茜惠 00135146  2008-12-19  Modify  BA8D00752
-      3.孙兵 49683       2009-01-06  Modify  BA8D00870
-      4.杨茜惠 00135146  2009-03-06  Modify  BA8D01127
-      5.李洪00150010       2009-08-03  Modify  BJ9D01608
-      6.李洪00150010       2009-08-05  Modify  BJ9D01627
-
-
-******************************************************************************/
 
 #ifndef __NASESMPUBLIC_H__
 #define __NASESMPUBLIC_H__
@@ -170,7 +154,6 @@ extern "C" {
 #define NAS_ESM_MAX_DNS_SERVER_NUM      (2)
 #define NAS_ESM_MAX_NBNS_NUM            (2)
 
-/* 删除PCO flag相关无效代码 y00307272 20151205 DTS2015101700432 */
 
 #define NAS_ESM_DEL_SDF_WITH_QOS_OFF    (0)
 #define NAS_ESM_DEL_SDF_WITH_QOS_ON     (1)
@@ -1472,14 +1455,7 @@ typedef struct
 }NAS_ESM_MSG_VAL_ACT_STRU;
 
 
-/*****************************************************************************
- 结构名    : NAS_EMM_TIMER_INFO_STRU
- 结构说明  : log出ESM定时器运行情况
- 1.日    期   : 2012年12月03日
-   作    者   : n00181501
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                          stMsgHeader;     /*_H2ASN_Skip*/
@@ -1498,7 +1474,6 @@ typedef struct
 /*****************************************************************************
   7 Extern Global Variable
 *****************************************************************************/
-/* 删除PCO flag相关无效代码 y00307272 20151205 DTS2015101700432 */
 extern VOS_UINT32                                           g_ulDelSdfWithQosFlag;
 #define NAS_ESM_GetDelSdfWithQosFlag()\
     (((g_ulDelSdfWithQosFlag)== (LPS_NV_GET_DEL_SDF_WITH_QOS_BIT))?(NAS_ESM_DEL_SDF_WITH_QOS_ON):(NAS_ESM_DEL_SDF_WITH_QOS_OFF))

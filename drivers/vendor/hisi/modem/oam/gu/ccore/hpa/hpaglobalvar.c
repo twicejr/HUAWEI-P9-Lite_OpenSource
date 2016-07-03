@@ -36,9 +36,7 @@ extern "C" {
 #include "apminterface.h"
 
 /* Macro of log */
-/*lint -e767  修改人: m00128685；检视人：l46160 原因简述:打点日志文件宏ID定义*/
 #define    THIS_FILE_ID        PS_FILE_ID_HPA_GLOBAL_VAR_C
-/*lint +e767   修改人: m00128685；检视人：l46160 */
 
 
 

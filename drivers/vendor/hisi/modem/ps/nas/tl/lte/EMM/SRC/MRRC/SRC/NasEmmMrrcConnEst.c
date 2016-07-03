@@ -122,17 +122,7 @@ VOS_VOID NAS_EMM_MrrcEstInit(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_EMM_MrrcConnectFailInd
- Discription    : 发送内部消息MRRC_CONNECT_FAIL_IND
- Input          :
- Output         : None
- Return         : None
- History:
-      1.zangyalan   57968    2008-09-23  Draft Enact
-      2.zhengjunyan 00148421 2009.03.09  add rel cause
-      3.X00148705            2009-09-23  修改为转发内部的CONNECT_FAIL
-*****************************************************************************/
+
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_EMM_MrrcConnectFailInd(LRRC_LNAS_EST_RESULT_ENUM_UINT32 enEstResult)
@@ -167,16 +157,7 @@ VOS_VOID NAS_EMM_MrrcConnectFailInd(LRRC_LNAS_EST_RESULT_ENUM_UINT32 enEstResult
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_ChangeRrcConnStateToEstSignal
- Discription    : 把RRC连接状态改为连接状态
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  zangyalan 57968  2008-11-27  Draft Enact
-      2.  zhengjunyan 00148421 2011-5-09 MOD
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_ChangeRrcConnStateToEstSignal( VOS_VOID )
 {
     /*判断当前连接状态为NOT_EXIST，则上报MMC进入信令连接态*/
@@ -191,15 +172,7 @@ VOS_VOID  NAS_EMM_ChangeRrcConnStateToEstSignal( VOS_VOID )
     NAS_EMM_SetConnState(NAS_EMM_CONN_SIG);
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_ChangeRrcConnStateToEsting
- Discription    : 把RRC连接状态改为连接状态
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  leili 00132387  2009-07-08  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_ChangeRrcConnStateToEsting( VOS_VOID )
 {
     /*判断当前连接状态为NOT_EXIST，则上报MMC进入信令连接态*/
@@ -214,15 +187,7 @@ VOS_VOID  NAS_EMM_ChangeRrcConnStateToEsting( VOS_VOID )
     NAS_EMM_SetConnState(NAS_EMM_CONN_ESTING);
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_ChangeRrcConnStateToEstData
- Discription    : 把RRC连接状态改为连接状态
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  leili 00132387  2011-06-16  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_ChangeRrcConnStateToEstData( VOS_VOID )
 {
     /*判断当前连接状态为DATA，则上报MMC进入数据连接态*/
@@ -236,15 +201,7 @@ VOS_VOID  NAS_EMM_ChangeRrcConnStateToEstData( VOS_VOID )
     NAS_EMM_SetConnState( NAS_EMM_CONN_DATA );
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_SndUplinkNasMsg
- Discription    : 给LRRC发送上行消息
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  leili 00132387  2012-09-12  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_SndUplinkNasMsg
 (
     VOS_VOID *pMsgStru
@@ -331,15 +288,7 @@ VOS_VOID  NAS_EMM_SndUplinkNasMsg
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_CcoInterSystemSuccProc
- Discription    : GU->L CCO成功处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  leili 00132387  2012-03-16  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_CcoInterSystemSuccProc( VOS_VOID )
 {
     NAS_MML_PS_BEARER_CONTEXT_STRU  *pstPsBearerCtx = NAS_EMM_NULL_PTR;
@@ -362,15 +311,7 @@ VOS_VOID  NAS_EMM_CcoInterSystemSuccProc( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_CcoInterSystemFailProc
- Discription    : GU->L CCO失败处理
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  leili 00132387  2012-03-16  Draft Enact
-*****************************************************************************/
+
 VOS_VOID  NAS_EMM_CcoInterSystemFailProc( VOS_VOID )
 {
     NAS_MML_PS_BEARER_CONTEXT_STRU *pstPsBearerCtx;
@@ -394,19 +335,7 @@ VOS_VOID  NAS_EMM_CcoInterSystemFailProc( VOS_VOID )
 
 
 
-/*****************************************************************************
- Function Name  : NAS_EMM_PreProcMsgRrcMmEstCnf
- Discription    : EMM在需要建链的场景下，状态收到RRC_MM_EST_CNF时,
-                  使用该函数处理。
- Input          : 消息
- Output         : None
- Return         : None
- History:
-      1.zangyalan   57968    2008-09-10  Draft Enact
-      2.zhengjunyan 00148421 2009.03.09  access barred
-      3.lifuxin     00253982 2014.10.28  LNAS建链流程重构
-      4.leixiantiao 00258641 2015-07-09  fix DTS2015062509266
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_PreProcMsgRrcMmEstCnf(MsgBlock * pMsg)
 {
     LRRC_LMM_EST_CNF_STRU                *pstEstCnfMsg;
@@ -415,9 +344,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgRrcMmEstCnf(MsgBlock * pMsg)
     NAS_EMM_GIM_NORMAL_LOG("NAS_EMM_PreProcMsgRrcMmEstCnf is entered.");
     TLPS_PRINT2LAYER_INFO(NAS_EMM_PreProcMsgRrcMmEstCnf_ENUM,LNAS_ENTRY);
 
-    /* sunbing 00265702 begin for DTS2015100600547 关机不等网络释放*/
     /* delete 无用的入参检查 */
-    /* sunbing 00265702 end for DTS2015100600547 关机不等网络释放*/
     /*检查建链是否成功*/
 
     pstEstCnfMsg = (VOS_VOID *)pMsg;
@@ -479,7 +406,6 @@ VOS_UINT32  NAS_EMM_PreProcMsgRrcMmEstCnf(MsgBlock * pMsg)
                 }
             }
 
-            /* sunbing 00265702 begin for DTS2015100600547 关机不等网络释放*/
             /*关机状态下，只要网络受到detach请求，则直接走关机流程，不用等网络的释放*/
             if ((EMM_MS_NULL == NAS_LMM_GetEmmCurFsmMS())
               &&(EMM_SS_NULL_WAIT_SWITCH_OFF == NAS_LMM_GetEmmCurFsmSS()))
@@ -494,7 +420,6 @@ VOS_UINT32  NAS_EMM_PreProcMsgRrcMmEstCnf(MsgBlock * pMsg)
 
                 NAS_EMM_ProcLocalStop();
             }
-            /* sunbing 00265702 end for DTS2015100600547 关机不等网络释放*/
             break;
 
         case LRRC_EST_ESTING:
@@ -520,17 +445,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgRrcMmEstCnf(MsgBlock * pMsg)
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_EMM_PreProcMsgTIWaitRrcConnTO
- Discription    : MRRC等待RRC连接建立的定时器TI_NAS_EMM_WAIT_RRC_CONN超时,
-                  认为建链失败,给请求源模块发送MRRC_REL_IND消息
- Input          : 消息ID,消息
- Output         : None
- Return         : None
- History:
-      1.  zangyalan 57968  2008-09-10  Draft Enact
-      2.  lifuxin   00253982 2014.10.28  建链流程重构
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_PreProcMsgTIWaitRrcConnTO(MsgBlock * pMsg)
 {
 
@@ -556,16 +471,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgTIWaitRrcConnTO(MsgBlock * pMsg)
     return  NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_IntraEstReq
- Discription    : 收到public发来的mrrc est req消息后,压栈,发rrc_mm_est_req
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  zangyalan 57968  2008-09-10  Draft Enact
-      2.  lifuxin   00253982 2014.10.28  建链流程重构
-*****************************************************************************/
+
 VOS_VOID NAS_EMM_IntraEstReq(const NAS_EMM_MRRC_DATA_REQ_STRU *pMsg)
 {
 
@@ -580,18 +486,7 @@ VOS_VOID NAS_EMM_IntraEstReq(const NAS_EMM_MRRC_DATA_REQ_STRU *pMsg)
     return ;
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_RrcEstReq
- Discription    : 发送RRC_MM_EST_REQ
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  zangyalan 57968  2008-09-10  Draft Enact
-      2.  niezhouyu 00108792  2009-05-20 使用命令控制NAS安全特性的打开和关闭
-      3.  X00148705           2009-10-20 直接调用NAS_EMM_SEND_MSG发送消息
-      4.  z00148421        2010-03-17  安全模块重构:改变了加保护的调用位置
-*****************************************************************************/
+
 VOS_VOID    NAS_EMM_RrcEstReq(const NAS_EMM_MRRC_DATA_REQ_STRU *pMsg)
 {
     LRRC_LMM_EST_REQ_STRU              *pstEstReqMsg = VOS_NULL_PTR;
@@ -647,17 +542,7 @@ VOS_VOID    NAS_EMM_RrcEstReq(const NAS_EMM_MRRC_DATA_REQ_STRU *pMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_FillEstInfo
- Description     : 为LRRC_LMM_EST_REQ消息填充 EstInfo
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-12  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_FillEstInfo(
                                 LRRC_LMM_EST_REQ_STRU              *pstEstReqMsg,
                                 NAS_EMM_MSG_TYPE_ENUM_UINT32        enEmmMsgType )
@@ -775,17 +660,7 @@ VOS_VOID  NAS_EMM_FillEstInfo(
     }
 }
 
-/*****************************************************************************
- Function Name  : NAS_EMM_RrcDataReq
- Discription    : 发送RRC_MM_DATA_REQ
- Input          :
- Output         : None
- Return         : None
- History:
-      1.  zangyalan 57968  2008-09-10  Draft Enact
-      2.  X00148705        2009-10-20  直接调用NAS_EMM_SEND_MSG发送消息
-      3.  z00148421        2010-03-17  安全模块重构:改变了加保护的调用位置
-*****************************************************************************/
+
 VOS_VOID    NAS_EMM_RrcDataReq(         const NAS_EMM_MRRC_DATA_REQ_STRU *pMsg,
                                         VOS_UINT32  ulMmRrcOpId)
 {
@@ -842,17 +717,7 @@ VOS_VOID    NAS_EMM_RrcDataReq(         const NAS_EMM_MRRC_DATA_REQ_STRU *pMsg,
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SaveMrrcDataReqMsg
- Description     : 将需要缓存的消息存入缓存区域
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen 00209181 2013-03-29  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SaveMrrcDataReqMsg
 (
     const NAS_EMM_MRRC_DATA_REQ_STRU        *pstMsg,
@@ -973,16 +838,7 @@ VOS_UINT32  NAS_EMM_MrrcAllocMmRrcOpId( VOS_VOID )
     return(                             gulMmRrcOpId);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_FindMsgInDataReqBuffer
- Description     : 根据DATA CNF携带的OPID查找在缓存消息内存中对应的消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen  00209181   2013-03-30  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_MRRC_MGMT_DATA_STRU* NAS_EMM_FindMsgInDataReqBuffer(VOS_UINT32 ulOpId)
 {
     VOS_UINT32                          ulIndex;
@@ -1011,17 +867,7 @@ NAS_EMM_MRRC_MGMT_DATA_STRU* NAS_EMM_FindMsgInDataReqBuffer(VOS_UINT32 ulOpId)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClrDataReqBufferMsg
- Description     : 清除单条缓存消息,将后面的消息依次前移
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen  00209181    2013-04-01  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClrDataReqBufferMsg
 (
     VOS_UINT32                          ulMmRrcOpId
@@ -1106,17 +952,7 @@ VOS_VOID  NAS_EMM_ClrDataReqBufferMsg
     }
     return;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ClrHoWaitSysInfoBufferMsg
- Description     : 清除HoWaitSysInfo标识存在的缓存消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen  00209181    2013-04-01  Draft Enact
-    2.leixiantiao 00258641  2015-02-04
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_ClrWaitSysInfoBufferMsg( VOS_VOID )
 {
     NAS_EMM_MRRC_MGMT_DATA_STRU         *pEmmMrrcMgmtData = NAS_EMM_NULL_PTR;
@@ -1226,17 +1062,7 @@ VOS_UINT32  NAS_EMM_ClrWaitSysInfoBufferMsg( VOS_VOID )
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClrAllUlDataReqBufferMsg
- Description     : 清除所有缓存消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen  00209181    2013-04-01  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClrAllUlDataReqBufferMsg( VOS_VOID )
 {
     NAS_EMM_MRRC_MGMT_DATA_STRU         *pEmmMrrcMgmtData = NAS_EMM_NULL_PTR;
@@ -1273,17 +1099,7 @@ VOS_VOID  NAS_EMM_ClrAllUlDataReqBufferMsg( VOS_VOID )
     TLPS_PRINT2LAYER_INFO1(NAS_EMM_ClrAllUlDataReqBufferMsg_ENUM,LNAS_FUNCTION_LABEL2,
                             g_ulSaveMsgNum);
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_ClrAllUlDataReqBufferMsgExceptMtDetachAcc
- Description     : 清除除去DETACH ACP消息外的所有缓存消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.wangchen  00209181    2013-04-01  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClrAllUlDataReqBufferMsgExceptMtDetachAcc( VOS_VOID )
 {
     NAS_EMM_MRRC_MGMT_DATA_STRU         *pEmmMrrcMgmtData = NAS_EMM_NULL_PTR;
@@ -1371,18 +1187,7 @@ VOS_VOID  NAS_EMM_ClrAllUlDataReqBufferMsgExceptMtDetachAcc( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ClrAllUlDataReqBufferMsgExceptConnRelWaitSysInfoMsg
- Description     : 在RRC发送REL_IND之前有上行直传由于链路释放而发送失败的消息，需要在收到系统消息后再重发，
-                   因此收到REL_IND时不把这些缓存消息删除
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.chengmin 00285307    2015-09-01  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ClrAllUlDataReqBufferMsgExceptConnRelWaitSysInfoMsg( VOS_VOID )
 {
     NAS_EMM_MRRC_MGMT_DATA_STRU        *pEmmMrrcMgmtData = NAS_EMM_NULL_PTR;
@@ -1469,18 +1274,7 @@ VOS_VOID  NAS_EMM_ClrAllUlDataReqBufferMsgExceptConnRelWaitSysInfoMsg( VOS_VOID 
 
 /*lint +e961*/
 /*lint +e960*/
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgRabmDrbSetupInd
- Description     : 收到ID_EMM_ERABM_DRB_SETUP_IND，通知MMC进入数据连接态,
-                   然后再进入状态机处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-5-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgRabmDrbSetupInd( MsgBlock * pMsg )
 {
     (VOS_VOID)pMsg;
@@ -1495,6 +1289,10 @@ VOS_UINT32  NAS_EMM_PreProcMsgRabmDrbSetupInd( MsgBlock * pMsg )
     {
         NAS_LMM_StopStateTimer(TI_NAS_EMM_STATE_T3440);
     }
+
+    /* 由于该变量用于防止出现NAS处于连接态而RRC处于IDLE态的情况, 所以DRB建立成功时清除计数,
+       该变量在Reg Update_MM、Limit Service和Normal Service下非IDLE态的情况下收到ERABM的DRBRESET_REQ时会累加 */
+    g_ucConnStateRcvDrbReestTimes = 0;
 
     /*做保护,只在RRC链路为信令连接态时,将链路状态切换到数据连接态 */
     if (NAS_EMM_NO == NAS_LMM_IsRrcConnectStatusIdle())

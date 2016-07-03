@@ -38,7 +38,6 @@ typedef struct tagINET6_ADDRESS
     UCHAR ucPad[3];                          /*填充*/
 }INET6_ADDRESS_S;
 
-/*Added by guojianjun178934, OSPFV3 邻居事件、接口事件、邻居状态告警, 2014/5/12   问题单号:S-IP-005-OSPFv3-005  */
 /*接口事件告警*/
 typedef struct tagOSPF6_IF_EVENT_NOTIFY
 {
@@ -84,7 +83,6 @@ typedef struct tagOSPF6_NBR_STATE_NOTIFY
     ULONG ulNbrReachable;      /*邻居是否可达标识(0:邻居不可达 1:邻居不可达)*/
     ULONG ulReason;            /*状态变化的原因值,暂时保留不用 */
 }OSPF6_NBR_STATE_NOTIFY_S;  /*邻居状态通知结构体*/
-/* End of Added by guojianjun178934, 2014/5/12   问题单号:S-IP-005-OSPFv3-005  */
 
 #ifdef __cplusplus
 }

@@ -797,28 +797,7 @@ extern  UINT32 SRE_MemPtCreate(MEM_CREATEPT_PARA * pstPara, UINT8 ucPtNo);
  */
 extern  UINT32 SRE_MemPtDelete(UINT8 ucPtNo);
 
-/**
- *@ingroup SRE_mem
- *@brief 获取指定内存分区的内存占用率。
- *
- *@par 描述:
- *获取分区号为ucPtNo的内存分区的占用率。
- *@attention
- *<ul>
- *<li>对于POOL算法，已使用的内存空间包括申请之后释放的内存空间，由于内存申请之后，即使释放，其内存块类型已经被指定，不能再自由分配。</li>
- *<li>对于FSC算法，已使用的内存空间不包括申请之后释放的内存空间，释放的空间可以重新被分配。</li>
- *<li>分区号不存在时该分区的内存占用率为0。</li>
- *</ul>
- *
- *@param ucPtNo            [IN] 类型#UINT8， 分区号，范围[0,#OS_MEM_MAX_PT_NUM+2)。
- *
- *@retval 内存分区占用率   操作成功，分区的内存占用率取值范围为[0,10000]。
- *@retval 0                该分区的内存占用率为0或者该分区不存在。
- *@par 依赖:
- *<ul><li>sre_mem.h：该接口声明所在的头文件。</li></ul>
- *@since RTOSck V100R001C01
- *@see SRE_MemPtCreate
- */
+
 extern UINT32 SRE_MemUsageGet(UINT8 ucPtNo);
 
 /**

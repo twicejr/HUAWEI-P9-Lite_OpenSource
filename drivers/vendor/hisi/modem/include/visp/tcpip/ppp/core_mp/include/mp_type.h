@@ -1,28 +1,4 @@
-/*************************************************************************
- *
- *              Copyright 2005, Huawei Technologies Co. Ltd.
- *                          ALL RIGHTS RESERVED
- * 
- *-----------------------------------------------------------------------*
- *
- *                               mp_type.h
- *
- *  Project Code: VISP1.5
- *   Module Name: MP
- *  Date Created: 2000-03-27
- *        Author: HouZhipeng
- *   Description: MP模块的数据结构定义（Core）
- *
- *-----------------------------------------------------------------------*
- *  Modification History
- *  DATE            NAME            DESCRIPTION
- *  2000-03-27      HouZhipeng      Create
- *  2005-09-15      YaoChengliang   Modified for VISP
- *  2006-03-31      ZhuKun          Adjust for D00663
- *  2006-04-21      ZhuKun          Adjust for D00876
- *  2006-05-10      luyao           Adjust for ARM CPU
- *  2008-08-13      f54882          for BC3D00221,同步问题单BC3D00185
- *************************************************************************/
+
 
 #ifndef _MP_TYPE_H_
 #define _MP_TYPE_H_
@@ -145,7 +121,6 @@ typedef struct tagMP_FATHER
     USHORT usUpSublinkLowLimit; /* mp接口成员端口UP数达到该值进行网络层协商 */ 
     UCHAR ucPadding[2];
 
-    /* Added by z43740 for A82D20089: 增加重组方式统计,2007-09-13 */
     ULONG ulWindowMatch;        /* 匹配重组窗口的报文个数 */
     ULONG ulWindowIn;           /* 落在重组窗口内报文个数 */
     ULONG ulWindowBehind;       /* 落后重组窗口的报文个数 */
@@ -241,7 +216,6 @@ typedef struct tagMpDispInfo
     ULONG ulInSeqNum[MC_MAX_LSCLASS];           /* 入报文序列号 */
     ULONG ulOutSeqNum[MC_MAX_LSCLASS];          /* 出报文序列号 */
 
-    /* Added by z43740 for A82D20089: 增加重组方式统计,2007-09-13 */
     ULONG ulWindowMatchPkts;        /* 匹配重组窗口报文个数 */
     ULONG ulWindowInPkts;           /* 落在重组窗口中报文个数 */
     ULONG ulWindowBehindPkts;       /* 落后重组窗口报文个数 */

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsFsmMain.c
-  版 本 号   : 初稿
-  作    者   : h44270
-  生成日期   : 2011年12月16日
-  最近修改   :
-  功能描述   : 主状态机处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年12月16日
-    作    者   : h44270
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -91,23 +74,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_Inactive
- 功能描述  : 收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -144,23 +111,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_Inactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_Inactive
- 功能描述  : INACTIVE主状态下收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -206,23 +157,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_Inactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_Inactive
- 功能描述  : INACTIVE主状态下收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -267,23 +202,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_Inactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpActivateInd_Inactive
- 功能描述  : INACTIVE主状态下收到D_PMC_SMREG_PDP_ACT_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpActivateInd_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -316,27 +235,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpActivateInd_Inactive(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpManageInd_Inactive
- 功能描述  : INACTIVE主状态下收到ID_APP_ESM_PDP_MANAGER_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpManageInd_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -366,39 +265,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpManageInd_Inactive(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmSmEpsBearerInfoInd_Inactive
- 功能描述  : INACTIVE主状态下收到ID_ESM_SM_EPS_BEARER_INFO_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年01月21日
-    作    者   : A00165503
-    修改内容   : DTS2013011803709: 激活ND Client增加接入技术判断, 防止在NULL
-                 状态下激活ND Client导致RS包被丢弃
-
-  3.日    期   : 2013年4月23日
-    作    者   : A00165503
-    修改内容   : DTS2013041204937: 专用承载激活时不需要激活ND Client
-
-  4.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目新增IMS专有承载的处理
-
-  5.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -457,36 +324,7 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_Inactive(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtSetPdpContextStateReq_Active
- 功能描述  : 收到ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-              pstMsg     : ID_MSG_TAF_PS_SET_PDP_CONTEXT_STATE_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-              VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : S62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  3.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  4.日    期   : 2014年12月8日
-    作    者   : A00165503
-    修改内容   : DTS2014111302668: 匹配缺省PDN流程中, CID对应的剩余时长未清
-                 除, 导致使用相同CID再次拨号后, 在匹配缺省PDN场景下未上报响
-                 应事件, 拨号流程异常
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -559,36 +397,7 @@ VOS_UINT32 TAF_APS_RcvAtSetPdpContextStateReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsPppDialOrigReq_Active
- 功能描述  : ACTIVE主状态下收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  3.日    期   : 2014年2月20日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: PS域呼叫建立流程优化
-
-  4.日    期   : 2014年12月8日
-    作    者   : A00165503
-    修改内容   : DTS2014111302668: 匹配缺省PDN流程中, CID对应的剩余时长未清
-                 除, 导致使用相同CID再次拨号后, 在匹配缺省PDN场景下未上报响
-                 应事件, 拨号流程异常
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -643,45 +452,7 @@ VOS_UINT32 TAF_APS_RcvAtPsPppDialOrigReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallOrigReq_Active
- 功能描述  : INACTIVE主状态下收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月28日
-    作    者   : A00165503
-    修改内容   : DTS2012062802394: 上报IPv6的RA信息时, 没有检查用户请求的拨
-                 号类型是否为IPv6
-
-  3.日    期   : 2012年6月30日
-    作    者   : A00165503
-    修改内容   : DTS2012062900707: IPv6拨号成功, 应用获取IPv6地址前缀异常
-
-  4.日    期   : 2014年5月22日
-    作    者   : A00165503
-    修改内容   : DTS2013022201185: 呼叫建立流程优化
-
-  5.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: IP类型从拨号参数中获取
-
-  6.日    期   : 2014年12月8日
-    作    者   : A00165503
-    修改内容   : DTS2014111302668: 匹配缺省PDN流程中, CID对应的剩余时长未清
-                 除, 导致使用相同CID再次拨号后, 在匹配缺省PDN场景下未上报响
-                 应事件, 拨号流程异常
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -746,23 +517,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallOrigReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallEndReq_Active
- 功能描述  : 收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_MSG_TAF_PS_CALL_END_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  :处理消息失败
-             VOS_TRUE   :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -814,23 +569,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallEndReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallModifyReq_Active
- 功能描述  : 收到ID_MSG_TAF_PS_CALL_MODIFY_REQ消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_MSG_TAF_PS_CALL_MODIFY_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -850,23 +589,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallModifyReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallAnswerReq_Active
- 功能描述  : ACTIVE主状态下收到ID_MSG_TAF_PS_CALL_ANSWER_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -887,23 +610,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallAnswerReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvAtPsCallHangupReq_Active
- 功能描述  : ACTIVE主状态下收到ID_MSG_TAF_PS_CALL_HANGUP_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -923,22 +630,7 @@ VOS_UINT32 TAF_APS_RcvAtPsCallHangupReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpModifyInd_Active
- 功能描述  : 收到ID_PMC_SMREG_PDP_MODIFY_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_PMC_SMREG_PDP_MODIFY_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  :处理消息失败
-             VOS_TRUE   :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpModifyInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1014,22 +706,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpModifyInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSmPdpDeactivateInd_Active
- 功能描述  : 收到 ID_PMC_SMREG_PDP_DEACTIV_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_PMC_SMREG_PDP_DEACTIV_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  :处理消息失败
-             VOS_TRUE   :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1083,29 +760,7 @@ VOS_UINT32 TAF_APS_RcvSmPdpDeactivateInd_Active(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpModifyInd_Active
- 功能描述  : 收到 ID_APP_ESM_PDP_MODIFY_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_APP_ESM_PDP_MODIFY_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  :处理消息失败
-             VOS_TRUE   :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，记录LTE上报的EPSQOS
-  3.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpModifyInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1139,35 +794,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpModifyInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpDeactivateInd_Active
- 功能描述  : 收到 ID_L4A_APS_PDP_DEACTIVATE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_L4A_APS_STA_DEACTIVATE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  :处理消息失败
-             VOS_TRUE   :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年8月21日
-    作    者   : A00165503
-    修改内容   : DTS2014081803666: 增加SNDCP激活状态判断, 如果SNDCP处于激活
-                 状态, 需将其去激活
-
-  3.日    期  : 2015年5月29日
-    作    者  : a00165503
-    修改内容  :  MODIFY for DTS2015051204781
-
-  4.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1217,31 +844,7 @@ VOS_UINT32 TAF_APS_RcvEsmPdpDeactivateInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmPdpSetupInd_Active
- 功能描述  : 收到ID_APP_ESM_PDP_SETUP_IND消息的处理
- 输入参数  : ulEventType: 消息类型
-             pstMsg     : ID_APP_ESM_PDP_SETUP_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  : 处理消息失败
-             VOS_TRUE   : 处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月19日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年12月7日
-    作    者   : w00316404
-    修改内容   : Split L4A Project
-
-  3.日    期   : 2015年01月28日
-    作    者   : w00316404
-    修改内容   : send pdp activate inf to ND Client
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmPdpSetupInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1249,7 +852,10 @@ VOS_UINT32 TAF_APS_RcvEsmPdpSetupInd_Active(
 {
 #if (FEATURE_ON == FEATURE_IMS) || (FEATURE_ON == FEATURE_IPV6)
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity;
+    TAF_APS_RAT_TYPE_ENUM_UINT32        enCurrRatType;
     VOS_UINT8                           ucPdpId;
+
+    enCurrRatType  = TAF_APS_GetCurrPdpEntityRatType();
 
     ucPdpId      = TAF_APS_GetCurrFsmEntityPdpId();
     pstPdpEntity = TAF_APS_GetPdpEntInfoAddr(ucPdpId);
@@ -1262,34 +868,21 @@ VOS_UINT32 TAF_APS_RcvEsmPdpSetupInd_Active(
 
 #if (FEATURE_ON == FEATURE_IPV6)
     /* 如果地址类型是IPv6, 需要同步给ND Client */
-    if ( (TAF_APS_CheckPrimaryPdp(ucPdpId))
+    if ( (TAF_APS_RAT_TYPE_NULL != enCurrRatType)
+      && (TAF_APS_CheckPrimaryPdp(ucPdpId))
       && (TAF_APS_CheckPdpAddrTypeIpv6(ucPdpId)) )
     {
         TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                pstPdpEntity->PdpAddr.aucIpV6Addr);
+
+        pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
     }
 #endif
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEsmSmEpsBearerInfoInd_Active
- 功能描述  : ACTIVE主状态下收到ID_ESM_SM_EPS_BEARER_INFO_IND消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1342,22 +935,7 @@ VOS_UINT32 TAF_APS_RcvEsmSmEpsBearerInfoInd_Active(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpActivateRsp_Active
- 功能描述  : TAF_APS_STA_ACTIVE状态下收到APS_SN_DEACT_RSP_MSG_TYPE消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpActivateRsp_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1400,23 +978,7 @@ VOS_UINT32 TAF_APS_RcvSndcpActivateRsp_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpDeactivateRsp_Active
- 功能描述  : TAF_APS_STA_ACTIVE状态下收到APS_SN_DEACT_RSP_MSG_TYPE消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpDeactivateRsp_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1427,22 +989,7 @@ VOS_UINT32 TAF_APS_RcvSndcpDeactivateRsp_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvSndcpDeactivateRsp_Active
- 功能描述  : TAF_APS_STA_ACTIVE状态下收到APS_SN_STATUS_REQ_MSG_TYPE消息的处理
- 输入参数  : ulEventType    - 消息ID
-             pstMsg         - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE       - 消息处理成功
-             VOS_FALSE      - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvSndcpStatusReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1468,23 +1015,7 @@ VOS_UINT32 TAF_APS_RcvSndcpStatusReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvRabmSysChgToGprs_Active
- 功能描述  : 收到 ID_RABM_APS_SYS_CHG_TO_GPRS消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_RABM_MN_SYS_LTE_CHG_TO_GPRS消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  :处理消息失败
-             VOS_TRUE   :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvRabmSysChgToGprs_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1504,22 +1035,7 @@ VOS_UINT32 TAF_APS_RcvRabmSysChgToGprs_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvRabmLocalPdpDeactivateReq_Active
- 功能描述  : 收到 RABM_APS_LOCAL_PDP_DEACT_REQ_MSG消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_RABM_APS_LOCAL_PDP_DEACT_REQ消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  :处理消息失败
-             VOS_TRUE   :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvRabmLocalPdpDeactivateReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1547,23 +1063,7 @@ VOS_UINT32 TAF_APS_RcvRabmLocalPdpDeactivateReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsInternalPdpDeactivateReq_Active
- 功能描述  : ACTIVE主状态下收到ID_APS_APS_INTER_PDP_DEACTIVATE_REQ消息的处理
- 输入参数  : ulEventType                - 消息ID
-             pstMsg                     - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE                   - 消息处理成功
-             VOS_FALSE                  - 消息处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsInternalPdpDeactivateReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1605,27 +1105,7 @@ VOS_UINT32 TAF_APS_RcvApsInternalPdpDeactivateReq_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvApsLocalPdpDeactivateReq_Active
- 功能描述  : 收到 TAF_APS_RcvApsLocalPdpDeactivateInd_Active消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_APS_APS_LOCAL_PDP_DEACTIVATE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  :处理消息失败
-             VOS_TRUE   :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月05日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年12月2日
-    作    者   : A00165503
-    修改内容   : DTS2014111805277: 缺省承载本地去激活时, 需要去激活与其关联
-                 的专用承载
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1693,45 +1173,16 @@ VOS_UINT32 TAF_APS_RcvApsLocalPdpDeactivateInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterServiceStatusChangeInd_Active
- 功能描述  : 收到ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息的处理
- 输入参数  : ulEventType:消息类型
-             pstMsg     : ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE :处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s62952
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年01月21日
-    作    者   : A00165503
-    修改内容   : DTS2013011803709: 激活ND Client增加接入技术判断, 防止在NULL
-                 状态下激活ND Client导致RS包被丢弃
-
-  3.日    期   : 2013年4月23日
-    作    者   : A00165503
-    修改内容   : DTS2013041204937: 专用承载激活时不需要激活ND Client
-
-  4.日    期   : 2015年5月25日
-    作    者   : g00261581
-    修改内容   : 修改入口消息
-
-  5.日    期   : 2015年7月22日
-    作    者   : Y00213812
-    修改内容   : 修改函数名，增加L->1X的切换操作
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterServiceStatusChangeInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 )
 {
     TAF_APS_INTER_SERVICE_STATUS_CHANGE_IND_STRU           *pstServStaChangeInd = VOS_NULL_PTR;
+#if (FEATURE_ON == FEATURE_IPV6)
+    APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity;
+#endif
     VOS_UINT8                           ucPdpId;
 
     /* 获取消息内容 */
@@ -1739,6 +1190,25 @@ VOS_UINT32 TAF_APS_RcvPsInterServiceStatusChangeInd_Active(
 
     /* 获取当前状态机的APS实体索引 */
     ucPdpId                = TAF_APS_GetCurrFsmEntityPdpId();
+
+#if (FEATURE_ON == FEATURE_IPV6)
+    /* 获取该PDPID的PDP实体内容地址 */
+    pstPdpEntity           = TAF_APS_GetPdpEntInfoAddr(ucPdpId);
+
+    /* 如果地址类型是IPv6, 需要同步给ND Client */
+    if ( (TAF_APS_RAT_TYPE_NULL != pstServStaChangeInd->enRatType)
+      && (TAF_APS_CheckPrimaryPdp(ucPdpId))
+      && (TAF_APS_CheckPdpAddrTypeIpv6(ucPdpId)) )
+    {
+        if (VOS_TRUE != pstPdpEntity->ulNdClientActiveFlg)
+        {
+            TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
+                                   pstPdpEntity->PdpAddr.aucIpV6Addr);
+
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
+        }
+    }
+#endif
 
     switch (pstServStaChangeInd->enRatType)
     {
@@ -1805,25 +1275,7 @@ VOS_UINT32 TAF_APS_RcvPsInterServiceStatusChangeInd_Active(
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccDiscInd_Active
- 功能描述  : ACTIVE主状态下收到ID_XCC_APS_DATA_CALL_DISC_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年1月7日
-    作    者   : g00261581
-    修改内容   : 判断进入Dormant后是否启动Dormant TI
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccDiscInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1883,22 +1335,7 @@ VOS_UINT32 TAF_APS_RcvXccDiscInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEnterDormantInd_Active
- 功能描述  : ACTIVE主状态下收到ID_MSG_TAF_PS_CALL_ENTER_DORMANT_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEnterDormantInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1937,22 +1374,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEnterDormantInd_Active(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallInterEpdszidReOrig_Active
- 功能描述  : In Active State, After Rcv Epdszid ReOrig Req, Only add Current EPDSZID into zone List
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallInterEpdszidReOrig_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1968,23 +1390,7 @@ VOS_UINT32 TAF_APS_RcvPsCallInterEpdszidReOrig_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccUpdateDataCallInfoInd_Active
- 功能描述  : Processing message:ID_XCC_APS_UPDATE_DATA_CALL_INFO_IND, This Message is only
-             processed in Active, other state is discarded.
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccUpdateDataCallInfoInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2006,22 +1412,7 @@ VOS_UINT32 TAF_APS_RcvXccUpdateDataCallInfoInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvCdsServiceInd_Active
- 功能描述  : ACTIVE主状态下收到ID_CDS_APS_SERVICE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvCdsServiceInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2045,27 +1436,7 @@ VOS_UINT32 TAF_APS_RcvCdsServiceInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmDiscInd_Active
- 功能描述  : ACTIVE主状态下收到ID_HSM_APS_DISC_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年11月9日
-    作    者   : g00261581
-    修改内容   : 等待PPP协商的过程从Active状态中挪出去，此状态下可以直接迁移-
-                 Dormant
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmDiscInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2100,22 +1471,7 @@ VOS_UINT32 TAF_APS_RcvHsmDiscInd_Active(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactInd_Active
- 功能描述  : ACTIVE主状态下收到ID_PPP_APS_DEACT_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2150,22 +1506,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppModifyInd_Active
- 功能描述  : ACTIVE主状态下收到ID_PPP_APS_MODIFY_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月27日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppModifyInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2265,21 +1606,7 @@ VOS_UINT32 TAF_APS_RcvPppModifyInd_Active(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnInfoChgInd_Active
- 功能描述  : 处理ehsm的pdn变化消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnInfoChgInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2374,25 +1701,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnInfoChgInd_Active(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvInterEndCdmaCallReq_Active
- 功能描述  : 主状态下收到ID_MSG_TAF_PS_INTER_END_CDMA_CALL_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年11月10日
-    作    者   : g00261581
-    修改内容   : ACTIVE状态下收到内部去激活，直接加载去激活状态机
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2415,25 +1724,7 @@ VOS_UINT32 TAF_APS_RcvInterEndCdmaCallReq_Active(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterServiceStatusChangeReq_Dormant
- 功能描述  : DORMANT状态下收到TAF的服务状态信息
-             ID_MSG_TAF_PS_INTER_SERVICE_STATUS_CHANGE_IND通知的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-  2.日    期   : 2015年03月24日
-    作    者   : y00314741
-    修改内容   : Iteration 11
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterServiceStatusChangeReq_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2507,22 +1798,7 @@ VOS_UINT32 TAF_APS_RcvPsInterServiceStatusChangeReq_Dormant(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvCdsServiceInd_Dormant
- 功能描述  : DORMANT主状态下收到ID_CDS_APS_SERVICE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT32 TAF_APS_RcvCdsServiceInd_Dormant(
     VOS_UINT32                          ulEventType,
@@ -2556,22 +1832,7 @@ VOS_UINT32 TAF_APS_RcvCdsServiceInd_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppReConnInd_Dormant
- 功能描述  : Dormant状态下收到消息ID_PPP_APS_RECONN_IND的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppReConnInd_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2603,22 +1864,7 @@ VOS_UINT32 TAF_APS_RcvPppReConnInd_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPppDeactInd_Dormant
- 功能描述  : Dormant状态下收到消息ID_PPP_APS_DEACT_NTF的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPppDeactInd_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2647,22 +1893,7 @@ VOS_UINT32 TAF_APS_RcvPppDeactInd_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccIncomingCallInd_Dormant
- 功能描述  : DORMANT主状态下收到ID_XCC_APS_INCOMING_CALL_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2694,22 +1925,7 @@ VOS_UINT32 TAF_APS_RcvXccIncomingCallInd_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallOrigReq_Dormant
- 功能描述  : DORMANT主状态下收到ID_MSG_TAF_PS_CALL_ORIG_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallOrigReq_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2730,22 +1946,7 @@ VOS_UINT32 TAF_APS_RcvPsCallOrigReq_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsPppDialOrigReq_Dormant
- 功能描述  : DORMANT主状态下收到ID_MSG_TAF_PS_PPP_DIAL_ORIG_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月06日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsPppDialOrigReq_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2765,25 +1966,7 @@ VOS_UINT32 TAF_APS_RcvPsPppDialOrigReq_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallEndReq_Dormant
- 功能描述  : DORMANT主状态下收到ID_MSG_TAF_PS_CALL_END_REQ消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : y00218312
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年11月11日
-    作    者   : g00261581
-    修改内容   : 重构Dormant状态下的去激活流程
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallEndReq_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2850,22 +2033,7 @@ VOS_UINT32 TAF_APS_RcvPsCallEndReq_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallInterEpdszidReOrig_Dormant
- 功能描述  : When In Dormant State,Rcv Epdszid Re-Orig Req Msg
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallInterEpdszidReOrig_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2893,26 +2061,7 @@ VOS_UINT32 TAF_APS_RcvPsCallInterEpdszidReOrig_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvTiDormantTimerExpired_Dormant
- 功能描述  : In Dormant State, Dormant Timer is Expried ,Process Re-Orig
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
- 修改历史      :
-  2.日    期   : 2015年03月27日
-    作    者   : y00314741
-    修改内容   : Iteration 11
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvTiDormantTimerExpired_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2939,22 +2088,7 @@ VOS_UINT32 TAF_APS_RcvTiDormantTimerExpired_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvXccResumeInd_Dormant
- 功能描述  : When in Dormant state, rcv Resume Ind msg ,start re_orig
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvXccResumeInd_Dormant(
 
     VOS_UINT32                          ulEventType,
@@ -2988,22 +2122,7 @@ VOS_UINT32 TAF_APS_RcvXccResumeInd_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvHsmCalConnectInd_Dormant
- 功能描述  : In Dormant State, Receive CONNECT_IND,
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvHsmCalConnectInd_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3029,22 +2148,7 @@ VOS_UINT32 TAF_APS_RcvHsmCalConnectInd_Dormant(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallInter1XToHrpdHandOff_Dormant
- 功能描述  : 收到内部1X到HRPD切换消息消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月01日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallInter1XToHrpdHandOff_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3065,22 +2169,7 @@ VOS_UINT32 TAF_APS_RcvPsCallInter1XToHrpdHandOff_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsCallInterHrpdTo1XHandOff_Dormant
- 功能描述  : 收到内部HRPD到1X切换消息消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月01日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsCallInterHrpdTo1XHandOff_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3101,22 +2190,7 @@ VOS_UINT32 TAF_APS_RcvPsCallInterHrpdTo1XHandOff_Dormant(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEHsmPdnDeactInd_Active
- 功能描述  : ACTIVE主状态下收到ID_EHSM_APS_PDN_DEACTIVATE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月16日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEHsmPdnDeactInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3162,22 +2236,7 @@ VOS_UINT32 TAF_APS_RcvEHsmPdnDeactInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmLteHandoverToEhrpdInd_Active
- 功能描述  : ACTIVE主状态下收到ID_EHSM_APS_PDN_MODIFY_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月19日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmLteHandoverToEhrpdInd_Active(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3216,17 +2275,13 @@ VOS_UINT32 TAF_APS_RcvEhsmLteHandoverToEhrpdInd_Active(
         if ((EHSM_APS_PDN_TYPE_IPV6   == pstLteHandoverInd->stPdnAddr.enPdnType)
          || (EHSM_APS_PDN_TYPE_IPV4V6 == pstLteHandoverInd->stPdnAddr.enPdnType))
         {
-            if (0 != PS_MEM_CMP(pstLteHandoverInd->stPdnAddr.aucIpv6Addr, aucIpv6Prefix, TAF_IPV6_PREFIX_LEN))
-#if 0
+            if ((0 != PS_MEM_CMP(pstLteHandoverInd->stPdnAddr.aucIpv6Addr, aucIpv6Prefix, TAF_IPV6_PREFIX_LEN))
              && (VOS_TRUE != pstPdpEntity->ulNdClientActiveFlg))
-#endif
             {
                 TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                        pstPdpEntity->PdpAddr.aucIpV6Addr);
 
-#if 0
                 pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;
-#endif
 
                 /* 在不做dhcp协商，但是IPV6的地址必然需要协商，在IPV6地址协商成功后，需要上报，故刷新次变量 */
                 pstPdpEntity->ucRcvDhcpDnsFlgIpv6 = VOS_TRUE;
@@ -3268,22 +2323,7 @@ VOS_UINT32 TAF_APS_RcvEhsmLteHandoverToEhrpdInd_Active(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvEhsmPdnActInd_Inactive
- 功能描述  : ACTIVE主状态下收到ID_EHSM_APS_PDN_ACTIVATE_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月19日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvEhsmPdnActInd_Inactive(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -3345,6 +2385,8 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnActInd_Inactive(
     {
         TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+                                   
+        pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;                           
 
         pstPdpIpv6Dns = (MN_APS_PDP_IPV6_DNS_STRU *)&pstPdnActInd->stIpv6Dns;
 
@@ -3360,6 +2402,8 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnActInd_Inactive(
     {
         TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+                                   
+        pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;                           
 
         pstPdpIpv6Dns = (MN_APS_PDP_IPV6_DNS_STRU *)&pstPdnActInd->stIpv6Dns;
 
@@ -3385,6 +2429,8 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnActInd_Inactive(
         {
             TAF_APS_SndNdPdpActInd(pstPdpEntity->ucNsapi,
                                    pstPdpEntity->PdpAddr.aucIpV6Addr);
+                                   
+            pstPdpEntity->ulNdClientActiveFlg = VOS_TRUE;                       
 
             TAF_APS_SndDhcpDnsIpv6Req(ucPdpId);
             pstPdpEntity->ucNeedGetDnsFlg = VOS_TRUE;
@@ -3396,22 +2442,7 @@ VOS_UINT32 TAF_APS_RcvEhsmPdnActInd_Inactive(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_RcvPsInterEnd1xService_Dormant
- 功能描述  : DORMANT主状态下收到ID_MSG_TAF_PS_INTER_END_1X_SERVICE_IN_DORMANT_IND消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月04日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_RcvPsInterEnd1xService_Dormant(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

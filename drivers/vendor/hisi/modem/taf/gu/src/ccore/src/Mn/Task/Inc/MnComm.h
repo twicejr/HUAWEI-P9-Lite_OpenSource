@@ -1,30 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnComm.h
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2008年1月10日
-  最近修改   : 2008年1月10日
-  功能描述   : 该文件包含所有在TAF子系统中公共使用的常量、宏、变量和函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2010年2月23日
-    作    者   : f62575
-    修改内容   : 问题单号：增加短信功能任意点回放功能
-  3.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  3.日    期   : 2010年04月10日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D18035
-                 写PDU短信到SIM卡,BALONG对TP-SCTS的检查与标杆不一致；
-******************************************************************************/
 #ifndef  MN_COMM_H
 #define  MN_COMM_H
 
@@ -43,36 +17,24 @@ extern "C" {
 #include "Ps.h"
 
 #include "TafTypeDef.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 #include "TafClientApi.h"
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 #include "product_config.h"
-/* Added by L60609 for AT Project，2011-10-05,  Begin*/
 #include "MnClient.h"
-/* Added by L60609 for AT Project，2011-10-05,  End*/
 
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 #include "TafOamInterface.h"
 #include "NasStkInterface.h"
 #include "AppVcApi.h"
-/* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-05, begin */
 #include "TafMntn.h"
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-05, end */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
 #include "NasCcIe.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
 #include "NasSms.h"
 
 #if (FEATURE_ON == FEATURE_PTM)
 #include "NasErrorLog.h"
 #endif
-/* Added by wx270776 for OM融合, 2015-6-27, begin */
 #include "msp_diag_comm.h"
 #include "errorlog.h"
-/* Added by wx270776 for OM融合, 2015-6-27, end */
 
 #include "TafLog.h"
 
@@ -170,17 +132,9 @@ enum
 
 
 
-/* Added by L60609 for AT Project，2011-10-03,  Begin*/
 #define MN_AT_INTERFACE_MSG_HEADER_LEN                      ((sizeof(MN_AT_IND_EVT_STRU) - VOS_MSG_HEAD_LENGTH) - 4)
-/* Added by L60609 for AT Project，2011-10-03,  End*/
 
-/*****************************************************************************
- 枚举名    : TAF_SERVICE_TYPE_ENUM
- 结构说明  : USIM上报TAF消息类型
-  1.日    期   : 2013年01月18日
-    作    者   : z00214637
-    修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_SERVICE_TYPE_ENUM
 {
     TAF_SERVICE_TYPE_CALL           = 0,  /*call 类型 */
@@ -289,7 +243,6 @@ typedef struct
     VOS_UINT8                           aucReserve1[2];                             /* 保留 */
 } MN_RABM_IND_MSG_STRU;
 
-/* Added by L60609 for AT Project，2011-10-05,  Begin*/
 /*应用查询参数:f_astMnQryMsgParaAttr*/
 typedef struct
 {
@@ -303,32 +256,17 @@ typedef struct{
     TAF_UINT8                           aucReserve1[3];
     TAF_UINT32                          ulVarPartLen;
 }MN_QRYMSGVARLEN_UNIT_STRU;
-/* Added by L60609 for AT Project，2011-10-05,  End*/
 
-/*****************************************************************************
- 结构名    : TAF_FDN_CONFIG_STRU
- 结构说明  : FDN业务特性参数结构
-             enMeStatus         ME是否启动FDN业务检查
-1.日    期   : 2012年02月23日
-  作    者   : f62575
-  修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
     TAF_FDN_ME_STATUS_ENUM_UINT32       enMeStatus;
 }TAF_FDN_CONFIG_STRU;
 
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 typedef VOS_VOID (*TAF_STK_MSG_FUNC_MAP)(struct MsgCB * pstMsg);
 
-/*****************************************************************************
- 结构名    : MN_STK_MSG_FUNC_MAP_STRU
- 结构说明  : STK消息分发结果
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulMsgName;
@@ -336,7 +274,6 @@ typedef struct
     TAF_STK_MSG_FUNC_MAP                pStkMsgFunc;
 }MN_STK_MSG_FUNC_MAP_STRU;
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
 /*****************************************************************************
@@ -366,12 +303,8 @@ VOS_VOID  MN_SendClientEvent(
 );
 
 
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, begin */
 /* Deleted MN_UnPack7Bit, MN_Pack7Bit */
-/* Deleted by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
 
 /*号码类型检查,参考协议23040 9.1.2.5*/
@@ -421,12 +354,10 @@ VOS_VOID MN_MSG_GetCurSendDomain(
 );
 
 /* 短信发送相关信息导出到异常事件记录 */
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
 VOS_VOID MN_MSG_OutputSmsMoFailureInfo(
     TAF_MSG_ERROR_ENUM_UINT32           enErrorCode,
     NAS_MNTN_SMS_MO_INFO_STRU          *pstSmsMo
 );
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 /* 记录短信发送失败事件 */
 VOS_VOID MN_MNTN_RecordSmsMoFailure(TAF_MSG_ERROR_ENUM_UINT32 enErrorCode);
@@ -441,7 +372,6 @@ VOS_VOID MN_MNTN_RecordSmsMeError (
     VOS_UINT32                          ulErrorNo
 );
 
-/* Added by L60609 for AT Project，2011-10-05,  Begin*/
 VOS_VOID MN_CS_SendMsgToOam(
     MN_CLIENT_ID_T                      clientId,
     MN_CALL_EVENT_ENUM_U32              enEventType,
@@ -477,11 +407,9 @@ VOS_VOID MN_CMDCNF_SendMsg(
     TAF_UINT32                          ulErrorCode
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-3-31, Begin */
 MN_CLIENT_ID_TYPE_UINT16 MN_GetClientIdType(MN_CLIENT_ID_T usClientId);
 
 VOS_UINT32 MN_GetPidFromClientId(MN_CLIENT_ID_T usClientId);
-/* Added by s00246516 for L-C互操作项目, 2014-3-31, End */
 
 VOS_VOID MN_PH_SendMsg(MN_CLIENT_ID_T usClientId,VOS_UINT8 *pEvent,VOS_UINT32 ulLen);
 
@@ -537,30 +465,21 @@ VOS_VOID MN_VC_SendMsg(
 );
 
 
-/* Added by L60609 for AT Project，2011-10-05,  End*/
 
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
 VOS_VOID MN_MSG_ProcAppSend(struct MsgCB * pstMsgSend);
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 VOS_VOID TAF_ProcStkEnvelopeCnf(struct MsgCB * pstMsg);
 VOS_VOID  MN_SndAppMsgToSs (struct MsgCB *pstMsg);
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 #if (VOS_WIN32 == VOS_OS_VER)
 VOS_VOID  MN_ProcUsimMsg (struct MsgCB * pstMsg);
 #endif
 
 
 
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
-/* Deleted by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
-/* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, begin */
 TAF_CS_CAUSE_ENUM_UINT32 TAF_CALL_MapCcCauseToCsCause(
     MN_CALL_CC_CAUSE_ENUM_U8            enCcCause
 );
-/* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-20, end */
 
 /* Delete MN_GetLaiForMoCtrl */
 
@@ -608,7 +527,6 @@ VOS_VOID MN_SETPARA_SendMsgToAt(
     TAF_PARA_TYPE                       ParaType,
     TAF_VOID                           *pPara
 );
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 VOS_UINT32 TAF_CALL_IsEventNeedRpt(
     MN_CALL_EVENT_ENUM_U32              enEventType
 );
@@ -619,7 +537,6 @@ VOS_UINT32 TAF_SS_IsEventNeedRpt (
     TAF_SS_EVENT  ulEvent
 );
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 VOS_VOID MN_CS_ProcEmergencyCallEvent(
     MN_CALL_EVENT_ENUM_U32              enEventType,
@@ -630,60 +547,36 @@ VOS_VOID MN_SendEmergencyCallStatusToOam(
     TAF_OAM_EMERGENCY_CALL_STATUS_ENUM_UINT8                enEventType
 );
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
 VOS_VOID TAF_CALL_SendMsg(
     MN_CLIENT_ID_T                      usClientId,
     MN_CALL_EVENT_ENUM_U32              enEventType,
     VOS_VOID                           *pData,
     VOS_UINT32                          ulLength
 );
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 VOS_UINT32 TAF_GetSpecificFileListRefreshFileInfo(
     VOS_UINT16                          usFileId,
     USIMM_STKREFRESH_IND_STRU           *pstRefreshInd,
     USIMM_CARDAPP_ENUM_UINT32          *penAppType
 );
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if  ( FEATURE_MULTI_MODEM == FEATURE_ON )
 VOS_VOID TAF_SendMtcCsSrvInfoInd(VOS_VOID);
 #endif
-/* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetDataCfgInfoFromBc
- 功能描述  : 从BC中获取数据业务配置参数，由于API下发的speed参数和上报的不同，
-             需要对speed进行转换
- 输入参数  : pstSsCompo - 来自网络的Facility IE中的SS component
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_GetDataCfgInfoFromBc(
     const NAS_CC_IE_BC_STRU             *pstBc,
     MN_CALL_CS_DATA_CFG_INFO_STRU       *pstDataCfgInfo
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
 
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, begin */
 VOS_UINT32  MN_CALL_JudgeMtCallType(
     const NAS_CC_IE_BC_OCTET3_STRU      *pstOctet3,
     const NAS_CC_IE_BC_OCTET5A_STRU     *pstOctet5a,
     MN_CALL_TYPE_ENUM_U8                *penCallType
 );
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-16, end */
 
 #if (FEATURE_ON == FEATURE_PTM)
 VOS_VOID TAF_SndAcpuOmFaultErrLogInd(
@@ -731,10 +624,8 @@ VOS_VOID TAF_SndMmaPsRatTypeNotify(
 );
 #endif
 
-/* Added by wx270776 for OM融合, 2015-7-3, begin */
 extern VOS_UINT32 WuepsAdminPidInit ( enum VOS_INIT_PHASE_DEFINE ip );
 extern VOS_VOID Admin_TaskEntry  (struct MsgCB * pRcvMsg);
-/* Added by wx270776 for OM融合, 2015-7-3, end */
 
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))

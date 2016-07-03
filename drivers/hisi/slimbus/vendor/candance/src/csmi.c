@@ -1548,6 +1548,7 @@ static uint32_t CSMI_Init(void* pD, const CSMI_Config* config, CSMI_Callbacks* c
 	INTERRUPTS__INT_EN__RX_INT_EN__SET(reg);		//Enable interrupt for receiving messages
 	INTERRUPTS__INT_EN__TX_ERR_EN__SET(reg);		//Enable interrupt for sending messages error
 	INTERRUPTS__INT_EN__TX_INT_EN__SET(reg);		//Enable interrupt for sending messages
+	INTERRUPTS__INT_EN__SYNC_LOST_EN__SET(reg);		//Enable interrupt for sync lost
 
 	CSMI_WriteReg(INTERRUPTS.INT_EN, reg);
 

@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdAvoidStrategy.c
-  版 本 号   : 初稿
-  作    者   : x00306642
-  生成日期   : 2015年01月15日
-  最近修改   :
-  功能描述   : CNAS层HSD模块系统捕获的avoid list的策略文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年01月15日
-    作    者   : x00306642
-    修改内容   : Added for HRPD
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -59,22 +43,7 @@ VOS_UINT8                               g_aucAvoidMAPFTimeLen[CNAS_HSD_AVOID_PRO
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetAvoidTimeLen_With_Counter
- 功能描述  : 获取avoid timer时长
- 输入参数  : enAvoidReason -- avoid原因值
 
- 输出参数  : 无
- 返 回 值  : ulAvoidTime -- 获取到的avoid time
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetAvoidTimeLen_Without_Counter(
     CNAS_HSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
 )
@@ -124,22 +93,7 @@ VOS_UINT32 CNAS_HSD_GetAvoidTimeLen_Without_Counter(
     return ulAvoidTimeLen;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetAvoidTimeLen_Without_Counter
- 功能描述  : 获取avoid timer时长
- 输入参数  : enAvoidReason -- avoid原因值
 
- 输出参数  : 无
- 返 回 值  : ulAvoidTime -- 获取到的avoid time
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetAvoidTimeLen_With_Counter(
     CNAS_HSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
 )
@@ -194,22 +148,7 @@ VOS_UINT32 CNAS_HSD_GetAvoidTimeLen_With_Counter(
     return ulAvoidTimeLen;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IncreaseAvoidFreqUsedNum
- 功能描述  : 增加avoid表使用项的个数
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_IncreaseAvoidFreqUsedNum(VOS_VOID)
 {
     CNAS_HSD_AVOID_FREQ_LIST_STRU      *pstAvoidFreqList;
@@ -220,22 +159,7 @@ VOS_VOID CNAS_HSD_IncreaseAvoidFreqUsedNum(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_DecreaseAvoidFreqUsedNum
- 功能描述  : 减小avoid表使用项的个数
- 输入参数  : 无
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_DecreaseAvoidFreqUsedNum(VOS_VOID)
 {
     CNAS_HSD_AVOID_FREQ_LIST_STRU      *pstAvoidFreqList;
@@ -246,22 +170,7 @@ VOS_VOID CNAS_HSD_DecreaseAvoidFreqUsedNum(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_UpdateCounter
- 功能描述  : 增加计数器的数值
- 输入参数  : enAvoidReason -- 原因值
 
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_IncreaseCounter(
     CNAS_HSD_AVOID_REASON_ENUM_UINT8    enAvoidReason,
     UINT8                               ucMaxCounter
@@ -283,22 +192,7 @@ VOS_VOID CNAS_HSD_IncreaseCounter(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_UpdateCounter
- 功能描述  : 计数器的值清零
- 输入参数  : enAvoidReason -- 原因值
 
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ClearCounter(
     CNAS_HSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
 )
@@ -314,22 +208,7 @@ VOS_VOID CNAS_HSD_ClearCounter(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_DecreaseAvoidFreqUsedNum
- 功能描述  : 获取计数器的值
- 输入参数  : enAvoidReason -- avoid原因值
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_HSD_GetCounterValue(
     CNAS_HSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
 )
@@ -337,22 +216,7 @@ VOS_UINT8 CNAS_HSD_GetCounterValue(
     return (CNAS_HSD_GetAvoidFreqListAddr()->aucCounter[enAvoidReason]);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_CheckExpiredFreqFromAvoidList
- 功能描述  : 检查到期的频点，如果有频点到期, 则将到期的项目从表中删掉
- 输入参数  : 无
 
- 输出参数  : 无
-
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年01月06日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_CheckExpiredFreqFromAvoidList(VOS_VOID)
 {
     VOS_UINT32                          ulCurSlice;
@@ -402,23 +266,7 @@ VOS_VOID CNAS_HSD_CheckExpiredFreqFromAvoidList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsCurFreqAvoided
- 功能描述  : 检查当前频点是否在avoid列表中被禁
- 输入参数  : pstFreq -- 被检查的频点信息
 
- 输出参数  : 无
-
- 返 回 值  : VOS_TRUE  -- 当前频点被禁
-             VOS_FALSE -- 当前频点不被禁
- 调用函数  :
- 被调函数  :
-
- 修改历史     :
- 1.日    期   : 2015年01月07日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsCurFreqAvoided(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq
 )
@@ -445,22 +293,7 @@ VOS_UINT32 CNAS_HSD_IsCurFreqAvoided(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_DeleteItemFromAvoidList
- 功能描述  : 从avoid列表中删除频点信息
- 输入参数  : ucIndex -- 被删除的item的index
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_DeleteItemFromAvoidList(
     VOS_UINT8                           ucIndex
 )
@@ -476,22 +309,7 @@ VOS_VOID CNAS_HSD_DeleteItemFromAvoidList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetAvoidItemFromAvoidList
- 功能描述  : 根据index从avoid list中获取指定项
- 输入参数  : ucIndex -- avoid频点信息索引
 
- 输出参数  : 无
- 返 回 值  : CNAS_HSD_AVOID_FREQ_INFO_STRU* -- 获取到的指定项
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_HSD_AVOID_FREQ_INFO_STRU* CNAS_HSD_GetAvoidItemFromAvoidList(
     VOS_UINT8                           ucIndex
 )
@@ -504,22 +322,7 @@ CNAS_HSD_AVOID_FREQ_INFO_STRU* CNAS_HSD_GetAvoidItemFromAvoidList(
     return pstAvoidFreqInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetEmptyItemFormAvoidList
- 功能描述  : 在avoid list中查找一个未使用的项
- 输入参数  :
 
- 输出参数  : pstAvoidFreqInfo -- 未使用项
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_HSD_AVOID_FREQ_INFO_STRU* CNAS_HSD_GetEmptyItemFormAvoidList(VOS_VOID)
 {
     CNAS_HSD_AVOID_FREQ_INFO_STRU      *pstAvoidFreqInfo;
@@ -551,23 +354,7 @@ CNAS_HSD_AVOID_FREQ_INFO_STRU* CNAS_HSD_GetEmptyItemFormAvoidList(VOS_VOID)
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsCurrFreqExistInAvoidList
- 功能描述  : 判断当前freq在avoid list是否已经存在，如果存在输出该项的index
- 输入参数  : pstFreq -- 当前freq
 
- 输出参数  : ucIndex -- 找到的对应项
- 返 回 值  : VOS_TRUE -- 当前freq在avoid list中
-             VOS_FALSE -- 当前freq不在avoid list中
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsCurrFreqExistInAvoidList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq,
     VOS_UINT8                          *ucIndex
@@ -596,24 +383,7 @@ VOS_UINT32 CNAS_HSD_IsCurrFreqExistInAvoidList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_AddAvoidInfoToAvoidFreqItem
- 功能描述  : 将当前slice和avoid slice添加到当前freq在avoid list中的项
- 输入参数  : pstFreq -- 需要avoid处理的频点
-             ulStartSlice -- 当前slice
-             ulExpiredSliceNum -- avoid slice
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_AddAvoidInfoToAvoidList(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq,
     VOS_UINT32                          ulStartSlice,
@@ -652,25 +422,7 @@ VOS_VOID CNAS_HSD_AddAvoidInfoToAvoidList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetAvoidTimeLenInAccessRlstInd
- 功能描述  : 更新计数器
- 输入参数  : enAcsFailReason -- 原因值
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-  1.日    期   : 2015年06月06日
-    作    者   : z00316370
-    修改内容   : 消息由CAS改为HSM发送，适应性修改
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_IncreaseCounterInAccessRlstInd(
     HSM_HSD_HRPD_CONN_OPEN_RSLT_ENUM_UINT8                  enFailReason
 )
@@ -692,24 +444,7 @@ VOS_VOID CNAS_HSD_IncreaseCounterInAccessRlstInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetAvoidTimeLenInAccessRlstInd
- 功能描述  : 获取avoid time
- 输入参数  : enAcsFailReason -- 原因值
 
- 输出参数  : 无
- 返 回 值  : ulAvoidTime -- 获取到的avoid time
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-  1.日    期   : 2015年06月06日
-    作    者   : z00316370
-    修改内容   : 消息由CAS改为HSM发送，适应性修改
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetAvoidTimeLenInAccessRlstInd(
     HSM_HSD_HRPD_CONN_OPEN_RSLT_ENUM_UINT8                  enFailReason
 )
@@ -746,22 +481,7 @@ VOS_UINT32 CNAS_HSD_GetAvoidTimeLenInAccessRlstInd(
     return ulAvoidTime;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_GetAvoidTimeLenInSessionNegRlstInd
- 功能描述  : 获取avoid time
- 输入参数  : enNegResult -- session neg的结果
 
- 输出参数  :
- 返 回 值  : ulAvoidTime -- 获取到的avoid time
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_GetAvoidTimeLenInSessionNegRlstInd(
     HSM_HSD_SESSION_NEG_RSLT_ENUM_UINT8 enNegResult
 )
@@ -784,27 +504,7 @@ VOS_UINT32 CNAS_HSD_GetAvoidTimeLenInSessionNegRlstInd(
     return ulAvoidTime;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ProcAvoidEventInAccessRlstInd
- 功能描述  : 收到access rlst ind消息处理avoid事件
- 输入参数  : pstAccessRlstInd -- access rlst Ind消息指针
-             pstFreq -- 需要avoid的freq
 
- 输出参数  : penReAcqFlag -- 是否需要重新搜网的标记
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-  2.日    期   : 2015年06月06日
-    作    者   : z00316370
-    修改内容   : 1、消息由CAS改为HSM发送，适应性修改，
-                 2、原先成功清除逻辑移至ProcAvoidEventInCasStatusInd处
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ProcAvoidEventInAccessRlstInd(
     HSM_HSD_CONN_OPEN_IND_STRU         *pstOpenInd,
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq,
@@ -875,22 +575,7 @@ VOS_VOID CNAS_HSD_ProcAvoidEventInAccessRlstInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ProcCounterInTchAssignTimeoutInd
- 功能描述  : 处理access rlst ind消息
- 输入参数  : pstAccessRlstInd -- access rlst Ind消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ProcAvoidEventInTchAssignTimeoutInd(
     CNAS_HSD_REACQ_FALG_ENUM_UINT32    *penReAcqFlag
 )
@@ -917,22 +602,7 @@ VOS_VOID CNAS_HSD_ProcAvoidEventInTchAssignTimeoutInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ProcCounterInCasStatusInd
- 功能描述  : 处理cas status ind消息
- 输入参数  : pstAccessRlstInd -- access rlst Ind消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ProcAvoidEventInCasStatusInd(
     CNAS_HSD_AT_STATUS_ENUM_UINT32      enHsdATStatus
 )
@@ -947,23 +617,7 @@ VOS_VOID CNAS_HSD_ProcAvoidEventInCasStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ProcFreqAvoidedInSessionNegRlstInd
- 功能描述  : 处理session negotionation rlst ind消息
- 输入参数  : pstAccessRlstInd -- access rlst Ind消息指针
-             pstFreq -- 需要avoid的freq
 
- 输出参数  : penReAcqFlag -- 是否需要重新搜网的标记
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ProcAvoidEventInSessionNegRlstInd(
     HSM_HSD_SESSION_NEG_RESULT_IND_STRU                    *pstSessionNegRlstInd,
     CNAS_PRL_FREQENCY_CHANNEL_STRU                         *pstFreq,
@@ -1018,22 +672,7 @@ VOS_VOID CNAS_HSD_ProcAvoidEventInSessionNegRlstInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ProcRequiredFreqAvoidedInAccessRlstInd
- 功能描述  : 处理access rlst ind消息
- 输入参数  : pstAccessRlstInd -- access rlst Ind消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ProcAvoidEventInCasSysSyncCnf(
     CAS_CNAS_HRPD_SYSTEM_SYNC_CNF_STRU *pstSyncCnf
 )
@@ -1093,22 +732,7 @@ VOS_VOID CNAS_HSD_ProcAvoidEventInCasSysSyncCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ProcAvoidEventInRedirection
- 功能描述  : redirection时处理avoid相关事件
- 输入参数  : pstFreq -- 需要进行avoid处理的频点
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ProcAvoidEventInRedirection(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq
 )
@@ -1143,24 +767,7 @@ VOS_VOID CNAS_HSD_ProcAvoidEventInRedirection(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_IsSubnetIDChange
- 功能描述  : 判定SubnetId是否改变
- 输入参数  : pstCurrHrpdSys - 新的Hrpd系统
-             pstLastHrpdSys - 旧的Hrpd系统
 
- 输出参数  : 无
-
- 返 回 值  :VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsSubnetIdChange(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstCurrHrpdSys,
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstLastHrpdSys
@@ -1200,22 +807,7 @@ VOS_UINT32 CNAS_HSD_IsSubnetIdChange(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ProcRequiredFreqAvoidedInAccessRlstInd
- 功能描述  : Subnet-Id change时处理avoid相关事件
- 输入参数  : pstCurrSysId -- 新驻留的hrpd系统
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年01月07日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ProcAvoidEventInSubnetIdChange(
     CNAS_PRL_HRPD_SYSTEM_STRU          *pstCurrHrpdSys
 )
@@ -1234,20 +826,7 @@ VOS_VOID CNAS_HSD_ProcAvoidEventInSubnetIdChange(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ProcAvoidEventInNetwkLost
- 功能描述  : 处理连续丢网的avoid处理
- 输入参数  : pstNetwkLostSysRec         丢网记录信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月04日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ProcAvoidEventInNetwkLostInd(
     CNAS_PRL_FREQENCY_CHANNEL_STRU     *pstFreq
 )
@@ -1275,20 +854,7 @@ VOS_VOID CNAS_HSD_ProcAvoidEventInNetwkLostInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_IsNeedAvoided
- 功能描述  : 判断是否需要avoid
- 输入参数  : enAvoidReason         avoid原因值
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月04日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_HSD_IsNeedAvoidedInNonHbrid(
     CNAS_HSD_AVOID_REASON_ENUM_UINT8    enAvoidReason
 )

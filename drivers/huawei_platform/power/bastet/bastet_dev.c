@@ -95,7 +95,10 @@ extern int bastet_partner_process_cmd(struct app_monitor_prop *prop, int32_t *ti
 extern int bastet_partner_init(void);
 extern void bastet_partner_release(void);
 extern void bastet_partner_clear(void);
-
+extern int set_proc_info(struct set_process_info *info);
+extern int set_special_uid(int32_t uid);
+extern int set_netfilter(bool state);
+extern void bastet_filter_init(void);
 /*
  * Indicate Message Api
  */
@@ -115,7 +118,7 @@ int post_indicate_packet(bst_ind_type type, void *info, unsigned int len)
 	}
 	memset(pkt, 0, sizeof(struct data_packet) + len);
 
-    pkt->data.cons = 0;
+	pkt->data.cons = 0;
 	pkt->data.type = type;
 	pkt->data.len = len;
 	if (NULL != info) {
@@ -473,6 +476,52 @@ static long bastet_ioctl(struct file *flip, unsigned int cmd, unsigned long arg)
 			BST_FG_IoCtrl( arg );
 			rc = 0;
 			break;
+		case BST_IOC_SET_PROC_INFO: {
+			struct set_process_info info;
+
+			if (copy_from_user(&info, argp, sizeof(struct set_process_info))) {
+				rc = -EFAULT;
+				break;
+			}
+			rc = set_proc_info(&info);
+			if (rc < 0) {
+				BASTET_LOGE("failed to set proc info");
+				break;
+			}
+			if (copy_to_user(argp, &info, sizeof(struct set_process_info))) {
+				rc = -EFAULT;
+			}
+			break;
+		}
+		case BST_IOC_SET_SPECIAL_UID: {
+			int uid;
+			if (copy_from_user(&uid, argp, sizeof(int))) {
+				BASTET_LOGE("failed to copy uid from user");
+				rc = -EFAULT;
+				break;
+			}
+			rc = set_special_uid(uid);
+			if (rc < 0) {
+				BASTET_LOGE("failed to set proc info");
+				break;
+			}
+			break;
+		}
+		case BST_IOC_NF_CONTROL: {
+			bool isRegister;
+			BASTET_LOGI("BST_IOC_NF_CONTROL");
+			if (copy_from_user(&isRegister, argp, sizeof(bool))) {
+				BASTET_LOGE("failed to get uid by pid");
+				rc = -EFAULT;
+				break;
+			}
+			rc = set_netfilter(isRegister);
+			if (rc < 0) {
+				BASTET_LOGE("failed to set netfilter");
+				break;
+			}
+			break;
+		}
 		default: {
 			BASTET_LOGE("unknown ioctl: %d", cmd);
 			break;
@@ -677,7 +726,7 @@ static int bastet_probe(struct platform_device *pdev)
 	bastet_reconn_init();
 	bastet_partner_init();
 	BST_FG_Init();
-
+	bastet_filter_init();
 	/* register bastet major and minor number */
 	ret = alloc_chrdev_region(&bastet_dev, BST_FIRST_MINOR, BST_DEVICES_NUMBER, BASTET_NAME);
 	if (ret) {

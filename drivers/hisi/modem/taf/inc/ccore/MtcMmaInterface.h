@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcMmaInterface.h
-  版 本 号   : 初稿
-  作    者   : j00174725
-  生成日期   : 2013年08月13日
-  最近修改   :
-  功能描述   : MTC 与 MMA模块共用头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年08月13日
-    作    者   : j00174725
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef _MTCMMAINTERFACE_H_
 #define _MTCMMAINTERFACE_H_
@@ -48,20 +31,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
-枚举名    : MTC_MMA_MSG_ID_ENUM
-结构说明  : MTC模块和MMA模块之间的消息
 
-  1.日    期   : 2013年08月13日
-    作    者   : 蒋德彬/j00174725
-    修改内容   : V9R1 干扰控制项目
-  2.日    期   : 2013年11月22日
-    作    者   : z00161729
-    修改内容   : SVLTE优化G-TL ps切换性能修改
-  3.日    期   : 2013年12月23日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-*****************************************************************************/
 enum MTC_MMA_MSG_ID_ENUM
 {
     /* 消息名称 */                         /* 消息ID */                         /* 备注 */
@@ -95,14 +65,7 @@ enum MTC_MMA_MSG_ID_ENUM
 };
 typedef VOS_UINT32  MTC_MMA_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
-枚举名    : MTC_MODEM_POWER_STATE_ENUM
-结构说明  : MTC模块开机状态枚举
 
-  1.日    期   : 2013年08月13日
-    作    者   : 蒋德彬/j00174725
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 enum MTC_MODEM_POWER_STATE_ENUM
 {
     MTC_MODEM_POWER_OFF                 = 0x00,
@@ -112,14 +75,7 @@ enum MTC_MODEM_POWER_STATE_ENUM
 };
 typedef VOS_UINT8  MTC_MODEM_POWER_STATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MTC_RATMODE_ENUM
- 枚举说明  : MMA通知MTC模块当前的接入模式
 
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 enum MTC_RATMODE_ENUM
 {
     MTC_RATMODE_GSM                     = 0x00,
@@ -132,14 +88,7 @@ enum MTC_RATMODE_ENUM
 };
 typedef VOS_UINT8 MTC_RATMODE_ENUM_UINT8;
 
-/*****************************************************************************
-枚举名    : MTC_MODEM_IMS_VOICE_CAP_ENUM
-结构说明  : IMS语音可用状态枚举
 
-  1.日    期   : 2015年06月17日
-    作    者   : w00316404
-    修改内容   : 新增
-*****************************************************************************/
 enum MTC_MODEM_IMS_VOICE_CAP_ENUM
 {
     MTC_MODEM_IMS_VOICE_CAP_UNAVAILABLE       = 0,                              /* IMS语音不可用 */
@@ -167,26 +116,14 @@ typedef VOS_UINT8 MTC_MODEM_IMS_VOICE_CAP_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : MTC_MMA_PLMN_ID_STRU
- 结构说明  : plmn信息
- 1.日    期   : 2013年11月23日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulMcc;
     VOS_UINT32                          ulMnc;
 } MTC_MMA_PLMN_ID_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_MMA_EPLMN_INFO_STRU
- 结构说明  : 等效plmn信息
- 1.日    期   : 2013年12月23日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucEquPlmnNum;                           /* 当前EquPLMN的个数 */
@@ -195,16 +132,7 @@ typedef struct
 }MTC_MMA_EPLMN_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : MTC_MMA_OTHER_MODEM_INFO_NOTIFY_STRU
- 结构说明  : modem1的信息目前只有驻留信息
- 1.日    期   : 2013年11月23日
-   作    者   : z00161729
-   修改内容   : 新建
- 2.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU              stMsgHeader;                                   /*_H2ASN_Skip*/
@@ -220,13 +148,7 @@ typedef struct
 } MTC_MMA_OTHER_MODEM_INFO_NOTIFY_STRU;
 
 
-/*****************************************************************************
- 结构名    : MTC_MMA_OTHER_MODEM_DPLMN_NPLMN_INFO_NOTIFY_STRU
- 结构说明  : modem1的dplmn和nplmn信息
- 1.日    期   : 2014年11月3日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                        stMsgHeader;                                   /*_H2ASN_Skip*/
@@ -238,13 +160,7 @@ typedef struct
 }MTC_MMA_OTHER_MODEM_DPLMN_NPLMN_INFO_NOTIFY_STRU;
 
 
-/*******************************************************************************
-结构名    : MTC_MMA_PS_TRANSFER_IND_STRU
-结构说明  : ID_MTC_MMA_PS_TRANSFER_IND_STRU的消息结构
-1.日    期   : 2014年1月5日
-  作    者   : z00161729
-  修改内容   : 新建
-*******************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -254,14 +170,7 @@ typedef struct
 } MTC_MMA_PS_TRANSFER_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : MMA_MTC_POWER_STATE_IND_STRU
- 结构说明  : ID_MMA_MTC_POWER_STATE_IND的消息结构
 
- 1.日    期   : 2013年08月12日
-   作    者   : 蒋德彬/j00174725
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -269,14 +178,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } MMA_MTC_POWER_STATE_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MMA_MTC_IMSA_STATE_IND_STRU
- 结构说明  : ID_MMA_MTC_POWER_STATE_IND的消息结构
 
- 1.日    期   : 2015年03月13日
-   作    者   : l00198894
-   修改内容   : VOLTE Randk1方案项目
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -284,14 +186,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } MMA_MTC_IMSA_STATE_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MMA_MTC_IMS_VOICE_CAP_IND_STRU
- 结构说明  : ID_MMA_MTC_IMS_VOICE_CAP_IND的消息结构
 
- 1.日    期   : 2015年06月17日
-   作    者   : w00316404
-   修改内容   : 新增
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -299,14 +194,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 } MMA_MTC_IMS_VOICE_CAP_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MMA_MTC_RAT_CFG_IND_STRU
- 结构说明  : MMA_MTC_RAT_CFG_IND的消息结构
 
-  1.日    期   : 2015年10月21日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -314,14 +202,7 @@ typedef struct
     MTC_RATMODE_ENUM_UINT8              aenRatOrder[MTC_MMA_MAX_GUL_RAT_NUM];   /* at^syscfgex中设置的acqoder的顺序 */
 } MMA_MTC_RAT_CFG_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MMA_MTC_RAT_MODE_IND_STRU
- 结构说明  : ID_MMA_MTC_RAT_MODE_IND的消息结构
 
- 1.日    期   : 2013年08月12日
-   作    者   : l00198894
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -330,17 +211,7 @@ typedef struct
 } MMA_MTC_RAT_MODE_IND_STRU;
 
 
-/*******************************************************************************
- 结构名    : MMA_MTC_CURR_CAMP_PLMN_INFO_IND_STRU
- 结构说明  : MMA_MTC_CURR_CAMP_PLMN_INFO_IND的消息结构
 
- 1.日    期   : 2013年11月22日
-   作    者   : z00161729
-   修改内容   : 新生成
- 2.日    期   : 2014年01月17日
-   作    者   : l00198894
-   修改内容   : V9R1C53 C+L 离网重选项目
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -351,15 +222,7 @@ typedef struct
     VOS_UINT8                           ucPsSupportFlg;                         /* 当前网络是否支持PS域 */
 } MMA_MTC_CURR_CAMP_PLMN_INFO_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_MMA_TDS_NCELL_INFO_STRU
- 结构说明  : GSM下的TDS频点列表
 
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucTdsArfcnNum;                          /* 0表示TDD频点不存在 */
@@ -367,18 +230,7 @@ typedef struct
     VOS_UINT16                          ausTdsArfcnList[MTC_MMA_TDS_ARFCN_MAX_NUM];
 }MTC_MMA_TDS_NCELL_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_MMA_LTE_NCELL_INFO_STRU
- 结构说明  : GSM下的LTE频点列表
 
- 1.日    期   : 2013年12月24日
-   作    者   : z00161729
-   修改内容   : SVLTE支持NCELL搜网
- 2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucLteArfcnNum;                          /* 0表示LTE频点不存在 */
@@ -387,16 +239,7 @@ typedef struct
 }MTC_MMA_LTE_NCELL_INFO_STRU;
 
 
-/*******************************************************************************
- 结构名    : MTC_MMA_TDS_LTE_NCELL_INFO_IND_STRU
- 结构说明  : ID_MTC_MMA_TDD_LTE_NCELL_INFO_IND消息对应的结构，
-             包括GSM下的TDS/LTE邻区结构中的TDS/LTE的频点列表
 
- 1.日    期   : 2013年12月23日
-   作    者   : z00161729
-   修改内容   : 新生成结构
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
@@ -405,28 +248,14 @@ typedef struct
 }MTC_MMA_NCELL_INFO_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMA_MTC_EPLMN_INFO_IND_STRU
- 结构说明  : 等效plmn信息
- 1.日    期   : 2013年12月23日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/
     MTC_MMA_EPLMN_INFO_STRU             stEplmnInfo;
 }MMA_MTC_EPLMN_INFO_IND_STRU;
 
-/*******************************************************************************
- 结构名    : MMA_MTC_REG_STATUS_IND_STRU
- 结构说明  : MMA_MTC_REG_STATUS_IND_STRU的消息结构
 
- 1.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性开启卡无效场景mtc无需上报pstransfer:0
-
-*******************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /*_H2ASN_Skip*/

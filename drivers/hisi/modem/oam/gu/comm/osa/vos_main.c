@@ -221,23 +221,7 @@ VOS_VOID VOS_ProtectInit(VOS_UINT32 ulParam1, VOS_UINT32 ulParam2)
     VOS_ProtectionReboot(OSA_EXPIRE_ERROR, 0, 0, (VOS_CHAR *)&stStep, sizeof(VOS_START_ERR_STEP_STRU) );
 }
 
-/*****************************************************************************
- Function   : VOS_Startup
- Description: startup function
- Calls      :
- Called By  : root
- Input      : None
- Return     : VOS_OK or VOS_ERROR
- Other      :
 
-日    期   : 2010年12月22日
-作    者   : j00174725
-修改内容   : 根据问题单号:DTS2010122401828
-            由于虚拟USB出现黄色感叹号，将锁任务处理调整到
-            创建VOS各FID任务之前，创建完成后解锁，
-            在Resume操作前锁任务，在Resume后解锁。
-
- *****************************************************************************/
 VOS_UINT32 VOS_Startup( enum VOS_STARTUP_PHASE ph )
 {
     VOS_UINT32      ulReturnValue;

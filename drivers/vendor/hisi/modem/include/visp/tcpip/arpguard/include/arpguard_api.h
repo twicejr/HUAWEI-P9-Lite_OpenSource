@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              etharp_api.h
-*
-*  Project Code: VISPV100R007
-*   Module Name: ETHARP
-*  Date Created: 2008年1月25日
-*        Author: x00100259
-*   Description: ETHARP模块提供的对外数据结构定义和用户API声明
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008年1月25日  x00100259         Create the first version.
-*  2008-08-13     f54882            Modify for BC3D00237
-*
-*******************************************************************************/
+
 
 #ifndef _ARPGUARD_API_H_
 #define _ARPGUARD_API_H_
@@ -50,7 +27,6 @@ typedef struct tagARPGuardArpConflictWarning
     ULONG ulWarningType;        /* 告警类型 */
     ULONG ulIfIndex;            /* 接口索引 */    
     ULONG ulNeighbourIPAddr;    /* 邻居IP, 主机序 */ 
-    /* Add by zhaoyue00171897, at 2011-10-08. 修改原因: 告警信息增加刷新MAC的次数 */
     ULONG ulAttackCount;        /* 试图刷新MAC的次数 */
     UCHAR ucMac[MACADDRLEN];    /* 记录攻击次数最多潜在攻击者的physical地址,如果一样，就取最后一次出现的攻击者*/
     UCHAR ucRes[2];

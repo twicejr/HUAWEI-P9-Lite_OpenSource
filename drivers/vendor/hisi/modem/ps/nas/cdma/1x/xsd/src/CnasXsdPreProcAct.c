@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdPreProcAct.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年07月03日
-  功能描述   : 1X SD预处理事件处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月03日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -52,22 +37,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvSliceReverseProtectTimerExpired_PreProc
- 功能描述  : 收到avoid list timer定时器超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvSliceReverseProtectTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -126,22 +96,7 @@ VOS_UINT32 CNAS_XSD_RcvSliceReverseProtectTimerExpired_PreProc(
 }
 
 #ifdef DMT
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXsdTestCfgREQ_PreProc
- 功能描述  : 收到测试配置消息处理函数
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvXsdTestCfgREQ_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -156,22 +111,7 @@ VOS_UINT32 CNAS_XSD_RcvXsdTestCfgREQ_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXsdMofiyPrlAcqRecordReq_PreProc
- 功能描述  : 收到修改PRL捕获记录信息的请求消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月17日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvXsdMofiyPrlAcqRecordReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -218,26 +158,7 @@ VOS_UINT32 CNAS_XSD_RcvXsdMofiyPrlAcqRecordReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXsdMofiyPrlSysRecordReq_PreProc
- 功能描述  : 收到修改PRL系统表记录请求消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月25日
-    作    者   : y00245242
-    修改内容   : iteration 17开发
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvXsdMofiyPrlSysRecordReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -278,22 +199,7 @@ VOS_UINT32 CNAS_XSD_RcvXsdMofiyPrlSysRecordReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXsdMofiyPrlHeadInfoReq_PreProc
- 功能描述  : 收到修改PRL头信息的请求消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvXsdMofiyPrlHeadInfoReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -313,22 +219,7 @@ VOS_UINT32 CNAS_XSD_RcvXsdMofiyPrlHeadInfoReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXsdMofiyOocScanIntervalReq_PreProc
- 功能描述  : 收到修改PRL头信息的请求消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月17日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvXsdMofiyOocScanIntervalReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -354,25 +245,7 @@ VOS_UINT32 CNAS_XSD_RcvXsdMofiyOocScanIntervalReq_PreProc(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccMoCallStartNtf_PreProc
- 功能描述  : 收到mma的主叫开始消息的处理时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月24日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccMoCallStartNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -432,25 +305,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccMoCallStartNtf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccMoCallEndNtf_PreProc
- 功能描述  : 收到MMA的主叫结束消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月20日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccMoCallEndNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -530,25 +385,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccMoCallEndNtf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccMoCallSuccessNtf_PreProc
- 功能描述  : 收到MMA的主叫成功的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月24日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccMoCallSuccessNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -595,22 +432,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccMoCallSuccessNtf_PreProc(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCFreqLockSetNtf_PreProc
- 功能描述  : 收到MMA的设置锁频的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCFreqLockSetNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -666,22 +488,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCFreqLockSetNtf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCdmaCsqSetReq_PreProc
- 功能描述  : 传递CdmaCsq的设置参数给CAS
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCdmaCsqSetReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -702,22 +509,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCdmaCsqSetReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasCdmaCsqSetCnf_PreProc
- 功能描述  : XSD从CAS收到CdmaCsq的设置结果
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasCdmaCsqSetCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -739,26 +531,7 @@ VOS_UINT32 CNAS_XSD_RcvCasCdmaCsqSetCnf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasCdmaCsqInd_PreProc
- 功能描述  : CAS主动上报CdmaCsq
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月27日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年10月16日
-    作    者   : m00312079
-    修改内容   : DTS2015101505057:添加ec/Io的上报门限
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasCdmaCsqInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -774,22 +547,7 @@ VOS_UINT32 CNAS_XSD_RcvCasCdmaCsqInd_PreProc(
 
 }
 #if 0
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasNegativeSystemQuery_PreProc
- 功能描述  : 收到CAS查询系统是否是negative系统
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月9日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasNegativeSystemQueryInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -841,23 +599,7 @@ VOS_UINT32 CNAS_XSD_RcvCasNegativeSystemQueryInd_PreProc(
     return VOS_TRUE;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCas1xSyncTimeInd_PreProc
- 功能描述  : 收到CAS上报1X的系统时间
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月4日
-    作    者   : L00256032
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCas1xSyncTimeInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -881,22 +623,7 @@ VOS_UINT32 CNAS_XSD_RcvCas1xSyncTimeInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccSysCfgReq_PreProc
- 功能描述  : 透传系统配置消息给CAS
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月13日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccSysCfgReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -912,21 +639,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccSysCfgReq_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCas1xSysCfgCnf_PreProc
- 功能描述  : 透传系统配置消息Cnf给Mscc
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月14日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCas1xSysCfgCnf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -943,22 +656,7 @@ VOS_UINT32 CNAS_XSD_RcvCas1xSysCfgCnf_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccHandsetInfoQry_PreProc
- 功能描述  : 收到MSCC的手机信息查询请求
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccHandsetInfoQry_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -973,22 +671,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccHandsetInfoQry_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCas1xEnterRelSubStateReasonInd_PreProc
- 功能描述  : 收到CAS进入release substate的原因值指示
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月13日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCas1xEnterRelSubStateReasonInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1024,23 +707,7 @@ VOS_UINT32 CNAS_XSD_RcvCas1xEnterRelSubStateReasonInd_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvRrmStatusInd_PreProc
- 功能描述  : 收到RRM NO RF状态指示的时候，进行RRM模块的事件去注册
- 输入参数  : 消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_FALSE : 继续处理
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvRrmStatusInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1052,26 +719,7 @@ VOS_UINT32 CNAS_XSD_RcvRrmStatusInd_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccSrvAcqReq_PreProc
- 功能描述  : 收到MSCC业务触发搜网的预处理
- 输入参数  : 消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_FALSE : 继续处理
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月20日
-    作    者   : h00313353
-    修改内容   : 迭代17 紧急呼
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccSrvAcqReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1098,23 +746,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccSrvAcqReq_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccBeginSessionNotify_PreProc
- 功能描述  : 收到MSCC资源申请请求的处理:向CAS发送资源申请请求
- 输入参数  : 消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_FALSE : 继续处理
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccBeginSessionNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1130,23 +762,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccBeginSessionNotify_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndSessionNotify_PreProc
- 功能描述  : 收到MSCC资源申请请求的处理:向CAS发送资源释放请求
- 输入参数  : 消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_FALSE : 继续处理
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndSessionNotify_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1162,24 +778,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndSessionNotify_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_PreProc
- 功能描述  : 收到MSCC呼叫重播的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_FALSE : 继续处理
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1210,24 +809,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCallRedialSystemAcquireNtf_PreProc(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccEndCallBackNtf_PreProc
- 功能描述  : 收到MSCC退出CallBack模式指示的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_FALSE : 继续处理
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccEndCallBackNtf_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1242,24 +824,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccEndCallBackNtf_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiCallBackModeTimerExpired_PreProc
- 功能描述  : 收到CallBack Nv定时器超的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_FALSE : 继续处理
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiCallBackModeTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1274,24 +839,7 @@ VOS_UINT32 CNAS_XSD_RcvTiCallBackModeTimerExpired_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiCallBackSrchTimerExpired_PreProc
- 功能描述  : 收到CallBack 15s搜网定时器超的预处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_FALSE : 继续处理
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiCallBackSrchTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1306,23 +854,7 @@ VOS_UINT32 CNAS_XSD_RcvTiCallBackSrchTimerExpired_PreProc(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccCSidListReq_PreProc
- 功能描述  : 收到MSCC Sid白名单设置请求的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月02日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvMsccCSidListReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1364,23 +896,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccCSidListReq_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCASStateInd_PreProc
- 功能描述  : 收到cas state ind的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE  : 处理成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月11日
-    作    者   : C00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasStateInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1407,23 +923,7 @@ VOS_UINT32 CNAS_XSD_RcvCasStateInd_PreProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasAvailableCampQueryReq_PreProc
- 功能描述  : 收到CAS查询当前系统能否驻留的查询处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE
-             VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月28日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasAvailableCampQueryReq_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1456,18 +956,7 @@ VOS_UINT32 CNAS_XSD_RcvCasAvailableCampQueryReq_PreProc(
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXregRegSuccessInd_PreProc
- 功能描述  : 收到RegSuccessInd的处理, 清除avoid频点信息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_TRUE  : 处理成功
-  1.日    期   : 2015年12月5日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 CNAS_XSD_RcvXregRegSuccessInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

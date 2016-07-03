@@ -39,9 +39,7 @@ VOS_VOID CNAS_HSM_SndHsdHrpdCasStatusInd(
 
     pstHsmHsdCasStatusInd = (HSM_HSD_CAS_STATUS_IND_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM,ulLen);
 #else
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, begin */
     pstHsmHsdCasStatusInd = (HSM_HSD_CAS_STATUS_IND_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_HSD_CAS_STATUS_IND_STRU));
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, end */
 #endif
 
     if (VOS_NULL_PTR == pstHsmHsdCasStatusInd)
@@ -87,10 +85,8 @@ VOS_VOID CNAS_HSM_SndHsdSessionNegResultInd(
     pstHsmHsdSessionNegResultInd = (HSM_HSD_SESSION_NEG_RESULT_IND_STRU *)
                                         PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, begin */
     pstHsmHsdSessionNegResultInd = (HSM_HSD_SESSION_NEG_RESULT_IND_STRU *)
                                         CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_HSD_SESSION_NEG_RESULT_IND_STRU));
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, end */
 #endif
 
     if (VOS_NULL_PTR == pstHsmHsdSessionNegResultInd)
@@ -145,9 +141,7 @@ VOS_VOID CNAS_HSM_SndHsdStartCnf(VOS_VOID)
     pstHsmHsdStartCnf = (HSM_HSD_START_CNF_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 
 #else
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, begin */
     pstHsmHsdStartCnf = (HSM_HSD_START_CNF_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_HSD_START_CNF_STRU));
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, end */
 #endif
 
     if (VOS_NULL_PTR == pstHsmHsdStartCnf)
@@ -186,9 +180,7 @@ VOS_VOID CNAS_HSM_SndHsdPowerOffCnf(VOS_VOID)
 
     pstHsmHsdPowerOffCnf = (HSM_HSD_POWEROFF_CNF_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, begin */
     pstHsmHsdPowerOffCnf = (HSM_HSD_POWEROFF_CNF_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_HSD_POWEROFF_CNF_STRU));
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, end */
 #endif
 
     if (VOS_NULL_PTR == pstHsmHsdPowerOffCnf)
@@ -227,9 +219,7 @@ VOS_VOID CNAS_HSM_SndHsdPowerSaveCnf(VOS_VOID)
 
     pstHsmHsdPowerSaveCnf = (HSM_HSD_POWER_SAVE_CNF_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, begin */
     pstHsmHsdPowerSaveCnf = (HSM_HSD_POWER_SAVE_CNF_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_HSD_POWER_SAVE_CNF_STRU));
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, end */
 #endif
 
     if (VOS_NULL_PTR == pstHsmHsdPowerSaveCnf)
@@ -272,9 +262,7 @@ VOS_VOID CNAS_HSM_SndHsdConnOpenInd(
 
     pstHsmHsdConnOpenInd = (HSM_HSD_CONN_OPEN_IND_STRU *)PS_ALLOC_MSG(UEPS_PID_HSM, ulLen);
 #else
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, begin */
     pstHsmHsdConnOpenInd = (HSM_HSD_CONN_OPEN_IND_STRU *)CNAS_GetIntMsgSendBuf(UEPS_PID_HSM, sizeof(HSM_HSD_CONN_OPEN_IND_STRU));
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-15, end */
 #endif
 
     if (VOS_NULL_PTR == pstHsmHsdConnOpenInd)

@@ -69,11 +69,7 @@ enum LMM_LPP_MSG_TYPE_ENUM
 };
 typedef VOS_UINT32 LMM_LPP_MSG_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : LMM_LPP_SEND_RSLT_ENUM
- 枚举说明  : 直传结果
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 enum LMM_LPP_SEND_RSLT_ENUM
 {
     LMM_LPP_SEND_RSLT_SUCCESS                       = 0, /*发送成功*/
@@ -91,11 +87,7 @@ enum LMM_LPP_SEND_RSLT_ENUM
 };
 typedef VOS_UINT32 LMM_LPP_SEND_RSLT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : LMM_LPP_EST_RESULT_ENUM
- 枚举说明  : 建链的结果
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 enum LMM_LPP_EST_RESULT_ENUM
 {
     LMM_LPP_EST_RESULT_SUCC                         = 0, /*建链成功*/
@@ -113,11 +105,7 @@ enum LMM_LPP_EST_RESULT_ENUM
 };
 typedef VOS_UINT32 LMM_LPP_EST_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : LMM_LPP_REL_CAUSE_ENUM
- 枚举说明  : 链路释放原因
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 enum LMM_LPP_REL_CAUSE_ENUM
 {
     LMM_LPP_REL_CAUSE_CONN_FAIL                  = 0,  /* RR Connection Failure*/
@@ -137,11 +125,7 @@ typedef VOS_UINT32 LMM_LPP_REL_CAUSE_ENUM_UINT32;
 /*****************************************************************************
  5. STRUCT
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : LMM_LPP_START_IND_STRU
- 结构说明  : LMM_LPP_START_IND_STRU数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -150,11 +134,7 @@ typedef struct
     VOS_UINT32                          ulRsv;              /*对于LPP的开机初始化，无需带更多信息，LPP收到该消息的时候初始化相关全局数据即可*/
 }LMM_LPP_START_IND_STRU;
 
-/*****************************************************************************
- 结构名    : LMM_LPP_STOP_IND_STRU
- 结构说明  : LMM_LPP_STOP_IND_STRU数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -163,11 +143,7 @@ typedef struct
     VOS_UINT32                          ulRsv;              /*关机需要带更多信息，只要清空相关全局数据结构即可*/
 }LMM_LPP_STOP_IND_STRU;
 
-/*****************************************************************************
- 结构名    : LMM_LPP_DATA_CNF_STRU
- 结构说明  : LMM_LPP_DATA_CNF_STRU数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                  /*_H2ASN_Skip*/
@@ -177,11 +153,7 @@ typedef struct
     LMM_LPP_SEND_RSLT_ENUM_UINT32               enDataCnfRst;       /*Lpp Data cnf结果*/
 }LMM_LPP_DATA_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : LMM_LPP_EST_CNF_STRU
- 结构说明  : LMM_LPP_EST_CNF_STRU数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -191,11 +163,7 @@ typedef struct
     LMM_LPP_EST_RESULT_ENUM_UINT32      ulEstRst;           /*建链结果*/
 } LMM_LPP_EST_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : LMM_LPP_CELL_CHANGE_IND
- 结构说明  : LMM_LPP_CELL_CHANGE_IND数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -208,11 +176,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 }LMM_LPP_CELL_CHANGE_IND;
 
-/*****************************************************************************
- 结构名    : LPP_LMM_MSG_STRU
- 结构说明  : LPP_LMM_MSG_STRU空口消息数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                         ulLppMsgSize;
@@ -222,11 +186,7 @@ typedef struct
     *************************************************************************/
 }LPP_LMM_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : LMM_LPP_DATA_IND_STRU
- 结构说明  : LMM_LPP_DATA_IND_STRU数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -236,11 +196,7 @@ typedef struct
     LPP_LMM_MSG_STRU                    stLppMsg;           /*LPP消息实体码流*/
 }LMM_LPP_DATA_IND_STRU;
 
-/*****************************************************************************
- 结构名    : LMM_LPP_REL_IND_STRU
- 结构说明  : LMM_LPP_REL_IND_STRU数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                              /*_H2ASN_Skip*/
@@ -249,11 +205,7 @@ typedef struct
     LMM_LPP_REL_CAUSE_ENUM_UINT32           enRelCause;         /* 信令释放原因 */
 }LMM_LPP_REL_IND_STRU;
 
-/*****************************************************************************
- 结构名    : LPP_LMM_DATA_REQ_STRU
- 结构说明  : LPP_LMM_DATA_REQ_STRU数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                          /*_H2ASN_Skip*/
@@ -264,11 +216,7 @@ typedef struct
     LPP_LMM_MSG_STRU                    stLppMsg;           /*LPP消息实体码流*/
 }LPP_LMM_DATA_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : LPP_LMM_EST_REQ_STRU
- 结构说明  : LPP_LMM_EST_REQ_STRU数据结构
- 作者      : lifuxin 00253982 2015-07-02 新开发
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                              /*_H2ASN_Skip*/

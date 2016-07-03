@@ -1,19 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : LPsOm.h
-  Description     : PsOm.c header file
-  History         :
-     1.XiaoJun 58160       2009-3-19     Draft Enact
-     2.XiaoJun 58160       2010-1-12     BJ9D02643,自动开机
-     3.guojiyu 00149868   2010-02-1  BJ9D02655:规划修改NV项信息,把锁频、锁小区以及NV读取失败的处理综合考虑
-     4.guojiyu 00149868   2010-3-11 BJ9D02829:HPA模块中增加软调信息
-     5.guojiyu 00149868        2010-4-28 BJ9D02900:合入时延统计
-     6.guojiyu 00149868  2010-5-14 BJ9D02926:RRC流程优化修改
-	 7.wangyue 151278       2011-11-26 DTS2011112400987: 时延优化
-******************************************************************************/
 
 #ifndef __PSOM_H__
 #define __PSOM_H__
@@ -43,7 +28,6 @@ extern "C" {
 #include  "securec.h"
 #endif
 
-/*#include  "LHpaMsgDebug.h" deleted by hujianbo 20130809:产品线裁剪代码时不能包含非开放头文件，故将其去掉*/
 
 
 #if (VOS_OS_VER != VOS_WIN32)
@@ -106,7 +90,6 @@ extern "C" {
 /*32KTime Stamp 高位最大值，如果差值大于此值，即按照毫秒记差值达到溢出*/
 #define TLPS_32TSTAMP_MAX_HIGH_VAL_MILL_SECOND     (0x20UL)
 
-/*TLPSPRINT2LAYER  打印参数无效值 l00285345*/
 #define TLPS_PRINT2LAYER_INVALID_VALUE     (0xa5a5a5a5)
 
 #if (VOS_OS_VER != VOS_WIN32)
@@ -587,13 +570,7 @@ enum LPS_EST_LATENCY_ENUM
 };
 typedef VOS_UINT8 LPS_EST_LATENCY_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : LPS_REBOOT_MOD_ID_ENUM
- 枚举说明  : 当前重启的ID类型
- 1.日    期   : 2011年12月13日
-   作    者   : w00167002
-   修改内容   : 新建
-*****************************************************************************/
+
 enum LPS_REBOOT_MOD_ID_ENUM
 {
     LPS_REBOOT_MOD_ID_MML   = 0Xa0000000,
@@ -601,13 +578,7 @@ enum LPS_REBOOT_MOD_ID_ENUM
 };
 typedef VOS_UINT32 LPS_REBOOT_MOD_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : TL_KPI_TYPE_ENUM
- 枚举说明  : KPI类型枚举
- 1.日    期   : 2015年6月3日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef enum
 {
     TL_KPI_TYPE_EST         = 0x0,
@@ -618,13 +589,7 @@ typedef enum
 }TL_KPI_TYPE_ENUM;
 typedef VOS_UINT32 TL_KPI_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : TLPS_PID_ENUM
- 枚举说明  : 模块对应的下标
- 1.日    期   : 2015年5月25日
-   作    者   : l00285345
-   修改内容   : 新建
-*****************************************************************************/
+
 
 enum TLPS_PRINT_LEVEL_ENUM
 {
@@ -786,13 +751,7 @@ typedef struct
     LPS_HO_STAT_INFO_STRU               astHOLatencyInfo[LPS_HO_TYPE_BUFF];
 }LPS_HANDOVER_INFO_STRU;
 
-/*****************************************************************************
- 修改历史      :
-  1.日    期   : 2008年4月21日
-    作    者   : 杨龙 y58800
-    修改内容   : 新生成结构 GU模的消息头结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                   /* VOS消息头 */
@@ -812,7 +771,6 @@ typedef struct
     VOS_UINT8     aucData[4];
 }LTE_GAS_OM_OTA_IND_STRUCT;
 
-/*h00159435上行发送数据消息的统计量Begin*/
 /*****************************************************************************
  结构名    : T_DlRecvMsgStat
  协议表格  :
@@ -826,7 +784,6 @@ typedef struct
     VOS_UINT32    ulHspdschReadIndNum;
     VOS_UINT32    ulHsUpaInfoIndNum;
 }T_DlRecvMsgStat;
-/*h00159435上行发送数据消息的统计量End*/
 typedef struct
 {
     VOS_UINT32      ulTimeStamp;
@@ -887,13 +844,7 @@ typedef struct
 }TL_KPI_DELAY_HDR_STRU;
 /* Print To Layer Begin */
 
-/*****************************************************************************
-  结构名    : TLPS_PRINT_SEND_TIMER_STRU
-  结构说明  : 用于保存发送标志和timer
-   1.日    期   : 2015年5月9日
-     作    者   : l00285345
-     修改内容   : 创建
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -904,13 +855,7 @@ typedef struct
 }TLPS_PRINT_SEND_TIMER_STRU;
 
 
-/*****************************************************************************
-  结构名    : TLPS_SET_TLPS_PRINT2LAYER_REQ_STRU
-  结构说明  : 配置打印接口
-   1.日    期   : 2015年5月16日
-     作    者   : l00285345
-     修改内容   : 创建
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -946,6 +891,30 @@ typedef struct
    VOS_UINT8  ucRsv;
    TLPS_SECU_FUNCTION_INFO_STRU astSecuFuncInfo[TLPS_SECU_FUNCTION_ERR_MAXNO];
 }TLPS_SECU_FUNCTION_INFO_LIST_STRU;
+
+#define TLPS_RECORD_UTRAN_MODE_NUM      10
+typedef struct
+{
+    VOS_UINT32 ulTimeStamp; /* 时间戳*/
+    VOS_UINT32 ulUtranMode;
+    VOS_UINT32 ulPrivate;
+}TLPS_RECORD_MODE_STRU;
+
+typedef struct
+{
+    VOS_UINT32                ulNextIndex;
+    TLPS_RECORD_MODE_STRU     astUtranMode[TLPS_RECORD_UTRAN_MODE_NUM];
+}TLPS_RECORD_UTRAN_MODE_STRU;
+
+typedef struct
+{
+    TLPS_RECORD_MODE_STRU stTDSStartMode;
+    TLPS_RECORD_MODE_STRU stLTEStartMode;
+    TLPS_RECORD_MODE_STRU stTDSSysMode;
+    TLPS_RECORD_MODE_STRU stLTESysMode;
+    TLPS_RECORD_UTRAN_MODE_STRU stTdsUtranMode;
+    TLPS_RECORD_UTRAN_MODE_STRU stLTEUtranMode;
+}TLPS_EXC_UTRAN_MODE_STRU;
 
 /*****************************************************************************
   6 UNION
@@ -1091,6 +1060,9 @@ extern VOS_INT32 TLPS_Mem_Set_Secu(VOS_VOID* pDst, VOS_UINT32 ulMaxBuffer, const
                             VOS_UINT32 ulLineNO, VOS_UINT32 ulFileID);
 extern VOS_INT32 TLPS_Mem_Move_Secu(VOS_VOID* pDst, VOS_UINT32 ulMaxBuffer, const VOS_VOID* pSrc, VOS_UINT32  ulLength,\
                             VOS_UINT32 ulLineNO, VOS_UINT32 ulFileID);
+extern VOS_VOID TLPS_TDS_Record_UtranMode(VOS_VOID *pMsg);
+extern VOS_VOID TLPS_LTE_Record_UtranMode(VOS_VOID *pMsg);
+
 
 /*****************************************************************************
   9 OTHERS

@@ -143,31 +143,7 @@ extern UINT32 SRE_GetLastError(VOID);
 */
 extern VOID SRE_CdaInfoGet(CDA_PT_INFO_S *pstCdaPtInfo);
 
-/**
-*@ingroup SRE_err
-*
-*@brief 注册用户错误处理的钩子函数。
-*
-*@par 描述:
-*注册pfnHook作为用户钩子函数，在调用SRE_ErrHandle接口进行错误处理时对该钩子进行调用。
-*@attention
-* <ul>
-* <li>若入参pfnHook为NULL,则为取消钩子。</li>
-* <li>不允许重复或覆盖注册。</li>
-* <li>用户定义的钩子函数必须符合#SRE_ERRORHANDLE_FUNC定义的形式，而且只能定义一个钩子函数。</li>
-* <li>用户调用SRE_ErrRegHook注册回调钩子函数时，钩子函数里面不能有调用SRE_ErrHandle或者调用OS函数发生上报错误码的情况，否则可能会进入死循环，需由用户保证。</li>
-* <li>用户调用SRE_ErrRegHook注册回调钩子函数时，钩子函数里面如有单次上报的错误信息（只有第一次调用会执行），那么会先记录钩子中错误信息，再记录发生错误时的错误信息。</li>
-* </ul>
-*
-*@param pfnHook [IN] 类型#SRE_ERRORHANDLE_FUNC，用户钩子函数的宏定义。
-*
-*@retval #OS_ERRNO_HOOK_FULL              0x02001604，重复注册错误处理钩子。
-*@retval #SRE_OK                          0x00000000，注册成功。
-*@par 依赖:
-*<li>sre_err.h：该接口声明所在的头文件。</li>
-*@since UniDSP V100R001C01
-*@see 无
-*/
+
 extern UINT32 SRE_ErrRegHook(SRE_ERRORHANDLE_FUNC pfnHook);
 
 #ifdef __cplusplus

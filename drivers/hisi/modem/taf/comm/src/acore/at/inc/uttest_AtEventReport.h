@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : uutest_AtEventReport.h
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   : 2012年5月17日
-  最近修改   :
-  功能描述   : uttest_AtEventReport.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年5月17日
-    作    者   : l60609
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TEST_ATEVENTREPORT_H__
 #define __TEST_ATEVENTREPORT_H__
@@ -799,7 +782,6 @@ extern VOS_VOID AT_ReportCeregResult(
     VOS_UINT16                         *pusLength
 );
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-17, begin */
 extern VOS_VOID AT_ReportSysCfgExQryCmdResult(
            TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfg,
            VOS_UINT8                           ucIndex,
@@ -810,7 +792,6 @@ extern VOS_VOID AT_ReportSysCfgQryCmdResult(
            VOS_UINT8                           ucIndex,
            VOS_UINT16                         *pusLength
        );
-/* Modified by w00167002 for L-C互操作项目, 2014-2-17, end */
 #if( FEATURE_ON == FEATURE_CSD )
 extern VOS_UINT32 AT_SendCsdCallStateInd(AT_CSD_CALL_TYPE_STATE_ENUM_UINT16 enCallState);
 #endif
@@ -992,13 +973,11 @@ extern TAF_VOID At_WriteSmRspProc(
 
 
 
-/* Added by w00176964 for VoLTE_PhaseI项目, 2013-8-6, begin */
 
 extern VOS_VOID At_RcvMmaPsInitResultIndProc(
     TAF_UINT8                           ucIndex,
     TAF_PHONE_EVENT_INFO_STRU          *pEvent
     );
-/* Added by w00176964 for VoLTE_PhaseI项目, 2013-8-6, end */
 
 
 

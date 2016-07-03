@@ -205,19 +205,7 @@ VOS_VOID PPP_ClearDataQ(VOS_VOID)
 } /* PPP_ClearDataQ */
 
 
-/*****************************************************************************
- Prototype      : PPP_GetMruConfig()
- Description    : 定制需求,通过NV项获取PPP用户配置MRU
- Input          : VOS_VOID
- Output         :
- Return Value   : VOS_UINT16 用户配置的MRU
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2009-07-13
-    Author      : x00138766
-    Modification: Created function
-*****************************************************************************/
+
 VOS_UINT16 PPP_GetMruConfig(VOS_VOID)
 {
     VOS_UINT16                      usPppConfigMru  = DEF_MRU;
@@ -256,19 +244,7 @@ VOS_UINT16 PPP_GetMruConfig(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Prototype      : PPP_GetConfigWINS()
- Description    : 定制需求,通过NV项获取PPP用户配置WINS协商使能开关
- Input          : VOS_VOID
- Output         :
- Return Value   : VOS_UINT8 WINS开关
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2009-07-13
-    Author      : x00138766
-    Modification: Created function
-*****************************************************************************/
+
 VOS_UINT8 PPP_GetWinsConfig(VOS_VOID)
 {
     WINS_CONFIG_STRU    stWins;
@@ -301,31 +277,7 @@ VOS_UINT8 PPP_GetWinsConfig(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Prototype      : PppInit
- Description    : TAF PPP模块中的初始化函数,该函数将向系统申请建立PPP模块运行
-                  所需要的各种资源。如果成功将返回VOS_OK，否则为VOS_ERR。
- Input          : ---
- Output         : ---
- Return Value   : ---VOS_UINT32
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-11-18
-    Author      : ---
-    Modification: Created function
-  2. 2006-03-13 MODIFY BY F49086 FOR A32D02474
-  3.Date        : 2006-05-22
-    Author      : L47619
-    Modification: Modify for PN:A32D04462
-  4.Date        : 2006-10-08
-    Author      : L47619
-    Modification: Modify for PN:A32D06578
-  5.Data        : 2009-7-14
-    Author      : x00138766
-    Modification: 增加WINS协商使能开关特性
-*****************************************************************************/
 VOS_UINT32    PppInit(enum VOS_INIT_PHASE_DEFINE InitPhase )
 {
     VOS_INT32               i;
@@ -429,29 +381,7 @@ VOS_UINT32    PppInit(enum VOS_INIT_PHASE_DEFINE InitPhase )
 }
 
 
-/*****************************************************************************
- Prototype      : PppMsgTimerProc
- Description    : PPP模块中的定时器消息处理函数
- Input          : ---
- Output         : ---
- Return Value   : ---VOS_VOID
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-11-18
-    Author      : fanzhibin
-    Modification: Created function
-  2.Date        : 2006-05-22
-    Author      : L47619
-    Modification: Modify for PN:A32D04462
-  3.Date        : 2007-01-05
-    Author      : L47619
-    Modification: Modify for PN:A32D08013
-  4.Date        : 2008-10-28
-    Author      : liukai
-    Modification: support CHAP authentication timer
-*****************************************************************************/
 VOS_VOID PppMsgTimerProc( struct MsgCB * pMsg )
 {
     REL_TIMER_MSG  *pPsMsg = (REL_TIMER_MSG  *)pMsg;
@@ -547,24 +477,7 @@ VOS_VOID PppMsgTimerProc( struct MsgCB * pMsg )
 }
 
 
-/*****************************************************************************
- Prototype      : PppMsgProc
- Description    : TAF PPP模块中的消息处理函数，他处理定时器消息以及从AT模块接
-                  收到数据帧的消息。如果成功将返回VOS_OK，否则为VOS_ERR。
- Input          : ---
- Output         : ---
- Return Value   : ---VOS_VOID
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2005-11-18
-    Author      : ---
-    Modification: Created function
-  2.Date        : 2006-05-17
-    Author      : L47619
-    Modification: Modified for PN:A32D04462
-*****************************************************************************/
 VOS_VOID PppMsgProc( struct MsgCB * pMsg )
 {
     PPP_MSG    *pPsMsg  = (PPP_MSG *)pMsg;

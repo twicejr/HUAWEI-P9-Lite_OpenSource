@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名 :  cipher_balong.h
-*
-*   作    者 :  w00228729
-*
-*   描    述 :  cipher功能实现头文件
-*
-*   修改记录 :  2013年03月12日  v1.00  w00228729 创建
-*************************************************************************/
+
 #ifndef	_CIPHER_BALONG_H_
 #define	_CIPHER_BALONG_H_
 
@@ -48,6 +38,13 @@ extern "C" {
 #define	CIPHER_DUMP_SIZE	HI_CIPHER_REG_SIZE
 #define CIPHER_THRESHOLD	4096
 #define CIPHER_DIRECT_CHN_SEL	(1UL << 5)
+#define CIPHER_QSTATUS_DEPTH  (20)
+#define CIPHER_HW	(1)
+#define CIPHER_SW	(0)
+#define CIPHER_SUSP_FAIL_REC_NUM  2
+#define CIPHER_DBG_INFO_MAX_SIZE  1024
+
+
 /*lint -e830*/
 #define CIPHER_BSWAP32(val) \
         (((val) >> 24) | (((val) >> 8) & 0x0000ff00) | \
@@ -77,6 +74,8 @@ extern "C" {
 /* Cipher private error code */
 #define CIPHER_RESET_CCORE		21
 #define CIPHER_RESETTING_CCORE ((int)(CIPHER_ERROR_BASE|CIPHER_RESET_CCORE))
+#define BIT(nr)			(1UL << (nr))
+#define CIPHER_WORKING_LIMIT (BIT(16) - 2)
 
 enum cipher_priv_err_code
 {
@@ -182,6 +181,15 @@ struct chn_ops
 	int (*chn_rst)(struct cipher_chn_ctl * chn_ctl);
 };
 
+/* cipher queue status */
+struct cipher_qstatus {
+	unsigned int bd_ridx:16;
+	unsigned int bd_widx:16;
+	unsigned int line:16;
+	unsigned int own:16;
+	unsigned int time_stamp;
+};
+
 struct cipher_chn_ctl
 {
 	struct chn_ops    ops;
@@ -194,7 +202,8 @@ struct cipher_chn_ctl
 	unsigned int      straight  : 1;
 	unsigned int      purging   : 1;
 	unsigned int      dma   	: 1;
-	unsigned int      reserve   : 28;
+	unsigned int      working 	: 16;
+	unsigned int      reserve   : 12;
 	unsigned int      pre_check_bd_idx;
 	/* cfg by caller */
 	unsigned long     idata_ptr_off;
@@ -206,6 +215,9 @@ struct cipher_chn_ctl
 	CIPHER_FREEMEM_CB_T func_free_inmem;
 	CIPHER_FREEMEM_CB_T func_free_outmem;
 	CIPHER_NOTIFY_CB_T  func_notify;
+
+	struct cipher_qstatus q_status[CIPHER_QSTATUS_DEPTH];
+	unsigned int q_idx;
 };
 
 struct cipher_ctl
@@ -242,8 +254,20 @@ struct cipher_ctl
 
 };
 
+typedef struct cipher_debug_susp_rec_info {
+    unsigned int timestamp[CIPHER_SUSP_FAIL_REC_NUM];
+    unsigned int bd_info[CIPHER_SUSP_FAIL_REC_NUM];
+    unsigned int rd_info[CIPHER_SUSP_FAIL_REC_NUM];
+    unsigned int chn_status[CIPHER_SUSP_FAIL_REC_NUM];
+    unsigned int working_ref[CIPHER_SUSP_FAIL_REC_NUM];
+    unsigned int cur_pos;
+} cipher_debug_susp_rec_info_t;
+
 struct cipher_debug_ctl
 {
+    /*Suspend related*/
+    cipher_debug_susp_rec_info_t bd_rec_susp_fail[CIPHER_CHN_NUM];
+    
 	unsigned int bdq_full_times[CIPHER_CHN_NUM];
 	unsigned int cdq_full_times[CIPHER_CHN_NUM];
 	unsigned int chn_rst_times [CIPHER_CHN_NUM];
@@ -252,12 +276,18 @@ struct cipher_debug_ctl
 	unsigned int cd_left_cnt[CIPHER_CHN_NUM];
 	unsigned int cd_right_cnt[CIPHER_CHN_NUM];
 	unsigned int set_bd_timeout[CIPHER_CHN_NUM];
+	unsigned int chn_bd_unclear[CIPHER_CHN_NUM];
+	unsigned int chn_busy[CIPHER_CHN_NUM];
+	unsigned int working_underflow[CIPHER_CHN_NUM];
+	unsigned int working_overflow[CIPHER_CHN_NUM];
+	unsigned int working_ref_unclear[CIPHER_CHN_NUM];
 
 	/*RD related*/
 	unsigned int rdq_empty_cnt[CIPHER_CHN_NUM];
 	unsigned int rd_int_chk_err[CIPHER_CHN_NUM];	/*RD integrity check error*/
 	unsigned int rd_len_chk_err[CIPHER_CHN_NUM];	/*RD bd length check error*/
 	unsigned int rd_invalid[CIPHER_CHN_NUM];		/*Invalid RD*/
+	unsigned int chn_rd_unclear[CIPHER_CHN_NUM];
 
 	/*cipher status*/
 	unsigned int set_rate_err;
@@ -265,6 +295,11 @@ struct cipher_debug_ctl
 	unsigned int set_psam_failed;
 	unsigned int dump_init_failed;
 	unsigned int suspend_failed;
+	unsigned int enable_clk;
+	unsigned int disable_clk;
+	unsigned int d_clk_timeout;
+	unsigned int d_clk_check;
+	unsigned int psam_busy;
 };
 
 typedef union
@@ -291,7 +326,11 @@ void cipher_disable_aes_opt_bypass(int channel);
 
 void cipher_enable_aes_opt_bypass(int channel);
 void cipher_print_hex(unsigned int * data,unsigned int len);
-
+int close_cipher_clk(void);
+int cipher_inc_ref(unsigned int chn_id);
+void cipher_dec_ref(unsigned int chn_id);
+void cipher_record_chn_srtatus(unsigned int chn_id, unsigned int own, 
+													unsigned int line);
 #ifdef __cplusplus
 }
 #endif

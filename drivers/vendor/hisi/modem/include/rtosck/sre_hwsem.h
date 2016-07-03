@@ -107,14 +107,7 @@ extern "C" {
  */
 #define OS_ERRNO_HWSEM_GHWSEM_EXCEED_MAX          SRE_ERRNO_OS_ERROR(OS_MID_HWSEM, 0x06)
 
-/**
- * @ingroup SRE_hwsem
- * 硬件信号量错误码：SD6108/SD6181平台:删除硬件信号量资源时，被检测出硬件信号量ID的24至27位的工作模式与管理信息不匹配。
- *
- * 值: 0x02002407
- *
- * 解决方案: 硬件信号量ID需是通过SRE_HwSemCreate或者SRE_HwSemCreateById接口所得。
- */
+
 #define OS_ERRNO_HWSEM_MODE_NOT_MATCH             SRE_ERRNO_OS_ERROR(OS_MID_HWSEM, 0x07)
 
 /**
@@ -640,139 +633,19 @@ extern UINT32 SRE_HwSemCreate (HWSEM_CREATE_PARA_S *pstCreatePara, UINT32 *puwHw
  */
 extern UINT32 SRE_HwSemDelete(UINT32 uwHwSemId);
 
-/**
- * @ingroup  SRE_hwsem
- * @brief 关中断并获取互斥硬件信号量。
- *
- * @par 描述:
- * 间接模式下，关中断获取指定的互斥模式的硬件信号量。
- *
- * @attention
- * <ul>
- * <li>调用本接口后会关中断。如果Pend失败，系统会返回到关中断之前的状态。</li>
- * <li>Pend接口使用的入参一定是硬件信号量创建后返回的ID。</li>
- * <li>Pend接口只适用于互斥模式的硬件信号量。</li>
- * <li>Pend接口调用成功后，在POST之前不可开中断，或者做任务切换，否则有造成系统死锁的风险。</li>
- * <li>适用于SD6108、SD6181、SD6182、SD6157、SD6183平台。</li>
- * <li>由于低功耗模式下，可能会关闭部分局部硬件信号量，所以使用局部硬件信号量资源执行Pend操作时，需要用户保证局部硬件信号量资源可被正常使用(未被关断)，否则会导致核挂死。</li>
- * </ul>
- *
- * @param  uwHwSemId   [IN]  类型#UINT32，信号量ID。
- * @param  puvIntSave  [OUT] 类型#UINTPTR *，关中断前的PS状态值。
- *
- * @retval #OS_ERRNO_HWSEM_INTVALUE_NULL       0x02002421，PEND操作时，输入的获取中断开关值的指针为空。
- * @retval #OS_ERRNO_HWSEM_PEND_ID_INVALID     0x02002420，PEND操作时，输入的ID错误。
- * @retval #OS_ERRNO_HWSEM_DELETED             0x0200240a，PEND操作时，硬件信号量未创建或者已经被删除。
- * @retval #SRE_OK                             0x00000000，PEND硬件信号量资源成功。
- *
- * @par 依赖:
- * <ul><li>sre_hwsem.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R001C01
- * @see SRE_HwSemPost
- */
+
 extern UINT32 SRE_HwSemPend(UINT32 uwHwSemId, UINTPTR *puvIntSave);
 
-/**
- * @ingroup  SRE_hwsem
- * @brief 恢复中断并释放互斥硬件信号量。
- *
- * @par 描述:
- * 间接模式下，恢复中断并释放指定的互斥模式的硬件信号量。
- *
- * @attention
- * <ul>
- * <li>本接口需要跟SRE_HwSemPend配套使用。调用结束之后会开中断。</li>
- * <li>本接口需要使用者保证uvIntSave值的正确性，否则会造成系统异常。</li>
- * <li>Post接口使用的入参一定是硬件信号量创建后返回的ID。</li>
- * <li>Post接口只适用于互斥模式的硬件信号量。</li>
- * <li>调用Post接口成功之前，不可开中断，或者做任务切换，否则有造成系统死锁的风险。</li>
- * <li>适用于SD6108、SD6181、SD6182、SD6157、SD6183平台。</li>
- * <li>由于低功耗模式下，可能会关闭部分局部硬件信号量，所以使用局部硬件信号量资源Post操作时，需要用户保证局部硬件信号量资源可被正常使用(未被关断)，否则会导致核挂死。</li>
- * </ul>
- *
- * @param  uwHwSemId [IN] 类型#UINT32，信号量ID。
- * @param  uvIntSave [IN] 类型#UINTPTR，关中断Pend操作时返回的值。
- *
- * @retval #OS_ERRNO_HWSEM_POST_ID_INVALID     0x02002422，POST操作时，输入的ID错误。
- * @retval #OS_ERRNO_HWSEM_DELETED             0x0200240a，POST操作时，硬件信号量未创建或者已经被删除。
- * @retval #OS_ERRNO_HWSEM_POST_ILLEGAL        0x03002436，POST不持有的直接模式硬件信号量。
- * @retval #SRE_OK                             0x00000000，POST硬件信号量资源成功。
- * @par 依赖:
- * <ul><li>sre_hwsem.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R001C01
- * @see SRE_HwSemPend
- */
+
 extern UINT32 SRE_HwSemPost(UINT32 uwHwSemId, UINTPTR uvIntSave);
 
 #if (OS_OPTION_HWSEM_DIRECT == YES)
-/**
- * @ingroup  SRE_hwsem
- * @brief 在一段时间内，关中断并获取互斥硬件信号量。
- *
- * @par 描述:
- * 直接模式下，在一段时间内，关中断获取指定的互斥模式的硬件信号量。
- *
- * @attention
- * <ul>
- * <li>调用本接口后会关中断。如果Pend失败，系统会返回到关中断之前的状态。</li>
- * <li>Pend接口使用的入参一定是硬件信号量创建后返回的ID。</li>
- * <li>Pend接口只适用于互斥模式的硬件信号量。</li>
- * <li>Pend接口调用成功后，在POST之前不可开中断，或者做任务切换，否则有造成系统死锁的风险。</li>
- * <li>Pend超时后返回，由业务自行决定超时后处理，最大不超过100ms，超过100ms按100ms处理，全F表示永久等待。</li>
- * <li>适用于SD6182、SD6157平台。</li>
- * </ul>
- *
- * @param  uwHwSemId   [IN]  类型#UINT32，信号量ID。
- * @param  uwTimeOut   [IN]  类型#UINT32，PEND超时时间，单位：us。
- * @param  puvIntSave  [OUT] 类型#UINTPTR *，关中断前的PS状态值。
- *
- * @retval #OS_ERRNO_HWSEM_INTVALUE_NULL       0x02002421，PEND操作时，输入的获取中断开关值的指针为空。
- * @retval #OS_ERRNO_HWSEM_PEND_ID_INVALID     0x02002420，PEND操作时，输入的ID错误。
- * @retval #OS_ERRNO_HWSEM_DELETED             0x0200240a，PEND操作时，硬件信号量未创建或者已经被删除。
- * @retval #OS_ERRNO_HWSEM_PEND_REPEAT         0x03002435，PEND已持有的直接模式硬件信号量。
- * @retval #OS_ERRNO_HWSEM_PEND_TIMEOUT        0x02002437，硬件信号量PEND超时。
- * @retval #SRE_OK                             0x00000000，PEND硬件信号量资源成功。
- *
- * @par 依赖:
- * <ul><li>sre_hwsem.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R002C00
- * @see SRE_HwSemPend
- */
+
 extern UINT32 SRE_HwSemPendInTime(UINT32 uwHwSemId, UINT32 uwTimeOut, UINTPTR *puvIntSave);
 #endif
 
 #if (OS_CPU_TYPE == OS_SD6182 || OS_CPU_TYPE == OS_SD6157 || OS_CPU_TYPE == OS_SD6183)
-/**
- * @ingroup  SRE_hwsem
- * @brief 复位指定硬件信号量物理ID的硬件信号量。
- *
- * @par 描述:
- * 根据指定的硬件信号量物理ID，复位硬件信号量资源。
- *
- * @attention
- * <ul>
- * <li>仅供SD6182、SD6157、SD6183平台使用。</li>
- * <li>对于SD6183平台这个接口即操作了COMM的寄存器又操作了RAT寄存器,操作者需要COMM和RAT权限。</li>
- * <li>调用此接口前，由用户保证待复位的硬件信号量已经被删除。</li>
- * <li>待复位的硬件信号量不能为0号全局硬件信号量和通过启动参数配置的硬件信号量(所有实例)。</li>
- * <li>复位局部硬件信号量资源时，需要用户保证指定的局部硬件信号量资源可被正常使用(未被关断)，否则会导致核挂死。</li>
- * </ul>
- *
- * @param  uwType       [IN] 类型#UINT32，复位指定物理ID的硬件信号量类型，为全局(#SRE_HWSEM_SHARE_GLOBAL)或者局部(#SRE_HWSEM_SHARE_CLUSTER)硬件信号量。
- * @param  uwClusterId  [IN] 类型#UINT32，Cluster ID(簇ID)，取值范围为[0,3]。
- * @param  uwHwsemPhyId [IN] 类型#UINT32，硬件信号量物理ID，取值范围为实例内配置的硬件信号量资源。
- *
- * @retval #OS_ERRNO_HWSEM_TYPE_INVALID              0x0200241b，传入的资源类型非法。
- * @retval #OS_ERRNO_HWSEM_GLB_PHYSICAL_ID_INVALID   0x0200242b，传入的全局硬件信号量ID非法。
- * @retval #OS_ERRNO_HWSEM_CLUSTER_ID_INVALID        0x0200242d，传入的Cluster ID非法。
- * @retval #OS_ERRNO_HWSEM_LOCAL_PHYSICAL_ID_INVALID 0x0200242c，传入的局部硬件信号量ID非法。
- * @retval #SRE_OK                                   0x00000000，复位指定物理ID的硬件信号量资源成功。
- *
- * @par 依赖:
- * <ul><li>sre_hwsem.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R002C00
- * @see SRE_HwSemCreateById
- */
+
 extern UINT32 SRE_HwSemReset(UINT32 uwType, UINT32 uwClusterId, UINT32 uwHwsemPhyId);
 
 /**

@@ -46,26 +46,7 @@
    3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- Prototype      : NAS_RabmSetTransMode()
- Description    : APS设置RABM数据传输模式
- Input          : pSetTransMode        传输模式入口指针
- Output         :
- Return Value   : VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2005-08-30
-    Author      : l47619
-    Modification: Created function
 
-  2.日    期   : 2011年12月23日
-    作    者   : o00132663
-    修改内容   : PS融合项目，通知CDS可以发送数据
-  3.日    期   : 2013年04月12日
-    作    者   : l65478
-    修改内容   : DTS2013031901654:彩信并发发送失败
-*****************************************************************************/
 VOS_VOID  NAS_RabmSetTransMode( RABM_APS_SET_TRANS_MODE_ST   *pSetTransMode )
 {
     RABM_TRANSMODE_LEGITIMACY_ENUM      LegitimacyFlag = RABM_TRANSMODE_LEGAL;             /*入口参数的传输模式字段合法性标记*/

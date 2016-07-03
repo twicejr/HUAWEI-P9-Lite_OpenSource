@@ -26,14 +26,7 @@ using namespace testing;
 
 
 
-/*****************************************************************************
-类名     : Test_ADS_DL_RegDlDataCallback
-功能描述 : ADS_DL_RegDlDataCallback UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_RegDlDataCallback: public ::testing::Test
 {
 public:
@@ -53,15 +46,7 @@ protected:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RegDlDataCallback_001
-测试用例标题      : Modem0，注册下行数据接收函数，RabId非法
-预期结果          : g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_001)
 {
     ADS_DL_CTX_STRU                    *pstDlCtx;
@@ -90,15 +75,7 @@ TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_001)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RegDlDataCallback_002
-测试用例标题      : Modem0，注册下行数据接收函数，RabId为5，已激活
-预期结果          : 函数指针保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_002)
 {
     VOS_UINT8                           ucRabId;
@@ -130,15 +107,7 @@ TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RegDlDataCallback_003
-测试用例标题      : Modem0，注册下行数据接收函数，RabId为5，未激活
-预期结果          : 函数指针没有保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_003)
 {
 	ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -194,15 +163,7 @@ TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_003)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RegDlDataCallback_004
-测试用例标题      : Modem0，注册下行数据接收函数，RabId为5，未激活
-预期结果          : 函数指针没有保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_004)
 {
     VOS_UINT8                           ucRabId;
@@ -223,15 +184,7 @@ TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_004)
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RegDlDataCallback_011
-测试用例标题      : Modem0，注册下行数据接收函数，RabId非法
-预期结果          : g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_011)
 {
     ADS_DL_CTX_STRU                    *pstDlCtx;
@@ -260,15 +213,7 @@ TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_011)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RegDlDataCallback_012
-测试用例标题      : Modem1，注册下行数据接收函数，RabId为5，已激活
-预期结果          : 函数指针保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_012)
 {
     VOS_UINT8                           ucRabId;
@@ -300,15 +245,7 @@ TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_012)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RegDlDataCallback_013
-测试用例标题      : Modem1，注册下行数据接收函数，RabId为5，未激活
-预期结果          : 函数指针没有保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_013)
 {
 	ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
@@ -364,15 +301,7 @@ TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_013)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RegDlDataCallback_014
-测试用例标题      : Modem1，注册下行数据接收函数，RabId为5，未激活
-预期结果          : 函数指针没有保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_014)
 {
     VOS_UINT8                           ucRabId;
@@ -392,14 +321,7 @@ TEST_F(Test_ADS_DL_RegDlDataCallback,Test_ADS_DL_RegDlDataCallback_014)
 }
 
 #endif
-/*****************************************************************************
-类名     : Test_ADS_DL_RcvTafPdpStatusInd
-功能描述 : ADS_DL_RcvAtPdpStatusInd UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_RcvTafPdpStatusInd: public ::testing::Test
 {
 public:
@@ -432,15 +354,7 @@ protected:
     ADS_PDP_STATUS_IND_STRU          stPdpStatusInd;
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_001
-测试用例标题      : Modem0，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，PDP状态为非法值
-预期结果          : g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_001)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_0);
@@ -460,15 +374,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_002
-测试用例标题      : Modem0，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，RabId为非法
-预期结果          : g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_002)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_0);
@@ -488,15 +394,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_003
-测试用例标题      : Modem0，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，PDP状态为ACTIVE，RabId为5
-预期结果          : RabId保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_003)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_0);
@@ -515,15 +413,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_004
-测试用例标题      : Modem0，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，PDP状态为DEACTIVE，RabId为5（RabId5已存在）
-预期结果          : g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]置为无效值
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_004)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_0);
@@ -544,15 +434,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_005
-测试用例标题      : Modem0，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，PDP状态为ACTIVE，RabId为5，PPP类型
-预期结果          : RabId保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_005)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_0);
@@ -572,15 +454,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_005)
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_011
-测试用例标题      : Modem1，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，PDP状态为非法值
-预期结果          : g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_011)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_1);
@@ -601,15 +475,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_012
-测试用例标题      : Modem1，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，RabId为非法
-预期结果          : g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo值不变
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_012)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_1);
@@ -630,15 +496,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_013
-测试用例标题      : Modem0，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，PDP状态为ACTIVE，RabId为5
-预期结果          : RabId保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_013)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_1);
@@ -658,15 +516,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_013)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_014
-测试用例标题      : Modem1，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，PDP状态为DEACTIVE，RabId为5（RabId5已存在）
-预期结果          : g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]置为无效值
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_014)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_1);
@@ -688,15 +538,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_014)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTafPdpStatusInd_015
-测试用例标题      : Modem1，ADS下行处理ID_APS_ADS_PDP_STATUS_IND消息，PDP状态为ACTIVE，RabId为5，PPP类型
-预期结果          : RabId保存到g_stAdsCtx.stAdsDlCtx.astAdsDlRabInfo[0]
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_015)
 {
     pstDlCtx             = ADS_GetDlCtx(ADS_INSTANCE_INDEX_1);
@@ -716,14 +558,7 @@ TEST_F(Test_ADS_DL_RcvTafPdpStatusInd,Test_ADS_DL_RcvTafPdpStatusInd_015)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_ADS_DL_RcvIpfData
-功能描述 : ADS_DL_RcvIpfData UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_RcvIpfData: public ::testing::Test
 {
 public:
@@ -743,14 +578,7 @@ protected:
     ADS_DL_CTX_STRU                    *pstDlCtx;
 };
 #if 0
-/*****************************************************************************
-类名     : Test_ADS_DL_ProcIpfResult
-功能描述 : ADS_DL_ProcIpfResult UT工程类
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_ProcIpfResult: public ::testing::Test
 {
 public:
@@ -776,15 +604,7 @@ protected :
     IPF_RD_DESC_S                      stRd;
 };
 #if(FEATURE_OFF == FEATURE_SKB_EXP)
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_001时
-测试用例标题      : 从IPF获取数据，Modem0数据类型为RA的包
-预期结果          : 将数据通过ID_ADS_NDCLIENT_DATA_IND消息发给NDCLIENT
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_001)
 {
     VOS_UINT8                           ucRabId;
@@ -874,15 +694,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_002
-测试用例标题      : 从IPF获取数据，Modem0，数据类型为大于MTU的包
-预期结果          : 将数据通过ID_ADS_NDCLIENT_ERR_IND消息发给NDCLIENT
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_002)
 {
     VOS_UINT8                           ucRabId;
@@ -957,15 +769,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_003
-测试用例标题      : 从IPF获取数据，Modem0，数据类型为正常的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 调用对应的接收函数发送数据，处理AD
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_003)
 {
     VOS_UINT8                           ucRabId;
@@ -1030,15 +834,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_004
-测试用例标题      : 从IPF获取数据，Modem0，数据类型为正常的下行数据，RabId为5（未注册下行数据接收函数）
-预期结果          : 数据丢弃，释放内存
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_004)
 {
     VOS_UINT8                              ucRabId;
@@ -1105,15 +901,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_004)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_006
-测试用例标题      : IPV6 Link local address丢包
-预期结果          : IPV6 Link local address丢包，释放内存
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_006)
 {
     VOS_UINT8                           ucRabId;
@@ -1188,15 +976,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_007
-测试用例标题      : 从IPF获取数据，BearId为0
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_007)
 {
     VOS_UINT8                           ucRabId;
@@ -1268,15 +1048,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_007)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_008
-测试用例标题      : 从IPF获取数据，BearId为16
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_008)
 {
     VOS_UINT8                           ucRabId;
@@ -1348,15 +1120,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_008)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_009
-测试用例标题      : 从IPF获取数据，BearId为5
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_009)
 {
     VOS_UINT8                           ucRabId;
@@ -1428,15 +1192,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_010
-测试用例标题      : 从IPF获取数据，数据类型为3f的bd_cd_noeqB中len和cd不匹配的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_010)
 {
     VOS_UINT8                           ucRabId;
@@ -1504,15 +1260,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_010)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_011
-测试用例标题      : 从IPF获取数据，数据类型为3f的pkt_parse_err错误的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_011)
 {
     VOS_UINT8                           ucRabId;
@@ -1579,15 +1327,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_013
-测试用例标题      : 从IPF获取数据，数据类型为3f的head_len_err的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_013)
 {
     VOS_UINT8                           ucRabId;
@@ -1654,15 +1394,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_013)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_014
-测试用例标题      : 从IPF获取数据，数据类型为3f的VERSION ERR的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_014)
 {
     VOS_UINT8                           ucRabId;
@@ -1729,15 +1461,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_014)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_015
-测试用例标题      : 从IPF获取数据，数据类型为3f的VERSION ERR的下行数据，RabId为5，PPP类型（已注册下行数据接收函数）
-预期结果          : 将收到的数据发给上层
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_015)
 {
     VOS_UINT8                           ucRabId;
@@ -1805,15 +1529,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_015)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_016
-测试用例标题      : 从IPF获取数据，Modem1，数据类型为正常的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 调用对应的接收函数发送数据，处理AD
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_016)
 {
     VOS_UINT8                           ucRabId;
@@ -1881,15 +1597,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_016)
 #endif
 
 #else
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_021时
-测试用例标题      : 从IPF获取数据，Modem0数据类型为RA的包
-预期结果          : 将数据通过ID_ADS_NDCLIENT_DATA_IND消息发给NDCLIENT
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_021)
 {
     VOS_UINT8                           ucRabId;
@@ -1967,15 +1675,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_021)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_022
-测试用例标题      : 从IPF获取数据，Modem0，数据类型为大于MTU的包
-预期结果          : 将数据通过ID_ADS_NDCLIENT_ERR_IND消息发给NDCLIENT
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_022)
 {
     VOS_UINT8                           ucRabId;
@@ -2055,15 +1755,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_022)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_023
-测试用例标题      : 从IPF获取数据，Modem0，数据类型为正常的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 调用对应的接收函数发送数据，处理AD
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_023)
 {
     VOS_UINT8                           ucRabId;
@@ -2126,15 +1818,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_023)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_024
-测试用例标题      : 从IPF获取数据，Modem0，数据类型为正常的下行数据，RabId为5（未注册下行数据接收函数）
-预期结果          : 数据丢弃，释放内存
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_024)
 {
     VOS_UINT8                           ucRabId;
@@ -2199,15 +1883,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_024)
 
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_026
-测试用例标题      : IPV6 Link local address丢包
-预期结果          : IPV6 Link local address丢包，释放C核内存
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_026)
 {
     VOS_UINT8                           ucRabId;
@@ -2274,15 +1950,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_026)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_027
-测试用例标题      : 从IPF获取数据，BearId为0
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_027)
 {
     VOS_UINT8                           ucRabId;
@@ -2350,15 +2018,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_027)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_028
-测试用例标题      : 从IPF获取数据，BearId为16
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_028)
 {
     VOS_UINT8                           ucRabId;
@@ -2427,15 +2087,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_028)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_029
-测试用例标题      : 从IPF获取数据，BearId为5
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_029)
 {
     VOS_UINT8                           ucRabId;
@@ -2503,15 +2155,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_029)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_030
-测试用例标题      : 从IPF获取数据，数据类型为3f的bd_cd_noeqB中len和cd不匹配的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_030)
 {
     VOS_UINT8                           ucRabId;
@@ -2572,15 +2216,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_030)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_031
-测试用例标题      : 从IPF获取数据，数据类型为3f的pkt_parse_err错误的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_031)
 {
     VOS_UINT8                           ucRabId;
@@ -2640,15 +2276,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_031)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_033
-测试用例标题      : 从IPF获取数据，数据类型为3f的head_len_err的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_033)
 {
     VOS_UINT8                           ucRabId;
@@ -2708,15 +2336,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_033)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_034
-测试用例标题      : 从IPF获取数据，数据类型为3f的VERSION ERR的下行数据，RabId为5（已注册下行数据接收函数）
-预期结果          : 丢包
-修改历史     :
-1.日   期  : 2011-12-10
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_034)
 {
     VOS_UINT8                           ucRabId;
@@ -2776,15 +2396,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_034)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_035
-测试用例标题      : 从IPF获取数据，Modem0，数据类型为正常的下行数据，RabId为5（未注册下行过滤数据接收函数）
-预期结果          : 调用常规下行对应的接收函数发送数据，处理AD
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : L47619
-  修改内容 : V3R3 Share-PDP项目新增用例
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_035)
 {
     VOS_UINT8                           ucRabId;
@@ -2856,16 +2468,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_035)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_036
-测试用例标题      : 从IPF获取数据，Modem0，数据类型为正常的下行数据，RabId为5
-                   （已注册下行过滤数据接收函数，但过滤表不匹配）
-预期结果          : 调用常规下行对应的接收函数发送数据，处理AD
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : L47619
-  修改内容 : V3R3 Share-PDP项目新增用例
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_036)
 {
     VOS_UINT8                           ucRabId;
@@ -2938,16 +2541,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_036)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfResult_037
-测试用例标题      : 从IPF获取数据，Modem0，数据类型为正常的下行数据，RabId为5
-                   （已注册下行过滤数据接收函数，且过滤表匹配）
-预期结果          : 调用常规下行对应的接收函数发送数据，处理AD
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : L47619
-  修改内容 : V3R3 Share-PDP项目新增用例
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_037)
 {
     VOS_UINT8                           ucRabId;
@@ -3022,14 +2616,7 @@ TEST_F(Test_ADS_DL_ProcIpfResult,Test_ADS_DL_ProcIpfResult_037)
 
 #endif
 #endif
-/*****************************************************************************
-类名     : Test_ADS_DL_IpfIntCB
-功能描述 : ADS_DL_IpfIntCB UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_IpfIntCB: public ::testing::Test
 {
 public:
@@ -3049,15 +2636,7 @@ protected:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_IpfIntCB_001
-测试用例标题      : 收到IPF RD中断
-预期结果          : 触发ADS_DL_EVENT_IPF_RD_INT事件
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_IpfIntCB,Test_ADS_DL_IpfIntCB_001)
 {
     g_ulAdsDLTaskReadyFlag = 1;
@@ -3070,14 +2649,7 @@ TEST_F(Test_ADS_DL_IpfIntCB,Test_ADS_DL_IpfIntCB_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_DL_RcvTiProtectExpired
-功能描述 : ADS_DL_RcvTiProtectExpired UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_RcvTiProtectExpired: public ::testing::Test
 {
 public:
@@ -3097,15 +2669,7 @@ protected:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTiProtectExpired_001
-测试用例标题      : 定时器TI_ADS_DL_PROTECT超时处理
-预期结果          : 触发ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTiProtectExpired,Test_ADS_DL_RcvTiProtectExpired_001)
 {
     g_ulAdsDLTaskReadyFlag = 1;
@@ -3131,14 +2695,7 @@ TEST_F(Test_ADS_DL_RcvTiProtectExpired,Test_ADS_DL_RcvTiProtectExpired_001)
 
 #if (FEATURE_OFF == FEATURE_SKB_EXP)
 
-/*****************************************************************************
-类名     : Test_ADS_DL_ProcAdq
-功能描述 : ADS_DL_ProcAdq UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_ProcAdq: public ::testing::Test
 {
 public:
@@ -3158,15 +2715,7 @@ protected:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcAdq_001
-测试用例标题      : 处理RD，获取AD失败
-预期结果          : 不配置AD
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcAdq,Test_ADS_DL_ProcAdq_001)
 {
     VOS_UINT                            ulIpfAd0Num;
@@ -3192,14 +2741,7 @@ TEST_F(Test_ADS_DL_ProcAdq,Test_ADS_DL_ProcAdq_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_DL_IpfAdqEmptyCB
-功能描述 : ADS_DL_IpfAdqEmptyCB UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_IpfAdqEmptyCB: public ::testing::Test
 {
 public:
@@ -3219,15 +2761,7 @@ protected:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_IpfAdqEmptyCB_001
-测试用例标题      : 收到IPF，ADQ空中断
-预期结果          : 触发ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_IpfAdqEmptyCB,Test_ADS_DL_IpfAdqEmptyCB_001)
 {
     g_ulAdsDLTaskReadyFlag = 1;
@@ -3240,14 +2774,7 @@ TEST_F(Test_ADS_DL_IpfAdqEmptyCB,Test_ADS_DL_IpfAdqEmptyCB_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_ADS_DL_ProcIpfAdqEmtpyEvent
-功能描述 : ADS_DL_ProcIpfAdqEmtpyEvent UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_ProcIpfAdqEmtpyEvent: public ::testing::Test
 {
 public:
@@ -3271,15 +2798,7 @@ protected:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfAdqEmtpyEvent_001
-测试用例标题      : 处理ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件，AD0为空，内存申请不到
-预期结果          : 启动TI_ADS_DL_ADQ_EMPTY定时器
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_001)
 {
     VOS_UINT                            ulIpfAd0Num;
@@ -3308,15 +2827,7 @@ TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfAdqEmtpyEvent_002
-测试用例标题      : 处理ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件，AD1为空，申请不到内存
-预期结果          : 启动TI_ADS_DL_ADQ_EMPTY定时器
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_002)
 {
     VOS_UINT                            ulIpfAd0Num;
@@ -3345,15 +2856,7 @@ TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfAdqEmtpyEvent_003
-测试用例标题      : 处理ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件，AD0和1为空，申请不到AD0
-预期结果          : 配置AD1，启动TI_ADS_DL_ADQ_EMPTY定时器
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_003)
 {
     VOS_UINT                            ulIpfAd0Num;
@@ -3382,15 +2885,7 @@ TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfAdqEmtpyEvent_004
-测试用例标题      : 处理ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件，AD0和1为空，申请不到AD0
-预期结果          : 配置AD1，启动TI_ADS_DL_ADQ_EMPTY定时器
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_004)
 {
     VOS_UINT                            ulIpfAd0Num;
@@ -3414,15 +2909,7 @@ TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_004)
     GlobalMockObject::verify();
 }
 #if 0
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfAdqEmtpyEvent_005
-测试用例标题      : 处理ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件，TI_ADS_DL_ADQ_EMPTY已在运行，AD1为空，内存申请不到
-预期结果          : 启动TI_ADS_DL_ADQ_EMPTY定时器
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_005)
 {
     VOS_UINT                            ulIpfAd0Num;
@@ -3466,15 +2953,7 @@ TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_005)
     GlobalMockObject::verify();
 }
 #endif
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfAdqEmtpyEvent_006
-测试用例标题      : 处理ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件，AD0和1为空，申请到AD
-预期结果          : 配置AD，停止TI_ADS_DL_ADQ_EMPTY定时器
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_006)
 {
     VOS_UINT                            ulIpfAd0Num;
@@ -3517,15 +2996,7 @@ TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_006)
     GlobalMockObject::verify();
 }
 #if 0
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfAdqEmtpyEvent_007
-测试用例标题      : 处理ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件，AD0和1为空，申请到AD，但配置AD失败
-预期结果          : 配置AD失败，启动TI_ADS_DL_ADQ_EMPTY定时器
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_007)
 {
     VOS_UINT                            ulIpfAd0Num;
@@ -3561,15 +3032,7 @@ TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_007)
     GlobalMockObject::verify();
 }
 #endif
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_ProcIpfAdqEmtpyEvent_008
-测试用例标题      : 处理ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件，获取AD失败
-预期结果          : 不配置AD
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_008)
 {
     VOS_UINT                            ulIpfAd0Num;
@@ -3595,14 +3058,7 @@ TEST_F(Test_ADS_DL_ProcIpfAdqEmtpyEvent,Test_ADS_DL_ProcIpfAdqEmtpyEvent_008)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_ADS_DL_RcvTiAdqEmptyExpired
-功能描述 : ADS_DL_RcvTiAdqEmptyExpired UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_RcvTiAdqEmptyExpired: public ::testing::Test
 {
 public:
@@ -3622,15 +3078,7 @@ protected:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvTiAdqEmptyExpired_001
-测试用例标题      : 定时器TI_ADS_DL_ADQ_EMPTY超时处理
-预期结果          : 触发ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_RcvTiAdqEmptyExpired,Test_ADS_DL_RcvTiAdqEmptyExpired_001)
 {
     g_ulAdsDLTaskReadyFlag = 1;
@@ -3648,14 +3096,7 @@ TEST_F(Test_ADS_DL_RcvTiAdqEmptyExpired,Test_ADS_DL_RcvTiAdqEmptyExpired_001)
 #endif
 
 #if 0
-/*****************************************************************************
-类名     : Test_ADS_DL_SendNdClientDataInd
-功能描述 : ADS_DL_SendNdClientDataInd UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_SendNdClientDataInd: public ::testing::Test
 {
 public:
@@ -3676,15 +3117,7 @@ protected:
 };
 
 #if (FEATURE_OFF == FEATURE_SKB_EXP)
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_SendNdClientDataInd_001
-测试用例标题      : 申请内存失败
-预期结果          : 触发ADS_DL_EVENT_IPF_ADQ_EMPTY_INT事件
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_SendNdClientDataInd,Test_ADS_DL_SendNdClientDataInd_001)
 {
     IPF_RD_DESC_S                      *pstRd;
@@ -3720,15 +3153,7 @@ TEST_F(Test_ADS_DL_SendNdClientDataInd,Test_ADS_DL_SendNdClientDataInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_SendNdClientDataInd_002
-测试用例标题      : 发送ID_ADS_NDCLIENT_DATA_IND消息失败
-预期结果          : 发送ID_ADS_NDCLIENT_DATA_IND消息失败
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_SendNdClientDataInd,Test_ADS_DL_SendNdClientDataInd_002)
 {
     IPF_RD_DESC_S                      *pstRd;
@@ -3761,15 +3186,7 @@ TEST_F(Test_ADS_DL_SendNdClientDataInd,Test_ADS_DL_SendNdClientDataInd_002)
     GlobalMockObject::verify();
 }
 #else
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_SendNdClientDataInd_003
-测试用例标题      : 申请内存失败
-预期结果          : 不发送ID_ADS_NDCLIENT_DATA_IND消息
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_SendNdClientDataInd,Test_ADS_DL_SendNdClientDataInd_003)
 {
     IPF_RD_DESC_S                      *pstRd;
@@ -3804,15 +3221,7 @@ TEST_F(Test_ADS_DL_SendNdClientDataInd,Test_ADS_DL_SendNdClientDataInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_SendNdClientDataInd_004
-测试用例标题      : 发送ID_ADS_NDCLIENT_DATA_IND消息失败
-预期结果          : 发送ID_ADS_NDCLIENT_DATA_IND消息失败
-修改历史     :
-1.日   期  : 2012-12-26
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_ADS_DL_SendNdClientDataInd,Test_ADS_DL_SendNdClientDataInd_004)
 {
     IPF_RD_DESC_S                      *pstRd;
@@ -3849,14 +3258,7 @@ TEST_F(Test_ADS_DL_SendNdClientDataInd,Test_ADS_DL_SendNdClientDataInd_004)
 
 
 #if (FEATURE_OFF == FEATURE_SKB_EXP)
-/*****************************************************************************
-类名       : Test_ADS_DL_RcvCcpuResetStartInd
-功能描述   : ADS_DL_RcvCcpuResetStartInd UT工程类
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_RcvCcpuResetStartInd: public ::testing::Test
 {
 public:
@@ -3870,16 +3272,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvCcpuResetStartInd_001
-测试用例标题      : 收到ID_CCPU_ADS_DL_RESET_START_IND
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_RcvCcpuResetStartInd, Test_ADS_DL_RcvCcpuResetStartInd_001)
 {
     ADS_CCPU_RESET_IND_STRU                  stResetInd;
@@ -3928,14 +3321,7 @@ TEST_F(Test_ADS_DL_RcvCcpuResetStartInd, Test_ADS_DL_RcvCcpuResetStartInd_001)
 
 }
 #if 0
-/*****************************************************************************
-类名       : Test_ADS_DL_RcvAdsDlMsg
-功能描述   : ADS_DL_RcvAdsDlMsg UT工程类
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_ADS_DL_RcvAdsDlMsg: public ::testing::Test
 {
 public:
@@ -3949,16 +3335,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvAdsDlMsg_001
-测试用例标题      : 收到ID_CCPU_ADS_DL_RESET_END_IND
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_RcvAdsDlMsg, Test_ADS_DL_RcvAdsDlMsg_001)
 {
     ADS_CCPU_RESET_IND_STRU                  stResetInd;
@@ -3992,16 +3369,7 @@ TEST_F(Test_ADS_DL_RcvAdsDlMsg, Test_ADS_DL_RcvAdsDlMsg_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_ADS_DL_RcvAdsDlMsg_002
-测试用例标题      : 收到ID_ADS_RESET_MSG_ID_ENUM_BUTT
-预期结果          : 返回VOS_ERROR
-修改历史   :
-1.日   期  : 2013-04-19
-  作   者  : f00179208
-  修改内容 : 新生成类
 
-*******************************************************************/
 TEST_F(Test_ADS_DL_RcvAdsDlMsg, Test_ADS_DL_RcvAdsDlMsg_002)
 {
     ADS_CCPU_RESET_IND_STRU                  stResetInd;
@@ -4034,14 +3402,7 @@ TEST_F(Test_ADS_DL_RcvAdsDlMsg, Test_ADS_DL_RcvAdsDlMsg_002)
 #endif
 #endif
 
-/******************************************************************************
-类名     : Test_ADS_DL_RegFilterDataCallback
-功能描述 : ADS_DL_RegFilterDataCallback UT工程类
-修改历史 :
-1.日    期 : 2013-6-19
-  作    者 : L47619
-  修改内容 : V3R3 Share-PDP项目新增类
-******************************************************************************/
+
 class Test_ADS_DL_RegFilterDataCallback: public ::testing::Test
 {
 public:
@@ -4058,15 +3419,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_ADS_DL_RegFilterDataCallback_001
-测试用例标题: RAB合法性检查失败
-预期结果    : 函数返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-6-19
-   作   者  : L47619
-   修改内容 : V3R3 Share-PDP项目新增用例
-******************************************************************************/
+
 TEST_F(Test_ADS_DL_RegFilterDataCallback, Test_ADS_DL_RegFilterDataCallback_001)
 {
     // 变量声明
@@ -4090,15 +3443,7 @@ TEST_F(Test_ADS_DL_RegFilterDataCallback, Test_ADS_DL_RegFilterDataCallback_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_ADS_DL_RegFilterDataCallback_002
-测试用例标题: 注册下行过滤回调成功
-预期结果    : 函数返回VOS_OK
-修改历史    :
- 1.日   期  : 2013-6-19
-   作   者  : L47619
-   修改内容 : V3R3 Share-PDP项目新增用例
-******************************************************************************/
+
 TEST_F(Test_ADS_DL_RegFilterDataCallback, Test_ADS_DL_RegFilterDataCallback_002)
 {
     // 变量声明
@@ -4122,14 +3467,7 @@ TEST_F(Test_ADS_DL_RegFilterDataCallback, Test_ADS_DL_RegFilterDataCallback_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_ADS_DL_DeregFilterDataCallback
-功能描述 : ADS_DL_DeregFilterDataCallback UT工程类
-修改历史 :
-1.日    期 : 2013-6-19
-  作    者 : L47619
-  修改内容 : V3R3 Share-PDP项目新增类
-******************************************************************************/
+
 class Test_ADS_DL_DeregFilterDataCallback: public ::testing::Test
 {
 public:
@@ -4146,15 +3484,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_ADS_DL_DeregFilterDataCallback_001
-测试用例标题: RAB合法性检查失败
-预期结果    : 函数返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-6-19
-   作   者  : L47619
-   修改内容 : V3R3 Share-PDP项目新增用例
-******************************************************************************/
+
 TEST_F(Test_ADS_DL_DeregFilterDataCallback, Test_ADS_DL_DeregFilterDataCallback_001)
 {
     // 变量声明
@@ -4177,15 +3507,7 @@ TEST_F(Test_ADS_DL_DeregFilterDataCallback, Test_ADS_DL_DeregFilterDataCallback_
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_ADS_DL_DeregFilterDataCallback_002
-测试用例标题: 去注册下行过滤回调成功
-预期结果    : 函数返回VOS_OK
-修改历史    :
- 1.日   期  : 2013-6-19
-   作   者  : L47619
-   修改内容 : V3R3 Share-PDP项目新增用例
-******************************************************************************/
+
 TEST_F(Test_ADS_DL_DeregFilterDataCallback, Test_ADS_DL_DeregFilterDataCallback_002)
 {
     // 变量声明

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_schedule.h
-  版 本 号   : 初稿
-  作    者   : t00231215
-  生成日期   : 2012年11月29日
-  最近修改   :
-  功能描述   : oal_types.h 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月29日
-    作    者   : t00231215
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __OAL_WINDOWS_SCHEDULE_H__
 #define __OAL_WINDOWS_SCHEDULE_H__
@@ -67,21 +50,7 @@ typedef struct
 #define OAL_DECLARE_TASK(_name, _func, _p_data) \
     struct oal_tasklet_stru _name = {NULL, 0, _func, _p_data, 0, NULL, THREAD_PRIORITY_ABOVE_NORMAL}
 
-/*****************************************************************************
- 函 数 名  : oal_wait_event_interruptible_timeout
- 功能描述  : win32封装
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月25日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_int32  oal_wait_event_interruptible_timeout(oal_wait_queue_head_stru st_wq, oal_uint8 uc_bool, oal_int i_time)
 {
     return 50;
@@ -115,6 +84,7 @@ OAL_STATIC OAL_INLINE oal_int32  oal_wait_event_timeout(oal_wait_queue_head_stru
 
 /* 获取毫秒级时间戳 */
 #define OAL_TIME_GET_STAMP_MS() clock()
+#define OAL_TIME_GET_HIGH_PRECISION_MS() clock()
 
 #define OAL_ENABLE_CYCLE_COUNT()
 #define OAL_DISABLE_CYCLE_COUNT()
@@ -334,274 +304,80 @@ OAL_STATIC OAL_INLINE static char* oal_get_current_task_name()
 	return "win32";
 }
 
-/*****************************************************************************
- 函 数 名  : allow_signal
- 功能描述  : kernel function
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE int allow_signal(int sig)
 {
 		return 0;
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_atomic_read
- 功能描述  : 读取原子变量的值
- 输入参数  : *p_vector: 需要进行原子操作的原子变量地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_int32  oal_atomic_read(oal_atomic *p_vector)
 {
     return (oal_int32)(*p_vector);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_atomic_set
- 功能描述  : 原子地设置原子变量p_vector值为ul_val
- 输入参数  : p_vector: 需要进行原子操作的原子变量地址
-             l_val  : 需要被设置成的值
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月11日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_atomic_set(oal_atomic *p_vector, oal_int32 l_val)
 {
     *p_vector = (LONG)l_val;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_atomic_dec
- 功能描述  : 原子的给入参减1，
- 输入参数  : *p_vector: 需要进行原子操作的原子变量地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月25日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void oal_atomic_dec(oal_atomic *p_vector)
 {
     InterlockedDecrement(p_vector);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_atomic_inc
- 功能描述  : 原子的给如参加一
- 输入参数  : *p_vector: 需要进行原子操作的原子变量地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月26日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_atomic_inc(oal_atomic *p_vector)
 {
     InterlockedIncrement(p_vector);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_atomic_inc_and_test
- 功能描述  : 原子递增后检查结果是否为0
- 输入参数  : *p_vector: 需要进行原子操作的原子变量地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月10日
-    作    者   : d00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_atomic_inc_and_test(oal_atomic *p_vector)
 {
     /*InterlockedIncrementtest(p_vector);*/
 }
 
-/*****************************************************************************
- 函 数 名  : oal_atomic_dec_and_test
- 功能描述  : 原子递减后检查结果是否为0
- 输入参数  : *p_vector: 需要进行原子操作的原子变量地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月10日
-    作    者   : d00262548
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_atomic_dec_and_test(oal_atomic *p_vector)
 {
     /*InterlockedDecrementandtest(p_vector);*/
 }
 
-/*****************************************************************************
- 函 数 名  : oal_spin_lock_init
- 功能描述  : 自旋锁初始化,windows下现在没有用，为了与linux下锁的结构大小一致，
-             此函数暂时什么都不做，直接返回。zouhongliang
- 输入参数  : *pst_lock: 自旋锁地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_spin_lock_init(oal_spin_lock_stru *pst_lock)
 {
     /* InitializeCriticalSection(pst_lock);*/
 }
 
-/*****************************************************************************
- 函 数 名  : oal_spin_lock
- 功能描述  : 获得自旋锁,windows下现在没有用，为了与linux下锁的结构大小一致，
-             此函数暂时什么都不做，直接返回。zouhongliang
- 输入参数  : *pst_lock: 自旋锁地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_spin_lock(oal_spin_lock_stru *pst_lock)
 {
     /* EnterCriticalSection(pst_lock);*/
 }
 
-/*****************************************************************************
- 函 数 名  : oal_spin_unlock
- 功能描述  : 释放自旋锁,windows下现在没有用，为了与linux下锁的结构大小一致，
-             此函数暂时什么都不做，直接返回。zouhongliang
- 输入参数  : *pst_lock:自旋锁地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_spin_unlock(oal_spin_lock_stru *pst_lock)
 {
     /* LeaveCriticalSection(pst_lock); */
 }
 
-/***************************************************************************
-函 数 名 : oal_spin_lock_bh
 
-功能描述 : 自旋锁在软中断以及内核线程等核心态上下文环境下的加锁操作。
-           如果能够立即获得锁，它就马上返回，否则，它将自旋在那里，直到
-           该自旋锁的保持者释放，这时，它就获得锁并返回。windows下现在
-           没有用，为了与linux下锁的结构大小一致,此函数暂时什么都不做，
-           直接返回。zouhongliang
-输入参数 : pst_lock:自旋锁地址
-输出参数 : 无
-返 回 值 :
-调用函数 :
-被调函数 :
-
-修改历史 :
- 1.日    期 : 2012年9月25日
-   作    者 : t00231215
-   修改内容 : 新生成函数
-
-****************************************************************************/
 OAL_INLINE oal_void oal_spin_lock_bh(oal_spin_lock_stru *pst_lock)
 {
     /* EnterCriticalSection(pst_lock); */
 }
 
-/*****************************************************************************
- 函 数 名  : oal_spin_unlock_bh
- 功能描述  : Spinlock在软中断以及内核线程等核心态上下文环境下的解锁操作
-             windows下现在没有用，为了与linux下锁的结构大小一致,此函数暂时什么都不做，
-             直接返回。zouhongliang
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月25日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void oal_spin_unlock_bh(oal_spin_lock_stru *pst_lock)
 {
     /* LeaveCriticalSection(pst_lock); */
 }
 
-/*****************************************************************************
- 函 数 名  : oal_spin_lock_irq_save
- 功能描述  : 获得自旋锁的同时把保存标志寄存器的值，并且失效本地中断。
- 输入参数  : *pst_lock:自旋锁地址
-             pui_flags:标志寄存器
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_spin_lock_irq_save(oal_spin_lock_stru *pst_lock, oal_uint *pui_flags)
 {
     oal_irq_save(pui_flags, OAL_5115IRQ_OSLIS);
@@ -609,23 +385,7 @@ OAL_INLINE oal_void  oal_spin_lock_irq_save(oal_spin_lock_stru *pst_lock, oal_ui
     oal_spin_lock(pst_lock);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_spin_unlock_irq_restore
- 功能描述  : 释放自旋锁的同时，恢复标志寄存器的值，恢复本地中断。它与oal_sp-
-             in_lock_irq配对使用。
- 输入参数  : *pst_lock:自旋锁地址
-             pui_flags:标志寄存器
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_spin_unlock_irq_restore(oal_spin_lock_stru *pst_lock, oal_uint *pui_flags)
 {
     oal_spin_unlock(pst_lock);
@@ -633,25 +393,7 @@ OAL_INLINE oal_void  oal_spin_unlock_irq_restore(oal_spin_lock_stru *pst_lock, o
     oal_irq_restore(pui_flags, OAL_5115IRQ_OSLIS);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_spin_lock_irq_exec
- 功能描述  : 获取自旋锁，关闭中断，执行某个函数，完了之后再打开中断，释放自
-             旋锁。
- 输入参数  : *pst_lock:自旋锁地址
-             func：函数指针地址
-             *p_arg：函数参数
-             pui_flags:中断标志寄存器
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_uint32  oal_spin_lock_irq_exec(oal_spin_lock_stru *pst_lock, oal_irqlocked_func p_irq_locked_func, oal_void *p_arg, oal_uint *pui_flags)
 {
     oal_uint32  ul_Rslt;
@@ -665,121 +407,37 @@ OAL_INLINE oal_uint32  oal_spin_lock_irq_exec(oal_spin_lock_stru *pst_lock, oal_
     return ul_Rslt;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_rw_lock_init
- 功能描述  : 读写锁初始化，把读写锁设置为1（未锁状态）。
- 输入参数  : pst_lock: 读写锁结构体地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_rw_lock_init(oal_rwlock_stru *pst_lock)
 {
     /* InitializeCriticalSection(pst_lock); */
 }
 
-/*****************************************************************************
- 函 数 名  : oal_rw_lock_read_lock
- 功能描述  : 获得指定的读锁
- 输入参数  : pst_lock: 读写锁结构体地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_rw_lock_read_lock(oal_rwlock_stru *pst_lock)
 {
     /* EnterCriticalSection(pst_lock); */
 }
 
-/*****************************************************************************
- 函 数 名  : oal_rw_lock_read_unlock
- 功能描述  : 释放指定的读锁
- 输入参数  : pst_lock: 读写锁结构体地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_rw_lock_read_unlock(oal_rwlock_stru *pst_lock)
 {
     /*LeaveCriticalSection(pst_lock);*/
 }
 
-/*****************************************************************************
- 函 数 名  : oal_write_lock
- 功能描述  : 获得指定的写锁
- 输入参数  : pst_lock: 读写锁结构体地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_rw_lock_write_lock(oal_rwlock_stru *pst_lock)
 {
     /*EnterCriticalSection(pst_lock);*/
 }
 
-/*****************************************************************************
- 函 数 名  : oal_rw_lock_write_unlock
- 功能描述  : 释放指定的写锁
- 输入参数  : pst_lock: 读写锁结构体地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_rw_lock_write_unlock(oal_rwlock_stru *pst_lock)
 {
     /*LeaveCriticalSection(pst_lock);*/
 }
 
-/*****************************************************************************
- 函 数 名  : oal_thread_process
- 功能描述  : tasklet执行的函数入口，只为内部接口提供不对外
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月9日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 #if 0
 OAL_STATIC DWORD WINAPI  oal_thread_process(LPVOID p_parameter)
@@ -801,23 +459,7 @@ OAL_STATIC DWORD WINAPI  oal_thread_process(LPVOID p_parameter)
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : oal_task_init
- 功能描述  : 任务初始化。初始化完成后，任务处于挂起状态。*pst_task有调用者负责分配内存空间
- 输入参数  : pst_task: 任务结构体指针
-             func: 任务处理函数入口地址
-             p_args: 需进行处理的函数的入参地址
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月8日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_task_init(oal_tasklet_stru *pst_task, oal_defer_func p_func, oal_uint ui_args)
 {
     pst_task->lp_thread_attributes      = NULL;                                 /* 该线程使用默认安全性 */
@@ -828,81 +470,24 @@ OAL_INLINE oal_void  oal_task_init(oal_tasklet_stru *pst_task, oal_defer_func p_
     pst_task->l_npriority               = THREAD_PRIORITY_ABOVE_NORMAL;         /* 优先级为高于标准 */
 }
 
-/*****************************************************************************
- 函 数 名  : oal_task_kill
- 功能描述  : 退出task运行
- 输入参数  : pst_task: 任务结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月29日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_task_kill(oal_tasklet_stru *pst_task)
 {
 }
 
-/*****************************************************************************
- 函 数 名  : oal_task_sched
- 功能描述  : 任务调度，令任务处于准备就绪状态；当任务执行完后，又回到挂起状
-             态。
- 输入参数  : pst_task: 任务结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月8日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_task_sched(oal_tasklet_stru *pst_task)
 {
 
 }
 
-/*****************************************************************************
- 函 数 名  : oal_task_is_scheduled
- 功能描述  : 检测tasklet是否等待执行
- 输入参数  : pst_task: 任务结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月20日
-    作    者   : wangjianchang wWX278082
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint oal_task_is_scheduled(oal_tasklet_stru *pst_task)
 {
     return (pst_task->i_state & (1 << (TASKLET_STATE_SCHED + 1)));
 }
 
-/*****************************************************************************
- 函 数 名  : oal_time_get_stamp_us
- 功能描述  : 获取微妙精度级的时间戳
- 输入参数  : pst_usec: 时间结构体指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月30日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_void  oal_time_get_stamp_us(oal_time_us_stru *pst_usec)
 {
     pst_usec->i_sec     = 0;
@@ -910,43 +495,14 @@ OAL_INLINE oal_void  oal_time_get_stamp_us(oal_time_us_stru *pst_usec)
     pst_usec->i_usec    = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_ktime_get
- 功能描述  : 获取当前时间戳
- 输入参数  : oal_void
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : w00346925
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_time_t_stru oal_ktime_get(oal_void)
 {
     oal_time_t_stru st_time = {0};
     return st_time;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_ktime_sub
- 功能描述  : 获取时间差值
- 输入参数  : const oal_time_t_stru lhs,
-             const oal_time_t_stru rhs
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月27日
-    作    者   : w00346925
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_time_t_stru oal_ktime_sub(const oal_time_t_stru lhs, const oal_time_t_stru rhs)
 {
     oal_time_t_stru st_time = {0};
@@ -959,22 +515,7 @@ extern oal_int32  oal_timer_delete_sync(oal_timer_list_stru *pst_timer);
 extern oal_int32  oal_timer_start(oal_timer_list_stru *pst_timer, oal_uint ui_expires);
 extern oal_void  oal_timer_add(oal_timer_list_stru *pst_timer);
 
-/*****************************************************************************
- 函 数 名  : oal_timer_start_on
- 功能描述  : 指定cpu,重启定时器,调用时timer要处于非激活状态否者会死机
- 输入参数  : pst_timer: 结构体指针
-             ui_expires: 重启的溢出事件
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月20日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  oal_timer_start_on(oal_timer_list_stru *pst_timer, oal_uint ui_delay, oal_int32 cpu)
 {
     OAL_REFERENCE(pst_timer);
@@ -982,23 +523,7 @@ OAL_STATIC OAL_INLINE oal_void  oal_timer_start_on(oal_timer_list_stru *pst_time
     OAL_REFERENCE(cpu);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_copy_from_user
- 功能描述  : 将用户态数据拷贝到内核态
- 输入参数  : p_to: 目的地
-             p_from : 源
-             ul_size : 需要拷贝的长度
- 输出参数  : 无
- 返 回 值  : 拷贝的字符串长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_uint32  oal_copy_from_user(oal_void *p_to, const oal_void *p_from, oal_uint32 ul_size)
 {
     oal_memcopy(p_to, p_from, ul_size);
@@ -1006,23 +531,7 @@ OAL_INLINE oal_uint32  oal_copy_from_user(oal_void *p_to, const oal_void *p_from
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_copy_to_user
- 功能描述  : 将内核态数据拷贝到用户态
- 输入参数  : p_to: 目的地
-             p_from : 源
-             ul_size : 需要拷贝的长度
- 输出参数  : 无
- 返 回 值  : 拷贝的字符串长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月27日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_uint32  oal_copy_to_user(oal_void *p_to, const oal_void *p_from, oal_uint32 ul_size)
 {
     oal_memcopy(p_to, p_from, ul_size);
@@ -1030,23 +539,7 @@ OAL_INLINE oal_uint32  oal_copy_to_user(oal_void *p_to, const oal_void *p_from, 
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_create_proc_entry
- 功能描述  : 创建proc_entry结构体
- 输入参数  : pc_name: 创建的proc_entry的名字
-             us_mode: 创建模式
-             pst_parent: 母proc_entry结构体，继承属性
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_INLINE oal_proc_dir_entry_stru* oal_create_proc_entry(const oal_int8 *pc_name, oal_uint16 us_mode, oal_proc_dir_entry_stru *pst_parent)
 {
     oal_proc_dir_entry_stru     *pst_proc_entry;
@@ -1056,147 +549,44 @@ OAL_INLINE oal_proc_dir_entry_stru* oal_create_proc_entry(const oal_int8 *pc_nam
     return pst_proc_entry;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_remove_proc_entry
- 功能描述  : 创建proc_entry结构体
- 输入参数  : pc_name: 创建的proc_entry的名字
-             pst_parent: 母proc_entry结构体，继承属性
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月12日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE void oal_remove_proc_entry(const oal_int8 *pc_name, oal_proc_dir_entry_stru *pst_parent)
 {
     oal_free(pst_parent);
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_time_is_before
- 功能描述  : 判断ul_time是否比当前时间早
-             若早，表示超时时间已过；若不早，表明还未超时
- 输入参数  : oal_uint ui_time
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月20日,星期二
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 oal_time_is_before(oal_uint ui_time)
 {
     return 1;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_time_after
- 功能描述  : 判断时间戳ul_time_a是否在ul_time_b之后:
- 输入参数  : oal_uint ui_time
- 输出参数  : 无
- 返 回 值  : Return: 1 ul_time_a在ul_time_b之后; 否则 Return: 0
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月10日
-    作    者   : w00357635
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32 oal_time_after(oal_uint32 ul_time_a, oal_uint32 ul_time_b)
 {
     return 1;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_wait_for_completion_timeout
- 功能描述  : 同步：等待超时检查
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月18日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  oal_wait_for_completion_timeout(oal_completion *pst_completion, oal_uint32 ul_timeout)
 {
     return 1;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_smp_task_lock
- 功能描述  : lock the task, the lock can be double locked by the same process
- 输入参数  : 
-             
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月28日
-    作    者   : 
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_smp_task_lock(oal_task_lock_stru* pst_lock)
 {
     OAL_REFERENCE(pst_lock);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_smp_task_unlock
- 功能描述  : unlock the task
- 输入参数  : 
-             
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月28日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_smp_task_unlock(oal_task_lock_stru* pst_lock)
 {
     OAL_REFERENCE(pst_lock);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_smp_task_lock_init
- 功能描述  : task struct init
- 输入参数  : 
-             
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月28日
-    作    者   : z00262551
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void oal_smp_task_lock_init(oal_task_lock_stru* pst_lock)
 {
     OAL_REFERENCE(pst_lock);

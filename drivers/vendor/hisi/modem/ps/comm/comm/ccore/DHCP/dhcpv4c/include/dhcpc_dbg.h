@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : Dhcpc_comp.h
-  版 本 号   : 初稿
-  作    者   : y00138047
-  生成日期   : 2012年5月15日
-  最近修改   :
-  功能描述   : dhcpc_comp.c 的头文件
-  函数列表   :
-*
-*
-
-  修改历史   :
-  1.日    期   : 2012年5月15日
-    作    者   : y00138047
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __DHCPC_DBG_H__
 #define __DHCPC_DBG_H__
 
@@ -210,7 +190,6 @@ typedef enum
     E_DHCPV6C_BLK_DELWAITNOD_NODEQU,
     E_DHCPV6C_BLK_MEMCANBEFREE_NUM,
 
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-23 start */
     E_DHCPV6C_NO_NODE_IN_HASH_LIST,
     E_DHCPV6C_NODE_NOT_IN_HASH_LIST,
     E_DHCPV6C_MALLOC_ERR_FOR_TIMER_NODE,
@@ -222,7 +201,6 @@ typedef enum
     E_DHCPV6C_FIND_NODE_CANNOT_BE_HEAD,
     E_DHCPV6C_FIND_SAME_CONFLICT_NODE,
     E_DHCPV6C_TIMER_UP_FIND_HASH_ERROR,
-    /* zhangjinquan 00175135 DHCPv6特性 2012-07-23 end   */
 
     E_DHCPV6C_CHECK_BLKDEL,
     E_DHCPV6C_BAK_IPTYPEERR,

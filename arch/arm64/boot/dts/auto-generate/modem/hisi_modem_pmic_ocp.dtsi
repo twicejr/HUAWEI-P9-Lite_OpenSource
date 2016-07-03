@@ -10,23 +10,23 @@
         status = "ok";    
 
         ldo1@ldo1{
-            id = <6>;
+            id = <0>;
             name = "ldo1";
         };
         ldo3@ldo3{
-            id = <8>;
+            id = <1>;
             name = "ldo3";
         };
         ldo14@ldo14{
-            id = <18>;
+            id = <4>;
             name = "ldo14";
         };
         ldo22@ldo22{
-            id = <25>;
+            id = <5>;
             name = "ldo22";
         };
         ldo28@ldo28{
-            id = <31>;
+            id = <6>;
             name = "ldo28";
         };
     };

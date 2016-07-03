@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_tid.c
-  版 本 号   : 初稿
-  作    者   : mayuan
-  生成日期   : 2012年11月15日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年11月15日
-    作    者   : mayuan
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -53,21 +36,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_tid_tx_queue_init
- 功能描述  : 初始化一个用户的TID缓存队列
- 输入参数  : past_tx_tid_queue: 发送tid缓存队列指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_tx_queue_init(dmac_tid_stru *past_tx_tid_queue, mac_user_stru *pst_user)
 {
     oal_uint8        uc_tid;
@@ -177,21 +146,7 @@ oal_uint32  dmac_tid_tx_queue_init(dmac_tid_stru *past_tx_tid_queue, mac_user_st
     return ul_rst;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_tx_queue_exit
- 功能描述  : tid queue退出时释放内存，用户删除时调用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_tid_tx_queue_exit(dmac_user_stru *pst_dmac_user)
 {
     oal_uint8           uc_tid_idx;
@@ -225,22 +180,7 @@ oal_void  dmac_tid_tx_queue_exit(dmac_user_stru *pst_dmac_user)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_tx_queue_enqueue_head
- 功能描述  : 将一个MPDU或多个MPDU加入用户的TID缓存队列的头部
- 输入参数  : pst_tid_queue: 发送tid缓存队列指针
-             pst_netbuf   : netbuf指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_tx_queue_enqueue_head(dmac_tid_stru *pst_tid_queue, oal_dlist_head_stru *pst_tx_dscr_list_hdr, oal_uint8 uc_mpdu_num)
 {
     mac_device_stru     *pst_device;
@@ -353,22 +293,7 @@ oal_uint32  dmac_tid_tx_queue_enqueue_head(dmac_tid_stru *pst_tid_queue, oal_dli
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_get_mpdu_by_index
- 功能描述  : 获取TID的某个MPDU,
- 输入参数  : pst_tid      : 指向tid的指针
-             us_mpdu_index: MPDU索引,从0开始
- 输出参数  : ppst_netbuf_stru: 指向netbuf的指针
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_get_mpdu_by_index(dmac_tid_stru *pst_tid_queue,
                                         oal_uint16 us_mpdu_index,
                                         oal_netbuf_stru **ppst_netbuf_stru)
@@ -482,23 +407,7 @@ oal_uint32  dmac_tid_get_mpdu_by_index(dmac_tid_stru *pst_tid_queue,
 #endif /* _PRE_WLAN_FEATURE_TX_DSCR_OPT */
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_get_min_max_mpdu_length
- 功能描述  : 获取TID队首指定数目MPDU中的最小和最大的MPDU长度
- 输入参数  : pst_tid         : 指向tid的指针
-             us_head_mpdu_num:
- 输出参数  : pus_min_mpdu_len: 最小MPDU长度
-             pus_max_mpdu_len: 最大MPDU长度
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月30日
-    作    者   : liwenjun 68207
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_get_min_max_mpdu_length(mac_user_stru *pst_mac_user,
                                             oal_uint8 uc_tid_num,
                                         oal_uint16      us_head_mpdu_num,
@@ -630,22 +539,7 @@ oal_uint32  dmac_tid_get_min_max_mpdu_length(mac_user_stru *pst_mac_user,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_tx_queue_remove_list
- 功能描述  : 将一个MPDU从TID缓存队列中删除并释放，算法只有突发情况才会调用,性能不敏感
- 输入参数  : pst_tid_queue: TID缓存队列
-             uc_mpdu_num  : 需从tid缓存队列中删除的MPDU个数
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_delete_mpdu_head(
                 dmac_tid_stru              *pst_tid_queue,
                 oal_uint16                  us_mpdu_num)
@@ -798,22 +692,7 @@ oal_uint32  dmac_tid_delete_mpdu_head(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_delete_mpdu_tail
- 功能描述  : 删除并释放TID队尾若干个MPDU,算法只有突发情况才会调用,性能不敏感
- 输入参数  : pst_tid    : 指向TID的指针
-             uc_mpdu_num: MPDU个数
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_delete_mpdu_tail(dmac_tid_stru *pst_tid_queue, oal_uint16 us_mpdu_num)
 {
     mac_device_stru            *pst_mac_device;
@@ -949,7 +828,6 @@ oal_uint32  dmac_tid_delete_mpdu_tail(dmac_tid_stru *pst_tid_queue, oal_uint16 u
 
         pst_tid_queue->us_mpdu_num--;
 
-        /*zourong维测验证DTS2014071403907*/
 #if (_PRE_OS_VERSION_LINUX == _PRE_OS_VERSION)
         if(pst_tid_queue->us_mpdu_num < pst_tid_queue->uc_retry_num)
         {
@@ -975,22 +853,7 @@ oal_uint32  dmac_tid_delete_mpdu_tail(dmac_tid_stru *pst_tid_queue, oal_uint16 u
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_get_util_ratio
- 功能描述  : 获取device下所有TID的使用率,算法约50ms调一次
- 输入参数  : uc_chip_id  : chip ID
-             uc_device_id: device ID
- 输出参数  : puc_ratio   : 使用率
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_get_util_ratio(oal_uint8 uc_chip_id, oal_uint8 uc_device_id, oal_uint8 *puc_ratio)
 {
     mac_device_stru *pst_device;
@@ -1017,22 +880,7 @@ oal_uint32  dmac_tid_get_util_ratio(oal_uint8 uc_chip_id, oal_uint8 uc_device_id
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_get_normal_rate_stats
- 功能描述  : 读取某个TID速率统计信息
- 输入参数  : pst_mac_user: 指向user的指针
-             uc_tid_id   : TID
- 输出参数  : ppst_rate_stats_info: 指向速率统计信息的指针
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_get_normal_rate_stats(
                 mac_user_stru                      *pst_mac_user,
                 oal_uint8                           uc_tid_id,
@@ -1069,23 +917,7 @@ oal_uint32  dmac_tid_get_normal_rate_stats(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_set_normal_rate_stats
- 功能描述  : 设置某个TID的速率统计信息
- 输入参数  : pst_mac_user: 指向用户的指针
-             uc_tid_id   : TID
-             pst_rate_stats_info: 指向速率统计信息的指针
- 输出参数  : 无
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月5日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_set_normal_rate_stats(
                 mac_user_stru                      *pst_mac_user,
                 oal_uint8                           uc_tid_id,
@@ -1130,21 +962,7 @@ oal_uint32  dmac_tid_set_normal_rate_stats(
     return OAL_SUCC;
 }
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_tid_flush_retry_frame
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月16日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_tid_flush_retry_frame(mac_device_stru *pst_device, dmac_tid_stru *pst_tid)
 {
     oal_uint8            uc_dscr_index;
@@ -1286,21 +1104,7 @@ oal_uint32  dmac_release_tid_buffs_by_vap(dmac_vap_stru     *pst_dmac_vap,
     return ul_free_nums;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_release_tid_buffs
- 功能描述  : 内存紧张时删除tid中的数据，从当前VAP开始，先删除低优先级tid队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月14日
-    作    者   : z00262551 zhouxinfeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_release_tid_buffs(dmac_vap_stru     *pst_dmac_vap,
                                         mac_device_stru  *pst_device,
                                         oal_uint32       ul_nums)
@@ -1354,21 +1158,7 @@ oal_uint32  dmac_release_tid_buffs(dmac_vap_stru     *pst_dmac_vap,
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_clear
- 功能描述  : 删除tid队列中的所有信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月16日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_clear(mac_user_stru *pst_mac_user, mac_device_stru *pst_mac_device)
 {
     oal_uint32                      ul_tid_idx;
@@ -1470,21 +1260,7 @@ oal_uint32  dmac_tid_clear(mac_user_stru *pst_mac_user, mac_device_stru *pst_mac
 }
 
 #ifdef _PRE_WLAN_DFT_EVENT
-/*****************************************************************************
- 函 数 名  : dmac_event_pause_tid
- 功能描述  : 暂停或者恢复tid事件消息上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月4日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  dmac_tid_status_change_event_to_sdt(
                                      dmac_tid_stru        *pst_tid,
                                      oal_uint8             uc_is_tid_paused)
@@ -1501,21 +1277,7 @@ OAL_STATIC OAL_INLINE oal_void  dmac_tid_status_change_event_to_sdt(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_pause
- 功能描述  : 暂停TID队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_pause(dmac_tid_stru *pst_tid, oal_uint8 uc_type)
 {
     oal_uint8   uc_is_paused;
@@ -1550,21 +1312,7 @@ oal_uint32  dmac_tid_pause(dmac_tid_stru *pst_tid, oal_uint8 uc_type)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_tid_resume
- 功能描述  : 恢复TID队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月27日
-    作    者   : zhangheng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_tid_resume(hal_to_dmac_device_stru *pst_hal_device, dmac_tid_stru *pst_tid, oal_uint8 uc_type)
 {
     if ((OAL_PTR_NULL == pst_tid) || (OAL_PTR_NULL == pst_hal_device))

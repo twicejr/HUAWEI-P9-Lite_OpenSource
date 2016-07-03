@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallTimer.c
-  版 本 号   : 初稿
-  作    者   : dfakl;f
-  生成日期   : 2010年5月19日
-  最近修改   :
-  功能描述   : dakfdjk
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年5月19日
-    作    者   : dfakl;f
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -40,11 +23,9 @@ extern "C" {
 #include "MnCallSendCc.h"
 #include "MnCallCtx.h"
 
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
 #include "MnCallMgmt.h"
 #include "MnCallSendApp.h"
 #include "TafSdcCtx.h"
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
 
 #define    THIS_FILE_ID  PS_FILE_ID_MNCALL_TIMER_C
 
@@ -61,20 +42,15 @@ MN_CALL_TIMER_INFO_STRU                  g_astCallTimerInfoTbl[MN_CALL_TID_BUTT 
     {5000, MN_CALL_CstSetupTimeout},                                            /* 发送setup消息后的超时处理 */
     {6000, MN_CALL_RingTimerTimeout},                                           /* 循环上报Ring的处理 */
 
-    /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 
-    /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
     {30000, MN_CALL_CallRedialPeriodTimeout},
     {5000,  MN_CALL_CallRedialIntervalTimeout},
 
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     {TAF_CALL_DTMF_DEFAULT_ONLENGTH, TAF_CALL_RcvTiDtmfOnLengthExpired},
-    /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
     {TAF_CALL_DTMF_DEFAULT_OFFLENGTH, TAF_CALL_RcvTiDtmfOffLengthExpired},
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     {TAF_ECALL_REDIAL_PERIOD_TIMER_LENGTH,                             TAF_CALL_EcallRedialPeriodTimeout},
     {TAF_ECALL_REDIAL_INTERVAL_TIMER_LENGTH,                           TAF_CALL_EcallRedialIntervalTimeout},
@@ -83,7 +59,6 @@ MN_CALL_TIMER_INFO_STRU                  g_astCallTimerInfoTbl[MN_CALL_TID_BUTT 
 
     {(TAF_CALL_T9_MIN_TIMER_LENGTH*TAF_CALL_ONE_HOUR_TIMER_LENGTH),    TAF_CALL_RcvT9TimerExpired}
 #endif
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, end */
 
 
 };
@@ -94,31 +69,7 @@ MN_CALL_TIMER_INFO_STRU                  g_astCallTimerInfoTbl[MN_CALL_TID_BUTT 
 /*****************************************************************************
   2 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MN_CALL_RingTimerTimeout
- 功能描述  : 循环定时器，如果超时的时候，通知上层Incoming
- 输入参数  : ulParam:定时器参数
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年7月10日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年9月4日
-    作    者   : w00167002
-    修改内容   : DTS2013090403562:NAS定时器清理，需要启动32K定时器。将MM/MMA/SMS/CC
-                模块的循环定时器修改为非循环定时器。
-  4.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
-*****************************************************************************/
 VOS_VOID MN_CALL_RingTimerTimeout(
     VOS_UINT32                          ulParam
 )
@@ -160,36 +111,7 @@ VOS_VOID MN_CALL_RingTimerTimeout(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CstSetupTimeout
- 功能描述  : 处理发给CST模块的setup消息的超时处理
- 输入参数  : ulParam:定时器参数
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2012年09月18日
-    作    者   : y00213812
-    修改内容   : STK&DCM 项目,CS域错误码上报
-  4.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2013年2月2日
-    作    者   : z00161729
-    修改内容   : DTS2013020203382:call模块的定时器超时处理需要显示调用MN_CALL_StopTimer函数释放定时器全局变量占用的句柄
-  6.日    期   : 2013年9月17日
-    作    者   : f62575
-    修改内容   : DTS2013091104858，挂机前结束完成的用户请求
-*****************************************************************************/
 VOS_VOID  MN_CALL_CstSetupTimeout(
     VOS_UINT32                          ulParam
 )
@@ -241,34 +163,7 @@ VOS_VOID  MN_CALL_CstSetupTimeout(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_StartTimer
- 功能描述  : 启动指定的定时器
- 输入参数  : enTimerId:指定定时器TimerId
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2010年07月20日
-    作    者   : h44270
-    修改内容   : 问题单号： DTS2010071902031
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536支持呼叫重建修改
-  5.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目, 修改函数入参
-                 若未指定定时器时长，则使用定时器表中填写的时长
-*****************************************************************************/
 VOS_VOID  MN_CALL_StartTimer(
     MN_CALL_TIMER_ID_ENUM_U32           enTimerId,
     VOS_UINT32                          ulParam,
@@ -277,7 +172,6 @@ VOS_VOID  MN_CALL_StartTimer(
 )
 {
     VOS_UINT32                          i;
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     VOS_UINT32                          ulTimeLen;
 
 
@@ -322,7 +216,6 @@ VOS_VOID  MN_CALL_StartTimer(
             MN_ERR_LOG("MN_CALL_StartTimer: VOS_StartRelTimer failed.");
         }
     }
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
     else
     {
         MN_ERR_LOG("MN_CALL_StartTimer: Can not find free timer handle.");
@@ -330,24 +223,7 @@ VOS_VOID  MN_CALL_StartTimer(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_StopTimer
- 功能描述  : 停止指定的定时器
- 输入参数  : enTimerId:指定定时器TimerId
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536支持呼叫重建修改
-*****************************************************************************/
 VOS_VOID MN_CALL_StopTimer(
     MN_CALL_TIMER_ID_ENUM_U32            enTimerId
 )
@@ -392,22 +268,7 @@ VOS_VOID MN_CALL_StopTimer(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ProcTimeoutMsg
- 功能描述  : 处理定时器超时消息。
- 输入参数  : pMsg  - 定时器超时消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月12日
-    作    者   : l00130025
-    修改内容   : DTS2012010400685,MT的CUSD，SS的保护定时器使用了TAF的FID，用户不响应,超时后，代码走到CCA的流程导致单板使用空指针
-*****************************************************************************/
 VOS_VOID  MN_CALL_ProcTimeoutMsg(
     REL_TIMER_MSG                       *pTmrMsg
 )
@@ -428,25 +289,7 @@ VOS_VOID  MN_CALL_ProcTimeoutMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_MSG_InitAllTimers
- 功能描述  : 初始化所有定时器，应在初始化及Reset时被调用
- 输入参数  : enPowerState - 开机或关机
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2010年8月21日
-    作    者   : z00161729
-    修改内容   : DTS2010081901568:软关机情况未停之前启动过的定时器
-  3.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持呼叫重发修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_InitAllTimers(MN_CALL_POWER_STATE_ENUM_U8 enPowerState)
 {
     VOS_UINT32                          i;
@@ -473,26 +316,9 @@ VOS_VOID  MN_CALL_InitAllTimers(MN_CALL_POWER_STATE_ENUM_U8 enPowerState)
     }
 }
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateTimerPeriod
- 功能描述  : 更新定时器时长
- 输入参数  : enTimerId :当前定时器ID
-             ulTimerLen:更新后定时器的时长
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_UpdateTimerPeriod(
     MN_CALL_TIMER_ID_ENUM_U32           enTimerId,
     VOS_UINT32                          ulTimerLen
@@ -508,20 +334,7 @@ VOS_VOID MN_CALL_UpdateTimerPeriod(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetTimerLen
- 功能描述  : 获取定时器时长
- 输入参数  : enTimerId - 定时器ID
- 输出参数  : 无
- 返 回 值  : 定时器时长，单位毫秒
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_CALL_GetTimerLen(
     MN_CALL_TIMER_ID_ENUM_U32           enTimerId
 )
@@ -536,23 +349,7 @@ VOS_UINT32 MN_CALL_GetTimerLen(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CallRedialPeriodTimeout
- 功能描述  : MN_CALL_TID_WAIT_CALL_REDIAL_PERIOD定时器超时的处理
- 输入参数  : ulParam - 定时器参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月2日
-    作    者   : z00161729
-    修改内容   : DTS2013020203382:call模块的定时器超时处理需要显示调用MN_CALL_StopTimer函数释放定时器全局变量占用的句柄
-*****************************************************************************/
 VOS_VOID MN_CALL_CallRedialPeriodTimeout(VOS_UINT32 ulParam)
 {
     MN_CALL_StopTimer(MN_CALL_TID_WAIT_CALL_REDIAL_PERIOD);
@@ -560,32 +357,7 @@ VOS_VOID MN_CALL_CallRedialPeriodTimeout(VOS_UINT32 ulParam)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CallRedialIntervalTimeout
- 功能描述  : MN_CALL_TID_WAIT_CALL_REDIAL_PERIOD定时器超时的处理
- 输入参数  : ulParam - 定时器参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月11日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年2月2日
-    作    者   : z00161729
-    修改内容   : DTS2013020203382:call模块的定时器超时处理需要显示调用MN_CALL_StopTimer函数释放定时器全局变量占用的句柄
-  4.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-  5.日    期   : 2015年7月7日
-    作    者   : zwx247453
-    修改内容   : CHR 优化项目
-*****************************************************************************/
 VOS_VOID MN_CALL_CallRedialIntervalTimeout(VOS_UINT32 ulParam)
 {
     MN_CALL_MSG_BUFF_STRU              *pstBufferdMsg = VOS_NULL_PTR;
@@ -632,29 +404,14 @@ VOS_VOID MN_CALL_CallRedialIntervalTimeout(VOS_UINT32 ulParam)
 
     MN_CALL_StopTimer(MN_CALL_TID_WAIT_CALL_REDIAL_PERIOD);
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-30, begin */
     TAF_CALL_ProcBufferedRedialMessage(pstBufferdMsg,
         TAF_CS_CAUSE_MM_INTER_ERR_CS_SERVICE_CONGESTION);
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-30, end */
 
     return;
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetTimerRemainLen
- 功能描述  : 获取定时器剩余的时间
- 输入参数  : enTimerId - 指定定时器TimerId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月30日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_GetTimerRemainLen(
     MN_CALL_TIMER_ID_ENUM_U32           enTimerId
 )
@@ -698,20 +455,7 @@ VOS_UINT32  MN_CALL_GetTimerRemainLen(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetTimerStatus
- 功能描述  : 查询指定的call定时器的状态
- 输入参数  : enTimerId  - 需要查询的定时器ID
- 输出参数  : 无
- 返 回 值  : MN_CALL_TIMER_ID_ENUM_U32:定时器状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_CALL_TIMER_STATUS_ENUM_U8  MN_CALL_GetTimerStatus(
     MN_CALL_TIMER_ID_ENUM_U32           enTimerId
 )
@@ -738,27 +482,7 @@ MN_CALL_TIMER_STATUS_ENUM_U8  MN_CALL_GetTimerStatus(
 }
 
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_RcvTiDtmfOnLengthExpired
- 功能描述  : DTMF定时器超时自动回复DTMF处理函数
- 输入参数  : ulParam    -- 定时器参数
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  2.日    期   : 2013年09月02日
-    作    者   : f62575
-    修改内容   : DTS2013082307371,解决定时器超时触发STOP DTMF请求消息后，定时器上下文没有清除问题
-  3.日    期   :2013年10月24日
-    作    者   :z00161729
-    修改内容   :DTS2013102403705:dtmf不支持off_length参数，SBM IOT认证需要stop dtmf req和下一个start dtmf req间隔大于70ms
-*****************************************************************************/
 VOS_VOID TAF_CALL_RcvTiDtmfOnLengthExpired(
     VOS_UINT32                          ulParam
 )
@@ -776,9 +500,7 @@ VOS_VOID TAF_CALL_RcvTiDtmfOnLengthExpired(
 
     /* 获取可以用来发送DTMF的CallId，获取失败则清空缓存重置DTMF状态，退出 */
     CallId = 0;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     if (TAF_CS_CAUSE_SUCCESS != TAF_CALL_GetAllowedDtmfCallId(&CallId))
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     {
         MN_WARN_LOG("TAF_CALL_RcvTiDtmfOnLengthExpired: Dtmf Not Allowed!");
         TAF_CALL_ResetDtmfCtx(TAF_CS_CAUSE_UNKNOWN);
@@ -796,23 +518,8 @@ VOS_VOID TAF_CALL_RcvTiDtmfOnLengthExpired(
 
     return;
 }
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_RcvTiDtmfOffLengthExpired
- 功能描述  : stop dtmf ack和start dtmf req时间间隔定时超时的处理
- 输入参数  : ulParam    -- 定时器参数
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :2013年10月24日
-    作    者   :z00161729
-    修改内容   :DTS2013102403705:dtmf不支持off_length参数，SBM IOT认证需要stop dtmf req
-                和下一个start dtmf req间隔大于70ms
-*****************************************************************************/
 VOS_VOID TAF_CALL_RcvTiDtmfOffLengthExpired(
     VOS_UINT32                          ulParam
 )
@@ -901,22 +608,7 @@ VOS_VOID TAF_CALL_RcvTiDtmfOffLengthExpired(
 }
 
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetTimerLen
- 功能描述  : 获取timer时长
 
- 输入参数  : enTimerId  - timer ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_GetTimerLen(
     MN_CALL_TIMER_ID_ENUM_U32           enTimerId
 )
@@ -925,21 +617,7 @@ VOS_UINT32 TAF_CALL_GetTimerLen(
 }
 
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_CALL_EcallRedialPeriodTimeout
- 功能描述  : 处理eCall重拨时长定时器超时处理
 
- 输入参数  : ulParam   - 定时器超时事件参数地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_EcallRedialPeriodTimeout(VOS_UINT32 ulParam)
 {
     MN_CALL_StopTimer(TAF_CALL_TID_WAIT_ECALL_REDIAL_PERIOD);
@@ -950,23 +628,7 @@ VOS_VOID TAF_CALL_EcallRedialPeriodTimeout(VOS_UINT32 ulParam)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_EcallRedialIntervalTimeout
- 功能描述  : 处理eCall重拨间隔定时器超时处理
- 输入参数  : ulParam - 定时器参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-  2.日    期   : 2015年7月7日
-    作    者   : zwx247453
-    修改内容   : CHR 优化项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_EcallRedialIntervalTimeout(VOS_UINT32 ulParam)
 {
     MN_CALL_MSG_BUFF_STRU              *pstBufferdMsg = VOS_NULL_PTR;
@@ -1017,21 +679,7 @@ VOS_VOID TAF_CALL_EcallRedialIntervalTimeout(VOS_UINT32 ulParam)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_RcvT2TimerExpired
- 功能描述  : 处理T2超时事件处理
 
- 输入参数  : ulParam   - 定时器超时事件参数地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_RcvT2TimerExpired(
     VOS_UINT32                          ulParam
 )
@@ -1078,21 +726,7 @@ VOS_VOID TAF_CALL_RcvT2TimerExpired(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_RcvT9TimerExpired
- 功能描述  : 处理T9超时事件处理
 
- 输入参数  : ulParam   - 定时器超时事件参数地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月01日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_RcvT9TimerExpired(
     VOS_UINT32                          ulParam
 )
@@ -1101,21 +735,7 @@ VOS_VOID TAF_CALL_RcvT9TimerExpired(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_StopAllRedialTimers
- 功能描述  : 停止所有Call重拨定时器
 
- 输入参数  : ucCallId - call标识
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月04日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_StopAllRedialTimers(VOS_UINT8 ucCallId)
 {
 #if (FEATURE_ON == FEATURE_ECALL)
@@ -1135,21 +755,7 @@ VOS_VOID TAF_CALL_StopAllRedialTimers(VOS_UINT8 ucCallId)
 }
 
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetRedialIntervalTimerLen
- 功能描述  : 获取呼叫重拨间隔时长
 
- 输入参数  : unEcallFlag   - eCall标志位
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 ， 返回eCall间隔定时器剩余时长
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月08日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_GetRedialIntervalTimerLen(VOS_UINT8 ucCallId)
 {
     VOS_UINT32                          ulIntervalTimerLen;
@@ -1170,25 +776,7 @@ VOS_UINT32 TAF_CALL_GetRedialIntervalTimerLen(VOS_UINT8 ucCallId)
 /*lint -restore */
 
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetRemainRedialPeriodTimerLen
- 功能描述  : 获取呼叫重拨时长定时器时长
 
- 输入参数  : ucCallId   - 呼叫标识
- 输出参数  : 无
- 返 回 值  : ulPeriodTimerLen －－ 返回重拨时长定时器剩余时长
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月08日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-  2.日    期   : 2014年07月22日
-    作    者   : w00242748
-    修改内容   : DTS2014072101479:call proceeding时，CC给taf发送rej ind，此时将不发生重拨
-                 MSD数据传输完成后，再发起呼叫，alerting后，CC给taf发送rej ind，此时也不发生重拨
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_GetRemainRedialPeriodTimerLen(VOS_UINT8 ucCallId)
 {
     VOS_UINT32                          ulPeriodTimerLen;
@@ -1220,21 +808,7 @@ VOS_UINT32 TAF_CALL_GetRemainRedialPeriodTimerLen(VOS_UINT8 ucCallId)
 }
 /*lint -restore */
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_StartRedialPeriodTimer
- 功能描述  : 启动重拨时长定时器
 
- 输入参数  : unEcallFlag   - eCall标志位
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月08日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_StartRedialPeriodTimer(VOS_UINT8 ucCallId)
 {
 #if (FEATURE_ON == FEATURE_ECALL)
@@ -1253,21 +827,7 @@ VOS_VOID TAF_CALL_StartRedialPeriodTimer(VOS_UINT8 ucCallId)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetRedialIntervalTimerStatus
- 功能描述  : 启动重拨时长定时器
 
- 输入参数  : ucCallId   - eCall呼叫标识
- 输出参数  : 无
- 返 回 值  : enIntervalTimerStatus -- 重拨间隔定时器当前运行状态
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月08日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 MN_CALL_TIMER_STATUS_ENUM_U8 TAF_CALL_GetRedialIntervalTimerStatus(VOS_UINT8 ucCallId)
 {
     MN_CALL_TIMER_STATUS_ENUM_U8        enIntervalTimerStatus;
@@ -1285,7 +845,6 @@ MN_CALL_TIMER_STATUS_ENUM_U8 TAF_CALL_GetRedialIntervalTimerStatus(VOS_UINT8 ucC
 
     return enIntervalTimerStatus;
 }
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-1, end */
 
 /*lint -restore */
 

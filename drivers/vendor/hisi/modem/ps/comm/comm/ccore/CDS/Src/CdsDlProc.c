@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CdsDlProc.c
-  版 本 号   : 初稿
-  作    者   : y00151394
-  生成日期   : 2011年12月12日
-  最近修改   :
-  功能描述   : GU/L下行数据包接收、下行IPF配置
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年12月12
-    作    者   : y00151394
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -61,21 +43,7 @@ extern VOS_BOOL Fc_CdsDlPktDiscard(VOS_UINT8 ucRabId);
 ******************************************************************************/
 
 #if (CDS_FEATURE_OFF == CDS_FEATURE_MULTI_MODEM)
-/*****************************************************************************
- 函 数 名  : I1_NAS_RABM_GetDefaultRabId
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem1上函数进行打桩处理。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年08月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 I1_NAS_RABM_GetDefaultRabId(VOS_UINT8 ucRabId, VOS_UINT8 *pucDeftRabId)
 {
     if (VOS_NULL_PTR == pucDeftRabId)
@@ -87,21 +55,7 @@ VOS_UINT32 I1_NAS_RABM_GetDefaultRabId(VOS_UINT8 ucRabId, VOS_UINT8 *pucDeftRabI
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : I1_TAF_APS_MapPdnIdToRabId
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem1上函数进行打桩处理。
- 输入参数  : VOS_UINT8 ucPdnId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 I1_TAF_APS_MapPdnIdToRabId(VOS_UINT8 ucPdnId)
 {
     (VOS_VOID)ucPdnId;
@@ -111,21 +65,7 @@ VOS_UINT8 I1_TAF_APS_MapPdnIdToRabId(VOS_UINT8 ucPdnId)
 #endif
 
 #if (CDS_FEATURE_OFF == CDS_FEATURE_MODEM_2)
-/*****************************************************************************
- 函 数 名  : I2_NAS_RABM_GetDefaultRabId
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem2上函数进行打桩处理。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年08月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 I2_NAS_RABM_GetDefaultRabId(VOS_UINT8 ucRabId, VOS_UINT8 *pucDeftRabId)
 {
     if (VOS_NULL_PTR == pucDeftRabId)
@@ -137,21 +77,7 @@ VOS_UINT32 I2_NAS_RABM_GetDefaultRabId(VOS_UINT8 ucRabId, VOS_UINT8 *pucDeftRabI
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : I2_TAF_APS_MapPdnIdToRabId
- 功能描述  : 为了后续处理一致，当单Modem时，对Modem2上函数进行打桩处理。
- 输入参数  : VOS_UINT8 ucPdnId
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月7日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 I2_TAF_APS_MapPdnIdToRabId(VOS_UINT8 ucPdnId)
 {
     (VOS_VOID)ucPdnId;
@@ -160,21 +86,7 @@ VOS_UINT8 I2_TAF_APS_MapPdnIdToRabId(VOS_UINT8 ucPdnId)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : CDS_GUGetDefaultRabId
- 功能描述  : GU模式下获取专有承载对应的缺省承载
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年08月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_GUGetDefaultRabId(VOS_UINT8 ucRabId, VOS_UINT8 *pucDeftRabId, MODEM_ID_ENUM_UINT16 enModemId)
 {
     if (MODEM_ID_0 == enModemId)
@@ -195,23 +107,7 @@ VOS_UINT32 CDS_GUGetDefaultRabId(VOS_UINT8 ucRabId, VOS_UINT8 *pucDeftRabId, MOD
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_RxDlSdu
- 功能描述  : 接收下行SDU
- 输入参数  : TTF_MEM_ST *pstIpPkt
- 输出参数  : 无
- 返 回 值  : PS_SUCC : 缓存成功
-             PS_FAIL : 缓存失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年12月31日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_RxDlSdu(TTF_MEM_ST *pstIpPkt)
 {
     VOS_INT32      lLock;
@@ -234,23 +130,7 @@ VOS_UINT32 CDS_RxDlSdu(TTF_MEM_ST *pstIpPkt)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_GUDlSduParaCheck
- 功能描述  : GU下行SDU参数检查
 
- 输入参数  : CDS_RABM_TRANS_DATA_STRU *pstDlData
- 输出参数  : 无
- 返 回 值  : PS_SUCC : 参数有效
-             PS_FAIL : 参数无效
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年1月17日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_GUDlSduParaCheck(CDS_RABM_TRANS_DATA_STRU *pstDlData)
 {
     if (VOS_NULL_PTR == pstDlData)
@@ -286,25 +166,7 @@ VOS_UINT32 CDS_GUDlSduParaCheck(CDS_RABM_TRANS_DATA_STRU *pstDlData)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_UMTS_DL_DataInd
- 功能描述  : 接收GU下行数据包
- 输入参数  : CDS_RABM_TRANS_DATA_STRU *pstDlData,
-             MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-    2.日    期   : 2013年1月20日
-      作    者   : y00151394
-      修改内容   : DSDA修改
-
-*****************************************************************************/
 VOS_VOID CDS_UMTS_DL_DataInd(CDS_RABM_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_UINT16 enModemId)
 {
     TTF_MEM_ST            *pstIpPkt;
@@ -386,7 +248,6 @@ VOS_VOID CDS_UMTS_DL_DataInd(CDS_RABM_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_
         FC_DBG_DLGU_CDS_DISCARD_PKT_STAT(1);
         CDS_DBG_DL_UMTS_FC_FREE_SDU_NUM(1);
         CDS_DBG_MODEM_DL_UMTS_FC_FREE_SDU_NUM(enModemId,1);
-        /*DTS2014122509668取消流控事件上报*/
         /*CDS_UP_EVENT_RPT(CDS_UP_EVENT_DL_FLOW_CTRL_DISCARD);*/
         return;
     }
@@ -422,27 +283,7 @@ VOS_VOID CDS_UMTS_DL_DataInd(CDS_RABM_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_GSM_RxSdu
- 功能描述  : 接收GSM下行数据包.每一个包产生一个下行事件，减少GSM的时延.
- 输入参数  : CDS_RABM_TRANS_DATA_STRU *pstDlData,
-             MODEM_ID_ENUM_UINT16 enModemId
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-    2.日    期   : 2013年1月20日
-      作    者   : y00151394
-      修改内容   : DSDA修改
-
-*****************************************************************************/
 VOS_VOID CDS_GSM_RxSdu(CDS_RABM_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_UINT16 enModemId)
 {
     TTF_MEM_ST            *pstIpPkt;
@@ -550,27 +391,7 @@ VOS_VOID CDS_GSM_RxSdu(CDS_RABM_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_UINT16
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_GSM_DL_DataInd
- 功能描述  : 接收GSM下行数据包.每一个包产生一个下行事件，减少GSM的时延.
- 输入参数  : CDS_RABM_TRANS_DATA_STRU *pstDlData,
-             MODEM_ID_ENUM_UINT16 enModemId
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-    2.日    期   : 2013年1月20日
-      作    者   : y00151394
-      修改内容   : DSDA修改
-
-*****************************************************************************/
 VOS_VOID CDS_GSM_DL_DataInd(CDS_RABM_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_UINT16 enModemId)
 {
     CDS_GSM_RxSdu(pstDlData, enModemId);
@@ -584,26 +405,7 @@ VOS_VOID CDS_GSM_DL_DataInd(CDS_RABM_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_U
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_LTE_RecvDbgData
- 功能描述  : 用来接收LTE L2 Debug数据
- 输入参数  : TTF_MEM_ST *pstIpPkt
- 输出参数  : 无
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月04日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-    2.日    期   : 2013年1月20日
-      作    者   : y00151394
-      修改内容   : DSDA修改
-
-*****************************************************************************/
 VOS_VOID CDS_LTE_RecvDbgData(TTF_MEM_ST *pstIpPkt)
 {
     CDS_ENTITY_STRU       *pstCdsEntity;
@@ -649,25 +451,7 @@ VOS_VOID CDS_LTE_RecvDbgData(TTF_MEM_ST *pstIpPkt)
 extern VOS_VOID L2_DlAppThrStatProc(VOS_UINT32 ulLength);
 extern VOS_UINT32 g_ulDlTtfBufDataMaxLen;
 
-/*****************************************************************************
- 函 数 名  : CDS_LTE_DL_DataInd
- 功能描述  : 接收L模下行数据包.由调用者保证入参合法。
- 输入参数  : CDS_LPDCP_DATA_STRU *pstDsLpdcpData
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2011年12月12日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-    2.日    期   : 2013年1月20日
-      作    者   : y00151394
-      修改内容   : DSDA修改
-
-*****************************************************************************/
 VOS_VOID CDS_LTE_DL_DataInd(CDS_LPDCP_DATA_STRU *pstDsLpdcpData)
 {
     TTF_MEM_ST            *pstIpPkt;
@@ -757,7 +541,6 @@ VOS_VOID CDS_LTE_DL_DataInd(CDS_LPDCP_DATA_STRU *pstDsLpdcpData)
         TTF_MemFree(UEPS_PID_CDS, pstDsLpdcpData->pstSdu);
         FC_DBG_DLLTE_CDS_DISCARD_PKT_STAT(1);
         CDS_DBG_DL_LTE_FC_FREE_SDU_NUM(1);
-        /*DTS2014122509668取消流控事件上报*/
         /*CDS_UP_EVENT_RPT(CDS_UP_EVENT_DL_FLOW_CTRL_DISCARD);*/
         return;
     }
@@ -793,25 +576,7 @@ VOS_VOID CDS_LTE_DL_DataInd(CDS_LPDCP_DATA_STRU *pstDsLpdcpData)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MBMS_DL_DataInd
- 功能描述  : 接收L模下行MBMS数据包.由调用者保证入参合法。
- 输入参数  : TTF_MEM_ST *pstSdu
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2012年5月12日
-      作    者   :
-      修改内容   : 新生成函数
-
-    2.日    期   : 2013年1月20日
-      作    者   : y00151394
-      修改内容   : DSDA修改
-
-*****************************************************************************/
 VOS_VOID CDS_MBMS_DL_DataInd(TTF_MEM_ST *pstSdu)
 {
     CDS_ENTITY_STRU       *pstCdsEntity;
@@ -856,23 +621,7 @@ VOS_VOID CDS_MBMS_DL_DataInd(TTF_MEM_ST *pstSdu)
 #endif
 
 #if (CDS_FEATURE_ON == CDS_FEATURE_CDMA)
-/*****************************************************************************
- 函 数 名  : CDS_CDMADlSduParaCheck
- 功能描述  : CDMA下行SDU参数检查
 
- 输入参数  : CDS_CDMA_TRANS_DATA_STRU *pstDlData
- 输出参数  : 无
- 返 回 值  : PS_SUCC : 参数有效
-             PS_FAIL : 参数无效
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年10月31日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_CDMADlSduParaCheck(CDS_CDMA_TRANS_DATA_STRU *pstDlData)
 {
 
@@ -909,22 +658,7 @@ VOS_UINT32 CDS_CDMADlSduParaCheck(CDS_CDMA_TRANS_DATA_STRU *pstDlData)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_APS_MapPdnIdToRabId
- 功能描述  : CDS封装APS接口
 
- 输入参数  : VOS_UINT8 ucPdnId, MODEM_ID_ENUM_UINT16 enModemId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8 ucRabId
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2015年10月27日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CDS_APS_MapPdnIdToRabId(VOS_UINT8 ucPdnId, MODEM_ID_ENUM_UINT16 enModemId)
 {
     VOS_UINT8                                      ucRabId;
@@ -945,20 +679,7 @@ VOS_UINT8 CDS_APS_MapPdnIdToRabId(VOS_UINT8 ucPdnId, MODEM_ID_ENUM_UINT16 enMode
     return ucRabId;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_CDMA_DL_DataInd
- 功能描述  : 接收CDMA下行数据包.由调用者保证入参合法。
- 输入参数  : CDS_CDMA_TRANS_DATA_STRU *pstDlData
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年10月25日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_CDMA_DL_DataInd(CDS_CDMA_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_UINT16 enModemId)
 {
     CDS_ENTITY_STRU                               *pstCdsEntity;
@@ -1042,20 +763,7 @@ VOS_VOID CDS_CDMA_DL_DataInd(CDS_CDMA_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_CDMA_DL_DataInd
-功能描述  : 接收CDMA 1X下行数据包.由调用者保证入参合法。
- 输入参数  : CDS_CDMA_TRANS_DATA_STRU *pstDlData
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年10月25日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_CDMA_1X_DL_DataInd(const CDS_CDMA_1X_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_UINT16 enModemId)
 {
     CDS_CDMA_TRANS_DATA_STRU                  stCdmaDlData = {0};
@@ -1075,20 +783,7 @@ VOS_VOID CDS_CDMA_1X_DL_DataInd(const CDS_CDMA_1X_TRANS_DATA_STRU *pstDlData, MO
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_CDMA_DL_DataInd
- 功能描述  : 接收CDMA HRPD下行数据包.由调用者保证入参合法。
- 输入参数  : CDS_CDMA_TRANS_DATA_STRU *pstDlData
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年10月25日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_CDMA_HRPD_DL_DataInd(const CDS_CDMA_HRPD_TRANS_DATA_STRU *pstDlData, MODEM_ID_ENUM_UINT16 enModemId)
 {
     CDS_CDMA_TRANS_DATA_STRU                  stCdmaDlData = {0};
@@ -1110,40 +805,14 @@ VOS_VOID CDS_CDMA_HRPD_DL_DataInd(const CDS_CDMA_HRPD_TRANS_DATA_STRU *pstDlData
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : CDS_SetDfsMax
- 功能描述  : 将DFS设置到最大一档。封装APS的接口函数.
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2014年01月17日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_SetDfsMax(VOS_VOID)
 {
     TAF_APS_SetDfsMax();
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_SwitchDdrRateByCurrentRate
- 功能描述  : DTS2015102009791,环回模式A下,根据当前的数据速率来调节DDR的频率,封装APS的接口函数.
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年11月06日
-      作    者   : l00304941
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CDS_SwitchDdrRateByCurrentRate(VOS_UINT32 ulDlRate, VOS_UINT32 ulUlRate)
 {
     VOS_INT32                              lLockValue;
@@ -1154,20 +823,7 @@ VOS_VOID CDS_SwitchDdrRateByCurrentRate(VOS_UINT32 ulDlRate, VOS_UINT32 ulUlRate
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_GetDlSduQueCnt
- 功能描述  : 获取CDS下行SDU QUE缓存队列
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2015年4月3日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CDS_GetDlSduQueCnt(VOS_VOID)
 {
     return LUP_QueCnt(CDS_GET_IPF_DL_SDU_QUE());

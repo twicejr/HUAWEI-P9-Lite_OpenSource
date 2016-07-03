@@ -41,11 +41,9 @@ extern "C"{
 /* Trunk相关组件个数 */
 #define TRUNK_COM_NUM           9
 
-/* Trunk模块定时器时长(单位: ms)
-为提升定时器精度周期由1000ms修改为100ms,DTS2013060100805 m59090 */
+
 #define TRUNK_TIME              100
 
-/* 定时器周期修改为100ms后需要对超时次数增加10倍,DTS2013060100805 m59090 */
 #define TRUNK_TIME_MULT 10
 
 /* Trunk link loop back timer */
@@ -308,7 +306,6 @@ enum enumTRUNK_NSR_LINK_STATE
     TRUNK_NSR_LINK_STATE_MAX
 };
 
-/*Added by w00207740, 添加非LACP报文丢弃宏, 2014/1/10 */
 #define TRUNK_DROP_NOLACP_OFF    0
 #define TRUNK_DROP_NOLACP_ON     1
         

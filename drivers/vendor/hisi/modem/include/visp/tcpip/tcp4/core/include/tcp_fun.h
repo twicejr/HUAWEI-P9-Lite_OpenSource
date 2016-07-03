@@ -103,20 +103,15 @@ ULONG TCP_OpenTcpNetInfo(UINTPTR *pulHandle);
 ULONG TCP_GetTcpNetInfo(UINTPTR ulWaitlist, TCPIP_TCPNETINFO_S *pstNetInfo);
 ULONG TCP_CloseTcpNetInfo(UINTPTR ulWaitlist);
 
-/*Added by wangtong207740, 基于socket id 获取对应的tcp报文统计, 2012/9/5 */
 extern ULONG TCP_GetInfoBySocket(ULONG ulSocketId ,TCP_SOCK_INFO_S *pstTcpInfo);
 
-/* Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 extern ULONG TCP_GetTcpInfoBySocketNum(TCP_SOCK_INFO_S *pstTcpConStat, ULONG ulRetSize);
-/* End of Add by heyijun 00218462 for DTS2012092803600 维测需求开发, 2012-9 */
 extern UINT32 TCPCOOKIE_CalcCookie(TCPCB_S *pTCPCB, TCPIPHDR_S *pRcvHeader, UINT16 *pu16MSS, UINT32 *pu32TimeStamp);
 extern UINT32 TCPCOOKIE_ChkCookie(TCPCB_S *pTCPCB, TCPIPHDR_S *pRcvHeader, UINT16 *u16MSS);
 
 extern ULONG TCPGetKeepIdle(VOID *pSocket);
 
-/* Added by dutianyi00217007 for DTS2013121909156, 修改时延计算方式 */
 VOID TCP_StatDelay(TCPCB_S *pTCPCB);
-/* End of adding by dutianyi00217007 for DTS2013121909156, 修改时延计算方式 */
 
 ULONG TCPNeedClose(VOID *pSocket);
 

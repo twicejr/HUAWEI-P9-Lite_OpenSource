@@ -9,10 +9,11 @@
 		#address-cells = <2>;
 		#size-cells = <2>;
 		compatible = "hisilicon,ipf_balong_app";
-		reg = <0x0 0xE0472000 0x0 0x1000>;
-		clocks = <&clk_gate_ipf>;
+		reg = <0x0 0xff031000 0x0 0x1000>;
+		clocks = <&clk_gate_ipf0>;
 		clock-names = "ipf_clk";
 		interrupts = <0 222 4>;
+		rst_crg = <0xFFF35000 0x94 0x2 0x98 0x2>;
 		status = "ok";
 	};
 };

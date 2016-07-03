@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_proxy_arp.c
-  版 本 号   : 初稿
-  作    者   : z00260280
-  生成日期   : 2014年7月29日
-  最近修改   :
-  功能描述   : PROXY ARP
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : create
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -50,22 +33,7 @@ extern "C" {
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_get_mac_by_ipv4
- 功能描述  : 通过ipv4的地址获取mac
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             ul_ipv4:ipv4地址
- 输出参数  : puc_mac:mac地址
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_get_mac_by_ipv4(mac_vap_stru *pst_mac_vap, oal_uint32 ul_ipv4, oal_uint8 *puc_mac)
 {
     oal_uint32                  ul_user_hash_value;
@@ -99,22 +67,7 @@ oal_err_code_enum_uint32 hmac_proxy_get_mac_by_ipv4(mac_vap_stru *pst_mac_vap, o
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_remove_ipv4
- 功能描述  : 将ipv4的地址从hash表中删除
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             ul_ipv4:ipv4地址
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_remove_ipv4(mac_vap_stru *pst_mac_vap, oal_uint32 ul_ipv4)
 {
     oal_uint32                  ul_user_hash_value;
@@ -153,23 +106,7 @@ oal_err_code_enum_uint32 hmac_proxy_remove_ipv4(mac_vap_stru *pst_mac_vap, oal_u
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_add_ipv4
- 功能描述  : 将ipv4的地址加入hash表，并记录相应的mac地址
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             ul_ipv4:ipv4地址
-             puc_mac:mac地址
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_add_ipv4(mac_vap_stru *pst_mac_vap, oal_uint32 ul_ipv4, oal_uint8 *puc_mac)
 {
     oal_uint32                  ul_user_hash_value;
@@ -222,22 +159,7 @@ oal_err_code_enum_uint32 hmac_proxy_add_ipv4(mac_vap_stru *pst_mac_vap, oal_uint
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_get_mac_by_ipv6
- 功能描述  : 通过ipv6的地址获取mac
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             puc_ipv6:ipv6地址
- 输出参数  : puc_mac:mac地址
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_get_mac_by_ipv6(mac_vap_stru *pst_mac_vap, oal_in6_addr *pst_ipv6, oal_uint8 *puc_mac)
 {
     oal_uint32                  ul_user_hash_value;
@@ -269,22 +191,7 @@ oal_err_code_enum_uint32 hmac_proxy_get_mac_by_ipv6(mac_vap_stru *pst_mac_vap, o
     return OAL_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_remove_ipv6
- 功能描述  : 将ipv6的地址从hash表中删除
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             ul_ipv6:ipv6地址
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_remove_ipv6(mac_vap_stru *pst_mac_vap, oal_in6_addr *pst_ipv6)
 {
     oal_uint32                  ul_user_hash_value;
@@ -323,23 +230,7 @@ oal_err_code_enum_uint32 hmac_proxy_remove_ipv6(mac_vap_stru *pst_mac_vap, oal_i
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_add_ipv6
- 功能描述  : 将ipv6的地址加入hash表，并记录相应的mac地址
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             puc_ipv6:ipv6地址
-             puc_mac:mac地址
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_add_ipv6(mac_vap_stru *pst_mac_vap, oal_in6_addr *pst_ipv6, oal_uint8 *puc_mac)
 {
     oal_uint32                  ul_user_hash_value;
@@ -398,22 +289,7 @@ oal_err_code_enum_uint32 hmac_proxy_add_ipv6(mac_vap_stru *pst_mac_vap, oal_in6_
     return OAL_ERR_CODE_PROXY_ND_LEARN_USR_SUCC_COMP;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_remove_mac
- 功能描述  : 通过mac地址将对应ipv4和ipv6 结点删除
- 输入参数  : pst_mac_vap: mac_vap指针
-             puc_mac:mac地址
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_remove_mac(mac_vap_stru *pst_mac_vap, oal_uint8 *puc_mac)
 {
     oal_dlist_head_stru        *pst_entry;
@@ -482,25 +358,7 @@ oal_err_code_enum_uint32 hmac_proxy_remove_mac(mac_vap_stru *pst_mac_vap, oal_ui
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_debug_record
- 功能描述  : 记录调试信息
- 输入参数  : pst_mac_vap: hmac_vap指针
-             puc_mac_src: mac指针
-             puc_mac_dst: mac指针
-             uc_dir:帧的发送方向 0-空口 1-eth
-             uc_type:帧类型
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifdef _PRE_DEBUG_MODE
 oal_void hmac_proxy_debug_record(mac_vap_stru *pst_mac_vap, mac_ether_header_stru *pst_eth_hdr, oal_uint16 us_type, oal_err_code_enum_uint32 en_rst)
 {
@@ -528,22 +386,7 @@ oal_void hmac_proxy_debug_record(mac_vap_stru *pst_mac_vap, mac_ether_header_str
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_arp_rcv_req
- 功能描述  : 处理接收到的arp req
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             pst_arp_hdr:skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_arp_rcv_req(mac_vap_stru *pst_mac_vap, oal_net_device_stru *pst_dev, oal_eth_arphdr_stru *pst_arp_hdr)
 {
 
@@ -646,22 +489,7 @@ oal_err_code_enum_uint32 hmac_proxy_arp_rcv_req(mac_vap_stru *pst_mac_vap, oal_n
     return en_rst;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_arp_rcv_reply
- 功能描述  : 处理接收到的arp reply
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             oal_netbuf_stru:skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_arp_rcv_reply(mac_vap_stru *pst_mac_vap, oal_eth_arphdr_stru *pst_arp_hdr, oal_uint8 uc_is_mcst)
 {
     oal_uint16                  us_usr_idx = 0;
@@ -679,22 +507,7 @@ oal_err_code_enum_uint32 hmac_proxy_arp_rcv_reply(mac_vap_stru *pst_mac_vap, oal
     return OAL_ERR_CODE_PROXY_ARP_REPLY_INCOMP;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_arp
- 功能描述  : 处理接收到的arp req和arp reply
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             oal_netbuf_stru:skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_arp(mac_vap_stru *pst_mac_vap, oal_net_device_stru *pst_dev, oal_netbuf_stru *pst_buf)
 {
     mac_ether_header_stru       *pst_ether_hdr; /* 以太网头 */
@@ -737,22 +550,7 @@ oal_err_code_enum_uint32 hmac_proxy_arp(mac_vap_stru *pst_mac_vap, oal_net_devic
     return OAL_ERR_CODE_PROXY_ARP_NOT_REQ_REPLY_INCOMP;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_nd_learn_from_ns
- 功能描述  : 通过DAD学习地址
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             oal_netbuf_stru:skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_nd_learn_from_ns(mac_vap_stru *pst_mac_vap, oal_in6_addr *pst_ipv6_src, oal_uint8 *puc_mac_src)
 {
     oal_uint16                  us_usr_idx = 0;
@@ -775,22 +573,7 @@ oal_err_code_enum_uint32 hmac_proxy_nd_learn_from_ns(mac_vap_stru *pst_mac_vap, 
     return hmac_proxy_add_ipv6(pst_mac_vap, pst_ipv6_src, puc_mac_src);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_create_na
- 功能描述  : 构造NA，用以代理回复NS
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             pst_ether_hdr:指向接收到skb的以太头
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 说     明 :
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
 
-*****************************************************************************/
  oal_netbuf_stru *hmac_proxy_create_na(oal_net_device_stru *pst_net_dev, oal_uint8 *puc_src_mac, oal_uint8 *puc_dst_mac, oal_uint8 *puc_src_ipv6, oal_uint8 *puc_dst_ipv6)
 {
     oal_netbuf_stru             *pst_netbuff = OAL_PTR_NULL;
@@ -798,7 +581,6 @@ oal_err_code_enum_uint32 hmac_proxy_nd_learn_from_ns(mac_vap_stru *pst_mac_vap, 
     oal_ipv6hdr_stru            *pst_ipv6;
     oal_nd_msg_stru             *pst_nd;
 
-    /* sizeof(oal_nd_msg_stru)比实际多了4字节，最后加8字节是因为NA的option长8字节。add by:w00316376 */
     ul_size = OAL_LL_ALLOCATED_SPACE(pst_net_dev) + sizeof(oal_ipv6hdr_stru) + (sizeof(oal_nd_msg_stru) - 4) + 8;
     pst_netbuff  = oal_netbuf_alloc(ul_size, 0, WLAN_MEM_NETBUF_ALIGN);
     if (OAL_PTR_NULL == pst_netbuff)
@@ -850,23 +632,7 @@ oal_err_code_enum_uint32 hmac_proxy_nd_learn_from_ns(mac_vap_stru *pst_mac_vap, 
     return pst_netbuff;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_get_mac_from_opt
- 功能描述  : 从icmpv6 option中获取ipv6地址
- 输入参数  : puc_opt:  ipmpv6 option指针
-             l_optlen: ipmpv6 option长度
-             en_src:   标识获取源链路地址还是目的链路地址 1-源 0-目的
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 说     明 :
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 /*lint  -e574*/
 oal_uint8 *hmac_proxy_get_mac_from_opt(oal_uint8 *puc_opt, oal_int32 l_optlen, oal_bool_enum_uint8 en_src)
 {
@@ -928,23 +694,7 @@ oal_uint8 *hmac_proxy_get_mac_from_opt(oal_uint8 *puc_opt, oal_int32 l_optlen, o
 }
 /*lint  +e574*/
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_nd_rcv_ns
- 功能描述  : 处理接收到的NS
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             oal_netbuf_stru:skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 说     明 :构造NA时，注意: NS源->NA目的
-                            NS目的->NA源
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_nd_rcv_ns(mac_vap_stru *pst_mac_vap, oal_net_device_stru *pst_dev, mac_ether_header_stru *pst_ether_hdr, oal_int32 l_opt_len)
 {
     oal_ipv6hdr_stru        *pst_ipv6_hdr;
@@ -1038,45 +788,13 @@ oal_err_code_enum_uint32 hmac_proxy_nd_rcv_ns(mac_vap_stru *pst_mac_vap, oal_net
     return en_rst;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_ipv6_addr_is_mcast
- 功能描述  : 判断ipv6的地址是不是组播地址
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             pst_buf:      skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 说    明  :ipv6地址 ff02:xxxx:xxxx  最高为ff，表示组播
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32 hmac_proxy_ipv6_addr_is_mcast(oal_in6_addr *pst_addr)
 {
     return (pst_addr->s6_addr32[0] & OAL_HOST2NET_LONG(0xFF000000)) == OAL_HOST2NET_LONG(0xFF000000);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_nd_rcv_na
- 功能描述  : 处理NA
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             pst_buf:      skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 说    明  : 1.NA响应单播请求时S置位,可以带可以不带链路地址
-             2.NA响应组播请求时,S不置位，target填成多播，必须要带链路地址
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_nd_rcv_na(mac_vap_stru *pst_mac_vap, mac_ether_header_stru *pst_ether_hdr, oal_int32 l_opt_len)
 {
     oal_ipv6hdr_stru            *pst_ipv6_hdr;
@@ -1130,22 +848,7 @@ oal_err_code_enum_uint32 hmac_proxy_nd_rcv_na(mac_vap_stru *pst_mac_vap, mac_eth
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_nd
- 功能描述  : 处理接收到的NS和NA
- 输入参数  : pst_hmac_vap: hmac_vap指针
-             oal_netbuf_stru:skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum_uint32 hmac_proxy_nd(mac_vap_stru *pst_mac_vap, oal_net_device_stru *pst_dev, oal_netbuf_stru *pst_buf)
 {
     mac_ether_header_stru       *pst_ether_hdr; /* 以太网头 */
@@ -1189,21 +892,7 @@ oal_err_code_enum_uint32 hmac_proxy_nd(mac_vap_stru *pst_mac_vap, oal_net_device
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_is_need_drop
- 功能描述  : 根据错误码决定是否要将处理的skb释放掉
- 输入参数  : en_rst-错误码
- 输出参数  : 无
- 返 回 值  : 0/1--不需要释放/需要释放
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_proxy_is_need_drop(oal_err_code_enum_uint32 en_rst)
 {
     oal_bool_enum_uint8      en_is_need_drop = OAL_FALSE;
@@ -1258,22 +947,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_proxy_is_need_drop(oal_err_code_e
     return en_is_need_drop;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_arp_proc
- 功能描述  : AP进行ARP和ND代理的主入口函数
- 输入参数  : pst_mac_vap: mac_vap指针
-             oal_netbuf_stru:skb指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_proxy_arp_proc(hmac_vap_stru *pst_hmac_vap, oal_netbuf_stru *pst_buf)
 {
     mac_ether_header_stru      *pst_ether_hdr; /* 以太网头 */
@@ -1326,21 +1000,7 @@ oal_bool_enum_uint8 hmac_proxy_arp_proc(hmac_vap_stru *pst_hmac_vap, oal_netbuf_
     return hmac_proxy_is_need_drop(en_rst);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_arp_init
- 功能描述  : 初始化proxy特性所需要的结构
- 输入参数  : pst_mac_vap: mac_vap指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_proxy_arp_init(mac_vap_stru *pst_mac_vap)
 {
     oal_uint32              ul_loop = 0;
@@ -1373,21 +1033,7 @@ oal_void hmac_proxy_arp_init(mac_vap_stru *pst_mac_vap)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxy_exit
- 功能描述  : 退出时释放所有内存
- 输入参数  : pst_mac_vap: mac_vap指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月6日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_proxy_exit(mac_vap_stru *pst_mac_vap)
 {
     oal_dlist_head_stru        *pst_entry;
@@ -1429,22 +1075,7 @@ oal_void hmac_proxy_exit(mac_vap_stru *pst_mac_vap)
 
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proxyarp_on
- 功能描述  : 设置proxy arp特性开关
- 输入参数  : pst_mac_vap : mac_vap指针
-             en_on:开关值 0/1--关/开
- 输出参数  :
- 返 回 值  : 错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月8日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_proxyarp_on(mac_vap_stru *pst_mac_vap, oal_bool_enum_uint8 en_on)
 {
     if ((OAL_PTR_NULL == pst_mac_vap)
@@ -1464,21 +1095,7 @@ oal_void hmac_proxyarp_on(mac_vap_stru *pst_mac_vap, oal_bool_enum_uint8 en_on)
 
 }
 
-/*****************************************************************************
- 函 数 名  : alg_autorate_command_print_rate_set
- 功能描述  : 打印proxy arp调试信息
- 输入参数  : pst_mac_vap : mac_vap指针
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月8日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #ifdef _PRE_DEBUG_MODE
 oal_uint32 hmac_proxy_display_info(mac_vap_stru *pst_mac_vap)
 {

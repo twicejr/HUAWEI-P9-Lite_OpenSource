@@ -147,16 +147,7 @@ extern VOS_UINT32 IMSA_CONN_ProcPermCause
   3 Function
 *****************************************************************************/
 /*lint -e961*/
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvt
- Description    : IMSA CONN模块处理APS消息
- Input          : pstConnModifyIndMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcTafPsEvt
 (
     TAF_PS_EVT_STRU                    *pstEvt
@@ -201,16 +192,7 @@ VOS_VOID IMSA_CONN_ProcTafPsEvt
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_WaitForIpv4PDPActiveCNF
- Description    : 等待APS进一步上报IPV4类型的承载建立成功消息
- Input          : enConnType-------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.zhaochen 00308719      2015-05-08  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_WaitForIpv4PDPActiveCNF
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType
@@ -245,16 +227,7 @@ VOS_VOID IMSA_CONN_WaitForIpv4PDPActiveCNF
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_WaitForIpv6Info
- Description    : 等待APS进一步上报IPV6参数
- Input          : enConnType-------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_WaitForIpv6InfoProc
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType
@@ -304,18 +277,7 @@ VOS_VOID IMSA_CONN_WaitForIpv6InfoProc
     IMSA_CONN_SetupConnSucc(enConnType);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SipSignalPdpActOrig
- Description    : IMSA CONN模块发起信令PDP激活
- Input          : enConnType--------------连接类型
-                  ucCid-------------------CID
-                  enIpType----------------PDN类型
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-06-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_SipSignalPdpActOrig
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -415,16 +377,7 @@ VOS_UINT32 IMSA_CONN_SipSignalPdpActOrig
     return IMSA_FAIL;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcActCnfBack
- Description    : IMSA CONN模块DP ACTIVATE CNF事件的回退处理
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID  IMSA_CONN_ProcActCnfBack
 (
     const TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU    *pstPdpActivateCnf
@@ -532,17 +485,7 @@ VOS_VOID  IMSA_CONN_ProcActCnfBack
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcIpv4ActCnf
- Description    : IMSA CONN模块处理PDP ACTIVATE CNF事件，且PDN类型为IPV4
- Input          : enConnType---------------------连接类型
-                  pstPdpActivateCnf--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-25  Draft Enact
-*****************************************************************************/
 VOS_VOID  IMSA_CONN_ProcIpv4ActCnf
 (
     IMSA_CONN_TYPE_ENUM_UINT32                  enConnType,
@@ -622,7 +565,6 @@ VOS_VOID  IMSA_CONN_ProcIpv4ActCnf
             break;
 
         /* 这里是PDP激活回退功能实现 */
-        /* chengmin 00285307 将TAF_PDP_IPV4V6改为IMSA_IP_TYPE_IPV4V6 消除coverity警告*/
         case IMSA_IP_TYPE_IPV4V6:
             IMSA_CONN_ProcActCnfBack(pstPdpActivateCnf);
             break;
@@ -636,17 +578,7 @@ VOS_VOID  IMSA_CONN_ProcIpv4ActCnf
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcIpv6ActCnf
- Description    : IMSA CONN模块处理PDP ACTIVATE CNF事件，且PDN类型为IPV6
- Input          : enConnType---------------------连接类型
-                  pstPdpActivateCnf--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID  IMSA_CONN_ProcIpv6ActCnf
 (
     IMSA_CONN_TYPE_ENUM_UINT32                  enConnType,
@@ -706,16 +638,7 @@ VOS_VOID  IMSA_CONN_ProcIpv6ActCnf
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcIpv4v6ActCnf
- Description    : IMSA CONN模块处理PDP ACTIVATE CNF事件，且PDN类型为IPV4V6
- Input          : enConnType---------------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID  IMSA_CONN_ProcIpv4v6ActCnf
 (
     IMSA_CONN_TYPE_ENUM_UINT32                  enConnType
@@ -725,16 +648,7 @@ VOS_VOID  IMSA_CONN_ProcIpv4v6ActCnf
     IMSA_CONN_WaitForIpv6InfoProc(enConnType);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_MatchIPV4V6FallBackCause
- Description    : IMSA处理IPV4V6回退原因值
- Input          : enCause------------------------拒绝原因值
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.x00253310      2014-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_MatchIPV4V6FallBackCause
 (
     TAF_PS_CAUSE_ENUM_UINT32                    enCause
@@ -767,17 +681,7 @@ VOS_UINT32 IMSA_CONN_MatchIPV4V6FallBackCause
     return IMSA_FAIL;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcActRejCurReqIpv4v6
- Description    : IMSA CONN模块处理PDP ACTIVATE REJ事件，current req pdn type:ipv4v6
- Input          : enConnType---------------------连接类型
-                  pstPdpActivateRej--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-29  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcActRejCurReqIpv4v6
 (
     IMSA_CONN_TYPE_ENUM_UINT32                  enConnType,
@@ -877,17 +781,7 @@ VOS_VOID IMSA_CONN_ProcActRejCurReqIpv4v6
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcActRejCurReqIpv4
- Description    : IMSA CONN模块处理PDP ACTIVATE REJ事件，current req pdn type:ipv4
- Input          : enConnType---------------------连接类型
-                  pstPdpActivateRej--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-29  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcActRejCurReqIpv4
 (
     IMSA_CONN_TYPE_ENUM_UINT32                  enConnType,
@@ -930,17 +824,7 @@ VOS_VOID IMSA_CONN_ProcActRejCurReqIpv4
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcActRejCurReqIpv6
- Description    : IMSA CONN模块处理PDP ACTIVATE REJ事件，current req pdn type:ipv6
- Input          : enConnType---------------------连接类型
-                  pstPdpActivateRej--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-29  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcActRejCurReqIpv6
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -971,16 +855,7 @@ VOS_VOID IMSA_CONN_ProcActRejCurReqIpv6
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtPdpActivateCnf
- Description    : IMSA CONN模块处理PDP ACTIVATE CNF事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpActivateCnf
 (
     VOS_VOID                           *pEvtInfo
@@ -1123,16 +998,7 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpActivateCnf
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtPdpActivateRej
- Description    : IMSA CONN模块处理PDP ACTIVATE REJ事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpActivateRej
 (
     VOS_VOID                           *pEvtInfo
@@ -1235,17 +1101,7 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpActivateRej
     return IMSA_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtPdpActivateInd
- Description    : IMSA CONN模块处理PDP ACTIVATE IND事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:emc dedicated
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpActivateInd
 (
     VOS_VOID                           *pEvtInfo
@@ -1337,16 +1193,7 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpActivateInd
     return IMSA_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtPdpModifyInd
- Description    : IMSA CONN模块处理PDP MODIFY IND事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpModifyInd
 (
     VOS_VOID                           *pEvtInfo
@@ -1432,16 +1279,7 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpModifyInd
     return IMSA_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtPdpDeactivateCnf
- Description    : IMSA CONN模块处理PDP DEACTIVATE CNF事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpDeactivateCnf
 (
     VOS_VOID                           *pEvtInfo
@@ -1520,17 +1358,7 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpDeactivateCnf
     return IMSA_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtPdpDeactivateInd
- Description    : IMSA CONN模块处理PDP DEACTIVATE IND事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:Emc dedicated
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpDeactivateInd
 (
     VOS_VOID                           *pEvtInfo
@@ -1707,17 +1535,7 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpDeactivateInd
     return IMSA_SUCC;
 }
 
-/* lihong00150010 ims begin 2013-01-08 防止网侧重播路由公告 */
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd
- Description    : IMSA CONN模块处理PDP IPV6 INFO IND事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsIpv6PrefixChanged
 (
     const IMSA_PDP_CNTXT_INFO_STRU             *pstPdpInfo,
@@ -1733,18 +1551,8 @@ VOS_UINT32 IMSA_CONN_IsIpv6PrefixChanged
 
     return IMSA_TRUE;
 }
-/* lihong00150010 ims end 2013-01-08 防止网侧重播路由公告 */
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd
- Description    : IMSA CONN模块处理PDP IPV6 INFO IND事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd
 (
     VOS_VOID                           *pEvtInfo
@@ -1809,7 +1617,6 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd
         TLPS_PRINT2LAYER_INFO(IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd_ENUM, IMSA_STATUS_CONN);
 
         /* 存储IPV6信息 */
-        /* lihong00150010 ims begin 2013-01-08 防止网侧重播路由公告 */
         if (IMSA_TRUE == IMSA_CONN_IsIpv6PrefixChanged(pstPdpContext, pstPsIpv6InfoInd))
         {
             IMSA_CONN_SaveIpv6Info(pstPdpContext, pstPsIpv6InfoInd);
@@ -1826,7 +1633,6 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd
             /* 给底软配置IPv6地址和IPv6 DNS地址 */
             /* IMSA_CONN_ConfigPdpIPv6Info2Bsp(pstPdpContext); */
         }
-        /* lihong00150010 ims end 2013-01-08 防止网侧重播路由公告 */
 
         return IMSA_SUCC;
     }
@@ -1838,7 +1644,6 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd
         TLPS_PRINT2LAYER_INFO(IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd_ENUM, IMSA_STATUS_CONNECTING);
 
         /* 存储IPV6信息 */
-        /* lihong00150010 ims begin 2013-01-08 防止网侧重播路由公告 */
         if (IMSA_TRUE == IMSA_CONN_IsIpv6PrefixChanged(pstPdpContext, pstPsIpv6InfoInd))
         {
             IMSA_CONN_SaveIpv6Info(pstPdpContext, pstPsIpv6InfoInd);
@@ -1855,7 +1660,6 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd
             /* 给底软配置IPv6地址和IPv6 DNS地址 */
             /* IMSA_CONN_ConfigPdpIPv6Info2Bsp(pstPdpContext); */
         }
-        /* lihong00150010 ims end 2013-01-08 防止网侧重播路由公告 */
 
         /* 如果当前还在请求IPV4的SIP信令承载建立，则等待IPV4信令承载建立完成后
            再通知SERVICE模块连接建立成功 */
@@ -1879,16 +1683,7 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtPdpIpv6InfoInd
     return IMSA_FAIL;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtCallOrigCnf
- Description    : IMSA CONN模块处理CALL ORIG CNF事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTafPsEvtCallOrigCnf
 (
     VOS_VOID                           *pEvtInfo
@@ -1978,16 +1773,7 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtCallOrigCnf
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTafPsEvtCallEndCnf
- Description    : IMSA CONN模块处理CALL END事件
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTafPsEvtCallEndCnf
 (
     VOS_VOID                           *pEvtInfo
@@ -2095,16 +1881,7 @@ VOS_UINT32 IMSA_CONN_ProcTafPsEvtSrvccCancelInd
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTimerMsgSipSignalPdpOrigExp
- Description    : TI_IMSA_SIP_SIGAL_PDP_ORIG定时器超时处理函数
- Input          : pMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-02  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcTimerMsgSipSignalPdpOrigExp
 (
     const VOS_VOID                     *pMsg
@@ -2174,16 +1951,7 @@ VOS_VOID IMSA_CONN_ProcTimerMsgSipSignalPdpOrigExp
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTimerMsgSipSignalPdpEndExp
- Description    : TI_IMSA_SIP_SIGAL_PDP_END定时器超时处理函数
- Input          : pMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-02  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcTimerMsgSipSignalPdpEndExp
 (
     const VOS_VOID                     *pMsg
@@ -2252,16 +2020,7 @@ VOS_VOID IMSA_CONN_ProcTimerMsgSipSignalPdpEndExp
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTimerMsgWaitIpv6InfoExp
- Description    : TI_IMSA_WAIT_IPV6_INFO定时器超时处理函数
- Input          : pMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-02  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcTimerMsgWaitIpv6InfoExp
 (
     const VOS_VOID                     *pMsg
@@ -2319,17 +2078,7 @@ VOS_VOID IMSA_CONN_ProcTimerMsgWaitIpv6InfoExp
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTempCause
- Description    : Pdn临时被拒原因值处理
- Input          : enConnType--------------Conn类型
-                  enCause-----------------Rej类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leixiantiao 00258641      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTempCause
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2378,17 +2127,7 @@ VOS_UINT32 IMSA_CONN_ProcTempCause
     return IMSA_HANDLED;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcTimeOutMaxTimes
- Description    : Pdn建立超时处理
- Input          : enConnType--------------Conn类型
-                  enCause-----------------Rej类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leixiantiao 00258641      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcTimeOutMaxTimes
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2435,17 +2174,7 @@ VOS_UINT32 IMSA_CONN_ProcTimeOutMaxTimes
     return IMSA_HANDLED;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcPermCause
- Description    : Pdn临时被拒原因值处理
- Input          : enConnType--------------Conn类型
-                  enCause-----------------Rej类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leixiantiao 00258641      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_ProcPermCause
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2494,16 +2223,7 @@ VOS_UINT32 IMSA_CONN_ProcPermCause
     return IMSA_HANDLED;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcNoPcscf
- Description    : 收到PDP ACTIVE CNF但是没有PCSCF地址处理
- Input          : enConnType--------------Conn类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.leixiantiao 00258641      2015-12-10  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcNoPcscf
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType

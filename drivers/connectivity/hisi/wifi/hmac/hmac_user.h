@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_user.h
-  版 本 号   : 初稿
-  作    者   : huxiaotong
-  生成日期   : 2012年10月19日
-  最近修改   :
-  功能描述   : hmac_user.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月19日
-    作    者   : huxiaotong
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __HMAC_USER_H__
 #define __HMAC_USER_H__
@@ -54,6 +37,8 @@ extern "C" {
 #define MAX_JUDGE_CACHE_LENGTH      20  /* 业务识别-用户待识别队列长度 */
 #define MAX_CONFIRMED_FLOW_NUM      2   /* 业务识别-用户已识别业务总数 */
 #endif
+
+#define   HMAC_USER_STATS_PKT_INCR(_member, _cnt)            ((_member) += (_cnt))
 
 /*****************************************************************************
   3 枚举定义
@@ -140,7 +125,8 @@ typedef struct
     oal_uint16                      us_ba_timeout;      /* BA会话交互超时时间 */
     oal_uint8                      *puc_transmit_addr;  /* BA会话发送端地址 */
     oal_bool_enum_uint8             en_amsdu_supp;      /* BLOCK ACK支持AMSDU的标识 */
-    oal_uint8                       auc_resv1[3];
+    oal_uint8                       auc_resv1[1];
+    oal_uint16                      us_baw_head;        /* bitmap的起始序列号 */
     oal_uint32                      aul_rx_buf_bitmap[2];
 }hmac_ba_rx_stru;
 
@@ -349,9 +335,14 @@ typedef struct
 
 #endif
 
+#ifdef _PRE_WLAN_FEATURE_20_40_80_COEXIST
+    oal_uint32                      ul_receive_ncw_cnt;                        /* host侧接收到notify_channel_width计数 */
+    oal_uint32                      ul_ncw_start_time;                         /* sta带宽切换起始时间戳 */
+#endif
+
     /* 当前VAP工作在STA模式，以下字段为user是AP时独有字段，新添加字段请注意!!! */
     mac_user_stats_flag_stru        st_user_stats_flag;                      /*当user是sta时候，指示user是否被统计到对应项*/
-
+    oal_uint32                      ul_rx_pkt_drop;                      /* 接收数据包host侧被drop的计数 */
 
     /* 此项变量仅能处于HMAC USER结构体内的最后一项 */
     mac_user_stru                   st_user_base_info;                          /* hmac user与dmac user公共部分 */
@@ -389,21 +380,7 @@ typedef struct
 /*****************************************************************************
   9 OTHERS定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : hmac_user_ht_support
- 功能描述  : 是否为HT用户
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OAL_TRUE是，OAL_FALSE不是
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月11日
-    作    者   : huxiaotong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_user_ht_support(hmac_user_stru *pst_hmac_user)
 {
     if (OAL_TRUE == pst_hmac_user->st_user_base_info.st_ht_hdl.en_ht_capable)
@@ -414,21 +391,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_user_ht_support(hmac_user_stru *p
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_user_vht_support
- 功能描述  : 是否为VHT用户
- 输入参数  : hmac_user_stru *pst_hmac_user
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日,星期四
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_user_vht_support(hmac_user_stru *pst_hmac_user)
 {
     if (OAL_TRUE == pst_hmac_user->st_user_base_info.st_vht_hdl.en_vht_capable)
@@ -439,21 +402,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_user_vht_support(hmac_user_stru *
     return OAL_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_user_xht_support
- 功能描述  : 是否支持ht/vht聚合
- 输入参数  : hmac_user_stru *pst_hmac_user
- 输出参数  : 无
- 返 回 值  : OAL_STATIC OAL_INLINE oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日,星期四
-    作    者   : y00201072
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8 hmac_user_xht_support(hmac_user_stru *pst_hmac_user)
 {
     if ((pst_hmac_user->st_user_base_info.en_cur_protocol_mode >= WLAN_HT_MODE)

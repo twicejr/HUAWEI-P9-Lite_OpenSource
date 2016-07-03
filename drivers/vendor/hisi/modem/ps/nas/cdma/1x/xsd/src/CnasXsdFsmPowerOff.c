@@ -1,19 +1,4 @@
-/*******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXsdFsmPowerOff.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年07月03日
-  功能描述   : 1X SD L2关机状态机事件处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年07月03日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -54,24 +39,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvMsccPowerOffReq_PowerOff_Init
- 功能描述  : POWER_OFF状态机初始化状态收到ID_MSCC_XSD_POWER_OFF_REQ消息的处理?
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月3日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月20日
-    作    者   : h00313353
-    修改内容   : DSDS NO RF RRM去注册
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvMsccPowerOffReq_PowerOff_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -120,22 +88,7 @@ VOS_UINT32 CNAS_XSD_RcvMsccPowerSaveReq_PowerOff_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXccPowerOffCnf_PowerOff_WaitXccPowerOffCnf
- 功能描述  : XSD在WAIT_XCC_POWER_OFF_CNF状态下，收到XCC的关机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月3日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvXccPowerOffCnf_PowerOff_WaitXccPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -219,22 +172,7 @@ VOS_UINT32  CNAS_XSD_RcvXccPowerOffCnf_PowerOff_WaitXccPowerOffCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiWaitXccPowerOffCnfExpired_PowerOff_WaitXccPowerOffCnf
- 功能描述  : 等待XCC关机确认回复消息超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvTiWaitXccPowerOffCnfExpired_PowerOff_WaitXccPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -309,22 +247,7 @@ VOS_UINT32  CNAS_XSD_RcvTiWaitXccPowerOffCnfExpired_PowerOff_WaitXccPowerOffCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXregPowerOffCnf_PowerOff_WaitXregPowerOffCnf
- 功能描述  : XSD在WAIT_XREG_POWEROFF_CNF状态下，收到注册模块的的关机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月3日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvXregPowerOffCnf_PowerOff_WaitXregPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -344,22 +267,7 @@ VOS_UINT32 CNAS_XSD_RcvXregPowerOffCnf_PowerOff_WaitXregPowerOffCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiWaitXregPowerOffCnfExpired_PowerOff_WaitXregPowerOffCnf
- 功能描述  : 等待XREG模块的关机确认消息，定时器超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvTiWaitXregPowerOffCnfExpired_PowerOff_WaitXregPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -379,25 +287,7 @@ VOS_UINT32  CNAS_XSD_RcvTiWaitXregPowerOffCnfExpired_PowerOff_WaitXregPowerOffCn
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasPowerOffCnf_PowerOff_WaitCasPowerOffCnf
- 功能描述  : XSD在WAIT_Cas_POWER_OFF_CNF状态下，收到Cas的关机确认回复消息
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32：VOS_TRUE,VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月3日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2. Date      : 2015-04-11
-     Author    : a00295761
-     Content   : Modified the send internal power off result function
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvCasPowerOffCnf_PowerOff_WaitCasPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -421,26 +311,7 @@ VOS_UINT32  CNAS_XSD_RcvCasPowerOffCnf_PowerOff_WaitCasPowerOffCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiWaitCasPowerOffCnfExpired_PowerOff_WaitCasPowerOffCnf
- 功能描述  : 等待接入层的关机确认消息时，超时
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2. Date      : 2015-04-11
-     Author    : a00295761
-     Content   : Modified the send internal power off result function
-
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvTiWaitCasPowerOffCnfExpired_PowerOff_WaitCasPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -463,22 +334,7 @@ VOS_UINT32 CNAS_XSD_RcvTiWaitCasPowerOffCnfExpired_PowerOff_WaitCasPowerOffCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasSysDeterminInd_PowerOff_WaitCasSysDeterminInd
- 功能描述  : 等待CAS的system determin指示状态收到CAS的system determin消息的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvCasSysDeterminInd_PowerOff_WaitCasSysDeterminInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -518,22 +374,7 @@ VOS_UINT32  CNAS_XSD_RcvCasSysDeterminInd_PowerOff_WaitCasSysDeterminInd(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvTiWaitCasSysDeterminIndExpired_PowerOff_WaitCasSysDeterminInd
- 功能描述  : 等待CAS的system determin指示的保护定时器超时处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvTiWaitCasSysDeterminIndExpired_PowerOff_WaitCasSysDeterminInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -553,22 +394,7 @@ VOS_UINT32  CNAS_XSD_RcvTiWaitCasSysDeterminIndExpired_PowerOff_WaitCasSysDeterm
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXsdSystemAcquiredRsltCnf_PowerOff_WaitXsdSystemAcquireRsltCnf
- 功能描述  : 等待XSD的系统捕获结果状态收到XSD的系统捕获结果的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_XSD_RcvXsdSystemAcquiredRsltCnf_PowerOff_WaitXsdSystemAcquireRsltCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -587,25 +413,7 @@ VOS_UINT32  CNAS_XSD_RcvXsdSystemAcquiredRsltCnf_PowerOff_WaitXsdSystemAcquireRs
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvInterXsdSystemAcquiredReq_PowerOff_WaitXsdSystemAcquireRsltCnf
- 功能描述  : 等待XSD的系统捕获结果状态收到XSD的系统捕获请求状态机
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  :
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年01月13日
-    作    者   : m00312079
-    修改内容   : 只有在Call Release场景下进入状态机
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvInterXsdSystemAcquiredReq_PowerOff_WaitXsdSystemAcquireRsltCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -632,22 +440,7 @@ VOS_UINT32 CNAS_XSD_RcvInterXsdSystemAcquiredReq_PowerOff_WaitXsdSystemAcquireRs
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvXccDeregisterInd_PowerOff_WaitXccPowerOffCnf
- 功能描述  : 等待XCC的关机回复状态收到XCC的关机去注册指示的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvXccDeregisterInd_PowerOff_WaitXccPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -670,22 +463,7 @@ VOS_UINT32 CNAS_XSD_RcvXccDeregisterInd_PowerOff_WaitXccPowerOffCnf(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvCasSysDeterminInd_PowerOff_WaitXccPowerOffCnf
- 功能描述  : 等待XCC的关机回复状态收到CAS的system determine ind的处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月21日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvCasSysDeterminInd_PowerOff_WaitXccPowerOffCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -759,21 +537,7 @@ VOS_UINT32 CNAS_XSD_RcvTiWaitCasSuspendCnfExpired_PowerOff_WaitCasSuspendCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XSD_RcvRpmStatusInd_PowerOff_WaitCasSuspendCnf
- 功能描述  : 收到ID_RRM_PS_STATUS_IND消息的处理
- 输入参数  : ulEventType -- 事件类型
-             pstMsg      -- 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:VOS_TRUE, VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年07月10日
-   作    者   : c00299063
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XSD_RcvRrmStatusInd_PowerOff_WaitCasSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmBgPlmnSearchTbl.c
-  版 本 号   : 初稿
-  作    者   : z00161729
-  生成日期   : 2011年9月10日
-  最近修改   :
-  功能描述   : NAS 层仅支持GU的背景搜状态机
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年9月10日
-    作    者   : z00161729
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -28,14 +11,10 @@
 #include "NasMmcFsmBgPlmnSearchTbl.h"
 #include "NasMmcTimerMgmt.h"
 #include "MmcGmmInterface.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include "siappstk.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -414,11 +393,9 @@ NAS_ACT_STRU  g_astNasMmcBgPlmnSearchWaitCsPsRegIndActTbl[]   =
                       NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitCsPsRegRsltInd),
 
     /* 收到MSCC SYSCFG设置消息的处理 */
-	/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_SYS_CFG_SET_REQ,
                       NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitCsPsRegRsltInd),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     /* 处理SYSCFG 状态机的结果 */
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
@@ -433,11 +410,9 @@ NAS_ACT_STRU  g_astNasMmcBgPlmnSearchWaitCsPsRegIndActTbl[]   =
                       RRMM_LIMIT_SERVICE_CAMP_IND,
                       NAS_MMC_RcvRrmmLimitServiceCampInd_BgPlmnSearch_WaitCsPsRegRsltInd),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                       NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitCsPsRegRsltInd),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-8, end */
 
 };
 
@@ -528,12 +503,10 @@ NAS_ACT_STRU  g_astNasMmcBgPlmnSearchWaitCsPsConnRelActTbl[]   =
                       GRRMM_SYS_INFO_IND,
                       NAS_MMC_RcvGrrMmSysInfoInd_BgPlmnSearch_WaitRrcConnRelInd),
 
-	/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     /* 收到MSCC SYSCFG设置消息的处理 */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_SYS_CFG_SET_REQ,
                       NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitRrcConnRelInd),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     /* 处理SYSCFG 状态机的结果 */
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
@@ -897,13 +870,11 @@ NAS_ACT_STRU   g_astNasMmcBgPlmnSearchWaitEpsRegRsltIndActTbl[]   =
                       ID_LMM_MMC_SYS_INFO_IND,
                       NAS_MMC_RcvLSysInfoInd_BgPlmnSearch_WaitEpsRegRsltInd),
 
-     /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     /* 收到MSCC SYSCFG设置消息的处理 */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_SYS_CFG_SET_REQ,
                       NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitEpsRegRsltInd),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
     /* 处理SYSCFG 状态机的结果 */
@@ -915,11 +886,9 @@ NAS_ACT_STRU   g_astNasMmcBgPlmnSearchWaitEpsRegRsltIndActTbl[]   =
                       MMCMMC_ABORT_FSM_REQ,
                       NAS_MMC_RcvMmcAbortFsmMsg_BgPlmnSearch_WaitEpsRegRsltInd),
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                       NAS_MMC_RcvMsccImsVoiceCapInd_BgPlmnSearch_WaitEpsRegRsltInd),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2014-2-7, end */
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_CL_ASSOCIATED_INFO_NTF,
@@ -956,12 +925,10 @@ NAS_ACT_STRU   g_astNasMmcBgPlmnSearchWaitEpsConnRelInd[]   =
                       MMCMMC_SUSPEND_RSLT_CNF,
                       NAS_MMC_RcvMmcSuspendRslt_BgPlmnSearch_WaitEpsConnRelInd),
 
-	/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
     /* 收到MSCC SYSCFG设置消息的处理 */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_SYS_CFG_SET_REQ,
                       NAS_MMC_RcvTafSysCfgReq_BgPlmnSearch_WaitEpsConnRelInd),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     /* 处理SYSCFG 状态机的结果 */
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
@@ -1226,21 +1193,7 @@ NAS_STA_STRU g_astNasMmcFsmBgPlmnSearchStaTbl[] =
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetBgPlmnSearchStaTblSize
- 功能描述  : 获取BG PLMN SEARCH状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:BG PLMN SEARCH状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月10日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetBgPlmnSearchStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astNasMmcFsmBgPlmnSearchStaTbl)/sizeof(NAS_STA_STRU));
@@ -1248,21 +1201,7 @@ VOS_UINT32 NAS_MMC_GetBgPlmnSearchStaTblSize( VOS_VOID  )
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetBgPlmnSearchFsmDescAddr
- 功能描述  : 获取仅支持GU的背景搜网状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向BG PLMN SEARCH状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年9月10日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_MMC_GetBgPlmnSearchFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasMmcBgPlmnSearchFsmDesc);

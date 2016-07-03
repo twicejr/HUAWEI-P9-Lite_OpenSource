@@ -1,0 +1,167 @@
+/{
+	smmu {
+		compatible = "hisi,hisi-smmu";
+		phy_pgd_base = <0x0 0x34A78000>;
+	};
+
+	memory@0 {
+		device_type = "memory";
+		reg = <0x0 0x00400000 0x0 0xBFE00000>;
+	};
+
+	reserved-memory {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		ranges;
+
+		ddr-training1@4F8000 {
+			reg = <0x0 0x07B00000 0x0 0x8000>;
+		};
+
+		logo-buffer {
+			reg = <0x0 0xb000000 0x0 0x3000000>;
+			status = "disable";
+		};
+
+		kerneldump_cb@e000000 {
+			reg = <0x0 0xe000000 0x0 0x1000>;
+			no-map;
+			status = "ok";
+		};
+
+		kerneldump@e001000 {
+			reg = <0x0 0xe001000 0x0 0x1ffff000>;
+			status = "disable";
+		};
+
+
+		/* the name "-s" mean the ddr's attribute is secure*/
+
+		tui-cma-mem {
+			reg = <0x0 0x30000000 0x0 0x1000000>;
+			hisi,cma-mem;
+			hisi,cma-dynamic;
+			hisi,cma-name = "tui-heap";
+			hisi,sec-mem;
+			status = "disable";
+		};
+
+		graphic {
+			reg = <0x0 0x31000000 0x0 0x1a40000>;
+		};
+
+		mntn-mem {
+                        reg = <0x0 0x34000000 0x0 0x280000>;
+                };
+
+		pstore-mem{
+			reg = <0x0 0x34800000 0x0 0x100000>;
+		};
+
+		lpmx-core@34900000 {
+			reg = <0x0 0x34900000 0x0 0x100000>;
+			no-map;
+		};
+
+		/*fastboot kernel android reserve mem; non secure;no map*/
+		fka-mem{
+			reg = <0x0 0x34A00000 0x0 0x78000>;
+			no-map;
+		};
+
+		smmu-pdg{
+			reg = <0x0 0x34A78000 0x0 0x8000>;
+		};
+
+		sensorhub-share-mem@34A80000 {
+			reg = <0x0 0x34A80000 0x0 0x80000>;
+			no-map;
+		};
+
+		isp-boot@34B00000 {
+			reg = <0x0 0x34B00000 0x0 0x20000>;
+			no-map;
+		};
+
+		ivp@34E00000 {
+			reg = <0x0 0x34E00000 0x0 0x100000>;
+			no-map;
+			status = "disabled";
+		};
+
+		hifi-data@34F00000 {
+			reg = <0x0 0x34F00000 0x0 0x400000>;
+			no-map;
+		};
+
+		hifi-ipc@35300000 {
+			reg = <0x0 0x35300000 0x0 0x100000>;
+			no-map;
+		};
+
+		hifi-s@35400000 {
+			reg = <0x0 0x35400000 0x0 0x800000>;
+			no-map;
+		};
+
+		bl31-s@35C00000 {
+			reg = <0x0 0x35C00000 0x0 0xC0000>;
+			no-map;
+		};
+
+		sensorhub-s@36000000 {
+			reg = <0x0 0x36000000 0x0 0x200000>;
+			no-map;
+		};
+
+		secureos-s@36200000 {
+			reg = <0x0 0x36200000 0x0 0x1E00000>;
+			no-map;
+		};
+
+		modem-s@38000000 {
+			reg = <0x0 0x38000000 0x0 0x6C00000>;
+			no-map;
+		};
+
+		modem-share-mem@3EC00000 {
+			reg = <0x0 0x3EC00000 0x0 0x500000>;
+			no-map;
+		};
+
+		modem-socp@3F100000 {
+			reg = <0x0 0x3F100000 0x0 0x1000000>;
+			no-map;
+			status = "disabled";
+		};
+
+		/*end is 0x3fd00000*/
+
+		/*this node's status modify @ fastboot*/
+		modem-log@0x0x40500000 {
+			reg = <0x0 0x40500000 0x0 0x3200000>;
+			no-map;
+			status = "disabled";
+		};
+
+		xmode-data@0x43700000{
+			reg = <0x0 0x43700000 0x0 0x19000000>;
+			no-map;
+			status = "disabled";
+		};
+
+		/*this node's status modify @ fastboot*/
+		soc-reg-hole {
+			reg = <0x0 0xE0000000 0x0 0x20000000>;
+			no-map;
+			status = "disabled";
+		};
+
+		/*this node's reg modify @ fastboot*/
+		ddr-training2@0 {
+			reg = <0x0 0x0 0x0 0x0>;
+			no-map;
+			status = "disabled";
+		};
+	};
+};

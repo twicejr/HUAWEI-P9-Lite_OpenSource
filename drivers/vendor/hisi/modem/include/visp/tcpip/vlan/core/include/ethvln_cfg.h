@@ -44,7 +44,6 @@ extern VOID * ETHVLAN_GetNextEntryByFilter(VOID *pFilter,VOID *pCurEntry);
 extern BOOL_T ETHVLAN_HaveVid (ETHARP_MTSOFTCSUB_S *pBufMtSoftC);
 extern ULONG ETHVLAN_IsForbidIf(IFNET_S *pstIf);
 
-/* Begin Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 ULONG ETHVLAN_SetVlanConsistencyMonitor(ULONG ulSubIfIndex, ULONG ulMaxWarningNum);
 ULONG ETHVLAN_GetVlanConsistencyMonitor(ULONG ulSubIfIndex, ULONG *pulMaxWarningNum);
 ULONG ETHVLAN_DeleteVlanConsistencyWarning(ULONG ulSubIfIndex, ULONG ulLocalIPAddr, ULONG ulNeighbourIPAddr);
@@ -56,7 +55,6 @@ VOID ETHVLAN_RemoveNodeFromList(VLAN_CONSISTENCY_WARN_LIST_S *pstVlanWarningList
 VOID ETHVLAN_VlanConsistencyWarningOutput(UCHAR ucEventType, UCHAR ucRecoverReason,
                                 ETHVLAN_PORTINFO_S *pEthvlnInfo,
                                 VLAN_CONSISTENCY_WARN_NODE_S *pstVlanWarningNode);
-/* End Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 
 #ifdef  __cplusplus
 }

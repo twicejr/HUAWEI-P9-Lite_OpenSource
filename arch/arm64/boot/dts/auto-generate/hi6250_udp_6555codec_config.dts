@@ -1,0 +1,194 @@
+
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "fastboot.dtsi"
+/include/ "hi6250_udp_default_config.dtsi"
+/include/ "hi6250_udp_6555codec_modem_pin.dtsi"
+/include/ "hi6250_udp_6555codec_pin.dtsi"
+/ {
+	hisi,boardid = <4 0 1 7>;
+	hisi,boardname = "hi6250_udp_6555codec";
+
+	/* audio device beg */
+	codec_controller: codec_controller@e82b9000 {
+		status = "disabled";
+
+		hi64xx_irq: hi64xx_irq@0 {
+			status = "disabled";
+
+			hi6402_codec: hi6402_codec@0{
+				hisilicon,mic_num = <3>;
+				status = "disabled";
+			};
+
+			hi6403_codec: hi6403_codec@0{
+				hisilicon,mic_num = <2>;
+				status = "disabled";
+			};
+		};
+	};
+
+	maxim_ioctl {
+		status = "disabled";
+	};
+
+	amba {
+		i2c4: i2c@FDF0D000 {
+			max98925_smartpa_l:smartpa@31 {
+				status = "disabled";
+			};
+
+			tfa9895:tfa9895@34 {
+				compatible = "huawei,tfa9895";
+				reg = <0x34>;
+				status = "ok";
+			};
+		};
+	};
+
+	hi6555c_codec:codec {
+		compatible = "hi6555c-codec";
+		clocks = <&clk_gate_aspcodec &clk_gate_asp_subsys &clk_gate_modem2codec0>;	/* <&work clk &bus clk> */
+		clock-names = "clk_aspcodec", "clk_asp_subsys", "clk_modem2codec0";
+		schg_boost3-supply = <&schg_boost3>;/* classd supply */
+		modem-abb-supply = <&sys_peri>;	/* modem abb is codec work clk so peri area must power on */
+		gpios = <&gpio23 7 0>;/*GPIO_23_7*/
+		reg = <0x0 0xE8052000 0x0 0x1000>,       /* soc codec */
+		      <0x0 0xFFF34000 0x0 0x1000>,       /* pmu_ssi */
+		      <0x0 0xE82B8000 0x0 0x1000>,       /* hkadc_ssi */
+		      <0x0 0xE8A09000 0x0 0x1000>,       /* pctrl(peri_sctrl) */
+		      <0x0 0xE804E000 0x0 0x400>,        /* asp_cfg */
+		      <0x0 0xFFF11000 0x0 0x1000>,       /* ao_ioc */
+		      <0x0 0xE896C000 0x0 0x1000>,       /* ioc */
+		      <0x0 0xFFF35000 0x0 0x1000>;       /* peri crg*/
+		status = "ok";
+	};
+
+
+
+	sound {
+		compatible   = "hi6250_hi6555c";
+		codec-handle = <&hi6555c_codec>;
+		status       = "ok";
+	};
+
+	hi6210_hifi {
+		compatible   = "hi6210-hifi";
+		status       = "ok";
+	};
+
+	asp_irq: asp_irq@E804E000{
+		compatible = "hisilicon,hi3630-asp-irq";
+		reg = <0x0 0xe804e000 0x0 0xa000>;
+		#interrupt-cells = <0x2>;
+		asp-irq-supply = <&asp>;
+		interrupt-controller;
+		interrupts = <0x0 0x88 0x4>;
+		interrupt-names = "asp_irq";
+
+		asp_common@0 {
+			compatible = "hisilicon,hi3630-asp-common";
+		};
+
+		asp_srcup_normal@0 {
+			compatible              = "hisilicon,hi3630-srcup-normal";
+			asp-srcup-normal-supply = <&asp>;
+			interrupt-parent        = <&asp_irq>;
+			interrupts              = <0x1 0x0>;
+			interrupt-names         = "asp_srcup_normal";
+		};
+
+		asp_srcup_dsp@0 {
+			compatible       = "hisilicon,hi3630-srcup-dsp";
+		};
+
+		asp_srcdown@0 {
+			compatible       = "hisilicon,hi3630-srcdown";
+			interrupt-parent = <&asp_irq>;
+		};
+
+		asp_hdmi@0 {
+			compatible       = "hisilicon,hi3630-pcm-hdmi";
+			interrupt-parent = <&asp_irq>;
+			interrupts       = <0x0 0x0>;
+			interrupt-names  = "asp_irq_hdmi";
+		};
+	};
+
+	slimbusmisc@0xe8050000 {
+		compatible = "candance,slimbus";
+		status     = "disabled";
+	};
+	slimbus_dai@0 {
+		compatible = "hisilicon,slimbus-dai";
+		status     = "disabled";
+	};
+	sio@E804F000 {
+		compatible = "hisilicon,hi3630-sio";
+		status     = "disabled";
+	};
+
+	sio@E804F400 {
+		compatible = "hisilicon,hi3630-sio";
+		status     = "disabled";
+	};
+
+	sio@E804F800 {
+		compatible = "hisilicon,hi3630-sio";
+		status     = "disabled";
+	};
+
+	sio@E804FC00 {
+		compatible = "hisilicon,hi3630-sio";
+		status     = "disabled";
+	};
+
+	asp_dmac@E804B000 {
+		compatible = "hisilicon,hi3630-pcm-asp-dma";
+		status     = "disabled";
+	};
+
+    asp_dmac@E804B000 {
+        compatible = "hisilicon,soundtrigger_dma_drv";
+        status = "disabled";
+    };
+
+    hifidsp {
+        compatible = "hisilicon,k3hifidsp";
+        status     = "ok";
+    };
+
+	audio_hw_config {
+		product_name     = "hi6250";
+		spk_pa_name      = "tfa9895";
+		cust_name        = "audio_custom";
+		soc_name         = "hi62x0";
+		codec_name       = "hissc";
+		codec_dsp_algo   = "none";
+		modem_sio_master = "false";
+		ear_pa_name      = "none";
+		asr_enable       = "false";
+		status           = "ok";
+		audio_capability {
+			bwe_ui_support = "false";
+			bwe_support = "true";
+			wnr_support = "false";
+			lvm_support = "false";
+			dhf_support = "false";
+			dual_smartpa_support = "false";
+			spk_rcv_stereo_support = "false";
+		};
+	};
+
+        hw_soundtrigger_event: hw_soundtrigger_event{
+            status = "disabled";
+        };
+	/* audio device end */
+};

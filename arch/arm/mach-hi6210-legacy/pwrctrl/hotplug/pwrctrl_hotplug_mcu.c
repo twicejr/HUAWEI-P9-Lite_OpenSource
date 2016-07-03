@@ -8,31 +8,7 @@
  * published by the Free Software Foundation.
  */
 
-/******************************************************************************
 
- ******************************************************************************
-  文 件 名   : pwrctrl_hotplug_log.c
-  版 本 号   : 初稿
-  作    者   : 石连传61250
-  生成日期   : 2012年9月2日
-  最近修改   :
-  功能描述   : CPU 上下电底层代码
-  函数列表   :
-              platform_cpu_die
-              platform_cpu_kill
-              platform_cpu_disable
-              pwrctrl_hotplug_notify_mcu
-              pwrctrl_cpu_change_notify
-              pwrctrl_hotplug_hard_init
-              pwrctrl_hotplug_hard_exit
-
-
-  修改历史   :
-  1.日    期   : 2012年9月2日
-    作    者   :  石连传61250
-    修改内容   : 创建文件
-
-******************************************************************************/
 #include <linux/kernel.h>
 #include <linux/errno.h>
 #include <linux/smp.h>

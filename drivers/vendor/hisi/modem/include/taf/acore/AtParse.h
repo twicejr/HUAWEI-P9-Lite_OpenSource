@@ -7,9 +7,7 @@
 #include "msp_at.h"
 #include "AtParseCmd.h"
 #include "MnClient.h"
-/* Added by l60609 for AP适配项目 ，2012-08-30 Begin */
 #include "product_config.h"
-/* Added by l60609 for AP适配项目 ，2012-08-30 End */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -19,7 +17,6 @@ extern "C" {
 
 #pragma pack(4)
 
-/* Added by L60609 for AT Project，2011-10-09,  Begin*/
 #define AT_CMD_MAX_LEN                          5000
 
 #define AT_CMD_OUTPUT_MAX_LEN                   (1500)                          /* 所有支持AT命令的通道MODEM限制最小为1500BYTE
@@ -381,17 +378,10 @@ enum AT_RRETURN_CODE_ENUM
 typedef VOS_UINT32 AT_RRETURN_CODE_ENUM_UINT32;
 
 
-/* Added by L60609 for AT Project，2011-10-09,  End*/
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
-结构名      : AT_ENCRYPT_VOICE_STATUS_ENUM_UINT32
-结构说明    : ecc密话建立结果
-  1.日    期   : 2015年10月16日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 enum AT_ENCRYPT_VOICE_ERROR_ENUM
 {
 
@@ -582,7 +572,6 @@ typedef VOS_UINT32 (*PFN_AT_FW_MSG_PROC)(VOS_UINT8 ucClientId, VOS_VOID *pMsgBlo
 #define CMD_TBL_CLAC_IS_INVISIBLE_E5         CMD_TBL_LIMITED_NULL         /* E5形态下+CLAC命令中不输出显示的命令 */
 #define CMD_TBL_CLAC_IS_INVISIBLE_STICK      CMD_TBL_LIMITED_NULL          /* STICK形态下+CLAC命令中不输出显示的命令 */
 
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
 
 #if (FEATURE_ON == FEATURE_LTE)
 #define CGDCONT_CMD_PARA_STRING         "(0-31),(\"IP\",\"IPV6\",\"IPV4V6\",\"PPP\",\"\"),(APN),(PdpAddr),(0-2),(0-3),(0,1),(0,1),(0-2),(0,1)"
@@ -595,7 +584,6 @@ typedef VOS_UINT32 (*PFN_AT_FW_MSG_PROC)(VOS_UINT8 ucClientId, VOS_VOID *pMsgBlo
 #else
 #define CGDSCONT_CMD_PARA_STRING        "(1-11),(0-11),(0-2),(0-3)"
 #endif  /* FEATURE_ON == FEATURE_LTE */
-/* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
 #define CGTFT_CMD_PARA_STRING           "(1-31),(1-16),(0-255),(IpMask),(0-255),(Dpr),(Spr),(0-4294967295),(TosM),(0-1048575),(0-3),(LocalIpMask)"
@@ -728,7 +716,6 @@ typedef VOS_UINT32 (*PFN_AT_FW_MSG_PROC)(VOS_UINT8 ucClientId, VOS_VOID *pMsgBlo
 #endif
 #endif  /* FEATURE_ON == FEATURE_LTE */
 
-/*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
 #if (FEATURE_ON == FEATURE_LTE)
 #if (FEATURE_ON == FEATURE_IPV6)
 #define PDPROFMOD_CMD_PARA_STRING       "(1-31),(\"IP\",\"IPV6\",\"IPV4V6\",\"\"),(APN),(username),(passwd),(0-2)"
@@ -742,7 +729,6 @@ typedef VOS_UINT32 (*PFN_AT_FW_MSG_PROC)(VOS_UINT8 ucClientId, VOS_VOID *pMsgBlo
 #define PDPROFMOD_CMD_PARA_STRING       "(1-31),(\"IP\",\"\"),(APN),(username),(passwd),(0-2)"
 #endif  /* FEATURE_ON == FEATURE_IPV6 */
 #endif  /* FEATURE_ON == FEATURE_LTE */
-/*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
 
 #if((FEATURE_ON == FEATURE_LTE) && (FEATURE_ON == FEATURE_LTE_MBMS))
 #define MBMSCMD_CMD_PARA_STRING         "(\"MBMS_SERVICE_ENABLER\",\"ACTIVATE\",\"DEACTIVATE\",\"DEACTIVATE_ALL\",\"MBMS_PREFERENCE\",\"SIB16_GET_NETWORK_TIME\",\"BSSI_SIGNAL_LEVEL\",\"NETWORK_INFORMATION\",\"MODEM_STATUS\"),(@paramone),(paramtwo)"
@@ -859,7 +845,6 @@ typedef struct
 
 /*extern HI_LIST_S g_stCmdTblList; */
 
-/* Added by L60609 for AT Project，2011-10-09,  Begin*/
 extern TAF_UINT32   At_UpString(TAF_UINT8 *pData,TAF_UINT16 usLen);
 extern TAF_UINT32   At_Auc2ul(TAF_UINT8 *nptr,TAF_UINT16 usLen,TAF_UINT32 *pRtn);
 
@@ -918,9 +903,7 @@ extern VOS_UINT8* At_GetFirstBasicCmdAddr(VOS_UINT8 *pData, VOS_UINT32* pulLen);
 
 extern VOS_VOID AT_BlockCmdTimeOutProc(VOS_UINT8 ucIndex);
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 extern VOS_UINT32 AT_SDParamErrCode(VOS_VOID);
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 
 VOS_UINT32 AT_IsAbortCmdStr(

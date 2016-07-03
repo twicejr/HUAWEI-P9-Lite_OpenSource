@@ -1,15 +1,4 @@
-/******************************************************************************
 
-    Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLmmTest.h
-  Description     : NasLmmTest.h header file
-  History         :
-     1.yangfan 00159566       2009-9-27     Draft Enact
-     2.zhengjunyan 00148421  2011-05-28     文件名由 NasMmTest.h修改为
-                                            NasLmmTest.h
- ******************************************************************************/
 
 #ifndef __NASLMMTEST_H__
 #define __NASLMMTEST_H__

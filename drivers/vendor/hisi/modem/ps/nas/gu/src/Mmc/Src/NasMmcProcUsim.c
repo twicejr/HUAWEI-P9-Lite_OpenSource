@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcProcUsim.c
-  版 本 号   : 初稿
-  作    者   : luokaihui /l00167671
-  生成日期   : 2011年05月10日
-  最近修改   :
-  功能描述   : 操作(读写)SIM卡文件相关函数放在本文件中
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年05月10日
-    作    者   : luokaihui /00167671
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -49,7 +32,6 @@ extern "C" {
   2 全局变量定义
 *****************************************************************************/
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, begin */
 /* MMC 收到USIMM_REFRESH_ALL_FILE的refresh消息时，只更新高优先网络文件
    读6F7E会在注册时用TMSI而导致注册失败  */
 VOS_UINT16 g_astNasUsimAllRefreshFileID[] =
@@ -70,44 +52,11 @@ VOS_UINT16 g_astNasGsmAllRefreshFileID[] =
     USIMM_GSM_EFFPLMN_ID
 };
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
 
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : Mmc_RcvAgentUsimReadFileCnf_HPLMN_SEL_FILE_ID
- 功能描述  : 读取HPLMN文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 7.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_HPLMN_SEL_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -145,39 +94,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_HPLMN_SEL_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_FORBIDDEN_PLMN_LIST_FILE_ID
- 功能描述  : 读取FORBIDDEN PLMN
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 7.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_FORBIDDEN_PLMN_LIST_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -271,39 +188,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_FORBIDDEN_PLMN_LIST_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_UPLMN_SEL_FILE_ID
- 功能描述  : 读取UPLMN文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 7.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_UPLMN_SEL_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -343,45 +228,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_UPLMN_SEL_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Mmc_RcvAgentUsimReadFileCnf_HPLMN_SEL_FILE_ID
- 功能描述  : 读取OPLMN文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 7.日    期   : 2013年10月15日
-   作    者   : x65241
-   修改内容   : 有定制NV时，数据不生效
- 8.日    期   : 2013年11月26日
-   作    者   : s00190137
-   修改内容   : 添加分组机制，最大支持设置256个OPLMN,单组允许最大设置50个OPLMN
- 9.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_OPLMN_SEL_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -430,39 +277,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_OPLMN_SEL_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_LRPLMNSI_FILE_ID
- 功能描述  : 读取LRPLMNSI文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 7.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_LRPLMNSI_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -491,39 +306,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_LRPLMNSI_FILE_ID(
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_EHPLMNPI_FILE_ID
- 功能描述  : 读取EquivalentHPLMNPI文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 7.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_EHPLMNPI_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -556,66 +339,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_EHPLMNPI_FILE_ID(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_EHPLMN_FILE_ID
- 功能描述  : 读取EHPLMN文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
-
- 5.日    期   : 2011年12月12日
-   作    者   : w00167002
-   修改内容   : DTS2011120808319:RPLMN不存在EHPLMN中无任何有效网络，导致L下
-                 开机搜FFFFFF;此时实际应该使用6f07卡文件中的HOME PLMN网络。
-                 协议23122-950如下:
-                 EHPLMN:  Any of the PLMN entries contained in the Equivalent HPLMN list.
-                 Equivalent HPLMN list: To allow provision for multiple HPLMN codes,
-                 PLMN codes that are present within this list shall replace the
-                 HPLMN code derived from the IMSI for PLMN selection purposes.
-                 This list is stored on the USIM and is known as the EHPLMN list.
-                 The EHPLMN list may also contain the HPLMN code derived from the IMSI.
-                 If the HPLMN code derived from the IMSI is not present in the
-                 EHPLMN list then it shall be treated as a Visited PLMN for PLMN selection purposes.
-
-                 4.4.3:It is possible for the home network operator to identify
-                 alternative Network IDs as the HPLMN. If the EHPLMN list is present,
-                 and not empty, the entries in the EHPLMN list are used in the network
-                 selection procedures. When attempting to select a network the
-                 highest priority EHPLMN that is available shall be selected.
-                 If the EHPLMN list is present and is empty or if the EHPLMN list
-                 is not present, the HPLMN derived from the IMSI is used for network
-                 selection procedures.
- 6.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
-
-7.日    期   : 2012年6月11日
-  作    者   : w00166186
-  修改内容   : AT&T&DCM项目
- 8.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 9.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_EHPLMN_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -738,42 +462,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_EHPLMN_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_HPLMN_PERI_FILE_ID
- 功能描述  : 读取高优先级搜索时间间隔文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月10日
-    作    者   : luokaihui /l00167671
-    修改内容   : 新生成函数
- 2. 日    期   : 2011年7月25日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 3. 日    期   : 2011年7月26日
-    作    者   : z00161729
-    修改内容   : V7R1 PhaseII 全局变量调整
- 4. 日    期   : 2011年7月29日
-    作    者   : w00166186
-    修改内容   : V7R1 PhaseII 全局变量调整
- 5.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 6.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 7.日    期   : 2012年6月11日
-   作    者   : l60609
-   修改内容   : AT&T&DCM：NAS_MMC_SetFirstStartHPlmnTimerFlg(VOS_TRUE)已在
-                NAS_MMC_InitHighPrioPlmnSearchCtx中初始化
- 8.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_HPLMN_PERI_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -821,47 +510,14 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_HPLMN_PERI_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_MNC_LENGTH_FILE_ID
- 功能描述  : 读取MNC LENGTH文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月10日
-    作    者   : luokaihui /l00167671
-    修改内容   : 新生成函数
- 2. 日    期   : 2011年7月25日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII 全局变量 状态名调整
-  3.日    期   : 2011年12月03日
-    作    者   : w00166186
-    修改内容   : DTS2011112907465,读USIM失败后导致开机慢
-  4.日    期   : 2012年5月16日
-    作    者   : w00176964
-    修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
-  5.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题,区别两位和三位的MNC
-  6.日    期   : 2012年12月26日
-    作    者   : 张鹏 /z00214637
-    修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-  7.日    期   : 2015年03月09日
-    作    者   : y00245242
-    修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_MNC_LENGTH_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
 {
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-23, begin */
     VOS_UINT8                           ucExactlyComparaFlag;
 
     ucExactlyComparaFlag = NAS_MML_GetPlmnExactlyComparaFlg();
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-23, end */
 
     if (VOS_OK == pstMsg->stCmdResult.ulResult)
     {
@@ -882,12 +538,10 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_MNC_LENGTH_FILE_ID(
             if (( NAS_MMC_MNC_LENGTH_TWO_BYTES_IN_IMSI == (pstMsg->aucEf[NAS_MMC_MNC_LENGTH_INDICATOR_POSITION-1] & NAS_MML_OCTET_LOW_FOUR_BITS) )
             || ( NAS_MMC_MNC_LENGTH_THREE_BYTES_IN_IMSI == (pstMsg->aucEf[NAS_MMC_MNC_LENGTH_INDICATOR_POSITION-1] & NAS_MML_OCTET_LOW_FOUR_BITS) ))
             {
-                /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, begin */
                 if (VOS_TRUE == ucExactlyComparaFlag)
                 {
                     NAS_MML_SetUsimMncLen(pstMsg->aucEf[NAS_MMC_MNC_LENGTH_INDICATOR_POSITION-1] & NAS_MML_OCTET_LOW_FOUR_BITS);
                 }
-                /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-15, end */
             }
             else
             {
@@ -903,39 +557,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_MNC_LENGTH_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_CS_LOC_FILE_ID
- 功能描述  : 读取CS LOC文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月13日
-   作    者   : zhoujun 40661
-   修改内容   : SIM卡内容更新到MML中
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 7.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_CS_LOC_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -959,39 +581,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_CS_LOC_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_CS_CKIK_FILE_ID
- 功能描述  : 读取CS CKIK文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月13日
-   作    者   : zhoujun 40661
-   修改内容   : SIM卡内容更新到MML中
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 7.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_CS_CKIK_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -1015,42 +605,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_CS_CKIK_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_CS_KC_FILE_ID
- 功能描述  : 读取CS KC文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月13日
-   作    者   : zhoujun 40661
-   修改内容   : SIM卡内容更新到MML中
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年8月22日
-   作    者   : w00167002
-   修改内容   : V7R1 PhaseII 清空的标志不对,导致等待SIM卡回复超时
- 5.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 6.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 7.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 8.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_CS_KC_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -1074,39 +629,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_CS_KC_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_PS_KEY_FILE_ID
- 功能描述  : 读取PS_KEY文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月13日
-   作    者   : zhoujun 40661
-   修改内容   : SIM卡内容更新到MML中
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
- 7.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_PS_KEY_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU           *pstMsg
 )
@@ -1131,39 +654,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_PS_KEY_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Mmc_RcvAgentUsimReadFileCnf_HPLMN_SEL_FILE_ID
- 功能描述  : 读取PS KC文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月13日
-   作    者   : zhoujun 40661
-   修改内容   : SIM卡内容更新到MML中
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年8月22日
-   作    者   : w00167002
-   修改内容   : V7R1 PhaseII 清空的标志不对,导致等待SIM卡回复超时
- 5.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 6.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 7.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_PS_KC_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -1187,36 +678,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_PS_KC_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_PS_LOC_FILE_ID
- 功能描述  : 读取PS LOC文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月12日
-   作    者   : zhoujun 40661
-   修改内容   : SIM卡内容保存在MML中，获取内容接口更新
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 4.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 5.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 6.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_PS_LOC_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU          *pstMsg
 )
@@ -1249,36 +711,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_PS_LOC_FILE_ID(
 
 
 
-/*****************************************************************************
- 函 数 名  : Mmc_RcvAgentUsimReadFileCnf_HPLMN_SEL_FILE_ID
- 功能描述  : 读取PLMN SEL文件
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年5月10日
-   作    者   : luokaihui /l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月14日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- 3.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 5.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 6.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 7.日    期   : 2012年12月26日
-   作    者   : 张鹏 /z00214637
-   修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_PLMN_SEL_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU           *pstMsg
 )
@@ -1324,24 +757,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_PLMN_SEL_FILE_ID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf_ACTINGHPLMN_FILE_ID
- 功能描述  : 获取卡文件ACTING-HPLMN的内容
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月11日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM项目新增函数
-  2.日    期   : 2012年12月26日
-    作    者   : 张鹏 /z00214637
-    修改内容   : PS_USIM_GET_FILE_RLT_SUCCESS替换为VOS_OK
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_ACTINGHPLMN_FILE_ID(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU                   *pstMsg
 )
@@ -1399,35 +815,7 @@ VOS_VOID NAS_MMC_RcvAgentUsimReadFileCnf_ACTINGHPLMN_FILE_ID(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_RcvAgentUsimReadFileCnf
- 功能描述  : 读取SIM卡文件的处理
- 输入参数  : pstMsg:PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU消息的首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月22日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月03日
-   作    者   : w00166186
-   修改内容   : DTS2011112907465,读USIM失败后导致开机慢
- 3.日    期   : 2012年5月12日
-   作    者   : z00161729
-   修改内容   : V7R1C50 GUL BG搜网修改
- 4.日    期   : 2012年5月16日
-   作    者   : w00176964
-   修改内容   : DTS2012051600755:清除读取文件FLG到switch on状态机中
- 5.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
- 6.日    期   : 2015年03月09日
-   作    者   : y00245242
-   修改内容   : 迭代9开发
-*****************************************************************************/
 VOS_VOID  NAS_MMC_RcvAgentUsimReadFileCnf(
     PS_USIM_GET_FILE_RSP_FOR_PCLINT_STRU           *pstMsg
 )
@@ -1532,30 +920,7 @@ VOS_VOID  NAS_MMC_RcvAgentUsimReadFileCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdatePtmsiFormPsLociFile
- 功能描述  : 根据PSLOCI文件的内容更新PTMSI的内容
- 输入参数  : pucPsLociFileContent:USIM中EFPSLOCI的内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年1月2日
-   作    者   : w00167002
-   修改内容   : DTS2011111100902:当从6F73文件中取得PTMSI有效性信息的时候，也
-                 需要判断当前LAI是否有效。
-                 LAI中的值为FFFE/FFFF，则认为LAI无效；
-                 若LAI全0，则认为RAI无效；
-                 若PLMN ID无效，则也不更新PTMSI信息；
-                 若PTMSI无效，则显示的赋值，因为NVIM中存储的PTMSI可能跟文件中的
-                 不一致。
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdatePtmsiFormPsLociFile(
     VOS_UINT8                          *pucPsLociFileContent
 )
@@ -1657,26 +1022,7 @@ VOS_VOID  NAS_MMC_UpdatePtmsiFormPsLociFile(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdatePtmsiSignatureFormPsLociFile
- 功能描述  : 根据PSLOCI文件的内容更新PTMSI Signature的内容
- 输入参数  : pucPsLociFileContent:USIM中EFPSLOCI的内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年1月2日
-   作    者   : w00167002
-   修改内容   : DTS2011111100902:需要显式更新PTMSI Signature内容为无效值，
-                 因为NVIM中可能保存的是有效值，而卡文件中的是无效值，则以
-                 卡文件中的为准。
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdatePtmsiSignatureFormPsLociFile(
     VOS_UINT8                          *pucPsLociFileContent
 )
@@ -1717,21 +1063,7 @@ VOS_VOID  NAS_MMC_UpdatePtmsiSignatureFormPsLociFile(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateRaiFormPsLociFile
- 功能描述  : 根据PSLOCI文件的内容更新RAI的内容
- 输入参数  : pucPsLociFileContent:USIM中EFPSLOCI的内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateRaiFormPsLociFile(
     VOS_UINT8                          *pucPsLociFileContent
 )
@@ -1782,27 +1114,7 @@ VOS_VOID  NAS_MMC_UpdateRaiFormPsLociFile(
     pstPsDomainInfo->stLastSuccRai.ucRac    = pucPsLociFileContent[ucCurrPos];
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateSimInfoFromPsLociFile
- 功能描述  : 根据USIM中的PSLOCI的内容更新MML中保存的SIM相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月1日
-   作    者   : zhoujun /40661
-   修改内容   : 更新保存在MML内存中的EFPSLOCI原始文件的内容
- 3.日    期   : 2015年6月14日
-   作    者   : z00301431
-   修改内容   : DTS2015060309245,以色列updatestatus为0xff，RPLMN全0问题规避
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateSimInfoFromPsLociFile(
     VOS_UINT8                          *pucPsLociFileContent
 )
@@ -1854,25 +1166,7 @@ VOS_VOID  NAS_MMC_UpdateSimInfoFromPsLociFile(
     pstSimStatus->enPsUpdateStatus  = ucUpdateStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdatePsSecutityInfoFromUsimFile
- 功能描述  : 根据USIM的内容更新MML中保存的变量
- 输入参数  : pucPsSecutityInfo:PS域安全参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月13日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年12月1日
-    作    者   : w00167002
-    修改内容   : DTS2012112704453:cksn的BIT:4时SPARE位，GCF测试需要匹配该项，
-                 需要填写值为0.
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdatePsSecutityInfoFromUsimFile(
     VOS_UINT8                          *pucPsSecutityInfo
 )
@@ -1941,27 +1235,7 @@ VOS_VOID  NAS_MMC_UpdatePsSecutityInfoFromUsimFile(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateTmsiFormCsLociFile
- 功能描述  : 根据LOCI文件的内容更新TMSI的内容
- 输入参数  : pucCsLociFileContent:USIM中EFLOCI的内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年1月2日
-   作    者   : w00167002
-   修改内容   : DTS2011111100902:当从6F7E文件中取得TMSI有效性信息的时候，也
-                 需要判断当前LAI是否有效。
-                 若LAI全0，则认为LAI无效；
-                 若PLMN ID 无效，则也不更新TMSI信息。
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateTmsiFormCsLociFile(
     VOS_UINT8                          *pucCsLociFileContent
 )
@@ -2068,21 +1342,7 @@ VOS_VOID  NAS_MMC_UpdateTmsiFormCsLociFile(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateLaiFormCsLociFile
- 功能描述  : 根据LOCI文件的内容更新LAI的内容
- 输入参数  : pucCsLociFileContent:USIM中EFLOCI的内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateLaiFormCsLociFile(
     VOS_UINT8                          *pucCsLociFileContent
 )
@@ -2128,30 +1388,7 @@ VOS_VOID  NAS_MMC_UpdateLaiFormCsLociFile(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateSimInfoFromCsLociFile
- 功能描述  : 根据USIM中的LOCI的内容更新MML中保存的SIM相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月12日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年12月1日
-   作    者   : zhoujun /40661
-   修改内容   : 更新保存在MML内存中的EFLOCI原始文件的内容
- 2.日    期   : 2012年1月2日
-   作    者   : w00167002
-   修改内容   : DTS2011111100902:UPDATE STATUS状态无效时，则更新为U2,表示RPLMN不存在。
- 3.日    期   : 2015年6月14日
-   作    者   : z00301431
-   修改内容   : DTS2015060309245,以色列updatestatus为0xff，RPLMN全0问题规避
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateSimInfoFromCsLociFile(
     VOS_UINT8                          *pucCsLociFileContent
 )
@@ -2198,25 +1435,7 @@ VOS_VOID  NAS_MMC_UpdateSimInfoFromCsLociFile(
     pstSimStatus->enCsUpdateStatus  = ucUpdateStatus;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateCsSecutityInfoFromUsimFile
- 功能描述  : 根据USIM的内容更新MML中保存的变量
- 输入参数  : pucCsSecutityInfo:CS域安全参数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月13日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年12月1日
-   作    者   : w00167002
-   修改内容   : DTS2012112704453:cksn的BIT:4时SPARE位，GCF测试需要匹配该项，
-                需要填写值为0.
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateCsSecutityInfoFromUsimFile(
     VOS_UINT8                          *pucCsSecutityInfo
 )
@@ -2290,20 +1509,7 @@ VOS_VOID  NAS_MMC_UpdateCsSecutityInfoFromUsimFile(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmPlmn
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmPlmn(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2329,20 +1535,7 @@ VOS_VOID NAS_MMC_ReadUsimmPlmn(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmEfad
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmEfad(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2369,20 +1562,7 @@ VOS_VOID NAS_MMC_ReadUsimmEfad(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmUplmn
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmUplmn(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2409,20 +1589,7 @@ VOS_VOID NAS_MMC_ReadUsimmUplmn(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmOplmn
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmOplmn(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2449,20 +1616,7 @@ VOS_VOID NAS_MMC_ReadUsimmOplmn(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmHplmn
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmHplmn(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2489,20 +1643,7 @@ VOS_VOID NAS_MMC_ReadUsimmHplmn(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmLoci
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmCSLoci(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2529,20 +1670,7 @@ VOS_VOID NAS_MMC_ReadUsimmCSLoci(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmAtt
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmAtt(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2569,20 +1697,7 @@ VOS_VOID NAS_MMC_ReadUsimmAtt(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmEhplmn
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmEhplmn(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2598,20 +1713,7 @@ VOS_VOID NAS_MMC_ReadUsimmEhplmn(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmEhplmnpi
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmEhplmnpi(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2627,20 +1729,7 @@ VOS_VOID NAS_MMC_ReadUsimmEhplmnpi(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmLrplmnsi
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmLrplmnsi(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2656,20 +1745,7 @@ VOS_VOID NAS_MMC_ReadUsimmLrplmnsi(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmHpplmn
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmHpplmn(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo
 )
@@ -2696,20 +1772,7 @@ VOS_VOID NAS_MMC_ReadUsimmHpplmn(
     (VOS_VOID)NAS_USIMMAPI_GetFileReq(WUEPS_PID_MMC, 0, pstGetFileInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUsimmFile
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUsimmFile(
     NAS_USIMM_GETFILE_INFO_STRU        *pstGetFileInfo,
     VOS_UINT16                          usFileId
@@ -2728,42 +1791,7 @@ VOS_VOID NAS_MMC_ReadUsimmFile(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndUsimReadFileReq
- 功能描述  : 发起获取USIM文件内容请求到USIM模块
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月13日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
- 2.日    期   : 2011年7月25日
-   作    者   : w00176964
-   修改内容   : V7R1 PhaseII 全局变量 状态名调整
- 3.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
- 4.日    期  : 2012年12月26日
-   作    者  : 张鹏 id:00214637
-   修改内容  : USIM对外接口函数变更的处理 ，
-               Client ID 到 PID的转换处理 ，入参封装成结构体。
- 5.日    期   : 2013年6月3日
-   作    者   : z00161729
-   修改内容   : SVLTE 和usim接口调整修改
- 6.日    期   : 2013年10月15日
-   作    者   : x65241
-   修改内容   : 电信定制OPLMN调整修改
- 7.日    期   : 2013年07月27日
-   作    者   : y00245242
-   修改内容   : 为开发VOLTE，适配新的USIM接口
- 8.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID   NAS_MMC_SndUsimReadFileReq( VOS_VOID )
 {
     VOS_UINT32                          ulRet;
@@ -2787,9 +1815,7 @@ VOS_VOID   NAS_MMC_SndUsimReadFileReq( VOS_VOID )
 
     NAS_MMC_SetWaitSimFilesCnfFlg_SwitchOn(NAS_MML_READ_MNC_LENGTH_FILE_ID_FLG);
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     ulRet = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_UPLMN_SEL_WACT);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
     if (PS_USIM_SERVICE_AVAILIABLE == ulRet)
     {
@@ -2798,9 +1824,7 @@ VOS_VOID   NAS_MMC_SndUsimReadFileReq( VOS_VOID )
         NAS_MMC_SetWaitSimFilesCnfFlg_SwitchOn(NAS_MML_READ_UPLMN_SEL_FILE_ID_FLG);
     }
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     ulRet = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_OPLMN_SEL_WACT);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
     ulNvOplmnAvail = NAS_MML_IsNvimOplmnAvail();
     if ((PS_USIM_SERVICE_AVAILIABLE == ulRet)
@@ -2811,9 +1835,7 @@ VOS_VOID   NAS_MMC_SndUsimReadFileReq( VOS_VOID )
         NAS_MMC_SetWaitSimFilesCnfFlg_SwitchOn(NAS_MML_READ_OPLMN_SEL_FILE_ID_FLG);
     }
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     ulRet = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_HPLMN_WACT);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
     if (PS_USIM_SERVICE_AVAILIABLE == ulRet)
     {
@@ -2836,9 +1858,7 @@ VOS_VOID   NAS_MMC_SndUsimReadFileReq( VOS_VOID )
     else
     {
         /* EHPLMN特性开关打开时才需要获取 */
-        /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
         ulRet = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_EHPLMN);
-        /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
         if ( (VOS_TRUE == pstHplmnCfgInfo->ucEhplmnSupportFlg)
           && (PS_USIM_SERVICE_AVAILIABLE == ulRet))
@@ -2849,9 +1869,7 @@ VOS_VOID   NAS_MMC_SndUsimReadFileReq( VOS_VOID )
         }
     }
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     ulRet = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_EHPLMN_IND);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
     if (PS_USIM_SERVICE_AVAILIABLE == ulRet)
     {
@@ -2860,9 +1878,7 @@ VOS_VOID   NAS_MMC_SndUsimReadFileReq( VOS_VOID )
         NAS_MMC_SetWaitSimFilesCnfFlg_SwitchOn(NAS_MML_READ_EHPLMNPI_FILE_ID_FLG);
     }
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
     ulRet = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_RPLMN_LACT);
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
     if (PS_USIM_SERVICE_AVAILIABLE == ulRet)
     {
@@ -2892,9 +1908,7 @@ VOS_VOID   NAS_MMC_SndUsimReadFileReq( VOS_VOID )
 
         NAS_MMC_SetWaitSimFilesCnfFlg_SwitchOn(NAS_MML_READ_PS_KC_FILE_ID_FLG);
 
-        /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, begin */
         ulRet = NAS_USIMMAPI_IsServiceAvailable(NAS_USIM_SVR_PLMN_SELECTOR);
-        /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-29, end */
 
         if (PS_USIM_SERVICE_AVAILIABLE == ulRet)
         {
@@ -2926,30 +1940,7 @@ VOS_VOID   NAS_MMC_SndUsimReadFileReq( VOS_VOID )
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndUsimUpdateForbPlmnReq
- 功能描述  : 发起更新USIM文件内容请求到USIM模块
- 输入参数  : 希望更新的文件ID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月26日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月26日
-   作    者   : 张鹏 id:00214637
-   修改内容   : USIM对外接口函数变更的处理 ，
-                Client ID 到 PID的转换处理 ，入参封装成结构体。
- 3.日    期   : 2013年6月3日
-   作    者   : z00161729
-   修改内容   : SVLTE 和usim接口调整修改
- 4.日    期   : 2015年2月6日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndUsimUpdateForbPlmnReq(VOS_VOID)
 {
     VOS_UINT8                          *pucFileContent = VOS_NULL_PTR;          /* 指向File内容的指针                       */
@@ -3078,24 +2069,7 @@ VOS_VOID NAS_MMC_SndUsimUpdateForbPlmnReq(VOS_VOID)
     PS_MEM_FREE(WUEPS_PID_MMC, pucFileContent);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertSimPlmnToNasPLMN
- 功能描述  : 将SIM卡中的3字节格式PLMN转换为MCC和MNC分开的格式
- 输入参数  : aucEFplmn[3]
- 输出参数  : 无
- 返 回 值  :MMC_PLMN_ID_STRU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2010年1月21日
-   作    者   : likelai
-   修改内容   : 新生成函数
-
- 2.日    期   : 2011年7月13日
-   作    者   : zhoujun 40661
-   修改内容   : SIM卡内容更新到MML中
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ConvertSimPlmnToNasPLMN(
     NAS_MML_SIM_FORMAT_PLMN_ID          *pstSimPlmn,
     NAS_MML_PLMN_ID_STRU                *pstNasPlmn
@@ -3134,30 +2108,7 @@ VOS_VOID  NAS_MMC_ConvertSimPlmnToNasPLMN(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertNasPlmnToSimFormat
- 功能描述  : 将MCC和MNC分开的格式转换为Sim的3字节格式PLMN(LAI格式的PLMN)
-            (10.5.1.3 Location Area Identification)
-             8 7 6 5     4 3 2 1
-            Location Area Identification IEI       octet 1
-            MCC digit 2     MCC digit 1            octet 2
-            MNC digit 3     MCC digit 3            octet 3
-            MNC digit 2     MNC digit 1            octet 4
 
-            例如:230,02f (mcc:0x000302,mnc:0x0f0200)  --> 32f020
-
- 输入参数  : pGUNasPlmn,GUNAS格式的PLMN ID
- 输出参数  : pstSimPlmn:Sim格式的PLMN ID
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年8月6日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ConvertNasPlmnToSimFormat(
     NAS_MML_PLMN_ID_STRU               *pstGUNasPlmn,
     NAS_MML_SIM_FORMAT_PLMN_ID         *pstSimPlmn
@@ -3184,22 +2135,7 @@ VOS_VOID  NAS_MMC_ConvertNasPlmnToSimFormat(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConverPlmnInfoFromSim
- 功能描述  : 将SIM卡中保存的信息转换为内存中保存的Plmn Info的信息
- 输入参数  : pucData,       卡文件中的信息
-              ulPlmnNum，    卡文件中的PLMN个数
- 输出参数  : pstPlmnWithRat, plmn id的信息和接入技术
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月14日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ConverPlmnInfoFromSim(
     VOS_UINT8                          *pucUsimFileData,
     VOS_UINT32                          ulPlmnNum,
@@ -3237,21 +2173,7 @@ VOS_VOID  NAS_MMC_ConverPlmnInfoFromSim(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNeedSndStkSearchModeChgEvt
- 功能描述  : 判断是否需要给stk发送search mode改变事件，SVLTE形态下，如果没有CS域能力，无需上报该事件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:需要上报；VOS_FALSE:不需要上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月4日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNeedSndStkSearchModeChgEvt(VOS_VOID)
 {
     if (VOS_TRUE == NAS_MML_GetSvlteSupportFlag())
@@ -3270,22 +2192,7 @@ VOS_UINT32 NAS_MMC_IsNeedSndStkSearchModeChgEvt(VOS_VOID)
 }
 
 
-/* Added by l00208543 for STK升级 2013-07-23, begin */
-/*****************************************************************************
- Prototype    : NAS_MMC_ConvertSrchModeToStkSrchMode
- Description  : 将MMC的搜网类型转为上报给STK的搜网类型
- Input        : ucReselMode -- AUTO:0，MANUAL:1；
- Output       : None
- Return Value : 上报给STK的搜网类型
- Calls        :
- Called By    : NAS_MMC_SndStkSearchModeChgEvt
 
-  History        :
- 1.日    期   : 2013年7月23日
-   作    者   : l00208543
-   修改内容   : Created
-
-*****************************************************************************/
 
 TAF_PH_PLMN_SEL_MODE NAS_MMC_ConvertSrchModeToStkSrchMode(
                                          VOS_UINT8 ucReselMode
@@ -3305,37 +2212,12 @@ TAF_PH_PLMN_SEL_MODE NAS_MMC_ConvertSrchModeToStkSrchMode(
     }
 }
 
-/* Added by l00208543 for STK升级 2013-07-23, end */
 
-/*****************************************************************************
- Prototype    : NAS_MMC_SndStkSearchModeChgEvt
- Description  : 搜网模式变化上报USIM
- Input        : ucReselMode -- AUTO:0，MANUAL:1；
- Output       : None
- Return Value :
- Calls        :
- Called By    :
 
-  History        :
- 1.日    期   : 2009年12月17日
-   作    者   : x00115505
-   修改内容   : Created
- 2.日    期   : 2011年7月20日
-   作    者   : L00171473
-   修改内容   : V7R1 phase II 修改
- 3.日    期   : 2013年6月4日
-   作    者   : z00161729
-   修改内容   : SVLTE 和usim接口调整修改
- 4.日    期   : 2013年7月13日
-   作    者   : l00208543
-   修改内容   : STK升级项目
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndStkSearchModeChgEvt(
     VOS_UINT8                           ucReselMode
 )
 {
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, begin */
     VOS_UINT32                          ulRet;
     VOS_UINT32                          ulMsgLength;
     NAS_STK_SRCHMODE_CHG_EVENT_STRU    *pstSearchModeChgEvent = VOS_NULL_PTR;
@@ -3371,28 +2253,9 @@ VOS_VOID NAS_MMC_SndStkSearchModeChgEvt(
 
 
     return;
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, end */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateOPlmnInfoFromNvim
- 功能描述  : 读取NV中的OPLMN文件，并保存到MML全局变量中,该函数会覆盖MML中保存卡
-             文件中OPLMN信息的全局变量，即NV中用户设置的OPLMN列表与卡文件中的互斥
- 输入参数  :     VOS_UINT8                          *pucOPlmnData,
-                 VOS_UINT16                          usOPlmnNum
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年10月15日
-   作    者   : s00190137
-   修改内容   : 新生成函数
- 2.日    期    : 2013年11月26日
-   作    者    : s00190137
-   修改内容    : 将最大支持设置的OPLMN扩展到256个
-*****************************************************************************/
 VOS_VOID  NAS_MMC_UpdateOPlmnInfoFromNvim(
     VOS_UINT8                         *pucOPlmnData,
     VOS_UINT16                         usOPlmnNum
@@ -3419,31 +2282,13 @@ VOS_VOID  NAS_MMC_UpdateOPlmnInfoFromNvim(
 
 
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, Begin */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetUsimAllRefreshFileNumber
- 功能描述  : 获取g_astNasUsimAllRefreshFileID数组元素数目，最大不超过USIMM_MAX_REFRESH_FILE_NUM
- 输入参数  : 无
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月05日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-2.日    期   : 2015年07月30日
-  作    者   : c00318887
-  修改内容   : 卡接口变化，增加类型区分USIM，sim卡
-*****************************************************************************/
 VOS_UINT8  NAS_MMC_GetUsimAllRefreshFileNumber(VOS_VOID)
 {
     VOS_UINT8                   ucNumber;
     NAS_MML_SIM_TYPE_ENUM_UINT8 ucSimType = NAS_MML_GetSimType();
 
-    /* Modified by  for c00318887 for file refresh需要触发背景搜, 2015-7-30, begin */
     if (NAS_MML_SIM_TYPE_USIM == ucSimType)
     {
         ucNumber = sizeof(g_astNasUsimAllRefreshFileID)/sizeof(g_astNasUsimAllRefreshFileID[0]);
@@ -3456,33 +2301,15 @@ VOS_UINT8  NAS_MMC_GetUsimAllRefreshFileNumber(VOS_VOID)
     {
         ucNumber = 0;
     }
-    /* Modified by  for c00318887 for file refresh需要触发背景搜, 2015-7-30, end */
 
     return ucNumber;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetUsimRefreshFileNumber
- 功能描述  : 获取g_astNasUsimAllRefreshFileID数组元素中的file id
- 输入参数  : ucIndex---数组下标
- 输出参数  : file id
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月05日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-2.日    期   : 2015年07月30日
-  作    者   : c00318887
-  修改内容   : 卡接口变化，增加类型区分USIM，sim卡
-*****************************************************************************/
 VOS_UINT16  NAS_MMC_GetUsimAllRefreshFileId(VOS_UINT8 ucIndex)
 {
     NAS_MML_SIM_TYPE_ENUM_UINT8 ucSimType = NAS_MML_GetSimType();
 
-    /* Modified by  for c00318887 for file refresh需要触发背景搜, 2015-7-30, begin */
     if (NAS_MML_SIM_TYPE_USIM == ucSimType)
     {
         if (NAS_MMC_GetUsimAllRefreshFileNumber() <= ucIndex)
@@ -3505,28 +2332,9 @@ VOS_UINT16  NAS_MMC_GetUsimAllRefreshFileId(VOS_UINT8 ucIndex)
     {
         return USIMM_DEF_FILEID_BUTT;
     }
-    /* Modified by  for c00318887 for file refresh需要触发背景搜, 2015-7-30, end */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BuildRefreshFileList
- 功能描述  : 高优先级网络文件更新时构建更新文件结构
- 输入参数  : pstUsimRefreshInd  --- USIM 卡文件更新消息
- 输出参数  : pstRefreshFile     --- 统计实际更新的文件列表和个数
- 返 回 值  : 无
-             
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月28日
-   作    者   : c00318887
-   修改内容   : 新生成函数
- 2.日    期   : 2015年07月30日
-   作    者   : c00318887
-   修改内容   : 卡接口变化，增加类型区分USIM，sim卡
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_BuildRefreshFileList(
     USIMM_STKREFRESH_IND_STRU                  *pstUsimRefreshInd,
     NAS_MMC_USIMM_REFRESH_FILE_CONTENT_STRU    *pstRefreshFile
@@ -3557,7 +2365,6 @@ VOS_VOID NAS_MMC_BuildRefreshFileList(
         
     }
 
-    /* Modified by  for c00318887 for file refresh需要触发背景搜, 2015-7-30, begin */
     /* ALL FILE 类型时，认为FILE ID 是能触发高优先级搜网的文件，并且根据卡类型分开读 */  
     usNumber = NAS_MMC_GetUsimAllRefreshFileNumber();
     usIndex  = 0;
@@ -3581,9 +2388,7 @@ VOS_VOID NAS_MMC_BuildRefreshFileList(
     }
     
     pstRefreshFile->usEfNum = usIndex;
-    /* Modified by  for c00318887 for file refresh需要触发背景搜, 2015-7-30, end */
 }
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
 
 
 /*lint -restore */

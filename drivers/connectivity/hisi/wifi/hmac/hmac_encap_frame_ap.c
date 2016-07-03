@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_encap_frame_ap.c
-  版 本 号   : 初稿
-  作    者   : y00184180
-  生成日期   : 2013年6月28日
-  最近修改   :
-  功能描述   : AP模式组帧文件，AP模式特有帧的组帧
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年6月28日
-    作    者   : y00184180
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -53,22 +36,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 #if (_PRE_WLAN_FEATURE_PMF != _PRE_PMF_NOT_SUPPORT)
-/*****************************************************************************
- 函 数 名  : mac_get_assoc_comeback_time
- 功能描述  : 计算得到 assoc rsp 中所需的assoc comeback time
- 输入参数  : pst_mac_vap   : mac vap 指针
-             pst_hmac_user : hamc user 指针
- 输出参数  : 无
- 返 回 值  : 计算得到的assoc comeback time值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月28日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_get_assoc_comeback_time(mac_vap_stru *pst_mac_vap,
                                                               hmac_user_stru *pst_hmac_user)
 {
@@ -104,21 +72,7 @@ OAL_STATIC oal_uint32 hmac_get_assoc_comeback_time(mac_vap_stru *pst_mac_vap,
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_encap_asoc_rsp_ap
- 功能描述  : 组关联响应帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月9日
-    作    者   : z00241943
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_mgmt_encap_asoc_rsp_ap(
                 mac_vap_stru                   *pst_mac_ap,
                 oal_uint8                      *puc_sta_addr,
@@ -313,21 +267,7 @@ oal_uint32 hmac_mgmt_encap_asoc_rsp_ap(
     return us_asoc_rsp_len;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_mgmt_is_challenge_txt_equal
- 功能描述  : 判断两个challenge txt是否相等
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月29日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_mgmt_is_challenge_txt_equal(oal_uint8 *puc_data, oal_uint8 *puc_chtxt)
 {
 
@@ -362,26 +302,7 @@ OAL_STATIC OAL_INLINE oal_bool_enum_uint8  hmac_mgmt_is_challenge_txt_equal(oal_
     return OAL_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_encap_auth_rsp_get_user_idx
- 功能描述  : 获取user idx,如果用户不存在，且resend置位的话，将sta加入ap
- 输入参数  : 1.vap指针
-             2.sta的mac地址
-             3.是否为seq1标志位.如果为真，表示如果用户不存在,需要将sta加入ap
- 输出参数  : 1. puc_auth_resend 用户存在的情况下收到seq1,seq1判定为重传帧，
-                置位此标志
-             2. pus_user_index 返回获取到的user idx
 
- 返 回 值  :获取正常或者失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_err_code_enum  hmac_encap_auth_rsp_get_user_idx(mac_vap_stru *pst_mac_vap,
                                                 oal_uint8   *puc_mac_addr,
                                                 oal_uint8   uc_is_seq1,
@@ -479,24 +400,7 @@ oal_err_code_enum  hmac_encap_auth_rsp_get_user_idx(mac_vap_stru *pst_mac_vap,
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_encap_auth_rsp_seq1
- 功能描述  : 处理seq1的auth req
- 输入参数  : 1.auth_rsp_param 处理auth rsp所需的参数
 
- 输出参数  : 1.puc_code 错误码
-             2.pst_usr_ass_stat auth处理完成之后，置相应的user状态
-
- 返 回 值  :获取正常或者失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 hmac_ap_auth_process_code_enum_uint8   hmac_encap_auth_rsp_seq1(
                                                         hmac_auth_rsp_param_stru *pst_auth_rsp_param,
                                                         oal_uint8 *puc_code,
@@ -552,24 +456,7 @@ hmac_ap_auth_process_code_enum_uint8   hmac_encap_auth_rsp_seq1(
     return HMAC_AP_AUTH_BUTT;
 
 }
-/*****************************************************************************
- 函 数 名  : hmac_encap_auth_rsp_seq3
- 功能描述  : 处理seq3的auth req
- 输入参数  : 1.auth_rsp_param 处理auth rsp所需的参数
 
- 输出参数  : 1.puc_code 错误码
-             2.pst_usr_ass_stat auth处理完成之后，置相应的user状态
-
- 返 回 值  :获取正常或者失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 hmac_ap_auth_process_code_enum_uint8   hmac_encap_auth_rsp_seq3(hmac_auth_rsp_param_stru *pst_auth_rsp_param,
                                                 oal_uint8 *puc_code,
                                                 mac_user_asoc_state_enum_uint8 *pst_usr_ass_stat)
@@ -626,24 +513,7 @@ hmac_ap_auth_process_code_enum_uint8   hmac_encap_auth_rsp_seq3(hmac_auth_rsp_pa
     return HMAC_AP_AUTH_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_encap_auth_rsp_seq3
- 功能描述  : 处理seq3的auth req
- 输入参数  : 1.auth_rsp_param 处理auth rsp所需的参数数组
 
- 输出参数  : 1.puc_code 错误码
-             2.pst_usr_ass_stat auth处理完成之后，置相应的user状态
-
- 返 回 值  :获取正常或者失败
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 hmac_auth_rsp_fun hmac_encap_auth_rsp_get_func(oal_uint16 us_auth_seq)
 {
     hmac_auth_rsp_fun        st_auth_rsp_fun;
@@ -663,23 +533,7 @@ hmac_auth_rsp_fun hmac_encap_auth_rsp_get_func(oal_uint16 us_auth_seq)
     return st_auth_rsp_fun;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_encap_auth_rsp_support
- 功能描述  : 判断认证类型是否支持
- 输入参数  : 1.pst_hmac_vap vap指针
-             2. us_auth_type 认证类型
- 输出参数  :
 
- 返 回 值  :OAL_SUCC-支持，其他-不支持
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : z00260280
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_encap_auth_rsp_support(hmac_vap_stru *pst_hmac_vap, oal_uint16 us_auth_type)
 {
 
@@ -697,21 +551,7 @@ oal_uint32 hmac_encap_auth_rsp_support(hmac_vap_stru *pst_hmac_vap, oal_uint16 u
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_tid_clear
- 功能描述  : 删除hmac tid相关的信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月13日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_tid_clear(mac_vap_stru *pst_mac_vap, hmac_user_stru *pst_hmac_user)
 {
     mac_device_stru   *pst_device;
@@ -808,28 +648,7 @@ oal_void hmac_tid_clear(mac_vap_stru *pst_mac_vap, hmac_user_stru *pst_hmac_user
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_encap_auth_rsp_ap
- 功能描述  : 封装auth rsp帧
- 输入参数  : 1. vap指针
-             2. puc_auth_req auth_req
-             3. challenge txt
- 输出参数  : 1. pst_auth_rsp auth_rsp缓冲
 
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年6月28日
-    作    者   : t00231215
-    修改内容   : 新生成函数
-
-2.日    期   : 2014年1月10日
-    作    者   : z00260280
-    修改内容   : 重构
-
-*****************************************************************************/
 oal_uint16  hmac_encap_auth_rsp(mac_vap_stru *pst_mac_vap, oal_netbuf_stru *pst_auth_rsp, oal_netbuf_stru *pst_auth_req, oal_uint8 *puc_chtxt)
 {
     oal_uint16       us_auth_rsp_len        = 0;
@@ -941,7 +760,6 @@ oal_uint16  hmac_encap_auth_rsp(mac_vap_stru *pst_mac_vap, oal_netbuf_stru *pst_
     OAM_WARNING_LOG4(pst_mac_vap->uc_vap_id, OAM_SF_AUTH, "{hmac_encap_auth_rsp::user mac:%02X:XX:XX:%02X:%02X:%02X}",
                                 auc_addr2[0],auc_addr2[3],auc_addr2[4],auc_addr2[5]);
 
-    /* DTS2015092402932,判断对端mac地址是否为有效，不能为全0 */
     if(mac_addr_is_zero(auc_addr2))
     {
         OAM_WARNING_LOG4(pst_mac_vap->uc_vap_id, OAM_SF_AUTH, "{hmac_encap_auth_rsp::user mac:%02X:XX:XX:%02X:%02X:%02X is all 0 and invaild!}",

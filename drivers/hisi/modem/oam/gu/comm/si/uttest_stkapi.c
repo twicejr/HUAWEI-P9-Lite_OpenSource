@@ -1,15 +1,7 @@
 
 #include "siappstk.h"
 
-/*******************************************************************
-*测试项:发送消息失败
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_STK_MenuSelection_case1(void)
 {
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )
@@ -27,15 +19,7 @@ unsigned int uttest_SI_STK_MenuSelection_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:输入参数错误
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_STK_MenuSelection_case2(void)
 {
 #if ( FEATURE_MULTI_MODEM != FEATURE_ON )
@@ -49,15 +33,7 @@ unsigned int uttest_SI_STK_MenuSelection_case2(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:输入参数错误2
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_STK_MenuSelection_case3(void)
 {
 #if ( FEATURE_MULTI_MODEM != FEATURE_ON )
@@ -75,15 +51,7 @@ unsigned int uttest_SI_STK_MenuSelection_case3(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-*测试项:发送消息成功
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者:
-#    修改内容: 新建CASE
-*******************************************************************/
+
 unsigned int uttest_SI_STK_MenuSelection_case4(void)
 {
 #if ( FEATURE_MULTI_MODEM != FEATURE_ON )
@@ -102,15 +70,7 @@ unsigned int uttest_SI_STK_MenuSelection_case4(void)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_SI_STK_SetUpCallConfirm_001
-测试用例标题      : 用户输入的操作类型不正确
-预期结果          : 函数返回VOS_ERR
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : h59254
-  修改内容 : STK项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_STK_SetUpCallConfirm_case1(void)
 {
 	// 变量声明
@@ -133,15 +93,7 @@ unsigned int uttest_SI_STK_SetUpCallConfirm_case1(void)
     return VOS_OK;
 }
 
-/*******************************************************************
-测试用例编号      : Test_SI_STK_SetUpCallConfirm_002
-测试用例标题      : 消息发送成功
-预期结果          : 函数返回VOS_OK
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : h59254
-  修改内容 : STK项目开发
-*******************************************************************/
+
 unsigned int uttest_SI_STK_SetUpCallConfirm_case2(void)
 {
 	// 变量声明
@@ -166,15 +118,7 @@ unsigned int uttest_SI_STK_SetUpCallConfirm_case2(void)
 }
 
 
-/*******************************************************************
-测试用例编号      :
-测试用例标题      :
-预期结果          : 函数返回
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  :
-  修改内容 :
-*******************************************************************/
+
 unsigned int uttest_SI_STK_SendReqMsg_case1(void)
 {
 #if ( FEATURE_MULTI_MODEM == FEATURE_ON )

@@ -131,7 +131,6 @@ typedef struct tagND_NA
     UCHAR        ucDadReply; /* DAD reply flag */
 }ND_NA_S;
 
-/*Added by guojianjun178934, 接口状态变化或physical地址变化主动发送通告NA报文 , 2014/1/26   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 typedef struct tagND_NA_Timer_Node
 {
     SLL_NODE_S stSLLNode;
@@ -164,7 +163,6 @@ typedef struct tagND_NA_Timer_Node
 #define IP6_ND_NA_TIMER_EXPIRE(NA_TIMER, CUR_MS_H, CUR_MS_L)  \
   IP6_ND_TIMER_EXPIRE_BY_MS(CUR_MS_H, CUR_MS_L, (NA_TIMER)->ulExpireHigh, (NA_TIMER)->ulExpireLow)
 
-/* End of Added by guojianjun178934, 2014/1/26   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 
 
 #ifdef        __cplusplus

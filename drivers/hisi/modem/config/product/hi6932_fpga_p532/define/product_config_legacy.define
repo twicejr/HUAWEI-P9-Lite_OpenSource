@@ -210,7 +210,6 @@ CFG_FEATURE_RTC                                 = FEATURE_OFF
 
 CFG_FEATURE_RECONFIG                            = FEATURE_ON
 
-# 硬加密版本改制特性宏，E5 上打开，stick 等版本关闭。参见 matao00151948 的邮件
 CFG_FEATURE_HWENCRY_REWORK                      = FEATURE_OFF
 
 # 内存池管理单元

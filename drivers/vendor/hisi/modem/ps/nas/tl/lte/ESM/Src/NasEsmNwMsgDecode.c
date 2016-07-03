@@ -1,19 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasEsmNwMsgDecode.c
-    Description : EMM发给SM的网侧消息的公共处理
-    History     :
-     1.丁丽 00128736      2008-09-01  Draft Enact
-     2.杨茜惠 00135146    2008-12-18  Modify  BA8D00752
-     3.杨茜惠 00135146    2008-12-24  Modify  BA8D00795
-     4.孙兵 49683         2009-01-06  Modify  BA8D00870
-     5.杨茜惠 00135146    2009-03-06  Modify  BA8D01127
-     6.李洪00150010       2009-08-03  Modify  BJ9D01608
-     7.李洪00150010       2009-08-05  Modify  BJ9D01627
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -189,12 +174,7 @@ NAS_ESM_PF_CONPONET_TYPE_LEN_TABLE_STRU       g_EsmPFComponentTypeLenTable[] =
     {NAS_ESM_TFT_PF_COP_TYPE_FLOW_LABLE,                  3}
 };
 #define g_EsmPFComponentTypeLenTableSize (sizeof(g_EsmPFComponentTypeLenTable)/sizeof(NAS_ESM_PF_CONPONET_TYPE_LEN_TABLE_STRU))
-/*****************************************************************************
- Global Variable Name   : g_EsmDecodeAddFilterTftTable[]
- Description            : ADD TFT PF的component相关译码表定义
- History                :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 NAS_ESM_DECODE_ADD_FILTER_TFT_TABLE_STRU  g_EsmDecodeAddFilterTftTable[] =
 {
     {NAS_ESM_TFT_PF_COP_TYPE_IPV4_LOCAL_ADDR    , NAS_ESM_TFT_DecodePfCopTypeIpv4LocalAddr    },
@@ -287,18 +267,7 @@ const VOS_UINT32 g_EsmDecodeFailCausePrintTableSize =
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ESM_CheckIeLen
- Description     : 消息长度检查，并返回信元的长度
- Input           :NAS_ESM_MSG_IE_STRU                *pstEsmMsgIe
-                 VOS_UINT16                          usIeLen
- Output          : VOS_UINT16                          *pusIeValueLen
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2010-7-7  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_CheckIeLen
 (
     const NAS_ESM_MSG_IE_STRU          *pstEsmMsgIe,
@@ -337,19 +306,7 @@ VOS_UINT32  NAS_ESM_CheckIeLen
 
     return NAS_ESM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeMandatoryIei
- Description     : 必选信元解码
- Input           :NAS_ESM_MSG_IE_STRU                 *pstEsmMsgIe
-                  VOS_UINT8                             *pucRcvNwMsg
- Output          :
-                  VOS_UINT16                          *pulSum
-                  NAS_ESM_NW_MSG_STRU                 *pstNwMsgRecord
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
- History         :
-    1.luojian 00107747      2010-7-7  Draft Enact
 
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeMandatoryIei
 (
     const NAS_ESM_MSG_IE_STRU           *pstEsmMsgIe,
@@ -406,20 +363,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeMandatoryIei
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeOptinalIei
- Description     : 可选信元解码
- Input           :NAS_ESM_MSG_IE_STRU                 *pstOptionalIe
-                VOS_UINT16                          *pulSum
-                VOS_UINT8                           *pucOptinalMsg
-                NAS_ESM_NW_MSG_STRU                 *pstNwMsgRecord
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.luojian 00107747      2010-7-7  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeOptinalIei
 (
     const NAS_ESM_MSG_IE_STRU           *pstEsmMsgIe,
@@ -504,27 +448,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeOptinalIei
     return enRst;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeNwMsgIe
- Description     : 可选信元解析
- Input           :
 
-    VOS_UINT8                           ucOptinalIeMaxNum
-    VOS_UINT32                          ulRemainMsgLen
-    VOS_UINT8                           *pucOptinalMsg
-    NAS_ESM_MSG_IE_STRU                 *pstOptionalIe
-
- Output          :
-    VOS_UINT32                          *pulDecodeMsgLen
-    NAS_ESM_NW_MSG_STRU                 *pstNwMsgRecord
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
-
- History         :
-    1.luojian 00107747      2010-7-1  Draft Enact
-    2.niuxiufan 00181501    2012-7-23 modify 增加网络兼容性,对可选信元解析时忽略顺序
-                                             重复信元,只解析第一个
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 NAS_ESM_CAUSE_ENUM_UINT8    NAS_ESM_DecodeNwMsgIei
@@ -644,18 +568,7 @@ NAS_ESM_CAUSE_ENUM_UINT8    NAS_ESM_DecodeNwMsgIei
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_GetDecodeTableIndex
- Description     : 根据消息类型获取解码表的索引
- Input           :VOS_UINT8 enMsgType
-                  VOS_UINT32 *pulIndex
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.luojian 00107747      2010-7-8  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_GetDecodeTableIndex( NAS_ESMCN_MSG_TYPE_ENUM_UINT8 enMsgType, VOS_UINT32 *pulIndex )
 {
     VOS_UINT32                     ulLoop = NAS_ESM_NULL;
@@ -673,17 +586,7 @@ VOS_VOID NAS_ESM_GetDecodeTableIndex( NAS_ESMCN_MSG_TYPE_ENUM_UINT8 enMsgType, V
      return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeNwMsgValue
- Description     : 解码具体消息
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.luojian 00107747      2010-7-8  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeNwMsgValue
 (
     VOS_UINT8                           *pucMsg,
@@ -754,19 +657,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeNwMsgValue
 
 }
 
-/*****************************************************************************
-  Function Name  : NAS_ESM_DecodeNwMsg()
-  Description    : ESM模块解析空口消息函数
-  Input          : VOS_UINT8             *pucMsg,
-                   VOS_UINT32         *ulMsgLen,
-                   NAS_ESM_NW_MSG_STRU *pstMsgIE
-  Output         : VOS_VOID
-  Return Value   : VOS_VOID
 
-  History        :
-  1.聂州渝00108792  2008-09-16  Draft Enact
-  2.lihong00150010   2009-07-24  Modify
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeNwMsg(VOS_UINT8 *pucMsg,
                                          VOS_UINT32 *pulMsgLen,
                                          NAS_ESM_NW_MSG_STRU *pstMsgIE)
@@ -840,17 +731,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeNwMsg(VOS_UINT8 *pucMsg,
     return enEsmCause;
 
 }
-/*****************************************************************************
-  Function Name  : NAS_ESM_DecodeNwMsgGetEsmCause()
-  Description    : ESM模块解析空口消息函数,返回esm原因值
-  Input          : VOS_UINT8             *pucMsg,
-                   VOS_UINT32         *ulMsgLen,
-  Output         : VOS_VOID
-  Return Value   : VOS_UINT8
 
-  History        :
-   1.leixiantiao 00258641  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_DecodeNwEsmMsgGetEsmCause(VOS_UINT8 *pucMsg,
                                          VOS_UINT32 ulMsgLen,
                                          VOS_UINT8 *enEsmCause)
@@ -941,20 +822,7 @@ VOS_UINT32 NAS_ESM_DecodeNwEsmMsgGetEsmCause(VOS_UINT8 *pucMsg,
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeTftNoOperation
- Description     : 解析TAD码为No Operation时的packet filter内容
- Input           :VOS_UINT8                     ucPfCnt
-                  NAS_ESM_NW_MSG_STRU           *pstMsgIE
-                  VOS_UINT8                     *pucMsg
-                  VOS_UINT8                     *pucTftLength
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong 00150010      2010-05-25  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeTftNoOperation
 (
     NAS_ESM_NW_MSG_STRU                *pstMsgIE,
@@ -988,20 +856,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeTftNoOperation
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeTftDeleteFilter
- Description     : 解析TAD码为Delete packet filter时的packet filter内容
- Input           :VOS_UINT8                     ucPfCnt
-                  NAS_ESM_NW_MSG_STRU           *pstMsgIE
-                  VOS_UINT8                     *pucMsg
-                  VOS_UINT8                     *pucTftLength
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong 00150010      2010-05-25  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeTftDeleteFilter
 (
     NAS_ESM_NW_MSG_STRU                *pstMsgIE,
@@ -1028,21 +883,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeTftDeleteFilter
 
     return NAS_ESM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeFilterContent
- Description     : 根据TAD码分情况译码TFT
- Input           :VOS_UINT8                     ucPfCnt
-                  NAS_ESM_NW_MSG_STRU           *pstMsgIE
-                  VOS_UINT8                     *pucMsg
-                  VOS_UINT8                     *pucTftLength
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.yangqianhui 00135146      2009-7-15  Draft Enact
-    2.chengmin 00285307         2015-3-23  mod for M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeFilterContent
 (
     NAS_ESM_NW_MSG_STRU           *pstMsgIE,
@@ -1084,17 +925,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeFilterContent
     return enEsmCause;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeTftAddFilter
- Description     : 解析TAD码为Add packet filter时的packet filter内容
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.yangqianhui 00135146      2009-7-15  Draft Enact
-    2.chengmin 00285307         2015-3-23  Mod for M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeTftAddFilter
 (
     NAS_ESM_NW_MSG_STRU                *pstMsgIE,
@@ -1163,19 +994,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeTftAddFilter
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidateTftLenAddFilter
- Description     : 判断Tad码为Add Packet Filter时，消息的长度是否合法
- Input           : pucMsg      -- 空口消息码流
-                   ucTftLength -- TFT结构长度
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.liuwenyu 00143951      2010-5-25  Draft Enact
-    2.chengmin00285307       2015-3-23  Mod For M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftLenAddFilter
 (
     VOS_UINT8                          *pucMsg,
@@ -1258,19 +1077,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftLenAddFilter
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidateTftLenNoOperation
- Description     : 判断Tad码为No Operation 时，消息的长度是否合法
- Input           : pucMsg      -- 空口消息码流
-                   ucTftLength -- TFT结构长度
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
-
- History         :
-    1.liuwenyu 00143951      2010-5-25  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftLenNoOperation
 (
     VOS_UINT8                          *pucMsg,
@@ -1306,19 +1113,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftLenNoOperation
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidateTftLenDeleteTft
- Description     : 判断Tad码为Delete Tft 时，消息的长度是否合法
- Input           : pucMsg      -- 空口消息码流
-                   ucTftLength -- TFT结构长度
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
-
- History         :
-    1.liuwenyu 00143951      2010-5-25  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftLenDeleteTft
 (
     VOS_UINT8                          *pucMsg,
@@ -1345,19 +1140,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftLenDeleteTft
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidateTftLenDeleteFilter
- Description     : 判断Tad码为Delete Packet Filter 时，消息的长度是否合法
- Input           : pucMsg      -- 空口消息码流
-                   ucTftLength -- TFT结构长度
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
-
- History         :
-    1.liuwenyu 00143951      2010-5-25  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftLenDeleteFilter
 (
     VOS_UINT8                          *pucMsg,
@@ -1434,18 +1217,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftLen
     return enEsmCause;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsExistSamePfIdInTft
- Description     : 判断TFT中是否有相同PF id的两个PF
- Input           : ulPfNum -- packet filter 数目
-                   pstTFT  -- packet filter 数组的首地址
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.liuwenyu 00143951      2010-05-26  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ESM_IsExistSamePfIdInTft
 (
     VOS_UINT32                          ulPfNum,
@@ -1468,17 +1240,7 @@ VOS_UINT32 NAS_ESM_IsExistSamePfIdInTft
 
     return NAS_ESM_FAILURE;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidateTftIeAfterDecode
- Description     : TFT译码结束之后，马上对译码后的TFT信元进行合法性检测
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2010-6-7  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftIeAfterDecode
 (
     const NAS_ESM_NW_MSG_STRU          *pstMsgIE
@@ -1542,21 +1304,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateTftIeAfterDecode
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeNwApnAmbrValue
- Description     : APN-AMBR信元解码
- Input           : VOS_UINT16  usMsgLen
-                   VOS_UINT8 *pucMsg
- Output          :
-                   NAS_ESM_NW_MSG_STRU   *pstMsgIE
 
- Return          : VOS_UINT32
-
- History         :
-    1.luojian 00107747      2010-7-2  Draft Enact
-    2.chengmin00285307      2015-3-19 Mod For M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeNwTftValue
 (
     VOS_UINT16                          usMsgLen,
@@ -1609,17 +1357,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeNwTftValue
 
     return NAS_ESM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_EpsQosRateDecodeThirdByte
- Description     : 当Qos的0~7位不为0时，将QoS速率从16位格式变为32位格式
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2009-4-23  Draft Enact
-    2.wangchen 00209181     2014-09-02 Modify:R11
-*****************************************************************************/
 VOS_VOID  NAS_ESM_EpsQosRateDecodeLowByte
 (
     VOS_UINT8                           ucLow,
@@ -1650,17 +1388,7 @@ VOS_VOID  NAS_ESM_EpsQosRateDecodeLowByte
 
     *pulRate32 = ucLow;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_EpsQosRateDecodeThirdByte
- Description     : 当Qos的8~15位不为0时，将QoS速率从16位格式变为32位格式
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2009-4-23  Draft Enact
-    2.wangchen 00209181     2014-09-02 Modify:R11
-*****************************************************************************/
 VOS_VOID  NAS_ESM_EpsQosRateDecodeHighByte
 (
     VOS_UINT8                           ucHigh,
@@ -1693,17 +1421,7 @@ VOS_VOID  NAS_ESM_EpsQosRateDecodeHighByte
 
     *pulRate32 = NAS_ESM_QOS_RATE_256MB;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_EpsQosRateDecodeThirdByte
- Description     : 当Qos的16~23位不为0时，将QoS速率从16位格式变为32位格式
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2009-4-23  Draft Enact
-    2.wangchen 00209181     2014-09-02 Modify:R11
-*****************************************************************************/
 VOS_VOID  NAS_ESM_EpsQosRateDecodeThirdByte
 (
     VOS_UINT8                           ucThird,
@@ -1736,17 +1454,7 @@ VOS_VOID  NAS_ESM_EpsQosRateDecodeThirdByte
     *pulRate32 = NAS_ESM_QOS_RATE_10GB;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_EpsQosRateDecodeTo32
- Description     : 将QoS速率从16位格式变为32位格式
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong 00150010      2009-4-23  Draft Enact
-    2.wangchen 00209181     2014-09-02 Modify:R11
-*****************************************************************************/
 VOS_VOID  NAS_ESM_EpsQosRateDecodeTo32
 (
     VOS_UINT32                          ulRate32,
@@ -1801,19 +1509,7 @@ VOS_VOID  NAS_ESM_EpsQosRateDecodeTo32
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoIpItem
- Description     : 译码PCO信元中的IP项，如P-CSCF IPV4 ADDRESS，P-CSCF IPV6
-                   ADDRESS，DNS SERVER IPV4 ADDRESS,DNS SERVER IPV6 ADDRESS
-                   等
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2010-6-13  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpItem
 (
     const VOS_UINT8                     *pucMsg,
@@ -1854,19 +1550,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpItem
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoIpv4Item
- Description     : 译码PCO信元中的IP项，如P-CSCF IPV4 ADDRESS，P-CSCF IPV6
-                   ADDRESS，DNS SERVER IPV4 ADDRESS,DNS SERVER IPV6 ADDRESS
-                   等
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2010-6-13  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv4Item
 (
     const VOS_UINT8                     *pucMsg,
@@ -1898,18 +1582,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv4Item
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoIpv6Item
- Description     : 译码PCO信元中的IP项，如P-CSCF IPV6 ADDRESS，DNS SERVER IPV6 ADDRESS
-                   等
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2010-6-13  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv6Item
 (
     const VOS_UINT8                     *pucMsg,
@@ -1941,19 +1614,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv6Item
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoIpv6Dns
- Description     : 译码PCO信元中的IPV6 DNS SERVER
-                   等
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.wangchen 00209181     2014-09-26  Draft Enact
-    2.chengmin 00285307     2015-04-14  Mod for M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv6Dns
 (
     const VOS_UINT8                    *pucTmpMsg,
@@ -1992,19 +1653,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv6Dns
 
     return NAS_ESM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoIpv4Dns
- Description     : 译码PCO信元中的IPV4 DNS SERVER
-                   等
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.wangchen 00209181     2014-09-26  Draft Enact
-    2.chengmin 00285307     2014-04-14  Mod For M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv4Dns
 (
     const VOS_UINT8                    *pucTmpMsg,
@@ -2041,19 +1690,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv4Dns
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoIpv4Pcscf
- Description     : 译码PCO信元中的IPV4 P-CSCF
-                   等
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.wangchen 00209181     2014-09-26  Draft Enact
-    2.chengmin 00285307     2015-04-14  Mod For M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv4Pcscf
 (
     const VOS_UINT8                    *pucTmpMsg,
@@ -2089,19 +1726,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv4Pcscf
     *pulSum += ulSum;
     return NAS_ESM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoIpv6Pcscf
- Description     : 译码PCO信元中的IPV6 P-CSCF
-                   等
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.wangchen 00209181     2014-09-26  Draft Enact
-    2.chengmin 00285307     2015-04-14  MOd For M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv6Pcscf
 (
     const VOS_UINT8                    *pucTmpMsg,
@@ -2137,18 +1762,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoIpv6Pcscf
     *pulSum += ulSum;
     return NAS_ESM_CAUSE_SUCCESS;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoIpv6Pcscf
- Description     : 译码PCO信元中的IPV6 P-CSCF
-                   等
- Input           : None
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.wangchen 00209181     2014-09-26  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeLocalAddress
 (
     const VOS_UINT8                    *pucTmpMsg,
@@ -2177,17 +1791,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeLocalAddress
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoBcm
- Description     : 译码PCO信元中的BCM
- Input           : pucMsg
- Output          : pstPco
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2011-04-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ESM_DecodePcoBcm
 (
     const VOS_UINT8                     *pucMsg,
@@ -2225,18 +1829,7 @@ VOS_VOID  NAS_ESM_DecodePcoBcm
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidatePcoLen
- Description     : 判断IPCP信元长度的合法性
- Input           : pucMsg       -- 空口消息码流
-                   ucIpcpLength -- IPCP结构长度
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2010-09-13  Draft Enact
-    2.yangfan 00159566    2011-06-03  Modify
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateIpcpLen
 (
     const VOS_UINT8                    *pucMsg
@@ -2303,17 +1896,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidateIpcpLen
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_IsIpcpTypeValid
- Description     : 判断IPCP类型是否合法
- Input           : ucIpcpType       -- IPCP类型
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2010-09-13  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ESM_IsIpcpTypeValid
 (
     VOS_UINT8                          ucIpcpType
@@ -2327,17 +1910,7 @@ VOS_UINT32  NAS_ESM_IsIpcpTypeValid
 
     return NAS_ESM_FAILURE;
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_CheckIpAddrIsEmpty
- Description     : 检查IP地址是否为空
- Input           :
- Output          : None
- Return          : BOOL
 
- History         :
-    1.niuxiufan 00181501      2012-10-10  Draft Enact
-
-*****************************************************************************/
 
 VOS_UINT8 NAS_ESM_CheckIpv4AddrIsEmpty(const NAS_ESM_IPV4_ADDR_STRU *pstIpAddr)
 {
@@ -2352,17 +1925,7 @@ VOS_UINT8 NAS_ESM_CheckIpv4AddrIsEmpty(const NAS_ESM_IPV4_ADDR_STRU *pstIpAddr)
     return PS_FALSE;
 
 }
-/*****************************************************************************
- Function Name   : NAS_ESM_OptimizeDnsServer
- Description     : 重新组合DNS
- Input           :
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.niuxiufan 00181501      2012-10-10  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ESM_OptimizeDnsServer
 (
     NAS_ESM_CONTEXT_PCO_STRU            *pstPco
@@ -2406,17 +1969,7 @@ VOS_VOID NAS_ESM_OptimizeDnsServer
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeIpcpOptionContent
- Description     : 解码IPCP Option内容
- Input           :
- Output          : None
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.niuxiufan 00181501      2012-10-10  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeIpcpOptionContent
 (
     const VOS_UINT8                     *pucMsg,
@@ -2538,54 +2091,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeIpcpOptionContent
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeIpcpContent
- Description     : 译码IPCP的码流
-IPCP
- 0                   1                   2                   3
- 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-|     Code      |  Identifier   |            Length             |
-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-| Options ...
-+-+-+-+-+
 
-IP:
-  0                   1                   2                   3
-  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |     Type      |    Length     |           IP-Address
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-         IP-Address (cont)       |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-DNS Server Address
-  0                   1                   2                   3
-  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |     Type      |    Length     |      Primary-NBNS-Address
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-    Primary-NBNS-Address (cont)  |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
-NBNS Server Address
-  0                   1                   2                   3
-  0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
- |     Type      |    Length     |      Secondary-NBNS-Address
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-   Secondary-NBNS-Address (cont) |
- +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
-
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.sunbing49683      2010-7-15  Draft Enact
-    2.yangfan00159566   2011-6-2   Modify
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeIpcpContent
 (
     const VOS_UINT8                     *pucMsg,
@@ -2625,19 +2131,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeIpcpContent
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ValidatePcoLen
- Description     : 判断PCO信元长度的合法性
- Input           : pucMsg      -- 空口消息码流
-                   ucPcoLength -- PCO结构长度
- Output          : usDecodeLen -- 要解码的长度
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2010-09-13  Draft Enact
-    2.chengmin00285307    2015-03-19  Mod For M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidatePcoLen
 (
     const VOS_UINT8                    *pucMsg,
@@ -2706,20 +2200,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_ValidatePcoLen
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePcoContent
- Description     : 译码PCO内容
- Input           : pucMsg---------------------空口消息码流
-                   pstMsgIE-------------------译码后的空口消息
- Output          : pulIndex-------------------此函数译码的消息长度指针
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.lihong00150010      2010-6-13  Draft Enact
-    2.niuxiufan 00181501  2012-4-23  Modify DTS2012042104730
-    3.chengmin00285307    2015-3-19  Mod For M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoContent
 (
     VOS_UINT16                          usMsgLen,
@@ -2851,19 +2332,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodePcoContent
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_DecodeNwPco()
- Description    : SM模块解析PCO信息
- Input          :
 
- Output         : VOS_VOID
- Return Value   : VOS_VOID
-
- History        :
-      1.聂州渝00108792  2008-09-16  Draft Enact
-      2.lihong00150010  2009-11-23  Modify
-      3.chengmin00285307 2015-3-19  Mod For M Project
-*****************************************************************************/
 /*lint -e415 -e416 -e661 -e662*/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeNwPco
 (
@@ -2901,19 +2370,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeNwPco
     return NAS_ESM_CAUSE_SUCCESS;
 }/*lint +e415 +e416 +e661 +e662*/
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeNwPDNValue
- Description     : PDN地址解码
- Input           :VOS_UINT16             usMsgLen
-                VOS_UINT8             *pucMsg
-                NAS_ESM_NW_MSG_STRU   *pstMsgIE
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2010-7-7  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeNwPDNValue
 (
     VOS_UINT16                          usMsgLen,
@@ -2989,19 +2446,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeNwPDNValue
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeNwAPNValue
- Description     : APN Value解码
- Input           :VOS_UINT16             usMsgLen
-                VOS_UINT8             *pucMsg
-                NAS_ESM_NW_MSG_STRU   *pstMsgIE
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2010-7-7  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeNwAPNValue
 (
     VOS_UINT16                          usMsgLen,
@@ -3224,17 +2669,7 @@ VOS_VOID NAS_ESM_SdfQosDlGMaxRateExt2Tran
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeIpv4LocalAddr
- Description     : 译码TFT PF COMPONENT的IPV4 LOCAL地址
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeIpv4LocalAddr
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3246,17 +2681,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeIpv4LocalAddr
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeIpv6LocalAddr
- Description     : 译码TFT PF COMPONENT的IPV6 LOCAL地址
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeIpv6LocalAddr
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3268,17 +2693,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeIpv6LocalAddr
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeIpv4Addr
- Description     : 译码TFT PF COMPONENT的IPV4地址
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeIpv4Addr
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3300,17 +2715,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeIpv4Addr
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeIpv6Addr
- Description     : 译码TFT PF COMPONENT的IPV6地址
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeIpv6Addr
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3356,17 +2761,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeIpv6Addr
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeProtocolId
- Description     : 译码TFT PF COMPONENT的ProtocolId
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeProtocolId
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3380,17 +2775,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeProtocolId
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeSingleLocalPort
- Description     : 译码TFT PF COMPONENT的SingleLocalPort
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeSingleLocalPort
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3405,17 +2790,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeSingleLocalPort
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeLocalPortRange
- Description     : 译码TFT PF COMPONENT的LocalPortRange
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeLocalPortRange
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3432,17 +2807,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeLocalPortRange
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeSingleRemotePort
- Description     : 译码TFT PF COMPONENT的SingleRemotePort
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeSingleRemotePort
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3457,17 +2822,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeSingleRemotePort
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeRemotePortRange
- Description     : 译码TFT PF COMPONENT的RemotePortRange
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeRemotePortRange
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3484,17 +2839,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeRemotePortRange
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeSpi
- Description     : 译码TFT PF COMPONENT的Spi
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeSpi
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3515,17 +2860,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeSpi
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeTos
- Description     : 译码TFT PF COMPONENT的Tos
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeTos
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3540,17 +2875,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeTos
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_TFT_DecodePfCopTypeFlowLable
- Description     : 译码TFT PF COMPONENT的FlowLable
- Input           : NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
-                   const VOS_UINT8                    *pucTFTMsg,
-                   VOS_UINT8                           ucCnt
- Output          : None
- Return          : VOS_VOID
- History         :
-    1.sunjitan 00193151      2015-04-25  Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_TFT_DecodePfCopTypeFlowLable
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -3567,20 +2892,7 @@ VOS_VOID NAS_ESM_TFT_DecodePfCopTypeFlowLable
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SdfQosRateTran
- Description     : SDF QoS速率转换
- Input           : pucTmpMsg
-                &ulIndex
-                &usULMaxRateTmp
-                &usDLMaxRateTmp
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.y00135146      2009-9-30  Draft Enact
-    2.wangchen 00209181 2014-09-02 Modify:R11
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_SdfQosRateTran
 (
     VOS_UINT8                           ucTmpLength,
@@ -3645,17 +2957,7 @@ VOS_VOID NAS_ESM_MapNwQciToStandardQci
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_CheckNwSdfQosLen
- Description     : 验证QOS 长度的合法性
- Input           : VOS_UINT32 ulMsgLen
- Output          : VOS_UINT32 *ulDecodeLen
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.chengmin00285307 2015-3-25 Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_CheckNwSdfQosLen
 (
     VOS_UINT16                           usMsgLen,
@@ -3704,19 +3006,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_CheckNwSdfQosLen
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeNwSdfQosValue
- Description     : SdfQos解码
- Input           :  VOS_UINT16             usMsgLen
-                    VOS_UINT8             *pucMsg
- Output          :  NAS_ESM_NW_MSG_STRU   *pstMsgIE
- Return          : VOS_UINT32
 
- History         :
-    1.luojian 00107747      2010-7-7  Draft Enact
-    2.yangqianhui 00135146  2010-07-08  Story Key:V200R002C01-429 作为UE，在不能接受网络携带的QCI时自动分配的QCI只能内部使用，和网络交互仍然使用网络的QCI
-    3.chengmin00285307 2015-3-19 Mod For M Project
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeNwSdfQosValue
 (
     VOS_UINT16                          usMsgLen,
@@ -3775,18 +3065,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeNwSdfQosValue
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_CheckNwApnAmbr
- Description     : 验证APN AMBR的合法性
- Input           : VOS_UINT32 ulMsgLen
- Output          : VOS_UINT32 *ulDecodeLen
- Return          : NAS_ESM_CAUSE_ENUM_UINT8
 
- History         :
-    1.y00135146      2009-10-12  Draft Enact
-    2.chengmin00285307 2015-3-19 Mod For M Project
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_CheckNwApnAmbr
 (
     VOS_UINT16                           ulMsgLen,
@@ -3833,20 +3112,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_CheckNwApnAmbr
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeNwApnAmbrValue
- Description     : APN-AMBR信元解码
- Input           : VOS_UINT16  usMsgLen
-                   VOS_UINT8 *pucMsg
- Output          :
-                   NAS_ESM_NW_MSG_STRU   *pstMsgIE
 
- Return          : VOS_UINT32
-
- History         :
-    1.luojian 00107747      2010-7-2  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeNwApnAmbrValue
 (
     VOS_UINT16                          usMsgLen,
@@ -3909,19 +3175,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeNwApnAmbrValue
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeEsmCause
- Description     : ESM CAUSE信元解码
- Input           :VOS_UINT16  usMsgLen
-                  VOS_UINT8 *pucMsg
 
- Output          : NAS_ESM_NW_MSG_STRU   *pstMsgIE
- Return          : VOS_UINT32
-
- History         :
-    1.luojian 00107747      2010-7-2  Draft Enact
-
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeEsmCause
 (
     VOS_UINT16                          usMsgLen,
@@ -3941,18 +3195,7 @@ NAS_ESM_CAUSE_ENUM_UINT8  NAS_ESM_DecodeEsmCause
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_DecodeAddOneFilterTFTCheckItemLen()
- Description    : SM模块解析ADD FILTER TFT信息各子项时检查长度
- Input          :NAS_ESM_CONTEXT_TFT_STRU   *pstTFTInfo,
-                 NAS_ESM_MSG_IE_COMMON_STRU *pstTFTAddr
 
- Output         : VOS_VOID
- Return Value   : NAS_ESM_CAUSE_ENUM_UINT8
-
- History        :
-      1.chengmin 00285307 2015-03-19 Draft Enact
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeAddOneFilterTFTCheckItemLen
 (
     VOS_UINT8                     ucItemId,
@@ -3987,19 +3230,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeAddOneFilterTFTCheckItemLen
 
 
 
-/*****************************************************************************
- Function Name  : NAS_ESM_DecodeIpv4LocalAddr()
- Description    : 解析IPV4类型的LOCAL IP地址
- Input          :NAS_ESM_CONTEXT_TFT_STRU   *pstTFTInfo,
-                 NAS_ESM_MSG_IE_COMMON_STRU *pstTFTAddr
 
- Output         : VOS_VOID
- Return Value   : NAS_ESM_CAUSE_ENUM_UINT8
-
- History        :
-      1.wangchen 00209181   2014-09-28 Draft Enact
-      2.wangchen 00209181   2015-06-23 Modify:R11
-*****************************************************************************/
 VOS_VOID NAS_ESM_DecodeIpv4LocalAddr
 (
     NAS_ESM_CONTEXT_TFT_STRU            *pstTFTInfo,
@@ -4037,19 +3268,7 @@ VOS_VOID NAS_ESM_DecodeIpv4LocalAddr
     }
     return;
 }
-/*****************************************************************************
- Function Name  : NAS_ESM_DecodeIpv6LocalAddr()
- Description    : 解析IPV4类型的LOCAL IP地址
- Input          :NAS_ESM_CONTEXT_TFT_STRU   *pstTFTInfo,
-                 NAS_ESM_MSG_IE_COMMON_STRU *pstTFTAddr
 
- Output         : VOS_VOID
- Return Value   : NAS_ESM_CAUSE_ENUM_UINT8
-
- History        :
-      1.wangchen 00209181   2014-09-28 Draft Enact
-      2.wangchen 00209181   2015-06-23 Modify:R11
-*****************************************************************************/
 VOS_VOID NAS_ESM_DecodeIpv6LocalAddr
 (
     NAS_ESM_CONTEXT_TFT_STRU            *pstTFTInfo,
@@ -4085,20 +3304,7 @@ VOS_VOID NAS_ESM_DecodeIpv6LocalAddr
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_DecodeAddOneFilterTFT()
- Description    : SM模块解析ADD FILTER TFT信息并保存函数
- Input          :NAS_ESM_CONTEXT_TFT_STRU   *pstTFTInfo,
-                 NAS_ESM_MSG_IE_COMMON_STRU *pstTFTAddr
 
- Output         : VOS_VOID
- Return Value   : NAS_ESM_CAUSE_ENUM_UINT8
-
- History        :
-      1.杨茜惠   00135146  2009-02-12  Draft Enact
-      2.chengmin 00285307  2015-03-19  Mod for M Project
-      3.sunjitan 00193151  2015-04-25  Modify for R11
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeAddOneFilterTFT
 (
     NAS_ESM_CONTEXT_TFT_STRU           *pstTFTInfo,
@@ -4183,17 +3389,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeAddOneFilterTFT
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeLlcSapi
- Description     : LLC SAPI解码 (合法性由GU模的SM来做)
- Input           :  VOS_UINT16             usMsgLen
-                    VOS_UINT8             *pucMsg
- Output          :  NAS_ESM_NW_MSG_STRU   *pstMsgIE
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-04-26  Draft Enact
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeLlcSapi
 (
     VOS_UINT16                          usMsgLen,
@@ -4213,17 +3409,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeLlcSapi
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodePacketFlowId
- Description     : Packet Flow Identifier解码 (合法性由GU模的SM来做)
- Input           :  VOS_UINT16             usMsgLen
-                    VOS_UINT8             *pucMsg
- Output          :  NAS_ESM_NW_MSG_STRU   *pstMsgIE
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-04-26  Draft Enact
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodePacketFlowId
 (
     VOS_UINT16                          usMsgLen,
@@ -4244,17 +3430,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodePacketFlowId
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeRadioPriority
- Description     : Radio Priority解码
- Input           :  VOS_UINT16             usMsgLen
-                    VOS_UINT8             *pucMsg
- Output          :  NAS_ESM_NW_MSG_STRU   *pstMsgIE
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-04-27  Draft Enact
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeRadioPriority
 (
     VOS_UINT16                          usMsgLen,
@@ -4281,17 +3457,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeRadioPriority
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeTransactionId
- Description     : Transaction identifier解码
- Input           :  VOS_UINT16             usMsgLen
-                    VOS_UINT8             *pucMsg
- Output          :  NAS_ESM_NW_MSG_STRU   *pstMsgIE
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-04-27  Draft Enact
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeTransactionId
 (
     VOS_UINT16                          usMsgLen,
@@ -4343,17 +3509,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeTransactionId
     return NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_DecodeNegotiatedQos
- Description     : Negotiated Qos解码(代码取自GU模)
- Input           :  VOS_UINT16             usMsgLen
-                    VOS_UINT8             *pucMsg
- Output          :  NAS_ESM_NW_MSG_STRU   *pstMsgIE
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-04-27  Draft Enact
-*****************************************************************************/
 NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeNegotiatedQos
 (
     VOS_UINT16                          usMsgLen,
@@ -4486,18 +3642,7 @@ NAS_ESM_CAUSE_ENUM_UINT8 NAS_ESM_DecodeNotificationIndicator
     return  NAS_ESM_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_SndOmLogCnMsgDecodeFail
- Description     : ESM空口信元解析失败，可维可测上报
- Input           : enIeType 信元类型
-                   enCause  失败原因
-                   ulValue  失败值
- Output          : None
- Return          : None
 
- History         :
-    1.chengmin 00285307      2015-6-20  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ESM_SndOmLogCnMsgDecodeFail
 (
     NAS_ESM_CN_MSG_IE_TYPE_ENUM_UINT32                  enIeType,

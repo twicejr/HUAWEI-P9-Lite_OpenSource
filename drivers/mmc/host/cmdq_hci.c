@@ -580,7 +580,11 @@ static int cmdq_request(struct mmc_host *mmc, struct mmc_request *mrq)
 		}
 
 		if (cq_host->ops->card_busy) {
-			waitbusy_timeout = 1000000;
+			/*some dcmd such as secure trim will cost long time
+			 *set the timeout time to 10s,the same with the timeout
+			 *set in emmc5.0;
+			 */
+			waitbusy_timeout = 10000000;
 			while (1) {
 				busy_status = cq_host->ops->card_busy(mmc);
 				if (!busy_status)

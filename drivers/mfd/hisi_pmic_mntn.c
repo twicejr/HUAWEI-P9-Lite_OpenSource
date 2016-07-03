@@ -984,10 +984,66 @@ static int hisi_ocp_mold_switch_initial(struct platform_device *pdev, PMIC_MNTN_
     return ret;
 }
 
+static void uv_mntn_work(struct work_struct *work)
+{
+	char battery_capacity_info[16] = {0};
+	PMIC_MNTN_DESC *pmic_mntn = NULL;
+	long battery_capacity = 0;
+	mm_segment_t fs = 0;
+	struct irq_desc *desc = NULL ;
+	/* 0:mask; 1:unmask; 2:undefined */
+	static int uv_irq_flag = 2;
+	static int battery_info_fd = -1;
+
+	pmic_mntn = container_of(work, PMIC_MNTN_DESC, uv_mntn_delayed_work.work);
+
+	desc = irq_to_desc(pmic_mntn->uv_irq);
+	if (!desc) {
+		pr_err("[%s]irq_to_desc failed\n", __func__);
+		return ;
+	}
+
+	fs = get_fs();
+	set_fs(KERNEL_DS);
+	if (battery_info_fd < 0) {
+		battery_info_fd = sys_open(PATH_BATTERY_CAPACITY, O_RDONLY, 0);
+	}
+	if (battery_info_fd >= 0) {
+		sys_lseek(battery_info_fd, 0, SEEK_SET);
+		if (sys_read(battery_info_fd, battery_capacity_info, sizeof(battery_capacity_info)) < 0) {
+			sys_close(battery_info_fd);
+			battery_info_fd = -1;
+		}
+	}
+	set_fs(fs);
+
+	kstrtol(battery_capacity_info, 0, &battery_capacity);
+	if ((battery_capacity >= pmic_mntn->bat_cap_info.bat_cap_threshold)) {
+		if (1 != uv_irq_flag) {
+			pr_info("unmask uv irq,battery_capacity:%ld\n", battery_capacity);
+			if (NULL != desc->irq_data.chip->irq_unmask)
+				desc->irq_data.chip->irq_unmask(&desc->irq_data);
+			uv_irq_flag = 1;
+		}
+	} else {
+		if ((0 != uv_irq_flag)) {
+			pr_info("mask uv irq,battery_capacity:%ld\n", battery_capacity);
+			if (NULL != desc->irq_data.chip->irq_mask)
+				desc->irq_data.chip->irq_mask(&desc->irq_data);
+			uv_irq_flag = 0;
+		}
+	}
+
+	schedule_delayed_work(&pmic_mntn->uv_mntn_delayed_work,
+		round_jiffies_relative(msecs_to_jiffies(pmic_mntn->bat_cap_info.check_interval)));
+}
+
 static int hisi_pmic_uv_mntn_initial(struct platform_device *pdev, PMIC_MNTN_DESC *pmic_mntn)
 {
     int ret;
     struct device *dev = &pdev->dev;
+	struct device_node *np = dev->of_node;
+	struct irq_desc *desc = NULL ;
 
     pmic_mntn->uv_irq = platform_get_irq_byname(pdev, "uv");
     if (pmic_mntn->uv_irq < 0) {
@@ -1001,6 +1057,25 @@ static int hisi_pmic_uv_mntn_initial(struct platform_device *pdev, PMIC_MNTN_DES
         dev_err(dev, "[%s]devm_request_irq uv_irq failed.\n", __func__);
         return -ENODEV;
     }
+	/* mask or unmask is up to battery capacity,do not know the battery capacity here */
+	desc = irq_to_desc(pmic_mntn->uv_irq);
+	if (!desc) {
+		dev_err(dev, "[%s]irq_to_desc failed\n", __func__);
+		return -1;
+	}
+	if (NULL != desc->irq_data.chip->irq_mask)
+		desc->irq_data.chip->irq_mask(&desc->irq_data);
+
+	ret = of_property_read_u32_array(np, "hisilicon,battery-capacity-check",
+		(u32 *)&(pmic_mntn->bat_cap_info), 2);
+	if (ret) {
+		dev_err(dev, "of_property_read_u32_array read fail\n");
+		return -ENODEV;
+	}
+
+	INIT_DELAYED_WORK(&pmic_mntn->uv_mntn_delayed_work, uv_mntn_work);
+	schedule_delayed_work(&pmic_mntn->uv_mntn_delayed_work,
+		round_jiffies_relative(msecs_to_jiffies(pmic_mntn->bat_cap_info.check_interval)));
 
     return 0;
 }

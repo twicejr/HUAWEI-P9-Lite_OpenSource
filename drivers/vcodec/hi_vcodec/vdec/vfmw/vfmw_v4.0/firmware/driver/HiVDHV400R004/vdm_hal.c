@@ -1,23 +1,5 @@
 
-/******************************************************************************
 
-  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-    文 件 名   : vdm_hal.c
-    版 本 号   : 初稿
-    作    者   :
-    生成日期   :
-    最近修改   :
-    功能描述   : VDMV300 硬件抽象
-
-
-    修改历史   :
-    1.日    期 : 2009-03-04
-    作    者   :
-    修改内容   :
-
-******************************************************************************/
 
 #include "basedef.h"
 #include "vfmw.h"
@@ -79,26 +61,25 @@ SINT32 VDMHAL_V400R004_GetHalMemSize(VOID)
 {
     SINT32 size = 0;
 #ifdef VFMW_HEVC_SUPPORT
-    //hevc时,消息池和码表 各模块内存总大小需要更大l00214825
     size = HW_V400R004_HEVC_MEM_SIZE;
         
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         size += (HEVC_SED_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         size += (HEVC_PMV_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         size += (HEVC_RCN_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         size += (HEVC_DBLK_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         size += (HEVC_SAO_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
@@ -154,7 +135,6 @@ SINT32 VDMHAL_V400R004_OpenHAL(VDMHAL_OPENPARAM_S *pOpenParam)
     PhyAddr = g_HwMem[VdhId].HALMemBaseAddr;
 
 #ifdef VFMW_HEVC_SUPPORT
-    //由于hevc消息池,消息比较大,分配消息地址时,按照hevc消息大小分配,先如此分配,l00214825 01174_STRIDE_BYTE;
     for ( i = 0; i < HEVC_MAX_SLOT_NUM; i++ )
     {
         g_HwMem[VdhId].MsgSlotAddr[i] = PhyAddr + i * 4 * HEVC_ONE_MSG_SLOT_LEN;
@@ -222,17 +202,16 @@ SINT32 VDMHAL_V400R004_OpenHAL(VDMHAL_OPENPARAM_S *pOpenParam)
     PhyAddr += 4 * 1024;
 
 #ifdef VFMW_HEVC_SUPPORT
-    /* 因为HAL内存不重合，而且HEVC所需内存比上述值要大所以这里可以重复对HEVC专门的赋值，避免内存浪费。y00226912 */
     g_HwMem[VdhId].sed_top_phy_addr = PhyAddr_HEVC;
 
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         PhyAddr_HEVC += (HEVC_SED_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
 
     g_HwMem[VdhId].pmv_top_phy_addr = PhyAddr_HEVC;
 
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         PhyAddr_HEVC += (HEVC_PMV_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
@@ -242,7 +221,7 @@ SINT32 VDMHAL_V400R004_OpenHAL(VDMHAL_OPENPARAM_S *pOpenParam)
 
     g_HwMem[VdhId].rcn_top_phy_addr = PhyAddr_HEVC;
 
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         PhyAddr_HEVC += (HEVC_RCN_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
@@ -255,7 +234,7 @@ SINT32 VDMHAL_V400R004_OpenHAL(VDMHAL_OPENPARAM_S *pOpenParam)
 
     g_HwMem[VdhId].dblk_top_phy_addr = PhyAddr_HEVC;
 
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         PhyAddr_HEVC += (HEVC_DBLK_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
@@ -265,13 +244,13 @@ SINT32 VDMHAL_V400R004_OpenHAL(VDMHAL_OPENPARAM_S *pOpenParam)
 
     g_HwMem[VdhId].sao_top_phy_addr = PhyAddr_HEVC;
 
-    if (HEVC_MAX_PIX_WIDTH > 4096)  //z00290437  20141016  超4K使用片外RAM
+    if (HEVC_MAX_PIX_WIDTH > 4096)
     {
         PhyAddr_HEVC += (HEVC_SAO_TOP_ADDR_LEN + 0xF) &(~0xF);
     }
 
     g_HwMem[VdhId].ppfd_phy_addr = PhyAddr_HEVC;
-    g_HwMem[VdhId].ppfd_buf_len = 0;    //z00290437 20141016  HEVC协议PPFD模块删除
+    g_HwMem[VdhId].ppfd_buf_len = 0;
 #endif
 
     PhyAddr = MAX(PhyAddr, PhyAddr_HEVC);
@@ -751,7 +730,6 @@ SINT32 VDMHAL_V400R004_ArrangeMem( UADDR MemAddr, SINT32 MemSize, SINT32 Width, 
     SINT32 ImgWidthInMb, ImgHeightInMb, ImgHeightInPixAln;
     SINT32 SlotWidth, PmvSlotLen, ImgSlotLen;
     SINT32 ColMbSize;
-    //y00226912 新增变量
     SINT32 ChanID = -1;
     SINT32 ChanSlotLen, ChanSlotWidth;
     SINT32 ChanWidth, ChanHeight;

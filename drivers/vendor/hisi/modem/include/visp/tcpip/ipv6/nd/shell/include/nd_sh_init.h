@@ -81,7 +81,6 @@ extern ULONG TCPIP_Get_PAF_ResValue (SPECS_RES_VALUE_S *pstResValue);
 #define IP6_ND_REG_NPCALLBACK_CORE()
 #endif
 
-/* Added by fengjing209023 for DTS2014061301920 BALONG DAD优化需求，打开后不做DAD和initial delay */
 extern ULONG g_ulNDNODADSwitch;
 
 #ifdef        __cplusplus

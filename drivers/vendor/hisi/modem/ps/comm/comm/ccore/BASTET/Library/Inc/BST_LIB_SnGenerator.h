@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : BST_LIB_SnGenerator.h
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年4月16日
-  最近修改   :
-  功能描述   : 序列号产生器模板定义
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年04月16日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __BST_LIB_SnGenerator_H__
 #define __BST_LIB_SnGenerator_H__
 
@@ -65,19 +47,7 @@ BST_PRIVATE:
   4 模板函数定义
 *****************************************************************************/
 
-/********************************************************
-函 数 名  : NewId
-功能描述  : 为新添加的邮箱生成一个id，如果
-输入参数  : 无
-输出参数  : 无
-返 回 值  : DATA_T
-调用函数  :
-被调函数  :
-修改历史  :
-    日期  :
-    作者  :
-    修改内容:
-*********************************************************/
+
 template<typename DATA_T>
 BST_Lib_CSnGenrator<DATA_T>::BST_Lib_CSnGenrator( DATA_T tdMinId, BST_UINT16 ulAmount )
     : m_tdMinId     ( BST_INVALID_SNID ),
@@ -120,19 +90,7 @@ BST_Lib_CSnGenrator<DATA_T>::BST_Lib_CSnGenrator( DATA_T tdMinId, BST_UINT16 ulA
     BST_OS_MEMSET( m_pucFlag, 0, m_usUsedSize );
 }
 
-/********************************************************
-函 数 名  : NewId
-功能描述  : 为新添加的邮箱生成一个id，如果
-输入参数  : 无
-输出参数  : 无
-返 回 值  : DATA_T
-调用函数  :
-被调函数  :
-修改历史  :
-    日期  :
-    作者  :
-    修改内容:
-*********************************************************/
+
 template<typename DATA_T>
 DATA_T BST_Lib_CSnGenrator<DATA_T>::NewId( BST_VOID )
 {
@@ -181,19 +139,7 @@ DATA_T BST_Lib_CSnGenrator<DATA_T>::NewId( BST_VOID )
     }
     return BST_INVALID_SNID;
 }
-/********************************************************
-函 数 名  : IsIdUsed
-功能描述  : 判断一个邮箱的id号是否已经被使用
-输入参数  : DATA_T address
-输出参数  : 无
-返 回 值  : DATA_T
-调用函数  :
-被调函数  :
-修改历史  :
-    日期  :
-    作者  :
-    修改内容:
-*********************************************************/
+
 template<typename DATA_T>
 BST_BOOL  BST_Lib_CSnGenrator<DATA_T>::IsIdUsed( DATA_T tdId )
 {
@@ -237,19 +183,7 @@ BST_BOOL  BST_Lib_CSnGenrator<DATA_T>::IsIdUsed( DATA_T tdId )
     }
 }
 
-/********************************************************
-函 数 名  : RmvId
-功能描述  : 当一个邮箱被删除时,删除一个id
-输入参数  : DATA_T address
-输出参数  : 无
-返 回 值  : BST_BOOL
-调用函数  :
-被调函数  :
-修改历史  :
-    日期  :
-    作者  :
-    修改内容:
-*********************************************************/
+
 template<typename DATA_T>
 BST_BOOL  BST_Lib_CSnGenrator<DATA_T>::RmvId( DATA_T tdId )
 {
@@ -288,38 +222,14 @@ BST_BOOL  BST_Lib_CSnGenrator<DATA_T>::RmvId( DATA_T tdId )
     return BST_TRUE;
 }
 
-/********************************************************
-函 数 名  : RmvId
-功能描述  : 当一个邮箱被删除时,删除一个id
-输入参数  : DATA_T address
-输出参数  : 无
-返 回 值  : BST_BOOL
-调用函数  :
-被调函数  :
-修改历史  :
-    日期  :
-    作者  :
-    修改内容:
-*********************************************************/
+
 template<typename DATA_T>
 BST_VOID  BST_Lib_CSnGenrator<DATA_T>::RmvId(BST_VOID)
 {
     BST_OS_MEMSET( m_pucFlag, 0, m_usUsedSize );
 }
 
-/********************************************************
-函 数 名  : RmvId
-功能描述  : 当一个邮箱被删除时,删除一个id
-输入参数  : DATA_T address
-输出参数  : 无
-返 回 值  : BST_BOOL
-调用函数  :
-被调函数  :
-修改历史  :
-    日期  :
-    作者  :
-    修改内容:
-*********************************************************/
+
 template<typename DATA_T>
 BST_Lib_CSnGenrator<DATA_T>::~BST_Lib_CSnGenrator(BST_VOID)
 {

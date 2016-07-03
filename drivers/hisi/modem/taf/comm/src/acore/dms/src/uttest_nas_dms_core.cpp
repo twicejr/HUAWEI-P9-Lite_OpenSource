@@ -149,14 +149,7 @@ extern "C" struct nlmsghdr *nlmsg_hdr(const struct sk_buff *skb)
 }
 
 
-/*****************************************************************************
- 类名       : Test_DMS_RegOmChanDataReadCB
- 功能描述   : Test_DMS_RegOmChanDataReadCB UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_RegOmChanDataReadCB: public ::testing::Test
 {
 public:
@@ -171,15 +164,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_RegOmChanDataReadCB_001
- 测试用例标题   : 通道号错误
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_RegOmChanDataReadCB, Test_DMS_RegOmChanDataReadCB_001)
 {
     //参数定义
@@ -205,15 +190,7 @@ TEST_F(Test_DMS_RegOmChanDataReadCB, Test_DMS_RegOmChanDataReadCB_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_RegOmChanDataReadCB_002
- 测试用例标题   : 回调函数指针为空
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_RegOmChanDataReadCB, Test_DMS_RegOmChanDataReadCB_002)
 {
     //参数定义
@@ -238,15 +215,7 @@ TEST_F(Test_DMS_RegOmChanDataReadCB, Test_DMS_RegOmChanDataReadCB_002)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_RegOmChanDataReadCB_003
- 测试用例标题   : 注册成功
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_RegOmChanDataReadCB, Test_DMS_RegOmChanDataReadCB_003)
 {
     //参数定义
@@ -275,14 +244,7 @@ TEST_F(Test_DMS_RegOmChanDataReadCB, Test_DMS_RegOmChanDataReadCB_003)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_RegOmChanEventCB
- 功能描述   : Test_DMS_RegOmChanEventCB UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_RegOmChanEventCB: public ::testing::Test
 {
 public:
@@ -297,15 +259,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_RegOmChanEventCB_001
- 测试用例标题   : 通道号错误
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_RegOmChanEventCB, Test_DMS_RegOmChanEventCB_001)
 {
     //参数定义
@@ -331,15 +285,7 @@ TEST_F(Test_DMS_RegOmChanEventCB, Test_DMS_RegOmChanEventCB_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_RegOmChanEventCB_002
- 测试用例标题   : 回调函数指针为空
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_RegOmChanEventCB, Test_DMS_RegOmChanEventCB_002)
 {
     //参数定义
@@ -364,15 +310,7 @@ TEST_F(Test_DMS_RegOmChanEventCB, Test_DMS_RegOmChanEventCB_002)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_RegOmChanEventCB_003
- 测试用例标题   : 注册成功
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_RegOmChanEventCB, Test_DMS_RegOmChanEventCB_003)
 {
     //参数定义
@@ -401,14 +339,7 @@ TEST_F(Test_DMS_RegOmChanEventCB, Test_DMS_RegOmChanEventCB_003)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_InitEntity
- 功能描述   : Test_DMS_NLK_InitEntity UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_InitEntity: public ::testing::Test
 {
 public:
@@ -421,15 +352,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_InitEntity_001
- 测试用例标题   : netlink 初始化
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_InitEntity, Test_DMS_NLK_InitEntity_001)
 {
     //参数定义
@@ -449,14 +372,7 @@ TEST_F(Test_DMS_NLK_InitEntity, Test_DMS_NLK_InitEntity_001)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_CfgOpen
- 功能描述   : Test_DMS_NLK_CfgOpen UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_CfgOpen: public ::testing::Test
 {
 public:
@@ -471,15 +387,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_CfgOpen_001
- 测试用例标题   : 物理承载号错误
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_CfgOpen, Test_DMS_NLK_CfgOpen_001)
 {
     //参数定义
@@ -504,15 +412,7 @@ TEST_F(Test_DMS_NLK_CfgOpen, Test_DMS_NLK_CfgOpen_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_CfgOpen_002
- 测试用例标题   : 调用与物理承载上注册的回调函数
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_CfgOpen, Test_DMS_NLK_CfgOpen_002)
 {
     //参数定义
@@ -549,14 +449,7 @@ TEST_F(Test_DMS_NLK_CfgOpen, Test_DMS_NLK_CfgOpen_002)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_CfgClose
- 功能描述   : Test_DMS_NLK_CfgClose UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_CfgClose: public ::testing::Test
 {
 public:
@@ -571,15 +464,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_CfgClose_001
- 测试用例标题   : 物理承载号错误
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_CfgClose, Test_DMS_NLK_CfgClose_001)
 {
     //参数定义
@@ -604,15 +489,7 @@ TEST_F(Test_DMS_NLK_CfgClose, Test_DMS_NLK_CfgClose_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_CfgOpen_002
- 测试用例标题   : 调用与物理承载上注册的回调函数
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_CfgClose, Test_DMS_NLK_CfgClose_002)
 {
     //参数定义
@@ -649,14 +526,7 @@ TEST_F(Test_DMS_NLK_CfgClose, Test_DMS_NLK_CfgClose_002)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_ProcLteCfgMsg
- 功能描述   : Test_DMS_NLK_ProcLteCfgMsg UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_ProcLteCfgMsg: public ::testing::Test
 {
 public:
@@ -671,15 +541,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcLteCfgMsg_001
- 测试用例标题   : 端口打开
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcLteCfgMsg, Test_DMS_NLK_ProcLteCfgMsg_001)
 {
     //参数定义
@@ -711,15 +573,7 @@ TEST_F(Test_DMS_NLK_ProcLteCfgMsg, Test_DMS_NLK_ProcLteCfgMsg_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_CfgOpen_002
- 测试用例标题   : 端口关闭
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcLteCfgMsg, Test_DMS_NLK_ProcLteCfgMsg_002)
 {
     //参数定义
@@ -751,15 +605,7 @@ TEST_F(Test_DMS_NLK_ProcLteCfgMsg, Test_DMS_NLK_ProcLteCfgMsg_002)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_CfgOpen_002
- 测试用例标题   : 无效命令
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcLteCfgMsg, Test_DMS_NLK_ProcLteCfgMsg_003)
 {
     //参数定义
@@ -790,14 +636,7 @@ TEST_F(Test_DMS_NLK_ProcLteCfgMsg, Test_DMS_NLK_ProcLteCfgMsg_003)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_ProcGuCfgMsg
- 功能描述   : Test_DMS_NLK_ProcGuCfgMsg UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_ProcGuCfgMsg: public ::testing::Test
 {
 public:
@@ -812,15 +651,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcGuCfgMsg_001
- 测试用例标题   : 端口打开
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcGuCfgMsg, Test_DMS_NLK_ProcGuCfgMsg_001)
 {
     //参数定义
@@ -852,15 +683,7 @@ TEST_F(Test_DMS_NLK_ProcGuCfgMsg, Test_DMS_NLK_ProcGuCfgMsg_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcGuCfgMsg_002
- 测试用例标题   : 端口关闭
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcGuCfgMsg, Test_DMS_NLK_ProcGuCfgMsg_002)
 {
     //参数定义
@@ -892,15 +715,7 @@ TEST_F(Test_DMS_NLK_ProcGuCfgMsg, Test_DMS_NLK_ProcGuCfgMsg_002)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcGuCfgMsg_003
- 测试用例标题   : 无效命令
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcGuCfgMsg, Test_DMS_NLK_ProcGuCfgMsg_003)
 {
     //参数定义
@@ -931,14 +746,7 @@ TEST_F(Test_DMS_NLK_ProcGuCfgMsg, Test_DMS_NLK_ProcGuCfgMsg_003)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_ProcLteCtrlMsg
- 功能描述   : Test_DMS_NLK_ProcLteCtrlMsg UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_ProcLteCtrlMsg: public ::testing::Test
 {
 public:
@@ -953,15 +761,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcLteCtrlMsg_001
- 测试用例标题   : 透传数据
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcLteCtrlMsg, Test_DMS_NLK_ProcLteCtrlMsg_001)
 {
     //参数定义
@@ -1000,15 +800,7 @@ TEST_F(Test_DMS_NLK_ProcLteCtrlMsg, Test_DMS_NLK_ProcLteCtrlMsg_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcLteCtrlMsg_002
- 测试用例标题   : 丢弃数据
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcLteCtrlMsg, Test_DMS_NLK_ProcLteCtrlMsg_002)
 {
     //参数定义
@@ -1041,14 +833,7 @@ TEST_F(Test_DMS_NLK_ProcLteCtrlMsg, Test_DMS_NLK_ProcLteCtrlMsg_002)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_ProcLteDataMsg
- 功能描述   : Test_DMS_NLK_ProcLteDataMsg UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_ProcLteDataMsg: public ::testing::Test
 {
 public:
@@ -1063,15 +848,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcLteDataMsg_001
- 测试用例标题   : 透传数据
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcLteDataMsg, Test_DMS_NLK_ProcLteDataMsg_001)
 {
     //参数定义
@@ -1110,15 +887,7 @@ TEST_F(Test_DMS_NLK_ProcLteDataMsg, Test_DMS_NLK_ProcLteDataMsg_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcLteDataMsg_002
- 测试用例标题   : 丢弃数据
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcLteDataMsg, Test_DMS_NLK_ProcLteDataMsg_002)
 {
     //参数定义
@@ -1151,14 +920,7 @@ TEST_F(Test_DMS_NLK_ProcLteDataMsg, Test_DMS_NLK_ProcLteDataMsg_002)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_ProcGuDataMsg
- 功能描述   : Test_DMS_NLK_ProcGuDataMsg UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_ProcGuDataMsg: public ::testing::Test
 {
 public:
@@ -1173,15 +935,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcGuDataMsg_001
- 测试用例标题   : 透传数据
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcGuDataMsg, Test_DMS_NLK_ProcGuDataMsg_001)
 {
     //参数定义
@@ -1220,15 +974,7 @@ TEST_F(Test_DMS_NLK_ProcGuDataMsg, Test_DMS_NLK_ProcGuDataMsg_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_ProcGuDataMsg_002
- 测试用例标题   : 丢弃数据
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_ProcGuDataMsg, Test_DMS_NLK_ProcGuDataMsg_002)
 {
     //参数定义
@@ -1261,14 +1007,7 @@ TEST_F(Test_DMS_NLK_ProcGuDataMsg, Test_DMS_NLK_ProcGuDataMsg_002)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_Send
- 功能描述   : Test_DMS_NLK_Send UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_Send: public ::testing::Test
 {
 public:
@@ -1287,15 +1026,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Send_001
- 测试用例标题   : socket 错误
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_001)
 {
     //参数定义
@@ -1329,15 +1060,7 @@ TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Send_002
- 测试用例标题   : pid 错误
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_002)
 {
     //参数定义
@@ -1373,15 +1096,7 @@ TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_002)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Send_003
- 测试用例标题   : 申请 netlink 消息失败
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_003)
 {
     //参数定义
@@ -1420,15 +1135,7 @@ TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_003)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Send_004
- 测试用例标题   : 填充 netlink 消息失败
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_004)
 {
     //参数定义
@@ -1471,15 +1178,7 @@ TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_004)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Send_005
- 测试用例标题   : 发送 netlink 消息失败
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_005)
 {
     //参数定义
@@ -1526,15 +1225,7 @@ TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_005)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Send_006
- 测试用例标题   : 发送 netlink 消息成功
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_006)
 {
     //参数定义
@@ -1573,14 +1264,7 @@ TEST_F(Test_DMS_NLK_Send, Test_DMS_NLK_Send_006)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_Input
- 功能描述   : Test_DMS_NLK_Input UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_Input: public ::testing::Test
 {
 public:
@@ -1603,15 +1287,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Input_001
- 测试用例标题   : netlink 消息错误
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_001)
 {
     //参数定义
@@ -1655,15 +1331,7 @@ TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Input_002
- 测试用例标题   : DMS_NLK_MSG_TYPE_LTE_CFG消息
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_002)
 {
     //参数定义
@@ -1697,15 +1365,7 @@ TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_002)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Input_003
- 测试用例标题   : DMS_NLK_MSG_TYPE_LTE_CTRL消息
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_003)
 {
     //参数定义
@@ -1741,15 +1401,7 @@ TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_003)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Input_004
- 测试用例标题   : DMS_NLK_MSG_TYPE_LTE_DATA消息
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_004)
 {
     //参数定义
@@ -1785,15 +1437,7 @@ TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_004)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Input_005
- 测试用例标题   : DMS_NLK_MSG_TYPE_GU_CFG消息
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_005)
 {
     //参数定义
@@ -1827,15 +1471,7 @@ TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_005)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Input_006
- 测试用例标题   : DMS_NLK_MSG_TYPE_GU_DATA消息
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_006)
 {
     //参数定义
@@ -1871,15 +1507,7 @@ TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_006)
 	GlobalMockObject::verify();
 }
 #if 0
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Input_007
- 测试用例标题   : 无效消息
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_007)
 {
     //参数定义
@@ -1927,14 +1555,7 @@ TEST_F(Test_DMS_NLK_Input, Test_DMS_NLK_Input_007)
 	GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
- 类名       : Test_DMS_NLK_Init
- 功能描述   : Test_DMS_NLK_Init UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_Init: public ::testing::Test
 {
 public:
@@ -1947,15 +1568,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Input_001
- 测试用例标题   : 创建 netlink 失败
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Init, Test_DMS_NLK_Init_001)
 {
     //参数定义
@@ -1981,15 +1594,7 @@ TEST_F(Test_DMS_NLK_Init, Test_DMS_NLK_Init_001)
 	GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Init_002
- 测试用例标题   : 创建 netlink 成功
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Init, Test_DMS_NLK_Init_002)
 {
     //参数定义
@@ -2016,14 +1621,7 @@ TEST_F(Test_DMS_NLK_Init, Test_DMS_NLK_Init_002)
 	GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_DMS_NLK_Exit
- 功能描述   : Test_DMS_NLK_Exit UT工程类
- 修改历史   :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_DMS_NLK_Exit: public ::testing::Test
 {
 public:
@@ -2038,15 +1636,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_DMS_NLK_Exit_001
- 测试用例标题   : 释放 netlink
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2014-07-17
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_DMS_NLK_Exit, Test_DMS_NLK_Exit_001)
 {
     //参数定义

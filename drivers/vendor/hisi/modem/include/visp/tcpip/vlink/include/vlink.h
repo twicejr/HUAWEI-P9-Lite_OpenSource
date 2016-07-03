@@ -36,7 +36,6 @@ typedef struct tagVLINK_NODE
     AVL3_NODE_S stVlinkNode;    /* AVL Node */
 }VLINK_NODE_S;
 
-/* Add for DTS2011022102588, by tanyiming00171953, at 2011-02-22. 修改原因: 新增Vlink路由查询接口,增强Vlink维测手段  */
 typedef struct tagVLINK_RT4_ENTRY
 {
      ULONG  ulRt_Dest;  
@@ -70,7 +69,6 @@ typedef struct tagVLINK_PPI_HOOK
     /*VlinkIndex索引更新邋通知 */
     ULONG (*pfVLINK_PPI_INDEX_Update)(ULONG ulOperType, VLINK_NODE_S *pstVlinkNode,ULONG ulIfIndex);
     /*FIB4节点更新通知 */
-    /*Modified by l00147446 DTS2010080601639 产品在连续调用删除地址，接口去绑定VRF的情况下 无任务切换 会导致VLINK路由残留 2010/8/14*/
     ULONG (*pfVLINK_PPI_NODE_Update)(ULONG ulOperType,ULONG ulVrfIndex,RT4_ENTRY_S *pstRtEntry, ULONG *pulVlinkIndex,ULONG *pulNpFlag);
     /*FIB6节点更新通知 */    
     ULONG (*pfVLINK6_PPI_NODE_Update)(ULONG ulOperType,ULONG ulVrf6Index,RT6_ENTRY_S *pstRtEntry, ULONG *pulVlinkIndex,ULONG *pulNpFlag);
@@ -91,7 +89,6 @@ LONG VLINK_COMPARE(VOID *a, VOID *b);
                                          (NODE).sLeftHeight = -1;                \
                                          (NODE).sRightHeight = -1
 
-/* Add for DTS2011022102588, by tanyiming00171953, at 2011-02-22. 修改原因: 新增Vlink路由查询接口,增强Vlink维测手段  */                                         
 #define VLINK_SET_RT4_ENTRY(VLINKRTNODE,RTNODE,VLINKNODE,VID)  \
                                          (VOID)TCPIP_Mem_Set ((CHAR*)VLINKRTNODE, 0, sizeof(VLINK_RT4_ENTRY_S));\
                                          (VLINKRTNODE)->ulRt_Dest = (RTNODE)->ulRt_Dest;                \
@@ -108,7 +105,6 @@ LONG VLINK_COMPARE(VOID *a, VOID *b);
                                          (VLINKRTNODE)->ulVrfIndex = VID;\
                                          (VLINKRTNODE)->pstVlink_Node = (VLINKNODE)                                         
 
-/* Modified by y00176567, at 2011-05-27. 修改原因: 消除VC三级告警 */
 /* (PPINODE)->ucDestPrefixLength = (UCHAR)((VLINKNODE)->ulRt_Dest_PrefLen),添加(UCHAR),保证两端类型一致 */
 /* (PPINODE)->ucLocalPrefixLength = (UCHAR)(VLINKNODE)->ulRt_Loc_PrefLen; 添加(UCHAR),保证两端类型一致 */
 #define VLINK_GET_RT4_ENTRY(PPINODE,VLINKNODE)           (PPINODE)->ulDestination = VOS_NTOHL((VLINKNODE)->ulRt_Dest);                \
@@ -147,14 +143,12 @@ LONG VLINK_COMPARE(VOID *a, VOID *b);
                                                 
 VOID VLINK_Module_Init();
 ULONG VLINK_PPI_HookRegister(VLINK_PPI_HOOK_S *pstHookFunc);
-/*Modified by l00147446 DTS2010080601639 产品在连续调用删除地址，接口去绑定VRF的情况下 无任务切换 会导致VLINK路由残留 2010/8/14*/
 ULONG VLINK_PPI_NODE_Update(ULONG ulOperType,ULONG ulVrfIndex,RT4_ENTRY_S *pstRtEntry, ULONG *pulVlinkIndex,ULONG *pulNpFlag);
 ULONG VLINK6_PPI_NODE_Update(ULONG ulOperType,ULONG ulVrf6Index,RT6_ENTRY_S *pstRt6Entry, ULONG *pulVlinkIndex,ULONG *pulNpFlag);
 ULONG VLINK_PPI_INDEX_Update(ULONG ulOperType, VLINK_NODE_S *pstVlinkNode,ULONG ulIfIndex);
 ULONG VLINK_PPI_ROUTE_Update(ULONG ulOperType, PPI_RTMSG4_S *pstPPIRtMsg);
 ULONG VLINK_PPI_ROUTE6_Update(ULONG ulOperType, PPI_RTMSG6_S *pstPPIRtMsg,ULONG ulNpFlag);
 
-/*Modified by l00147446 DTS2010080601639 产品在连续调用删除地址，接口去绑定VRF的情况下 无任务切换 会导致VLINK路由残留 2010/8/14*/
 ULONG VLINK_NodeRegister(ULONG ulVrfIndex,RT4_ENTRY_S *pstRtEntry, ULONG *pulVlinkIndex,ULONG *pulNpFlag);
 ULONG VLINK_NodeUnRegister(ULONG ulVrfIndex,RT4_ENTRY_S *pstRtEntry, ULONG *pulVlinkIndex,ULONG *pulNpFlag);
 ULONG VLINK_IndexUpdate(ULONG ulVrfIndex,ULONG ulIpAddr,ULONG ulVlinkIndex,ULONG ulOper,ULONG ulIfIndex);
@@ -166,7 +160,6 @@ VOID VLINK_DbgVlinkIndexUpdate(ULONG ulIpAddr,ULONG ulVlinkIndex,ULONG ulOper,UL
 VOID VLINK6_DbgVlinkIndexUpdate(ULONG ulIp6Addr[4],ULONG ulVlinkIndex,ULONG ulOper,ULONG ulIfIndex);
 
 VOID VLINK6_DbgVlinkRoute(ULONG ulOper,RT6_ENTRY_S *pstNewRtEntry);
-/* Add for DTS2011022102588, by tanyiming00171953, at 2011-02-22. 修改原因: 新增Vlink路由查询接口,增强Vlink维测手段  */
 /* VOID VLINK_DbgVlinkRoute(ULONG ulOper,RT4_ENTRY_S *pstNewRtEntry); */
 VOID VLINK_DbgVlinkRoute(ULONG ulOper,VLINK_RT4_ENTRY_S *pstNewRtEntry);
 VOID *VLINK_GetNextEntryByFilter(VOID *pFilter,VOID *pCurEntry);

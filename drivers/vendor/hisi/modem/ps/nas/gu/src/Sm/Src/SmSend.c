@@ -197,25 +197,7 @@ VOS_VOID SM_ComGetTI(
 }
 
 /*lint -e438 -e830*/
-/*******************************************************************************
-  Module:      SM_SndPdpActReqMsg
-  Function:    将TAF发给SM的TAFSM_PDP_ACTIVATE_REQ消息转换成数据流发送
-  Input:       SMREG_PDP_ACTIVATE_REQ_STRU         *pMsgIE,
-               VOS_UINT8                            ucSMIndex
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1.  张志勇      2003.12.09   新规作成
-      2.日    期  : 2013年03月13日
-        作    者  : z00214637
-        修改内容  : BodySAR项目
 
-      3.日    期   : 2013年4月23日
-        作    者   : L47619
-        修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-
-*******************************************************************************/
 VOS_VOID SM_SndPdpActReqMsg(
    SMREG_PDP_ACTIVATE_REQ_STRU         *pMsgIE,
    VOS_UINT8                            ucSMIndex
@@ -307,21 +289,7 @@ VOS_VOID SM_SndPdpActReqMsg(
 /*lint +e438 +e830*/
 
 /*lint -e438 -e830*/
-/*******************************************************************************
-  Module:      SM_SndReqPdpActRejMsg
-  Function:    将TAF发给SM的TAFSM_PDP_ACTIVATE_REJ_RSP消息转换成数据流发送
-  Input:       SMREG_PDP_ACTIVATE_REJ_RSP_STRU   *pMsgIE      消息指针
-               VOS_UINT8                          ucTi         Transaction identifier
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.张志勇      2003.12.09   新规作成
 
-  2.日    期   : 2012年8月27日
-    作    者   : m00217266
-    修改内容   : 修改原因值类型，并转换原因值
-*******************************************************************************/
 VOS_VOID SM_SndReqPdpActRejMsg(
                        SMREG_PDP_ACTIVATE_REJ_RSP_STRU   *pMsgIE,               /* 消息指针                                 */
                        VOS_UINT8                          ucTi                  /* Transaction identifier                   */
@@ -401,24 +369,7 @@ VOS_VOID SM_SndReqPdpActRejMsg(
 /*lint +e438 +e830*/
 
 /*lint -e438 -e830*/
-/*******************************************************************************
-  Module:      SM_SndPdpDeActReqMsg
-  Function:    将TAF发给SM的TAFSM_PDP_DEACTIVATE_REQ消息转换成数据流发送
-  Input:       SMREG_PDP_DEACTIVATE_REQ_STR   *pMsgIE          消息指针
-               VOS_UINT8                      ucSMIndex        SM索引
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1. 张志勇      2003.12.09   新规作成
-  2.日    期   : 2010年02月01日
-    作    者   : l65478
-    修改内容   : AT2D16503,发送去激活消息时，如果tear down值为0，不需要带IE“tear down”
 
-  3.日    期   : 2012年8月27日
-    作    者   : m00217266
-    修改内容   : 修改原因值类型，并转换原因值
-*******************************************************************************/
 VOS_VOID SM_SndPdpDeActReqMsg(
                        SMREG_PDP_DEACTIVATE_REQ_STRU *pMsgIE,                      /* 消息指针                                 */
                        VOS_UINT8                      ucSMIndex                     /* SM索引                                   */
@@ -533,25 +484,7 @@ VOS_VOID SM_SndPdpModAccMsg(
 /*lint +e438 +e830*/
 
 /*lint -e438 -e830*/
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndPdpModRejMsg
- 功能描述  : 将TAF发给SM的TAFSM_PDP_MODIFY_REJ_RSP消息转换成数据流发送
- 输入参数  : SMREG_PDP_MODIFY_REJ_RSP_STRU    *pMsgIE
-             VOS_UINT8                         ucSMIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年9月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月27日
-    作    者   : m00217266
-    修改内容   : 修改原因值类型，并转换原因值
-*****************************************************************************/
 VOS_VOID NAS_SM_SndPdpModRejMsg(
     SMREG_PDP_MODIFY_REJ_RSP_STRU      *pstMsgIE,
     VOS_UINT8                           ucSMIndex
@@ -579,7 +512,6 @@ VOS_VOID NAS_SM_SndPdpModRejMsg(
     if (VOS_NULL_PTR != pstMsgIE)
     {
         *pucTemp = NAS_SM_TRANS_TAF_CAUSE(pstMsgIE->enCause);                                         /* 添加SM cause                             */
-/* 消息不为空                               */
         pucTemp++;                                                              /* 更新指针偏移的长度                       */
         ulSum += 1;                                                             /* 计数器加1                                */
     }
@@ -692,18 +624,7 @@ VOS_VOID SM_SndPdpModReqMsg(
 /*lint +e438 +e830*/
 
 /*lint -e438 -e830*/
-/*******************************************************************************
-  Module:      SM_SndPdpActSecReqMsg
-  Function:    将TAF发给SM的TAFSM_PDP_ACTIVATE_SEC_REQ消息转换成数据流发送
-  Input:       SMREG_PDP_ACTIVATE_SEC_REQ_STRU  *pMsgIE          消息指针
-               VOS_UINT8                         ucSMIndex        SM索引
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1.  张志勇      2003.12.09   新规作成
-      2.  CBJ      2005.02.18   modify
-*******************************************************************************/
+
 VOS_VOID SM_SndPdpActSecReqMsg(
                        SMREG_PDP_ACTIVATE_SEC_REQ_STRU     *pMsgIE,                       /* 消息指针                                 */
                        VOS_UINT8                            ucSMIndex                     /* SM索引                                   */
@@ -852,26 +773,7 @@ VOS_VOID SM_SndPdpDeActAccMsg(VOS_UINT8   ucSMIndex)
 }
 /*lint +e438 +e830*/
 
-/*******************************************************************************
-  Module:      SM_SndTafSmPdpActivateRej
-  Function:    作成和发送TAFSM_PDP_ACTIVATE_REJ消息
-  Input:       VOS_UINT8           ucCr              Call Reference
-               VOS_UINT8           ucSmCause         网侧原因
-               VOS_UINT8           ucMtCause         内部原因
-               SM_OCT_VARY_STRU   *pProtCfgOpt       Protocol configuration options
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1.  张志勇      2003.12.10   新规作成
-  2.日    期   : 2012年6月16日
-    作    者   : l60609
-    修改内容   : AT&T&DCM:增加尝试次数
 
-  3.日    期  : 2012年08月24日
-    作    者  : m00217266
-    修改内容  : 删除ucMtCause，修改SmCause类型
-*******************************************************************************/
 VOS_VOID SM_SndTafSmPdpActivateRej(
                                VOS_UINT8                        ucCr,                           /* Call Reference                           */
                                SM_TAF_CAUSE_ENUM_UINT16         enCause,                        /* 网侧原因                                 */
@@ -1011,25 +913,7 @@ VOS_VOID SM_SndTafSmPdpActivateInd(
     return;
 }
 
-/*******************************************************************************
-  Module:      SM_SndTafSmPdpActivateCnf
-  Function:    作成和发送TAFSM_PDP_ACTIVATE_CNF消息
-  Input:       SM_NW_MSG_STRU   *pMsgIe         收到的消息
-               VOS_UINT8            ucCnxtIndex     Context索引
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.张志勇      2003.12.10   新规作成
 
-  2.日    期   : 2012年8月27日
-    作    者   : m00217266
-    修改内容   : 修改原因值类型，并转换原因值
-
-  3.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-*******************************************************************************/
 VOS_VOID SM_SndTafSmPdpActivateCnf(
                                SM_NW_MSG_STRU   *pMsgIe,                        /* 收到的消息                               */
                                VOS_UINT8         ucCnxtIndex                    /* Context索引                              */
@@ -1227,22 +1111,7 @@ VOS_VOID SM_SndTafSmPdpDeActCnf(
     return;
 }
 
-/*******************************************************************************
-  Module:      SM_SndTafSmPdpDeActInd
-  Function:    作成和发送TAFSM_PDP_DEACTIVATE_IND消息
-  Input:       VOS_UINT8                            ucCr              Call Reference
-               SM_TAF_CAUSE_ENUM_UINT16             enCause
-               VOS_UINT8                            ucTdi
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.  张志勇      2003.12.10   新规作成
 
-  2.日    期   : 2012年8月27日
-    作    者   : m00217266
-    修改内容   : 修改原因值类型
-*******************************************************************************/
 VOS_VOID SM_SndTafSmPdpDeActInd(
     VOS_UINT8                           ucCr,                                   /* Call Reference                           */
     SM_TAF_CAUSE_ENUM_UINT16            enCause,
@@ -1555,21 +1424,7 @@ VOS_VOID SM_SndTafSmPdpModifyCnf(
     return;
 }
 
-/*******************************************************************************
-  Module:      SM_SndTafSmPdpModifyRej
-  Function:    作成和发送TAFSM_PDP_MODIFY_REJ 消息
-  Input:       SM_TAF_CAUSE_ENUM_UINT16   enCause
-               VOS_UINT8           ucCr
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.  张志勇      2003.12.10   新规作成
 
-  2.日    期   : 2012年8月27日
-    作    者   : m00217266
-    修改内容   : 修改原因值类型
-*******************************************************************************/
 VOS_VOID SM_SndTafSmPdpModifyRej(
     SM_TAF_CAUSE_ENUM_UINT16   enCause,
     VOS_UINT8                  ucCr                              /* Call Reference                           */
@@ -1740,21 +1595,7 @@ VOS_VOID SM_SndTafSmPdpActSecCnf(
     return;
 }
 
-/*******************************************************************************
-  Module:      SM_SndTafSmPdpActSecRej
-  Function:    作成和发送TAFSM_PDP_ACTIVATE_SEC_REJ消息
-  Input:       VOS_UINT8           ucCr              Call Reference
-               VOS_UINT8           ucSmCause         网侧原因
-               VOS_UINT8           ucMtCause         内部原因
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1.  张志勇      2003.12.10   新规作成
-      2.日    期  : 2012年08月24日
-        作    者  : m00217266
-        修改内容  : 修改接口SmCause，添加原因值，删除MtCause
-*******************************************************************************/
+
 VOS_VOID SM_SndTafSmPdpActSecRej(
                                VOS_UINT8                    ucCr,               /* Call Reference                           */
                                SM_TAF_CAUSE_ENUM_UINT16     enCause             /* 网侧原因                                 */
@@ -1806,30 +1647,7 @@ VOS_VOID SM_SndTafSmPdpActSecRej(
     return;
 }
 
-/*******************************************************************************
-  Module:      SM_SndRabmSmActivateInd
-  Function:    作成和发送ID_SM_RABM_ACTIVATE_IND消息
-  Input:       VOS_UINT8          ucCntxtIndex           PDP context的索引
-                              ucActMsgType:          #define RABMSM_ACT_MSG_1        1
-                                                     #define RABMSM_ACT_MSG_2        2
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1.  张志勇      2003.12.11   新规作成
-      2.  韩鲁峰   2006.01.11   在接口中增加深入参数ucActMsgType
 
-  3.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM/SM原语接口中的动态内存改为静态数组
-  4.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-
-  5.日    期   : 2013年8月2日
-    作    者   : A00165503
-    修改内容   : DTS2013040906296: Secondary PDP下行数传无法找到关联的承载ID
-*******************************************************************************/
 VOS_VOID SM_SndRabmSmActivateInd(
     VOS_UINT8                           ucCntxtIndex,
     VOS_UINT8                           ucActMsgType
@@ -1905,23 +1723,7 @@ VOS_VOID SM_SndRabmSmActivateInd(
     return;
 }
 
-/*******************************************************************************
-  Module:      SM_SndRabmSmModifyInd
-  Function:    作成和发送RABMSM_MODIFY_IND消息
-  Input:       VOS_UINT8          ucCntxtIndex           PDP context的索引
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-      1.  张志勇      2003.12.11   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM/SM原语接口中的动态内存改为静态数组
-  3.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
 VOS_VOID SM_SndRabmSmModifyInd(
     VOS_UINT8                           ucCntxtIndex                            /* PDP context的索引                        */
 )
@@ -1967,20 +1769,7 @@ VOS_VOID SM_SndRabmSmModifyInd(
     return;
 }
 
-/*******************************************************************************
-  Module:      SM_SndRabmSmDeactivateInd
-  Function:    作成和发送RABMSM_DEACTIVATE_IND消息
-  Input:       VOS_UINT8          ucCnt            去激活NSAPI的个数
-               VOS_UINT8          *pucNsapi        Nsapi的列表
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.  张志勇      2003.12.11   新规作成
-  2.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
+
 VOS_VOID SM_SndRabmSmDeactivateInd(
 VOS_UINT8                               ucCnt,                                  /* 去激活NSAPI的个数                        */
 VOS_UINT8                              *pucNsapi                                /* Nsapi的列表                              */
@@ -2028,25 +1817,7 @@ VOS_UINT8                              *pucNsapi                                
 }
 
 /*lint -e438 -e830*/
-/*******************************************************************************
-  Module:      SM_SndNwStatusMsg
-  Function:    向网侧发送SM_status消息
-  Input:       VOS_UINT8          ucTi
-               VOS_UINT8          ucSmCause
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1.  郑 伟   2003.12.11   新规作成
-  2.  张志勇  2005.01.05   移植修改
-  3.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期  : 2013年03月13日
-    作    者  : z00214637
-    修改内容  : BodySAR项目
 
-*******************************************************************************/
 VOS_VOID SM_SndNwStatusMsg(
                        VOS_UINT8                    ucTi,                           /* TI                                       */
                        VOS_UINT8                    ucSmCause                       /* SM cause                                 */
@@ -2187,19 +1958,7 @@ VOS_VOID SM_SndNwStatusMsg(
 }
 /*lint +e438 +e830*/
 
-/*******************************************************************************
-  Module:      SM_GetMostHighPri
-  Function:    选择实体中的最高优先级的traffic class
-  Input:       VOS_VOID
-  NOTE:
-  Return:      VOS_UINT8 ucPriority
-  History:
-  1.  张志勇      2003.12.11   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-*******************************************************************************/
 VOS_UINT8 SM_GetMostHighPri(VOS_VOID)
 {
     VOS_UINT8   i;
@@ -2269,23 +2028,7 @@ VOS_UINT32   SM_GetCr(VOS_UINT8 ucNsapi, VOS_UINT8 *pucCr)
 }
 
 
-/*****************************************************************************
- 函 数 名  : SM_FillMsgData
- 功能描述  :
- 输入参数  : VOS_VOID *pMsgContent
-             VOS_VOID *pData
-             VOS_UINT32 ulLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年7月8日
-    作    者   : luojian id:107747
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID SM_FillMsgData(VOS_VOID *pMsgContent,VOS_VOID *pData,VOS_UINT32 ulLen)
 {
     SM_MemCpy(pMsgContent, pData, ulLen);
@@ -2327,28 +2070,7 @@ VOS_UINT32   SM_IsActivePending(VOS_UINT8 ucNsapi)
 }
 
 
-/*******************************************************************************
-  Module:      SM_RabmGetFirstActIndMsgInfo
-  Function:    PDP激活流程中，SM会向RABM发送两条ID_SM_RABM_ACTIVATE_IND_STRU消息，
-               分别在发起激活和激活成功的时候发送。但有可能会遇到如下场景:
-               SM向RABM发送了第一条ID_SM_RABM_ACTIVATE_IND_STRU后，状态处于
-               SM_PDP_ACTIVE_PENDING态，此时发生异系统流程(正常异系统流程或丢网)，
-               则RABM在切入另一个系统后建立状态机时，需要恢复为接收到第一条
-               ID_SM_RABM_ACTIVATE_IND_STRU的状态，此时RABM则通过该API来进行状态恢复
-               时所需信息的获取。
-  Input:       VOS_UINT8 ucNsapi
-               RABMSM_ACTIVATE_IND_STRU *pActivateInd;
-  Output:      VOS_VOID
-  NOTE:
-  Return:      VOS_OK
-               VOS_ERR
-  History:
-      1.  L47619      2009.03.16   新规作成
 
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : RABM/SM原语接口中的动态内存改为静态数组
-*******************************************************************************/
 VOS_UINT32   SM_RabmGetFirstActIndMsgInfo(
     VOS_UINT8                           ucNsapi,
     RABMSM_ACTIVATE_IND_STRU           *pActivateInd
@@ -2393,20 +2115,7 @@ VOS_UINT32   SM_RabmGetFirstActIndMsgInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_IsPdpCntxtValid
- 功能描述  : 检查实体上下文是否有效
- 输入参数  : pstPdpCntxt --- 实体上下文
- 输出参数  : 无
- 返 回 值  : PS_TRUE/PS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_SM_IsPdpCntxtValid(NAS_SM_PDP_CONTEXT_INFO_STRU *pstPdpCntxt)
 {
     if (VOS_NULL_PTR == pstPdpCntxt)
@@ -2417,23 +2126,7 @@ VOS_UINT32 NAS_SM_IsPdpCntxtValid(NAS_SM_PDP_CONTEXT_INFO_STRU *pstPdpCntxt)
     return PS_TRUE;
 }
 
-/*******************************************************************************
-  Module:      SM_SndTafMsg
-  Function:    将SM待发送的空口消息发送给GMM
-  Input:       VOS_VOID
-  NOTE:
-  Return:      VOS_UINT8
-  History:
-      1.  张志勇      2003.12.11   新规作成
-      2.  张志勇   2005.03.17   NAS_IT_BUG_004
-	  3.日    期   : 2012年12月11日
-	    作    者   : l00167671
-	    修改内容   : DTS2012121802573, TQE清理
-      4.日    期  : 2013年03月13日
-        作    者  : z00214637
-        修改内容  : BodySAR项目
 
-*******************************************************************************/
 VOS_VOID SM_SndTafMsg(
                   VOS_UINT8             *pSendMsg,                                  /* 消息内容的临时指针                       */
                   VOS_UINT8             ucSMIndex,                                  /* SM索引                                   */
@@ -2508,26 +2201,7 @@ VOS_VOID SM_SndTafMsg(
 
     return;
 }
-/*******************************************************************************
-  Module:      SM_SndStatusMsg
-  Function:    向AGENT及网侧发送SM_status消息
-  Input:       VOS_VOID
-               Ti:  UCHAR类型,
-                    BIT8        -  Ti_Flag, NET->MS的消息中的FLAG
-                    BIT7~BIT1   -  Ti 值
-  NOTE:
-  Return:      VOS_VOID
-  History:
-  1. 张志勇    2005.01.10   新规作成
-  2. 韩鲁峰    2005-04-19   增加函数头中对输入参数Ti的说明
 
-  3.日    期   : 2014年7月22日
-    作    者   : A00165503
-    修改内容   : DTS2014071601162: SM_STATUS信令流程增机保护
-  4.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_SndStatusMsg( VOS_UINT8 ucTi, VOS_UINT8  ucSmCause )
 {
     NAS_SM_BeginSession();
@@ -2539,20 +2213,7 @@ VOS_VOID SM_SndStatusMsg( VOS_UINT8 ucTi, VOS_UINT8  ucSmCause )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndGmmEstablishReq
- 功能描述  : 发送GMMSM_ESTABLISH_REQ消息至GMM
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_SM_SndGmmEstablishReq(VOS_VOID)
 {
     GMMSM_ESTABLISH_REQ_STRU           *pstMsg = VOS_NULL_PTR;
@@ -2577,23 +2238,7 @@ VOS_VOID NAS_SM_SndGmmEstablishReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndGmmPdpDeactivatedInd
- 功能描述  : 发送GMMSM_PDP_DEACTIVATED_IND消息至GMM
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 封装消息接口
-*****************************************************************************/
 VOS_VOID NAS_SM_SndGmmPdpDeactivatedInd(VOS_VOID)
 {
     GMMSM_PDP_DEACTIVATED_IND_STRU     *pstMsg = VOS_NULL_PTR;
@@ -2631,24 +2276,7 @@ VOS_VOID NAS_SM_SndGmmPdpDeactivatedInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndGmmAbortReq
- 功能描述  : 发送GMMSM_ABORT_REQ消息至GMM, 清除SM缓存
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 封装消息接口
-*****************************************************************************/
 VOS_VOID NAS_SM_SndGmmAbortReq(VOS_VOID)
 {
     GMMSM_ABORT_REQ_STRU               *pstMsg = VOS_NULL_PTR;
@@ -2673,24 +2301,7 @@ VOS_VOID NAS_SM_SndGmmAbortReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndGmmPdpModifyInd
- 功能描述  : 发送GMMSM_PDP_MODIFY_IND消息给GMM
- 输入参数  : ucNsapi - 取值范围[5, 15]
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 封装消息接口
-*****************************************************************************/
 VOS_VOID NAS_SM_SndGmmPdpModifyInd(VOS_UINT8 ucNsapi)
 {
     GMMSM_PDP_MODIFY_IND_STRU              *pstMsg = VOS_NULL_PTR;
@@ -2719,28 +2330,7 @@ VOS_VOID NAS_SM_SndGmmPdpModifyInd(VOS_UINT8 ucNsapi)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndGmmPdpStatusInd
- 功能描述  : 发送GMMSM_PDP_STATUS_IND原语, 增加SM_PDP_ACTIVE_PENDING条件
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月9日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 封装消息接口
-
-  3.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-*****************************************************************************/
 VOS_VOID NAS_SM_SndGmmPdpStatusInd(VOS_VOID)
 {
     GMMSM_PDP_STATUS_IND_STRU          *pstMsg = VOS_NULL_PTR;
@@ -2792,20 +2382,7 @@ VOS_VOID NAS_SM_SndGmmPdpStatusInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndPdpCntxtHoldMsg
- 功能描述  : 发送实体上下文中保存的消息
- 输入参数  : ucCntxtId --- 实体索引(有效性由调用者保证)
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月17日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_SM_SndPdpCntxtHoldMsg(NAS_SM_PDP_CONTEXT_INFO_STRU *pstPdpCntxt)
 {
     MSG_HEADER_STRU                    *pstMsg = VOS_NULL_PTR;
@@ -2833,20 +2410,7 @@ VOS_VOID NAS_SM_SndPdpCntxtHoldMsg(NAS_SM_PDP_CONTEXT_INFO_STRU *pstPdpCntxt)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndGmmBeginSessionNotify
- 功能描述  : 发送GMMSM_BEGIN_SESSION_NOTIFY原语
- 输入参数  : enSessionType --- 会话类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_SM_SndGmmBeginSessionNotify(GMMSM_SESSION_TYPE_ENUM_UINT8 enSessionType)
 {
     GMMSM_BEGIN_SESSION_NOTIFY_STRU    *pstMsg = VOS_NULL_PTR;
@@ -2874,20 +2438,7 @@ VOS_VOID NAS_SM_SndGmmBeginSessionNotify(GMMSM_SESSION_TYPE_ENUM_UINT8 enSession
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndGmmEndSessionNotify
- 功能描述  : 发送GMMSM_END_SESSION_NOTIFY原语
- 输入参数  : enSessionType --- 会话类型
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_SM_SndGmmEndSessionNotify(GMMSM_SESSION_TYPE_ENUM_UINT8 enSessionType)
 {
     GMMSM_END_SESSION_NOTIFY_STRU      *pstMsg = VOS_NULL_PTR;

@@ -327,16 +327,7 @@ extern VOS_VOID IMSA_CONN_DeleteOldPcscfInfoAndConfigNewPcscfInfo
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_InitNicPdpInfo
- Description    : 初始化配置给NIC的PDP信息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2014-04-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ClearNicPdpInfo(VOS_VOID)
 {
     IMSA_CONN_MANAGER_STRU  *pstConnManager  = IMSA_CONN_GetConnManagerAddr();
@@ -350,16 +341,7 @@ VOS_VOID IMSA_CONN_ClearNicPdpInfo(VOS_VOID)
                     sizeof(IMSA_CONN_NIC_PDP_INFO_STRU)*IMSA_CONN_MAX_NIC_PDP_NUM);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_DeletePdpId2Nic
- Description    : IMSA_CONN_NIC_PDP_INFO_STRU中存储的承载号通知TTF删除
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2014-04-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_DeletePdpId2Nic(VOS_VOID)
 {
     IMSA_CONN_MANAGER_STRU  *pstConnManager  = IMSA_CONN_GetConnManagerAddr();
@@ -386,16 +368,7 @@ VOS_VOID IMSA_CONN_DeletePdpId2Nic(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_Init
- Description    : IMSA CONN模块的初始化
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-09  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_Init( VOS_VOID )
 {
     IMSA_NORMAL_CONN_STRU              *pstNormalConn   = VOS_NULL_PTR;
@@ -432,15 +405,7 @@ VOS_VOID IMSA_CONN_Init( VOS_VOID )
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_PdnInfoNicDelete
- Description    : 删除NIC PDN信息
- Input          : ucPdpId---------------------承载号
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2014-01-24  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_PdnInfoNicDelete
 (
     VOS_UINT8                           ucPdpId
@@ -455,16 +420,7 @@ VOS_VOID IMSA_CONN_PdnInfoNicDelete
     TLPS_PRINT2LAYER_INFO(IMSA_CONN_PdnInfoNicDelete_ENUM, LNAS_LEAVE);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ClearResource
- Description    : IMSA CONN模块的清除资源
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-23  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ClearResource( VOS_VOID )
 {
     IMSA_NORMAL_CONN_STRU              *pstNormalConn   = VOS_NULL_PTR;
@@ -540,18 +496,7 @@ VOS_VOID IMSA_CONN_ClearResource( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_AssignOpid
- Description    : IMSA CONN模块分配OPID
-                  普通连接的OPID和紧急连接的OPID值位于不同区间，是为了使OPID值
-                  翻转后普通连接的OPID和紧急连接的OPID值不产生干扰
- Input          : enConnType--------------连接类型
- Output         : pulOpid-----------------分配的OPID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_AssignOpid
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -603,16 +548,7 @@ VOS_VOID IMSA_CONN_AssignOpid
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcConnSetupReq
- Description    : 根据OPID查找其关联的连接实体类型
- Input          : pstConnSetupReqMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_GetConnTypeByOpid
 (
     VOS_UINT8                           ucOpid,
@@ -634,16 +570,7 @@ VOS_UINT32 IMSA_CONN_GetConnTypeByOpid
     return IMSA_FAIL;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_GetSipSignalPdpState
- Description    : 获取SIP信令承载状态
- Input          : pstConnSetupReqMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-25  Draft Enact
-*****************************************************************************/
 IMSA_PDP_STATE_ENUM_UINT8 IMSA_CONN_GetSipSignalPdpState
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -680,17 +607,7 @@ IMSA_PDP_STATE_ENUM_UINT8 IMSA_CONN_GetSipSignalPdpState
     return IMSA_PDP_STATE_INACTIVE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsConnStatusEqual
- Description    : 判断连接状态是否与入参相同
- Input          : enConnType-------------连接类型
-                  enTimerId--------------定时器类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsConnStatusEqual
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -718,16 +635,7 @@ VOS_UINT32 IMSA_CONN_IsConnStatusEqual
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ClearConnResource
- Description    : 清除连接资源
- Input          : enConnType-------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ClearConnResource
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType
@@ -789,16 +697,7 @@ VOS_VOID IMSA_CONN_ClearConnResource
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ClearConnResourceExeptMedia
- Description    : 清除连接资源，但不清除媒体承载信息
- Input          : enConnType-------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2014-12-03  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ClearConnResourceExeptMedia
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType
@@ -848,16 +747,7 @@ VOS_VOID IMSA_CONN_ClearConnResourceExeptMedia
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_HasActiveSipSignalPdp
- Description    : 判断连接是否有激活的SIP信令承载
- Input          : enConnType-------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_HasActiveSipSignalPdp
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType
@@ -893,16 +783,7 @@ VOS_UINT32 IMSA_CONN_HasActiveSipSignalPdp
         }
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_CONN_HasActiveVoicePdp
- Description    : 判断连接是否有激活的语音承载
- Input          : enConnType-------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181 2014-06-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_HasActiveVoicePdp
 (
     VOS_VOID
@@ -947,16 +828,7 @@ VOS_UINT32 IMSA_CONN_HasActiveVoicePdp
     }
     return IMSA_FALSE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CONN_HasActiveVideoPdp
- Description    : 判断连接是否有激活的视频承载
- Input          : enConnType-------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181 2014-06-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_HasActiveVideoPdp
 (
     VOS_VOID
@@ -1002,19 +874,7 @@ VOS_UINT32 IMSA_CONN_HasActiveVideoPdp
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_GetPdpContextByPdpId
- Description    : 根据承载号获取承载上下文
- Input          : enConnType----------连接类型
-                  ucPdpId-------------承载号
- Output         : penSipPdpType-------SIP承载类型指针
-                  pstPdpContext-------PDP上下文指针的指针
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-06-29  Draft Enact
-      2.lihong 00150010      2013-12-06  Moidfy:emc dedicated
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_GetPdpContextByPdpId
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1081,19 +941,7 @@ VOS_UINT32 IMSA_CONN_GetPdpContextByPdpId
     return IMSA_FAIL;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_GetPdpContextByCid
- Description    : 根据CID获取承载上下文
- Input          : enConnType----------连接类型
-                  ucCid---------------CID
- Output         : penSipPdpType-------SIP承载类型指针
-                  pstPdpContext-------PDP上下文指针的指针
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-02  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:Emc dedicated
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_GetPdpContextByCid
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1160,18 +1008,7 @@ VOS_UINT32 IMSA_CONN_GetPdpContextByCid
     return IMSA_FAIL;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_GetPdpContextByCidOrPdpId
- Description    : 根据CID或承载ID获取承载上下文
- Input          : pstPdpDeactivateInd----------去激活事件
- Output         : penSipPdpType----------------SIP承载类型指针
-                  pstPdpContext----------------PDP上下文指针的指针
-                  penConnType------------------连接类型
- Return Value   : VOS_UINT32
 
- History        :
-      1.xiongxianghui 00150010      2015-01-06  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_GetPdpContextByCidOrPdpId
 (
     VOS_UINT8                                   ucCid,
@@ -1239,17 +1076,7 @@ VOS_UINT32 IMSA_CONN_GetPdpContextByCidOrPdpId
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_GetTimerLen
- Description    : 获取定时器时长
- Input          : enConnType-------------连接类型
-                  enTimerId--------------定时器类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_GetTimerLen
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1281,17 +1108,7 @@ VOS_UINT32 IMSA_CONN_GetTimerLen
     return 0;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_StartTimer
- Description    : IMSA CONN模块启动定时器
- Input          : enConnType-------------连接类型
-                  enTimerId--------------定时器类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_StartTimer
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1326,17 +1143,7 @@ VOS_VOID IMSA_CONN_StartTimer
     IMSA_StartTimer(pstProtectImer);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_StopTimer
- Description    : IMSA CONN模块关闭定时器
- Input          : enConnType-------------连接类型
-                  enTimerId--------------定时器类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_StopTimer
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1361,17 +1168,7 @@ VOS_VOID IMSA_CONN_StopTimer
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SetConnStatus
- Description    : 设置连接状态
- Input          : enConnType-------------连接类型
-                  enConnStatus-----------连接状态
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SetConnStatus
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1394,17 +1191,7 @@ VOS_VOID IMSA_CONN_SetConnStatus
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SaveFirstReqPdnType
- Description    : 存储最初请求的PDN类型
- Input          : enConnType-------------连接类型
-                  enIpType---------------请求的PDN类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SaveFirstReqPdnType
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1428,17 +1215,7 @@ VOS_VOID IMSA_CONN_SaveFirstReqPdnType
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SaveCurReqPdnType
- Description    : 存储当前请求的PDN类型
- Input          : enConnType-------------连接类型
-                  enIpType---------------请求的PDN类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SaveCurReqPdnType
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1461,16 +1238,7 @@ VOS_VOID IMSA_CONN_SaveCurReqPdnType
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsImsSdf
- Description    : 判断是否是IMS SDF
- Input          : pstSdfPara--------------------SDF指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsImsSdf
 (
      const TAF_SDF_PARA_STRU            *pstSdfPara
@@ -1487,16 +1255,7 @@ VOS_UINT32 IMSA_CONN_IsImsSdf
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsPndTypeValid
- Description    : 判断pdn类型是否正确
- Input          : pstSdfPara--------------------SDF指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsPndTypeValid
 (
      const TAF_SDF_PARA_STRU            *pstSdfPara
@@ -1512,16 +1271,7 @@ VOS_UINT32 IMSA_CONN_IsPndTypeValid
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsEmcSdf
- Description    : 判断是否是EMS SDF
- Input          : pstSdfPara--------------------SDF指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsEmcSdf
 (
      const TAF_SDF_PARA_STRU            *pstSdfPara
@@ -1536,18 +1286,7 @@ VOS_UINT32 IMSA_CONN_IsEmcSdf
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_FindSipSignalReStablishDialPara
- Description    : 获取SIP信令承载重建立时的拨号参数
- Input          : ucCid-------------------------CID
-                  ulSdfNum----------------------SDF数
-                  pstSdfPara--------------------SDF数组首地址
- Output         : pulIndex----------------------获取到的拨号参数的索引指针
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181   2014-3-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_FindSipSignalReStablishDialPara
 (
     VOS_UINT8                           ucCid,
@@ -1578,18 +1317,7 @@ VOS_UINT32 IMSA_CONN_FindSipSignalReStablishDialPara
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_FindSipSignalDialPara
- Description    : 获取SIP信令承载拨号参数
- Input          : enConnType--------------------连接类型
-                  ulSdfNum----------------------SDF数
-                  pstSdfPara--------------------SDF数组首地址
- Output         : pulIndex----------------------获取到的拨号参数的索引指针
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_FindSipSignalDialPara
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1655,16 +1383,7 @@ VOS_UINT32 IMSA_CONN_FindSipSignalDialPara
     return IMSA_FAIL;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SaveSelectedSdfPara
- Description    : 存储选中的SDF参数
- Input          : enConnType--------------------连接类型
- Output         : pstTafSdfPara-----------------TAF SDF参数指针
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SaveSelectedSdfPara
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -1723,16 +1442,7 @@ VOS_VOID IMSA_CONN_SaveSelectedSdfPara
     pstSelSdfPara->ucImsSuppFlg             = pstTafSdfPara->ucImsSuppFlg;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_GetPrimPdpCntFromSelSdfPara
- Description    : 将选择的SDF参数转化成PRIMARY PDP CONTEXT
- Input          : pstSelectedSdfPara---------------选择的SDF参数指针
- Output         : pstPdpPrimContextExt-------------PDP CONTEXT参数指针
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_GetPrimPdpCntFromSelSdfPara
 (
     const IMSA_SEL_SDF_PARA_STRU       *pstSelectedSdfPara,
@@ -1776,16 +1486,7 @@ VOS_VOID IMSA_CONN_GetPrimPdpCntFromSelSdfPara
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_GetImsDailParaFromSelSdfPara
- Description    : 将选择的SDF参数转化成拨号参数格式
- Input          : pstSelectedSdfPara---------------选择的SDF参数指针
- Output         : pstDialParaInfo------------------拨号参数指针
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_GetImsDailParaFromSelSdfPara
 (
     const IMSA_SEL_SDF_PARA_STRU       *pstSelectedSdfPara,
@@ -1871,17 +1572,7 @@ VOS_VOID IMSA_CONN_GetImsDailParaFromSelSdfPara
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ConvertIpAddress2String
- Description    : IMSA CONN模块将IP地址转成字符串格式
- Input          : enIpType------------------IP类型
-                  pucSrc--------------------IP地址指针
- Output         : pcDst---------------------输出字符串指针
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ConvertIpAddress2String
 (
     IMSA_IP_TYPE_ENUM_UINT8             enIpType,
@@ -1944,17 +1635,7 @@ VOS_VOID IMSA_CONN_ConvertIpAddress2String
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_FilterRegedPcscfInfo
- Description    : 用于过滤出已经注册的P-CSCF地址
- Input          : enConnType---------------------连接类型
-                  pstPdpInfo---------------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2015-09-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_FilterRegedPcscfInfo
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2059,17 +1740,7 @@ VOS_UINT32 IMSA_CONN_FilterRegedPcscfInfo
 
     return IMSA_FALSE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CONN_DeletePcscfInfo2Reg
- Description    : 删除REG模块中的PCSCF地址
- Input          : enConnType---------------------连接类型
-                  pstPdpInfo---------------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2015-09-02  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_DeletePcscfInfo2Reg
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2155,17 +1826,7 @@ VOS_VOID IMSA_CONN_DeletePcscfInfo2Reg
         }
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_CONN_DeletePcscfInfo2Reg
- Description    : 给REG模块配置P-CSCF信息
- Input          : enConnType---------------------连接类型
-                  pstPdpInfo---------------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2015-09-02  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ConfigPcscfInfo2Reg
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2259,19 +1920,7 @@ VOS_VOID IMSA_CONN_ConfigPcscfInfo2Reg
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_DeleteOldPcscfInfoAndConfigNewPcscfInfo
- Description    : 将备份承载信息中未注册的地址对删除，
-                  将修改承载信息中未注册的PCSCF地址配成地址对并保持
- Input          : enConnType---------------------连接类型
-                  pstPdpContext------------------新的PDP上下文指针
-                  pstPdpContextOld---------------备份的PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310      2015-09-08  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_DeleteOldPcscfInfoAndConfigNewPcscfInfo
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2334,18 +1983,7 @@ VOS_VOID IMSA_CONN_DeleteOldPcscfInfoAndConfigNewPcscfInfo
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcPcscfInvalid
- Description    : 判断当前注册地址是否失效
- Input          : enConnType---------------------连接类型
-                  pstPdpContext------------------修改后PDP上下文指针
-                  pstPdpContextOld---------------原来PDN上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181      2015-03-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcPcscfInvalid
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2404,17 +2042,7 @@ VOS_VOID IMSA_CONN_ProcPcscfInvalid
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ConfigPdpInfo2Reg
- Description    : IMSA CONN模块配置承载信息给REG模块
- Input          : enConnType---------------------连接类型
-                  pstPdpInfo---------------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ConfigPdpInfo2Reg
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2526,17 +2154,7 @@ VOS_VOID IMSA_CONN_ConfigPdpInfo2Reg
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_DeletePdpInfo2Reg
- Description    : IMSA CONN模块删除REG模块中的承载信息
- Input          : enConnType---------------------连接类型
-                  pstPdpInfo---------------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_DeletePdpInfo2Reg
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -2642,16 +2260,7 @@ VOS_VOID IMSA_CONN_DeletePdpInfo2Reg
         }
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_CONN_PdnInfoNicConfig
- Description    : IMSA调用IMS_NIC_PdnInfoConfig API
-                  pstPdpInfo---------------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2014-1-23  Draft Enact
-*****************************************************************************/
 
 VOS_UINT32 IMSA_CONN_PdnInfoNicConfig (IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigInfo)
 {
@@ -2672,17 +2281,7 @@ VOS_UINT32 IMSA_CONN_PdnInfoNicConfig (IMS_NIC_PDN_INFO_CONFIG_STRU *pstConfigIn
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ConfigPdpIPv6Info2Bsp
- Description    : IMSA CONN模块配置承载IPV6信息给BSP
-                  pstPdpInfo---------------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-20  Draft Enact
-      2.lihong 00150010      2013-12-24  Modify:Ut and IMS same APN
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ConfigPdpIPv6Info2Bsp
 (
     const IMSA_PDP_CNTXT_INFO_STRU     *pstPdpInfo
@@ -2745,17 +2344,7 @@ VOS_VOID IMSA_CONN_ConfigPdpIPv6Info2Bsp
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ConfigPdpInfo2Bsp
- Description    : IMSA CONN模块配置承载信息给BSP
-                  pstPdpInfo---------------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-20  Draft Enact
-      2.lihong 00150010      2013-12-24  Modify:Ut and IMS same APN
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ConfigPdpInfo2Bsp
 (
     const IMSA_PDP_CNTXT_INFO_STRU     *pstPdpInfo
@@ -2848,17 +2437,7 @@ VOS_VOID IMSA_CONN_ConfigPdpInfo2Bsp
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SaveSipSignalPdpInfo
- Description    : IMSA CONN模块存储SIP信令承载信息
- Input          : pstPdpInfo---------------------PDP上下文指针
-                  pstPdpActivateCnf--------------ACTIVATE CNF事件指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SaveSipSignalPdpInfo
 (
     IMSA_PDP_CNTXT_INFO_STRU                   *pstPdpInfo,
@@ -2998,17 +2577,7 @@ VOS_VOID IMSA_CONN_SaveSipSignalPdpInfo
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SaveMediaPdpInfoWithSamePdpId
- Description    : IMSA CONN模块存储具有相同PdpId的SIP媒体承载信息
- Input          : enConnType---------------------连接类型
-                  pstPdpActivateInd--------------ACTIVATE IND事件指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.xiongxianghui 00253310      2016-01-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_SaveMediaPdpInfoWithSamePdpId
 (
     IMSA_CONN_TYPE_ENUM_UINT32                  enConnType,
@@ -3115,17 +2684,7 @@ VOS_UINT32 IMSA_CONN_SaveMediaPdpInfoWithSamePdpId
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SaveMediaPdpInfoWithSameQci
- Description    : IMSA CONN模块存储具有相同QCI的SIP媒体承载信息
- Input          : enConnType---------------------连接类型
-                  pstPdpActivateInd--------------ACTIVATE IND事件指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.xiongxianghui 00253310      2016-01-16  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_SaveMediaPdpInfoWithSameQci
 (
     IMSA_CONN_TYPE_ENUM_UINT32                  enConnType,
@@ -3233,17 +2792,7 @@ VOS_UINT32 IMSA_CONN_SaveMediaPdpInfoWithSameQci
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SaveSipMediaPdpInfo
- Description    : IMSA CONN模块存储SIP媒体承载信息
- Input          : pstPdpActivateInd--------------ACTIVATE IND事件指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-29  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:emc dedicated
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SaveSipMediaPdpInfo
 (
     IMSA_CONN_TYPE_ENUM_UINT32                  enConnType,
@@ -3327,17 +2876,7 @@ VOS_VOID IMSA_CONN_SaveSipMediaPdpInfo
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ModifySipPdpInfo
- Description    : IMSA CONN模块修改SIP承载信息
- Input          : enSipPdpType-----------------SIP承载类型
-                  pstPdpModifyInd--------------MODIFY IND事件指针
- Output         : pstPdpInfo-------------------PDP上下文指针
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ModifySipPdpInfo
 (
     IMSA_CONN_SIP_PDP_TYPE_ENUM_UINT32          enSipPdpType,
@@ -3394,17 +2933,7 @@ VOS_VOID IMSA_CONN_ModifySipPdpInfo
     {
     }
 }
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsImsBearNeedSetToCds
- Description    : IMSA CONN模块判断当前激活的承载是否需要配置给CDS
- Input          : pEvtInfo--------------事件信息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2014-06-21  Draft Enact
-      2.wangchen 00209181   2015-03-18  Modify:volte
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsVoiceMediaPdpType
 (
     IMSA_PDP_TFT_INFO_STRU              *pstTft,
@@ -3463,16 +2992,7 @@ VOS_UINT32 IMSA_CONN_IsVoiceMediaPdpType
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SaveIpv6Info
- Description    : IMSA CONN模块存储APS上报的IPV6信息
- Input          : pstIpv6InfoInd-----------------IPV6 INFO IND事件指针
- Output         : pstPdpInfo---------------------PDP上下文指针
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SaveIpv6Info
 (
     IMSA_PDP_CNTXT_INFO_STRU                   *pstPdpInfo,
@@ -3497,19 +3017,7 @@ VOS_VOID IMSA_CONN_SaveIpv6Info
                     IMSA_IPV6_PREFIX_LEN);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsPdpIpv4InfoIncludeRegPara
- Description    : 判断IPV4类型承载是否包含注册信息
- Input          :
-                  pcRegUeAddr---------------注册IP地址指针
-                  pcRegPcscfAddr------------注册P-CSCF地址指针
-                  pstPdpInfo----------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181    2015-03-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsPdpIpv4InfoIncludeRegPara
 (
     VOS_CHAR                               *pcRegUeAddr,
@@ -3568,19 +3076,7 @@ VOS_UINT32 IMSA_CONN_IsPdpIpv4InfoIncludeRegPara
 
     return IMSA_FALSE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsPdpIpv6InfoIncludeRegPara
- Description    : 判断IPV6类型承载是否包含注册信息
- Input          :
-                  pcRegUeAddr---------------注册IP地址指针
-                  pcRegPcscfAddr------------注册P-CSCF地址指针
-                  pstPdpInfo----------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181    2015-03-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsPdpIpv6InfoIncludeRegPara
 (
     VOS_CHAR                               *pcRegUeAddr,
@@ -3639,20 +3135,7 @@ VOS_UINT32 IMSA_CONN_IsPdpIpv6InfoIncludeRegPara
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsPdpIpvxInfoIncludeRegPara
- Description    : 判断IPV4类型承载或者IPV6承载类型是否包含注册信息
- Input          : enIpType------------------ip类型
-                  pcRegUeAddr---------------注册IP地址指针
-                  pcRegPcscfAddr------------注册P-CSCF地址指针
-                  pstPdpInfo----------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-17  Draft Enact
-      2.wangchen 00209181    2015-03-21  Modify:volte
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsPdpIpvxInfoIncludeRegPara
 (
     IMSA_IP_TYPE_ENUM_UINT8                 enIpType,
@@ -3677,17 +3160,7 @@ VOS_UINT32 IMSA_CONN_IsPdpIpvxInfoIncludeRegPara
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsRegPara
- Description    : 判断是否是注册使用的参数
- Input          : enConnType----------------连接类型
-                  pstPdpInfo----------------PDP上下文指针
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-17  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsPdpInfoIncludeRegPara
 (
     IMSA_CONN_TYPE_ENUM_UINT32              enConnType,
@@ -3746,15 +3219,7 @@ VOS_UINT32 IMSA_CONN_IsPdpInfoIncludeRegPara
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_DeleteEmcPdpInfo
- Description    : 删除紧急承载信息
- Input          : ucCid---------------------CID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2014-01-16  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_DeleteEmcPdpInfo
 (
     VOS_UINT8                               ucCid,
@@ -3823,18 +3288,7 @@ VOS_VOID IMSA_CONN_DeleteEmcPdpInfo
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_DeletePdpInfo
- Description    : 删除承载信息
- Input          : enConnType----------------连接类型
-                  ucCid---------------------CID
- Output         : pulRegParaInvalid---------注册参数失效标识指针,0表示失效，1表示有效
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-02  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:Emc dedicated
-*****************************************************************************/
 VOS_VOID IMSA_CONN_DeletePdpInfo
 (
     IMSA_CONN_TYPE_ENUM_UINT32              enConnType,
@@ -3938,16 +3392,7 @@ VOS_VOID IMSA_CONN_DeletePdpInfo
 
     return ;
 }
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsExitPersistentBearer
- Description    : 判断是否存在普通媒体承载或者紧急信令承载
- Input          :
- Output         :
- Return Value   : VOS_UINT32
 
- History        :
-      1.wangchen 00209181   2014-09-30  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsExitPersistentBearer
 (
     VOS_VOID
@@ -3981,18 +3426,7 @@ VOS_UINT32 IMSA_CONN_IsExitPersistentBearer
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SndConnSetupInd
- Description    : 发送IMSA内部消息ID_IMSA_CONN_SETUP_IND
- Input          : enResult------------------连接建立结果
-                  enConnType----------------连接类型
-                  enSipPdpType--------------SIP承载类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-27  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SndConnSetupInd
 (
     IMSA_CONN_RESULT_ENUM_UINT32            enResult,
@@ -4036,18 +3470,7 @@ VOS_VOID IMSA_CONN_SndConnSetupInd
     /*调用消息发送函数 */
     IMSA_SEND_INTRA_MSG(pstConnSetupInd);
 }
-/*****************************************************************************
- Function Name  : IMSA_CONN_SndConnMediaSetupInd
- Description    : 发送IMSA内部消息ID_IMSA_CONN_SETUP_IND
- Input          : enResult------------------连接建立结果
-                  enConnType----------------连接类型
-                  enSipPdpType--------------SIP承载类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2015-03-17  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SndConnMediaSetupInd
 (
     IMSA_CONN_RESULT_ENUM_UINT32            enResult,
@@ -4093,18 +3516,7 @@ VOS_VOID IMSA_CONN_SndConnMediaSetupInd
     IMSA_SEND_INTRA_MSG(pstConnSetupInd);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SndConnModifyInd
- Description    : 发送IMSA内部消息ID_IMSA_CONN_MODIFY_IND，通知SERVICE媒体承载修改
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-01  Draft Enact
-      2.lihong 00150010      2013-12-06  Modify:Emc dedicated
-      3.wangchen 00209181    2015-03-19  Modify:volte
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SndConnMediaPdpModifyInd
 (
     IMSA_CONN_TYPE_ENUM_UINT32              enConnType,
@@ -4150,16 +3562,7 @@ VOS_VOID IMSA_CONN_SndConnMediaPdpModifyInd
     IMSA_SEND_INTRA_MSG(pstConnModifyInd);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SndConnRegParaInvalid
- Description    : 发送IMSA内部消息ID_IMSA_CONN_MODIFY_IND，通知SERVICE注册参数无效
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-02  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SndConnRegParaInvalid( VOS_VOID )
 {
     IMSA_CONN_MODIFY_IND_STRU           *pstConnModifyInd  = VOS_NULL_PTR;
@@ -4200,16 +3603,7 @@ VOS_VOID IMSA_CONN_SndConnRegParaInvalid( VOS_VOID )
     IMSA_SEND_INTRA_MSG(pstConnModifyInd);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SndConnRegPcscfInvalid
- Description    : 发送IMSA内部消息ID_IMSA_CONN_MODIFY_IND，通知SERVICE注册参数无效
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181      2015-03-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SndConnRegPcscfInvalid( IMSA_CONN_TYPE_ENUM_UINT32 enConnType )
 {
     IMSA_CONN_MODIFY_IND_STRU           *pstConnModifyInd  = VOS_NULL_PTR;
@@ -4248,17 +3642,7 @@ VOS_VOID IMSA_CONN_SndConnRegPcscfInvalid( IMSA_CONN_TYPE_ENUM_UINT32 enConnType
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_SndConnRelInd
- Description    : 发送IMSA内部消息ID_IMSA_CONN_REL_IND
- Input          : enConnType----------------连接类型
-                  enSipPdpType--------------SIP承载类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SndConnRelInd
 (
     IMSA_CONN_TYPE_ENUM_UINT32              enConnType,
@@ -4301,16 +3685,7 @@ VOS_VOID IMSA_CONN_SndConnRelInd
     IMSA_SEND_INTRA_MSG(pstConnRelInd);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcReEstablishConnSetupReq
- Description    : IMSA内部消息ID_IMSA_CONN_SETUP_REQ(re-establish类型)处理函数
- Input          : pstConnSetupReqMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2014-3-6  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcReEstablishConnSetupReq
 (
     const IMSA_CONN_SETUP_REQ_STRU     *pstConnSetupReqMsg
@@ -4501,16 +3876,7 @@ VOS_VOID IMSA_CONN_ProcReEstablishConnSetupReq
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcConnSetupReq
- Description    : IMSA内部消息ID_IMSA_CONN_SETUP_REQ处理函数
- Input          : pstConnSetupReqMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-25  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcConnSetupReq
 (
     const IMSA_CONN_SETUP_REQ_STRU     *pstConnSetupReqMsg
@@ -4731,16 +4097,7 @@ VOS_VOID IMSA_CONN_ProcConnSetupReq
     IMSA_MEM_FREE(pstDialParaInfo);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_RequestApsRelConn
- Description    : 请求APS释放连接
- Input          : enConnType-------------连接类型
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-06-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_RequestApsRelConn
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType
@@ -4863,16 +4220,7 @@ VOS_VOID IMSA_CONN_RequestApsRelConn
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_ProcConnRelReq
- Description    : IMSA内部消息ID_IMSA_CONN_REL_REQ处理函数
- Input          : pstConnRelReqMsg--------------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-07-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcConnRelReq
 (
     const IMSA_CONN_REL_REQ_STRU       *pstConnRelReqMsg
@@ -4935,16 +4283,7 @@ VOS_VOID IMSA_CONN_ProcConnRelReq
     return ;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsEmcPdpDefined
- Description    : 判断是否定义了紧急PDP NV项
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-07-05  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsEmcPdpDefined( VOS_VOID )
 {
     VOS_UINT32                          ulRslt              = IMSA_FAIL;
@@ -4994,17 +4333,7 @@ VOS_UINT32 IMSA_CONN_IsEmcPdpDefined( VOS_VOID )
     return IMSA_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CONN_IsEqualToSelectedCid
- Description    : 是否CID是否与选择的流程中的CIDxiangtong
- Input          : enConnType--------------连接类型
-                  ucCid-------------------CID
- Output         : VOS_VOID
- Return Value   : ucCid
 
- History        :
-      1.lihong 00150010      2013-08-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_IsEqualToSelectedCid
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,
@@ -5088,17 +4417,7 @@ VOS_VOID IMSA_CONN_PrintEmcConnState( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_PrintNicPdpInfo
- Description     : 打印NIC PDP INFO存储结构中的信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_PrintNicPdpInfo(VOS_VOID)
 {
     IMSA_CONN_MANAGER_STRU  *pstConnManager  = IMSA_CONN_GetConnManagerAddr();
@@ -5135,18 +4454,7 @@ VOS_VOID IMSA_CONN_PrintNicPdpInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_Ipv4NicPdpInfoIsExistInPdpInfo
- Description     : 判断存在于NIC PDP INFO中的IPV4，是否存在于最新承载信息中的IP地址
 
- Input           : pstNicPdpInfo-----------配置给虚拟网卡的承载信息
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_Ipv4NicPdpInfoIsExistInPdpInfo(const IMSA_CONN_NIC_PDP_INFO_STRU *pstNicPdpInfo)
 {
     IMSA_EMC_CONN_STRU       *pstEmcConn      = VOS_NULL_PTR;
@@ -5188,18 +4496,7 @@ VOS_UINT32 IMSA_CONN_Ipv4NicPdpInfoIsExistInPdpInfo(const IMSA_CONN_NIC_PDP_INFO
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_Ipv6NicPdpInfoIsExistInPdpInfo
- Description     : 判断存在于NIC PDP INFO中的IPV6，是否存在于最新承载信息中的IP地址
 
- Input           : pstNicPdpInfo-----------配置给虚拟网卡的承载信息
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_Ipv6NicPdpInfoIsExistInPdpInfo(const IMSA_CONN_NIC_PDP_INFO_STRU *pstNicPdpInfo)
 {
     IMSA_EMC_CONN_STRU       *pstEmcConn      = VOS_NULL_PTR;
@@ -5242,18 +4539,7 @@ VOS_UINT32 IMSA_CONN_Ipv6NicPdpInfoIsExistInPdpInfo(const IMSA_CONN_NIC_PDP_INFO
 }
 
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_DeleteNicPdpInfoNotExistInPdpInfo
- Description     : 用于识别存在于NIC PDP INFO中，但不存在于最新承载信息中的IP地址，
-                   将其从NIC PDP INFO中删除，并通知TTF删除
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_DeleteNicPdpInfoNotExistInPdpInfo(VOS_VOID)
 {
     IMSA_CONN_MANAGER_STRU  *pstConnManager  = IMSA_CONN_GetConnManagerAddr();
@@ -5340,18 +4626,7 @@ VOS_VOID IMSA_CONN_DeleteNicPdpInfoNotExistInPdpInfo(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_Ipv4PdpAddrIsExistInNicPdpInfo
- Description     : 判断承载信息中的IPV4，是否存在于NIC PDP INFO存储结构中
 
- Input           : pstPdpAddr---------------承载信息中的IP信息
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_Ipv4PdpAddrIsExistInNicPdpInfo(const IMSA_IP_ADDRESS_STRU *pstPdpAddr)
 {
     IMSA_CONN_MANAGER_STRU  *pstConnManager  = IMSA_CONN_GetConnManagerAddr();
@@ -5378,18 +4653,7 @@ VOS_UINT32 IMSA_CONN_Ipv4PdpAddrIsExistInNicPdpInfo(const IMSA_IP_ADDRESS_STRU *
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_Ipv6PdpAddrIsExistInNicPdpInfo
- Description     : 判断承载信息中的IPV6，是否存在于NIC PDP INFO存储结构中
 
- Input           : pstPdpAddr---------------承载信息中的IP信息
- Output          : None
- Return          : VOS_VOID
-
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_Ipv6PdpAddrIsExistInNicPdpInfo(const IMSA_IP_ADDRESS_STRU *pstPdpAddr)
 {
     IMSA_CONN_MANAGER_STRU  *pstConnManager    = IMSA_CONN_GetConnManagerAddr();
@@ -5416,18 +4680,7 @@ VOS_UINT32 IMSA_CONN_Ipv6PdpAddrIsExistInNicPdpInfo(const IMSA_IP_ADDRESS_STRU *
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_PdpIdIsExistInNicPdpInfo
- Description     : 判断承载信息中的PDP ID，是否存在于NIC PDP INFO存储结构中
 
- Input           : pstPdpAddr-----------承载信息中的IP信息
- Output          : pulArrayIndex--------PDP ID存在于astNicPdpInfoArray结构中的索引
- Return          : VOS_VOID
-
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_PdpIdIsExistInNicPdpInfo(VOS_UINT8 ucPdpId, VOS_UINT32 *pulArrayIndex)
 {
     IMSA_CONN_MANAGER_STRU  *pstConnManager    = IMSA_CONN_GetConnManagerAddr();
@@ -5456,17 +4709,7 @@ VOS_UINT32 IMSA_CONN_PdpIdIsExistInNicPdpInfo(VOS_UINT8 ucPdpId, VOS_UINT32 *pul
 }
 
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_InquireNotUsedInNicPdpInfo
- Description     : 查询ucIsUsed为0的NIC PDP记录
- Input           : None
- Output          : pulArrayIndex------------ucIsUsed为0的astNicPdpInfoArray的索引
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 IMSA_CONN_InquireNotUsedInNicPdpInfo(VOS_UINT32 *pulArrayIndex)
 {
     IMSA_CONN_MANAGER_STRU  *pstConnManager  = IMSA_CONN_GetConnManagerAddr();
@@ -5488,20 +4731,7 @@ VOS_UINT32 IMSA_CONN_InquireNotUsedInNicPdpInfo(VOS_UINT32 *pulArrayIndex)
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_SaveNicPdpInfo
- Description     : 承载信息保存到NIC PDP INFO存储结构中
- Input           : ucPdpId--------------------被保存的PDP ID
-                   ucIsEmc--------------------是否为紧急
-                   pulArrayIndex--------------保存到NIC PDP INFO结构中的索引
-                   pstPdpAddr-----------------被保存的PDP INFO
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SaveNicPdpInfo(VOS_UINT8 ucPdpId,        VOS_UINT8 ucIsEmc, \
                                             VOS_UINT32 ulArrayIndex, const IMSA_IP_ADDRESS_STRU *pstPdpAddr)
 {
@@ -5519,18 +4749,7 @@ VOS_VOID IMSA_CONN_SaveNicPdpInfo(VOS_UINT8 ucPdpId,        VOS_UINT8 ucIsEmc, \
     pstConnManager->astNicPdpInfoArray[ulArrayIndex].ucPdpId = ucPdpId;
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_AddNormalPdpInfo2NicPdpInfo
- Description     : 判断IPV4信令承载信息是否存在于NIC PDP INFO中，
-                   如果不存在，添加到NIC PDP INFO中，并配置给TTF
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcIPV4PdpInfoForNic(VOS_UINT8 ucIsEmc, IMSA_PDP_CNTXT_INFO_STRU *pstPdpCntxtInfo)
 {
     IMSA_IP_ADDRESS_STRU     *pstImsaIpAddr   = VOS_NULL_PTR;
@@ -5566,18 +4785,7 @@ VOS_VOID IMSA_CONN_ProcIPV4PdpInfoForNic(VOS_UINT8 ucIsEmc, IMSA_PDP_CNTXT_INFO_
     }
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_ProcIPV6PdpInfoForNic
- Description     : 判断IPV6信令承载信息是否存在于NIC PDP INFO中，
-                   如果不存在，添加到NIC PDP INFO中，并配置给TTF
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcIPV6PdpInfoForNic(VOS_UINT8 ucIsEmc, IMSA_PDP_CNTXT_INFO_STRU *pstPdpCntxtInfo)
 {
     IMSA_IP_ADDRESS_STRU     *pstImsaIpAddr   = VOS_NULL_PTR;
@@ -5622,18 +4830,7 @@ VOS_VOID IMSA_CONN_ProcIPV6PdpInfoForNic(VOS_UINT8 ucIsEmc, IMSA_PDP_CNTXT_INFO_
     }
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_ProcIPV4V6PdpInfoForNic
- Description     : 判断IPV4V6信令承载信息是否存在于NIC PDP INFO中，
-                   如果不存在，添加到NIC PDP INFO中，并配置给TTF
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_ProcIPV4V6PdpInfoForNic(VOS_UINT8 ucIsEmc, IMSA_PDP_CNTXT_INFO_STRU *pstPdpCntxtInfo)
 {
     IMSA_CONN_MANAGER_STRU   *pstConnManager  = IMSA_CONN_GetConnManagerAddr();
@@ -5712,18 +4909,7 @@ VOS_VOID IMSA_CONN_ProcIPV4V6PdpInfoForNic(VOS_UINT8 ucIsEmc, IMSA_PDP_CNTXT_INF
 }
 
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_AddNormalPdpInfo2NicPdpInfo
- Description     : 存在于最新普通信令承载信息中，但不存在于NIC PDP INFO中的IP地址，
-                   添加到NIC PDP INFO中，并配置给TTF
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_AddNormalPdpInfo2NicPdpInfo(VOS_VOID)
 {
     IMSA_NORMAL_CONN_STRU    *pstNormalConn   = VOS_NULL_PTR;
@@ -5755,18 +4941,7 @@ VOS_VOID IMSA_CONN_AddNormalPdpInfo2NicPdpInfo(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_AddEmcPdpInfo2NicPdpInfo
- Description     : 存在于最新紧急信令承载信息中，但不存在于NIC PDP INFO中的IP地址，
-                   添加到NIC PDP INFO中，并配置给TTF
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_AddEmcPdpInfo2NicPdpInfo(VOS_VOID)
 {
     IMSA_EMC_CONN_STRU       *pstEmcConn      = VOS_NULL_PTR;
@@ -5794,18 +4969,7 @@ VOS_VOID IMSA_CONN_AddEmcPdpInfo2NicPdpInfo(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_AddPdpInfo2NicPdpInfo
- Description     : 用于识别存在于最新承载信息中，但不存在于NIC PDP INFO中的IP地址，
-                   添加到NIC PDP INFO中，并配置给TTF
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_AddPdpInfo2NicPdpInfo(VOS_VOID)
 {
     IMSA_INFO_LOG("IMSA_CONN_AddPdpInfo2NicPdpInfo is entered!");
@@ -5827,17 +4991,7 @@ VOS_VOID IMSA_CONN_AddPdpInfo2NicPdpInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_UpdateNicPdpInfo
- Description     : 更新存储配置给NIC的PDP信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_UpdateNicPdpInfo( VOS_VOID )
 {
 
@@ -5858,17 +5012,7 @@ VOS_VOID IMSA_CONN_UpdateNicPdpInfo( VOS_VOID )
     IMSA_CONN_PrintNicPdpInfo();
 }
 
-/*****************************************************************************
- Function Name   : IMSA_CONN_UpdateNicPdpInfo
- Description     : 更新存储配置给NIC的PDP信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.xiongxianghui00253310    2014-04-16  Draft Enact
-
-*****************************************************************************/
 VOS_VOID IMSA_CONN_SetupConnFail
 (
     IMSA_CONN_TYPE_ENUM_UINT32          enConnType,

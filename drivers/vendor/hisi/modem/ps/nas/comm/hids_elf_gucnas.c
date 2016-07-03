@@ -1,19 +1,4 @@
-/*******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hids_elf_gucnas.c
-  版 本 号   : 初稿
-  作    者   : l00301449
-  生成日期   : 2015年11月06日
-  功能描述   : NAS的elf文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2016年11月06日
-    作    者   : l00301449
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -85,13 +70,7 @@ extern "C" {
 #endif /* __cpluscplus */
 
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_ELF_LOG_XSD_TIMER_INFO_IND_STRU
- 结构说明  : ID_CNAS_MNTN_LOG_TIMER_INFO_IND的消息结构(XSD)
- 1.日    期   : 2015年11月09日
-   作    者   : l00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -104,13 +83,7 @@ typedef struct
 }CNAS_MNTN_ELF_LOG_XSD_TIMER_INFO_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_ELF_LOG_XCC_TIMER_INFO_IND_STRU
- 结构说明  : ID_CNAS_MNTN_LOG_TIMER_INFO_IND的消息结构(XCC)
- 1.日    期   : 2015年11月09日
-   作    者   : l00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -122,13 +95,7 @@ typedef struct
     CNAS_MNTN_TIMER_ACTION_ENUM_UINT32  enTimerAct;                             /* timer 状态: start or stop */
 }CNAS_MNTN_ELF_LOG_XCC_TIMER_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_ELF_LOG_HSM_TIMER_INFO_IND_STRU
- 结构说明  : ID_CNAS_MNTN_LOG_TIMER_INFO_IND的消息结构(HSM)
- 1.日    期   : 2015年11月10日
-   作    者   : w00351686
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -140,13 +107,7 @@ typedef struct
     CNAS_MNTN_TIMER_ACTION_ENUM_UINT32  enTimerAct;                             /* timer 状态: start or stop */
 }CNAS_MNTN_ELF_LOG_HSM_TIMER_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_MNTN_ELF_LOG_TIMER_INFO_STRU
- 结构说明  : MSCC发给定时器的消息结构(MSCC)
- 1.日    期   : 2015年12月10日
-   作    者   : w00351686
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头*/ /*_H2ASN_Skip*/
@@ -157,13 +118,7 @@ typedef struct
 }NAS_MSCC_MNTN_ELF_LOG_TIMER_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_ELF_LOG_XSD_FSM_INFO_STRU
- 结构说明  : ID_CNAS_MNTN_LOG_FSM_INFO_IND的消息结构(XSD)
- 1.日    期   : 2015年11月09日
-   作    者   : l00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -183,13 +138,7 @@ typedef struct
 }CNAS_MNTN_ELF_LOG_XSD_FSM_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_MNTN_ELF_LOG_XCC_FSM_INFO_STRU
- 结构说明  : ID_CNAS_MNTN_LOG_FSM_INFO_IND的消息结构(XCC)
- 1.日    期   : 2015年11月09日
-   作    者   : l00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -206,13 +155,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[3];
 }CNAS_MNTN_ELF_LOG_XCC_FSM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_EHSM_ELF_TIMER_INFO_STRU
- 结构说明  : EHSM发给定时器的消息结构(EHSM)
- 1.日    期   : 2015年11月09日
-   作    者   : l00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -223,13 +166,7 @@ typedef struct
 }CNAS_EHSM_ELF_TIMER_INFO_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_EHSM_MNTN_ELF_LOG_FSM_INFO_STRU
- 结构说明  : ID_CNAS_EHSM_MNTN_LOG_FSM_INFO_IND的消息结构对应代码的CNAS_EHSM_MNTN_LOG_FSM_INFO_STRU结构
- 1.日    期   : 2015年11月09日
-   作    者   : l00301449
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -244,13 +181,7 @@ typedef struct
 
 }CNAS_EHSM_MNTN_ELF_LOG_FSM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSM_MNTN_ELF_LOG_SUB_FSM_INFO_STRU
- 结构说明  : HSM主状态机打印消息对应的消息结构
- 1.日    期   : 2015年11月11日
-   作    者   : w00351686
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -259,13 +190,7 @@ typedef struct
     CNAS_HSM_L1_STA_ENUM_UINT32                             enNewState;
 }CNAS_HSM_MNTN_ELF_LOG_MAIN_FSM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSM_MNTN_ELF_LOG_FSM_INFO_STRU
- 结构说明  : HSM子状态机打印消息对应的消息结构
- 1.日    期   : 2015年11月11日
-   作    者   : w00351686
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -274,13 +199,7 @@ typedef struct
     CNAS_HSM_SS_ID_ENUM_UINT32                              enNewState;
 }CNAS_HSM_MNTN_ELF_LOG_SUB_FSM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MSCC_MNTN_ELF_LOG_FSM_INFO_STRU
- 结构说明  : MSCC状态机打印消息对应的消息结构
- 1.日    期   : 2015年11月11日
-   作    者   : w00351686
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -294,21 +213,7 @@ typedef struct
 
 }NAS_MSCC_MNTN_ELF_LOG_FSM_INFO_STRU;
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_COMMON
- 功能描述  : 公共的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_COMMON(void)
 {
     enum PS_BOOL_ENUM                                       enPS_BOOL_ENUM;
@@ -333,21 +238,7 @@ void ELF_NAS_ENUM_COMMON(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_CNAS_COMMON
- 功能描述  : CNAS的公共枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_CNAS_COMMON(void)
 {
     enum CNAS_MNTN_MSG_ID_ENUM                              enCNAS_MNTN_MSG_ID_ENUM;
@@ -357,21 +248,7 @@ void ELF_NAS_ENUM_CNAS_COMMON(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_CAS_CNAS
- 功能描述  : CAS和CNAS之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_CAS_CNAS(void)
 {
     enum CAS_CNAS_1X_CAS_STATE_ENUM                         enCAS_CNAS_1X_CAS_STATE_ENUM;
@@ -381,21 +258,7 @@ void ELF_NAS_ENUM_CAS_CNAS(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_TAF_XCC
- 功能描述  : TAF与XCC之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_TAF_XCC(void)
 {
     enum TAF_CDMA_SO_TYPE_ENUM                              enTAF_CDMA_SO_TYPE_ENUM;
@@ -404,21 +267,7 @@ void ELF_NAS_ENUM_TAF_XCC(void)
     enum TAF_XCC_END_REASON_ENUM                            enTAF_XCC_END_REASON_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_TAF_XCALL_XCC
- 功能描述  : TAF(XCALL)与XCC之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_TAF_XCALL_XCC(void)
 {
     enum XCC_XCALL_PIF_MSG_TYPE_ENUM                        enXCC_XCALL_PIF_MSG_TYPE_ENUM;
@@ -435,21 +284,7 @@ void ELF_NAS_ENUM_TAF_XCALL_XCC(void)
     enum XCALL_XCC_PRIVACY_MODE_ENUM                        enXCALL_XCC_PRIVACY_MODE_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_TAF_APS_XCC
- 功能描述  : TAF(APS)与XCC之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_TAF_APS_XCC(void)
 {
     enum XCC_APS_PIF_MSG_TYPE_ENUM                          enXCC_APS_PIF_MSG_TYPE_ENUM;
@@ -458,21 +293,7 @@ void ELF_NAS_ENUM_TAF_APS_XCC(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_TAF_APS_EHSM
- 功能描述  : TAF(APS)和EHSM之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_TAF_APS_EHSM(void)
 {
     enum EHSM_APS_PIF_MSG_TYPE_ENUM                         enEHSM_APS_PIF_MSG_TYPE_ENUM;
@@ -484,42 +305,14 @@ void ELF_NAS_ENUM_TAF_APS_EHSM(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_TAF_XSMS_XCC
- 功能描述  : TAF(XSMS)与XCC之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_TAF_XSMS_XCC(void)
 {
     enum XCC_SMS_PIF_MSG_TYPE_ENUM                          enXCC_SMS_PIF_MSG_TYPE_ENUM;
     enum XCC_CSMS_RESULT_ENUM                               enXCC_CSMS_RESULT_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_TAF_HSM
- 功能描述  : TAF和HSM之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_TAF_HSM(void)
 {
     enum HSM_APS_PIF_MSG_TYPE_ENUM                          enHSM_APS_PIF_MSG_TYPE_ENUM;
@@ -527,21 +320,7 @@ void ELF_NAS_ENUM_TAF_HSM(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_MMA_XCC
- 功能描述  : MMA和XCC之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_MMA_XCC(void)
 {
     enum XCC_MMA_PIF_MSG_TYPE_ENUM                          enXCC_MMA_PIF_MSG_TYPE_ENUM;
@@ -549,21 +328,7 @@ void ELF_NAS_ENUM_MMA_XCC(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_MMA_MSCC
- 功能描述  : MMA和MSCC之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_MMA_MSCC(void)
 {
     enum MSCC_MMA_ACQ_SYS_TYPE_ENUM                         enMSCC_MMA_ACQ_SYS_TYPE_ENUM;
@@ -577,21 +342,7 @@ void ELF_NAS_ENUM_MMA_MSCC(void)
     enum MMA_MSCC_HANDSET_INFO_TYPE_ENUM                    enMMA_MSCC_HANDSET_INFO_TYPE_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_XCC_XSD
- 功能描述  : XCC和XSD之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_XCC_XSD(void)
 {
     enum XSD_XCC_PIF_MSG_TYPE_ENUM                          enXSD_XCC_PIF_MSG_TYPE_ENUM;
@@ -603,21 +354,7 @@ void ELF_NAS_ENUM_XCC_XSD(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_XSD_XREG
- 功能描述  : XSD和XREG之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_XSD_XREG(void)
 {
     enum XSD_XREG_PIF_MSG_TYPE_ENUM                         enXSD_XREG_PIF_MSG_TYPE_ENUM;
@@ -627,21 +364,7 @@ void ELF_NAS_ENUM_XSD_XREG(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_HSM_MMA
- 功能描述  : HSM和MMA之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_HSM_MMA(void)
 {
     enum HSM_MMA_PIF_MSG_TYPE_ENUM                          enHSM_MMA_PIF_MSG_TYPE_ENUM;
@@ -650,21 +373,7 @@ void ELF_NAS_ENUM_HSM_MMA(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_HSM_HLU
- 功能描述  : HSM和HLU之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_HSM_HLU(void)
 {
     enum HSM_HLU_PIF_MSG_TYPE_ENUM                          enHSM_HLU_PIF_MSG_TYPE_ENUM;
@@ -672,21 +381,7 @@ void ELF_NAS_ENUM_HSM_HLU(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_HSM_HSD
- 功能描述  : HSM和HSD之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_HSM_HSD(void)
 {
     enum HSM_HSD_PIF_MSG_TYPE_ENUM                          enHSM_HSD_PIF_MSG_TYPE_ENUM;
@@ -697,21 +392,7 @@ void ELF_NAS_ENUM_HSM_HSD(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_HSD_MSCC
- 功能描述  : HSD和MSCC之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00361686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_HSD_MSCC(void)
 {
     enum MSCC_HSD_POWER_OFF_CAUSE_ENUM                      enMSCC_HSD_POWER_OFF_CAUSE_ENUM;
@@ -727,41 +408,13 @@ void ELF_NAS_ENUM_HSD_MSCC(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_HSD_HLU
- 功能描述  : HSD和HLU之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月14日
-    作    者   : L00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_HSD_HLU(void)
 {
     enum HSD_HLU_PIF_MSG_TYPE_ENUM                          enHSD_HLU_PIF_MSG_TYPE_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_EHSM_HSM
- 功能描述  : EHSM和HSM之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_EHSM_HSM(void)
 {
     enum EHSM_HSM_PIF_MSG_TYPE_ENUM                         enEHSM_HSM_PIF_MSG_TYPE_ENUM;
@@ -770,21 +423,7 @@ void ELF_NAS_ENUM_EHSM_HSM(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_EHSM_HSD
- 功能描述  : EHSM和HSD之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_EHSM_HSD(void)
 {
     enum EHSM_HSD_PIF_MSG_TYPE_ENUM                         enEHSM_HSD_PIF_MSG_TYPE_ENUM;
@@ -793,21 +432,7 @@ void ELF_NAS_ENUM_EHSM_HSD(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_EHSM_ESM
- 功能描述  : EHSM和ESM之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_EHSM_ESM(void)
 {
     enum EHSM_ESM_PIF_MSG_TYPE_ENUM                         enEHSM_ESM_PIF_MSG_TYPE_ENUM;
@@ -816,21 +441,7 @@ void ELF_NAS_ENUM_EHSM_ESM(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_EHSM_CTTF
- 功能描述  : EHSM和CTTF之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_EHSM_CTTF(void)
 {
     enum CNAS_CTTF_EHRPD_PIF_MSG_TYPE_ENUM                  enCNAS_CTTF_EHRPD_PIF_MSG_TYPE_ENUM;
@@ -841,21 +452,7 @@ void ELF_NAS_ENUM_EHSM_CTTF(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_IMSA_MSCC
- 功能描述  : IMAS和MSCC之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_IMSA_MSCC(void)
 {
     enum MSCC_IMSA_MSG_ID_ENUM                              enMSCC_IMSA_MSG_ID_ENUM;
@@ -870,21 +467,7 @@ void ELF_NAS_ENUM_IMSA_MSCC(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_MSCC_XSD
- 功能描述  : MSCC和XSD之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_MSCC_XSD(void)
 {
     enum XSD_MSCC_START_RESULT_ENUM                         enXSD_MSCC_START_RESULT_ENUM;
@@ -892,21 +475,7 @@ void ELF_NAS_ENUM_MSCC_XSD(void)
     enum MSCC_XSD_SYS_ACQ_TYPE_ENUM                         enMSCC_XSD_SYS_ACQ_TYPE_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_MSCC_MMC
- 功能描述  : MSCC和MMC之间的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月17日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_MSCC_MMC(void)
 {
     enum MSCC_MMC_BG_SRCH_RESULT_ENUM                       enMSCC_MMC_BG_SRCH_RESULT_ENUM;
@@ -914,21 +483,7 @@ void ELF_NAS_ENUM_MSCC_MMC(void)
     enum MSCC_MMC_PS_SIGNALING_TYPE_ENUM                    enMSCC_MMC_PS_SIGNALING_TYPE_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_MSCC_PIF
- 功能描述  : MSCC对外接口的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_MSCC_PIF(void)
 {
     enum NAS_MSCC_PIF_ACQUIRED_RESULT_ENUM                  enNAS_MSCC_PIF_ACQUIRED_RESULT_ENUM;
@@ -999,42 +554,14 @@ void ELF_NAS_ENUM_MSCC_PIF(void)
     enum NAS_MSCC_PIF_POWER_SAVE_TYPE_ENUM                  enNAS_MSCC_PIF_POWER_SAVE_TYPE_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_MMC_LMM
- 功能描述  : MMC与LMM的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年2月1日
-    作    者   : y00346957
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_MMC_LMM(void)
 {
     enum MMC_LMM_MSG_ID_ENUM                                enMMC_LMM_MSG_ID_ENUM;
     enum MMC_LMM_SYS_CHNG_TYPE_ENUM                         enMMC_LMM_SYS_CHNG_TYPE_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_MSCC
- 功能描述  : MSCC模块的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_MSCC(void)
 {
     enum NAS_MSCC_INTERNAL_MSG_TYPE_ENUM                    enNAS_MSCC_INTERNAL_MSG_TYPE_ENUM;
@@ -1072,20 +599,7 @@ void ELF_NAS_ENUM_MSCC(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_XSD
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_XSD(void)
 {
     enum CNAS_XSD_MNTN_MSG_ID_ENUM                          enCNAS_XSD_MNTN_MSG_ID_ENUM;
@@ -1128,21 +642,7 @@ void ELF_NAS_ENUM_XSD(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_XCC
- 功能描述  : XCC模块的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_XCC(void)
 {
     enum CNAS_XCC_INTERNAL_MSG_TYPE_ENUM                    enCNAS_XCC_INTERNAL_MSG_TYPE_ENUM;
@@ -1161,41 +661,13 @@ void ELF_NAS_ENUM_XCC(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_HLU
- 功能描述  : HLU模块的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_HLU(void)
 {
     enum CNAS_HLU_LOC_MSG_ID_ENUM                           enCNAS_HLU_LOC_MSG_ID_ENUM;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_HSM
- 功能描述  : HSM模块的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_HSM(void)
 {
     enum CNAS_HSM_INTERNAL_MSG_TYPE_ENUM                    enCNAS_HSM_INTERNAL_MSG_TYPE_ENUM;
@@ -1229,21 +701,7 @@ void ELF_NAS_ENUM_HSM(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_EHSM
- 功能描述  : EHSM模块的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_EHSM(void)
 {
     enum CNAS_EHSM_TIMER_ID_ENUM                            enCNAS_EHSM_TIMER_ID_ENUM;
@@ -1269,21 +727,7 @@ void ELF_NAS_ENUM_EHSM(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_LIST
- 功能描述  : 枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_LIST(void)
 {
     ELF_NAS_ENUM_COMMON();
@@ -1356,21 +800,7 @@ void ELF_NAS_ENUM_LIST(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_GU_TRANS_Config_GU_NAS
- 功能描述  : HiStudio_Cmd_GU_TRANS_Config中GU_NAS的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_GU_TRANS_Config_GU_NAS(void)
 {
     enum MODEM_ID_ASN_ENUM                                  enMODEM_ID_ASN_ENUM;
@@ -1384,41 +814,13 @@ void ELF_NAS_ENUM_GU_TRANS_Config_GU_NAS(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_ENUM_GU_NAS
- 功能描述  : HiStudio_Cmd_GU_TRANS_Config中各模块的枚举定义
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_ENUM_GU_TRANS_Config(void)
 {
     ELF_NAS_ENUM_GU_TRANS_Config_GU_NAS();
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_TraceTable_XSD
- 功能描述  : TraceTable中XSD的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_TraceTable_XSD(void)
 {
     /******************* 发送模块：XSD，接收模块：MSCC Begin  *******************/
@@ -1515,21 +917,7 @@ void ELF_NAS_STRU_TraceTable_XSD(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_TraceTable_XCC
- 功能描述  : TraceTable中XCC的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_TraceTable_XCC(void)
 {
     /******************* 发送模块：XCC，接收模块：XSD Begin  *******************/
@@ -1617,21 +1005,7 @@ void ELF_NAS_STRU_TraceTable_XCC(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_TraceTable_HLU
- 功能描述  : TraceTable中HLU的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_TraceTable_HLU(void)
 {
     /**************************** HLU <====>HSM Begin ***************************/
@@ -1659,21 +1033,7 @@ void ELF_NAS_STRU_TraceTable_HLU(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_TraceTable_EHSM
- 功能描述  : TraceTable中EHSM的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_TraceTable_EHSM(void)
 {
     /*************************  EHSM <====> EHSM Begin  *************************/
@@ -1763,21 +1123,7 @@ void ELF_NAS_STRU_TraceTable_EHSM(void)
     /**************************  EHSM <====> HSD End  ***************************/
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_TraceTable_HSM
- 功能描述  : TraceTable中HSM的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_TraceTable_HSM(void)
 {
     /************************** HSM <====> TAF Begin  **************************/
@@ -1865,21 +1211,7 @@ void ELF_NAS_STRU_TraceTable_HSM(void)
     /************************** HSM <====> MMA Begin  **************************/
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_TraceTable_MSCC
- 功能描述  : TraceTable中MSCC的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_TraceTable_MSCC(void)
 {
 
@@ -2109,21 +1441,7 @@ void ELF_NAS_STRU_TraceTable_MSCC(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_TraceTable_MMC
- 功能描述  : TraceTable中MMC的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_TraceTable_MMC(void)
 {
     /******************* 发送模块：MMC，接收模块：MSCC Begin  *******************/
@@ -2192,21 +1510,7 @@ void ELF_NAS_STRU_TraceTable_MMC(void)
     /******************* 发送模块：MMC，接收模块：LMM End  *******************/
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_TraceTable_HSD
- 功能描述  : TraceTable中HSD的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月16日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_TraceTable_HSD(void)
 {
     /******************* 发送模块：HSD，接收模块：MSCC Begin  *******************/
@@ -2237,21 +1541,7 @@ void ELF_NAS_STRU_TraceTable_HSD(void)
     /******************* 发送模块：HSD，接收模块：MSCC End  *******************/
 
 }
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_TraceTable
- 功能描述  : TraceTable中各模块的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_TraceTable(void)
 {
 
@@ -2273,21 +1563,7 @@ void ELF_NAS_STRU_TraceTable(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_GU_TRANS_Config
- 功能描述  : HiStudio_Cmd_GU_TRANS_Config中GU_NAS的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_GU_TRANS_Config_GU_NAS(void)
 {
     OM_NAS_MMA_CDMA_STATUS_INFO_REPORT_REQ_STRU             stOM_NAS_MMA_CDMA_STATUS_INFO_REPORT_REQ_STRU;
@@ -2298,21 +1574,7 @@ void ELF_NAS_STRU_GU_TRANS_Config_GU_NAS(void)
     NAS_OM_MMA_CDMA_STATUS_INFO_REPORT_IND_ASN_STRU         stNAS_OM_MMA_CDMA_STATUS_INFO_REPORT_IND_ASN_STRU;
 }
 
-/*****************************************************************************
- 函 数 名  : ELF_NAS_STRU_GU_TRANS_Config
- 功能描述  : HiStudio_Cmd_GU_TRANS_Config中各模块的消息结构
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : w00351686
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void ELF_NAS_STRU_GU_TRANS_Config(void)
 {
     ELF_NAS_STRU_GU_TRANS_Config_GU_NAS();

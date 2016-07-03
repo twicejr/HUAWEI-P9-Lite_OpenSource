@@ -58,10 +58,8 @@ extern "C" {
 
 #include "vos/vospubh/compbase.h"
 
-/*Modified by limin00188004, SRM-RIB6查询, approved by qinyun62011, 2011/8/12   问题单号:C06新需求 */
 #include "public/entry/tcpip_entry.h"
 #include "tcpip/public/tcpip_debug.h"
-/*End of modification by limin00188004, 2011/8/12   问题单号:C06新需求 */
 
 /*sfib6模块依赖的其他组件的头文件*/
 #include "tcpip/sfib4/include/ifiba_inc.h"

@@ -189,21 +189,7 @@ TTF_NODE_RESET_STATISTIC_INFO_STRU      g_astTtfNodeResetStatInfo[TTF_NODE_MEM_T
    5 函数实现
 ******************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemResetCtrlInitNvPara
- 功能描述  : NV项参数初始化函数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_NodeMemResetCtrlInitNvPara(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -236,21 +222,7 @@ VOS_VOID TTF_NodeMemResetCtrlInitNvPara(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemResetStatInfoInit
- 功能描述  : 复位统计信息初始化
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_NodeMemResetStatInfoInit(VOS_VOID)
 {
     VOS_UINT8                           ucLoop;
@@ -264,21 +236,7 @@ VOS_VOID TTF_NodeMemResetStatInfoInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemResetAllocFailProc
- 功能描述  : 节点申请失败处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_NodeMemResetAllocFailProc
 (
     TTF_NODE_MEM_TYPE_ENUM_UINT8        enTtfNodeMemType,
@@ -338,22 +296,7 @@ VOS_VOID TTF_NodeMemResetAllocFailProc
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemPoolInit
- 功能描述  : TTF节点内存初始化，这片内存主要用于保存SDU PDU头节点，取代OSA内存,
-             增加RRM 节点内存初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月29日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_NodeMemPoolInit(VOS_VOID)
 {
     VOS_UINT16                             usIndex;
@@ -400,28 +343,7 @@ VOS_VOID TTF_NodeMemPoolInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemAlloc_Debug
- 功能描述  : TTF节点内存申请
- 输入参数  : TTF_NODE_MEM_TYPE_ENUM_UINT8   enTtfNodeMemType    申请内存的类型
-             VOS_UINT32                     ulPid               申请内存模块
-             VOS_UINT16                     usLen               申请内存大小
-             VOS_UINT16                     usFileId            申请内存file id
-             VOS_UINT16                     usLineNo            申请内存行号
- 输出参数  : 无
- 返 回 值  : 申请到的内存块
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月29日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-  2.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新增内存泄露复位机制
-*****************************************************************************/
 VOS_UINT8 *TTF_NodeMemAlloc_Debug
 (
     TTF_NODE_MEM_TYPE_ENUM_UINT8        enTtfNodeMemType,
@@ -487,22 +409,7 @@ VOS_UINT8 *TTF_NodeMemAlloc_Debug
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemCheck
- 功能描述  : 检查是否TTF 节点内存
- 输入参数  : VOS_VOID *pMem 内存指针
- 输出参数  : 无
- 返 回 值  :  VOS_NO 不是TTF节点内存
-              VOS_YES 是TTF节点内存
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月29日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_NodeMemCheck
 (
     TTF_NODE_MEM_TYPE_ENUM_UINT8        enTtfNodeMemType,
@@ -523,25 +430,7 @@ VOS_UINT32 TTF_NodeMemCheck
     return VOS_YES;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemFree_Debug
- 功能描述  : TTF 节点内存释放
- 输入参数  : TTF_NODE_MEM_TYPE_ENUM_UINT8   释放内存的类型
-             VOS_UINT32                     ulPid 释放内存Pid
-             VOS_UINT8                      需要释放的内存块
-             VOS_UINT16                     释放内存的文件号
-             VOS_UINT16                     释放内存的行号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月29日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_NodeMemFree_Debug
 (
     TTF_NODE_MEM_TYPE_ENUM_UINT8        enTtfNodeMemType,
@@ -602,21 +491,7 @@ VOS_VOID TTF_NodeMemFree_Debug
     VOS_Splx(lLockKey);
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemUsed
- 功能描述  : TTF 节点内存可维可测信息查看
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月29日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TTF_NodeNormalMemShow(VOS_UINT32 ulBegin, VOS_UINT32 ulEnd)
 {
     VOS_UINT32                              ulIndex     = 0;
@@ -660,21 +535,7 @@ VOS_VOID  TTF_NodeNormalMemShow(VOS_UINT32 ulBegin, VOS_UINT32 ulEnd)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemUsed
- 功能描述  : TTF 节点内存可维可测信息查看
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月13日
-    作    者   : m00314743
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TTF_NodeRrmMemShow(VOS_VOID)
 {
     VOS_UINT32                              ulIndex = 0;
@@ -698,21 +559,7 @@ VOS_VOID  TTF_NodeRrmMemShow(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_NodeMemLeakCheck
- 功能描述  : TTF 节点内存泄露检查
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : PS_TRUE有泄漏, PS_FALSE 没有泄漏
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月29日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TTF_NodeMemLeakCheck(VOS_VOID)
 {
     /* 排除G使用的19块静态内存 */
@@ -729,21 +576,7 @@ VOS_UINT32  TTF_NodeMemLeakCheck(VOS_VOID)
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : TTF_Node_ResetTestAlloc
- 功能描述  : 复位机制测试函数
- 输入参数  : VOS_UINT16                          usAllocCnt,
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年01月26日
-    作    者   : m00314743
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_Node_ResetTestAlloc
 (
     VOS_UINT16                          usAllocCnt
@@ -768,20 +601,7 @@ VOS_VOID TTF_Node_ResetTestAlloc
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TTF_GetHdlcMemSection
- 功能描述  : 获取HDLC内存池
- 输入参数  :
- 输出参数  :
- 返 回 值  : HDLC基地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月23日
-    作    者   : w00316385
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT_PTR TTF_GetHdlcMemSection(VOS_VOID)
 {
     VOS_UINT_PTR           ulAddr;
@@ -807,20 +627,7 @@ VOS_UINT_PTR TTF_GetHdlcMemSection(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_GetCipherMemSection
- 功能描述  : 初始化内存池
- 输入参数  :
- 输出参数  : VOS_UINT32 *pulBaseAddr TTF加解密部分内存地址
- 返 回 值  : PS_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : x00138766
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT_PTR TTF_GetCipherMemSection(VOS_VOID)
 {
     VOS_UINT_PTR           ulAddr;
@@ -845,21 +652,7 @@ VOS_UINT_PTR TTF_GetCipherMemSection(VOS_VOID)
     return ulBaseAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_GetTTFMemSection
- 功能描述  : 获取TTF固定内存地址段
- 输入参数  :
- 输出参数  : VOS_UINT32 *pulBaseAddr TTF固定内存部分内存地址
-             VOS_UINT32 *ulLength    TTF固定内存长度
- 返 回 值  : PS_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : x00138766
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT_PTR TTF_GetTTFMemSection(VOS_UINT32 *pulLength)
 {
     VOS_UINT_PTR                    ulAddr;
@@ -886,24 +679,7 @@ VOS_UINT_PTR TTF_GetTTFMemSection(VOS_UINT32 *pulLength)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemCheckReportMemInfoStatus
- 功能描述  : 检查是否需要向SDT上报内存使用状态消息
- 输入参数  : VOS_UINT32 ulPid 任务ID
-             VOS_UINT32  ulPoolId 内存池ID
-             BLK_MEM_USED_INFO_TRIG_TYPE_ENUM_UINT8 enTrigType 触发消息上报类型
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemCheckReportMemInfoStatus
 (
     VOS_UINT32 ulPid,
@@ -952,24 +728,7 @@ VOS_UINT32 TTF_MemCheckReportMemInfoStatus
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemTraceInfoRptSaveMemData
- 功能描述  : 上报内存块的跟踪信息,保存数据块信息
- 输入参数  : VOS_UINT32 ulPid       调用任务ID
-             VOS_UINT32 ulPoolId    内存池ID
-             BLK_MEM_TRACE_INFO_STRU *pstBlkMemTraceInfo  消息指针
-             TTF_MEM_ST *pMem      数据指针
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemTraceInfoRptSaveMemData
 (
     VOS_UINT32 ulPid,
@@ -1012,27 +771,7 @@ VOS_VOID TTF_MemTraceInfoRptSaveMemData
 }/* TTF_MemTraceInfoRptSaveMemData */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_BlkMemUsedInfoEventRpt
- 功能描述  : 上报内存事件
- 输入参数  : VOS_UINT32 ulPid           调用任务ID
-             VOS_UINT32 ulPoolId        上报事件内存池ID
-             BLK_MEM_USED_INFO_TRIG_TYPE_ENUM_UINT8 enTrigType 触发事件类型
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年03月25日
-    作    者   : 黄飞(h62119)
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年01月25日
-    作    者   : s00164817
-    修改内容   : 降圈复杂度
-
-*****************************************************************************/
 VOS_VOID TTF_BlkMemUsedInfoEventRpt(VOS_UINT32 ulPid,
     VOS_UINT32  ulPoolId, BLK_MEM_USED_INFO_TRIG_TYPE_ENUM_UINT8 enTrigType )
 {
@@ -1211,26 +950,7 @@ VOS_VOID TTF_BlkMemUsedInfoEventRpt(VOS_UINT32 ulPid,
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkAllocPlus_Debug
- 功能描述  : TTF MEM申请函数,当单个最大内存不够时，将多块内存串接后返回
- 输入参数  : VOS_UINT32 ulFileID    申请的文件名
-             VOS_UINT32 ulLineNum   申请的行号
-             VOS_UINT32 ulPid       对应的Pid
-             VOS_UINT32 ulPoolId    对应的内存池
-             VOS_UINT16 usLen       申请的TTF_MEM_ST的长度
- 输出参数  : 无
- 返 回 值  : TTF_MEM_ST*    申请成功时申请的TTF_MEM_ST地址
-             VOS_NULL_PTR   申请失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月7日
-    作    者   : d54680
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MEM_ST *TTF_MemBlkAllocPlus_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
      VOS_UINT32 ulPid, VOS_UINT32 ulPoolId, VOS_UINT16 usLen)
 {
@@ -1313,21 +1033,7 @@ TTF_MEM_ST *TTF_MemBlkAllocPlus_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
 
 
 #if (FEATURE_ON == FEATURE_TTF_MEM_DEBUG)
-/*****************************************************************************
- 函 数 名  : TTF_MemFreeSaveDebugInfo
- 功能描述  : TTF内存释放函数填写Debug信息, 仅由Free函数内部调用
- 输入参数  : TTF_MEM_ST *pstTtfMem    需要纪录TTF内存块的指针
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月19日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemFreeSaveDebugInfo(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,TTF_MEM_ST *pstTtfMem)
 {
 
@@ -1359,25 +1065,7 @@ VOS_UINT32 TTF_MemFreeSaveDebugInfo(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,TT
 
 }/* TTF_MemFreeCtrlHead_Debug */
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRcovMem
- 功能描述  : 通过复位单板来进行内存保护
- 输入参数  : VOS_UINT32 ulPoolId,
-             VOS_UINT32 ulPid,
-             VOS_UINT16 usFileId,
-             VOS_UINT16 usLine
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年9月21日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemRcovMem(VOS_UINT32 ulPoolId, VOS_UINT32 ulPid, VOS_UINT16 usFileId, VOS_UINT16 usLine)
 {
     TTF_MEM_ST                     *pstTempMem;
@@ -1432,21 +1120,7 @@ VOS_VOID TTF_MemRcovMem(VOS_UINT32 ulPoolId, VOS_UINT32 ulPid, VOS_UINT16 usFile
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : TTF_PrintBlkMemPoolUsedInfo
- 功能描述  : 打印单个内存池使用情况
- 输入参数  : VOS_UINT8 ucPoolId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月20日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_PrintBlkMemPoolUsedInfo( VOS_UINT8 ucPoolId )
 {
     TTF_MEM_POOL_STRU                  *pstTtfMemPoolInfo;
@@ -1526,21 +1200,7 @@ VOS_VOID TTF_PrintBlkMemPoolUsedInfo( VOS_UINT8 ucPoolId )
 }/* TTF_PrintBlkMemPoolUsedInfo */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_ShowUsedBlkMemInfo
- 功能描述  : 显示TTF_MEM统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年8月2日
-    作    者   : liukai
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_ShowUsedBlkMemInfo(VOS_VOID)
 {
     VOS_UINT32                           ulPoolId;
@@ -1560,21 +1220,7 @@ VOS_VOID TTF_ShowUsedBlkMemInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemPrintDetail
- 功能描述  : 控制打印开关
- 输入参数  : VOS_UINT8 ucChoice   PS_TRUE：打开TRACE; PS_FALSE:关闭TRACE。
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月5日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemPrintDetail(VOS_UINT8 ucChoice)
 {
     g_ucTtfMemPrintDetail = ucChoice;
@@ -1582,21 +1228,7 @@ VOS_VOID TTF_MemPrintDetail(VOS_UINT8 ucChoice)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_ShowTtfUncacheMemInfo
- 功能描述  : 显示TTF_MEM内存使用情况
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月9日
-    作    者   : l00164359
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_ShowTtfUncacheMemInfo(VOS_VOID)
 {
 
@@ -1606,21 +1238,7 @@ VOS_VOID TTF_ShowTtfUncacheMemInfo(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkSingleFree_Debug
- 功能描述  : 释放TTF MEM BLK内存
- 输入参数  : TTF_MEM_ST *pstTtfMem      释放的数据结构
- 输出参数  : 无
- 返 回 值  : TTF_MEM的下一个
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年11月5号
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MEM_ST *TTF_MemBlkSingleFree_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,TTF_MEM_ST *pstTtfMem)
 {
     TTF_MEM_POOL_STRU                  *pstTtfMemPool;
@@ -1976,21 +1594,7 @@ TTF_MEM_ST *TTF_MemBlkCopyAllocPacket_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLi
 } /* TTF_MemBlkCopyAllocPacket_Debug */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkCheckPoolLeak
- 功能描述  : 对外提供接口, 判断TTF BLK MEM是否有泄漏
- 输入参数  : VOS_UINT32 ulPoolId 检查的内存池ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年7月22日
-    作    者   : zengfei 57034
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TTF_MemBlkCheckPoolLeak(VOS_UINT32 ulPoolId)
 {
     TTF_MEM_POOL_STRU              *pstTtfMemPool;
@@ -2026,21 +1630,7 @@ VOS_UINT32  TTF_MemBlkCheckPoolLeak(VOS_UINT32 ulPoolId)
 } /* TTF_MemBlkCheckPoolLeak */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemSndNormalEvent
- 功能描述  : 上报无泄露内存事件
- 输入参数  : VOS_UINT8 ucPoolId  内存池ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月12日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemSndNormalEvent(VOS_UINT8 ucPoolId)
 {
     VOS_UINT32                              ulDataLen;
@@ -2073,21 +1663,7 @@ VOS_VOID TTF_MemSndNormalEvent(VOS_UINT8 ucPoolId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemReportMemLeakMsg
- 功能描述  : 向SDT上报内存泄露消息
- 输入参数  : VOS_UINT32 ulPid 发送消息PID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月8日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemReportMemLeakMsg( VOS_UINT32 ulPid )
 {
     TTF_MEM_LEAK_INFO_IND_MSG          *pstTtfMemLeakInfoInd;
@@ -2117,21 +1693,7 @@ VOS_UINT32 TTF_MemReportMemLeakMsg( VOS_UINT32 ulPid )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkCheckLeak
- 功能描述  : 对外提供接口, 判断TTF BLK MEM是否有泄漏
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年7月22日
-    作    者   : zengfei 57034
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TTF_MemBlkCheckLeak(VOS_VOID)
 {
     VOS_UINT32                          ulPoolId = TTF_MEM_POOL_ID_UL_DATA;
@@ -2156,41 +1718,13 @@ VOS_UINT32  TTF_MemBlkCheckLeak(VOS_VOID)
     return ulFinal;
 } /* TTF_MemBlkCheckLeak */
 
-/*****************************************************************************
- 函 数 名  : TTF_MemAllocCtrlMem
- 功能描述  : 分配控制部分内存长度
- 输入参数  :
- 输出参数  : VOS_UINT32 *ulLength    TTF固定内存长度
- 返 回 值  : PS_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : x00138766
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID *TTF_MemAllocCtrlMem(VOS_UINT32 ulLength)
 {
     return VOS_CacheMemAlloc(ulLength);
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MemPoolInit
- 功能描述  : 初始化内存池
- 输入参数  : VOS_UINT8              ucPoolId         内存池ID
-             VOS_UINT8            **ppucUncacheMemAddr  不可Cache内存首地址的地址
- 输出参数  : VOS_UINT8           **ppucUncacheMemAddr  不可Cache内存首地址的地址
- 返 回 值  : PS_SUCC,PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年10月28日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemPoolInit
 (
     VOS_UINT8                            ucPoolId,
@@ -2300,22 +1834,7 @@ VOS_UINT32 TTF_MemPoolInit
 } /* TTF_MemPoolInit */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemPoolCreate
- 功能描述  : 内存池对象创建，记录内存池信息
- 输入参数  : VOS_UINT32                 ulTtfMemLevCnt  用户内存级数
-             TTF_MEM_CLUSTER_STRU      *pPoolMemCfg     用户的级数配置首地址
- 输出参数  : 无
- 返 回 值  : PS_SUCC,PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年10月28日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemPoolCreate
 (
     VOS_UINT8                     ucPoolId,
@@ -2395,20 +1914,7 @@ VOS_UINT32 TTF_MemPoolCreate
     return PS_SUCC;
 } /* TTF_MemPoolCreate */
 
-/*****************************************************************************
- 函 数 名  : TTF_MemPrintSolutionCfg
- 功能描述  : 打印NV配置
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月20日
-    作    者   : x00138766
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MemPrintSolutionCfg(VOS_VOID)
 {
     TTF_MEM_SOLUTION_CFG_NV_STRU   *pstSolutionCfg = &g_stTtfMemSolution;
@@ -2443,22 +1949,7 @@ VOS_VOID TTF_MemPrintSolutionCfg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkIsAlert
- 功能描述  : 对外提供接口, 判断TTF BLK MEM剩余数是否低于门限
- 输入参数  : VOS_UINT32 ulPoolId    检查的内存池ID
- 输出参数  : 无
- 返 回 值  : PS_TRUE : TTF BLK MEM剩余数低于门限
-             PS_FALSE: TTF BLK MEM剩余数高于门限
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年7月22日
-    作    者   : zengfei 57034
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TTF_MemBlkIsAlert(VOS_UINT32 ulPoolId)
 {
     VOS_UINT16 usFreeCnt = 0xFFFF;
@@ -2476,23 +1967,7 @@ VOS_UINT32  TTF_MemBlkIsAlert(VOS_UINT32 ulPoolId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkAddHeadData_Debug
- 功能描述  : 从TTF_MEM块头部填充指定字节数目的数据
- 输入参数  : ulPid       -- 调用此函数的模块的Pid
-             ppMemDest   -- 要填写的TTF内存块头指针
-             pSrcData    -- 目的数据地址
-             usAddLen    -- 填充数据的长度，单位为字节
- 输出参数  : 无
- 返 回 值  : PS_SUCC -- 成功; PS_FAIL -- 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰，蒋丽萍
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TTF_MemBlkAddHeadData_Debug
 (
     VOS_UINT16 usFileID, VOS_UINT16 usLineNum, VOS_UINT32 ulPid,
@@ -2569,25 +2044,7 @@ VOS_UINT32 TTF_MemBlkAddHeadData_Debug
 } /* TTF_MemBlkAddHeadData_Debug */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkAddTailData_Debug
- 功能描述  : 从TTF_MEM块尾部填充指定字节数目的数据
- 输入参数  : VOS_UINT32 ulFileID    文件名
-             VOS_UINT32 ulFileID    行号
-             VOS_UINT32 ulPid       调用此函数的模块的Pid
-             TTF_MEM_ST **ppMemDest 要填写的TTF内存块头指针
-             VOS_UINT8  *pSrcData   目的数据地址
-             VOS_UINT16 usAddLen    填充数据的长度，单位为字节
- 输出参数  : 无
- 返 回 值  : PS_SUCC -- 成功; PS_FAIL -- 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰，蒋丽萍
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TTF_MemBlkAddTailData_Debug
 (
     VOS_UINT16 usFileID, VOS_UINT16 usLineNum, VOS_UINT32 ulPid,
@@ -2658,26 +2115,7 @@ VOS_UINT32 TTF_MemBlkAddTailData_Debug
     return PS_SUCC;
 } /* TTF_MemBlkAddTailData_Debug */
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkAddTailDataWithLastMem_Debug
- 功能描述  : 从TTF_MEM块尾部填充指定字节数目的数据
- 输入参数  : ulFileID    -- File-ID
-             ulLineNum   -- File Line
-             ulPid       -- 调用此函数的模块的Pid
-             ppMemDest   -- 存放要填写的TTF内存块头指针的地址
-             pLastMem    -- 要填写的TTF内存块尾指针
-             pSrcData    -- 目的数据地址
-             usAddLen    -- 填充数据的长度，单位为字节
- 输出参数  : ppMemDest   -- 存放要填写的TTF内存块头指针的地址
- 返 回 值  : PS_SUCC -- 成功; PS_FAIL -- 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月2日
-    作    者   : liukai
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT32 TTF_MemBlkAddTailDataWithLastMem_Debug
 (
     VOS_UINT16 usFileID,VOS_UINT16 usLineNum, VOS_UINT32 ulPid,
@@ -2758,24 +2196,7 @@ VOS_UINT32 TTF_MemBlkAddTailDataWithLastMem_Debug
 }    /* TTF_MemBlkAddTailDataWithLastMem_Debug */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemSingleFree_Debug
- 功能描述  :
- 输入参数  : VOS_INT8 *cFileName
-             VOS_UINT32 ulLineNum
-             VOS_UINT32 ulPid
-             TTF_MEM_ST *pMem
- 输出参数  : 无
- 返 回 值  : TTF_MEM_ST *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年3月24日
-    作    者   : 查鸣峰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MEM_ST *TTF_MemSingleFree_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
                 VOS_UINT32 ulPid, TTF_MEM_ST *pMem)
 {
@@ -2804,24 +2225,7 @@ TTF_MEM_ST *TTF_MemSingleFree_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
 }    /* TTF_MemSingleFree_Debug */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemFree_Debug
- 功能描述  :
- 输入参数  : VOS_INT8 *cFileName
-             VOS_UINT32 ulLineNum
-             VOS_UINT32 ulPid
-             TTF_MEM_ST *pMem
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年3月24日
-    作    者   : 查鸣峰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemFree_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
              VOS_UINT32 ulPid, TTF_MEM_ST **ppMem)
 {
@@ -2852,24 +2256,7 @@ VOS_VOID TTF_MemFree_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
 
 }    /* TTF_MemFree_Debug */
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkCutHeadData_Debug
- 功能描述  : 从TTF_MEM块头部移去指定字节数目的数据
- 输入参数  : ulPid    -- 调用此函数的模块的Pid
-             pMemSrc  -- 要填写的TTF内存块头指针
-             pDest    -- 目的数据地址
-             usLen    -- 填写数据的长度，单位为字节
- 输出参数  : 无
- 返 回 值  : 获取数据成功返回PS_SUCC；失败返回PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e{830,438} */
 VOS_UINT32 TTF_MemBlkCutHeadData_Debug
 (
@@ -2944,23 +2331,7 @@ VOS_UINT32 TTF_MemBlkCutHeadData_Debug
 } /* TTF_MemBlkCutHeadData_Debug */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkCutTailData_Debug
- 功能描述  : 从TTF_MEM块尾部移去指定字节数目的数据
- 输入参数  : ulPid    -- 调用此函数的模块的Pid
-             ppMemSrc  -- 要填写的TTF内存块头指针
-             pDest    -- 目的数据地址
-             usLen    -- 填写数据的长度，单位为字节
- 输出参数  : 无
- 返 回 值  : 获取数据成功返回PS_SUCC；失败返回PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT16 TTF_MemBlkCutTailData_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum, VOS_UINT32 ulPid, TTF_MEM_ST **ppMemSrc,
     VOS_UINT8 *pDest, VOS_UINT16 usLen)
 {
@@ -3077,24 +2448,7 @@ VOS_UINT16 TTF_MemBlkCutTailData_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum
     return PS_SUCC;
 } /* TTF_MemBlkCutTailData_Debug */
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkCutTailDataWithLastMem_Debug
- 功能描述  : 从TTF_MEM块尾部移去指定字节数目的数据
- 输入参数  : ulPid       -- 调用此函数的模块的Pid
-             ppMemSrc    -- 存放要移去的TTF内存块头指针的地址
-             pDest    -- 目的数据地址
-             usLen    -- 填写数据的长度, 单位为字节
- 输出参数  : ppMemSrc    -- 存放要移去的TTF内存块头指针的地址
-             ppLastMem   -- 要移去的TTF内存块尾指针
- 返 回 值  : PS_SUCC -- 成功; PS_FAIL -- 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月3日
-    作    者   : liukai
-    修改内容   : Created
-*****************************************************************************/
 VOS_UINT16 TTF_MemBlkCutTailDataWithLastMem_Debug(VOS_UINT16 usFileID,
                VOS_UINT16 usLineNum, VOS_UINT32 ulPid,
                TTF_MEM_ST **ppMemSrc, TTF_MEM_ST **ppLastMem,
@@ -3190,24 +2544,7 @@ VOS_UINT16 TTF_MemBlkCutTailDataWithLastMem_Debug(VOS_UINT16 usFileID,
     return PS_SUCC;
 } /* TTF_MemBlkCutTailDataWithLastMem_Debug */
 
-/*****************************************************************************
- Prototype       : TTF_MemBlkRef_Debug
- Description     : GPRS专用，W不使用,引用一块TTF内存块，返回生成的引用块的指针
- Input           : ulPid       -- 调用此函数的模块的Pid
-                   ulPool      -- 分配内存的Pool id
-                   pMemRef     -- 被引用的TTF内存块指针
-                   usOffset    -- 被引用数据的地址偏移值,单位为字节
-                   usLen       -- 被引用数据的长度,单位为字节
- Output          : NONE
- Return Value    : TTF_MEM_ST* -- 生成的引用块的指针
- History         :
-    Date         : 2005-04-19
-    Author       : w29695
-    Modification : Created function
-    Date         : 20010-02-2
-    Author       : x00138766
-    Modification : Created function
-*****************************************************************************/
+
 TTF_MEM_ST *TTF_MemBlkRef_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
     VOS_UINT32 ulPid, VOS_UINT32 ulPoolId, TTF_MEM_ST *pMemRef,
     VOS_UINT16 usOffset, VOS_UINT16  usLen)
@@ -3237,26 +2574,7 @@ TTF_MEM_ST *TTF_MemBlkRef_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
 }/*TTF_MemBlkRef_Debug*/
 
 
-/******************************************************************************
- Prototype      : TTF_MemBlkAllocWithUsed_Debug
- Description    : GPRS专用，W不使用,申请指定长度的内存单元，数据附在TTF_MEM_ST结构之后
- Input          : ulPid    -- 调用此函数的模块的Pid
-                  ulPoolid -- 内存池ID
-                  usLen    -- 要申请的内存单元的大小，字节为单位
- Output         : TTF_MEM_ST *
- Return Value   : 申请的内存单元的地址
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2006-08-31
-    Author      : 高财(g45205)
-    Modification: Created function
-    Modification: 2006-12-08,查鸣峰(44034)
-  1.Date        : 2010-02-02
-    Author      : x00138766
-    Modification: Created function Pool ID
-******************************************************************************/
 TTF_MEM_ST *TTF_MemBlkAllocWithUsed_Debug
 (
     VOS_UINT16 usFileID, VOS_UINT16 usLineNum, VOS_UINT32 ulPid,
@@ -3516,24 +2834,7 @@ VOS_UINT32 TTF_MemLink(VOS_UINT32 ulPid, TTF_MEM_ST **ppMemHead, TTF_MEM_ST *pMe
 } /* TTF_MemLink */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemGetHeadData
- 功能描述  : 从TTF_MEM块头部获取数据，但数据内容不从块中删除
- 输入参数  : ulPid    -- 调用此函数的模块的Pid
-             pMemSrc  -- 要填写的TTF内存块头指针
-             pDest    -- 目的数据地址
-             usLen    -- 获取数据的长度，单位为字节
- 输出参数  : 无
- 返 回 值  : 获取数据成功返回PS_SUCC；失败返回PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemGetHeadData( VOS_UINT32 ulPid, TTF_MEM_ST *pMemSrc,
     VOS_UINT8 *pDest, VOS_UINT16 usLen)
 {
@@ -3586,24 +2887,7 @@ VOS_UINT32 TTF_MemGetHeadData( VOS_UINT32 ulPid, TTF_MEM_ST *pMemSrc,
     return PS_FAIL;
 } /* TTF_MemGetHeadData */
 
-/*****************************************************************************
- 函 数 名  : TTF_MemGetTailData
- 功能描述  : 从TTF_MEM块尾部获取数据，但数据内容不从块中删除
- 输入参数  : ulPid    -- 调用此函数的模块的Pid
-             pMemSrc  -- 要填写的TTF内存块头指针
-             pDest    -- 目的数据地址
-             usLen    -- 获取数据的长度，单位为字节
- 输出参数  : 无
- 返 回 值  : 获取数据成功返回PS_SUCC；失败返回PS_FAIL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月8日
-    作    者   : 查鸣峰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemGetTailData( VOS_UINT32 ulPid, TTF_MEM_ST *pMemSrc,
     VOS_UINT8 *pDest, VOS_UINT16 usLen)
 {
@@ -3714,20 +2998,7 @@ VOS_UINT32 TTF_MemStick(VOS_UINT32 ulPid, TTF_MEM_ST *pMemHead, TTF_MEM_ST *pMem
     return PS_SUCC;
 } /* TTF_MemStick */
 
-/*****************************************************************************
- Prototype  : TTF_MemInsertNext
- Description: 将TTF Mem拼接到当前TTF MEM后面
- Input      : ulPid       -- 使用模块的PID
-              pMemCurr    -- 当前TTF Mem
-              pMemNext    -- 下一个TTF MEM
- Output     : 无
- ReturnValue: PS_SUCC, PS_FAIL
 
- History:
-    Date: 2013-03-25
-    Author: t00148005
-    Modification: Created function
-*****************************************************************************/
 VOS_UINT32 TTF_MemInsertNext(VOS_UINT32 ulPid, TTF_MEM_ST *pMemCurr, TTF_MEM_ST *pMemNext)
 {
     if (VOS_NULL_PTR == pMemCurr || VOS_NULL_PTR == pMemNext)
@@ -3800,20 +3071,7 @@ VOS_UINT32 TTF_MemRegEventCallBack
 } /* TTF_MemRegEventCallBack */
 
 
-/******************************************************************************
- Prototype      : TTF_MemRegEventCallBack
- Description    : 注册TTF_MEM外部内存池释放函数
- Input          : pMemExtFreeFunc   -- 外部注册的内存释放回调函数
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2011-09-01
-    Author      : S00164817
-    Modification: Created function
-******************************************************************************/
 VOS_UINT32 TTF_MemRegExtFreeCallBack
 (
     TTF_MEM_EXT_FREE_CALLBACK           pMemExtFreeFunc
@@ -3834,24 +3092,7 @@ VOS_UINT32 TTF_MemRegExtFreeCallBack
 } /* TTF_MemRegExtFreeCallBack */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_SetBlkMemFlag
- 功能描述  :
- 输入参数  : VOS_INT8 *cFileName
-             VOS_UINT32 ulLineNum
-             VOS_UINT32 ulPid
-             VOS_UINT16 usLen
- 输出参数  : 无
- 返 回 值  : TTF_MEM_ST *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年3月24日
-    作    者   : 查鸣峰
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemSetBlkFlag(TTF_MEM_ST *pstMem, VOS_UINT16 usFileID, VOS_UINT16 usLineNum)
 {
     while (VOS_NULL_PTR != pstMem)
@@ -3927,21 +3168,7 @@ VOS_UINT16 TTF_MemGetLen(VOS_UINT32 ulPid, TTF_MEM_ST *pMem)
 } /*TTF_MemGetLen*/
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemGetAllocFailCnt
- 功能描述  : TTF 获取内存申请失败次数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemGetAllocFailCnt(VOS_VOID)
 {
     VOS_UINT16                          usLoop;
@@ -3963,21 +3190,7 @@ VOS_VOID TTF_MemGetAllocFailCnt(VOS_VOID)
 }/* TTF_MemGetAllocFailCnt */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemSetAllocFailThreshold
- 功能描述  : TTF 设置内存申请失败上报门限
- 输入参数  : VOS_UINT16 usThreshold 设置的门限
- 输出参数  : VOS_VOID
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemSetAllocFailThreshold(VOS_UINT16 usThreshold)
 {
     g_usTtfMemAllocFailCntThreshold = usThreshold;
@@ -3986,21 +3199,7 @@ VOS_VOID TTF_MemSetAllocFailThreshold(VOS_UINT16 usThreshold)
 }/* TTF_MemSetAllocFailThreshold */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemReSetAllocFailStatus
- 功能描述  : 清空内存申请失败统计信息
- 输入参数  : VOS_VOID
- 输出参数  : VOS_VOID
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemReSetAllocFailStatus(VOS_VOID)
 {
     VOS_UINT16                          usLoop;
@@ -4015,21 +3214,7 @@ VOS_VOID TTF_MemReSetAllocFailStatus(VOS_VOID)
     return;
 }/* TTF_MemReSetAllocFailStatus */
 
-/*****************************************************************************
- 函 数 名  : TTF_MemHelp
- 功能描述  : 输出TTF MEM帮助信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月3日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemHelp( VOS_VOID )
 {
     (VOS_VOID)vos_printf("********************TTF_MEM软调信息************************\n");
@@ -4049,21 +3234,7 @@ VOS_VOID TTF_MemHelp( VOS_VOID )
     return;
 }/* TTF_MemHelp */
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRcovShow
- 功能描述  : 输出TTF MEM内存泄露保护状态debug信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月21日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemRcovShow(VOS_VOID)
 {
     VOS_UINT32 ulPoolId;
@@ -4080,21 +3251,7 @@ VOS_VOID TTF_MemRcovShow(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRcovEntInit
- 功能描述  : 初始化内存保护实体
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月21日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemRcovEntInit(VOS_VOID)
 {
     VOS_UINT32 ulPoolId;
@@ -4112,20 +3269,7 @@ VOS_VOID TTF_MemRcovEntInit(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemRcovAllocFail
- 功能描述  : 内存分配时，内存保护机制处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月21日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TTF_MemRcovAllocFail(VOS_UINT32 ulPoolId, VOS_UINT32 ulFailCnt, VOS_UINT32 ulPid, VOS_UINT16 usFileId, VOS_UINT16 usLine)
 {
     VOS_UINT32  ulCurrTs;
@@ -4171,26 +3315,7 @@ VOS_VOID TTF_MemRcovAllocFail(VOS_UINT32 ulPoolId, VOS_UINT32 ulFailCnt, VOS_UIN
 
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkAlloc_Debug
- 功能描述  : TTF MEM申请函数
- 输入参数  : VOS_UINT32 ulFileID    申请的文件名
-             VOS_UINT32 ulLineNum   申请的行号
-             VOS_UINT32 ulPid       对应的Pid
-             VOS_UINT32 ulPoolId    对应的内存池
-             VOS_UINT16 usLen       申请的TTF_MEM_ST的长度
- 输出参数  : 无
- 返 回 值  : TTF_MEM_ST*    申请成功时申请的TTF_MEM_ST地址
-             VOS_NULL_PTR   申请失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年10月28日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MEM_ST *TTF_MemBlkAlloc_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
      VOS_UINT32 ulPid, VOS_UINT32 ulPoolId, VOS_UINT16 usLen)
 {
@@ -4300,21 +3425,7 @@ TTF_MEM_ST *TTF_MemBlkAlloc_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,
     return VOS_NULL_PTR;
 } /* TTF_MemBlkAlloc_Debug */
 
-/*****************************************************************************
- 函 数 名  : TTF_ExtMemFree
- 功能描述  : 释放外部内存块
- 输入参数  : void **pstExtMem
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月24日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_ExtMemFree( void **ppstExtMem )
 {
     TTF_LOG(WUEPS_PID_RLC, DIAG_MODE_COMM, PS_PRINT_ERROR, "call TTF_ExtMemFree is invalid! \n");
@@ -4324,23 +3435,7 @@ VOS_VOID TTF_ExtMemFree( void **ppstExtMem )
 }/* TTF_ExtMemFree */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_DataTransformTtfMem_Debug
- 功能描述  : 对外提供接口, TTF申请TTF控制块，将传入数据块转换成TTF MEM结构
- 输入参数  : VOS_UINT8* pucData  数据的首地址
-             VOS_UINT16 usLen    数据的长度
-             VOID*  pstIMMZc     通知A核释放的信息
- 输出参数  : 无
- 返 回 值  : TTF_MEM_ST *       指向TTF_MEM_ST内存
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月1日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MEM_ST * TTF_DataTransformTtfMem_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLineNum,VOS_UINT8* pucData,VOS_UINT16 usLen, VOS_VOID*  pstIMM)
 {
     TTF_LOG2(WUEPS_PID_RLC, DIAG_MODE_COMM, PS_PRINT_ERROR,
@@ -4351,21 +3446,7 @@ TTF_MEM_ST * TTF_DataTransformTtfMem_Debug(VOS_UINT16 usFileID, VOS_UINT16 usLin
 } /* TTF_DataTransformTtfMem_Debug */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_GetCCoreReservedCnt
- 功能描述  : C核查询C-CPU上内存池内存的预留数目，即该内存池最高档内存的最大量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : C-CPU上内存池最高档位内存的预留数目
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月20日
-    作    者   : h00163499
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_GetLocalFreeMemCnt (VOS_UINT32 ulPoolId)
 {
     TTF_MEM_POOL_STRU                  *pstTtfMemPool;
@@ -4401,21 +3482,7 @@ VOS_UINT32 TTF_GetLocalFreeMemCnt (VOS_UINT32 ulPoolId)
 } /* TTF_GetLocalFreeMemCnt */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemPoolInfoEventRpt
- 功能描述  : 上报内存使用信息
- 输入参数  : VOS_UINT8 ucPoolId 检查的内存池ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月22日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TTF_MemPoolInfoEventRpt(VOS_UINT8 ucPoolId)
 {
     TTF_MEM_POOL_STRU                      *pstTtfMemPool;
@@ -4455,21 +3522,7 @@ VOS_VOID  TTF_MemPoolInfoEventRpt(VOS_UINT8 ucPoolId)
 } /* TTF_MemPoolInfoEventRpt */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemCheckPoolLeak
- 功能描述  : 检查C核内存池泄露情况
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月12日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemCcpuCheckPoolLeak( VOS_VOID )
 {
     VOS_UINT8                          ucPoolId;
@@ -4491,65 +3544,21 @@ VOS_VOID TTF_MemCcpuCheckPoolLeak( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_GetDlIpFreeMemCnt
- 功能描述  : C-CPU上查询C-CPU中下行IP包数据所在内存池中最大档空闲内存的数目
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : C-CPU 下行IP包数据所在内存池中最大档空闲内存的数目。
- 说明      : 对于V3R3版本，查询的是TTF_MEM_POOL_ID_DL_SHARE，C-CPU下行跨核共享内存池中最大档空闲内存的数目；
-             对于V9R1/V7R2版本，查询的是TTF_MEM_POOL_ID_DL_PDU，C-CPU下行PDU内存池中最大档空闲内存的数目。
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年1月9日
-    作    者   : h00163499
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_UINT32 TTF_GetDlIpFreeMemCnt (VOS_VOID)
 {
     return TTF_GetLocalFreeMemCnt(TTF_MEM_POOL_ID_DL_PDU);
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_GetUlIpFreeMemCnt
- 功能描述  : C-CPU上查询C-CPU中上行IP包数据所在内存池中最大档空闲内存的数目。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : C-CPU 上行IP包数据所在内存池中最大档空闲内存的数目。
- 说明      : 对于V3R3版本，查询的是A-CPU跨核共享内存池中最大档空闲内存的数目；
-             对于V9R1/V7R2版本，查询的是TTF_MEM_POOL_ID_UL_IP_DATA，上行IP包数据内存池中最大档空闲内存的数目。
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年1月9日
-    作    者   : h00163499
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_UINT32 TTF_GetUlIpFreeMemCnt (VOS_VOID)
 {
     return TTF_GetLocalFreeMemCnt(TTF_MEM_POOL_ID_UL_IP_DATA);
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemFreeShowMntnInfo
- 功能描述  : 打印TTF MEM 内存可维可测信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月7日
-    作    者   : s00164817
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MemFreeShowMntnInfo( VOS_VOID )
 {
     TTF_MEM_FREE_INVALIED_MEM_INFO_STRU    *pstInvalidMemInfo   = &g_stTtfMemFreeMntnEntity.astTtfMemFreeInvalidMemInfo;
@@ -4584,21 +3593,7 @@ VOS_VOID TTF_MemFreeShowMntnInfo( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_MemBlkInit
- 功能描述  : TTF MEM总初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年10月28日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_MemBlkInit(VOS_UINT32 ulPid)
 {
     VOS_UINT32                          ulRet;
@@ -4658,21 +3653,7 @@ VOS_UINT32 TTF_MemBlkInit(VOS_UINT32 ulPid)
     return PS_SUCC;
 } /* TTF_MemBlkInit */
 
-/*****************************************************************************
- 函 数 名  : TTF_DynamicMemFree
- 功能描述  : TTF MEM释放函数，只有PC工程使用
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年10月28日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_DynamicMemFree(VOS_UINT32 ulPid)
 {
     VOS_UINT8                           ucPoolId;
@@ -4734,25 +3715,7 @@ VOS_UINT32 TTF_DynamicMemFree(VOS_UINT32 ulPid)
 }
 
 #if (FEATURE_PTM == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TTF_MNTN_ErrlogTtfMemAllocFail
- 功能描述  : 生成 TTF MEM内存申请失败事件并缓存
- 输入参数  : VOS_UINT32 ulPid,
-             VOS_UINT8  ucPoolId,
-             VOS_UINT16 usFileId,
-             VOS_UINT16 usLine,
-             VOS_UINT32 ulAllocFailCnt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月21日
-    作    者   : t00148005
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_MNTN_ErrlogTtfMemAllocFail(VOS_UINT32 ulPid, VOS_UINT8 ucPoolId, VOS_UINT16 usFileId, VOS_UINT16 usLine, VOS_UINT32 ulAllocFailCnt)
 {
     TTF_MNTN_ERR_LOG_MEM_ALLOC_FAIL_STRU    stErrLogMemFail;

@@ -32,7 +32,6 @@ VOID TCPIP_Log_Fixlen_Output(ULONG ulCode, ULONG ulLogLevel, ULONG ulLogType, VO
 
 VOID TCPIP_Log_Varlen_Output(ULONG ulCode, ULONG ulLogLevel, ULONG ulLogType, VOID *ucMessage, VOID *strPara);
 
-/* Modified by yanlei00216869, 同步DTS2014072405085：给balong重新定义VISP日志格式，减小其lib大小, 2014/10/16   问题单号:DTS2014101506000 */
 #if(TCPIP_FOR_BALONG == VRP_YES)
 /*定义固长日志宏*/
 #define TCPIP_LOG_FIXLEN(ulCode, ulLogLevel, ulLogType, ucMessage, ulPara1, ulPara2, ulPara3, ulPara4)\
@@ -56,7 +55,6 @@ VOID TCPIP_Log_Varlen_Output(ULONG ulCode, ULONG ulLogLevel, ULONG ulLogType, VO
     TCPIP_Log_Varlen_Output(ulCode, ulLogLevel, ulLogType, ucMessage, strPara);\
 }
 #endif
-/*End of Modified by yanlei00216869, 2014/10/16   问题单号:DTS2014101506000 */
 
 VOID TCPIP_InfoOutput(CHAR *pInfo);
 VOID TCPIP_DebugOutput(CHAR *pDebugInfo);

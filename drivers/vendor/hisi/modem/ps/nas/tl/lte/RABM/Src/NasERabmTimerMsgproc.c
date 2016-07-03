@@ -1,16 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : RabmTimerMsgproc.c
-  Description     : 该c文件给出了TIMER_MSG模块的实现
-  History         :
-     1.杨茜惠 00135146       2008-09-04  Draft Enact
-     2.杨茜惠 00135146       2009-09-18  BN8D01065  Modify
-                             修改内容:增加RB REEST定时器超时处理
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -41,18 +29,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ERABM_WaitEpsbActTimerExpire
- Description     : RB建立等待定时器超时
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2008-10-11  Draft Enact
-    2.lihong00150010            2009-12-24  Modify
-
-*****************************************************************************/
 /*lint -e960*/
 VOS_VOID NAS_ERABM_WaitEpsbActTimerExpire( NAS_ERABM_TIMER_NAME_ENUM_UINT8 enTimerName )
 {
@@ -76,18 +53,7 @@ VOS_VOID NAS_ERABM_WaitEpsbActTimerExpire( NAS_ERABM_TIMER_NAME_ENUM_UINT8 enTim
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_WaitRbReestTimerExpier
- Description     : 触发EMM发起服务请求定时器超时处理函数
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.y00135146      2009-9-17  Draft Enact
-    2.l00150010      2012-12-14 Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_WaitRbReestTimerExpier
 (
     NAS_ERABM_TIMER_NAME_ENUM_UINT8 enTimerName,
@@ -207,17 +173,7 @@ VOS_VOID  NAS_ERABM_WaitTcFreeBufferTimer( NAS_ERABM_TIMER_NAME_ENUM_UINT8 enTim
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_TimerMsgDistr
- Description     : RABM模块RB建立等待计时器超时
- Input           : VOS_UNIT8 ucName
- Output          : VOS_VOID
- Return          : VOS_VOID
 
-  History        :
-     1.杨茜惠 00135146         2008-9-4  Draft Enact
-     2.杨茜惠 00135146         2009-09-18  BN8D01065  Modify
-*****************************************************************************/
 VOS_VOID   NAS_ERABM_TimerMsgDistr(const VOS_VOID *pRcvMsg )
 {
 

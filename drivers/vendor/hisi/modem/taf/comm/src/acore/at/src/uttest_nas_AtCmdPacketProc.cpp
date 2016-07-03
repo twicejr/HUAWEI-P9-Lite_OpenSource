@@ -53,14 +53,7 @@ AT_PAR_CMD_ELEMENT_STRU             gstDhcpV6CmdInfo = {AT_CMD_DHCPV6,
 
 
 #if (FEATURE_ON == FEATURE_AT_HSIC)
-/*****************************************************************************
-类名     : Test_AT_SetChdataPara
-功能描述 : AT_SetChdataPara UT工程类
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetChdataPara: public ::testing::Test
 {
 public:
@@ -111,15 +104,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_001
-测试用例标题      : 命令类型不为AT_CME_INCORRECT_PARAMETERS
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_001)
 {
     /*变量定义*/
@@ -149,15 +134,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_001)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_002
-测试用例标题      : 参数个数大于2
-预期结果          : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_002)
 {
     /*变量定义*/
@@ -186,15 +163,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_003
-测试用例标题      : 非HSIC 1/2/3通道收到CHDATA命令
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_003)
 {
     /*变量定义*/
@@ -226,15 +195,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_004
-测试用例标题      : 第一个参数为空
-预期结果          : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_004)
 {
     /*变量定义*/
@@ -265,15 +226,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_005
-测试用例标题      : 第二个参数为空
-预期结果          : 返回OK，删除指定CID的映射关系
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_005)
 {
     /*变量定义*/
@@ -306,15 +259,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_006
-测试用例标题      : 设定CID 1对应通道为2，但CID 2之前也被映射为2
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_006)
 {
     /*变量定义*/
@@ -351,15 +296,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_006)
 }
 
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_007
-测试用例标题      : 设定CID 1对应通道为1，且没有其他CID被配为通道1
-预期结果          : 返回AT_OK，并设置CID 1与通道1的映射关系
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_007)
 {
     /*变量定义*/
@@ -392,15 +329,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_007)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_008
-测试用例标题      : 设定CID 1对应通道为3，且没有其他CID被配为通道3
-预期结果          : 返回AT_OK，并设置CID 1与通道1的映射关系
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_008)
 {
     /*变量定义*/
@@ -433,15 +362,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_008)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_009
-测试用例标题      : 删除cid为2的绑定，当该cid已激活
-预期结果          : 返回AT_ERROR，删除指定CID的映射关系失败
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_009)
 {
     /*变量定义*/
@@ -475,15 +396,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_009)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_010
-测试用例标题      : 设定CID 1对应通道为1，且没有其他CID被配为通道1
-预期结果          : 返回AT_OK，并设置CID 1与通道1的映射关系
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_010)
 {
     /*变量定义*/
@@ -516,15 +429,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_010)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_011
-测试用例标题      : 设定CID 1对应通道为2，且没有其他CID被配为通道2
-预期结果          : 返回AT_OK，并设置CID 1与通道1的映射关系
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_011)
 {
     /*变量定义*/
@@ -557,15 +462,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_011)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_012
-测试用例标题      : 设定CID 1对应通道为3，且没有其他CID被配为通道3
-预期结果          : 返回AT_OK，并设置CID 1与通道1的映射关系
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_012)
 {
     /*变量定义*/
@@ -597,14 +494,7 @@ TEST_F(Test_AT_SetChdataPara,Test_AT_SetChdataPara_012)
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_QryChdataPara
-功能描述 : AT_QryChdataPara UT工程类
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryChdataPara: public ::testing::Test
 {
 public:
@@ -654,15 +544,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChdataPara_001
-测试用例标题      : 命令类型不为AT_CMD_OPT_READ_CMD
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_001)
 {
     /*变量定义*/
@@ -684,15 +566,7 @@ TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChdataPara_002
-测试用例标题      : 有效映射个数为0
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_002)
 {
     /*变量定义*/
@@ -726,15 +600,7 @@ TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChdataPara_003
-测试用例标题      : 分别输出三个通道的映射关系
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_003)
 {
     /*变量定义*/
@@ -774,15 +640,7 @@ TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChdataPara_004
-测试用例标题      : 命令从非HSIC通道下发
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_004)
 {
     /*变量定义*/
@@ -808,15 +666,7 @@ TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChdataPara_005
-测试用例标题      : 分别输出三个通道的映射关系
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_005)
 {
     /*变量定义*/
@@ -857,15 +707,7 @@ TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_005)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChdataPara_006
-测试用例标题      : 分别输出三个通道的映射关系
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_006)
 {
     /*变量定义*/
@@ -890,14 +732,7 @@ TEST_F(Test_AT_QryChdataPara,Test_AT_QryChdataPara_006)
     EXPECT_EQ(AT_ERROR, ulRet);
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_TestChdataPara
-功能描述 : AT_TestChdataPara UT工程类
-修改历史     :
-1.日   期  : 2012-09-11
-  作   者  : L60609
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_TestChdataPara: public ::testing::Test
 {
 public:
@@ -935,15 +770,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestChdataPara_001
-测试用例标题      : 非APP通道
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestChdataPara,Test_AT_TestChdataPara_001)
 {
     /*变量定义*/
@@ -966,15 +793,7 @@ TEST_F(Test_AT_TestChdataPara,Test_AT_TestChdataPara_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_TestChdataPara_002
-测试用例标题      : APP通道
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2012-02-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_TestChdataPara,Test_AT_TestChdataPara_002)
 {
     /*变量定义*/
@@ -1015,14 +834,7 @@ TEST_F(Test_AT_TestChdataPara,Test_AT_TestChdataPara_002)
 }
 #endif
 
-/******************************************************************************
-类名     : Test_At_SetDhcpPara
-功能描述 : At_SetDhcpPara UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_At_SetDhcpPara: public ::testing::Test
 {
 public:
@@ -1074,15 +886,7 @@ public:
 
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpPara_001
-测试用例标题: 通过HSIC4通道下发,查询CID为1的DHCP信息
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_001)
 {
     // 变量声明
@@ -1105,15 +909,7 @@ TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpPara_002
-测试用例标题: 通过NDIS通道下发查询命令
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_002)
 {
     // 变量声明
@@ -1136,15 +932,7 @@ TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpPara_003
-测试用例标题: 通过HSIC4通道下发,参数类型错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_003)
 {
     // 变量声明
@@ -1167,15 +955,7 @@ TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpPara_004
-测试用例标题: 当前CID未激活
-预期结果    : 返回AT_TOO_MANY_PARA
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_004)
 {
     // 变量声明
@@ -1198,15 +978,7 @@ TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpPara_005
-测试用例标题: 正在去激活
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_005)
 {
     // 变量声明
@@ -1226,15 +998,7 @@ TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpPara_006
-测试用例标题: 获取带宽失败
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_006)
 {
     // 变量声明
@@ -1256,15 +1020,7 @@ TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_006)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpPara_007
-测试用例标题: 当前PDP未激活
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_007)
 {
     // 变量声明
@@ -1285,15 +1041,7 @@ TEST_F(Test_At_SetDhcpPara, Test_At_SetDhcpPara_007)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryDhcpPara_AppUser
-功能描述 : At_QryDhcpPara_AppUser UT工程类
-修改历史     :
 
-1.日   期  : 2012-09-03
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_At_QryDhcpPara_AppUser: public ::testing::Test
 {
 public:
@@ -1325,16 +1073,7 @@ public:
     //VOS_UINT8                   ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryDhcpPara_AppUser_001
-测试用例标题      : PCUI模拟APP发起的AT^DHCP?请求，当前PDP未激活
-预期结果          : 返回AT_ERROR
-修改历史   :
 
-1.日   期  : 2012-09-03
-  作   者  : l60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpPara_AppUser, Test_At_QryDhcpPara_AppUser_001)
 {
     //参数定义
@@ -1354,16 +1093,7 @@ TEST_F(Test_At_QryDhcpPara_AppUser, Test_At_QryDhcpPara_AppUser_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryDhcpPara_AppUser_002
-测试用例标题      : PCUI模拟APP发起的AT^DHCP?请求，获取带宽错误
-预期结果          : 上报^DHCP:413DA8C0,00FFFFFF,413DA8C0,413DA8C0,00000000,00000000,81920000,81920000
-修改历史   :
 
-1.日   期  : 2012-09-03
-  作   者  : l60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpPara_AppUser, Test_At_QryDhcpPara_AppUser_002)
 {
     VOS_UINT32                          ulResult;
@@ -1401,16 +1131,7 @@ TEST_F(Test_At_QryDhcpPara_AppUser, Test_At_QryDhcpPara_AppUser_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryDhcpPara_AppUser_003
-测试用例标题      : PCUI模拟APP发起的AT^DHCP?请求，获取带宽正确
-预期结果          : 上报^DHCP:413DA8C0,00FFFFFF,413DA8C0,413DA8C0,00000000,00000000,14400000,14400000
-修改历史   :
 
-1.日   期  : 2012-02-08
-  作   者  : l60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpPara_AppUser, Test_At_QryDhcpPara_AppUser_003)
 {
     VOS_UINT32                          ulResult;
@@ -1455,15 +1176,7 @@ TEST_F(Test_At_QryDhcpPara_AppUser, Test_At_QryDhcpPara_AppUser_003)
 }
 //#endif
 
-/*****************************************************************************
-类名     : Test_At_QryDhcpPara_NdisUser
-功能描述 : At_QryDhcpPara_NdisUser UT工程类
-修改历史     :
 
-1.日   期  : 2012-09-03
-  作   者  : l60609
-  修改内容 : 新生成类
-*****************************************************************************/
 class Test_At_QryDhcpPara_NdisUser: public ::testing::Test
 {
 public:
@@ -1503,16 +1216,7 @@ protected:
     VOS_UINT8                   ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryDhcpPara_NdisUser_001
-测试用例标题      : PCUI模拟NDIS发起的AT^DHCP?请求，当前PDP未激活
-预期结果          : 返回AT_ERROR
-修改历史   :
 
-1.日   期  : 2012-09-03
-  作   者  : l60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpPara_NdisUser, Test_At_QryDhcpPara_NdisUser_001)
 {
     //参数定义
@@ -1532,16 +1236,7 @@ TEST_F(Test_At_QryDhcpPara_NdisUser, Test_At_QryDhcpPara_NdisUser_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryDhcpPara_NdisUser_002
-测试用例标题      : PCUI模拟NDIS发起的AT^DHCP?请求，获取带宽错误
-预期结果          : 上报^DHCP:413DA8C0,FFFFFF00,413DA8C0,413DA8C0,0,0,81920000,81920000
-修改历史   :
 
-1.日   期  : 2012-09-03
-  作   者  : l60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpPara_NdisUser, Test_At_QryDhcpPara_NdisUser_002)
 {
     VOS_UINT32                          ulResult;
@@ -1576,16 +1271,7 @@ TEST_F(Test_At_QryDhcpPara_NdisUser, Test_At_QryDhcpPara_NdisUser_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryDhcpPara_NdisUser_003
-测试用例标题      : PCUI模拟NDIS发起的AT^DHCP?请求，获取带宽正确
-预期结果          : 上报^DHCP:413DA8C0,FFFFFF,413DA8C0,413DA8C0,0,0,14400000,14400000
-修改历史   :
 
-1.日   期  : 2012-09-03
-  作   者  : l60609
-  修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpPara_NdisUser, Test_At_QryDhcpPara_NdisUser_003)
 {
     VOS_UINT32                          ulResult;
@@ -1617,14 +1303,7 @@ TEST_F(Test_At_QryDhcpPara_NdisUser, Test_At_QryDhcpPara_NdisUser_003)
 }
 
 
-/******************************************************************************
-类名     : Test_AT_TestDhcpPara
-功能描述 : AT_TestDhcpPara UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_TestDhcpPara: public ::testing::Test
 {
 public:
@@ -1646,15 +1325,7 @@ public:
     VOS_UINT8                   ucIndex;
     AT_PAR_CMD_ELEMENT_STRU     stCmdInfo;
 };
-/******************************************************************************
-测试用例编号: Test_AT_TestDhcpPara_001
-测试用例标题:
-预期结果    :
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_TestDhcpPara, Test_AT_TestDhcpPara_001)
 {
     // 变量声明
@@ -1676,14 +1347,7 @@ TEST_F(Test_AT_TestDhcpPara, Test_AT_TestDhcpPara_001)
 
 #if (FEATURE_ON == FEATURE_IPV6)
 
-/******************************************************************************
-类名     : Test_At_SetDhcpv6Para
-功能描述 : At_SetDhcpv6Para UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_At_SetDhcpv6Para: public ::testing::Test
 {
 public:
@@ -1735,15 +1399,7 @@ public:
 
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpv6Para_001
-测试用例标题: 通过HSIC4通道下发,查询CID为1的DHCP信息
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_001)
 {
     // 变量声明
@@ -1766,15 +1422,7 @@ TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpv6Para_002
-测试用例标题: 通过NDIS通道下发查询命令
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_002)
 {
     // 变量声明
@@ -1796,15 +1444,7 @@ TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpv6Para_003
-测试用例标题: 通过HSIC4通道下发,参数类型错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_003)
 {
     // 变量声明
@@ -1828,15 +1468,7 @@ TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpv6Para_004
-测试用例标题: 当前CID未激活
-预期结果    : 返回AT_TOO_MANY_PARA
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_004)
 {
     // 变量声明
@@ -1859,15 +1491,7 @@ TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpv6Para_005
-测试用例标题: 正在去激活
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_005)
 {
     // 变量声明
@@ -1887,15 +1511,7 @@ TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpv6Para_006
-测试用例标题: 获取带宽失败
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_006)
 {
     // 变量声明
@@ -1917,15 +1533,7 @@ TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_006)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetDhcpv6Para_007
-测试用例标题: 当前PDP未激活
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_007)
 {
     // 变量声明
@@ -1945,14 +1553,7 @@ TEST_F(Test_At_SetDhcpv6Para, Test_At_SetDhcpv6Para_007)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_CheckIpv6Capability
-功能描述 : AT_CheckIpv6Capability UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_CheckIpv6Capability: public ::testing::Test
 {
 public:
@@ -1967,15 +1568,7 @@ public:
 
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_CheckIpv6Capability_001
-测试用例标题: AT_IPV6_CAPABILITY_IPV4_ONLY
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_CheckIpv6Capability, Test_AT_CheckIpv6Capability_001)
 {
     // 变量声明
@@ -1994,15 +1587,7 @@ TEST_F(Test_AT_CheckIpv6Capability, Test_AT_CheckIpv6Capability_001)
     EXPECT_EQ(VOS_ERR, ulRslt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-测试用例编号: Test_AT_CheckIpv6Capability_002
-测试用例标题: AT_IPV6_CAPABILITY_IPV4_ONLY
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_CheckIpv6Capability, Test_AT_CheckIpv6Capability_002)
 {
     // 变量声明
@@ -2022,15 +1607,7 @@ TEST_F(Test_AT_CheckIpv6Capability, Test_AT_CheckIpv6Capability_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名    : Test_At_QryDhcpV6Para_AppUser
-功能描述: At_QryDhcpV6Para_AppUser UT工程类
-修改历史    :
 
-1.日  期 : 2012-09-03
-  作  者 : l60609
-  修改内容: 新生成类
-*****************************************************************************/
 class Test_At_QryDhcpV6Para_AppUser: public ::testing::Test
 {
 public:
@@ -2047,16 +1624,7 @@ protected:
     VOS_UINT8                   ucIndex;
 };
 
-/*******************************************************************
-测试用例编号     : Test_At_QryDhcpV6Para_AppUser_001
-测试用例标题     : PCUI模拟APP发起的AT^DHCPV6?请求，当前PDP未激活
-预期结果         : 返回AT_ERROR
-修改历史  :
 
-1.日  期 : 2012-09-03
-  作  者 : l60609
-  修改内容: 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpV6Para_AppUser, Test_At_QryDhcpV6Para_AppUser_001)
 {
     //参数定义
@@ -2076,16 +1644,7 @@ TEST_F(Test_At_QryDhcpV6Para_AppUser, Test_At_QryDhcpV6Para_AppUser_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号     : Test_At_QryDhcpV6Para_AppUser_002
-测试用例标题     : PCUI模拟APP发起的AT^DHCPV6?请求，获取带宽错误
-预期结果         : 上报^DHCPV6:
-修改历史  :
 
-1.日  期 : 2012-09-03
-  作  者 : l60609
-  修改内容: 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpV6Para_AppUser, Test_At_QryDhcpV6Para_AppUser_002)
 {
     AT_GetCommCtxAddr()->ucSystemAppConfigAddr = SYSTEM_APP_WEBUI;
@@ -2110,16 +1669,7 @@ TEST_F(Test_At_QryDhcpV6Para_AppUser, Test_At_QryDhcpV6Para_AppUser_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号     : Test_At_QryDhcpV6Para_AppUser_003
-测试用例标题     : PCUI模拟APP发起的AT^DHCPV6?请求，获取带宽正确
-预期结果         : 上报^DHCPV6:
-修改历史  :
 
-1.日  期 : 2012-09-03
-  作  者 : l60609
-  修改内容: 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpV6Para_AppUser, Test_At_QryDhcpV6Para_AppUser_003)
 {
     VOS_UINT32                          ulSpeed = 14400000;
@@ -2146,15 +1696,7 @@ TEST_F(Test_At_QryDhcpV6Para_AppUser, Test_At_QryDhcpV6Para_AppUser_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名    : Test_At_QryDhcpV6Para_NdisUser
-功能描述: At_QryDhcpV6Para_NdisUser UT工程类
-修改历史    :
 
-1.日  期 : 2012-09-03
-  作  者 : l60609
-  修改内容: 新生成类
-*****************************************************************************/
 class Test_At_QryDhcpV6Para_NdisUser: public ::testing::Test
 {
 public:
@@ -2188,16 +1730,7 @@ protected:
     VOS_UINT8                   ucIndex;
 };
 
-/*******************************************************************
-测试用例编号     : Test_At_QryDhcpV6Para_NdisUser_001
-测试用例标题     : PCUI模拟NDIS发起的AT^DHCPV6?请求，当前PDP未激活
-预期结果         : 返回AT_ERROR
-修改历史  :
 
-1.日  期 : 2012-09-03
-  作  者 : l60609
-  修改内容: 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpV6Para_NdisUser, Test_At_QryDhcpV6Para_NdisUser_001)
 {
     //参数定义
@@ -2221,16 +1754,7 @@ TEST_F(Test_At_QryDhcpV6Para_NdisUser, Test_At_QryDhcpV6Para_NdisUser_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号     : Test_At_QryDhcpV6Para_NdisUser_002
-测试用例标题     : PCUI模拟NDIS发起的AT^DHCPV6?请求，获取带宽错误
-预期结果         : 上报^DHCPV6:
-修改历史  :
 
-1.日  期 : 2012-09-03
-  作  者 : l60609
-  修改内容: 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpV6Para_NdisUser, Test_At_QryDhcpV6Para_NdisUser_002)
 {
     VOS_UINT32                          ulResult;
@@ -2263,16 +1787,7 @@ TEST_F(Test_At_QryDhcpV6Para_NdisUser, Test_At_QryDhcpV6Para_NdisUser_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号     : Test_At_QryDhcpV6Para_NdisUser_003
-测试用例标题     : PCUI模拟NDIS发起的AT^DHCPV6?请求，获取带宽正确
-预期结果         : 上报^DHCPV6:
-修改历史  :
 
-1.日  期 : 2012-09-03
-  作  者 : l60609
-  修改内容: 新生成类
-*******************************************************************/
 TEST_F(Test_At_QryDhcpV6Para_NdisUser, Test_At_QryDhcpV6Para_NdisUser_003)
 {
     VOS_UINT32                          ulResult;
@@ -2316,14 +1831,7 @@ TEST_F(Test_At_QryDhcpV6Para_NdisUser, Test_At_QryDhcpV6Para_NdisUser_003)
 }
 
 
-/******************************************************************************
-类名     : Test_At_TestDhcpv6Para
-功能描述 : AT_TestDhcpv6Para UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_TestDhcpv6Para: public ::testing::Test
 {
 public:
@@ -2345,15 +1853,7 @@ public:
     VOS_UINT8                   ucIndex;
     AT_PAR_CMD_ELEMENT_STRU     stCmdInfo;
 };
-/******************************************************************************
-测试用例编号: Test_AT_TestDhcpv6Para_001
-测试用例标题:
-预期结果    :
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_TestDhcpv6Para, Test_AT_TestDhcpv6Para_001)
 {
     // 变量声明
@@ -2373,14 +1873,7 @@ TEST_F(Test_AT_TestDhcpv6Para, Test_AT_TestDhcpv6Para_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_SetApRaInfoPara
-功能描述 : AT_SetApRaInfoPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_AT_SetApRaInfoPara: public ::testing::Test
 {
 public:
@@ -2427,15 +1920,7 @@ public:
         AT_PS_FreeCallEntity(ucIndex, ucCallId);
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_SetApRaInfoPara_001
-测试用例标题: 命令类型错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_001)
 {
     // 变量声明
@@ -2455,15 +1940,7 @@ TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApRaInfoPara_002
-测试用例标题: 命令参数个数错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_002)
 {
     // 变量声明
@@ -2483,15 +1960,7 @@ TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApRaInfoPara_003
-测试用例标题: 命令参数个数错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_003)
 {
     // 变量声明
@@ -2513,15 +1982,7 @@ TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApRaInfoPara_004
-测试用例标题: 当前CID PDP未激活
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_004)
 {
     // 变量声明
@@ -2544,15 +2005,7 @@ TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_004)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApRaInfoPara_005
-测试用例标题: 当前所有OP项为FALSE
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_005)
 {
     // 变量声明
@@ -2577,15 +2030,7 @@ TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApRaInfoPara_006
-测试用例标题: 当前所有OP项为TRUE
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_006)
 {
     // 变量声明
@@ -2610,14 +2055,7 @@ TEST_F(Test_AT_SetApRaInfoPara, Test_AT_SetApRaInfoPara_006)
 }
 
 
-/******************************************************************************
-类名     : Test_AT_QryApRaInfoPara
-功能描述 : AT_QryApRaInfoPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_AT_QryApRaInfoPara: public ::testing::Test
 {
 public:
@@ -2654,15 +2092,7 @@ public:
     {
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_QryApRaInfoPara_001
-测试用例标题: 当前不为IPV6类型
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_QryApRaInfoPara, Test_AT_QryApRaInfoPara_001)
 {
     // 变量声明
@@ -2683,15 +2113,7 @@ TEST_F(Test_AT_QryApRaInfoPara, Test_AT_QryApRaInfoPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryApRaInfoPara_002
-测试用例标题: 当前所有OP项为FALSE
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_QryApRaInfoPara, Test_AT_QryApRaInfoPara_002)
 {
     // 变量声明
@@ -2715,15 +2137,7 @@ TEST_F(Test_AT_QryApRaInfoPara, Test_AT_QryApRaInfoPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryApRaInfoPara_003
-测试用例标题: 当前所有OP项为TRUE
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_QryApRaInfoPara, Test_AT_QryApRaInfoPara_003)
 {
     // 变量声明
@@ -2746,14 +2160,7 @@ TEST_F(Test_AT_QryApRaInfoPara, Test_AT_QryApRaInfoPara_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_TestApRaInfoPara
-功能描述 : AT_TestApRaInfoPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_AT_TestApRaInfoPara: public ::testing::Test
 {
 public:
@@ -2782,15 +2189,7 @@ public:
     {
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_TestApRaInfoPara_001
-测试用例标题: AT^APRAINFO=?
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_TestApRaInfoPara, Test_AT_TestApRaInfoPara_001)
 {
     // 变量声明
@@ -2810,14 +2209,7 @@ TEST_F(Test_AT_TestApRaInfoPara, Test_AT_TestApRaInfoPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_SetApLanAddrPara
-功能描述 : AT_SetApLanAddrPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_AT_SetApLanAddrPara: public ::testing::Test
 {
 public:
@@ -2864,15 +2256,7 @@ public:
         AT_PS_FreeCallEntity(ucIndex, ucCallId);
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_SetApLanAddrPara_001
-测试用例标题: 命令类型错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_001)
 {
     // 变量声明
@@ -2892,15 +2276,7 @@ TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApLanAddrPara_002
-测试用例标题: 命令参数个数错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_002)
 {
     // 变量声明
@@ -2921,15 +2297,7 @@ TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_002)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApLanAddrPara_003
-测试用例标题: 命令参数个数错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_003)
 {
     // 变量声明
@@ -2951,15 +2319,7 @@ TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApLanAddrPara_004
-测试用例标题: 当前CID PDP未激活
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_004)
 {
     // 变量声明
@@ -2980,15 +2340,7 @@ TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApLanAddrPara_005
-测试用例标题: 当前所有OP项为FALSE
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_005)
 {
     // 变量声明
@@ -3010,15 +2362,7 @@ TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_SetApLanAddrPara_006
-测试用例标题: 当前所有OP项为TRUE
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_006)
 {
     // 变量声明
@@ -3041,14 +2385,7 @@ TEST_F(Test_AT_SetApLanAddrPara, Test_AT_SetApLanAddrPara_006)
 }
 
 
-/******************************************************************************
-类名     : Test_AT_QryApLanAddrPara
-功能描述 : AT_QryApLanAddrPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_AT_QryApLanAddrPara: public ::testing::Test
 {
 public:
@@ -3086,15 +2423,7 @@ public:
     {
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_QryApLanAddrPara_001
-测试用例标题: 当前不为IPV6类型
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_QryApLanAddrPara, Test_AT_QryApLanAddrPara_001)
 {
     // 变量声明
@@ -3115,15 +2444,7 @@ TEST_F(Test_AT_QryApLanAddrPara, Test_AT_QryApLanAddrPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryApLanAddrPara_002
-测试用例标题: 当前所有OP项为FALSE
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_QryApLanAddrPara, Test_AT_QryApLanAddrPara_002)
 {
     // 变量声明
@@ -3144,15 +2465,7 @@ TEST_F(Test_AT_QryApLanAddrPara, Test_AT_QryApLanAddrPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_QryApLanAddrPara_003
-测试用例标题: 当前所有OP项为TRUE
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_QryApLanAddrPara, Test_AT_QryApLanAddrPara_003)
 {
     // 变量声明
@@ -3171,14 +2484,7 @@ TEST_F(Test_AT_QryApLanAddrPara, Test_AT_QryApLanAddrPara_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_TestApLanAddrPara
-功能描述 : AT_TestApLanAddrPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_AT_TestApLanAddrPara: public ::testing::Test
 {
 public:
@@ -3207,15 +2513,7 @@ public:
     {
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_TestApLanAddrPara_001
-测试用例标题: AT^APLANADDR=?
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_TestApLanAddrPara, Test_AT_TestApLanAddrPara_001)
 {
     // 变量声明
@@ -3234,14 +2532,7 @@ TEST_F(Test_AT_TestApLanAddrPara, Test_AT_TestApLanAddrPara_001)
     EXPECT_EQ(gstAtSendData.usBufLen, VOS_StrLen("^APLANADDR: (1-11)"));
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_At_SetApConnStPara
-功能描述 : At_SetApConnStPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_At_SetApConnStPara: public ::testing::Test
 {
 public:
@@ -3295,15 +2586,7 @@ public:
         AT_PS_FreeCallEntity(ucIndex, ucCallId);
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_SetApConnStPara_001
-测试用例标题: 命令类型错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_001)
 {
     // 变量声明
@@ -3323,15 +2606,7 @@ TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApConnStPara_002
-测试用例标题: 命令参数个数错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_002)
 {
     // 变量声明
@@ -3351,15 +2626,7 @@ TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApConnStPara_003
-测试用例标题: 命令参数个数错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_003)
 {
     // 变量声明
@@ -3381,15 +2648,7 @@ TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApConnStPara_004
-测试用例标题: 当前只支持IPV4
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_004)
 {
     // 变量声明
@@ -3414,15 +2673,7 @@ TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApConnStPara_005
-测试用例标题: 当前只支持IPV6
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_005)
 {
     // 变量声明
@@ -3447,15 +2698,7 @@ TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApConnStPara_006
-测试用例标题: 当前支持AT_IPV6_CAPABILITY_IPV4V6_OVER_TWO_PDP
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_006)
 {
     // 变量声明
@@ -3482,15 +2725,7 @@ TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_006)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_At_SetApConnStPara_007
-测试用例标题: 当前支持AT_IPV6_CAPABILITY_IPV4V6_OVER_ONE_PDP
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_007)
 {
     // 变量声明
@@ -3517,15 +2752,7 @@ TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_007)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_At_SetApConnStPara_008
-测试用例标题: NV项填写错误
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_008)
 {
     // 变量声明
@@ -3547,14 +2774,7 @@ TEST_F(Test_At_SetApConnStPara, Test_At_SetApConnStPara_008)
     EXPECT_EQ(gstAtSendData.usBufLen, 0);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_At_QryApConnStPara
-功能描述 : At_QryApConnStPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_At_QryApConnStPara: public ::testing::Test
 {
 public:
@@ -3587,15 +2807,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_At_QryApConnStPara_001
-测试用例标题: 当前只支持IPV4
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_QryApConnStPara, Test_At_QryApConnStPara_001)
 {
     // 变量声明
@@ -3616,15 +2828,7 @@ TEST_F(Test_At_QryApConnStPara, Test_At_QryApConnStPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_QryApConnStPara_002
-测试用例标题: 当前只支持IPV6
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_QryApConnStPara, Test_At_QryApConnStPara_002)
 {
     // 变量声明
@@ -3646,15 +2850,7 @@ TEST_F(Test_At_QryApConnStPara, Test_At_QryApConnStPara_002)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_At_QryApConnStPara_003
-测试用例标题: 当前只支持IPV4v6
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_QryApConnStPara, Test_At_QryApConnStPara_003)
 {
     // 变量声明
@@ -3676,14 +2872,7 @@ TEST_F(Test_At_QryApConnStPara, Test_At_QryApConnStPara_003)
 }
 
 
-/******************************************************************************
-类名     : Test_AT_TestApConnStPara
-功能描述 : AT_TestApConnStPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_AT_TestApConnStPara: public ::testing::Test
 {
 public:
@@ -3712,15 +2901,7 @@ public:
     {
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_TestApConnStPara_001
-测试用例标题: AT^APCONNST=?
-预期结果    : AT_OK
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_TestApConnStPara, Test_AT_TestApConnStPara_001)
 {
     // 变量声明
@@ -3740,14 +2921,7 @@ TEST_F(Test_AT_TestApConnStPara, Test_AT_TestApConnStPara_001)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_AT_SetChdataPara_App
-功能描述 : AT_SetChdataPara_App UT工程类
-修改历史     :
-1.日   期  : 2013-05-08
-  作   者  : Y00213812
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetChdataPara_App: public ::testing::Test
 {
 public:
@@ -3784,15 +2958,7 @@ public:
     }
 };
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_App_001
-测试用例标题      : 第二个参数为空
-预期结果          : 返回OK，删除指定CID的映射关系
-修改历史     :
-1.日   期  : 2013-05-08
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_001)
 {
     /*变量定义*/
@@ -3824,15 +2990,7 @@ TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_App_002
-测试用例标题      : 设定CID 1对应通道为2，但CID 2之前也被映射为2
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2013-05-08
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_002)
 {
     /*变量定义*/
@@ -3865,15 +3023,7 @@ TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_002)
 }
 
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_App_003
-测试用例标题      : 设定CID 1对应通道为1，且没有其他CID被配为通道1
-预期结果          : 返回AT_OK，并设置CID 1与通道1的映射关系
-修改历史     :
-1.日   期  : 2013-05-08
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_003)
 {
     /*变量定义*/
@@ -3904,15 +3054,7 @@ TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_003)
 }
 
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_App_004
-测试用例标题      : 设定CID 1对应通道为5
-预期结果          : 返回AT_ERROR
-修改历史     :
-1.日   期  : 2013-05-08
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_004)
 {
     /*变量定义*/
@@ -3942,15 +3084,7 @@ TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************
-测试用例编号      : Test_AT_SetChdataPara_App_005
-测试用例标题      : 删除cid为1的绑定，当该cid已激活
-预期结果          : 返回AT_ERROR，删除指定CID的映射关系失败
-修改历史     :
-1.日   期  : 2013-05-08
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_005)
 {
     /*变量定义*/
@@ -3983,14 +3117,7 @@ TEST_F(Test_AT_SetChdataPara_App,Test_AT_SetChdataPara_App_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryChdataPara_App
-功能描述 : AT_QryChdataPara UT工程类
-修改历史     :
-1.日   期  : 2013-05-08
-  作   者  : Y00213812
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryChdataPara_App: public ::testing::Test
 {
 public:
@@ -4040,15 +3167,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChdataPara_App_001
-测试用例标题      : 分别输出三个通道的映射关系
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2013-05-08
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryChdataPara_App,Test_AT_QryChdataPara_App_001)
 {
     /*变量定义*/
@@ -4089,15 +3208,7 @@ TEST_F(Test_AT_QryChdataPara_App,Test_AT_QryChdataPara_App_001)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryChdataPara_App_002
-测试用例标题      : 分别输出三个通道的映射关系
-预期结果          : 返回AT_OK
-修改历史     :
-1.日   期  : 2013-05-08
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryChdataPara_App,Test_AT_QryChdataPara_App_002)
 {
     /*变量定义*/
@@ -4135,14 +3246,7 @@ TEST_F(Test_AT_QryChdataPara_App,Test_AT_QryChdataPara_App_002)
 }
 
 
-/******************************************************************************
-类名     : Test_At_SetApThroughputPara
-功能描述 : At_SetApThroughputPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_At_SetApThroughputPara: public ::testing::Test
 {
 public:
@@ -4183,15 +3287,7 @@ public:
         AT_PS_FreeCallEntity(ucIndex, ucCallId);
     }
 };
-/******************************************************************************
-测试用例编号: Test_At_SetApThroughputPara_001
-测试用例标题: 命令类型错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_001)
 {
     // 变量声明
@@ -4211,15 +3307,7 @@ TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApThroughputPara_002
-测试用例标题: 命令参数个数错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_002)
 {
     // 变量声明
@@ -4239,15 +3327,7 @@ TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApThroughputPara_003
-测试用例标题: 网卡错误
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_003)
 {
     // 变量声明
@@ -4267,15 +3347,7 @@ TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApThroughputPara_004
-测试用例标题: 申请内存失败
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_004)
 {
     // 变量声明
@@ -4297,15 +3369,7 @@ TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApThroughputPara_005
-测试用例标题: 发送消息失败
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_005)
 {
     // 变量声明
@@ -4332,15 +3396,7 @@ TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetApThroughputPara_006
-测试用例标题: 发送消息成功
-预期结果    : AT_WAIT_ASYNC_RETURN
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_006)
 {
     // 变量声明
@@ -4368,14 +3424,7 @@ TEST_F(Test_At_SetApThroughputPara, Test_At_SetApThroughputPara_006)
 }
 
 
-/******************************************************************************
-类名     : Test_At_QryApThroughputPara
-功能描述 : At_QryApThroughputPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_At_QryApThroughputPara: public ::testing::Test
 {
 public:
@@ -4417,15 +3466,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_At_QryApThroughputPara_001
-测试用例标题: 申请内存失败
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_QryApThroughputPara, Test_At_QryApThroughputPara_001)
 {
     // 变量声明
@@ -4447,15 +3488,7 @@ TEST_F(Test_At_QryApThroughputPara, Test_At_QryApThroughputPara_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_QryApThroughputPara_002
-测试用例标题: 发送消息失败
-预期结果    : AT_ERROR
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_QryApThroughputPara, Test_At_QryApThroughputPara_002)
 {
     // 变量声明
@@ -4482,15 +3515,7 @@ TEST_F(Test_At_QryApThroughputPara, Test_At_QryApThroughputPara_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_QryApThroughputPara_003
-测试用例标题: 发送消息成功
-预期结果    : AT_WAIT_ASYNC_RETURN
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_At_QryApThroughputPara, Test_At_QryApThroughputPara_003)
 {
     // 变量声明
@@ -4518,14 +3543,7 @@ TEST_F(Test_At_QryApThroughputPara, Test_At_QryApThroughputPara_003)
 }
 
 
-/******************************************************************************
-类名     : Test_AT_TestApThroughputPara
-功能描述 : AT_TestApThroughputPara UT工程类
-修改历史 :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 项目新增类
-******************************************************************************/
+
 class Test_AT_TestApThroughputPara: public ::testing::Test
 {
 public:
@@ -4566,15 +3584,7 @@ public:
         AT_PS_FreeCallEntity(ucIndex, ucCallId);
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_TestApThroughputPara_001
-测试用例标题: 命令类型错误
-预期结果    : AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2013-05-07
-   作   者  : Y00213812
-   修改内容 : 新增函数
-******************************************************************************/
+
 TEST_F(Test_AT_TestApThroughputPara, Test_AT_TestApThroughputPara_001)
 {
     // 变量声明

@@ -1,17 +1,4 @@
-/************************************************************************
-Copyright   : 2005-2009, Huawei Tech. Co., Ltd.
-File name   : STKSpecialProc
-Author      : H59254
-Version     : V200R001
-Date        : 2009-07-02
-Description : 该文件定义了STK主动命令中需要特殊处理的实现，以适应终端后台软件的
-              需要。如果单纯做为USB MODEN时(如与K3芯片对接)，本文件中的所有实现都不需要。
-History     :
 
-1.日    期  : 2009年07月02日
-  作    者  : H59254
-  修改内容  : Create
-************************************************************************/
 
 #include "si_stk.h"
 #include "product_config.h"
@@ -1041,20 +1028,7 @@ VOS_VOID SI_STK_LociInfoIndMsgProc(NAS_STK_LOCATION_INFO_IND_STRU *pstLociInfo)
 
 #ifndef COMM_ITT
 
-/*****************************************************************************
-函 数 名  : SI_STK_SsOrUssdEvtUssReqCnfDataProc
-功能描述  : SEND SS、SEND USSD回复的TEXT STRING的编码处理函数
-输入参数  : pucText:TEXT STRING数据结构起始地址
-            ucDcs:编码方式
-            ucDateLen:数据长度
-            pucDate:数据内容
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年7月15日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT8 SI_STK_SsOrUssdEvtUssReqCnfDataProc(
     VOS_UINT8                          *pucText,
     VOS_UINT8                           ucDcs,
@@ -1098,18 +1072,7 @@ VOS_UINT8 SI_STK_SsOrUssdEvtUssReqCnfDataProc(
     return ucTextStringLen;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SsOrUssdEvtUssReqCnfProc
-功能描述  : SEND SS、SEND USSD功能TAF回复消息中有USSD回复信息处理函数
-输入参数  : pstEvent:TAF对于SS功能回复的事件
-输出参数  : aucTr:TERMINAL RESPONSE的内容
-            pucLen:TERMINAL RESPONSE的长度
-返 回 值  : 无
-History     :
-1.日    期  : 2013年7月15日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SsOrUssdEvtUssReqCnfProc(
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent,
     VOS_UINT8                           aucTr[],
@@ -1190,18 +1153,7 @@ VOS_VOID SI_STK_SsOrUssdEvtUssReqCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SsCallBackSsEvtErrProc
-功能描述  : SEND SS功能TAF回复消息中有ERROR信息处理函数
-输入参数  : pstEvent:TAF对于SS功能回复的事件
-输出参数  : aucTr:TERMINAL RESPONSE的内容
-            pucLen:TERMINAL RESPONSE的长度
-返 回 值  : 无
-History     :
-1.日    期  : 2013年7月15日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SsEvtErrProc(
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent,
     VOS_UINT8                           aucTr[],
@@ -1255,18 +1207,7 @@ VOS_VOID SI_STK_SsEvtErrProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SsCallBackSsEvtProblemProc
-功能描述  : SEND SS功能TAF回复消息中有PROBLEM信息处理函数
-输入参数  : pstEvent:TAF对于SS功能回复的事件
-输出参数  : aucTr:TERMINAL RESPONSE的内容
-            pucLen:TERMINAL RESPONSE的长度
-返 回 值  : 无
-History     :
-1.日    期  : 2013年7月15日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SsEvtProblemProc(
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent,
     VOS_UINT8                           aucTr[],
@@ -1283,18 +1224,7 @@ VOS_VOID SI_STK_SsEvtProblemProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SsCallBackSsEvtCauseProc
-功能描述  : SEND SS功能TAF回复消息中有CAUSE信息处理函数
-输入参数  : pstEvent:TAF消息内容
-输出参数  : aucTr:TERMINAL RESPONSE内容
-            pucLen:TERMINAL RESPONSE长度
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月16日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SsEvtCauseProc(
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent,
     VOS_UINT8                           aucTr[],
@@ -1311,18 +1241,7 @@ VOS_VOID SI_STK_SsEvtCauseProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SsCallBackSsEvtCnfProc
-功能描述  : SEND SS功能TAF回复SS各功能CNF消息函数处理
-输入参数  : pstEvent:TAF消息内容
-输出参数  : aucTr:TERMINAL RESPONSE内容
-            pucLen:TERMINAL RESPONSE长度
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月16日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SsEvtCnfProc(
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent,
     VOS_UINT8                           aucTr[],
@@ -1369,17 +1288,7 @@ VOS_VOID SI_STK_SsEvtCnfProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendSsCnfProc
-功能描述  : SEND SS功能TAF回复消息函数处理
-输入参数  : pstEvent:TAF消息内容
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月16日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SendSsCnfProc(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent)
 {
     VOS_UINT8                           aucTemp[255]    = {0};
@@ -1444,18 +1353,7 @@ VOS_VOID SI_STK_SendSsCnfProc(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_UssdCallBackSsEvtErProc
-功能描述  : SEND SS功能TAF回复消息中有USSD回复信息处理函数
-输入参数  : pstEvent:TAF对于USSD功能回复的事件
-输出参数  : aucTr:TERMINAL RESPONSE的内容
-            pucLen:TERMINAL RESPONSE的长度
-返 回 值  : 无
-History     :
-1.日    期  : 2013年7月15日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_UssdEvtErrProc(
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent,
     VOS_UINT8                           aucTr[],
@@ -1509,18 +1407,7 @@ VOS_VOID SI_STK_UssdEvtErrProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_UssdCallBackSsEvtProblemProc
-功能描述  : SEND USSD功能TAF回复消息中有PROBLEM信息处理函数
-输入参数  : pstEvent:TAF对于USSD功能回复的事件
-输出参数  : aucTr:TERMINAL RESPONSE的内容
-            pucLen:TERMINAL RESPONSE的长度
-返 回 值  : 无
-History     :
-1.日    期  : 2013年7月15日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_UssdEvtProblemProc(
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent,
     VOS_UINT8                           aucTr[],
@@ -1537,18 +1424,7 @@ VOS_VOID SI_STK_UssdEvtProblemProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_UssdCallBackSsEvtCauseProc
-功能描述  : SEND USSD功能TAF回复消息中有CAUSE信息处理函数
-输入参数  : pstEvent:TAF消息内容
-输出参数  : aucTr:TERMINAL RESPONSE内容
-            pucLen:TERMINAL RESPONSE长度
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月16日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_UssdEvtCauseProc(
     TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent,
     VOS_UINT8                           aucTr[],
@@ -1565,17 +1441,7 @@ VOS_VOID SI_STK_UssdEvtCauseProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendUssdCnfProc
-功能描述  : SEND USSD功能TAF回复消息函数处理
-输入参数  : pstEvent:TAF消息内容
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月16日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SendUssdCnfProc(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent)
 {
     VOS_UINT8                           aucTemp[255]    = {0};
@@ -1629,17 +1495,7 @@ VOS_VOID SI_STK_SendUssdCnfProc(TAF_SS_CALL_INDEPENDENT_EVENT_STRU *pstEvent)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SmsGlobalClear
-功能描述  : 短信相关全局变量清空
-输入参数  : 无
-输出参数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2012年10月12日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SmsGlobalClear(VOS_VOID)
 {
     /*lint -e534*/
@@ -1659,17 +1515,7 @@ VOS_VOID SI_STK_SmsGlobalClear(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SmsCBSendContinue
-功能描述  : SEND SMS功能的回调函数处理
-输入参数  : 无
-输出参数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2012年09月25日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SmsCBSendContinue(VOS_VOID)
 {
     g_ucReceCBNum++;    /* 回调次数++计数 */
@@ -1713,19 +1559,7 @@ VOS_VOID SI_STK_SmsCBSendContinue(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SMSCallBackFunc
-功能描述  : SEND SHORT MESSAGE功能的回调函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月02日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SMSCallBackFunc(MN_CLIENT_ID_T      clientId,
                                     MN_MSG_EVENT_ENUM_U32    enEventType,
                                     MN_MSG_EVENT_INFO_STRU   *pstEvent)
@@ -1773,19 +1607,7 @@ VOS_VOID SI_STK_SMSCallBackFunc(MN_CLIENT_ID_T      clientId,
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendSmsMnCmdCnfProcFunc
-功能描述  : STK主动命令SEND SMS的临时结果回调函数
-输入参数  : MN_CLIENT_ID_T:CLIENT ID
-            MN_OPERATION_ID_T:OP ID
-            ulErrorCode:错误码
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月25日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SendSmsMnCmdCnfProcFunc(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1830,17 +1652,7 @@ VOS_VOID SI_STK_SendSmsMnCmdCnfProcFunc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetupCallOrigCnfProc
-功能描述  : STK主动命令SETUP CALL的临时结果回调函数
-输入参数  : ulErrorCode:错误码
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月25日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SetupCallOrigCnfProc(TAF_UINT32 ulErrorCode)
 {
     VOS_UINT8 aucCallCtrlNotAllow[2]    = {INTERACTION_WITH_CALL_CONTROL_BY_NAA_PERMANENT_PROBLEM,
@@ -1882,19 +1694,7 @@ VOS_VOID SI_STK_SetupCallOrigCnfProc(TAF_UINT32 ulErrorCode)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendSsOrUssdMnCmdCnfProcFunc
-功能描述  : STK主动命令SEND SS/SEND USSD的临时结果回调函数
-输入参数  : MN_CLIENT_ID_T:CLIENT ID
-            MN_OPERATION_ID_T:OP ID
-            ulErrorCode:错误码
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月09日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SendSsOrUssdMnCmdCnfProcFunc(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1932,17 +1732,7 @@ VOS_VOID SI_STK_SendSsOrUssdMnCmdCnfProcFunc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendDTMFCnfProc
-功能描述  : STK主动命令SEND DTMF的临时结果处理函数
-输入参数  : pstEvent:TAF回复的消息内容
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月25日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SendDTMFCnfProc(TAF_CALL_EVT_DTMF_CNF_STRU *pstEvent)
 {
     VOS_UINT8 aucResponse[2]    = {TERMINAL_CURRENTLY_UNABLE_TO_PROCESS_COMMAND,
@@ -1991,17 +1781,7 @@ VOS_VOID SI_STK_SendDTMFCnfProc(TAF_CALL_EVT_DTMF_CNF_STRU *pstEvent)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetupCallSsMnCmdCnfProcFunc
-功能描述  : STK主动命令SETUP CALL的补充业务操作(挂起或挂断)的临时结果处理函数
-输入参数  : ulErrorCode:错误原因值
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年09月02日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SetupCallSsMnCmdCnfProcFunc(TAF_UINT32 ulErrorCode)
 {
     VOS_UINT8 aucSetupCallError[2]      = {TERMINAL_CURRENTLY_UNABLE_TO_PROCESS_COMMAND,
@@ -2021,19 +1801,7 @@ VOS_VOID SI_STK_SetupCallSsMnCmdCnfProcFunc(TAF_UINT32 ulErrorCode)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_MnCmdCnfProcFunc
-功能描述  : STK主动命令的临时结果回调函数
-输入参数  : MN_CLIENT_ID_T:CLIENT ID
-            MN_OPERATION_ID_T:OP ID
-            ulErrorCode:错误码
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2010年09月25日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_MnCmdCnfProcFunc(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -2065,19 +1833,7 @@ VOS_VOID SI_STK_MnCmdCnfProcFunc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SsCnfProcFunc
-功能描述  : SS业务功能的回复处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月06日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SsCnfProcFunc(
     MN_CLIENT_ID_T                      clientId,
     MN_CALL_EVENT_ENUM_U32              enEventType,
@@ -2099,17 +1855,7 @@ VOS_VOID SI_STK_SsCnfProcFunc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetupCallStatusTable
-功能描述  : 维护STK模块呼叫状态表
-输入参数  : enEventType:呼叫事件类型
-            pstEvent:呼叫事件
-输出参数  : 无
-History     :
-1.日    期  : 2012年09月19日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SetupCallStatusTable(
     MN_CALL_EVENT_ENUM_U32              enEventType,
     MN_CALL_INFO_STRU                  *pstEvent)
@@ -2136,18 +1882,7 @@ VOS_VOID SI_STK_SetupCallStatusTable(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_CallCBProc
-功能描述  : 电话功能的回调函数
-输入参数  : enEventType:事件类型
-            pstEvent:事件消息
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2009年07月06日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_CallCBProc(
     MN_CALL_EVENT_ENUM_U32                  enEventType,
     MN_CALL_INFO_STRU                      *pstEvent)
@@ -2176,18 +1911,7 @@ VOS_VOID SI_STK_CallCBProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendDTMFResultProc
-功能描述  : 发送DTMF功能的正式响应处理
-输入参数  : enEventType:事件类型
-            pstEvent:事件指针
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SendDTMFResultProc(
     MN_CALL_EVENT_ENUM_U32              enEventType,
     TAF_CALL_EVT_DTMF_CNF_STRU          *pstEvent)
@@ -2266,18 +1990,7 @@ VOS_VOID SI_STK_SendDTMFResultProc(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SaveCallId
-功能描述  : 保存呼叫ID
-输入参数  : callId -- 呼叫ID
-            usClientId -- client id
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月14日
-  作    者  : J00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SaveCallId(MN_CALL_ID_T ucCallId, MN_CLIENT_ID_T usClientId)
 {
     /* 参数非法 */
@@ -2302,19 +2015,7 @@ VOS_VOID SI_STK_SaveCallId(MN_CALL_ID_T ucCallId, MN_CLIENT_ID_T usClientId)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_CallReleasedProc
-功能描述  : 收到call released 处理
-输入参数  : usClientId -- client id
-            enEventType -- 事件类型
-            ucIsUser -- 挂断类型，网络挂断或用户挂断
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月14日
-  作    者  : J00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_CallReleasedProc(MN_CALL_EVENT_ENUM_U32 enEventType, MN_CALL_ID_T ucCallId, VOS_UINT8 ucIsUser)
 {
     VOS_UINT32                          ultimerLen;
@@ -2433,19 +2134,7 @@ VOS_VOID SI_STK_CallReleasedProc(MN_CALL_EVENT_ENUM_U32 enEventType, MN_CALL_ID_
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_CallReleasedProc
-功能描述  : 收到call released 处理
-输入参数  : ucCallId -- call id
-            enEventType -- 事件类型
 
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月14日
-  作    者  : J00168360
-  修改内容  : Create
-*****************************************************************************/
 VOS_VOID SI_STK_CallConnectProc(MN_CALL_EVENT_ENUM_U32 enEventType, MN_CALL_ID_T ucCallId)
 {
     if (MN_CALL_EVT_CONNECT != enEventType)
@@ -2484,19 +2173,7 @@ VOS_VOID SI_STK_CallConnectProc(MN_CALL_EVENT_ENUM_U32 enEventType, MN_CALL_ID_T
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SsCallBackFunc
-功能描述  : CS CALL功能的回调函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月06日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_CsCallBackFunc(MN_CALL_EVENT_ENUM_U32    enEventType,
                                       MN_CALL_INFO_STRU         *pstEvent)
 {
@@ -2557,18 +2234,7 @@ VOS_VOID SI_STK_CsCallBackFunc(MN_CALL_EVENT_ENUM_U32    enEventType,
 
 #endif
 
-/*****************************************************************************
-函 数 名  : SI_STK_ATTResetSend
-功能描述  : STK功能处理ATT Reset重新发送消息的函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-被调函数  :
-修订记录  :
-1.日    期  : 2009年07月02日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_ATTResetReSend(VOS_VOID)
 {
     USIMM_FEATURE_CFG_STRU              stUsimmFeatureCfg;
@@ -2598,18 +2264,7 @@ VOS_VOID SI_STK_ATTResetReSend(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_PsCallStateEvent
-功能描述  : STK功能处理TAF NAS_STK_PS_CALLINFO_EVENT_STRU消息的入口函数
-输入参数  : pMsg:TAF消息
-输出参数  : 无
-返 回 值  : VOS_OK
-被调函数  :
-修订记录  :
-1.日    期  : 2015年10月24日
-  作    者  : zhuli
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_VOID SI_STK_PsCallStateEvent(
     NAS_STK_PS_CALLINFO_EVENT_STRU      *pstMsg)
@@ -2630,18 +2285,7 @@ VOS_VOID SI_STK_PsCallStateEvent(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_TAFMsgProc
-功能描述  : STK功能处理TAF消息的入口函数
-输入参数  : pMsg:TAF消息
-输出参数  : 无
-返 回 值  : VOS_OK
-被调函数  :
-修订记录  :
-1.日    期  : 2009年07月02日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_TAFMsgProc(PS_SI_MSG_STRU *pMsg)
 {
     SI_STK_TAFCNF_MSG_STRU              *pstMsg;
@@ -2704,18 +2348,7 @@ VOS_VOID SI_STK_TAFMsgProc(PS_SI_MSG_STRU *pMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_CSServiceHook
-功能描述  : STK数据勾包
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-被调函数  :
-修订记录  :
-1.日    期  : 2012年05月02日
-  作    者  : fuyingjun
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_HookData(VOS_UINT32 ulHookName, VOS_UINT32 ulDataLen, VOS_UINT8 *pucData)
 {
     SI_HOOKMSG_STRU                     *pstMsg;
@@ -2746,18 +2379,7 @@ VOS_VOID SI_STK_HookData(VOS_UINT32 ulHookName, VOS_UINT32 ulDataLen, VOS_UINT8 
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_CSServiceHook
-功能描述  : STK数据勾包
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-被调函数  :
-修订记录  :
-1.日    期  : 2012年05月02日
-  作    者  : fuyingjun
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_CSServiceHook(VOS_VOID)
 {
     VOS_UINT32          ulCsServiceStatus;
@@ -2769,20 +2391,7 @@ VOS_VOID SI_STK_CSServiceHook(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_UssdDcsHook
-功能描述  : STK USSD DCS编解码数据钩包
-输入参数  : ucInputDcs:输入DCS
-            ucOutPutDcs:输出DCS
-            usStringLen:String长度
-            pUssdString:String内容
-输出参数  : 无
-返 回 值  : 无
-修订记录  :
-1.日    期  : 2013年07月19日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_UssdDcsHook(VOS_UINT8 ucInputDcs, VOS_UINT8 *pUssdString, VOS_UINT16 usStringLen, MN_MSG_CBDCS_CODE_STRU *pstCbDcs)
 {
     STK_CBS_DCS_STRU                   *pstCbsDcs;
@@ -2815,17 +2424,7 @@ VOS_VOID SI_STK_UssdDcsHook(VOS_UINT8 ucInputDcs, VOS_UINT8 *pUssdString, VOS_UI
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SmsGobleInit
-功能描述  : Send Short Message的全局变量初始化
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-修订记录  :
-1.日    期  : 2011年01月26日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SmsGobleInit(VOS_VOID)
 {
     if (VOS_NULL_PTR != f_pstSendDirectParm)
@@ -2851,17 +2450,7 @@ VOS_VOID SI_STK_SmsGobleInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_FillSmsPara
-功能描述  : 填充短信发送参数
-输入参数  : pstSendSMS -- 指向短信结构体
-输出参数  : 无
-返 回 值  : 无
-修订记录  :
-1.日    期  : 2011年01月26日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_FillSmsPara(SI_STK_SEND_SHORT_MESSAGE_STRU *pstSendSMS)
 {
     if(VOS_NULL_PTR == f_pstSendDirectParm)
@@ -2898,19 +2487,7 @@ VOS_VOID SI_STK_FillSmsPara(SI_STK_SEND_SHORT_MESSAGE_STRU *pstSendSMS)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendSmsSimple
-功能描述  : 发送简单短信
-输入参数  : enTpduType -- TPDU类型，command or submit类型
-            pstSendSMS -- 指向短信结构体
-输出参数  : 无
-返 回 值  : SI_STK_NORP --无响应
-            SI_STK_DATA_ERROR -- 数据错误
-修订记录  :
-1.日    期  : 2011年02月26日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendSmsSimple(
     MN_MSG_TPDU_TYPE_ENUM_U8            enTpduType,
     SI_STK_SEND_SHORT_MESSAGE_STRU     *pstSendSMS)
@@ -2958,23 +2535,7 @@ VOS_UINT32 SI_STK_SendSmsSimple(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_CheckSmsPara
-功能描述  : check短信参数，确定是否压缩及是否要拆分
-输入参数  : pstTPDU -- 指向短信传输协议数据单元结构体
-            pCmdDetail -- 指向命令结构体
-输出参数  : pulMsgNeedPress -- 指明当前短信是否要进行压缩
-            pulSmsNumber -- 指明短信最终发送条数
-返 回 值  : SI_STK_OK -- 成功
-            SI_STK_DATA_ERROR -- 数据错误
-修订记录  :
-1.日    期  : 2011年02月26日
-  作    者  : j00168360
-  修改内容  : Create
-2.日    期  : 2011年6月1日
-  作    者  : j00168360
-  修改内容  : [DTS2011052703494],STK短信容错功能
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_CheckSmsPara(SI_STK_SMS_TPDU_STRU             *pstTPDU,
                                             SI_STK_COMMAND_DETAILS_STRU     *pstCmdDetail,
                                             VOS_UINT32                      *pulMsgNeedPress,
@@ -3074,19 +2635,7 @@ VOS_UINT32 SI_STK_CheckSmsPara(SI_STK_SMS_TPDU_STRU             *pstTPDU,
     return SI_STK_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendSubmitSms
-功能描述  : 发送submit类型短信
-输入参数  : pstSendSMS -- 指向短信结构体
-            pCmdDetail -- 指向命令信息结构体
-输出参数  : 无
-返 回 值  : SI_STK_DATA_ERROR -- 数据错误
-            SI_STK_NORP -- 未收到响应
-修订记录  :
-1.日    期  : 2011年02月26日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendSubmitSms(
     SI_STK_SEND_SHORT_MESSAGE_STRU     *pstSendSMS,
     SI_STK_COMMAND_DETAILS_STRU        *pstCmdDetail)
@@ -3223,21 +2772,7 @@ VOS_UINT32 SI_STK_SendSubmitSms(
 
     return ulResult;
 }
-/*****************************************************************************
-函 数 名  : SI_STK_SendSMSSpecialProc
-功能描述  : Send Short Message的特殊处理函数
-输入参数  : pCmdData -- 指向STK数据信息结构体
-输出参数  : 无
-返 回 值  : SI_STK_DATA_ERROR -- 数据错误
-            SI_STK_NORP -- 未收到响应
-修订记录  :
-1.日    期  : 2011年02月26日
-  作    者  : j00168360
-  修改内容  : Create
-2. 日    期   : 2011年8月2日
-   作    者   : w00184875
-   修改内容   : [DTS2011072801497]
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendSMSSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     SI_STK_SEND_SHORT_MESSAGE_STRU      *pstSendSMS;
@@ -3328,19 +2863,7 @@ VOS_UINT32 SI_STK_SendSMSSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
 
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendSSSpecialProc
-功能描述  : Send SS的特殊处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2009年07月02日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendSSSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     MN_MMI_OPERATION_PARAM_STRU         stMmiOpParam;
@@ -3512,19 +3035,7 @@ VOS_UINT32 SI_STK_SendSSSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
     return (VOS_OK != ulResult)?SI_STK_DATA_ERROR:SI_STK_NORP;/* [false alarm]: 屏蔽Fortify 错误 */
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_EncodeUssdString
-功能描述  : USSD串编码处理函数
-输入参数  : pstSrcUssdString:主动命令解析得到的USSD串内容
-            pstDestUssdString:Nas能够处理的目标结构
-            ulErrorCode:错误码
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年07月09日
-  作    者  : H59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_EncodeUssdString(
     SI_STK_USSD_STRING_STRU            *pstSrcUssdString,
     TAF_SS_USSD_STRING_STRU            *pstDestUssdString)
@@ -3573,22 +3084,7 @@ VOS_UINT32 SI_STK_EncodeUssdString(
     return SI_STK_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendUSSDSpecialProc
-功能描述  : Send USSD的特殊处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2009年12月21日
-  作    者  : m00128685
-  修改内容  : Create
-2.日    期  : 2012年11月24日
-  作    者  : z00100318
-  修改内容  : DTS2012120407329: STK触发USSD业务失败
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendUSSDSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     TAF_SS_PROCESS_USS_REQ_STRU         stProcUssRwq = {0};
@@ -3643,19 +3139,7 @@ VOS_UINT32 SI_STK_SendUSSDSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
     return (VOS_OK != ulResult)?SI_STK_DATA_ERROR:SI_STK_NORP;/* [false alarm]: 屏蔽Fortify 错误 */
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendDTMFSpecialProc
-功能描述  : Send DTMF的特殊处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2009年12月21日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendDTMFSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     SI_STK_SEND_DTMF_STRU           *pstSendDTMF;
@@ -3707,19 +3191,7 @@ VOS_UINT32 SI_STK_SendDTMFSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
     return SI_STK_NORP;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetCallSpecialProc
-功能描述  : Set Call F的特殊处理函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2009年12月21日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SetCallSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     if (VOS_TRUE == SI_STK_IsProactiveCmdNeedSnd2Csima())
@@ -3743,19 +3215,7 @@ VOS_UINT32 SI_STK_SetCallSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
     return SI_STKDataIndCallback(pCmdData);
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_IMSIChgBegin
-功能描述  : IMSI切换初始状态设置函数，沃达丰定制流程
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
 
-History     :
-1.日    期  : 2010年02月10日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
 VOS_VOID SI_STK_IMSIChgBegin(SI_STK_REQ_STRU *STKReqMsg)
 {
     gstSTKCtrlStru.enSTKLock  = SI_STK_PROLOCK;
@@ -3771,37 +3231,13 @@ VOS_VOID SI_STK_IMSIChgBegin(SI_STK_REQ_STRU *STKReqMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_IMSIChgNullProc
-功能描述  : STK模块处理NULL状态下IMSI切换流程，沃达丰定制需求
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : 无
 
-History     :
-1.日    期  : 2010年02月10日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 SI_STK_IMSIChgNullProc(PS_SI_MSG_STRU *pMsg)
 {
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_IMSIChgSelItemProc
-功能描述  : STK模块处理SELECT ITEM状态下IMSI切换流程，沃达丰定制需求
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 执行结果
-调用函数  : 无
 
-History     :
-1.日    期  : 2010年02月10日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 SI_STK_IMSIChgSelItemProc(PS_SI_MSG_STRU *pMsg)
 {
     VOS_UINT32             ulResult;
@@ -3868,19 +3304,7 @@ VOS_UINT32 SI_STK_IMSIChgSelItemProc(PS_SI_MSG_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_IMSIChgRefreshProc
-功能描述  : STK模块处理REFRESH状态下IMSI切换流程，沃达丰定制需求
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 执行结果
-调用函数  : 无
 
-History     :
-1.日    期  : 2010年02月10日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
 VOS_UINT32 SI_STK_IMSIChgRefreshProc(PS_SI_MSG_STRU *pMsg)
 {
     VOS_UINT32 i;
@@ -3999,19 +3423,7 @@ VOS_UINT32 SI_STK_IMSIChgRefreshProc(PS_SI_MSG_STRU *pMsg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_IMSIChgProc
-功能描述  : STK模块处理IMSI切换流程，沃达丰定制需求
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年02月10日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 SI_STK_IMSICHG_PROC_STRU gstIMSIChgProc[] =
 {
     {SI_STK_IMSICHG_NULL,            SI_STK_IMSIChgNullProc},
@@ -4069,17 +3481,7 @@ VOS_VOID SI_STK_IMSIChgProc(PS_SI_MSG_STRU *pMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_GetPauseCharFromBCD
-功能描述  : 从BCD码中查找到PARSE字符
-输入参数  : pstAddr -- 指向BCD码结构
-输出参数  : pstAddr -- 指向去除parse字符的BCD码
-返 回 值  : VOS_UINT32
-History     :
-1.日    期  : 2012年09月13日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_GetPauseCharFromBCD(SI_STK_ADDRESS_STRU  *pstAddr)
 {
     VOS_UINT32                          i;
@@ -4145,19 +3547,7 @@ VOS_UINT32 SI_STK_GetPauseCharFromBCD(SI_STK_ADDRESS_STRU  *pstAddr)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendStartDtmfMsg
-功能描述  : SETUP CALL收到NAS回复CONNECT消息之后发送START DTMF
-输入参数  : cDtmf:要发送的DTMF字符
-            ucOpId:OP项ID
-            ucCallId:呼叫ID
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32  SI_STK_SendStartDtmfMsg(VOS_CHAR cDtmf, VOS_UINT8 ucOpId, VOS_UINT8 ucCallId)
 {
     TAF_CALL_DTMF_PARAM_STRU            stTafStartDtmfPara;
@@ -4188,17 +3578,7 @@ VOS_UINT32  SI_STK_SendStartDtmfMsg(VOS_CHAR cDtmf, VOS_UINT8 ucOpId, VOS_UINT8 
     return SI_STK_DTMF_SEND_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendStopDtmfMsg
-功能描述  : SETUP CALL收到NAS回复CONNECT消息之后发送STOP DTMF
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 SI_STK_DTMF_SEND_ENUM_UINT32  SI_STK_SendStopDtmfMsg(VOS_UINT8 ucOpID)
 {
     VOS_UINT32                      ulResult;
@@ -4220,18 +3600,7 @@ SI_STK_DTMF_SEND_ENUM_UINT32  SI_STK_SendStopDtmfMsg(VOS_UINT8 ucOpID)
     return SI_STK_DTMF_SEND_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SendDtmfToTAF
-功能描述  : SETUP CALL收到NAS回复CONNECT消息之后发送DTMF
-输入参数  : ucOpId:OP项ID
-            ucCallId:呼叫ID
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 SI_STK_DTMF_SEND_ENUM_UINT32 SI_STK_SendDtmfToTAF(VOS_UINT8 ucOpId, VOS_UINT8 ucCallId)
 {
     VOS_CHAR                            cDtmf = 0;
@@ -4299,17 +3668,7 @@ SI_STK_DTMF_SEND_ENUM_UINT32 SI_STK_SendDtmfToTAF(VOS_UINT8 ucOpId, VOS_UINT8 uc
     return SI_STK_DTMF_SEND_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SuspendCnfMsgProc
-功能描述  : NAS给STK模块的SUSPEND CNF消息处理函数
-输入参数  : pstEvent:NAS回复消息类型
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SuspendCnfMsgProc(MN_CALL_INFO_STRU *pstEvent)
 {
     VOS_UINT32                          ulResult;
@@ -4377,18 +3736,7 @@ VOS_VOID SI_STK_SuspendCnfMsgProc(MN_CALL_INFO_STRU *pstEvent)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCall
-功能描述  : STK模块发送与呼叫相关的补充业务消息到NAS
-输入参数  : enSupsCmd:补充业务类型
-            ucCallId:呼叫ID
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendCallSupsMsg(MN_CALL_SUPS_CMD_ENUM_U8 enSupsCmd, MN_CALL_ID_T ucCallId)
 {
     MN_CALL_SUPS_PARAM_STRU             stSupsPara;
@@ -4404,17 +3752,7 @@ VOS_UINT32 SI_STK_SendCallSupsMsg(MN_CALL_SUPS_CMD_ENUM_U8 enSupsCmd, MN_CALL_ID
                                 sizeof(stSupsPara));
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCall
-功能描述  : STK模块将SetUp Call请求发送到NAS
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月13日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SetUpCall(VOS_BOOL bNeedDurTimer)
 {
     MN_APP_CALL_CALLORIG_REQ_STRU      *pstOrgiCallReq;
@@ -4517,17 +3855,7 @@ VOS_UINT32 SI_STK_SetUpCall(VOS_BOOL bNeedDurTimer)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_HoldCall
-功能描述  : 将挂起当前所有呼叫请求发送到NAS
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_HoldCall(VOS_VOID)
 {
     /* 发送消息，挂起所有呼叫 */
@@ -4549,17 +3877,7 @@ VOS_UINT32 SI_STK_HoldCall(VOS_VOID)
     }
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_DisconnectCall
-功能描述  : 将挂断呼叫请求发送到NAS
-输入参数  : ucCallId:要挂断的呼叫ID
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_DisconnectCall(MN_CALL_ID_T ucCallId)
 {
     /* 发送消息，挂断指定呼叫 */
@@ -4573,17 +3891,7 @@ VOS_UINT32 SI_STK_DisconnectCall(MN_CALL_ID_T ucCallId)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_DisconnectAllCall
-功能描述  : 将挂断所有呼叫请求发送到NAS
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_DisconnectAllCall(VOS_VOID)
 {
     if (VOS_OK != SI_STK_DisconnectCall(STK_ALL_CALL_ID))
@@ -4602,17 +3910,7 @@ VOS_UINT32 SI_STK_DisconnectAllCall(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_DisconnectStkCall
-功能描述  : 将挂断STK发起的呼叫请求发送到NAS
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_DisconnectStkCall(VOS_VOID)
 {
     if (VOS_OK != SI_STK_DisconnectCall(g_stStkSetupCallCtrl.ucSetupCallId))
@@ -4626,18 +3924,7 @@ VOS_UINT32 SI_STK_DisconnectStkCall(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCallStartDurationTimer
-功能描述  : 启动DURATION定时器
-输入参数  : ulFlg:主动命令中是否有DURATION字段指示标志
-            pstDuration:DURATION数据结果
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月13日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SetUpCallStartDurationTimer(VOS_UINT32 ulFlg, SI_STK_DURATION_STRU *pstDuration)
 {
     VOS_UINT32                          ulTimerLen;
@@ -4673,17 +3960,7 @@ VOS_VOID SI_STK_SetUpCallStartDurationTimer(VOS_UINT32 ulFlg, SI_STK_DURATION_ST
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCallStopDurationTimer
-功能描述  : 停止DURATION定时器
-输入参数  : ulFlg:主动命令中是否有DURATION字段指示标志
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月13日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SetUpCallStopDurationTimer(VOS_UINT32 ulFlg)
 {
     if (VOS_TRUE == ulFlg)
@@ -4696,17 +3973,7 @@ VOS_VOID SI_STK_SetUpCallStopDurationTimer(VOS_UINT32 ulFlg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCallOnlyNotBusyOnCall
-功能描述  : STK发起SetUp Call操作
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月18日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SetUpCallOnlyNotBusyOnCall(VOS_VOID)
 {
     VOS_UINT32                          ulResult = VOS_ERR;
@@ -4727,17 +3994,7 @@ VOS_UINT32 SI_STK_SetUpCallOnlyNotBusyOnCall(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCallDisconnectBusyCall
-功能描述  : STK SetUp Call
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月13日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SetUpCallDisconnectBusyCall(VOS_VOID)
 {
     VOS_UINT32                          ulResult = VOS_OK;
@@ -4763,17 +4020,7 @@ VOS_UINT32 SI_STK_SetUpCallDisconnectBusyCall(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCallHoldtBusyCall
-功能描述  : STK SetUp Call
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32 函数执行结果
-History     :
-1.日    期  : 2012年09月13日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SetUpCallHoldBusyCall(VOS_VOID)
 {
     VOS_UINT32                  ulResult = VOS_OK;
@@ -4799,17 +4046,7 @@ VOS_UINT32 SI_STK_SetUpCallHoldBusyCall(VOS_VOID)
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCallAllow
-功能描述  : STK SetUp Call
-输入参数  : enAction:用户确认是否同意发起呼叫
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月18日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SetUpCallAllow(SI_STK_SETUPCALLCONFIRM_ENUM_UINT32 enAction)
 {
     VOS_UINT32                  ulResult = VOS_ERR;
@@ -4888,19 +4125,7 @@ VOS_VOID SI_STK_SetUpCallAllow(SI_STK_SETUPCALLCONFIRM_ENUM_UINT32 enAction)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_TimerManageProc
-功能描述  :TimerManage的处理函数
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_TimerManageProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     VOS_UINT32              ultimerID;
@@ -5022,16 +4247,7 @@ VOS_UINT32 SI_STK_TimerManageProc(SI_STK_DATA_INFO_STRU *pCmdData)
     return SI_STK_NOTSUPPORT;
 }
 
-/*****************************************************************************
- Function   : SI_STK_ProvideLocalInfo_IMEI
- Description: Provide Local Info IMEI
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2009年07月15日
-  作    者  : H59254
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_ProvideLocalInfo_IMEI(VOS_UINT8 *pTrData)
 {
     VOS_UINT8   aucIMEI[10];
@@ -5060,16 +4276,7 @@ VOS_UINT32 SI_STK_ProvideLocalInfo_IMEI(VOS_UINT8 *pTrData)
     return (sizeof(aucIMEI)+STK_TERMINAL_RSP_LEN);
 }
 
-/*****************************************************************************
- Function   : SI_STK_ProvideLocalInfo_IMEISV
- Description: Provide Local Info IMEISV
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2009年07月15日
-  作    者  : H59254
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_ProvideLocalInfo_IMEISV(VOS_UINT8 *pTrData)
 {
     VOS_UINT8   aucIMEISV[11];
@@ -5097,16 +4304,7 @@ VOS_UINT32 SI_STK_ProvideLocalInfo_IMEISV(VOS_UINT8 *pTrData)
     return (sizeof(aucIMEISV)+STK_TERMINAL_RSP_LEN);
 }
 
-/*****************************************************************************
- Function   : SI_STK_ProvideLocalInfo_ACCESS
- Description: Provide Local Info Access Tech
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2009年07月15日
-  作    者  : m00128685
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_ProvideLocalInfo_ACCESS(VOS_UINT8 *pTrData, SI_STK_ACCESS_TECH_ENUM_UINT8 ucAccessTech)
 {
     VOS_UINT8                           aucAccessTech[3] = {0x3F,0x01,0x00};
@@ -5146,16 +4344,7 @@ VOS_UINT32 SI_STK_ProvideLocalInfo_ACCESS(VOS_UINT8 *pTrData, SI_STK_ACCESS_TECH
     return (sizeof(aucAccessTech)+STK_TERMINAL_RSP_LEN);
 }
 
-/*****************************************************************************
- Function   : SI_STK_ProvideLocalInfo_NAA
- Description: Provide Local Info MCC MNC LAC and Cell Identity
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2009年07月15日
-  作    者  : m00128685
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_ProvideLocalInfo_NAA(VOS_UINT8 *pTrData, SI_STK_NAS_INFO_STRU *pstMmaInfo)
 {
     VOS_UINT8                           aucNaa[] = {0x93,0x09,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00};
@@ -5251,16 +4440,7 @@ VOS_UINT32 SI_STK_ProvideLocalInfo_NAA(VOS_UINT8 *pTrData, SI_STK_NAS_INFO_STRU 
     }
 }
 
-/*****************************************************************************
- Function   : SI_STK_ProvideSearchMode
- Description: Provide Local Info Search Mode
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2009年07月15日
-  作    者  : m00128685
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_ProvideLocalInfo_SearchMode(VOS_UINT8 *pTrData)
 {
     VOS_UINT8   aucShMode[3] = {0x65,0x01,0x00};
@@ -5287,17 +4467,7 @@ VOS_UINT32 SI_STK_ProvideLocalInfo_SearchMode(VOS_UINT8 *pTrData)
     return (sizeof(aucShMode)+STK_TERMINAL_RSP_LEN);
 }
 
-/* Add by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
-/*****************************************************************************
- Function   : SI_STK_GetGasTAReq
- Description: 获取Time Advance请求
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2012年02月20日
-  作    者  : w00184875
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_GetGasTAReq(VOS_VOID)
 {
     STK_AS_TA_INFO_REQ_STRU            *pstTAReqMsg;
@@ -5331,18 +4501,8 @@ VOS_UINT32 SI_STK_GetGasTAReq(VOS_VOID)
 
     return VOS_OK;
 }
-/* Add by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, end */
 
-/*****************************************************************************
- Function   : SI_STK_GetGasNmrReq
- Description: 获取网侧测量值请求
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2009年12月21日
-  作    者  : m00128685
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_GetGasNmrReq(VOS_VOID)
 {
     STK_AS_NMR_INFO_REQ_STRU    *pstNmrReqMsg;
@@ -5377,18 +4537,7 @@ VOS_UINT32 SI_STK_GetGasNmrReq(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- Function   : SI_STK_SendNmrReq
- Description: 获取网侧测量值请求
- Input      : ulReceiverPid -- 接收PID
-              ulQueryType -- 测量类型
- Return     : VOS_ERR
-              VOS_OK
- History    :
-1.日    期  : 2013年9月9日
-  作    者  : j00168360
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_SendNmrReq(VOS_UINT32 ulReceiverPid, VOS_UINT32 ulQueryType)
 {
     STK_AS_NMR_INFO_REQ_STRU *pstNmrReqMsg;
@@ -5414,16 +4563,7 @@ VOS_UINT32 SI_STK_SendNmrReq(VOS_UINT32 ulReceiverPid, VOS_UINT32 ulQueryType)
     return VOS_OK;
 }
 
-/*****************************************************************************
- Function   : SI_STK_ProvideLocalInfo_Nmr
- Description: Provide Local Info NMR
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2010年08月15日
-  作    者  : zhuli
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_VOID SI_STK_ProvideLocalInfo_Nmr(VOS_UINT32 ulNetType, NAS_STK_UTRAN_MODE_ENUM_UINT8 enUtranMode, SI_STK_DATA_INFO_STRU *pCmdData)
 {
     VOS_UINT8                           aucTrData[] = {0x81, 0x03, 0x01, 0x26, 0x00, 0x02, 0x02, 0x82, 0x81, 0x03, 0x01, 0x30};
@@ -5498,17 +4638,7 @@ VOS_VOID SI_STK_ProvideLocalInfo_Nmr(VOS_UINT32 ulNetType, NAS_STK_UTRAN_MODE_EN
     return;
 }
 
-/* Add by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
-/*****************************************************************************
- Function   : SI_STK_ProvideLocalINfo_TA
- Description: Provide Local Info TA
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2012年02月18日
-  作    者  : wangxiaofei
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_VOID SI_STK_ProvideLocalINfo_TA(VOS_UINT32 ulNetType, SI_STK_DATA_INFO_STRU *pCmdData)
 {
     VOS_UINT8       aucTrData[] = {0x81, 0x03, 0x01, 0x26, 0x00, 0x02, 0x02, 0x82, 0x81, 0x03, 0x01, 0x30};
@@ -5562,21 +4692,8 @@ VOS_VOID SI_STK_ProvideLocalINfo_TA(VOS_UINT32 ulNetType, SI_STK_DATA_INFO_STRU 
 
     return;
 }
-/* Add by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, end */
 
-/*****************************************************************************
-函 数 名  :SI_STK_ProvideLocIProc
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_ProvideLocIProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     VOS_UINT8                           aucTrData[50] = {0x81, 0x03, 0x01, 0x26, 0x00, 0x02, 0x02, 0x82, 0x81, 0x03, 0x01, 0x00};
@@ -5661,7 +4778,6 @@ VOS_UINT32 SI_STK_ProvideLocIProc(SI_STK_DATA_INFO_STRU *pCmdData)
                 return SI_STK_NORP;
             }
 
-        /* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
         case STK_PROVIDE_LOCAL_INFO_RES_GSM:/* 使用消息机制 */
             SI_STK_ProvideLocalINfo_TA(stMmaInfo.stSysInfo.enCurRat, pCmdData);
             return SI_STK_NORP;
@@ -5711,7 +4827,6 @@ VOS_UINT32 SI_STK_ProvideLocIProc(SI_STK_DATA_INFO_STRU *pCmdData)
             SI_STKDataIndCallback(pCmdData);
             /*lint +e534*/
             return SI_STK_OK_WAITRP;
-            /* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, end */
     }
 
     if (VOS_OK == SI_STK_SendTerminalResponseReqMsg((VOS_UINT8)ulDataLen, aucTrData, USIMM_TR_TYPE_BALONG))
@@ -5722,19 +4837,7 @@ VOS_UINT32 SI_STK_ProvideLocIProc(SI_STK_DATA_INFO_STRU *pCmdData)
     return SI_STK_NOTSUPPORT;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_SetUpEeventListCbpProc
-功能描述  :发送SETUP EVENT LIST命令到CBP处理函数
-输入参数  :pCmdData:主动命令数据结构
-输出参数  :无
-返 回 值  :主动命令处理结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2014年01月22日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SetUpEeventListCbpProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     if (VOS_NULL_PTR != g_stCbpEventList.pucCmd)
@@ -5765,19 +4868,7 @@ VOS_UINT32 SI_STK_SetUpEeventListCbpProc(SI_STK_DATA_INFO_STRU *pCmdData)
     return SI_STK_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_SetUpEeventListSpecialProc
-功能描述  :BALONG收到SETUP EVENT LIST命令的处理函数
-输入参数  :pCmdData:主动命令数据结构
-输出参数  :无
-返 回 值  :主动命令处理结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2014年01月22日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SetUpEeventListSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     VOS_UINT32                          ulRslt;
@@ -5794,19 +4885,7 @@ VOS_UINT32 SI_STK_SetUpEeventListSpecialProc(SI_STK_DATA_INFO_STRU *pCmdData)
     return ulRslt;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_SetUpEeventListProc
-功能描述  :BALONG处理SETUP EVENT LIST命令的处理函数
-输入参数  :pCmdData:主动命令数据结构
-输出参数  :无
-返 回 值  :主动命令处理结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SetUpEeventListProc(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     SI_STK_SET_UP_EVENT_LIST_STRU   *pstEventList;
@@ -5819,7 +4898,6 @@ VOS_UINT32 SI_STK_SetUpEeventListProc(SI_STK_DATA_INFO_STRU *pCmdData)
 
     pstEventList = (SI_STK_SET_UP_EVENT_LIST_STRU*)&pCmdData->CmdStru;
 
-    /* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, begin */
     if(pstEventList->OP_List == 0)
     {
         /*广播事件上报*/
@@ -5886,22 +4964,11 @@ VOS_UINT32 SI_STK_SetUpEeventListProc(SI_STK_DATA_INFO_STRU *pCmdData)
     /*lint -e534*/
     SI_STKDataIndCallback(pCmdData);
     /*lint +e534*/
-    /* Modified by w00184875 for V7R1C51 STK与AP对接, 2012-05-07, end */
 
     return SI_STK_OK;
 }
 
-/*****************************************************************************
-函 数 名  : STK_IsCallInService
-功能描述  : 当前是否有呼叫
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年9月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_BOOL STK_IsCallInService(VOS_VOID)
 {
     VOS_UINT8                           i;
@@ -5918,17 +4985,7 @@ VOS_BOOL STK_IsCallInService(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  : STK_IsCPBCsimRefreshCmd
-功能描述  : 是否CSIM的REFRESH命令
-输入参数  : pCmdData:主动命令
-输出参数  : 无
-返 回 值  : VOS_FALSE/VOS_TRUE
-History     :
-1.日    期  : 2013年12月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_BOOL STK_IsCPBCsimRefreshCmd(SI_STK_DATA_INFO_STRU *pCmdData)
 {
     VOS_UINT8                           aucCsimAid[USIMM_AID_LEN_MAX];
@@ -5961,17 +5018,7 @@ VOS_BOOL STK_IsCPBCsimRefreshCmd(SI_STK_DATA_INFO_STRU *pCmdData)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_GetResendCfg
-功能描述  : 获取Event重发配置
-输入参数  : pCmdData:主动命令
-输出参数  : 无
-返 回 值  : VOS_FALSE/VOS_TRUE
-History     :
-1.日    期  : 2013年12月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_UINT32 SI_STK_GetResendCfg(NV_EVENT_RESEND_CFG_STRU *pstNVCfg)
 {
@@ -5996,19 +5043,7 @@ VOS_UINT32 SI_STK_GetResendCfg(NV_EVENT_RESEND_CFG_STRU *pstNVCfg)
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_ResendTimerMsgHandle
-功能描述  :超时消息的处理
-输入参数  :
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_STK_ResendTimerMsgHandle(REL_TIMER_MSG *pstMsg)
 {
     VOS_UINT32                  ulResult;
@@ -6060,19 +5095,7 @@ VOS_VOID SI_STK_ResendTimerMsgHandle(REL_TIMER_MSG *pstMsg)
     return;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_EventResendClean
-功能描述  :实现了Event的下发数据的保存重发
-输入参数  :
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_STK_EventResendClean(SI_STK_ENVELOPE_RESENT_FLAG_UINT32 enDataType)
 {
     VOS_UINT32                  ulSaveIndex;
@@ -6094,19 +5117,7 @@ VOS_VOID SI_STK_EventResendClean(SI_STK_ENVELOPE_RESENT_FLAG_UINT32 enDataType)
 }
 
 
-/*****************************************************************************
-函 数 名  :USIMM_EnentResendSave
-功能描述  :实现了Event的下发数据的保存重发
-输入参数  :
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : z00100318
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID SI_STK_EventResendSave(SI_STK_ENVELOPE_RESENT_FLAG_UINT32 enDataType, VOS_UINT32 ulEventLen, VOS_UINT8 *pucData)
 {
     NV_EVENT_RESEND_CFG_STRU    stNVCfg;
@@ -6139,21 +5150,7 @@ VOS_VOID SI_STK_EventResendSave(SI_STK_ENVELOPE_RESENT_FLAG_UINT32 enDataType, V
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
-函 数 名  :SI_STK_SendCdmaSMSHandle
-功能描述  :实现了 USIM发送1X短信请求
-输入参数  : pstSendSMS:
-            pstCmdDetail:
-            pstUserData:
-输出参数  :
-返 回 值  :
 
-修订记录  :
-1. 日    期   : 2015年06月18日
-   作    者   : c00299064
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32 SI_STK_SendCdmaSMSHandle(
     SI_STK_SEND_SHORT_MESSAGE_STRU     *pstSendSMS,
     SI_STK_COMMAND_DETAILS_STRU        *pstCmdDetail
@@ -6269,27 +5266,7 @@ VOS_UINT32 SI_STK_SendCdmaSMSHandle(
     return SI_STK_NORP;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_CheckCdmaSmsPara
-功能描述  :实现了 USIM发送的1X短信检查
-输入参数  :
-            pstTLMsg,       TL结构体
-            pstCmdDetail,   命令
 
-输出参数  :
-            pulIsPressNeed, 是否需要压缩
-            pulSmsNum,      短信条数
-            pusUserDataStartByte, USER DATA 开始位
-            pusUserDataLen,       USER DATA 长度
-            pstUserData，         USER DATA 结构体
-返 回 值  :
-
-修订记录  :
-1. 日    期   : 2015年06月18日
-   作    者   : c00299064
-   修改内容   : Creat
-
-*****************************************************************************/
 VOS_UINT32  SI_STK_CheckCdmaSmsPara(
     TAF_XSMS_TRANSPORT_MESSAGE_STRU    *pstTLMsg,
     SI_STK_COMMAND_DETAILS_STRU        *pstCmdDetail,
@@ -6361,21 +5338,7 @@ VOS_UINT32  SI_STK_CheckCdmaSmsPara(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_SendXsmsReq
-功能描述  :实现了 USIM发送的1X短信发送
-输入参数  :
-            pstMessage,
-            usIsUserAckMsg
-输出参数  :
 
-返 回 值  :
-
-修订记录  :
-1. 日    期   : 2015年06月18日
-   作    者   : c00299064
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID SI_STK_SendXsmsReq(
     TAF_XSMS_MESSAGE_STRU   *pstMessage,
     VOS_UINT16               usIsUserAckMsg
@@ -6399,21 +5362,7 @@ VOS_VOID SI_STK_SendXsmsReq(
 
 }
 
-/*****************************************************************************
-函 数 名  :SI_STK_InitXsmsGlobal
-功能描述  :1X短信发送控制全局变量初始化
-输入参数  :
-            pstMessage,
-            usIsUserAckMsg
-输出参数  :
 
-返 回 值  :
-
-修订记录  :
-1. 日    期   : 2015年06月18日
-   作    者   : c00299064
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID SI_STK_InitXsmsGlobal(VOS_VOID)
 {
     g_ucIsXsmsInBuffFlag = VOS_FALSE;
@@ -6428,17 +5377,7 @@ VOS_VOID SI_STK_InitXsmsGlobal(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Prototype      : SI_STK_ServiceInfoInd
- Description    : mma发送给STK的MMA_STK_SERVICE_INFO_IND消息处理函数
- Input          : pstMsg:接收消息
- Output         : 无
- Return Value   : 无
- History        : ---
-  1.Date        : 2015-06-16
-    Author      : c00299064
-    Modification: Created function
-*****************************************************************************/
+
 VOS_VOID SI_STK_ServiceInfoInd(
     MMA_STK_SERVICE_INFO_IND_STRU       *pstMsg)
 {
@@ -6474,16 +5413,7 @@ VOS_VOID SI_STK_ServiceInfoInd(
     return;
 }
 
-/*****************************************************************************
- Function   : SI_STK_ProvideMEID
- Description: Provide MEID
- Input      :
- Return     : data len
- History    :
-1.日    期  : 2015年06月18日
-  作    者  : C00299064
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_ProvideMEID(
     VOS_UINT8                           *pTrData)
 {
@@ -6529,16 +5459,7 @@ VOS_UINT32 SI_STK_ProvideMEID(
     }
 }
 
-/*****************************************************************************
- Function   : SI_STK_ProvideESN
- Description: Provide ESN
- Input      :
- Return     : data len
- History    :
-1.日    期  : 2015年06月18日
-  作    者  : C00299064
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_ProvideESN(
     VOS_UINT8                           *pTrData)
 {
@@ -6584,16 +5505,7 @@ VOS_UINT32 SI_STK_ProvideESN(
     }
 }
 
-/*****************************************************************************
- Function   : SI_STK_CdmaProvideLocalInfo
- Description: Provide Local Info MCC MNC LAC and Cell Identity
- Input      :
- Return     : VOID
- History    :
-1.日    期  : 2015年06月18日
-  作    者  : C00299064
-  修改内容  : Create
- *****************************************************************************/
+
 VOS_UINT32 SI_STK_CdmaProvideLocalInfo(
     VOS_UINT8                           *pTrData)
 {
@@ -6746,19 +5658,7 @@ VOS_VOID SI_STK_CdmaLocStatusEventDownload(VOS_VOID)
 
 
 #if (FEATURE_VSIM == FEATURE_ON)
-/*****************************************************************************
-函 数 名  : SI_STK_VsimSmsPpDownloadProc
-功能描述  : 虚拟卡OTA短信内容上报处理函数
-输入参数  : ulRcvPid:ENVELOPE CNF消息接收PID
-            ulSendPara:透传参数
-            pstSmsPpDlData:OTA短信内容
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2013年8月28日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_VsimSmsPpDownloadProc(
     VOS_UINT32                          ulRcvPid,
     VOS_UINT32                          ulSendPara,

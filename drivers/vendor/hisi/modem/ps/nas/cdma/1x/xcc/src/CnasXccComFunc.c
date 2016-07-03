@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasXccComFunc.c
-  版 本 号   : 初稿
-  作    者   : w00242748
-  生成日期   : 2014年9月15日
-  最近修改   :
-  功能描述   : XCC模块公用函数处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年9月15日
-    作    者   : w00242748
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -103,22 +86,7 @@ XCC_MMA_1X_CALL_STATE_MAP_STRU          g_astXccMma1XCallStateMapTbl[]      =
 *****************************************************************************/
 /*lint -save -e958*/
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsConcurrentSupported
- 功能描述  : 并发业务是否被支持
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  --  支持
-             VOS_FALSE --  不支持
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年09月18日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_IsConcurrentSupported(VOS_VOID)
 {
     VOS_UINT8                           ucPRevInUse;
@@ -134,23 +102,7 @@ VOS_UINT8 CNAS_XCC_IsConcurrentSupported(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_StartTimer
- 功能描述  : XCC模块封装的启动定时器函数
- 输入参数  : VOS_UINT8                           ucConnectId,
-             CNAS_XSD_TIMER_ID_ENUM_UINT32       enTimerId,
-             VOS_UINT32                          ulTimerLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_StartTimer(
     VOS_UINT8                           ucConnectId,
     CNAS_XCC_TIMER_ID_ENUM_UINT32       enTimerId,
@@ -177,22 +129,7 @@ VOS_VOID CNAS_XCC_StartTimer(
     CNAS_StartTimer(UEPS_PID_XCC, &stTimerInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_StopTimer
- 功能描述  : XCC模块封装的停止定时器函数
- 输入参数  : VOS_UINT8                           ucConnectId,
-             CNAS_XCC_TIMER_ID_ENUM_UINT32       enTimerId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_StopTimer(
     VOS_UINT8                           ucConnectId,
     CNAS_XCC_TIMER_ID_ENUM_UINT32       enTimerId
@@ -202,22 +139,7 @@ VOS_VOID CNAS_XCC_StopTimer(
     CNAS_StopTimer(UEPS_PID_XCC, enTimerId, (VOS_UINT32)ucConnectId);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_RestartTimer
- 功能描述  : XCC模块封装的停止定时器函数
- 输入参数  : VOS_UINT8                           ucConnectId,
-             CNAS_XCC_TIMER_ID_ENUM_UINT32       enTimerId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_RestartTimer(
     VOS_UINT8                           ucConnectId,
     CNAS_XCC_TIMER_ID_ENUM_UINT32       enTimerId,
@@ -244,21 +166,7 @@ VOS_VOID CNAS_XCC_RestartTimer(
     CNAS_RestartTimer(UEPS_PID_XCC, &stTimerInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ConvertSoToServiceType
- 功能描述  : SO转成相应的服务类型
- 输入参数  : enSo           : service option
- 输出参数  : penServiceType : service type
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年9月4日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ConvertSoToServiceType(
     CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16                  enSo,
     CNAS_XCC_SERVICE_TYPE_ENUM_UINT32                      *penServiceType
@@ -309,25 +217,7 @@ VOS_VOID CNAS_XCC_ConvertSoToServiceType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ConvertSoToCasSessionType
- 功能描述  : SO转成Session类型
- 输入参数  : CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16
-             enSo : Service Option
- 输出参数  : enCasSessionType: 发送给CAS的SessionType
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月29日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年10月22日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ConvertSoToCasSessionType(
     CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16                  enSo,
     CNAS_CAS_1X_SESSION_TYPE_ENUM_UINT16                   *penCasSessionType
@@ -381,21 +271,7 @@ VOS_VOID CNAS_XCC_ConvertSoToCasSessionType(
 }
 
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ConvertSoToMtcSessionType
- 功能描述  : SO转成MTC模块的Session类型
- 输入参数  : CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16
-             enSo : Service Option
- 输出参数  : enMtcSessionType: 发送给MTC的SessionType
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ConvertSoToMtcSessionType(
     CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16                  enSo,
     MTC_SESSION_TYPE_ENUM_UINT8                            *penMtcSessionType
@@ -448,21 +324,7 @@ VOS_VOID CNAS_XCC_ConvertSoToMtcSessionType(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ConvertTerminateReasonToTafCause
- 功能描述  : 将与接入层的terminate原因转化成taf层
- 输入参数  : enTerminateReason - CAS_CNAS_1X_TERMINATE_REASON_ENUM_UINT8
-             penCause          - TAF_XCC_CAUSE_ENUM_UINT32
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月6日
-    作    者   : c00294324
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ConvertTerminateReasonToTafCause(
     CAS_CNAS_1X_TERMINATE_REASON_ENUM_UINT8                 enCasCause
 )
@@ -480,21 +342,7 @@ VOS_UINT32 CNAS_XCC_ConvertTerminateReasonToTafCause(
     return TAF_XCC_CAUSE_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_Convert1XcallState
- 功能描述  : CNAS_CCB_CDMA_1X_CALL_STATE
- 输入参数  : enCcb1XCallState
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月20日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_Convert1XcallState(
     CNAS_CCB_1X_CALL_STATE_ENUM_UINT8   enCcb1XCallState
 )
@@ -513,21 +361,7 @@ VOS_UINT8 CNAS_XCC_Convert1XcallState(
     return XCC_MMA_1X_CALL_STATE_IDLE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ConvertEstReasonToTafCause
- 功能描述  : 将与接入层的EST原因转化成taf层
- 输入参数  : enCasCause - CAS_CNAS_1X_EST_RSLT_ENUM_UINT8
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年9月6日
-    作    者   : c00294324
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ConvertEstReasonToTafCause(
     CAS_CNAS_1X_EST_RSLT_ENUM_UINT8                 enCasCause
 )
@@ -547,21 +381,7 @@ VOS_UINT32 CNAS_XCC_ConvertEstReasonToTafCause(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ConvertTafHangupReasonToCas
- 功能描述  : taf hangup原因值转换成CAS
- 输入参数  : tafEndReason - TAF_XCC_END_REASON_ENUM_UINT8
-             penReason    - CAS_CNAS_1X_REL_REASON_ENUM_UINT8
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_XCC_ConvertTafHangupReasonToCas(
     TAF_XCC_END_REASON_ENUM_UINT8       tafEndReason,
     CAS_CNAS_1X_REL_REASON_ENUM_UINT8  *penReason
@@ -589,22 +409,7 @@ VOS_VOID CNAS_XCC_ConvertTafHangupReasonToCas(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_GetOrderSpecificMsgType
- 功能描述  : 根据order消息获取具体的消息类型
- 输入参数  : c_F_Orders *pstOrderMsg,
-             CAS_1X_FOR_ORDER_TYPE_ENUM_UINT8 *penOrderMsgType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月29日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_GetOrderSpecificMsgType(
     CNAS_XCC_ORDERS_STRU                *pstOrderMsg,
     CNAS_XCC_ORDER_TYPE_ENUM_UINT8      *penOrderMsgType
@@ -674,21 +479,7 @@ VOS_UINT32 CNAS_XCC_GetOrderSpecificMsgType(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_DecodeOrderMsg
- 功能描述  : 解码Order消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月16日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_DecodeOrderMsg(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd,
     CNAS_XCC_ORDRM_STRU                *pstOrdrm
@@ -750,21 +541,7 @@ VOS_UINT32 CNAS_XCC_DecodeOrderMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_DecodeServiceOptionCtrlMsg
- 功能描述  : 解码Order消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月16日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_DecodeServiceOptionCtrlMsg(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd,
     VOS_UINT8                          *pucSoCtrlMsgData,
@@ -827,21 +604,7 @@ VOS_UINT32 CNAS_XCC_DecodeServiceOptionCtrlMsg(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecsDisp
- 功能描述  : 填充解码消息中的information records中DISPLAY字段
- 输入参数  : c_InfoRec_Display                  *pstInfoRecDsip
- 输出参数  : CNAS_XCC_INFO_RECS_DISP_STRU       *pstXccInfoRecsDsip
- 返 回 值  : VOS_ERR,VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsDisp(
     c_InfoRec_Display                  *pstInfoRecDsip,
     CNAS_XCC_INFO_RECS_DISP_STRU       *pstXccInfoRecsDsip
@@ -874,21 +637,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsDisp(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecsCalledNum
- 功能描述  : 填充解码消息中的information records中called party number字段
- 输入参数  : c_InfoRec_Called_Party_Number      *pstInfoRecCalledNum
- 输出参数  : CNAS_XCC_INFO_RECS_CALLED_NUM_STRU *pstXccInfoRecsCalledNum
- 返 回 值  : VOS_OK,VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsCalledNum(
     c_InfoRec_Called_Party_Number      *pstInfoRecCalledNum,
     CNAS_XCC_INFO_RECS_CALLED_NUM_STRU *pstXccInfoRecsCalledNum
@@ -923,21 +672,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsCalledNum(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecsCallingNum
- 功能描述  : c_InfoRec_Calling_Party_Number      *pstInfoRecCallingNum
- 输入参数  : c_R_InformationRecords              stInformationRecords, 解码后的info recs
- 输出参数  : CNAS_XCC_INFO_RECS_CALLING_NUM_STRU *pstXccInfoRecsCallingNum
- 返 回 值  : VOS_ERR,VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsCallingNum(
     c_InfoRec_Calling_Party_Number                         *pstInfoRecCallingNum,
     CNAS_XCC_INFO_RECS_CALLING_NUM_STRU                    *pstXccInfoRecsCallingNum
@@ -974,21 +709,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsCallingNum(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecsConnNum
- 功能描述  : 填充解码消息中的information records中connected number字段
- 输入参数  : c_InfoRec_Connected_Number         *pstInfoRecConnNum
- 输出参数  : CNAS_XCC_INFO_RECS_CON_NUM_STRU    *pstXccInfoRecsConnNum
- 返 回 值  : VOS_ERR,VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsConnNum(
     c_InfoRec_Connected_Number         *pstInfoRecConnNum,
     CNAS_XCC_INFO_RECS_CON_NUM_STRU    *pstXccInfoRecsConnNum
@@ -1039,21 +760,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsConnNum(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecsSignal
- 功能描述  : 填充解码消息中的information records中signal字段
- 输入参数  : c_InfoRec_Signal                   *pstInfoRecSignal
- 输出参数  : CNAS_XCC_INFO_RECS_SIGNAL_STRU     *pstXccInfoRecsSignal
- 返 回 值  : VOS_OK,VOS_ERR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsSignal(
     c_InfoRec_Signal                   *pstInfoRecSignal,
     CNAS_XCC_INFO_RECS_SIGNAL_STRU     *pstXccInfoRecsSignal
@@ -1071,21 +778,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsSignal(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecsRedirNum
- 功能描述  : 填充解码消息中的information records中redirecting num字段
- 输入参数  : c_InfoRec_Redirecting_Number       *pstInfoRecRedirNum
- 输出参数  : CNAS_XCC_INFO_RECS_REDIR_NUM_STRU  *pstXccInfoRecsRedirNu
- 返 回 值  : VOS_ERR,VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsRedirNum(
     c_InfoRec_Redirecting_Number       *pstInfoRecRedirNum,
     CNAS_XCC_INFO_RECS_REDIR_NUM_STRU  *pstXccInfoRecsRedirNum
@@ -1143,21 +836,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsRedirNum(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecsLineCtr
- 功能描述  : 填充解码消息中的information records中line ctrl字段
- 输入参数  : c_InfoRec_Line_Control             *pstInfoRecLineCtr
- 输出参数  : CNAS_XCC_INFO_RECS_LINE_CTR_STRU   *pstXccInfoRecsLineCtr
- 返 回 值  : VOS_ERR,VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsLineCtr(
     c_InfoRec_Line_Control             *pstInfoRecLineCtr,
     CNAS_XCC_INFO_RECS_LINE_CTR_STRU   *pstXccInfoRecsLineCtr
@@ -1179,21 +858,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsLineCtr(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecsExtDisp
- 功能描述  : 填充解码消息中的information records中extdisplay字段
- 输入参数  : c_InfoRec_Extended_Display         *pstInfoRecExtDsip
- 输出参数  : CNAS_XCC_INFO_RECS_EXTDISP_STRU    *pstXccInfoRecsExtDsip
- 返 回 值  : VOS_ERR,VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsExtDisp(
     c_InfoRec_Extended_Display         *pstInfoRecExtDsip,
     CNAS_XCC_INFO_RECS_EXTDISP_STRU    *pstXccInfoRecsExtDsip
@@ -1271,21 +936,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsExtDisp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecsMsgWaiting
- 功能描述  : 填充解码消息中的information records中message waitng字段
- 输入参数  : c_InfoRec_Message_Waiting              *pstInfoRecMsgWaiting
- 输出参数  : CNAS_XCC_INFO_RECS_MSG_WAITING_STRU    *pstXccInfoRecsMsgWaiting
- 返 回 值  : VOS_ERR,VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsMsgWaiting(
     c_InfoRec_Message_Waiting              *pstInfoRecMsgWaiting,
     CNAS_XCC_INFO_RECS_MSG_WAITING_STRU    *pstXccInfoRecsMsgWaiting
@@ -1302,21 +953,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecsMsgWaiting(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeInfoRecs
- 功能描述  : 填充解码消息中的information records字段
- 输入参数  : c_R_InformationRecords             *pstInformationRecords, 解码后的info recs
- 输出参数  : CNAS_XCC_INFO_RECS_STRU            *pstInfoRecs，本地平铺的info recs
- 返 回 值  : VOS_ERR,VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillDecodeInfoRecs(
     c_F_InformationRecords             *pstInformationRecords,
     CNAS_XCC_INFO_RECS_STRU            *pstInfoRecs
@@ -1403,20 +1040,7 @@ VOS_UINT32 CNAS_XCC_FillDecodeInfoRecs(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeEAWIMRecords
- 功能描述  : 填充EAWI消息中records字段
- 输入参数  : c_f_dsch_EAWIM_RECs                *pstEAWIMInfoRecords
- 输出参数  : CNAS_XCC_EAWIM_STRU                *pstEAWIM
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillDecodeEAWIMRecords(
     c_f_dsch_EAWIM_RECs                *pstEAWIMInfoRecords,
     CNAS_XCC_EAWIM_STRU                *pstEAWIM
@@ -1465,20 +1089,7 @@ VOS_VOID CNAS_XCC_FillDecodeEAWIMRecords(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeAWIMRecords
- 功能描述  : 填充AFWI消息中records字段
- 输入参数  : c_f_dsch_AWIM_INFO_RECORDs         *pstAWIMInfoRecords
- 输出参数  : CNAS_XCC_AWIM_STRU                 *pstAWIM
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillDecodeAWIMRecords(
     c_f_dsch_AWIM_INFO_RECORDs         *pstAWIMInfoRecords,
     CNAS_XCC_AWIM_STRU                 *pstAWIM
@@ -1527,26 +1138,7 @@ VOS_VOID CNAS_XCC_FillDecodeAWIMRecords(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_DecodeExtendedAlertWithInformationMsg
- 功能描述  : 解码EAWI消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-  3.日    期   : 2014年12月27日
-    作    者   : Y00307564
-    修改内容   : 1X SS Project修改,增加stMsgFDsch初始化，防止其被异常释放
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_DecodeExtendedAlertWithInformationMsg(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd,
     CNAS_XCC_EAWIM_STRU                *pstEAWIM
@@ -1619,23 +1211,7 @@ VOS_UINT32 CNAS_XCC_DecodeExtendedAlertWithInformationMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_DecodeAlertWithInformationMsg
- 功能描述  : 解码AWI消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-  2.日    期   : 2014年12月27日
-    作    者   : Y00307564
-    修改内容   : 1X SS Project修改,增加stMsgFDsch初始化，防止其被异常释放
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_DecodeAlertWithInformationMsg(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd,
     CNAS_XCC_AWIM_STRU                 *pstAWIM
@@ -1703,21 +1279,7 @@ VOS_UINT32 CNAS_XCC_DecodeAlertWithInformationMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeEFWIMRecords
- 功能描述  : 填充EFWI消息的records
- 输入参数  : c_f_dsch_EFWIM_RECs                *pstEFWIMInfoRecords
- 输出参数  : CNAS_XCC_EFWIM_STRU                *pstEFWIM
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillDecodeEFWIMRecords(
     c_f_dsch_EFWIM_RECs                *pstEFWIMInfoRecords,
     CNAS_XCC_EFWIM_STRU                *pstEFWIM
@@ -1766,21 +1328,7 @@ VOS_VOID CNAS_XCC_FillDecodeEFWIMRecords(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeFWIMRecords
- 功能描述  : 填充FWI消息中records字段
- 输入参数  : c_f_dsch_FWIM_INFO_RECORDs         *pstFWIMInfoRecords
- 输出参数  : CNAS_XCC_FWIM_STRU                 *pstFWIM
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillDecodeFWIMRecords(
     c_f_dsch_FWIM_INFO_RECORDs         *pstFWIMInfoRecords,
     CNAS_XCC_FWIM_STRU                 *pstFWIM
@@ -1829,26 +1377,7 @@ VOS_VOID CNAS_XCC_FillDecodeFWIMRecords(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_DecodeExtendedFlashWithInformationMsg
- 功能描述  : 解码EFWI消息
- 输入参数  : CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd
- 输出参数  : CNAS_XCC_EFWIM_STRU                *pstEFWIM
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月15日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月11日
-    作    者   : y00307564
-    修改内容   :  1X SS Project修改
-  3.日    期   : 2014年12月27日
-    作    者   : Y00307564
-    修改内容   : 1X SS Project修改,增加stMsgFDsch初始化，防止其被异常释放
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_DecodeExtendedFlashWithInformationMsg(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd,
     CNAS_XCC_EFWIM_STRU                *pstEFWIM
@@ -1922,23 +1451,7 @@ VOS_UINT32 CNAS_XCC_DecodeExtendedFlashWithInformationMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_DecodeFlashWithInformationMsg
- 功能描述  : 解码FWI消息
- 输入参数  : CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd
- 输出参数  : CNAS_XCC_FWIM_STRU                 *pstFWIM
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : y00307564
-    修改内容   : 1X SS Project新生成函数
-  2.日    期   : 2014年12月27日
-    作    者   : Y00307564
-    修改内容   : 1X SS Project修改,增加stMsgFDsch初始化，防止其被异常释放
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_DecodeFlashWithInformationMsg(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd,
     CNAS_XCC_FWIM_STRU                 *pstFWIM
@@ -2005,21 +1518,7 @@ VOS_UINT32 CNAS_XCC_DecodeFlashWithInformationMsg(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeDschMsg
- 功能描述  : 编码dsch信道上的数据
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月16日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeDschMsg(
     CAS_CNAS_1X_TX_TCH_MSG_TYPE_ENUM_UINT8           enMsgTag,
     c_r_dsch                                        *pstRDschMsg,
@@ -2051,25 +1550,7 @@ VOS_UINT32 CNAS_XCC_EncodeDschMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillRDschMSRejectInvalidMsg
- 功能描述  : 填充RDSCH上MS REJECT 消息结构
- 输入参数  : CAS_1X_REV_ORDER_CODE_ENUM_UINT8  enOrderMsgType,
-             VOS_UINT8                         ucOrderQ
- 输出参数  : c_r_dsch                         *pstMsgRDsch
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月16日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-  2.日    期   : 2015年08月03日
-    作    者   : a00295761
-    修改内容   : Added code CON_REF in the Reject Order Message, according to some ORDQ values.
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_FillRDschMSRejectInvalidMsg(
     c_r_dsch                                       *pstMsgRDsch,
     CNAS_XCC_REJ_ORDER_INFO_STRU                   *pstRejInfo
@@ -2191,25 +1672,7 @@ VOS_UINT32 CNAS_XCC_FillRDschMSRejectInvalidMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeTxTchMSRejectOrderMsg
- 功能描述  : RDSCH发送order消息公共处理函数
- 输入参数  : enOrderCode    - 参见C.S0005 Table 2.7.3
-             enORDQ         - 参见C.S0005 Table 2.7.3
-             enRxTchMsgType - C.S0004-D Table 3.2.2.2.1.2-1
-             pucPdudata     - 编码后的PDU
-             pulL3PduBitLen - PDU的bit len
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月16日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeTxTchMSRejectOrderMsg(
     CNAS_XCC_REJ_ORDER_INFO_STRU                   *pstRejInfo
 )
@@ -2245,22 +1708,7 @@ VOS_UINT32 CNAS_XCC_EncodeTxTchMSRejectOrderMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeTxTchConnectOrderMsg
- 功能描述  : TCH信道下，编码Connect Order消息
- 输入参数  : 无
- 输出参数  : pucPdudata  -- 编码后的PDU数据
-             pulL3PduBit --
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月16日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeTxTchConnectOrderMsg(
     VOS_UINT8                           ucConRef,
     VOS_UINT8                          *pucPdudata,
@@ -2324,26 +1772,7 @@ VOS_UINT32 CNAS_XCC_EncodeTxTchConnectOrderMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeFlashWithInformationMsgWithFlashReq
- 功能描述  : 编码Flash With Information Message消息
- 输入参数  : 无
- 输出参数  : ucDigitNum     -- 需要发送的码流长度
-             pucDigit       -- 需要发送的码流指针
-             pucPdudata     -- 编码后的PDU数据
-             pulL3PduBitLen -- 编码后的PDU数据长度
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-  2.日    期   : 2014年12月1日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeFlashWithInformationMsgWithFlashReq(
     VOS_UINT8                           ucDigitNum,
     VOS_UINT8                          *pucDigit,
@@ -2418,28 +1847,7 @@ VOS_UINT32 CNAS_XCC_EncodeFlashWithInformationMsgWithFlashReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeExtendedFlashWithInformationMsgWithFlashReq
- 功能描述  : 编码Extern Flash With Information Message消息
- 输入参数  : 无
- 输出参数  : ucConRef       -- connect reference
-             ucDigitNum     -- 需要发送的码流长度
-             pucDigit       -- 需要发送的码流指针
-             pucPdudata     -- 编码后的PDU数据
-             pulL3PduBitLen -- 编码后的PDU数据长度
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-  2.日    期   : 2014年12月1日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeExtendedFlashWithInformationMsgWithFlashReq(
     VOS_UINT8                           ucConRef,
     VOS_UINT8                           ucDigitNum,
@@ -2528,20 +1936,7 @@ VOS_UINT32 CNAS_XCC_EncodeExtendedFlashWithInformationMsgWithFlashReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ConvertDtmfMinInterDigitIntervalToDtmfOffLength
- 功能描述  : DTMF minimum inter-digit interval转换为DTMF Off Length    - VOS_UINT32
-             pucDtmfOffLen                                             - VOS_UINT8
- 输出参数  : VOS_UINT32
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ConvertDtmfMinInterDigitIntervalToDtmfOffLength(
     VOS_UINT32                          ulDtmfMinInterDigitInterval,
     VOS_UINT8                          *pucDtmfOffLen
@@ -2577,21 +1972,7 @@ VOS_UINT32 CNAS_XCC_ConvertDtmfMinInterDigitIntervalToDtmfOffLength(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ConvertDtmfPulseWidthCodeToDtmfOnLength
- 功能描述  : DTMF pulse width转换成DTMF On length
- 输入参数  : ulDtmfPulseWidth - VOS_UINT32
-             pucDtmfOnLen    - VOS_UINT8
- 输出参数  : VOS_UINT32
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_ConvertDtmfPulseWidthCodeToDtmfOnLength(
     VOS_UINT32                          ulDtmfPulseWidth,
     VOS_UINT8                          *pucDtmfOnLen
@@ -2634,20 +2015,7 @@ VOS_UINT32 CNAS_XCC_ConvertDtmfPulseWidthCodeToDtmfOnLength(
 
     return ulRslt;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_AsciiToBcdCode
- 功能描述  : 将Ascii码字符转换成BCD码字符
- 输入参数  : ucAsciiCode  - ASCII字符
- 输出参数  : pucBcdCode   - 转换得到的BCD码
- 返 回 值  : VOS_UINT32:函数返回的结果,成功以及失败的原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
- *****************************************************************************/
 VOS_UINT32  CNAS_XCC_AsciiToBcdCode(
     VOS_CHAR                            cAsciiCode,
     VOS_UINT8                          *pucBcdCode
@@ -2683,22 +2051,7 @@ VOS_UINT32  CNAS_XCC_AsciiToBcdCode(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeSendBurstDTMFMsg
- 功能描述  : 编码Send Burst DTMF消息
- 输入参数  : 无
- 输出参数  : pstXcallBurstDTMFReq  -- 需要发送的码流指针
-             pucPdudata            -- 编码后的PDU数据
-             pulL3PduBitLen        -- 编码后的PDU数据长度
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : f279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeSendBurstDTMFMsg(
     XCALL_XCC_BURST_DTMF_REQ_STRU      *pstXcallBurstDTMFReq,
     VOS_UINT8                          *pucPdudata,
@@ -2835,20 +2188,7 @@ VOS_UINT32 CNAS_XCC_EncodeSendBurstDTMFMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FillDecodeFNMRecords
- 功能描述  : 填充FNM消息中records字段
- 输入参数  : c_f_csch_FNM_INFO_RECORDs        *pstFNMInfoRecords
- 输出参数  : CNAS_XCC_FNM_STRU                *pstFNM
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_VOID CNAS_XCC_FillDecodeFNMRecords(
     c_f_csch_FNM_INFO_RECORDs          *pstFNMInfoRecords,
     CNAS_XCC_FNM_STRU                  *pstFNM
@@ -2897,20 +2237,7 @@ VOS_VOID CNAS_XCC_FillDecodeFNMRecords(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_DecodeFeatureNotificationMsg
- 功能描述  : 解码FNM消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_DecodeFeatureNotificationMsg(
     CAS_CNAS_1X_CSCH_DATA_IND_STRU     *pstCschDataInd,
     CNAS_XCC_FNM_STRU                  *pstFNM
@@ -2971,20 +2298,7 @@ VOS_UINT32 CNAS_XCC_DecodeFeatureNotificationMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_DecodeServiceOptionControlMsg
- 功能描述  : Decode SCOM Message
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_OK:decode success, VOS_ERR:decode fail
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_DecodeServiceOptionControlMsg(
     CAS_CNAS_1X_DSCH_DATA_IND_STRU     *pstDschDataInd,
     CNAS_XCC_SOCM_STRU                 *pstSOCM
@@ -3062,20 +2376,7 @@ VOS_UINT32 CNAS_XCC_DecodeServiceOptionControlMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_VoiceSoCtrlMsgParaCheck
- 功能描述  : check SCOM Message Parameter
- 输入参数  : pstSOCM: SOCM Message
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:Para is OK, VOS_FALSE:Para is not ok
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_VoiceSoCtrlMsgParaCheck(
     CNAS_XCC_SOCM_STRU                 *pstSOCM
 )
@@ -3120,20 +2421,7 @@ VOS_UINT32 CNAS_XCC_VoiceSoCtrlMsgParaCheck(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_DataSoCtrlMsgParaCheck
- 功能描述  : 对数据类的SCOM消息，进行参数检查
- 输入参数  : pstSOCM:SOCM Message
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:解码成功 VOS_FALSE:解码失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_DataSoCtrlMsgParaCheck(
     CNAS_XCC_SOCM_STRU                 *pstSOCM
 )
@@ -3228,23 +2516,7 @@ VOS_UINT32 CNAS_XCC_DataSoCtrlMsgParaCheck(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_FindSpecInfoRecoTypeInInfoRecoList
- 功能描述  : 在下行消息解析出来的info record列表中，查找指定类型的info record
- 输入参数  : enInfoRecsType  - 指定的info record type
-             ucNumInfoRecs   - 待查找的info record列表元素个数
-             pstInfoRecsData - 待查找的info record列表指针
- 输出参数  : pucIndex        - 查找成功，则返回对应的索引号
- 返 回 值  : VOS_TRUE  - 查找成功
-             VOS_FALSE - 查找失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月12日
-    作    者   : L00256032
-    修改内容   : 1X SS Project修改
-*****************************************************************************/
 VOS_UINT32  CNAS_XCC_FindSpecInfoRecoTypeInInfoRecoList(
     CNAS_XCC_F_DSCH_INFO_RECORD_TYPE_ENUM_UINT32            enInfoRecsType,
     VOS_UINT8                                               ucNumInfoRecs,
@@ -3266,23 +2538,7 @@ VOS_UINT32  CNAS_XCC_FindSpecInfoRecoTypeInInfoRecoList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeFlashWithInformationMsgWithEmergencyCallReq
- 功能描述  : 紧急呼叫场景编码Flash With Information Message消息
- 输入参数  : 无
- 输出参数  : ucDigitNum     -- 需要发送的码流长度
-             pucDigit       -- 需要发送的码流指针
-             pucPdudata     -- 编码后的PDU数据
-             pulL3PduBitLen -- 编码后的PDU数据长度
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeFlashWithInformationMsgWithEmergencyCallReq(
     XCC_XCALL_DIGIT_MODE_ENUM_UINT8                         enDigitMode,
     XCC_XCALL_CALLED_PARTY_NUM_INFO_STRU                   *pstCalledPartyNum,
@@ -3390,25 +2646,7 @@ VOS_UINT32 CNAS_XCC_EncodeFlashWithInformationMsgWithEmergencyCallReq(
     return ulRslt;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeExtendedFlashWithInformationMsgWithEmergencyCallReq
- 功能描述  : 编码Extern Flash With Information Message消息
- 输入参数  : 无
- 输出参数  : ucConRef       -- connect reference
-             ucDigitNum     -- 需要发送的码流长度
-             pucDigit       -- 需要发送的码流指针
-             pucPdudata     -- 编码后的PDU数据
-             pulL3PduBitLen -- 编码后的PDU数据长度
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : w00176964
-    修改内容   : CDMA 1X Iteration 5 Modified
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeExtendedFlashWithInformationMsgWithEmergencyCallReq(
     VOS_UINT8                                               ucConRef,
     XCC_XCALL_DIGIT_MODE_ENUM_UINT8                         enDigitMode,
@@ -3531,23 +2769,7 @@ VOS_UINT32 CNAS_XCC_EncodeExtendedFlashWithInformationMsgWithEmergencyCallReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeCschMsg
- 功能描述  : 编码csch信道上的数据
- 输入参数  : enMsgTag: 消息类型
-             pstRDschMsg:待编码的消息
- 输出参数  : pucBuff:编码后的码流
-             pulBitDataLen:码流的bit长度
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月5日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeCschMsg(
     CAS_CNAS_1X_TX_COMMON_MSG_TYPE_ENUM_UINT8        enMsgTag,
     c_r_csch_mini6                                  *pstRCschMsg,
@@ -3578,21 +2800,7 @@ VOS_UINT32 CNAS_XCC_EncodeCschMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeCschMsAckOrderMsg
- 功能描述  : 对CSCH 的order msg 进行编码
- 输入参数  : 无
- 输出参数  : pucPdudata     - 输出的码流
-             pulL3PduBitLen - 输出的码流长度
- 返 回 值  : VOS_OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeCschMsAckOrderMsg(
     VOS_UINT8                          *pucPdudata,
     VOS_UINT32                         *pulL3PduBitLen
@@ -3648,25 +2856,7 @@ VOS_UINT32 CNAS_XCC_EncodeCschMsAckOrderMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_EncodeTxTchMSRejectOrderMsg
- 功能描述  : RDSCH发送order消息公共处理函数
- 输入参数  : enOrderCode    - 参见C.S0005 Table 2.7.3
-             enORDQ         - 参见C.S0005 Table 2.7.3
-             enRxTchMsgType - C.S0004-D Table 3.2.2.2.1.2-1
-             pucPdudata     - 编码后的PDU
-             pulL3PduBitLen - PDU的bit len
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月16日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_XCC_EncodeServiceOptionCtrlMsg(
     APS_XCC_PZID_INFO_NTF_STRU         *pstPzidInfo,
     VOS_UINT8                           ucConRef,
@@ -3744,41 +2934,13 @@ VOS_UINT32 CNAS_XCC_EncodeServiceOptionCtrlMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsL3ErrReOrigCount
- 功能描述  : 是否将重拨的次数进行转换
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月15日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_IsL3ErrReOrigCount()
 {
    return (CNAS_XCC_GetCtxAddr()->stCallNvimCfg.ucIsL3ErrReOrigCount);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_ConvertReOrigCount
- 功能描述  : 重拨次数转换
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月15日
-    作    者   : c00299063
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_ConvertL3ErrReOrigCount(
     VOS_UINT8                           ReOrigCount
 )
@@ -4196,29 +3358,7 @@ CNAS_XCC_DECODE_RESULT_ENUM_UINT8 CNAS_XCC_DecodeSndBurstDtmfMsg(
     return CNAS_XCC_DECODE_RSLT_SUCCESS;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_XCC_DecodeConRefFromFDschOrdmMsg
-Description     :   The function is used to extract the Con_Ref_Incl and Con_Ref from an FDsch Msg.
-                    According to protocol, the Con_Ref_Incl and Con_Ref are present in the last 9 bits of the message.
-                    The function reads the Last 9 bits of the Encoded message and finds the Con_Ref_Incl and Con_Ref.
 
-Input parameters:   pucMsgData   - Input Encoded message bit stream
-                    usMsgDataLen - The Bit Length of the Encoded message.
-
-Output parameters:  pucConRefIncl - Set to VOS_TRUE if Con_Ref is present.
-                    pucConRef     - Set to CON_REF value present in the message.
-
-Return Value    :   NOne
-
-Modify History  :
-1)  Date           : 2015-07-31
-    Author         : a00295761
-    Modify content : Create
-
-2.  日    期   : 2015年08月24日
-    作    者   : t00323010
-    修改内容   : DTS2015081904804 clear coverity
-*****************************************************************************/
 
 VOS_VOID CNAS_XCC_DecodeConRefFromFDschOrdmMsg(
     VOS_UINT8                          *pucMsgData,
@@ -4338,40 +3478,13 @@ VOS_UINT8 CNAS_XCC_GetAddRecLenFromOrderMsg(
     return ucAddRecLen;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_IsPagingRspSo33InNoDataSrv
- 功能描述  : 没有数据业务时，paging rsp中是否带so33
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月2日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_XCC_IsPagingRspSo33InNoDataSrv(VOS_VOID)
 {
     return (CNAS_XCC_GetCtxAddr()->stPagingRspSoCfg.ucNoDataSrvRspSo33Flg);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndSessionBeginNtf
- 功能描述  : 发送Session Begin消息
- 输入参数  : CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16                  enSo
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndSessionBeginNtf(
     CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16                  enSo
 )
@@ -4402,20 +3515,7 @@ VOS_VOID CNAS_XCC_SndSessionBeginNtf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_XCC_SndSessionEndNtf
- 功能描述  : 发送Session End消息
- 输入参数  : CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16                  enSo
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_VOID CNAS_XCC_SndSessionEndNtf(
     CAS_CNAS_1X_SERVICE_OPTION_ENUM_UINT16                  enSo
 )

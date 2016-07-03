@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdSndInternalMsg.h
-  版 本 号   : 初稿
-  作    者   : C00299064
-  生成日期   : 2014年12月2日
-  最近修改   :
-  功能描述   : CnasHsdSndInternalMsg.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月2日
-    作    者   : C00299064
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_HSD_SND_INTERNAL_MSG_H__
 #define __CNAS_HSD_SND_INTERNAL_MSG_H__
@@ -50,13 +33,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_HSD_INTERNAL_MSG_TYPE_ENUM
- 枚举说明  : 内部消息名枚举定义
- 1.日    期   : 2014年12月2日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_INTERNAL_MSG_TYPE_ENUM
 {
     ID_CNAS_HSD_HSD_ABORT_REQ                = 0x0000, /* _H2ASN_MsgChoice CNAS_HSD_HSD_ABORT_REQ_STRU*/
@@ -83,13 +60,7 @@ enum CNAS_HSD_INTERNAL_MSG_TYPE_ENUM
 };
 typedef VOS_UINT16 CNAS_HSD_INTERNAL_MSG_TYPE_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_BSR_RESULT_ENUM
- 枚举说明  : BSR搜索结果
- 1.日    期   : 2014年12月2日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_BSR_RESULT_ENUM
 {
     CNAS_HSD_BSR_RESULT_SUCCESS         = 0x00000000,
@@ -99,13 +70,7 @@ enum CNAS_HSD_BSR_RESULT_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_BSR_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_ABORT_TYPE_ENUM
- 枚举说明  : Abort类型
- 1.日    期   : 2014年12月2日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_ABORT_TYPE_ENUM
 {
     CNAS_HSD_ABORT_TYPE_IMMEDIATELY     = 0x00000000,
@@ -114,13 +79,7 @@ enum CNAS_HSD_ABORT_TYPE_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_ABORT_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_SWITCH_ON_RESULT_ENUM
- 枚举说明  : 开机结果
- 1.日    期   : 2014年12月2日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_SWITCH_ON_RESULT_ENUM
 {
     CNAS_HSD_SWITCH_ON_RESULT_SUCCESS   = 0x00000000,
@@ -131,13 +90,7 @@ enum CNAS_HSD_SWITCH_ON_RESULT_ENUM
 typedef VOS_UINT32 CNAS_HSD_SWITCH_ON_RESULT_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_REDIR_RESULT_ENUM
- 枚举说明  : 重定向搜索搜索结果
- 1.日    期   : 2014年12月2日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 
 enum CNAS_HSD_REDIR_RESULT_ENUM
 {
@@ -148,17 +101,7 @@ enum CNAS_HSD_REDIR_RESULT_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_REDIR_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_SYSTEM_ACQUIRED_RESULT_ENUM
- 枚举说明  : 系统捕获结果
- 1.日    期   : 2014年12月2日
-   作    者   : C00299064
-   修改内容   : 新建
 
- 2.日    期   : 2015年08月02日
-   作    者   : x00306642
-   修改内容   : 添加搜网过程中重定向的结果
-*****************************************************************************/
 enum CNAS_HSD_SYSTEM_ACQUIRED_RESULT_ENUM
 {
     CNAS_HSD_SYSTEM_ACQUIRED_RESULT_SUCCESS                 = 0x00000000,
@@ -170,13 +113,7 @@ enum CNAS_HSD_SYSTEM_ACQUIRED_RESULT_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_SYSTEM_ACQUIRED_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_XSD_HSD_SYS_ACQ_RSLT_ENUM
- 枚举说明  : 1X系统捕获结果
- 1.日    期   : 2014年12月2日
-   作    者   : C00299064
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_XSD_HSD_SYS_ACQ_RSLT_ENUM
 {
     CNAS_XSD_HSD_SYS_ACQ_RSLT_SUCCESS                 = 0x00000000,
@@ -185,13 +122,7 @@ enum CNAS_XSD_HSD_SYS_ACQ_RSLT_ENUM
 };
 typedef VOS_UINT32 CNAS_XSD_HSD_SYS_ACQ_RSLT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_SYS_ACQ_FAIL_ACT_ENUM_UINT8
- 枚举说明  : 搜网失败之后行为定义
- 1.日    期   : 2014年12月16日
-   作    者   : h00300778
-   修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_SYS_ACQ_FAIL_ACT_ENUM
 {
     CNAS_HSD_SYS_ACQ_FAIL_ACT_WAIT_TIMEOUT = 0,             /* 搜网失败之后等待定时器超时再发起搜网 */
@@ -219,13 +150,7 @@ typedef VOS_UINT8 CNAS_HSD_SYS_ACQ_FAIL_ACT_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_HSD_HSD_ABORT_REQ_STRU
- 结构说明  : HSD发送终止状态机消息的结构
- 1.日    期   : 2014年7月15日
-   作    者   : C00299064
-   修改内容   : 终止状态机消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                      /* _H2ASN_Skip */
@@ -234,14 +159,7 @@ typedef struct
     CNAS_HSD_ABORT_TYPE_ENUM_UINT32                         enAbortType;
 }CNAS_HSD_HSD_ABORT_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HSD_SWITCH_ON_RSLT_CNF_STRU
- 结构说明  : HSD发送开机确认消息结构
- 1.日    期   : 2014年12月10日
-   作    者   : h00300778
-   修改内容   : HSD开机结果CNF消息的结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -250,13 +168,7 @@ typedef struct
     CNAS_HSD_SWITCH_ON_RESULT_ENUM_UINT32                   enRslt;
 }CNAS_HSD_HSD_SWITCH_ON_RSLT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HSD_BSR_RSLT_CNF_STRU
- 结构说明  : HSD发送BSR结果确认消息结构
- 1.日    期   : 2014年7月15日
-   作    者   : C00299064
-   修改内容   : 终止状态机消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -265,13 +177,7 @@ typedef struct
     CNAS_HSD_BSR_RESULT_ENUM_UINT32                         enRslt;
 }CNAS_HSD_HSD_BSR_RSLT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HSD_POWER_OFF_RSLT_CNF_STRU
- 结构说明  : HSD发送关机确认消息结构
- 1.日    期   : 2014年7月15日
-   作    者   : C00299064
-   修改内容   : 终止状态机消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -280,13 +186,7 @@ typedef struct
 }CNAS_HSD_HSD_POWER_OFF_RSLT_CNF_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HSD_SYSTEM_ACQUIRED_REQ_STRU
- 结构说明  : HSD系统获取内部消息结构
- 1.日    期   : 2014年8月7日
-   作    者   : g00256031
-   修改内容   : 系统获取内部消息结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -297,13 +197,7 @@ typedef struct
     CNAS_PRL_FREQENCY_CHANNEL_STRU                          astFreq[CNAS_HSD_INTERNAL_SYSTEM_ACQ_REQ_CHAN_MAX_NUM];
 }CNAS_HSD_HSD_SYSTEM_ACQUIRED_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HSD_SYSTEM_ACQUIRED_RSLT_CNF_STRU
- 结构说明  : HSD系统获取结果确认消息结构
- 1.日    期   : 2014年7月15日
-   作    者   : C00299064
-   修改内容   : 状态机结果确认消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -315,13 +209,7 @@ typedef struct
     VOS_UINT8                                               aucRsved[3];
 }CNAS_HSD_HSD_SYSTEM_ACQUIRED_RSLT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_XSD_HSD_SYS_ACQ_RSLT_IND_STRU
- 结构说明  : HSD获得XSD的搜网结果
- 1.日    期   : 2014年7月15日
-   作    者   : C00299064
-   修改内容   : 状态机结果确认消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -331,13 +219,7 @@ typedef struct
     CNAS_PRL_1X_SYSTEM_STRU                                 st1xSys;
 }CNAS_XSD_HSD_SYS_ACQ_RSLT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HSD_POWER_SAVE_RSLT_CNF_STRU
- 结构说明  : HSD发送POWER_SAVE确认消息结构
- 1.日    期   : 2015年04月03日
-   作    者   : z00316370
-   修改内容   : 状态机结果确认消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -345,13 +227,7 @@ typedef struct
     VOS_UINT16                                              usOpId;
 }CNAS_HSD_HSD_POWER_SAVE_RSLT_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_HSD_INTER_SYS_RSLT_CNF_STRU
- 结构说明  : HSD发送INTER_SYS确认消息结构
- 1.日    期   : 2015年06月03日
-   作    者   : z00316370
-   修改内容   : 状态机结果确认消息的结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */
@@ -367,13 +243,7 @@ typedef struct
 
 
 #ifdef DMT
-/*****************************************************************************
- 结构名    : CNAS_HSD_HSD_TEST_CFG_REQ_STRU
- 结构说明  : 用于DMT测试配置，配置相关的参数信息
- 1.日    期   : 2015年01月29日
-   作    者   : x00306642
-   修改内容   : 测试配置消息数据结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                   /* _H2ASN_Skip */

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CmmcaPktMgmt.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年01月08日
-  最近修改   :
-  功能描述   : CMMCA模块PACKET DATA SERVICE相关的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年01月08日
-    作    者   : l60609
-    修改内容   : 新生成
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -135,21 +118,7 @@ const VOS_UINT32 g_ulCmmcaPktPsEvtFuncTblSize  = sizeof(g_astCmmcaPktPsEvtFuncTb
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvCmmcSetPdnTabReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_PDN_TABLE_SETUP_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_RcvCmmcSetPdnTabReq(
     VOS_VOID                           *pMsg
 )
@@ -227,22 +196,7 @@ VOS_VOID CMMCA_PKT_RcvCmmcSetPdnTabReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvCmmcDefaultBearConnReq_PreProc
- 功能描述  : ID_CMMCA_MMC_RAT_DEFAULTBEARER_REQ消息预处理
- 输入参数  : CBPCA_DATA_IND_MSG_STRU                     *pstDataInd
- 输出参数  : CMMCA_MMC_RAT_DEFAULT_BEAR_CONN_REQ_STRU    *pstDefBearConnReq
-             VOS_UINT8                                   *pucPdnEntityIndex
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvCmmcDefaultBearConnReq_PreProc(
     CBPCA_DATA_IND_MSG_STRU                     *pstDataInd,
     CMMCA_MMC_RAT_DEFAULT_BEAR_CONN_REQ_STRU    *pstDefBearConnReq,
@@ -335,21 +289,7 @@ VOS_UINT32 CMMCA_PKT_RcvCmmcDefaultBearConnReq_PreProc(
     }
 
 }
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvCmmcDefaultBearConnReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_DEFAULTBEARER_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_RcvCmmcDefaultBearConnReq(
     VOS_VOID                           *pMsg
 )
@@ -435,21 +375,7 @@ VOS_VOID CMMCA_PKT_RcvCmmcDefaultBearConnReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvCmmcBearDiscReq
- 功能描述  : 处理ID_CMMCA_MMC_RAT_BEARER_DISCONNECT_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_RcvCmmcBearDiscReq(
     VOS_VOID                           *pMsg
 )
@@ -520,21 +446,7 @@ VOS_VOID CMMCA_PKT_RcvCmmcBearDiscReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtSetPrimPdpContextInfoCnf
- 功能描述  : 处理ID_EVT_TAF_PS_SET_PRIM_PDP_CONTEXT_INFO_CNF消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月18日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtSetPrimPdpContextInfoCnf(
     VOS_VOID                           *pEvtInfo
 )
@@ -598,21 +510,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtSetPrimPdpContextInfoCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtCallOrigCnf
- 功能描述  : 处理ID_EVT_TAF_PS_CALL_ORIG_CNF消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtCallOrigCnf(
     VOS_VOID                           *pEvtInfo
 )
@@ -666,21 +564,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtCallOrigCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtCallEndCnf
- 功能描述  : 处理ID_EVT_TAF_PS_CALL_END_CNF消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtCallEndCnf(
     VOS_VOID                           *pEvtInfo
 )
@@ -731,21 +615,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtCallEndCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtPdpActivateCnf
- 功能描述  : 处理ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_CNF消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpActivateCnf(
     VOS_VOID                           *pEvtInfo
 )
@@ -812,21 +682,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpActivateCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtPdpActivateRej
- 功能描述  : 处理ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_REJ消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpActivateRej(
     VOS_VOID                           *pEvtInfo
 )
@@ -883,21 +739,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpActivateRej(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtPdpActivateInd
- 功能描述  : 处理ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_IND消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpActivateInd(
     VOS_VOID                           *pEvtInfo
 )
@@ -906,21 +748,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpActivateInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtPdpModifyInd
- 功能描述  : 处理ID_EVT_TAF_PS_CALL_PDP_MODIFY_IND消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpModifyInd(
     VOS_VOID                           *pEvtInfo
 )
@@ -930,21 +758,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpModifyInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtPdpDeactivateCnf
- 功能描述  : 处理ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_CNF消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpDeactivateCnf(
     VOS_VOID                           *pEvtInfo
 )
@@ -998,21 +812,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpDeactivateCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtPdpDeactivateInd
- 功能描述  : 处理ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_IND消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpDeactivateInd(
     VOS_VOID                           *pEvtInfo
 )
@@ -1047,21 +847,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpDeactivateInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvtPdpIpv6InfoInd
- 功能描述  : 处理ID_EVT_TAF_PS_CALL_PDP_IPV6_INFO_IND消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpIpv6InfoInd(
     VOS_VOID                           *pEvtInfo
 )
@@ -1135,21 +921,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafPsEvtPdpIpv6InfoInd(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafPsEvt
- 功能描述  : 处理PS域的事件
- 输入参数  : TAF_PS_EVT_STRU                    *pstEvt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_RcvTafPsEvt(
     TAF_PS_EVT_STRU                    *pstEvt
 )
@@ -1187,21 +959,7 @@ VOS_VOID CMMCA_PKT_RcvTafPsEvt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTiWaitIpv6RaExp
- 功能描述  : 处理TI_CMMCA_WAIT_IPV6_RA_INFO定时器超时消息
- 输入参数  : REL_TIMER_MSG                      *pstTiMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_RcvTiWaitIpv6RaExp(
     REL_TIMER_MSG                      *pstTiMsg
 )
@@ -1269,22 +1027,7 @@ VOS_VOID CMMCA_PKT_RcvTiWaitIpv6RaExp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_ProcIpv4ActCnf
- 功能描述  : 处理IPV4激活成功消息
- 输入参数  : VOS_UINT8                           ucPdnEntityIndex
-             TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActivateCnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_ProcIpv4ActCnf(
     VOS_UINT8                           ucPdnEntityIndex,
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActivateCnf
@@ -1301,21 +1044,7 @@ VOS_VOID CMMCA_PKT_ProcIpv4ActCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_ProcIpv6ActCnf
- 功能描述  : 处理IPV6激活成功消息
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActivateCnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_ProcIpv6ActCnf(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActivateCnf
 )
@@ -1329,21 +1058,7 @@ VOS_VOID CMMCA_PKT_ProcIpv6ActCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_ProcIpv4v6ActCnf
- 功能描述  : 处理IPV4V6激活成功消息
- 输入参数  : TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActivateCnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_ProcIpv4v6ActCnf(
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU  *pstPdpActivateCnf
 )
@@ -1357,21 +1072,7 @@ VOS_VOID CMMCA_PKT_ProcIpv4v6ActCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_BuildPrimPdpContextInfo
- 功能描述  : 构造设置主PDP上下文的参数
- 输入参数  : CMMCA_PDN_INFO_STRU               *pstPdnInfo
- 输出参数  : TAF_PDP_PRIM_CONTEXT_EXT_STRU     *pstPdpCtxInfo
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月8日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_BuildPrimPdpContextInfo(
     CMMCA_PDN_INFO_STRU               *pstPdnInfo,
     TAF_PDP_PRIM_CONTEXT_EXT_STRU     *pstPdpCtxInfo
@@ -1408,22 +1109,7 @@ VOS_VOID CMMCA_PKT_BuildPrimPdpContextInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_FillDefaultBearConnSuccPara
- 功能描述  : 填充承载激活成功参数
- 输入参数  : VOS_UINT8                                   ucPdnEntityIndex
-             CMMCA_RAT_MMC_PKT_ERRCODE_UINT8             enErrCode
- 输出参数  : CMMCA_RAT_MMC_DEFAULT_BEAR_CONN_CNF_STRU   *pstDefaultBearConnCnf
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月13日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_FillDefaultBearConnSuccPara(
     VOS_UINT8                                   ucPdnEntityIndex,
     CMMCA_RAT_MMC_PKT_ERRCODE_UINT8             enErrCode,
@@ -1566,24 +1252,7 @@ VOS_VOID CMMCA_PKT_FillDefaultBearConnSuccPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_BuildDefaultBearConnRsp
- 功能描述  : 构造CMMCA_RAT_MMC_DEFAULT_BEAR_CONN_CNF_STRU
- 输入参数  : VOS_UINT8                                   ucPdnId
-             CMMCA_RAT_MMC_BEAR_CONN_RESULT_ENUM_UINT8   enRslt
-             CMMCA_RAT_MMC_PKT_ERRCODE_UINT8             enErrCode
-             CMMCA_RAT_MMC_DEFAULT_BEAR_CONN_CNF_STRU   *pstDefaultBearConnCnf
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_BuildDefaultBearConnRsp(
     VOS_UINT8                                   ucPdnId,
     CMMCA_RAT_MMC_BEAR_CONN_RESULT_ENUM_UINT8   enRslt,
@@ -1629,21 +1298,7 @@ VOS_VOID CMMCA_PKT_BuildDefaultBearConnRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SndSetPdnRsp
- 功能描述  : 发送默认承载激活请求结果ID_CMMCA_RAT_MMC_PDN_TABLE_SETUP_RSP
- 输入参数  : CMMCA_RAT_MMC_PDN_TAB_SET_RESULT_ENUM_UINT8    enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SndSetPdnRsp(
     CMMCA_RAT_MMC_PDN_TAB_SET_RESULT_ENUM_UINT8    enRslt
 )
@@ -1689,23 +1344,7 @@ VOS_VOID CMMCA_PKT_SndSetPdnRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SndDefaultBearConnRsp
- 功能描述  : 发送默认承载激活请求结果ID_CMMCA_RAT_MMC_DEFAULTBEARER_RSP
- 输入参数  : VOS_UINT8                                   ucPdnId
-             CMMCA_RAT_MMC_BEAR_CONN_RESULT_ENUM_UINT8   enRslt
-             CMMCA_RAT_MMC_PKT_ERRCODE_UINT8             enErrCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CMMCA_PKT_SndDefaultBearConnRsp(
     VOS_UINT8                                   ucPdnId,
     CMMCA_RAT_MMC_BEAR_CONN_RESULT_ENUM_UINT8   enRslt,
@@ -1754,22 +1393,7 @@ VOS_VOID  CMMCA_PKT_SndDefaultBearConnRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SndBearDiscRsp
- 功能描述  : 发送承载断开请求结果ID_CMMCA_RAT_MMC_BEARER_DISCONNECT_RSP
- 输入参数  : VOS_UINT8                           ucPdnId,
-             CMMCA_RAT_MMC_RESULT_ENUM_UINT8     enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SndBearDiscRsp(
     VOS_UINT8                           ucPdnId,
     CMMCA_RAT_MMC_RESULT_ENUM_UINT8     enRslt
@@ -1828,21 +1452,7 @@ VOS_VOID CMMCA_PKT_SndBearDiscRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SndBearDiscInd
- 功能描述  : 发送承载断开指示ID_CMMCA_RAT_MMC_BEARER_DISCONNECT_IND
- 输入参数  : VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月26日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SndBearDiscInd(
     VOS_UINT8                           ucPdnId
 )
@@ -1899,23 +1509,7 @@ VOS_VOID CMMCA_PKT_SndBearDiscInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_FindSelSdfPara
- 功能描述  : 查找PdnId对应的SDF参数
- 输入参数  : VOS_UINT8                           ucPdnId
-             VOS_UINT32                          ulSdfNum
-             TAF_SDF_PARA_STRU                  *pstSdfPara
- 输出参数  : VOS_UINT32                         *pulIndex
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_FindSelSdfPara(
     VOS_UINT8                           ucPdnId,
     VOS_UINT32                          ulSdfNum,
@@ -1963,22 +1557,7 @@ VOS_UINT32 CMMCA_PKT_FindSelSdfPara(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SaveSelSdfPara
- 功能描述  : 保存PdnId对应的SDF参数
- 输入参数  : VOS_UINT8                           ucPdnEntityIndex
-             TAF_SDF_PARA_STRU                  *pstSdfPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SaveSelSdfPara(
     VOS_UINT8                           ucPdnEntityIndex,
     TAF_SDF_PARA_STRU                  *pstSdfPara
@@ -2016,22 +1595,7 @@ VOS_VOID CMMCA_PKT_SaveSelSdfPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_ProcSdfPara
- 功能描述  : SDF参数处理
- 输入参数  : VOS_UINT8                           ucPdnId
-             VOS_UINT8                           ucPdnEntityIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_ProcSdfPara(
     VOS_UINT8                           ucPdnId,
     VOS_UINT8                           ucPdnEntityIndex
@@ -2082,22 +1646,7 @@ VOS_UINT32 CMMCA_PKT_ProcSdfPara(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_GetDialParaFromSdfPara
- 功能描述  : 从SDF参数中获取拨号请求的参数
- 输入参数  : VOS_UINT8                           ucPdnEntityIndex,
-             TAF_PS_DIAL_PARA_STRU              *pstDialPara
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月28日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_GetDialParaFromSdfPara(
     VOS_UINT8                           ucPdnEntityIndex,
     TAF_PS_DIAL_PARA_STRU              *pstDialPara
@@ -2153,23 +1702,7 @@ VOS_VOID CMMCA_PKT_GetDialParaFromSdfPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_GenIpv6LanAddrWithRadomIID
- 功能描述  : 获取IPv6动态全局地址
- 输入参数  : VOS_UINT8                          *pucPrefix
-             VOS_UINT32                          ulPrefixByteLen
-             VOS_UINT8                          *pucIpv6LanAddr
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月7日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_GenIpv6LanAddrWithRadomIID(
     VOS_UINT8                          *pucPrefix,
     VOS_UINT32                          ulPrefixByteLen,
@@ -2212,21 +1745,7 @@ VOS_VOID CMMCA_PKT_GenIpv6LanAddrWithRadomIID(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_TransferErrCode
- 功能描述  : 将TAF的错误码转换为CMMC的错误码
- 输入参数  : TAF_PS_CAUSE_ENUM_UINT32            enCause
- 输出参数  : 无
- 返 回 值  : CMMCA_RAT_MMC_PKT_ERRCODE_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月29日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CMMCA_RAT_MMC_PKT_ERRCODE_UINT8 CMMCA_PKT_TransferErrCode(
     TAF_PS_CAUSE_ENUM_UINT32            enCause
 )
@@ -2244,21 +1763,7 @@ CMMCA_RAT_MMC_PKT_ERRCODE_UINT8 CMMCA_PKT_TransferErrCode(
     return CMMCA_RAT_MMC_PKT_ERRCODE_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_SndSetPdnPcoAuthRsp
- 功能描述  : 发送PDN鉴权结果
- 输入参数  : CMMCA_SET_PDN_PCO_AUTH_RESULT_ENUM_UINT8    enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月27日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_SndSetPdnPcoAuthRsp(
     CMMCA_SET_PDN_PCO_AUTH_RESULT_ENUM_UINT8        enRslt
 )
@@ -2298,21 +1803,7 @@ VOS_VOID CMMCA_PKT_SndSetPdnPcoAuthRsp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvTafSetPdnPcoAuthCnf
- 功能描述  : 处理ID_EVT_TAF_PS_SET_AUTHDATA_INFO_CNF消息
- 输入参数  : VOS_VOID                           *pEvtInfo
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月26日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_PKT_RcvTafSetPdnPcoAuthCnf(
     VOS_VOID                           *pEvtInfo
 )
@@ -2333,20 +1824,7 @@ VOS_UINT32 CMMCA_PKT_RcvTafSetPdnPcoAuthCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_PKT_RcvCmmcSetPdnPcoAuthReq
- 功能描述  : 处理ID_CMMCA_MMC_API_SET_PDN_PCO_AUTH_REQ消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月24日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CMMCA_PKT_RcvCmmcSetPdnPcoAuthReq(
     VOS_VOID                           *pMsg
 )

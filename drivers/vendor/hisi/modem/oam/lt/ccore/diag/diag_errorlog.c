@@ -32,24 +32,7 @@ OM_REGISTER_PROJECT_CTX_STRU            g_astFTMCallBackFuncCtx[]={
 
 VOS_VOID OmOpenCCPULog(VOS_UINT32 ulFlag);
 
-/******************************************************************************
-函数名  ：OM_RegisterGetData
-功能描述：OM Ccpu接收各组件上报工程模式数据到APP回调函数注册接口
-输入参数：enModuleProjectCallback：回调组建编号，固定为OM_VOLTE_MOUDLE_PROJECT
-          pFuncProjectCallbak    ：回调函数指针
-输出参数：NA
-返回值  ：VOS_UINT32
-修改历史：
-1.  日期    ：2014年1月2日
-作者    ：
-修改内容：新生成函数
-说明:
-    1、工程模式主动上报开关通知各组件，见结构体APP_OM_CTRL_STATUS_STRU，Data除去OMHead、ulMsgModuleID以外数据域
-    2、工程模式命令上报消息通知各组件，Data域包含完整的OmHeard和OMPayload
 
-2.c00326366         2015-7-10  多模OM融合移植
-
-*****************************************************************************/
 VOS_UINT32 OM_RegisterGetData(OM_ERR_LOG_MOUDLE_ID_ENUM_UINT32 enProjectModule, pFuncOMGetData pFuncProjectCallback)
 {
 #if (FEATURE_ON == FEATURE_PTM)
@@ -90,23 +73,7 @@ VOS_UINT32 OM_RegisterGetData(OM_ERR_LOG_MOUDLE_ID_ENUM_UINT32 enProjectModule, 
 #endif
 }
 
-/******************************************************************************
-函数名  ：OM_GetData
-功能描述：OM Ccpu接收各组件上报工程模式数据
-输入参数：enProjectModule    ：组建编号
-          pData              ：发送数据
-          ulLen              ：发送数据长度
-输出参数：NA
-返回值  ：VOS_OK/VOS_ERR
-修改历史：
-1.  日期    ：2014年1月2日
-作者    ：
-修改内容：新生成函数
-说明：pData从OMHeader的MsgType域开始。相当于调用组件预先申请Header部分，其中Header部分的SN字段由COMM填写
 
-2.c00326366         2015-7-10  多模OM融合移植
-
-*****************************************************************************/
 VOS_UINT32 OM_GetData(OM_ERR_LOG_MOUDLE_ID_ENUM_UINT32 enProjectModule, VOS_VOID *pData, VOS_UINT32 ulLen)
 {
 #if (FEATURE_ON == FEATURE_PTM)
@@ -231,19 +198,7 @@ if(VOS_FALSE != (g_ulOmCcpuDbgFlag&ulSwitch)) \
 
 extern VOS_UINT32 OM_ErrLogMsgProc(MsgBlock* pMsg);
 
-/*****************************************************************************
- 函 数 名  : OmOpenCCPULog
- 功能描述  : 打印CCPU当前OM通道的状态
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-   1.日    期  : 2009年5月18日
-     作    者  : g47350
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID OmOpenCCPULog(VOS_UINT32 ulFlag)
 {
     g_ulOmCcpuDbgFlag = ulFlag;
@@ -251,18 +206,7 @@ VOS_VOID OmOpenCCPULog(VOS_UINT32 ulFlag)
     return;
 }
 
-/******************************************************************************
-函数名  ：OM_ErrLogMsgProc
-功能描述：OM Ccpu接收各组件上报工程模式数据
-输入参数：pMsg    ：收到商用ErrLog工程模式数据
 
-输出参数：NA
-返回值  ：VOS_VOID
-修改历史：
-1.  日期    ：2014年1月2日
-作者    ：
-修改内容：新生成函数
-*****************************************************************************/
 VOS_UINT32 OM_ErrLogMsgProc(MsgBlock* pMsg)
 {
     OM_FTM_REQUIRE_STRU                *pstOmFTMMsg;
@@ -424,16 +368,7 @@ VOS_UINT32 OM_ErrLogMsgProc(MsgBlock* pMsg)
 }
 
 
-/******************************************************************************
-函数名  ：OM_HifiErrlogProc
-功能描述：HIFI的errorlog主动上报消息处理函数(A核的HIFI邮箱删除，HIFI发给C核中转)
-输入参数：pMsg    ：收到商用ErrLog工程模式数据
 
-修改历史：
-1.  日期    ：2015年12月1日
-作者    ：
-修改内容：新生成函数
-*****************************************************************************/
 VOS_UINT32 OM_HifiErrlogProc(MsgBlock* pMsg)
 {
     VOS_UINT32 ret = VOS_ERR;

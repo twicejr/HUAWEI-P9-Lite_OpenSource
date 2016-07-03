@@ -1,45 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : ombbpmaster.c
-  版 本 号   : 初稿
-  作    者   : lixiao 00246515
-  生成日期   : 2014年1月13日
-  最近修改   :
-  功能描述   : BbpMaster IP 软件适配模块，提供读写通道的使能、去使能接口，以及冲突检测
-  函数列表   :
-              OM_BbpMasterChanCheckDeCfgPara
-              OM_BbpMasterChanSendErrorMsg
-              OM_BbpMasterInit
-              OM_BbpMasterInitLogFile
-              OM_BbpMasterIpcIsr
-              OM_BbpMasterRdChanCheckCfgPara
-              OM_BbpMasterRdChanGive
-              OM_BbpMasterRdChanInfoRefresh
-              OM_BbpMasterRdChanIpcLock
-              OM_BbpMasterRdChanIpcUnLock
-              OM_BbpMasterRdChannelConfig
-              OM_BbpMasterRdChannelDeConfig
-              OM_BbpMasterRdChanTake
-              OM_BbpMasterRdErrorInfoSave
-              OM_BbpMasterSaveLogFile
-              OM_BbpMasterWrChanCheckCfgPara
-              OM_BbpMasterWrChanGive
-              OM_BbpMasterWrChanInfoRefresh
-              OM_BbpMasterWrChanIpcLock
-              OM_BbpMasterWrChanIpcUnLock
-              OM_BbpMasterWrChannelConfig
-              OM_BbpMasterWrChannelDeConfig
-              OM_BbpMasterWrChanTake
-              OM_BbpMasterWrErrorInfoSave
-  修改历史   :
-  1.日    期   : 2014年1月13日
-    作    者   : lixiao 00246515
-    修改内容   : 创建文件
-
-******************************************************************************/
 #include "product_config.h"
 
 #ifdef __cplusplus
@@ -89,21 +48,7 @@ OM_BBPMASTER_UINT32   g_astOmBbpMasterRdChCallCnt[OM_BBPMASTER_MAX_RD_CHAN_CNT];
 OM_BBPMASTER_UINT32   g_astOmBbpMasterWrChIpcCnt[OM_BBPMASTER_MAX_WR_CHAN_CNT];
 OM_BBPMASTER_UINT32   g_astOmBbpMasterRdChIpcCnt[OM_BBPMASTER_MAX_RD_CHAN_CNT];
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterGetV8R1BbitBaseAddr
- 功能描述  : 根据PID获取V8R1上FPGA平台BBP Master的基地址;
-             V8R1FPGA平台上,W、G1、G2的BBP Master基地址不同，在SFT和ASIC上才归一
- 输入参数  : ulPID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_UINT32 OM_BbpMasterGetV8R1BbitBaseAddr(OM_BBPMASTER_UINT32 ulPID)
 {
     if (I0_DSP_PID_GPHY == ulPID)
@@ -120,21 +65,7 @@ OM_BBPMASTER_UINT32 OM_BbpMasterGetV8R1BbitBaseAddr(OM_BBPMASTER_UINT32 ulPID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterGetV7R5BbitBaseAddr
- 功能描述  : 根据PID获取V8R1上FPGA平台BBP Master的基地址;
-             V7R5FPGA平台上,G1、G2的BBP Master基地址不同，在SFT和ASIC上才归一
- 输入参数  : ulPID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_UINT32 OM_BbpMasterGetV7R5BbitBaseAddr(OM_BBPMASTER_UINT32 ulPID)
 {
     /* BBIT: 2G 基地址适配 */
@@ -152,21 +83,7 @@ OM_BBPMASTER_UINT32 OM_BbpMasterGetV7R5BbitBaseAddr(OM_BBPMASTER_UINT32 ulPID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterGetK3V6BaseAddr
- 功能描述  : 根据PID获取K3V6上FPGA平台BBP Master的基地址;
-             K3V6FPGA平台上,U2的BBP Master基地址不同，在SFT和ASIC上才归一
- 输入参数  : ulPID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_UINT32 OM_BbpMasterGetK3V6BbitBaseAddr(OM_BBPMASTER_UINT32 ulPID)
 {
     /* U2偏移地址差 -0xC90000，依赖于PID同步上库 */
@@ -174,21 +91,7 @@ OM_BBPMASTER_UINT32 OM_BbpMasterGetK3V6BbitBaseAddr(OM_BBPMASTER_UINT32 ulPID)
     return SOC_BBP_COMM_BASE_ADDR;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterGetBaseAddr
- 功能描述  : 根据PID获取BBP Master的基地址;
-             V8R1FPGA平台上,W、G1、G2的BBP Master基地址不同，在SFT和ASIC上才归一
- 输入参数  : ulPID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_UINT32 OM_BbpMasterGetBaseAddr(OM_BBPMASTER_UINT32 ulPID)
 {
 #ifndef CSDR_FEATURE_ON
@@ -224,20 +127,7 @@ OM_BBPMASTER_UINT32 OM_BbpMasterGetBaseAddr(OM_BBPMASTER_UINT32 ulPID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterV7R5RWInt0ChanIsr
- 功能描述  : OM BbpMaster适配模块的写通道中断响应处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterV7R5RWInt0ChanIsr(OM_BBPMASTER_VOID)
 {
 #if ( VOS_WIN32 != VOS_OS_VER )
@@ -310,20 +200,7 @@ OM_BBPMASTER_VOID OM_BbpMasterV7R5RWInt0ChanIsr(OM_BBPMASTER_VOID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterV8R5RWInt0ChanIsr
- 功能描述  : OM BbpMaster适配模块的写通道中断响应处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterV8R5RWInt0ChanIsr(OM_BBPMASTER_VOID)
 {
 #if ( VOS_WIN32 != VOS_OS_VER )
@@ -390,20 +267,7 @@ OM_BBPMASTER_VOID OM_BbpMasterV8R5RWInt0ChanIsr(OM_BBPMASTER_VOID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterV8R5RWInt0ChanIsr
- 功能描述  : OM BbpMaster适配模块的写通道中断响应处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterK3V6RWInt0ChanIsr(OM_BBPMASTER_VOID)
 {
 #if ( VOS_WIN32 != VOS_OS_VER )
@@ -522,21 +386,7 @@ OM_BBPMASTER_VOID OM_BbpMasterK3V6RWInt0ChanIsr(OM_BBPMASTER_VOID)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterInitChipType
- 功能描述  : 初始化BBP MASTER的类型
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月1日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterInitChipType( OM_BBPMASTER_VOID )
 {
 #if (FEATURE_BBP_MASTER == FEATURE_ON)
@@ -558,21 +408,7 @@ OM_BBPMASTER_VOID OM_BbpMasterInitChipType( OM_BBPMASTER_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterInitBaseAddr
- 功能描述  : 初始化BBP访问的基地址
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月1日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterInitBaseAddr( OM_BBPMASTER_VOID )
 {
     if (OM_BBPMASTER_NO_IP == g_ulOmBbpMasterChipType )
@@ -647,40 +483,13 @@ OM_BBPMASTER_VOID OM_BbpMasterInitBaseAddr( OM_BBPMASTER_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterGetIpInfo
- 功能描述  : 获取BBP Master的IP类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : OM_BBPMASTER_NO_IP/OM_BBPMASTER_OLD_IP/OM_BBPMASTER_NEW_IP
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_UINT32 OM_BbpMasterGetIpInfo( OM_BBPMASTER_VOID )
 {
     return g_ulOmBbpMasterChipType;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterInitV8R1Entity
- 功能描述  : 初始化V8R1 BBP Master的读写实体
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月1日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterInitV8R1Entity( OM_BBPMASTER_VOID )
 {
     OM_BBPMASTER_UINT32 i;
@@ -713,21 +522,7 @@ OM_BBPMASTER_VOID OM_BbpMasterInitV8R1Entity( OM_BBPMASTER_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterInitV7R5Entity
- 功能描述  : 初始化V7R5 BBP Master的读写实体
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月1日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterInitV7R5Entity( OM_BBPMASTER_VOID )
 {
     OM_BBPMASTER_UINT32 i;
@@ -779,21 +574,7 @@ OM_BBPMASTER_VOID OM_BbpMasterInitV7R5Entity( OM_BBPMASTER_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterInitV8R5Entity
- 功能描述  : 初始化V8R5 BBP Master的读写实体
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月1日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterInitV8R5Entity( OM_BBPMASTER_VOID )
 {
     OM_BBPMASTER_UINT32 i;
@@ -832,21 +613,7 @@ OM_BBPMASTER_VOID OM_BbpMasterInitV8R5Entity( OM_BBPMASTER_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterInitV8R5Entity
- 功能描述  : 初始化V8R5 BBP Master的读写实体
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月1日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterInitK3V6Entity( OM_BBPMASTER_VOID )
 {
     OM_BBPMASTER_UINT32 i;
@@ -885,21 +652,7 @@ OM_BBPMASTER_VOID OM_BbpMasterInitK3V6Entity( OM_BBPMASTER_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterInitEntity
- 功能描述  : 初始化BBP Master的读写实体
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月1日
-    作    者   :
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterInitEntity( OM_BBPMASTER_VOID )
 {
     g_ulOmBbpMasterTest = 0;
@@ -927,20 +680,7 @@ OM_BBPMASTER_VOID OM_BbpMasterInitEntity( OM_BBPMASTER_VOID )
     }
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterInit
- 功能描述  : OM BbpMaster适配模块初始化函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_UINT32 OM_BbpMasterInit( OM_BBPMASTER_VOID )
 {
     OM_BbpMasterInitChipType();
@@ -952,20 +692,7 @@ OM_BBPMASTER_UINT32 OM_BbpMasterInit( OM_BBPMASTER_VOID )
     return OM_BBPMASTER_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterWrChanIpcLock
- 功能描述  : OM BbpMaster适配模块写通道的IPC资源锁申请函数
- 输入参数  : ulChanId
- 输出参数  : 无
- 返 回 值  : VOS_YES、VOS_NO
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_UINT32 OM_BbpMasterWrChanIpcLock( OM_BBPMASTER_UINT32 ulChanId )
 {
 #if (FEATURE_BBP_MASTER == FEATURE_ON)
@@ -1008,20 +735,7 @@ OM_BBPMASTER_UINT32 OM_BbpMasterWrChanIpcLock( OM_BBPMASTER_UINT32 ulChanId )
     return OM_BBPMASTER_NO;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterWrChanIpcUnLock
- 功能描述  : OM BbpMaster适配模块写通道的IPC资源锁释放函数
- 输入参数  : ulChanId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterWrChanIpcUnLock( OM_BBPMASTER_UINT32 ulChanId )
 {
 #if (FEATURE_BBP_MASTER == FEATURE_ON)
@@ -1065,20 +779,7 @@ OM_BBPMASTER_VOID OM_BbpMasterWrChanIpcUnLock( OM_BBPMASTER_UINT32 ulChanId )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterRdChanIpcLock
- 功能描述  : OM BbpMaster适配模块读通道的IPC资源锁申请函数
- 输入参数  : ulChanId
- 输出参数  : 无
- 返 回 值  : VOS_YES、VOS_NO
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_UINT32 OM_BbpMasterRdChanIpcLock(OM_BBPMASTER_UINT32 ulChanId)
 {
 #if (FEATURE_BBP_MASTER == FEATURE_ON)
@@ -1121,20 +822,7 @@ OM_BBPMASTER_UINT32 OM_BbpMasterRdChanIpcLock(OM_BBPMASTER_UINT32 ulChanId)
     return VOS_NO;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterRdChanIpcUnLock
- 功能描述  : OM BbpMaster适配模块读通道的IPC资源锁释放函数
- 输入参数  : ulChanId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterRdChanIpcUnLock( OM_BBPMASTER_UINT32 ulChanId )
 {
 #if (FEATURE_BBP_MASTER == FEATURE_ON)
@@ -1179,34 +867,7 @@ OM_BBPMASTER_VOID OM_BbpMasterRdChanIpcUnLock( OM_BBPMASTER_UINT32 ulChanId )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterWrChanTake
- 功能描述  : OM BbpMaster写通道使能配置，参数使用上层透传形式。
- 输入参数  : ulChanId
-             pstWrChanCfg
-       V7R5: [5:0]：分别为各个物理写通道对应中断的屏蔽位，1表示屏蔽。
-              [11:8]：分别为各个物理读通道对应中断的屏蔽位，1表示屏蔽。
-              [21:16]：分别为各个物理写通道屏蔽位的写使能。
-              [27:24]：分别为各个物理读通道屏蔽位的写使能。
 
-       V8R5: [15:0]：分别为各个物理写通道对应中断的屏蔽位，1表示屏蔽。
-              [31:16]：分别为各个物理写通道屏蔽位的写使能。
-
-       K3V6: INT_MASK [15:0]：分别为各个物理写通道(0~15)对应中断的屏蔽位，1表示屏蔽。
-                       [31:16]：分别为各个物理写通道(0~15)屏蔽位的写使能。
-
-             INT_MASK2 [15:0]：分别为各个物理写通道(16~24)对应中断的屏蔽位，1表示屏蔽。
-                        [31:16]：分别为各个物理写通道(16~24)屏蔽位的写使能。
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterWrChanTake(OM_BBPMASTER_UINT32 ulPID,
                                              OM_BBPMASTER_UINT32 ulChanId,
                                              BBPMASTER_WR_CHANNEL_CONFIG_STRU *pstWrChanCfg)
@@ -1288,35 +949,7 @@ OM_BBPMASTER_VOID OM_BbpMasterWrChanTake(OM_BBPMASTER_UINT32 ulPID,
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterWrChanGive
- 功能描述  : OM BbpMaster写通道去使能配置，参数使用上层透传形式。
- 输入参数  : ulChanId
-             pstWrChanDeCfg
- 输出参数  : 无
 
-     V7R5: [5:0]：分别为各个物理写通道对应中断的屏蔽位，1表示屏蔽。
-                  [11:8]：分别为各个物理读通道对应中断的屏蔽位，1表示屏蔽。
-                  [21:16]：分别为各个物理写通道屏蔽位的写使能。
-                  [27:24]：分别为各个物理读通道屏蔽位的写使能。
-
-    V8R5: [15:0]：分别为各个物理写通道对应中断的屏蔽位，1表示屏蔽。
-              [31:16]：分别为各个物理写通道屏蔽位的写使能。
-
-    K3V6: [15:0]：分别为各个物理写通道(0~15)对应中断的屏蔽位，1表示屏蔽。
-             [31:16]：分别为各个物理写通道(0~15)屏蔽位的写使能。
-           [15:0]：分别为各个物理写通道(16~24)对应中断的屏蔽位，1表示屏蔽。
-                  [31:16]：分别为各个物理写通道(16~24)屏蔽位的写使能。
-
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterWrChanGive(OM_BBPMASTER_UINT32 ulPID,
                                              OM_BBPMASTER_UINT32 ulChanId,
                                              BBPMASTER_CHANNEL_DECONFIG_STRU *pstWrChanDeCfg)
@@ -1360,34 +993,7 @@ OM_BBPMASTER_VOID OM_BbpMasterWrChanGive(OM_BBPMASTER_UINT32 ulPID,
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterWrChanGive
- 功能描述  : OM BbpMaster写通道去使能配置，参数使用上层透传形式。
- 输入参数  : ulChanId
-             pstWrChanDeCfg
- 输出参数  : 无
 
-    V7R5: [5:0]：分别为各个物理写通道对应中断的屏蔽位，1表示屏蔽。
-                  [11:8]：分别为各个物理读通道对应中断的屏蔽位，1表示屏蔽。
-                  [21:16]：分别为各个物理写通道屏蔽位的写使能。
-                  [27:24]：分别为各个物理读通道屏蔽位的写使能。
-
-    V8R5: [15:0]：分别为各个物理写通道对应中断的屏蔽位，1表示屏蔽。
-              [31:16]：分别为各个物理写通道屏蔽位的写使能。
-
-    K3V6: INT_MASK [15:0]：分别为0~15物理写通道对应中断的屏蔽位，1表示屏蔽。
-                       [31:16]：分别为0~15物理写通道屏蔽位的写使能。
-             INT_MASK2 [15:0]：分别为0~15物理写通道对应中断的屏蔽位，1表示屏蔽。
-                       [31:16]：分别为0~15物理写通道屏蔽位的写使能。
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterRdChanTake(OM_BBPMASTER_UINT32 ulPID,
                                              OM_BBPMASTER_UINT32 ulChanId,
                                              BBPMASTER_RD_CHANNEL_CONFIG_STRU *pstRdChanCfg)
@@ -1463,28 +1069,7 @@ OM_BBPMASTER_VOID OM_BbpMasterRdChanTake(OM_BBPMASTER_UINT32 ulPID,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterWrChanGive
- 功能描述  : OM BbpMaster写通道去使能配置，参数使用上层透传形式。
- 输入参数  : ulChanId
-             pstWrChanDeCfg
- 输出参数  : 无
-     V7R5: [5:0]：分别为各个物理写通道对应中断的屏蔽位，1表示屏蔽。
-           [11:8]：分别为各个物理读通道对应中断的屏蔽位，1表示屏蔽。
-           [21:16]：分别为各个物理写通道屏蔽位的写使能。
-           [27:24]：分别为各个物理读通道屏蔽位的写使能。
 
-    V8R5: [15:0]：分别为各个物理写通道对应中断的屏蔽位，1表示屏蔽。
-          [31:16]：分别为各个物理写通道屏蔽位的写使能。
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_VOID OM_BbpMasterRdChanGive(OM_BBPMASTER_UINT32 ulPID,
                                              OM_BBPMASTER_UINT32 ulChanId,
                                              BBPMASTER_CHANNEL_DECONFIG_STRU *pstRdChanDeCfg)
@@ -1528,22 +1113,7 @@ OM_BBPMASTER_VOID OM_BbpMasterRdChanGive(OM_BBPMASTER_UINT32 ulPID,
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterWrChannelConfig
- 功能描述  : OM BbpMaster写通道使能配置接口
- 输入参数  : ulPID,
-             ulChanId
-             pstWrChanCfg
- 输出参数  : 无
- 返 回 值  : 配置结果错误码
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_CFG_DECFG_TYPE_ENUM_UINT32 OM_BbpMasterWrChannelConfig(OM_BBPMASTER_UINT32 ulPID,
                                                                OM_BBPMASTER_UINT32 ulChanId,
                                                                BBPMASTER_WR_CHANNEL_CONFIG_STRU *pstWrChanCfg)
@@ -1593,22 +1163,7 @@ OM_BBPMASTER_CFG_DECFG_TYPE_ENUM_UINT32 OM_BbpMasterWrChannelConfig(OM_BBPMASTER
     return OM_BBPMASTER_CONFIG_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterWrChannelDeConfig
- 功能描述  : OM BbpMaster写通道去使能配置接口
- 输入参数  : ulPID,
-             ulChanId
-             pstChanDeCfg
- 输出参数  : 无
- 返 回 值  : 配置结果错误码
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_CFG_DECFG_TYPE_ENUM_UINT32 OM_BbpMasterWrChannelDeConfig(OM_BBPMASTER_UINT32 ulPID,
                                                                OM_BBPMASTER_UINT32 ulChanId,
                                                                BBPMASTER_CHANNEL_DECONFIG_STRU *pstChanDeCfg)
@@ -1649,22 +1204,7 @@ OM_BBPMASTER_CFG_DECFG_TYPE_ENUM_UINT32 OM_BbpMasterWrChannelDeConfig(OM_BBPMAST
     return OM_BBPMASTER_CONFIG_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterRdChannelConfig
- 功能描述  : OM BbpMaster读通道使能配置接口
- 输入参数  : ulPID,
-             ulChanId
-             pstRdChanCfg
- 输出参数  : 无
- 返 回 值  : 配置结果错误码
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_CFG_DECFG_TYPE_ENUM_UINT32 OM_BbpMasterRdChannelConfig(OM_BBPMASTER_UINT32 ulPID,
                                                                OM_BBPMASTER_UINT32 ulChanId,
                                                                BBPMASTER_RD_CHANNEL_CONFIG_STRU *pstRdChanCfg)
@@ -1713,22 +1253,7 @@ OM_BBPMASTER_CFG_DECFG_TYPE_ENUM_UINT32 OM_BbpMasterRdChannelConfig(OM_BBPMASTER
     return OM_BBPMASTER_CONFIG_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : OM_BbpMasterRdChannelDeConfig
- 功能描述  : OM BbpMaster读通道去使能配置接口
- 输入参数  : ulPID,
-             ulChanId
-             pstChanDeCfg
- 输出参数  : 无
- 返 回 值  : 配置结果错误码
- 调用函数  :
- 被调函数  :
 
-  修改历史      :
-  1.日    期   :
-    作    者   : l00246515
-    修改内容   : 新生成函数
-*****************************************************************************/
 OM_BBPMASTER_CFG_DECFG_TYPE_ENUM_UINT32 OM_BbpMasterRdChannelDeConfig(OM_BBPMASTER_UINT32 ulPID,
                                                                OM_BBPMASTER_UINT32 ulChanId,
                                                                BBPMASTER_CHANNEL_DECONFIG_STRU *pstChanDeCfg)

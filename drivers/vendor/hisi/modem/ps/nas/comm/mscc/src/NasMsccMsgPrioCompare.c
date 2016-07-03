@@ -142,7 +142,6 @@ NAS_MSCC_MSG_COMPARE_STRU g_astMsccMsgPrioCompareWithCLInterSysTbl[] =
                              NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithCLInterSys),
 };
 
-/* Added by w00176964 for CL数传切换优化, 2015-12-11, begin */
 
 
 NAS_MSCC_MSG_COMPARE_STRU g_astMsccMsgPrioCompareWithSysCfgTbl[] =
@@ -151,7 +150,6 @@ NAS_MSCC_MSG_COMPARE_STRU g_astMsccMsgPrioCompareWithSysCfgTbl[] =
                              NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithSysCfg),
 };
 
-/* Added by w00176964 for CL数传切换优化, 2015-12-11, end */
 
 
 NAS_MSCC_FSM_MSG_COMPARE_STRU g_astMsccMsgCompareTbl[] =
@@ -164,10 +162,8 @@ NAS_MSCC_FSM_MSG_COMPARE_STRU g_astMsccMsgCompareTbl[] =
 
     NAS_MSCC_FSM_COMPARE_TBL_ITEM(NAS_MSCC_FSM_CL_INTERSYS,
                                   g_astMsccMsgPrioCompareWithCLInterSysTbl),
-    /* Added by w00176964 for CL数传切换优化, 2015-12-11, begin */
     NAS_MSCC_FSM_COMPARE_TBL_ITEM(NAS_MSCC_FSM_SYSTEM_CONFIG,
                                   g_astMsccMsgPrioCompareWithSysCfgTbl),
-    /* Added by w00176964 for CL数传切换优化, 2015-12-11, end */
 
     NAS_MSCC_FSM_COMPARE_TBL_ITEM(NAS_MSCC_FSM_POWER_OFF,
                                   g_astMsccMsgPrioCompareWithPowerOffTbl)
@@ -262,23 +258,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_ComparePsStatusIndPrioWithSys
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareMoCallSuccessNtfPrioWithSystemAcquire
- 功能描述  : 主叫紧急呼的时候，与搜网状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareMoCallSuccessNtfPrioWithSystemAcquire(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -287,23 +267,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareMoCallSuccessNtfPrioWi
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareEmcCallBackIndPrioWithSystemAcquire
- 功能描述  : 收到退出回呼模式的时候，与关机状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareEmcCallBackIndPrioWithSystemAcquire(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -319,23 +283,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareEmcCallBackIndPrioWith
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareHsdInterSysStartIndPrioWithBSR
- 功能描述  : 收到hsd异系统开始指示时，与bsr状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_MSG_COMPARE_PRIO_RSLT_STORE消息缓存
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2016年1月27日
-    作    者   : y00346957
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareHsdInterSysStartIndPrioWithBSR(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -354,23 +302,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareHsdInterSysStartIndPri
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_DISCARD;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareHsdInterSysStartIndPrioWithBSR
- 功能描述  : 收到mmc异系统开始指示时，与bsr状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_MSG_COMPARE_PRIO_RSLT_STORE消息缓存
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2016年1月27日
-    作    者   : y00346957
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareMmcInterSysStartIndPrioWithBSR(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -391,23 +323,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareMmcInterSysStartIndPri
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithSystemAcquire
- 功能描述  : 收到快搜请求时，与搜网状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_MSG_COMPARE_PRIO_RSLT_STORE消息缓存
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2016年1月13日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithSystemAcquire(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -458,23 +374,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_ComparePsStatusIndPrioWithBSR
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareMoCallSuccessNtfPrioWithBSR
- 功能描述  : 主叫紧急呼的时候，与搜网状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareMoCallSuccessNtfPrioWithBSR(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -483,23 +383,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareMoCallSuccessNtfPrioWi
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareEmcCallBackIndPrioWithBSR
- 功能描述  : 收到退出回呼模式的时候，与关机状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareEmcCallBackIndPrioWithBSR(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -515,23 +399,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareEmcCallBackIndPrioWith
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithSystemAcquire
- 功能描述  : 收到快搜请求时，与背景搜状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_MSG_COMPARE_PRIO_RSLT_STORE消息缓存
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithBSR(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -570,23 +438,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_ComparePsStatusIndPrioWithPow
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareEmcCallBackIndPrioWithPowerOff
- 功能描述  : 收到退出回呼模式的时候，与关机状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareEmcCallBackIndPrioWithPowerOff(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -610,17 +462,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareMmaUserReselReqPrioWit
 {
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
-/*****************************************************************************
-Function Name   :   NAS_MSCC_CompareSysCfgSetPrioWithCLInterSys
-Description     :   在CL异系统流程状态机比较SYSCFG请求的优先级
-Input parameters:   VOS_VOID
-Outout parameters:  NONE
-Return Value    :   the compare result enum
-Modify History  :
-1)  Date           : 5/11/2015
-    Author         : w00176964
-    Modify content : Create
-*****************************************************************************/
+
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareSysCfgSetPrioWithCLInterSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -629,17 +471,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareSysCfgSetPrioWithCLInt
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_CompareTiScanTimerExpiredPrioWithCLInterSys
-Description     :   在CL异系统流程状态机比较SCAN TIMER超时消息的优先级
-Input parameters:   VOS_VOID
-Outout parameters:  NONE
-Return Value    :   the compare result enum
-Modify History  :
-1)  Date           : 5/11/2015
-    Author         : w00176964
-    Modify content : Create
-*****************************************************************************/
+
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareTiScanTimerExpiredPrioWithCLInterSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -648,17 +480,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareTiScanTimerExpiredPrio
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_STORE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_CompareTiWaitMmcPlmnSearchCnfTimerExpiredPrioWithCLInterSys
-Description     :   在CL异系统流程状态机比较等待MMC的搜网回复定时超时消息的优先级
-Input parameters:   VOS_VOID
-Outout parameters:  NONE
-Return Value    :   the compare result enum
-Modify History  :
-1)  Date           : 5/11/2015
-    Author         : w00176964
-    Modify content : Create
-*****************************************************************************/
+
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareTiWaitMmcPlmnSearchCnfTimerExpiredPrioWithCLInterSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -667,17 +489,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareTiWaitMmcPlmnSearchCnf
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_ComparePowerOffReqPrioWithCLInterSys
-Description     :   在CL异系统流程状态机比较关机请求的优先级
-Input parameters:   VOS_VOID
-Outout parameters:  NONE
-Return Value    :   the compare result enum
-Modify History  :
-1)  Date           : 5/11/2015
-    Author         : w00176964
-    Modify content : Create
-*****************************************************************************/
+
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_ComparePowerOffReqPrioWithCLInterSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -686,23 +498,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_ComparePowerOffReqPrioWithCLI
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareMoCallSuccessNtfPrioWithBSR
- 功能描述  : 主叫紧急呼的时候，与搜网状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareMoCallSuccessNtfPrioWithCLInterSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -711,23 +507,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareMoCallSuccessNtfPrioWi
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ABORT;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareEmcCallBackIndPrioWithCLInterSys
- 功能描述  : 收到退出回呼模式的时候，与关机状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:处理消息失败
-             VOS_TRUE:处理消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareEmcCallBackIndPrioWithCLInterSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -743,23 +523,7 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareEmcCallBackIndPrioWith
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithCLInterSys
- 功能描述  : 收到快搜请求时，与CL异系统状态机比较优先级
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_MSG_COMPARE_PRIO_RSLT_STORE消息缓存
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2016年1月6日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-****************************************************************************/
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithCLInterSys(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -769,7 +533,6 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareCdmaMoCallRedialSysAcq
 }
 
 
-/* Added by w00176964 for CL数传切换优化, 2015-12-11, begin */
 
 NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareCdmaMoCallRedialSysAcqNtfPrioWithSysCfg(
     VOS_UINT32                          ulEventType,
@@ -788,7 +551,6 @@ NAS_MSCC_MSG_COMPARE_PRIO_RSLT_ENUM_UINT8 NAS_MSCC_CompareCdmaMoCallRedialSysAcq
     return NAS_MSCC_MSG_COMPARE_PRIO_RSLT_BUTT;
 }
 
-/* Added by w00176964 for CL数传切换优化, 2015-12-11, end */
 
 
 

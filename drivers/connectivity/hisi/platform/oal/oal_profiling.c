@@ -1,23 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : oal_profiling.c
-  版 本 号   : 初稿
-  作    者   : wangtd
-  生成日期   : 2015年3月4日
-  最近修改   :
-  功能描述   : 性能维测
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年3月4日
-    作    者   : Wlan_mib_temp
-    修改内容   : 创建文件
-  2.日    期   : 2015年8月15日
-    作    者   : sunxiaolin
-    修改内容   : 添加thruput bypass TX方向维测点
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -77,21 +58,7 @@ oal_thruput_bypass_enum_uint8 g_auc_thruput_bypass_enable[OAL_THRUPUT_BYPASS_BUT
 #ifdef _PRE_WLAN_PROFLING_SOC
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
 //#pragma arm section rwdata = "BTCM", code ="ATCM", zidata = "BTCM", rodata = "ATCM"
-/*****************************************************************************
- 函 数 名  : oal_profiling_read16_single
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_read16_single(oal_uint32 ul_addr_start)
 {
     oal_uint16 us_val;
@@ -107,21 +74,7 @@ oal_void oal_profiling_read16_single(oal_uint32 ul_addr_start)
     OAL_IO_PRINT("Read Cycle   : %d cycles\n\r", ul_cycles);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_read16_ex
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月10日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_read16_ex(oal_uint32 ul_addr_start)
 {
     oal_uint16 us_val;
@@ -169,22 +122,7 @@ oal_void oal_profiling_read16_ex(oal_uint32 ul_addr_start)
     OAL_IO_PRINT("Read Cycle   : %d cycles\n\r", ul_cycles / 32);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_write16_single
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
-             oal_uint16 us_val
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_write16_single(oal_uint32 ul_addr_start, oal_uint16 us_val)
 {
     oal_uint32 ul_cycles;
@@ -199,22 +137,7 @@ oal_void oal_profiling_write16_single(oal_uint32 ul_addr_start, oal_uint16 us_va
     OAL_IO_PRINT("Write Cycle : %d cycles\n\r", ul_cycles);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_write16_ex
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
-             oal_uint16 us_val
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月10日
-    作    者   : Wlan_mib_temp
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_write16_ex(oal_uint32 ul_addr_start, oal_uint16 us_val)
 {
     oal_uint32 ul_cycles;
@@ -261,21 +184,7 @@ oal_void oal_profiling_write16_ex(oal_uint32 ul_addr_start, oal_uint16 us_val)
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_read32_single
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_read32_single(oal_uint32 ul_addr_start)
 {
     oal_uint32 ul_val;
@@ -291,21 +200,7 @@ oal_void oal_profiling_read32_single(oal_uint32 ul_addr_start)
     OAL_IO_PRINT("Read Cycle   : %d cycles\n\r", ul_cycles);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_read32_ex
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月10日
-    作    者   : Wlan_mib_temp
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_read32_ex(oal_uint32 ul_addr_start)
 {
     oal_uint32 ul_val;
@@ -353,22 +248,7 @@ oal_void oal_profiling_read32_ex(oal_uint32 ul_addr_start)
 }
 
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_write32_single
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
-             oal_uint32 ul_val
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_write32_single(oal_uint32 ul_addr_start, oal_uint32 ul_val)
 {
     oal_uint32 ul_cycles;
@@ -383,22 +263,7 @@ oal_void oal_profiling_write32_single(oal_uint32 ul_addr_start, oal_uint32 ul_va
     OAL_IO_PRINT("Write Cycle : %d cycles\n\r", ul_cycles);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_write32_ex
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
-             oal_uint32 ul_val
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月10日
-    作    者   : Wlan_mib_temp
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_write32_ex(oal_uint32 ul_addr_start, oal_uint32 ul_val)
 {
     oal_uint32 ul_cycles;
@@ -444,22 +309,7 @@ oal_void oal_profiling_write32_ex(oal_uint32 ul_addr_start, oal_uint32 ul_val)
     OAL_IO_PRINT("Write Cycle : %d cycles\n\r", ul_cycles / 32);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_read32_many
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
-             oal_uint32 ul_addr_end
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_read32_many(oal_uint32 ul_addr_start, oal_uint32 ul_addr_end)
 {
     oal_uint32 ul_addr = ul_addr_start;
@@ -484,23 +334,7 @@ oal_void oal_profiling_read32_many(oal_uint32 ul_addr_start, oal_uint32 ul_addr_
     OAL_IO_PRINT("Read Average : %d cycles\n\r", ul_cycles / ul_num);
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_write32_many
- 功能描述  :
- 输入参数  : oal_uint32 ul_addr_start
-             oal_uint32 ul_addr_end
-             oal_uint32 ul_val
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_write32_many(oal_uint32 ul_addr_start, oal_uint32 ul_addr_end, oal_uint32 ul_val)
 {
     oal_uint32 ul_addr = ul_addr_start;
@@ -527,21 +361,7 @@ oal_void oal_profiling_write32_many(oal_uint32 ul_addr_start, oal_uint32 ul_addr
 
 
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_check_soc
- 功能描述  :
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_check_soc(oal_void)
 {
     enable_caches();
@@ -680,21 +500,7 @@ oal_void oal_profiling_check_soc(oal_void)
 
 
 #ifdef _PRE_WLAN_PROFLING_MIPS
-/*****************************************************************************
- 函 数 名  : oal_profiling_enable_cycles
- 功能描述  : 打开cycles统计功能
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void oal_profiling_enable_cycles(oal_void)
 {
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
@@ -704,21 +510,7 @@ void oal_profiling_enable_cycles(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_get_cycles
- 功能描述  : 获取cycles统计值
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 oal_profiling_get_cycles(oal_void)
 {
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
@@ -728,21 +520,7 @@ oal_uint32 oal_profiling_get_cycles(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_disable_cycles
- 功能描述  : 关闭cycles统计功能
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void oal_profiling_disable_cycles(oal_void)
 {
 #if (_PRE_OS_VERSION_RAW == _PRE_OS_VERSION)
@@ -752,63 +530,21 @@ void oal_profiling_disable_cycles(oal_void)
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_stop_rx_save
- 功能描述  : 停止接收方向记录，防止数据被覆盖
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : y00196452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_stop_rx_save(oal_void)
 {
     g_mips_rx_statistic.en_switch = OAL_SWITCH_OFF;
 }
 EXPORT_SYMBOL(oal_profiling_stop_rx_save);
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_stop_tx_save
- 功能描述  : 停止发送方向记录，防止数据被覆盖
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月22日
-    作    者   : y00196452
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_stop_tx_save(oal_void)
 {
     g_mips_tx_statistic.en_switch = OAL_SWITCH_OFF;
 }
 EXPORT_SYMBOL(oal_profiling_stop_tx_save);
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_mips_tx_init
- 功能描述  : DMAC的发送流程mips统计初始化
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 oal_profiling_mips_tx_init(oal_void)
 {
     OAL_MEMZERO(&g_mips_tx_statistic, OAL_SIZEOF(oal_profiling_tx_statistic_stru));
@@ -816,21 +552,7 @@ oal_uint32 oal_profiling_mips_tx_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_tx_save_data
- 功能描述  : 发送流程记录数据
- 输入参数  : oam_profiling_tx_func_enum_uint8 en_func_index
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_tx_save_data(oal_profiling_tx_func_enum_uint8 en_func_index)
 {
     if (OAL_SWITCH_OFF == g_mips_tx_statistic.en_switch)
@@ -842,21 +564,7 @@ oal_void oal_profiling_tx_save_data(oal_profiling_tx_func_enum_uint8 en_func_ind
 }
 EXPORT_SYMBOL(oal_profiling_tx_save_data);
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_tx_dump
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月18日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oal_profiling_tx_dump(
                     oal_uint32                          ul_packet_idx,
                     oal_uint32                          ul_loop,
@@ -884,21 +592,7 @@ oal_void  oal_profiling_tx_dump(
 
 EXPORT_SYMBOL(oal_profiling_tx_dump);
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_tx_mips_show
- 功能描述  : 发送流程显示数据
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_tx_mips_show(oal_void)
 {
     oal_uint32 ul_packet_idx;
@@ -961,21 +655,7 @@ oal_void oal_profiling_tx_mips_show(oal_void)
 
 EXPORT_SYMBOL(oal_profiling_tx_mips_show);
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_mips_rx_init
- 功能描述  : DMAC的接收流程mips统计初始化
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 oal_profiling_mips_rx_init(oal_void)
 {
     OAL_MEMZERO(&g_mips_rx_statistic, OAL_SIZEOF(oal_profiling_rx_statistic_stru));
@@ -983,21 +663,7 @@ oal_uint32 oal_profiling_mips_rx_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_rx_save_data
- 功能描述  : 接收流程记录数据
- 输入参数  : oal_profiling_rx_func_enum_uint8 en_func_index
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_rx_save_data(oal_profiling_rx_func_enum_uint8 en_func_index)
 {
     if (OAL_SWITCH_OFF == g_mips_rx_statistic.en_switch)
@@ -1009,21 +675,7 @@ oal_void oal_profiling_rx_save_data(oal_profiling_rx_func_enum_uint8 en_func_ind
 }
 EXPORT_SYMBOL(oal_profiling_rx_save_data);
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_rx_mips_show
- 功能描述  : 接收流程显示数据
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : w00316376
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void oal_profiling_rx_mips_show(oal_void)
 {
     oal_uint32 ul_packet_idx;
@@ -1089,21 +741,7 @@ oal_void oal_profiling_rx_mips_show(oal_void)
 }
 EXPORT_SYMBOL(oal_profiling_rx_mips_show);
 
-/*****************************************************************************
- 函 数 名  : oal_profiling_mips_init
- 功能描述  :
- 输入参数  : oal_void
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月4日
-    作    者   : Wlan_mib_temp
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 oal_profiling_mips_init(oal_void)
 {
     oal_profiling_mips_tx_init();

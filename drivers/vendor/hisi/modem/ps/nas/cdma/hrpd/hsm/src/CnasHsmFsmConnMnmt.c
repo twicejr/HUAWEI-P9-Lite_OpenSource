@@ -761,23 +761,7 @@ VOS_UINT32 CNAS_HSM_RcvHsmSessionCloseInd_ConnMnmt_WaitConnOpenInd(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvHsmSessionCloseInd_ConnMnmt_WaitConnCloseInd
-Description     :   process the internal session close message in wait conn close ind state
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED--------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED----the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-06-03
-    Author         : y00307564
-    Modify content : Create
-2)  Date           : 2016-01-25
-    Author         : w00351686
-    Modify content : DTS2016011700511:当前缓存中有OHM消息，则清除此消息，避免多次向网侧发送session close
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvHsmSessionCloseInd_ConnMnmt_WaitConnCloseInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1260,22 +1244,7 @@ VOS_UINT32 CNAS_HSM_RcvCasPaRatModeNtf_ConnMnmt_WaitConnCloseInd(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_QuitFsmConnMnmtReq
-Description     :   Connetion managment procedure quit process
-Input parameters:   enRslt---------------Conn Managment quit result
-Outout parameters:  None
-Return Value    :   VOS_VOID
 
-Modify History  :
-1)  Date           : 2015-06-09
-    Author         : m00312079
-    Modify content : Create
-
-2)  日    期       : 2015年08月20日
-    作    者       : t00323010
-    修改内容       : DTS2015081904804 clear coverity
-*****************************************************************************/
 VOS_VOID CNAS_HSM_QuitFsmConnMnmtReq(
     CNAS_HSM_CONN_MNMT_RESULT_ENUM_UINT8                 enRslt
 )

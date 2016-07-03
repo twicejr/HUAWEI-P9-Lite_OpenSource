@@ -159,12 +159,10 @@ ULONG PTPV2_OverMacPktRcvProc(MBUF_S* pstMBuf)
     PTPV2_MSGHEADER_S *pstMsgHeader = NULL;
     ULONG ulPtpExactLen = 0;
 
-    /* Modified by wuling201943, 消除fortify告警, 2014/9/9   问题单号:DTS2014090901965 */
     if (NULL == pstMBuf)
     {
         return TCPIP_PTP_ERR_POINTER_NULL;
     }
-    /*End of Modified by wuling201943, 2014/9/9   问题单号:DTS2014090901965 */
 
     ulPktLen = MBUF_GET_TOTAL_DATA_LENGTH(pstMBuf);    /*获取报文长度*/
     ulIfRcvIndex = MBUF_GET_RECEIVE_IFNET_INDEX(pstMBuf);/*获取入接口索引*/

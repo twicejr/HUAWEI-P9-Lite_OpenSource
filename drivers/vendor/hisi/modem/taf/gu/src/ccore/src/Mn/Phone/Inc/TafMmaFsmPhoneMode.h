@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaFsmPhoneMode.h
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月8日
-  最近修改   :
-  功能描述   : TafMmaFsmPhoneMode.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月8日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TAF_MMA_FSM_PHONE_MODE_H__
 #define __TAF_MMA_FSM_PHONE_MODE_H__
@@ -113,12 +96,10 @@ VOS_UINT32 TAF_MMA_RcvUphyInitStatusInd_PhoneMode_WaitExternalModuleInit(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 VOS_UINT32 TAF_MMA_RcvTafPhoneModeSet_PhoneMode_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
 VOS_UINT32 TAF_MMA_RcvPihUsimStatusInd_PhoneMode_WaitPihUsimStatusInd(
     VOS_UINT32                          ulEventType,

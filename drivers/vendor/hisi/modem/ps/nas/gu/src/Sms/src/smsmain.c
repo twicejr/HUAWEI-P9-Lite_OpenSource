@@ -1,49 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name:          SmsMain.c
-  Description:        SMS的入口，初始化及消息分发函数
-  Function List:
-               1. SMS_TaskEntry
-               2. SMS_InitEntity
-               3. SMS_SmrRcvTafMsgDistr
-               4. SMC_RcvGmmMsgDistr
-               5. SMC_RcvMmMsgDistr
-               6. SMS_TimerMsgDistr
-               7. SMS_TimerStop
-               8. SMS_TimerStart
-               9. Nas_Sms_Print
 
-  History:
-  1.  张志勇      2004.03.09   新规作成
-  2.  郜东东   2005-10-19   根据问题单A32D00636修改
-  3. Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
-  4. Date:          2007-06-11'
-     Author:        z40661
-     Modification:  A32D11581
-  5. Date         : 2007-08-20
-     Author       : z40661
-     Modification : A32D12705
-  6.日    期   : 2007年8月28日
-    作    者   : l60022475
-    修改内容   : 问题单号：A32D12744,初始化SMS Timer句柄
-  7.日    期   : 2008年09月08日
-    作    者   : f62575
-    修改内容   : 问题单AT2D05583,CBS功能模块代码PC-lint错误
-  8.日    期   : 2009年02月12日
-    作    者   : f62575
-    修改内容   : 问题单A32D08966，参考V1R1版本的清除PC-LINT告警方式清除V2R1版本和V1R2版本告警
-  9.日    期   : 2009年3月23日
-    作    者   : f62575
-    修改内容   : AT2D08752, W接入方式下，信号较弱时连续发送多条短信会概率性出现发送操作失败；
- 10.日    期   : 2009年6月29日
-    作    者   : f62575
-    修改内容   : AT2D12568, 短信收发过程中软关机会导致SMS和TAF模块短信收发相关状态错误；
- 11.日    期   : 2010年2月20日
-    作    者   : f62575
-    修改内容   : AT2D16941，增加短信任意点回放功能
-*******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -57,10 +12,8 @@
 #include "SysNvId.h"
 #include "NVIM_Interface.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 
 #include "TafMmaInterface.h"
 
@@ -114,16 +67,7 @@ typedef struct
     NAS_SMS_OUTSIDE_RUNNING_CONTEXT_PART_ST      stOutsideCtx;
 }NAS_SMS_SDT_SMS_PART_ST;
 
-/*****************************************************************************
- 结构名    : NAS_SMS_LOG_STATE_INFO_STRU
- 结构说明  : 勾SMS的状态的结构
 
- 修改记录  :
- 1.日    期   : 2014年06月30日
-   作    者   : w00242748
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头 */ /*_H2ASN_Skip*/
@@ -142,19 +86,7 @@ LOCAL VOS_UINT8                                  f_ucNasSmsTc1mMaxExpTimes;
 *****************************************************************************/
 
 #ifdef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : NAS_SMS_RestoreContextData
- 功能描述  : 恢复SMS全局变量。
- 输入参数  : struct MsgCB *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_OK 数据恢复成功,否则,失败;
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年02月12日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 NAS_SMS_RestoreContextData(
     struct MsgCB                        *pstMsg
 )
@@ -183,19 +115,7 @@ VOS_UINT32 NAS_SMS_RestoreContextData(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_SndOutsideContextData
- 功能描述  : 把SMS外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年02月12日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_SMS_SndOutsideContextData()
 {
     NAS_SMS_SDT_SMS_PART_ST                      *pSndMsgCB     = VOS_NULL_PTR;
@@ -293,58 +213,22 @@ VOS_VOID SMS_ReportN2MOtaMsg(NAS_MSG_STRU *pNasMsg)
 }
 
 
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_BuildSmsOmInfo
- 功能描述  : 构造填写给OM查询SMS的消息内容
- 输入参数  : 无
- 输出参数  : pstMsg:待填写的消息内容
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年06月28日
-   作    者   : luokaihui 00167671
-   修改内容   : 新生成函数
- 2.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-*****************************************************************************/
 
 VOS_VOID NAS_SMS_BuildSmsOmInfo(
     NAS_OM_SMS_IND_STRU                *pstMsg
 )
 {
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     pstMsg->enSmcCsMoState = g_SmcCsEnt.SmcMo.ucState;
     pstMsg->enSmcCsMtState = g_SmcCsEnt.SmcMt.ucState;
     pstMsg->enSmcPsMoState = g_SmcPsEnt.SmcMo.ucState;
     pstMsg->enSmcPsMtState = g_SmcPsEnt.SmcMt.ucState;
     pstMsg->enSmrMoState   = g_SmrEnt.SmrMo.ucState;
     pstMsg->enSmrMtState   = g_SmrEnt.SmrMt.ucState;
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
 }
 
-/* Added by wx270776 for OM融合, 2015-7-21, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndOmSmsIndMsg
- 功能描述  : 发送OM的查询消息透传消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ulRet: 结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月21日
-   作    者   : wx270776
-   修改内容   : OM融合
- 2.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_SndOmSmsIndMsg(VOS_VOID)
 {
     NAS_OM_SMS_IND_STRU                 stNasOmSmsInd;
@@ -356,16 +240,12 @@ VOS_UINT32 NAS_MMC_SndOmSmsIndMsg(VOS_VOID)
 
     /* 填充消息内容 */
     NAS_SMS_BuildSmsOmInfo(&stNasOmSmsInd);
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     stNasOmSmsInd.enPrimId          = ID_NAS_OM_SMS_CONFIRM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
     stNasOmSmsInd.usToolsId         = 0;
 
     stDiagTransInd.ulModule         = DIAG_GEN_MODULE(VOS_GetModemIDFromPid(WUEPS_PID_SMS), DIAG_MODE_UMTS);;
     stDiagTransInd.ulPid            = WUEPS_PID_SMS;
-    /* Modified by zwx247453 for 寄存器上报, 2015-11-09, begin */
     stDiagTransInd.ulMsgId          = ((VOS_UINT32)(VOS_GetModemIDFromPid(WUEPS_PID_SMS)) << 16) + ID_NAS_OM_SMS_CONFIRM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-11-09, end */
     stDiagTransInd.ulLength         = sizeof(NAS_OM_SMS_IND_STRU);
     stDiagTransInd.pData            = &stNasOmSmsInd;
 
@@ -378,32 +258,12 @@ VOS_UINT32 NAS_MMC_SndOmSmsIndMsg(VOS_VOID)
 
     return ulRet;
 }
-/* Added by wx270776 for OM融合, 2015-7-21, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_SndOmInquireCnfMsg
- 功能描述  : 发送OM的查询消息回复
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : luokaihui l00167671
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年07月01日
-   作    者   : wx270776
-   修改内容   : OM融合
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_SndOmInquireCnfMsg(
     ID_NAS_OM_INQUIRE_STRU             *pstOmInquireMsg
 )
 {
-    /* Modified by wx270776 for OM融合, 2015-7-1, begin */
     VOS_UINT32                          ulMsgLen;
     NAS_OM_SMS_CONFIRM_STRU            *pstNasOmSmsCnf;
     VOS_UINT32                          ulRet;
@@ -444,29 +304,13 @@ VOS_VOID NAS_SMS_SndOmInquireCnfMsg(
     }
 
     return;
-    /* Modified by wx270776 for OM融合, 2015-7-1, end */
 
 
 
 }
 
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_RcvOmMaintainInfoInd
- 功能描述  : 处理来自MMA的PC工具可谓可测配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月24日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_RcvOmMaintainInfoInd(
     struct MsgCB                       *pstMsg
 )
@@ -483,22 +327,7 @@ VOS_VOID NAS_SMS_RcvOmMaintainInfoInd(
 
 }
 
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
-/*****************************************************************************
- 函 数 名  : NAS_SMS_RcvOmInquireReq
- 功能描述  : 处理来自OM的查询消息
- 输入参数  :
-             pstMsg      - 消息的首地址
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : luokaihui l00167671
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_SMS_RcvOmInquireReq(
     struct MsgCB                       *pstMsg
 )
@@ -514,21 +343,7 @@ VOS_VOID NAS_SMS_RcvOmInquireReq(
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : SMC_RcvOmMsgDistr
- 功能描述  : 处理来自OM的查询消息
- 输入参数  :
-             pRcvMsg      - 消息的首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月23日
-   作    者   : luokaihui l00167671
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID SMC_RcvOmMsgDistr(
                        VOS_VOID     *pRcvMsg                                        /* 收到的消息                               */
                        )
@@ -543,7 +358,6 @@ VOS_VOID SMC_RcvOmMsgDistr(
     }
 }
 
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
 VOS_VOID SMS_TaskEntry(struct MsgCB* pMsg )
 {
@@ -600,11 +414,9 @@ VOS_VOID SMS_TaskEntry(struct MsgCB* pMsg )
                 }
                 break;
             #endif
-            /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
             case MSP_PID_DIAG_APP_AGENT:
                 SMC_RcvOmMsgDistr(pMsg);
                 break;
-            /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
             default :
                 PS_NAS_LOG(WUEPS_PID_SMS, VOS_NULL, PS_LOG_LEVEL_WARNING, "LogRecord_Timer_HW:WARNING:Rcv Msg PID Error!");
                 break;
@@ -612,19 +424,7 @@ VOS_VOID SMS_TaskEntry(struct MsgCB* pMsg )
         }
     }
 }
-/*******************************************************************************
-  Module:   SMS_InitEntity
-  Function: 初始化SMS实体
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2. 日    期   : 2007年8月28日
-         作    者   : l60022475
-         修改内容   : 问题单号：A32D12744,初始化SMS Timer句柄
-*******************************************************************************/
+
 VOS_VOID SMS_InitEntity()
 {
 /* 全局量MR初始化为零 */
@@ -709,30 +509,7 @@ VOS_VOID SMS_InitEntity()
 
     g_SmrEnt.SmrMt.RelTimerInfo.ucTimerSta = SMS_TIMER_STATUS_STOP;
 }
-/*******************************************************************************
-Prototype       : SMS_Poweroff()
-Description     : 关闭计时器
-Input           : 无
-Output          : 无
-Calls           :
-Called          :供TAFM模块调用。
-Return          :无
-History         : ---
-  1.Date        : 2007-08-29
-    Author      : z40661
-    Modification: Create SMS_Poweroff for A32D12744
-  2.日    期   : 2012年8月29日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改
 
-  3.日    期   : 2013年4月23日
-    作    者   : z00234330
-    修改内容   : DMT测试需要关机时将TI值清除
-
-  4.日    期   : 2013年07月11日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级项目
-*******************************************************************************/
 VOS_VOID SMS_Poweroff(VOS_VOID)
 {
     /*停止所有定时器*/
@@ -785,11 +562,9 @@ VOS_VOID SMS_Poweroff(VOS_VOID)
     /*释放所有正在进行的短信发送或接受过程*/
     g_ucCsRegFlg = SMS_FALSE;                                                   /* 记录此状态                               */
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     SMC_ComCsMtErr(SMR_SMT_ERROR_NO_SERVICE, g_SmcCsEnt.SmcMt.ucTi);                                   /* 调用CS域MT实体的处理                     */
 
     SMC_ComCsMoErr(SMR_SMT_ERROR_NO_SERVICE, g_SmcCsEnt.SmcMo.ucTi);                         /* 调用CS域MO实体的处理                     */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     if (SMS_TRUE == g_SmcCsEnt.SmcMo.ucCpAckFlg)
     {                                                                   /* TI相等                                   */
@@ -799,10 +574,8 @@ VOS_VOID SMS_Poweroff(VOS_VOID)
 
     g_ucPsServiceStatus = SMS_FALSE;                                            /* 记录此状态                               */
 
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     SMC_ComPsMtErr(SMR_SMT_ERROR_NO_SERVICE);                                  /* 调用PS域MT实体的处理                     */
     SMC_ComPsMoErr(SMR_SMT_ERROR_NO_SERVICE);                                  /* 调用PS域MO实体的处理                     */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     if (SMS_TRUE == g_SmcPsEnt.SmcMo.ucCpAckFlg)
     {                                                                   /* TI相等                                   */
@@ -811,34 +584,16 @@ VOS_VOID SMS_Poweroff(VOS_VOID)
     }
 
 
-    /* Modified by z40661 for DMT工程修改, 2013-2-01, begin */
 #ifdef DMT
     SMS_InitEntity();
 #endif
-    /* Modified by z40661 for DMT工程修改, 2013-2-01, end */
 
     return;
 }
 
 /*lint -e438 -e830*/
 
-/*******************************************************************************
-  Module:   SMC_RcvLlcMsgDistr
-  Function: 根据消息类型，调用不同的LLC消息处理
-  Input:    VOS_VOID     *pRcvMsg     消息首地址
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   郜东东   2006.02.22   新规作成
-      2.日    期   : 2011年12月05日
-        作    者   : z00161729
-        修改内容   : V7R1 phaseIV修改
-      3.日    期  : 2013年03月13日
-        作    者  : z00214637
-        修改内容  : BodySAR项目
 
-*******************************************************************************/
 VOS_VOID SMC_RcvLlcMsgDistr(
                        VOS_VOID     *pRcvMsg                                        /* 收到的消息                               */
                        )
@@ -928,25 +683,7 @@ VOS_VOID SMC_RcvLlcMsgDistr(
 /*lint +e438 +e830*/
 
 
-/*******************************************************************************
-  Module:   SMC_RcvGmmMsgDistr
-  Function: 根据消息类型，调用不同的GMM消息处理
-  Input:    VOS_VOID     *pRcvMsg     消息首地址
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2004-03-09
-     Author       : g41091
-     Modification : 新规作成
-  2. Date         : 2006-02-22
-     Author       : g41091
-     Modification : 增加了通过GPRS发送短信的功能,问题单号:A32D02833
-  3.日    期  : 2013年03月13日
-    作    者  : z00214637
-    修改内容  : BodySAR项目
 
-*******************************************************************************/
 VOS_VOID SMC_RcvGmmMsgDistr(
                        VOS_VOID     *pRcvMsg                                        /* 收到的消息                               */
                        )
@@ -1004,24 +741,7 @@ VOS_VOID SMC_RcvGmmMsgDistr(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_SMS_RcvLmmMsgDistr
- 功能描述  : 根据消息类型，调用不同的LMM消息处理
- 输入参数  : pRcvMsg - 消息首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月28日
-   作    者   : z00161729
-   修改内容   : 新生成函数
- 2.日    期   : 2012年8月14日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改,删除ID_LMM_SMS_SERVICE_STATUS_IND消息处理
-
-*****************************************************************************/
 VOS_VOID NAS_SMS_RcvLmmMsgDistr(
     VOS_VOID                           *pRcvMsg
 )
@@ -1054,28 +774,7 @@ VOS_VOID NAS_SMS_RcvLmmMsgDistr(
 #endif
 
 
-/*******************************************************************************
-  Module:   SMC_RcvMmMsgDistr
-  Function: 根据消息类型，调用不同的MM消息处理
-  Input:    VOS_VOID     *pRcvMsg     消息首地址
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. Date         : 2004-03-09
-     Author       : g41091
-     Modification : 新规作成
-  2. Date         : 2006-02-22
-     Author       : g41091
-     Modification : 增加了通过GPRS发送短信的功能,问题单号:A32D02833
-  3.日    期  : 2013年03月13日
-    作    者  : z00214637
-    修改内容  : BodySAR项目
-  4.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
 
-*******************************************************************************/
 VOS_VOID SMC_RcvMmMsgDistr(
                        VOS_VOID     *pRcvMsg                                        /* 收到的消息                               */
                        )
@@ -1125,33 +824,17 @@ VOS_VOID SMC_RcvMmMsgDistr(
                               ((MMSMS_DATA_IND_STRU *)pRcvMsg)->SmsMsg.ulNasMsgSize );
         }
         break;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     case MMSMS_NACK_DATA_IND:
         NAS_SMS_RcvNackMsg((MMSMS_NACK_DATA_IND_STRU *)pRcvMsg);
         break;
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
     default:
         break;
     }
 }
-/*******************************************************************************
-  Module:   SMS_TimerMsgDistr
-  Function: 根据消息类型，调用不同的TIMER溢出处理
-  Input:    VOS_VOID     *pRcvMsg     消息首地址
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2. 日    期   : 2013年06月28日
-         作    者   : l00167671
-         修改内容   : DCM LOGGER项目定时器事件上报
-*******************************************************************************/
+
 VOS_VOID SMS_TimerMsgDistr(VOS_UINT32 ulTimerId)
 {
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     NAS_TIMER_EventReport(ulTimerId, WUEPS_PID_SMS, NAS_OM_EVENT_TIMER_OPERATION_EXPIRED);
-    /* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
     switch(ulTimerId)
     {
@@ -1180,30 +863,7 @@ VOS_VOID SMS_TimerMsgDistr(VOS_UINT32 ulTimerId)
     }
     return;
 }
-/*******************************************************************************
-  Module:   SMS_TimerStop
-  Function: 停止TIMER
-  Input:    HTIMER    TimerId     定时器id
-            VOS_UINT8       ucState     TIMER状态
-  Output:   VOS_VOID
-  NOTE:
-  RETURN   : VOS_UINT8
-             SMS_TRUE  --- 成功
-             SMS_FALSE --- 失败
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2.  张志勇   2004-7-8     修改参数TimerId
-      3.  郜东东   2005-12-26   修改函数返回值类型
-4. Date:          2006-08-19
-   Author:        郜东东
-   Modification:  OSA优化整改,问题单号:A32D05312
-  5.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  6.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*******************************************************************************/
+
 VOS_UINT8 SMS_TimerStop(
                         VOS_UINT8       ucTimerId
                    )
@@ -1239,37 +899,7 @@ VOS_UINT8 SMS_TimerStop(
 
     return SMS_TRUE;
 }
-/*******************************************************************************
-  Module:   SMS_TimerStart
-  Function: 启动TIMER
-  Input:    HTIMER    TimerId     定时器id
-  Output:   VOS_VOID
-  NOTE:
-  RETURN   : VOS_UINT8
-             SMS_TRUE  --- 成功
-             SMS_FALSE --- 失败
-  History:
-      1.  张志勇      2004.03.09   新规作成
-      2.  张志勇   2004-7-8     修改参数TimerId
-      3.  郜东东   2005-12-26   修改函数返回值类型
-4. Date:          2006-08-19
-   Author:        郜东东
-   Modification:  OSA优化整改,问题单号:A32D05312
-5. Date:          2007-06-11'
-   Author:        z40661
-   Modification:  A32D11581
-6. 日    期   : 2012年8月10日
-   作    者   : L00171473
-   修改内容   : DTS2012082204471, TQE清理
-7.日    期   : 2012年12月13日
-  作    者   : L00171473
-  修改内容   : DTS2012121802573, TQE清理
 
-8.日    期   : 2013年9月4日
-  作    者   : w00167002
-  修改内容   : DTS2013090403562:NAS定时器清理，需要启动32K定时器。将MM/MMA/SMS
-                模块的循环定时器修改为非循环定时器。
-*******************************************************************************/
 VOS_UINT8 SMS_TimerStart(
                     VOS_UINT8               ucTimerId
                     )
@@ -1313,26 +943,7 @@ VOS_UINT8 SMS_TimerStart(
     return SMS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : SMS_GetTimerLength
- 功能描述  : 获取短信定时器时长
- 输入参数  : 无
- 输出参数  : SMS_TIMER_LENGTH_STRU              *pstTimerLength 定制的定时器时长
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月28日
-    作    者   : f62575
-    修改内容   : 新生成函数 DTS2012122406218, 短信正向质量发现问题: 短信发送流程部分
-  2.日    期   : 2013年02月04日
-    作    者   : f62575
-    修改内容   : DTS2013013104268, TC1M定时器超时重传次数自适应；
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID SMS_GetTimerLength(
     SMS_TIMER_LENGTH_STRU              *pstTimerLength
 )
@@ -1365,21 +976,7 @@ VOS_VOID SMS_GetTimerLength(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SMS_GetCustomizedPara
- 功能描述  : 初始化短信定制参数
- 输入参数  : 无
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年02月04日
-    作    者   : f62575
-    修改内容   : 新生成函数 DTS2013013104268, TC1M定时器超时重传次数自适应；
-
-*****************************************************************************/
 VOS_VOID SMS_GetCustomizedPara(VOS_VOID)
 {
     SMS_TIMER_LENGTH_STRU               stTimerLength;
@@ -1419,21 +1016,7 @@ VOS_VOID SMS_GetCustomizedPara(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SMS_GetTc1mTimeOutRetryFlag
- 功能描述  : 获取TC1M定时器超时后是否重发标志
- 输入参数  : VOS_UINT8                           ucExpireTimes  已经重发的次数
- 输出参数  : VOS_BOOL                           *pbRetryFlag    是否需要重发
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年02月04日
-    作    者   : f62575
-    修改内容   : 新生成函数 DTS2013013104268, 获取TC1M定时器超时后是否重发标志；
-
-*****************************************************************************/
 VOS_VOID SMS_GetTc1mTimeOutRetryFlag(
     VOS_UINT8                           ucExpireTimes,
     VOS_BOOL                           *pbRetryFlag
@@ -1453,21 +1036,7 @@ VOS_VOID SMS_GetTc1mTimeOutRetryFlag(
 
 /*lint -e961*/
 
-/*******************************************************************************
-  Module:   SMC_GetTimerInfo
-  Function: 根据TimerId获得Timer的相应信息
-  Input:    VOS_UINT8    ucTimerId
-  Output:   HTIMER**     ppTimer
-            VOS_UINT32*  pulTimerLength
-            VOS_UINT8**  ppucTimerSta
-  NOTE:
-  RETURN   : VOS_VOID
-  History:
-      1.  郜东东   2006-08-19   因OSA优化整改而创建,问题单号:A32D05312
-    2.日    期   : 2012年12月28日
-      作    者   : 傅映君/f62575
-      修改内容   : DTS2012122406218, 短信正向质量发现问题: 短信发送流程部分
-*******************************************************************************/
+
 VOS_VOID SMC_GetTimerInfo( VOS_UINT8    ucTimerId,
                            HTIMER**     ppTimer,
                            VOS_UINT32*  pulTimerLength,
@@ -1523,25 +1092,7 @@ VOS_VOID SMC_GetTimerInfo( VOS_UINT8    ucTimerId,
 }
 /*lint +e961*/
 
-/******************************************************************************
- * 函数名称 ： WuepsSmsPidInit
- * 功能描述 ： WUEPS SMS PID的初始化函数
- * 参数说明 ： 无
- * 备    注 ：
- * 返 回 值 ： VOS_UINT32 初始化结果：
- *             0  : 成功
- *             非0: 失败
- *
- * 变更历史 ：
- *           No.  姓名      变更                                    日   期
- *           1    张志勇    新建                                   2005.02.24
- 2.日    期   : 2012年12月28日
-   作    者   : f62575
-   修改内容   : 新生成函数 DTS2012122406218, 短信正向质量发现问题: 短信发送流程部分
- 3.日    期   : 2013年02月04日
-   作    者   : f62575
-   修改内容   : DTS2013013104268, TC1M定时器超时重传次数自适应；
- *****************************************************************************/
+
 VOS_UINT32 WuepsSmsPidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
     switch( ip )
@@ -1573,21 +1124,7 @@ VOS_UINT32 WuepsSmsPidInit ( enum VOS_INIT_PHASE_DEFINE ip )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SMS_LogSmsStateInfo
- 功能描述  : 勾SMS的状态
- 输入参数  : ucSmsState: SMS的当前状态
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月30日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_SMS_LogSmsStateInfo(
     VOS_UINT8                           ucSmsState
 )
@@ -1620,20 +1157,7 @@ VOS_VOID  NAS_SMS_LogSmsStateInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SMS_GetPsConcatenateFlagFromNV
- 功能描述  : 读PS域短信控制NV设置连续发送标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : j00174725
-    修改内容   : DTS2015051106584
-*****************************************************************************/
 VOS_VOID  SMS_GetPsConcatenateFlagFromNV(VOS_VOID)
 {
     VOS_UINT32                          ulRet;
@@ -1666,20 +1190,7 @@ VOS_VOID  SMS_GetPsConcatenateFlagFromNV(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : SMS_GetSmsFilterEnableFlgFromNV
- 功能描述  : 从Nv中读取SMS短信过滤功能是否使能的标识
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID SMS_GetSmsFilterEnableFlgFromNV( VOS_VOID )
 {
     NAS_NV_SMS_FILTER_CFG_STRU          stSmsFilterCfg;
@@ -1709,80 +1220,25 @@ VOS_VOID SMS_GetSmsFilterEnableFlgFromNV( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MM_GetSmsFilterFlg
- 功能描述  : 提供给接入层获取过滤功能是否打开的Nv
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要进行过滤
-             VOS_FALSE:不需要进行过滤
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MM_GetSmsFilterFlg( VOS_VOID )
 {
     return g_ulNasSmsFilterEnableFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MML_GetSmsFilterFlg
- 功能描述  : 提供给接入层获取过滤功能是否打开的Nv
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要进行过滤
-             VOS_FALSE:不需要进行过滤
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 NAS_MML_GetSmsFilterFlg( VOS_VOID )
 {
     return g_ulNasSmsFilterEnableFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : GUNAS_GetSmsFilterFlg
- 功能描述  : 提供给GUNAS获取过滤功能是否打开的Nv
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要进行过滤
-             VOS_FALSE:不需要进行过滤
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月17日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 GUNAS_GetSmsFilterFlg( VOS_VOID )
 {
     return g_ulNasSmsFilterEnableFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : SMS_SetSmsPsConcatenateFlag
- 功能描述  : 设置PS域短信是否连续发送
- 输入参数  : enFlag
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : j00174725
-    修改内容   : DTS2015051106584
-*****************************************************************************/
 VOS_VOID SMS_SetSmsPsConcatenateFlag(
     NAS_SMS_PS_CONCATENATE_ENUM_UINT8 enFlag
 )
@@ -1790,20 +1246,7 @@ VOS_VOID SMS_SetSmsPsConcatenateFlag(
     g_enNasSmsPsConcatencateFlag = enFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : SMS_GetSmsPsConcatenateFlag
- 功能描述  : 获取PS域短信是否连续发送
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : j00174725
-    修改内容   : DTS2015051106584
-*****************************************************************************/
 NAS_SMS_PS_CONCATENATE_ENUM_UINT8 SMS_GetSmsPsConcatenateFlag(VOS_VOID)
 {
     return g_enNasSmsPsConcatencateFlag;

@@ -1,56 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hi6210_pcm.c
-  版 本 号   : 初稿
-  作    者   : 石旺来 s00212991
-  生成日期   : 2012年7月31日
-  最近修改   :
-  功能描述   : xxxx
-  函数列表   :
-              hi6210_exit
-              hi6210_init
-              hi6210_intr_handle_cp
-              hi6210_intr_handle_pb
-              hi6210_c
-              hi6210_mb_intr_handle
-              hi6210_notify_isr_register
-              hi6210_notify_pcm_close
-              hi6210_notify_pcm_hw_free
-              hi6210_notify_pcm_hw_params
-              hi6210_notify_pcm_open
-              hi6210_notify_pcm_prepare
-              hi6210_notify_pcm_set_buf
-              hi6210_notify_pcm_trigger
-              hi6210_notify_recv_isr
-              hi6210_pcm_close
-              hi6210_pcm_free
-              hi6210_pcm_hifi_close
-              hi6210_pcm_hifi_hw_free
-              hi6210_pcm_hifi_hw_params
-              hi6210_pcm_hifi_open
-              hi6210_pcm_hifi_pointer
-              hi6210_pcm_hifi_prepare
-              hi6210_pcm_hifi_trigger
-              hi6210_pcm_hw_free
-              hi6210_pcm_hw_params
-              hi6210_pcm_new
-              hi6210_pcm_open
-              hi6210_pcm_pointer
-              hi6210_pcm_prepare
-              hi6210_pcm_trigger
-              hi6210_platform_probe
-              hi6210_platform_remove
-              status_read_proc_hstatus
-              status_write_proc_hstatus
-  修改历史   :
-  1.日    期   : 2012年7月31日
-    作    者   : 石旺来 s00212991
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*
 the 2 MACRO should be used seperately
@@ -494,21 +442,7 @@ free_list_node:
 }
 #endif
 
-/*****************************************************************************
-  函 数 名  : hi6210_intr_handle_pb
-  功能描述  : PLAYBACK处理分支, 核间通信一次数据传输完成后的处理
-  输入参数  : struct snd_pcm_substream *substream : 本次数据传输的substream
-  输出参数  : 无
-  返 回 值  : STATIC irq_rt_t
-  调用函数  : hi6210_mb_intr_handle()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC irq_rt_t hi6210_intr_handle_pb(struct snd_pcm_substream *substream)
 {
 	struct hi6210_runtime_data *prtd        = NULL;
@@ -583,21 +517,7 @@ STATIC irq_rt_t hi6210_intr_handle_pb(struct snd_pcm_substream *substream)
 	return IRQ_HDD;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_intr_handle_cp
-  功能描述  : CAPTURE处理分支, 核间通信一次数据传输完成后的处理
-  输入参数  : struct snd_pcm_substream *substream
-  输出参数  : 无
-  返 回 值  : STATIC irq_rt_t
-  调用函数  : hi6210_mb_intr_handle()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC irq_rt_t hi6210_intr_handle_cp(struct snd_pcm_substream *substream)
 {
 	struct hi6210_runtime_data *prtd        = NULL;
@@ -670,22 +590,7 @@ STATIC irq_rt_t hi6210_intr_handle_cp(struct snd_pcm_substream *substream)
 	return IRQ_HDD;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_mb_intr_handle
-  功能描述  : 邮箱核间通信通用处理函数
-  输入参数  : unsigned short pcm_mode        : PLAYBACK or CAPTURE
-  snd_pcm_substream *substream   : substream
-  输出参数  : 无
-  返 回 值  : STATIC irq_rt_t
-  调用函数  : hi6210_notify_recv_isr()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC irq_rt_t hi6210_mb_intr_handle(unsigned short pcm_mode,
 		struct snd_pcm_substream *substream)
 {
@@ -744,22 +649,7 @@ STATIC irq_rt_t hi6210_mb_intr_handle(unsigned short pcm_mode,
 	return ret;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_mailbox_send_data
-  功能描述  : 邮箱核间通信数据发送
-  输入参数  : void *pmsg_body        : 要发送的数据包
-  unsigned int msg_len   : 数据包长度
-  输出参数  : 无
-  返 回 值  : STATIC int
-  调用函数  : hi6210_notify_pcm_*()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_mailbox_send_data( void *pmsg_body, unsigned int msg_len,
 		unsigned int msg_priority )
 {
@@ -814,21 +704,7 @@ STATIC int hi6210_mailbox_send_data( void *pmsg_body, unsigned int msg_len,
 	return (int)ret;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_notify_pcm_open
-  功能描述  : 核间通信告知HIFI PCM OPEN
-  输入参数  : hifi_chn_pcm_open *psrc_data : 要传输数据内容
-  输出参数  : 无
-  返 回 值  : STATIC int, 0 for Success; Others for error
-  调用函数  : hi6210_pcm_hifi_open()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_notify_pcm_open( unsigned short pcm_mode )
 {
 	struct hifi_chn_pcm_open msg_body   = { 0 };
@@ -855,21 +731,7 @@ STATIC int hi6210_notify_pcm_open( unsigned short pcm_mode )
 }
 
 
-/*****************************************************************************
-  函 数 名  : hi6210_notify_pcm_close
-  功能描述  : 核间通信告知HIFI PCM CLOSE
-  输入参数  : hifi_chn_pcm_close *psrc_data : 要传输数据内容
-  输出参数  : 无
-  返 回 值  : STATIC int, 0 for Success; Others for error
-  调用函数  : hi6210_pcm_hifi_close()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_notify_pcm_close( unsigned short pcm_mode )
 {
 	struct hifi_chn_pcm_close msg_body  = { 0 };
@@ -896,22 +758,7 @@ STATIC int hi6210_notify_pcm_close( unsigned short pcm_mode )
 	return ret;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_notify_pcm_hw_params
-  功能描述  : 核间通信告知HIFI PCM HW PARAMS
-  输入参数  : unsigned short pcm_mode : PLAYBACK or CAPTURE
-  struct snd_pcm_hw_params *params : 配置参数
-  输出参数  : 无
-  返 回 值  : STATIC int, 0 for Success; Negative for error
-  调用函数  : hi6210_pcm_hifi_hw_params()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_notify_pcm_hw_params( unsigned short pcm_mode,
 		struct snd_pcm_hw_params *params )
 {
@@ -1000,21 +847,7 @@ STATIC int hi6210_notify_pcm_hw_params( unsigned short pcm_mode,
 	return ret;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_notify_pcm_trigger
-  功能描述  : 核间通信告知HIFI PCM TRIGGER
-  输入参数  : hifi_chn_pcm_trigger *psrc_data : 要传输数据内容
-  输出参数  : 无
-  返 回 值  : STATIC int, 0 for Success; Others for error
-  调用函数  : hi6210_pcm_hifi_trigger()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_notify_pcm_trigger( int cmd,
 		struct snd_pcm_substream *substream )
 {
@@ -1059,21 +892,7 @@ STATIC int hi6210_notify_pcm_trigger( int cmd,
 	return ret;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_notify_pcm_set_buf
-  功能描述  : 核间通信告知HIFI 数据BUFFER已就绪
-  输入参数  : hifi_channel_set_buffer *psrc_data
-  输出参数  : 无
-  返 回 值  : STATIC int, 0 for Success; Others for error
-  调用函数  : hi6210_intr_handle_pb()和hi6210_intr_handle_cp()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_notify_pcm_set_buf( struct snd_pcm_substream *substream )
 {
 	struct hi6210_runtime_data *prtd        =
@@ -1126,24 +945,7 @@ STATIC int hi6210_notify_pcm_set_buf( struct snd_pcm_substream *substream )
 	return ret;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_notify_recv_isr
-  功能描述  : 解析核间通信消息接收到的数据包的内容，并做相应处理，
-  注册为核间通信邮箱的接收函数
-  输入参数  : void *usr_para             : 注册时传递的参数
-  void *mail_handle          : 邮箱数据参数
-  unsigned int mail_len      : 邮箱数据长度
-  输出参数  : 无
-  返 回 值  : STATIC irq_rt_t
-  调用函数  : hi6210_pcm_new()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC irq_rt_t hi6210_notify_recv_isr( void *usr_para, void *mail_handle,  unsigned int mail_len )
 {
 	struct snd_pcm_substream * substream    = NULL;
@@ -1238,21 +1040,7 @@ STATIC irq_rt_t hi6210_notify_recv_isr( void *usr_para, void *mail_handle,  unsi
 #endif
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_notify_isr_register
-  功能描述  : 邮箱核间数据接收回调函数注册
-  输入参数  : void *pisr     : 回调函数指针
-  输出参数  : 无
-  返 回 值  : STATIC int
-  调用函数  : hi6210_pcm_new()
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年7月31日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_notify_isr_register( irq_hdl_t pisr )
 {
 #ifdef CONFIG_SND_TEST_AUDIO_PCM_LOOP
@@ -1281,22 +1069,7 @@ STATIC int hi6210_notify_isr_register( irq_hdl_t pisr )
 }
 
 
-/*****************************************************************************
-  函 数 名  : hi6210_pcm_hifi_hw_params
-  功能描述  : 硬件通道参数配置，这里使用核间通信告知HIFI进行相关配置
-  输入参数  : struct snd_pcm_substream *substream
-  struct snd_pcm_hw_params *params
-  输出参数  : 无
-  返 回 值  : static int
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年8月4日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_pcm_hifi_hw_params(struct snd_pcm_substream *substream,
 		struct snd_pcm_hw_params *params)
 {
@@ -1357,21 +1130,7 @@ STATIC int hi6210_pcm_hifi_hw_free(struct snd_pcm_substream *substream)
 	return snd_pcm_lib_free_pages(substream);
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_pcm_hifi_prepare
-  功能描述  : 初始化私有数据private，这里使用核间通信告知HIFI进行pcm prepare
-  输入参数  : struct snd_pcm_substream *substream
-  输出参数  : 无
-  返 回 值  : static int
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年8月4日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_pcm_hifi_prepare(struct snd_pcm_substream *substream)
 {
 	struct hi6210_runtime_data *prtd        =
@@ -1399,23 +1158,7 @@ STATIC int hi6210_pcm_hifi_prepare(struct snd_pcm_substream *substream)
 	return ret;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_pcm_hifi_trigger
-  功能描述  : 触发启动或停止PCM数据流，这里使用核间通信告知HIFI触发，进行相关-
-  DMA操作
-  输入参数  : struct snd_pcm_substream *substream
-  int cmd
-  输出参数  : 无
-  返 回 值  : static int
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年8月4日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_pcm_hifi_trigger(int cmd, struct snd_pcm_substream *substream)
 {
 	struct snd_pcm_runtime *runtime         = substream->runtime;
@@ -1484,21 +1227,7 @@ STATIC int hi6210_pcm_hifi_trigger(int cmd, struct snd_pcm_substream *substream)
 	return ret;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_pcm_hifi_pointer
-  功能描述  : 查询当前PCM数据流所处帧数
-  输入参数  : struct snd_pcm_substream *substream
-  输出参数  : 无
-  返 回 值  : static snd_pcm_uframes_t
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年8月4日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC snd_pcm_uframes_t hi6210_pcm_hifi_pointer(struct snd_pcm_substream *substream)
 {
 	struct snd_pcm_runtime *runtime         = substream->runtime;
@@ -1519,21 +1248,7 @@ STATIC snd_pcm_uframes_t hi6210_pcm_hifi_pointer(struct snd_pcm_substream *subst
 	return (snd_pcm_uframes_t)frame;
 }
 
-/*****************************************************************************
-  函 数 名  : hi6210_pcm_hifi_open
-  功能描述  : PCM开启，进行基本初始化操作，同时使用核间通信告知HIFI PCM开启
-  输入参数  : struct snd_pcm_substream *substream
-  输出参数  : 无
-  返 回 值  : static int
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2012年8月4日
-  作    者   : 石旺来 s00212991
-  修改内容   : 新生成函数
-
- *****************************************************************************/
 STATIC int hi6210_pcm_hifi_open(struct snd_pcm_substream *substream)
 {
 	struct hi6210_runtime_data *prtd    = NULL;

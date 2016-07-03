@@ -1,33 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              etharp_pub_type.h
-*
-*  Project Code: VISPV100R005
-*   Module Name: ETHARP   
-*  Date Created: 2004-7-7
-*        Author: zhang hong yan(19316)
-*   Description: 以太网组件的公共头文件
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE          NAME                 DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2004-7-7      zhanghongyan(19316)  Create the first version.
-*  2006-4-27     wang xin(03278)      根据编程规范，对文件进行规范化整理
-*  2006-05-11    luyao                为支持ARM CPU字节对齐特性，修改结构。
-*  2006-05-13    l48923               Delete useless code
-*  2006-07-12    wuhailan             第二阶段质量整改(A82D03515)
-*  2008-08-13    f54882               Modify for BC3D00237,新增IP冲突消除检测相关结构
-*  2008-11-29    q62011               Add for BC3D00792
-*                                     DR.131获取链路层状态
-*                                     DR.133以太模块需提供发送ARP 报文的接口
-*******************************************************************************/
+
 
 #ifndef    _ETHARP_PUB_TYPE_H_
 #define    _ETHARP_PUB_TYPE_H_
@@ -95,7 +66,6 @@ enum enumArpMsg
 */
 #define ETHARP_ETH_AND_ARP_MACCHECK_POLICY   2  /*支持MCCP 进行源MAC的检查:  ETH报文不检查  ARP报文也不检查*/
 
-/* Modify by z00171897/s00176784, at 2011-06-02. 修改原因: 支持节点老化前发送单播ARP请求 */
 /* ARP老化超时处理标志 */
 #define ETHARP_ARP_EXPIRE_PROC       1
 /* ARP非老化超时处理标志 */
@@ -348,9 +318,8 @@ typedef struct  tagMTSOFTC
     ULONG                  ulVlanId ;      /* vlan ID */
     
     BOOL_T                 bEnableSpecArpPrxy;  /*该接口的特殊ARP代理功能是否生效*/
-    BOOL_T                 bEnableIfArpStrict;  /*Added by l00213099,ARP严格学习接口配置开关,2014-04-03 */
+    BOOL_T                 bEnableIfArpStrict;
 
-    /* Add by z171897/s176784, at 2011-06-02. 修改原因: 支持获取保存的ARP报文队列 */
     MBUF_QUEUE_S           stSndArpPktQue;  
     MBUF_QUEUE_S           stRcvArpPktQue;
 }ETHARP_MTSOFTC_S;
@@ -388,8 +357,8 @@ typedef struct  tagMTSOFTCSUB
     VOID *                  pPoeClientCB;                /*PPPoE Client CB Pointer*/
     
     UINTPTR      ulVLANPortInfo;  /* The address of the VLAN port info structure */
-    BOOL_T                 bEnableSpecArpPrxy;  /*DTS2012112200999 该接口的特殊ARP代理功能是否生效*/
-    BOOL_T                 bEnableIfArpStrict;  /*Added by l00213099,ARP严格学习接口配置开关,2014-04-03 */
+    BOOL_T                 bEnableSpecArpPrxy;
+    BOOL_T                 bEnableIfArpStrict;
 
     ETHSTAT_S              stETHStat; /* 以太接口的报文统计信息 */
    
@@ -402,7 +371,7 @@ typedef struct tagETHARP_MOD_INFO
 {
     ULONG    ulEthModID;
     ULONG    ulSID_ETHARP_MTSOFTC_S;
-    ULONG    ulSID_ETHARP_MTSOFTCSUB_S; /*Added by f54882, 子接口以太结构SID, 2008/01/17 */
+    ULONG    ulSID_ETHARP_MTSOFTCSUB_S;
     ULONG    ulSID_ETHARP_ARPRTENTRY_S;
     ULONG    ulSID_ETHARP_ARPCMD_S;    
     ULONG    ulQUE_PPPOE_CLIENT_INPUT;
@@ -415,7 +384,7 @@ typedef struct tagETHARP_MOD_INFO
     ULONG    ulETH_ENTRY_MAINTYPE;/*waitlist*/
     ULONG    ulMAX_APRNUMBER_DYNAMIC;
     ULONG    ulMAX_STATIC_ARPNUMBER;
-    ULONG    ulETH_IPINPUT_OPTIMIZE; /*Added by x36317, 标识是否使能IP队列调度优化, 2006-04-27*/
+    ULONG    ulETH_IPINPUT_OPTIMIZE;
     ULONG    ulBakDynamicArp  ; /*标识是否备份动态ARP*/
     ULONG    ulBakMacSet; /*标识physical地址的设置方式*/
     ULONG    ulQUE_ISIS_INPUT;
@@ -427,8 +396,8 @@ typedef struct tagETHARP_MOD_INFO
     ULONG    ulFreeArpReplyUnicast;   /* 是否单播应答地址冲突的免费ARP报文 */
     ULONG    ulArpTimerList;  /* ARP timer list */
     ULONG    ulSysDynicArpMaxNum;        /* 需求201305305465,系统级可配最大动态ARP数目 */
-    ULONG    ulArpStrictLearnMode;       /* Added by l00213099，ARP严格学习全局模式和接口模式配置开关,2014-04-03 */
-    ULONG    ulArpSwapFalg; /*add by wuling for DTS2014111905832, ARP规格满情况下的原有替换策略,默认为1即保持原有的替换策略,0时关闭替换策略*/
+    ULONG    ulArpStrictLearnMode;
+    ULONG    ulArpSwapFalg;
 } ETHARP_MOD_INFO_S;
 
 enum enum_Eth_ErrCode 
@@ -573,7 +542,6 @@ typedef struct tagETHARP_VLAN_PROC_HOOK
 #define ETH_IP_IF_MaxIpAddr g_pstCoreAM4FunTable->pfIP_IF_MaxIpAddr
 #define ETH_IP_IF_IsThisIfIpAddr g_pstCoreAM4FunTable->pfIP_IF_IsThisIfIpAddr
 #define ETH_IP_ArpProxy_IsValidIpAddr g_pstCoreAM4FunTable->pfIP_ArpProxy_IsValidIpAddr
-/* Added by l57500 for 同步VISPV1R5问题单A82D13365,2007-05-09 */
 /* 查询指定的地址是否和接口上的地址处于相同网段 */
 #define ETH_IP_IF_IsSameNet g_pstCoreAM4FunTable->pfIP_IF_IsSameNet
 /* End of addition */
@@ -581,7 +549,6 @@ typedef struct tagETHARP_VLAN_PROC_HOOK
 #define ETH_IP_IsLocalIfAddr g_pstCoreAM4FunTable->pfIP_IsLocalIfAddr
 #define ETH_IP_IsBroadcast g_pstCoreAM4FunTable->pfIP_IsBroadcast
 
-/* Added by likaikun213099, 地址冲突告警处理, 2014/10/24 */
 #define ETH_IP_SetIpConflictFlag   g_pstCoreAM4FunTable->pfIP_SetIpConflictFlag
 #define ETH_IP_ClearIpConflictFlag g_pstCoreAM4FunTable->pfIP_ClearIpConflictFlag
 
@@ -620,7 +587,7 @@ typedef struct tagIpConflictItem
     ULONG ulIpAddr;         /*冲突地址*/
     ULONG ulMacNum;         /*同一个冲突地址对应冲突physical地址个数*/
     ETHARP_MAC_Flag_Item_S stMacFlagItem[ETHARP_MAX_IP_MAC_ITEM] ;/*一个地址可以检测4个与其冲突的physical地址*/
-    ULONG ulVrfIndex;      /*ulIfIndex 所在的vrf index  DTS2013040700986 */
+    ULONG ulVrfIndex;
 }ETHARP_IP_CONFLICT_ITEM_S;
 
 typedef struct tagIpSendFreeArpNode
@@ -756,7 +723,6 @@ typedef struct tagArpGuardNode
 
 }ARP_GUARD_NODE_S;
 
-/* Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-01. 修改原因: lib小型化,支持ARP防欺骗功能可裁剪 */
 typedef struct tagETHARP_GUARD_PROC_HOOK
 {
     VOID (*pfARP_Guard_FreeNode)(ARP_GUARD_NODE_S *pstGuardNode);
@@ -765,7 +731,6 @@ typedef struct tagETHARP_GUARD_PROC_HOOK
     VOID (*pfARP_Guard_NewNode)(ETHARP_ARPRTENTRY_S *pstArpEntry, ULONG ulIpAddr, UCHAR *pszMac);
     ULONG (*pfARP_Guard_SearchStaticBlackMac)(ULONG ulIpAddr, ULONG ulVrfIndex, UCHAR *pszMac);
 
-/* Add by b00177000/shuxieliu00176784, at 2011-06-01. 修改原因: 支持ARP防欺骗HA功能 */
     ULONG (*pfARPGUARD_HA_BatchBackup)(VOID);
     ULONG (*pfARPGUARD_HA_RealTimePack)(USHORT usType, UCHAR * pucData, USHORT usInBufLen);
     ULONG (*pfARPGUARD_HA_Input)(UCHAR *pucBuf, ULONG ulMsgLen);
@@ -777,7 +742,6 @@ typedef struct tagETHARP_GUARD_PROC_HOOK
     ULONG  (*pfARP_Guard_Is_Trust)(ARP_GUARD_NODE_S *pstGuardNode);
 }ETHARP_GUARD_PROC_HOOK_S;
 
-/* Modify by z00171897/s00176784, at 2011-06-02. 修改原因: 支持获取保存ARP报文队列 */
 #pragma    pack( 1 )
 
 /* 带VLAN的SNAP以太头 */
@@ -801,7 +765,6 @@ typedef struct tagETHSNAPHDR_WITHVLAN
 #pragma pack()
 #endif
 
-/* Begin Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 /* 报文信息 */
 typedef struct tagETHARP_PKT_INFO
 {                                
@@ -810,7 +773,6 @@ typedef struct tagETHARP_PKT_INFO
     ULONG  ulSrcIp; /* ARP报文中的源IP,网络序.只对ARP报文有效 */
     ULONG  ulDstIp; /* ARP报文中的目的IP,网络序.只对ARP报文有效 */
 }ETHARP_PKT_INFO_S;
-/* End Add by zhaoyue00171897/shuxieliu00176784, at 2011-06-04. 修改原因: 支持VLAN配置不一致的告警 */
 
 
 #define ETHARP_ARP_QUE_MIN_PKTS_ONETIME     40 /*ARP队列一次处理的ARP报文个数最小值*/

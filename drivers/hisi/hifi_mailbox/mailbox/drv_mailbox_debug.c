@@ -1,21 +1,4 @@
-/******************************************************************************
 
-				  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名	 : drv_mailbox.c
-  版 本 号	 : 初稿
-  作	者	 : 莫南 00176101
-  生成日期	 : 2012年9月21日
-  最近修改	 :
-  功能描述	 : mailbox&跨核邮箱驱动软件，可维可测代码。
-  函数列表	 :
-
-  修改历史	 :
-  1.日	  期   : 2012年9月21日
-	作	  者   : 莫南 00176101
-	修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -46,23 +29,7 @@ extern int logMsg(char *fmt, ...);
   3 函数实现
 *****************************************************************************/
 #if (MAILBOX_LOG_LEVEL != MAILBOX_LOG_NONE)
-/*****************************************************************************
- 函 数 名  : mailbox_log_erro
- 接口类型  : 对外接口
- 功能描述  : 跨核邮箱的初始化总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功或者失败
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年9月24日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
- 详细描述:
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_log_erro(
                 unsigned int   err_no,
                 unsigned long   param1,
@@ -276,21 +243,7 @@ void mailbox_clear_mntn( struct mb_mntn *mntn, int clear)
 
 /*****************************************************************************/
 /*以下是可维可测函数*/
-/*****************************************************************************
- 函 数 名  : mailbox_show_general
- 功能描述  : 显示邮箱模块状态，可维可测接口
- 输入参数  : struct mb_cfg *pChannelCfg  -- 邮件通道的配置信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年9月28日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e818*/
 MAILBOX_LOCAL void mailbox_show_general(struct mb_cfg *cfg)
 {
@@ -314,22 +267,7 @@ MAILBOX_LOCAL void mailbox_show_general(struct mb_cfg *cfg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : mailbox_show_receive
- 功能描述  : 显示邮箱模块某个接收通道的状态，可维可测接口
- 输入参数  : struct mb_link  *pBoxHandle  某个邮箱通道句柄
- 输出参数  : 无
- 返 回 值  : unsigned long
-			 MAILBOX_OK, 异常返回值
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年9月28日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL void mailbox_show_receive(struct mb_buff *mbuf)
 {
 	struct mb_mntn		*mntn		  =  &(mbuf->mntn);    /*此邮箱通道的可维可测数据*/
@@ -384,22 +322,7 @@ MAILBOX_LOCAL void mailbox_show_receive(struct mb_buff *mbuf)
 	mailbox_out((":---------------------------------------------:"RT));
 }
 /*lint -e838*/
-/*****************************************************************************
- 函 数 名  : mailbox_show_detail
- 功能描述  : 显示邮箱模块某个通道的详细传输状态，可维可测接口。
- 输入参数  : struct mb_link *pBoxHandle  -- 某个邮箱通道句柄
- 输出参数  : 无
- 返 回 值  : unsigned long
-			 MAILBOX_OK, 异常返回值
- 调用函数  :
- 被调函数  :
 
- 修改历史	   :
-  1.日	  期   : 2012年9月28日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_LOCAL void mailbox_show_detail(struct mb *mb,
 									   struct mb_buff *mbuf,
 									   int clear)
@@ -463,31 +386,7 @@ MAILBOX_LOCAL void mailbox_show_detail(struct mb *mb,
 	mailbox_clear_mntn(mntn, clear);
 }
 
-/*****************************************************************************
- 函 数 名  : MAILBOX_ShowByHadnle
- 功能描述  : 显示邮箱模块状态，可维可测接口
- 输入参数  : unsigned long	MailChannel  -- 邮件通道的id号。
-			 unsigned long				 -- 是否显示所有通道信息。
-							 input					效果
-					MailChannel |  IfShowAll	|  effective
-			-----------------------------------------------------
-						not 0	|	 1			|  Show all channel's detail information.
-					ChannelID	|	 not 1		|  Show this channel's detail infotmation.
-					0			|	 ANY		|  Show all channel's general information.
-		not ChannelID or not 0	|	 not 1		|  Invalid, no response.
 
- 输出参数  : 无
- 返 回 值  : unsigned long
-			 MAILBOX_OK, 异常返回值
- 调用函数  :
- 被调函数  :
-
- 修改历史	   :
-  1.日	  期   : 2012年9月28日
-	作	  者   : 莫南 00176101
-	修改内容   : 新生成函数
-
-*****************************************************************************/
 MAILBOX_EXTERN int mailbox_show(
                 unsigned int    channel,
                 unsigned int    show_flag)

@@ -68,16 +68,7 @@ typedef VOS_UINT32 (*TAF_MMI_ENCODE_PROC_FUNC)(
     VOS_CHAR                           *pOutMmiStr
 );
 
-/*****************************************************************************
- 结构名    : TAF_MMI_OPERATION_TABLE_STRU
- 结构说明  : 消息与对应操作类型的结构
-             ulEventType                     - 待编码的事件类型；
-             enSsOpType                      - 事件类型对应的操作码
 
-  1.日    期   : 2013年05月06日
-    作    者   : 傅映君/62575
-    修改内容   : SS FDN&Call Control
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulEventType;
@@ -85,16 +76,7 @@ typedef struct
     VOS_UINT8                           aucReserved1[3];
 }TAF_MMI_OPERATION_TABLE_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_SSA_ENCODE_MMISTR_PROC_STRU
- 结构说明  : 消息与对应处理函数的结构
-             ulEventType                     - 待编码的事件类型；
-             TAF_MmiEncodeRegisterMmiString  - 编码处理函数
 
-  1.日    期   : 2013年05月06日
-    作    者   : 傅映君/62575
-    修改内容   : SS FDN&Call Control
-*****************************************************************************/
 /*lint -e958 -e959 修改人:l60609;原因:64bit*/
 typedef struct
 {

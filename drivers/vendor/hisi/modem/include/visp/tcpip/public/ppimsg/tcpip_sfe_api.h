@@ -369,24 +369,7 @@ extern UINT32 TCPIP_SFE_GetArpInfo(UINT32 u32VrfIndex, UINT32 u32IpAddr, TCPIP_S
 *******************************************************************************/
 extern UINT32 TCPIP_SFE_GetIfInfoByID(TCPIP_SFE_IFID *pstIntfID,TCPIP_SFE_INTF_S *pstIntfInfo);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_GetBfdSessionInfo
-* Date Created: 2009-9-15
-*       Author: w60786/h00121208
-*  Description: 获取指定VRF下指定会话ID对应的BFD会话信息
-*        Input: UINT32 u32VrfIndex: VRF索引
-*               UINT32 u32SessionId: BFD会话ID
-*       Output: TCPIP_SFE_BFD_SESS_INFO_S *pstBfdSessInfo: 获取的BFD会话信息
-*       Return: 成功: TCPIP_SFE_BFD_OK
-*               失败: 错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-9-15    w60786/h00121208         Creat the first version.
-*
-*******************************************************************************/
+
 extern UINT32 TCPIP_SFE_GetBfdSessionInfo(UINT32 u32VrfIndex, UINT32 u32SessionId,
                                                     TCPIP_SFE_BFD_SESS_INFO_S *pstBfdSessInfo);
                                              
@@ -493,44 +476,10 @@ extern UINT32 TCPIP_SFE_SetSendIcmpErrSwitch(UINT32 u32Switch);
 *******************************************************************************/
 extern UINT32 TCPIP_SFE_GetSendIcmpErrSwitch(UINT32 *pu32Switch);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_IF_SetEthArpMissSwitch
-* Date Created: 2009-9-16
-*       Author: w60786/h00121208
-*  Description: 设置以太接口是否需要进行ARP MISS处理开关
-*        Input: TCPIP_SFE_IFID *pstIfId: 以太接口ID
-*               UINT32 u32Switch: ARP MISS处理开关值
-*       Output: 
-*       Return: 成功: TCPIP_SFE_IF_SUCCESS
-*               失败: 错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-9-16    w60786/h00121208         Creat the first version.
-*
-*******************************************************************************/
+
 extern UINT32 TCPIP_SFE_IF_SetEthArpMissSwitch(TCPIP_SFE_IFID *pstIfId, UINT32 u32Switch);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_IF_SetReduceTTLSwitch
-* Date Created: 2009-9-16
-*       Author: w60786/h00121208
-*  Description: 设置接口是否需要递减TTL开关
-*        Input: TCPIP_SFE_IFID *pstIfId: 接口ID
-*               UINT32 u32Switch: TTL是否递减开关值
-*       Output: 
-*       Return: 成功: TCPIP_SFE_IF_SUCCESS
-*               失败: 错误码
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-9-16    w60786/h00121208         Creat the first version.
-*
-*******************************************************************************/
+
 extern UINT32 TCPIP_SFE_IF_SetReduceTTLSwitch(TCPIP_SFE_IFID *pstIfId, UINT32 u32Switch);
 
 /*******************************************************************************
@@ -1433,76 +1382,16 @@ extern UINT32 TCPIP_SFE_ClearAllStatistic(VOID);
 *******************************************************************************/
 extern UINT32 TCPIP_SFE_ClearAllFlowStatistic(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_ShowAllArpInfo
-* Date Created: 2009-11-10
-*       Author: m00116466
-*  Description: 显示所有ARP表项
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                      DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-11-10     m00116466         Create the first version.
-*
-*******************************************************************************/
+
 extern VOID TCPIP_SFE_ShowAllArpInfo(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_ShowArpInfoByVrf
-* Date Created: 2009-8-6
-*       Author: m00116466
-*  Description: 显示指定VRF下的所有ARP表项
-*        Input: UINT32 u32VrfIndex: VRF索引
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                      DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-11-11     m00116466         Create the first version.
-*
-*******************************************************************************/
+
 extern VOID TCPIP_SFE_ShowArpInfoByVrf(UINT32 u32VrfIndex);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_ShowOneArpInfo
-* Date Created: 2009-8-6
-*       Author: m00116466
-*  Description: 显示指定的某个ARP表项
-*        Input: UINT32 u32VrfIndex: VRF索引
-*               CHAR *pcIpAddr: 点分十进制形式的地址
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                      DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-8-6     w60786/luowentong         Creat the first version.
-*
-*******************************************************************************/
+
 extern VOID TCPIP_SFE_ShowOneArpInfo(UINT32 u32VrfIndex, CHAR *pcIpAddr);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_ShowAllIfInfo
-* Date Created: 2009-11-10
-*       Author: m00116466
-*  Description: 显示所有接口信息
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-11-10   m00116466               Create the first version.
-*
-*******************************************************************************/
+
 extern VOID TCPIP_SFE_ShowAllIfInfo(VOID);
 
 /*******************************************************************************
@@ -1523,96 +1412,19 @@ extern VOID TCPIP_SFE_ShowAllIfInfo(VOID);
 *******************************************************************************/
 extern VOID TCPIP_SFE_ShowIfInfoByID(TCPIP_SFE_IFID *pstIfID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_ShowAllBfdInfo
-* Date Created: 2009-11-10
-*       Author: m00116466
-*  Description: 显示所有VRF下的BFD会话信息
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-11-10   m00116466         Create the first version.
-*
-*******************************************************************************/
+
 extern VOID TCPIP_SFE_ShowAllBfdInfo(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_ShowBfdInfoByVrf
-* Date Created: 2009-12-01
-*       Author: m00116466
-*  Description: 显示指定VRF下的BFD会话信息 
-*        Input: UINT32 u32VrfIndex: VRF索引
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-12-01     m00116466         Create the first version.
-*
-*******************************************************************************/
+
 extern VOID TCPIP_SFE_ShowBfdInfoByVrf(UINT32 u32VrfIndex);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_ShowBfdInfoByID
-* Date Created: 2009-11-10
-*       Author: m00116466
-*  Description: 显示指定VRF SessionID的会话信息
-*        Input: UINT32 u32VrfIndex: VRF索引
-*        Input: UINT32 u32SessionId:BFD会话ID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-11-10   m00116466         Create the first version.
-*
-*******************************************************************************/
+
 extern VOID TCPIP_SFE_ShowBfdInfoByID(UINT32 u32VrfIndex, UINT32 u32SessionId);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_ShowAllFibInfo
-* Date Created: 2009-11-10
-*       Author: m00116466
-*  Description: 显示所有路由信息
-*        Input: VOID
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2009-11-10   m00116466               Create the first version.
-*
-*******************************************************************************/
+
 extern VOID TCPIP_SFE_ShowAllFibInfo(VOID);
 
-/*******************************************************************************
-*    Func Name: TCPIP_SFE_ShowFibInfoByIP
-* Date Created: 2009-11-10
-*       Author: m00116466
-*  Description: 显示指定VRF 某个IP的路由信息
-*        Input: UINT32 u32VrfIndex: VRF索引
-*        Input: CHAR  *pi8IpAddr:  点分十进制形式的地址
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                     DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2009-11-10   m00116466         Create the first version.
-*
-*******************************************************************************/
+
 extern VOID TCPIP_SFE_ShowFibInfoByIP(UINT32 u32VrfIndex, CHAR *pi8IpAddr);
 
 /*******************************************************************************

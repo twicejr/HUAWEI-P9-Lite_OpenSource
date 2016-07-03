@@ -56,7 +56,6 @@ extern  "C"{
 #define FIB6A_TYPE_IPC_ROUTE             0x00000006
 #define FIB6_TYPE_RPC_DEB                0x00000007
 
-/*Mod by t00110672 For DTS2010082701437 ,修改支持的最大平衡路由数为32*/
 #define MAX_BALANCED_ENTRIES             32
 /*Mod End*/
 

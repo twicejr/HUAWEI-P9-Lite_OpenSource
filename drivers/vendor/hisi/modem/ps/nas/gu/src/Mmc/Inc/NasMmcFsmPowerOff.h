@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmPowerOff.h
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2011年4月7日
-  最近修改   :
-  功能描述   : NasMmcPowerOff.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年4月7日
-    作    者   : w00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifndef __NASMMCFSMPOWEROFF_H__
@@ -84,7 +67,6 @@ VOS_UINT32 NAS_MMC_RcvTafPowerOffReq_PowerOff_Init(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 VOS_UINT32 NAS_MMC_RcvMsccPowerSaveReq_PowerOff_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -93,7 +75,6 @@ VOS_UINT32 NAS_MMC_RcvMsccPowerSaveReq_PowerOff_Init(
 VOS_VOID NAS_MMC_SndSuspendReq_PowerOff(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 VOS_UINT32 NAS_MMC_RcvMmPowerOffCnf_PowerOff_WaitMmPoweroffCnf(
     VOS_UINT32                          ulEventType,
@@ -144,7 +125,6 @@ VOS_UINT32 NAS_MMC_RcvLmmStopCnf_PowerOff_WaitMasterModePowerOffCnf(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 VOS_UINT32 NAS_MMC_RcvLmmSuspendCnf_PowerOff_WaitLmmSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -154,7 +134,6 @@ VOS_UINT32 NAS_MMC_RcvTiWaitLmmSuspendCnfExpired_PowerOff_WaitLmmSuspendCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 VOS_UINT32 NAS_MMC_RcvLmmStopCnf_PowerOff_WaitSlaveModePowerOffCnf(
     VOS_UINT32                          ulEventType,

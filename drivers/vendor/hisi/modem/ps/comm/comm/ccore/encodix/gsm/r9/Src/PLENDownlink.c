@@ -2887,16 +2887,13 @@ long DECODE_BODY_c_SYSTEM_INFORMATION_TYPE_9 (const char* ED_CONST Buffer, ED_CO
 -----------------------------------------------------------------*/
 long DECODE_c_SYSTEM_INFORMATION_TYPE_13 (const char* ED_CONST Buffer, ED_CONST long BitOffset, c_SYSTEM_INFORMATION_TYPE_13* ED_CONST Destin, long Length)
 {
-    /* Added by f48555 for GSM_R6协议升级Phase2, 2010_02_08，begin */
     ED_LONG                                         ulRetVal;
     c_SI13RestOctets_NoPBCCH_GPRS_Cell_Options      *pstGprsCellOption;
-    /* Added by f48555 for GSM_R6协议升级Phase2, 2010_02_08，end */
     int Len=0;
     
     Len = DECODE_BODY_c_SYSTEM_INFORMATION_TYPE_13 (Buffer, (BitOffset+16 + 8 /* L2 Pseudo Length offset */), Destin, Length-(16 + 8 /* L2 Pseudo Length offset */));
     if (Len < 0) return Len;
 
-    /* Added by f48555 for GSM_R6协议升级Phase2, 2010_02_08，begin */
     pstGprsCellOption   = &Destin->Si13RestOctets.NoPBCCH.GPRS_Cell_Options;
     ulRetVal            = GAS_ENCODIX_CheckGprsCellOptionExtVersion(pstGprsCellOption);
     
@@ -2904,7 +2901,6 @@ long DECODE_c_SYSTEM_INFORMATION_TYPE_13 (const char* ED_CONST Buffer, ED_CONST 
     {
         return (-1);
     }
-    /* Added by f48555 for GSM_R6协议升级Phase2, 2010_02_08，end */
     
     return Len+16 + 8 /* L2 Pseudo Length offset */;
 }

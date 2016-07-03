@@ -1,81 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : GmmCasSend.c
-  Author       : Roger Leo
-  Version      : V200R001
-  Date         : 2005-08-25
-  Description  : 该C文件给出了GmmCasSend模块的实现
-  Function List:
-        ---
-        ---
-        ---
-  History      :
-  1. Date:2005-08-25
-     Author: Roger Leo
-     Modification:update
-  2. s46746 2006-03-08 根据问题单A32D02368修改
-  3. l40632 2006-04-17 根据问题单A32D03141修改
-  4. l40632 2006-04-27 根据问题单A32D03429修改
-  5. x51137 2006/4/28 A32D02889
-  6. l40632 2006-05-29 根据问题单A32D03821修改
-  7. l40632 2006-06-19 根据问题单A32D04282修改
-  8. l40632 2006-07-12 根据问题单A32D03834修改
-  9.Date        : 2006-09-19
-    Author      : s46746
-    Modification: 问题单号:A32D06255
- 10.Date        : 2006-10-19
-    Author      : L47619
-    Modification: 问题单号:A32D06916
- 11.日    期   : 2006年02月16日
-    作    者   : luojian 60022475
-    修改内容   : 问题单号:A32D08391
- 12.日    期   : 2007年05月25日
-    作    者   : luojian 60022475
-    修改内容   : 根据问题单号:A32D11232
- 13.日    期   : 2007年09月10日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D12829
- 14.日    期   : 2007年9月27日
-    作    者   : s46746
-    修改内容   : 将卡无效信息从RRMM_NAS_INFO_CHANGE消息中拿掉
- 15.日    期   : 2007-10-26
-    作    者   : hanlufeng
-    修改内容   : A32D13172
- 20.日    期   : 2007年12月04日
-    作    者   : s46746
-    修改内容   : 1.GMM模块进行ATTACH和RAU时，如果此时接入层进行临区任务，
-                   会导致LLC将ATTACH和RAU延迟发送，使得ATTACH和RAU时间过长；
-                 2.GMM在进行RAU请求时，如果DRX参数不改变，将不会在消息中
-                   带DRX参数，这样跨SGSN的RAU时，可能导致网侧不识别UE的DR
-                   X参数，  使得RAU不能成功。
- 21.日    期   : 2007年12月14日
-    作    者   : s46746
-    修改内容   : 问题单A32D13638，保证进行RAU之前不向网侧发送其它数据，并且RAU不成功，不恢复层2
- 22.日    期   : 2008年8月18日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D05016，修改CGREG的状态判断
- 23.日    期   : 2008年9月10日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D05403，修改CGREG的状态
- 24.日    期   : 2008年10月21日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D06285，添加对状态GMM_REGISTERED_NO_CELL_AVAILABLECGREG的判断
- 25.日    期   : 2008年12月02日
-    作    者   : x00115505
-    修改内容   : AT2D06945:CREG、CGREG主动上报修改
- 26.日    期   : 2009年02月28日
-    作    者   : o00132663
-    修改内容   : AT2D09507, 在丢网时，CREG,CGREG上报2:没有注册，但MT正在搜寻要注册的新的运营商。
- 27.日    期   : 2009年04月11日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D10976/AT2D10989,gstGmmCasGlobalCtrl.ulReadyTimerValue时长为0xffffffff,导致单板复位
- 28.日    期   : 2009年6月30日
-    作    者   : s46746
-    修改内容   : AT2D12561,3G2情形GPRS下未启动加密，NAS指派层2加密算法后，层2对上行数据进行了加密
- 29.日    期   : 2009年10月27日
-    作    者   : x00115505
-    修改内容   : AT2D15257:CS detach过程中，PS注册状态改变
-************************************************************************/
+
 
 /*****************************************************************************
    1 头文件包含
@@ -163,34 +86,7 @@ static VOS_UINT16       gausGmmDrxCycleCodeTab[GMM_DRX_CYCLE_CODE_TAB_MAX] =
 /*---------------3.1 GMM 发送消息处理       -------------*/
 /*=======================================================*/
 
-/*****************************************************************************
- Prototype      : GMM_SndLlcDataReq
- Description    : 向TTF组模块发送LL_UNITDATA_REQ_MSG消息
-                  HSS 4100 V200R001 新增
- Input          : NAS_MSG_STRU            *pstNasL3Msg,     NAS LAYER3消息指针
-                  LL_NAS_UNITDATA_REQ_ST  *pstUnitDataReq   LL_NAS_UNITDATA_REQ消息内容指针
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-08-25
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2006年02月16日
-    作    者   : luojian 60022475
-    修改内容   : 问题单号:A32D08391
-  3.日    期   : 2009年04月11日
-    作    者   : l00130025
-    修改内容   : 问题单号:AT2D10976/AT2D10989,gstGmmCasGlobalCtrl.ulReadyTimerValue时长为0xffffffff,导致单板复位
-  4.日    期   : 2011年04月20日
-    作    者   : s46746
-    修改内容   : 根据问题单号：DTS2011040804149，【V3R1C31B027】【RAU】PS ONLY下，PMM_IDLE态W2G重选后，发起ping未进行RAU流程，无法进行数传
-  5.日    期   : 2015年4月7日
-    作    者   : wx270776
-    修改内容   : 问题单号:DTS2015040701865，天际通关机优化，增加消息内容
-*****************************************************************************/
 VOS_VOID GMM_SndLlcDataReq (
     NAS_MSG_STRU                       *pstNasL3Msg,
     LL_NAS_UNITDATA_REQ_ST             *pstUnitDataReq
@@ -419,24 +315,7 @@ LL_GMM_TRIGGER_REQ_MSG *GMM_MakeLlgmmTriggerReqMsg(VOS_UINT8 ucCause)
     return pTriggerReqMsg;
 }
 
-/*****************************************************************************
- Prototype      :
- Description    : 创建LL_GMM_SUSPEND_REQ消息
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-12-06
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2010年9月09日
-    作    者   : l65478
-    修改内容   : DTS2010090302562,PDP激活过程中发生重选，PDP激活事件比标杆慢
-*****************************************************************************/
 LL_GMM_SUSPEND_REQ_MSG *GMM_MakeLlgmmSuspendReqMsg(VOS_VOID)
 {
     LL_GMM_SUSPEND_REQ_MSG   *pSuspendReqMsg = VOS_NULL_PTR;
@@ -465,24 +344,7 @@ LL_GMM_SUSPEND_REQ_MSG *GMM_MakeLlgmmSuspendReqMsg(VOS_VOID)
     return pSuspendReqMsg;
 }
 
-/*****************************************************************************
- Prototype      :
- Description    : 创建LL_GMM_RESUME_REQ消息
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-12-06
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2010年9月09日
-    作    者   : l65478
-    修改内容   : DTS2010090302562,PDP激活过程中发生重选，PDP激活事件比标杆慢
-*****************************************************************************/
 LL_GMM_RESUME_REQ_MSG *GMM_MakeLlgmmResumeReqMsg(VOS_UINT32  ulResumeType)
 {
     LL_GMM_RESUME_REQ_MSG   *pResumeReqMsg = VOS_NULL_PTR;
@@ -696,33 +558,7 @@ VOS_VOID GMM_SndRrmmRelReqGsm()
     return;
 }
 
-/*****************************************************************************
- Prototype      :
- Description    : 在2G时向LLC发信令数据消息
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-11-08
-    Author      : Roger Leo
-    Modification: Created function
-  2.Date        : 2006-09-19
-    Author      : s46746
-    Modification: 问题单号:A32D06255
-  3.日    期    : 2009年03月18日
-    作    者    : l65478
-    修改内容    : 根据问题单号：AT2D08671,数传状态下，W出服务区后，切到G，数传恢复失败，因为GMM没有配置LL加密算法
-  4.日    期    : 2015年4月9日
-    作    者    : wx270776
-    修改内容    : 问题单号:DTS2015040701865，天际通关机优化，增加判断是否携带enNeedCnf标志。
-                  在携带后，LL将gmm的消息发送到网测后，会通知给GMM.这样在关机时候，
-                  PS域DETACH消息发送到网络侧后，LL通知给GMM后，GMM可以认为PS域DETACH
-                  完成，给MMC回复关机结果，加快关机速度。
-*****************************************************************************/
 VOS_VOID GMM_SndRrmmDataReqGsm(
     NAS_MSG_STRU                       *pMsg
 )
@@ -769,20 +605,7 @@ VOS_VOID GMM_SndRrmmDataReqGsm(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetAttachStatus
- 功能描述  : 获取GMM的注册状态
- 输入参数  : 无
- 输出参数  : RRC_NAS_ATTACH_STATUS_ENUM_UINT32 注册状态
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,W/G下注册状态没有更新
-*****************************************************************************/
 RRC_NAS_ATTACH_STATUS_ENUM_UINT32  NAS_GMM_GetAttachStatus(VOS_VOID)
 {
     if (GMM_STATUS_ATTACHED == g_MmSubLyrShare.GmmShare.ucAttachSta)
@@ -797,23 +620,7 @@ RRC_NAS_ATTACH_STATUS_ENUM_UINT32  NAS_GMM_GetAttachStatus(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetPTmsiRAI_GUL
- 功能描述  : GUL多模时，获取PTMSI-GUL
- 输入参数  : 无
- 输出参数  : aucPtmsi    获取到的PTMSI
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年3月8日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2012年4月25日
-   作    者   : l65478
-   修改内容   : DTS2012041402691,连接建立ID类型错误
-*****************************************************************************/
 VOS_UINT8 NAS_GMM_GetPTmsi_GUL(
     VOS_UINT8                           aucPtmsi[RRC_NAS_PTMSI_LEN]
 )
@@ -880,20 +687,7 @@ VOS_UINT8 NAS_GMM_GetPTmsi_GUL(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetOldRai
- 功能描述  : GUL多模时，获取RAI
- 输入参数  : 无
- 输出参数  : aucPtmsi    获取到的PTMSI
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年5月14日
-   作    者   : w00166186
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID    NAS_GMM_GetOldRai(
     GMM_RAI_STRU                       *pstGmmRai
 )
@@ -942,27 +736,7 @@ VOS_VOID    NAS_GMM_GetOldRai(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_GetPTmsiRAI
- 功能描述  : 获取PTMSI和RAI
- 输入参数  : 无
- 输出参数  : NAS_INFO_PTMSI_RAI_STRU *pstPmsiRai,当前P-TMSI_RAI
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,W/G下注册状态没有更新
-  2.日    期   : 2012年3月8日
-    作    者   : w00176964
-    修改内容   : DTS2012031308021:GUL 多模时获取PTMSI错误
-  3.日    期   : 2012年5月14日
-    作    者   : w00166186
-    修改内容   : DTS2012042406661:向WAS发送NAS INFO时，old rai填错
-
-*****************************************************************************/
 VOS_VOID  NAS_GMM_GetPTmsiRAI(
     NAS_INFO_PTMSI_RAI_STRU            *pstPtmsiRai
 )
@@ -1002,40 +776,7 @@ VOS_VOID  NAS_GMM_GetPTmsiRAI(
     return;
 }
 
-/*****************************************************************************
- Prototype      :
- Description    : 在2G时向GRR发NAS INFO CHANGE消息
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-12-05
-    Author      : Roger Leo
-    Modification: Created function
-  2. x51137 2006/4/28 A32D02889
-  3.日    期   : 2006年12月5日
-    作    者   : luojian 60022475
-    修改内容   : Maps3000接口修改
-  4.日    期   : 2007年05月25日
-    作    者   : luojian 60022475
-    修改内容   : 根据问题单号:A32D11232
-  5.日    期   : 2011年7月27日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,切换模式，回退后W/G下注册状态没有与NAS同步
-  7.日    期   : 2012年8月14日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题
-  8.日    期   : 2014年4月24日
-    作    者   : s00217060
-    修改内容   : 从L模获取映射的安全上下文之后，通知GU模
-*****************************************************************************/
 VOS_VOID NAS_GMM_SndGasInfoChangeReq(VOS_UINT32 ulMask)
 {
     GRRMM_NAS_INFO_CHANGE_REQ_STRU     *pSndMsg;
@@ -1075,10 +816,8 @@ VOS_VOID NAS_GMM_SndGasInfoChangeReq(VOS_UINT32 ulMask)
     {
         pNasInfo->bitOpDrxLength = VOS_TRUE;
 
-        /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
         pNasInfo->ulDrxLength = (VOS_UINT32)NAS_MML_GetNonDrxTimer();
         pNasInfo->ulSplitPgCycle = GMM_CasGetSplitCycle(NAS_MML_GetSplitPgCycleCode());
-        /* Modified by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
     }
 
     /* CK 信息发生改变 */
@@ -1150,26 +889,7 @@ VOS_VOID NAS_GMM_SndGasInfoChangeReq(VOS_UINT32 ulMask)
     return;
 }
 
-/*****************************************************************************
- Prototype      :
- Description    : 2G网络下通知GAS模块GMM消息过程
-                  HSS 4100 V200R001 新增
-                  GMM消息过程包括:
-                  GMM ATTACH
-                  GMM RAU
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2007-11-21
-    Author      : l00107747
-    Modification: Created function
-  2.日    期   : 2014年05月22日
-    作    者   : W00242748
-    修改内容   : DTS2014050900899:将GMM的处理状态通知给WAS
-*****************************************************************************/
+
 VOS_VOID NAS_GMM_SndRrmmGmmProcNotify(RRMM_GMM_PROC_TYPE_ENUM_UINT16 usProcType,
                                   RRMM_GMM_PROC_FLAG_ENUM_UINT16 usProcFlag)
 {
@@ -1219,21 +939,7 @@ VOS_VOID NAS_GMM_SndRrmmGmmProcNotify(RRMM_GMM_PROC_TYPE_ENUM_UINT16 usProcType,
     }
 }
 
-/*****************************************************************************
-函 数 名  : GMM_SndRrmmGmmProcAns
-功能描述  : 处理RRMM_GMM_PROC_ENQ原语
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_VOID
-调用函数  :
-被调函数  :
 
-修改历史      :
-1.日    期: 2014年05月23日
-  作    者: w00242748
-  修改内容: DTS2014050900899:将GMM的处理状态通知给WAS
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_SndRrmmGmmProcAns(VOS_VOID)
 {
     RRMM_GMM_PROC_ANS_STRU             *pstGmmProcAns;
@@ -1421,24 +1127,7 @@ VOS_VOID GMM_SndLlcSuspendReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Prototype      :
- Description    : 发送LL_GMM_ABORT_REQ消息
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2007-12-12
-    Author      : s46746
-    Modification: Created function
-  2.日    期   : 2009年06月30日
-    作    者   : l65478
-    修改内容   : 问题单：AT2D12655,增加清除LLC数据类型的处理
-*****************************************************************************/
 VOS_VOID Gmm_SndLlcAbortReq(LL_GMM_CLEAR_DATA_TYPE_ENUM_UINT8 ucClearDataType)
 {
     LL_GMM_ABORT_REQ_MSG    *pSendMsg = VOS_NULL_PTR;
@@ -1470,24 +1159,7 @@ VOS_VOID Gmm_SndLlcAbortReq(LL_GMM_CLEAR_DATA_TYPE_ENUM_UINT8 ucClearDataType)
 }
 
 
-/*****************************************************************************
- Prototype      :
- Description    : 发送LL_GMM_RESUME_REQ消息
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-12-05
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2010年9月09日
-    作    者   : l65478
-    修改内容   : DTS2010090302562,PDP激活过程中发生重选，PDP激活事件比标杆慢
-*****************************************************************************/
 VOS_VOID GMM_SndLlcResumeReq(VOS_UINT32  ulResumeType)
 {
     LL_GMM_RESUME_REQ_MSG   *pSendMsg = VOS_NULL_PTR;
@@ -1653,21 +1325,7 @@ VOS_UINT32 GMM_CasGetSplitCycle(VOS_UINT8 ucSplitCode)
     return ulSplitCycle;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SndMmcResumeRsp
- 功能描述  : GMM向mmc发送resume rsp
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月27日
-    作    者   : W00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_SndMmcResumeRsp(VOS_VOID)
 {
     MMCGMM_RESUME_RSP_ST               *pstMsg;
@@ -1697,31 +1355,7 @@ VOS_VOID NAS_GMM_SndMmcResumeRsp(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SndRabmSysSrvChgInd
- 功能描述  : 发送ID_GMM_RABM_SYS_SRV_CHG_IND至RABM
- 输入参数  : enSysMode          - 当前系统模式
-             bRatChangeFlg      - 异系统切换标志
-             bDataSuspendFlg    - 挂起标志
-             ucRebuildRabFlag   - RAB是否需要重建
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月6日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月13日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase II 调整:支持GUL异系统HO CCO
-
-  3.日    期   : 2011年8月19日
-    作    者   : w00167002
-    修改内容   : V7R1 Phase II 调整:保留字段清零
-
-*****************************************************************************/
 VOS_VOID NAS_GMM_SndRabmSysSrvChgInd(
     GMM_RABM_NET_RAT_ENUM_UINT32        enSysMode,
     VOS_BOOL                            bRatChangeFlg,
@@ -1767,24 +1401,7 @@ VOS_VOID NAS_GMM_SndRabmSysSrvChgInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_GMM_SndGasGprsAuthFailNotifyReq
- 功能描述  : 连续3次鉴权被拒时，通知GAS,参考T3302的时长，Bar掉当前小区
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月20日
-    作    者   : l00130025
-    修改内容   : DTS2012032004389，Netork连续3次被Ms Auth Rej或T3318/T3320超时时，没有通知GAS Bar掉当前小区,
-                 相关协议TS 24.008 4.3.2.6.1 & 4.7.7.6,Ts43.022 3.5.5
-                 If the MS deems that the network has failed the authentication check,
-                 then it shall request RR or RRC to release the RR connection and the PS signalling connection, if any,
-                 and bar the active cell or cells (see 3GPP TS 25.331 [23c] and 3GPP TS 44.018 [84]).
-*****************************************************************************/
 VOS_VOID  NAS_GMM_SndGasGprsAuthFailNotifyReq(VOS_VOID)
 {
 

@@ -58,7 +58,6 @@ extern "C"{
 #define    TCP_LINGERTIME   120                  /* 滞留时间2分钟       linger at most 2 minutes */                                            
 #define    TCP_MAXRXTSHIFT  12                   /* 最大转发数目     maximum retransmits */
 
-/* Add for DTS2011042101731, by z00166124, at 2011-04-21. 修改原因: 重传日志的记录门限 */
 #define    TCP_RXTSHIFT_LOGTHRESHOLD  5             /* 重传记录日志的门限 */
 
 #ifdef    TCPTIMERS

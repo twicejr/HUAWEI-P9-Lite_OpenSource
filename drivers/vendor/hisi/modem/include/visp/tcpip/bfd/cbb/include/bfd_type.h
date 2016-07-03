@@ -28,7 +28,6 @@
 extern "C" {
 #endif
 
-/*Add for BC3D02737 BFD静态配置会话索引修改 l00147446 10-03-04*/
 #define BFD_DEFAULT_GATE_VALUE 501
 /*End for BC3D02737*/
 #define BFD_ACTION_SND          1
@@ -110,7 +109,6 @@ typedef struct tagBFD_SESS_CFG_ENTRY_S
     ULONG   ulLastSentTime                        ;      /* 最后发送报文时间 */
     ULONG   ulUpToDown                            ;      /* 会话状态Up变为Down的次数 */
 
-    /* 对端已经确认了的收发间隔, Added by wujie 61195 for A82D25354, 2008/05/12 */
     ULONG   ulAckedCfgTX                          ;
     ULONG   ulAckedCfgRX                          ;
     UCHAR   szCfgName[BFD_MAX_SESS_NAME_LEN + 1];
@@ -144,9 +142,8 @@ typedef struct tagBFD_SESS_RUN_ENTRY_S
     USHORT  usSessState               ;              /* 会话的当前状态 */
     USHORT  usRemoteDemandMode        ;              /* 对端BFD会话是否设置为查询模式，BFD_TRUE:对端设置; BFD_FALSE:对端未设置 */
     USHORT  usReserved                ;              /* 四字节对齐，该字段保留不用 */
-    /* Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 增加记录最近一次收到BFD报文中的RequiredMinRxInterval值 */   
     ULONG   ulRemoteMinRxInterval     ;              /*bfd对端期望的接收时间间隔值*/
-    ULONG   ulRemoteMinTxInterval     ;              /*bfd对端期望的发送时间间隔值 added by luogaowei 2012-10-27*/
+    ULONG   ulRemoteMinTxInterval     ;
 } BFD_SESS_RUN_ENTRY_S;
 
 typedef struct tagBFD_SESS_COUNT_ENTRY_S
@@ -191,7 +188,6 @@ typedef struct tagBFD_SESS_ENTRY_S
     /*Begin BC3D03565 chenlong 2010-10-08 */
     ULONG   ulNoSendDDFlag                    ;       /*取值为1表示删除会话时不发送Admin Down报文,取值为0表示删除会话时发送Admin Down报文*/
     /*End   BC3D03565 chenlong 2010-10-08 */
-    /* Add for V2R3C05, by b0177000/y00176567, at 2011-06-03. 修改原因: V2R3C05 增加BFD创建会话的协议类型字段 */   
     ULONG   ulBfdProtocol;                            /*BFD创建会话的协议类型 BFD_PROTO_DRAFT4:草案4; BFD_PROTO_STD:标准RFC*/
     UCHAR   ucPFState;                                /*P标记状态: P_NULL, P_OPEN , F_ACK, P_EXPIRE*/
     UCHAR   ucPSndCount;                              /*P报文发送次数， 最大默认5次*/
@@ -235,7 +231,6 @@ typedef enum tagBFD_LICENSE_E
 {
     BFD_LICENSE_DISABLED      = 0         ,       /* BFD License已去使能 */
     BFD_LICENSE_ENABLED                   ,       /* BFD License已经使能 */
-    /* Modify for DTS2011021002203, by chenyaoKF34558, at 2011-02-28. 修改原因: 重新设计license功能 */
     BFD_LICENSE_DISABLING                 ,       /* BFD License去使能中*/
     BFD_LICENSE_ENABLING                  ,       /* BFD License使能中*/
 }BFD_GLOBAL_LICENSE_E;
@@ -254,7 +249,6 @@ typedef enum tagBFD_MSG_TYPE_E
     BFD_TRUNKPORT_ADD,        /* 接口加入trunk */
     BFD_TRUNKPORT_REMOVE,     /* 接口移除trunk */
     BFD_GLOBAL_DISABLE,       /* 全局去使能 */
-    /*Added by qinyun62011, 优化BFD会话ID扩展到9215的性能问题, 2013/9/27 */
     BFD_VRF_DELETE,           /* 删除VRF */
     BFD_LICENSE_SHUTDOWN,     /* BFD License功能关闭 */
     BFD_LICENSE_UNDOSHUTDOWN, /* BFD License功能打开 */
@@ -361,7 +355,6 @@ typedef VOID(*BFD_HA_DBG_OUTPUT)(CHAR *pDebugInfo);
 typedef VOID(*BFD_STATE_NOTIFYVRRP)(ULONG ulNotifyType, ULONG ulSessionID, ULONG ulVrfIndex, 
                     ULONG ulState, ULONG ulDstIP, ULONG ulSrcIP, ULONG ulInIfIndex, ULONG ulAppGroup);
 
-/*Modified by qinyun62011, DTS2010092600602 BFD去使能时，没有删除对应的静态路由关联表项。 for VISP1.8C01, 2010/9/29 */
 /* BFD状态通知BFD EXT模块的钩子 */
 typedef VOID(*BFD_STATE_NOTIFYEXT)(ULONG ulNotifyType, ULONG ulSessionID, ULONG ulVrfIndex, 
                     ULONG ulDstIP, ULONG ulSrcIP, ULONG ulInIfIndex, ULONG ulNewSessionID);

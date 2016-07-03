@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSdcLib.c
-  版 本 号   : 初稿
-  作    者   : s46746
-  生成日期   : 2012年12月26日
-  最近修改   : 2012年12月26日
-  功能描述   : SDC_CTX的对外提供库函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年12月26日
-    作    者   : s46746
-    修改内容   : 创建文件
-
-****************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -63,7 +46,6 @@
 /*****************************************************************************
   5 变量定义
 *****************************************************************************/
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
 /* 增加AT^REJINFO的主动上报控制，放在一个字节的倒数第三个BIT */
 /* 增加AT^PLMNSELERLST的主动上报控制，放在一个字节的倒数第五个BIT */
 /* 增加^MIPICLK的主动上报控制，放在第一个字节的最后一个Bit */
@@ -116,7 +98,6 @@ TAF_SDC_RPT_CMD_INDEX_ENUM_UINT8            g_aenTafSdcUnsolicitedRptCmdTable[] 
     TAF_SDC_RPT_CMD_BUTT,        TAF_SDC_RPT_CMD_BUTT,        TAF_SDC_RPT_CMD_BUTT,        TAF_SDC_RPT_CMD_BUTT
 };
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
 
 /*lint -save -e958 */
 
@@ -125,21 +106,7 @@ TAF_SDC_RPT_CMD_INDEX_ENUM_UINT8            g_aenTafSdcUnsolicitedRptCmdTable[] 
 *****************************************************************************/
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupportLte
- 功能描述  : 判断平台接入技术能力是否支持LTE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:支持
-             VOS_FALSE:不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年12月26日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_SDC_IsPlatformSupportLte( VOS_VOID )
 {
     VOS_UINT32                          i;
@@ -160,21 +127,7 @@ VOS_UINT32  TAF_SDC_IsPlatformSupportLte( VOS_VOID )
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupportUtran
- 功能描述  : 判断平台接入技术能力是否支持Utran FDD或TDD
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:支持
-             VOS_FALSE:不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年12月26日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_SDC_IsPlatformSupportUtran( VOS_VOID )
 {
     VOS_UINT32                          i;
@@ -195,21 +148,7 @@ VOS_UINT32  TAF_SDC_IsPlatformSupportUtran( VOS_VOID )
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupportUtranFdd
- 功能描述  : 判断平台接入技术能力是否支持Utran FDD
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:支持
-             VOS_FALSE:不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月18日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_SDC_IsPlatformSupportUtranFdd( VOS_VOID )
 {
     VOS_UINT32                          i;
@@ -230,21 +169,7 @@ VOS_UINT32  TAF_SDC_IsPlatformSupportUtranFdd( VOS_VOID )
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupportUtranTdd
- 功能描述  : 判断平台接入技术能力是否支持Utran TDD
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:支持
-             VOS_FALSE:不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年3月18日
-   作    者   : s00217060
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_SDC_IsPlatformSupportUtranTdd( VOS_VOID )
 {
     VOS_UINT32                          i;
@@ -266,21 +191,7 @@ VOS_UINT32  TAF_SDC_IsPlatformSupportUtranTdd( VOS_VOID )
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupportGsm
- 功能描述  : 判断平台接入技术能力是否支持GSM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:支持
-             VOS_FALSE:不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年12月26日
-   作    者   : s46746
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_SDC_IsPlatformSupportGsm( VOS_VOID )
 {
     VOS_UINT32                          i;
@@ -301,21 +212,7 @@ VOS_UINT32  TAF_SDC_IsPlatformSupportGsm( VOS_VOID )
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupport3Gpp2
- 功能描述  : 判断平台接入技术能力是否支持CDMA
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 支持
-             VOS_FALSE -- 不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsPlatformSupport3Gpp2(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -336,21 +233,7 @@ VOS_UINT32 TAF_SDC_IsPlatformSupport3Gpp2(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupport1x
- 功能描述  : 判断平台接入技术能力是否支持1x
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 支持
-             VOS_FALSE -- 不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月24日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsPlatformSupport1x(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -369,21 +252,7 @@ VOS_UINT32 TAF_SDC_IsPlatformSupport1x(VOS_VOID)
 
     return VOS_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupportHrpd
- 功能描述  : 判断平台接入技术能力是否支持HRPD
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 支持
-             VOS_FALSE -- 不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月24日
-   作    者   : g00256031
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsPlatformSupportHrpd(VOS_VOID)
 {
     VOS_UINT32                          i;
@@ -403,21 +272,7 @@ VOS_UINT32 TAF_SDC_IsPlatformSupportHrpd(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupportHybrid
- 功能描述  : 判断当前modem是否支持HYBRID模式
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月5日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsPlatformSupportHybrid(VOS_VOID)
 {
     VOS_UINT32                          ulSupport1X;
@@ -436,21 +291,7 @@ VOS_UINT32 TAF_SDC_IsPlatformSupportHybrid(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformSupport3Gpp
- 功能描述  : 判断平台接入技术能力是否支持G或U或L
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  -- 支持
-             VOS_FALSE -- 不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年07月08日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsPlatformSupport3Gpp(VOS_VOID)
 {
     VOS_UINT32                                              i;
@@ -478,24 +319,7 @@ VOS_UINT32 TAF_SDC_IsPlatformSupport3Gpp(VOS_VOID)
 }
 
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-11, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SDC_LogUnsolicitedRptInfo
- 功能描述  : 勾主动上报相关信息
- 输入参数  : enRptCmdIndex         - CURC主动上报命令枚举
-             pstCurcRptCtrl        - CURC控制主动上报的结构体
-             pstUnsolicitedRptCtrl - 单个命令控制主动上报的结构体
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年04月11日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_SDC_LogUnsolicitedRptInfo(
     TAF_SDC_RPT_CMD_INDEX_ENUM_UINT8            enRptCmdIndex,
     TAF_SDC_CURC_RPT_CTRL_STRU                 *pstCurcRptCtrl,
@@ -532,25 +356,7 @@ VOS_VOID  TAF_SDC_LogUnsolicitedRptInfo(
 }
 
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-11, end */
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CheckRptCmdStatus
- 功能描述  : 检查主动上报命令启用状态
- 输入参数  : VOS_UINT8                          *pucRptCfg,
-             TAF_SDC_CMD_RPT_CTRL_TYPE_ENUM_UINT8     enRptCtrlType,
-             TAF_SDC_RPT_CMD_INDEX_ENUM_UINT32        enRptCmdIndex
- 输出参数  : 无
- 返 回 值  :  VOS_TRUE        -- 启用主动上报
-              VOS_FALSE       -- 关闭主动上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月10日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CheckRptCmdStatus(
     VOS_UINT8                                  *pucRptCfg,
     TAF_SDC_CMD_RPT_CTRL_TYPE_ENUM_UINT8        enRptCtrlType,
@@ -569,9 +375,7 @@ VOS_UINT32 TAF_SDC_CheckRptCmdStatus(
         return VOS_TRUE;
     }
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-11, begin */
     TAF_SDC_LogUnsolicitedRptInfo(enRptCmdIndex, TAF_SDC_GetCurcRptCtrl(), TAF_SDC_GetUnsolicitedRptCtrl());
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-11, end */
 
     /* 主动上报受控类型填写错误，默认主动上报 */
     if (TAF_SDC_CMD_RPT_CTRL_BUTT == enRptCtrlType)
@@ -613,21 +417,7 @@ VOS_UINT32 TAF_SDC_CheckRptCmdStatus(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_UpdateRptCmdStatus
- 功能描述  : 更新主动上报命令启用状态
- 输入参数  : TAF_SDC_RPT_CMD_INDEX_ENUM_UINT32        enRptCmdIndex
-             VOS_UINT8                                ucRptCmdStatus
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月10日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核
-*****************************************************************************/
 VOS_VOID TAF_SDC_UpdateRptCmdStatus(
     TAF_SDC_RPT_CMD_INDEX_ENUM_UINT8            enRptCmdIndex,
     VOS_UINT32                                  ulRptCmdStatus
@@ -689,26 +479,8 @@ VOS_VOID TAF_SDC_UpdateRptCmdStatus(
     return;
 }
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_ConvertOamSendPid
- 功能描述  : svlte特性开启时，modem1可能收到usim0的消息，需要将消息中send pid进行转换
- 输入参数  : ulConvertedSendPid - 消息中原始的send pid
- 输出参数  : 无
- 返 回 值  : 转换后的pid
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月5日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-
-  2.日    期   : 2015年6月25日
-    作    者   : l00198894
-    修改内容   : TSTS
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_ConvertOamSendPid(
     VOS_UINT32                          ulConvertedSendPid
 )
@@ -746,30 +518,12 @@ VOS_UINT32 TAF_SDC_ConvertOamSendPid(
     return ulConvertedSendPid;
 }
 
-/* Deleted by l00208543 for STK升级, 2013-07-24, begin */
-/* Deleted by l00208543 for STK升级, 2013-07-24, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_GetCsSrvExistFlg
- 功能描述  : 获取当前是否有CS业务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前是否有CS业务
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月17日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_GetCsSrvExistFlg(VOS_VOID)
 {
     /* 如果有电话业务存在，认为当前有CS业务 */
-     /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, begin */
     if (VOS_TRUE == TAF_SDC_GetCsCallExistFlg())
-     /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-09-23, end */
     {
         return VOS_TRUE;
     }
@@ -792,22 +546,7 @@ VOS_UINT32 TAF_SDC_GetCsSrvExistFlg(VOS_VOID)
 }
 
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-29, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SDC_GetImsSupportFlag
- 功能描述  : 获取当前是否支持IMS标志,GSM,UTRAN,LTE IMS其中有一个支持IMS就认为支持IMS
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 当前是否支持IMS标志
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月17日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_GetImsSupportFlag(VOS_VOID)
 {
     /* 如果支持GSM IMS，认为当前支持IMS */
@@ -833,23 +572,8 @@ VOS_UINT32 TAF_SDC_GetImsSupportFlag(VOS_VOID)
 
 }
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-08-29, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsImsiAvailableInCurrSimStatus
- 功能描述  : 判断哪些卡状态可以取到卡的IMSI
- 输入参数  : TAF_SDC_USIM_STATUS_ENUM_UINT8      enSimStatus
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsImsiAvailableInCurrSimStatus(
     TAF_SDC_USIM_STATUS_ENUM_UINT8      enSimStatus
 )
@@ -874,23 +598,7 @@ VOS_UINT32 TAF_SDC_IsImsiAvailableInCurrSimStatus(
 }
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsErrLogNeedRecord
- 功能描述  : 查询usLevel级别的异常是否需要记录
- 输入参数  : VOS_UINT16 usLevel
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:   需要上报
-             VOS_FALSE:  不需要上报
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年8月23日
-    作    者   : s00190137
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsErrLogNeedRecord(VOS_UINT16 usLevel)
 {
     /* Log开关关闭，不需要上报 */
@@ -914,22 +622,7 @@ VOS_UINT32 TAF_SDC_IsErrLogNeedRecord(VOS_UINT16 usLevel)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_GetCardImsiFailRecord
- 功能描述  : 记录CS呼叫异常事件
- 输入参数  : VOS_UINT32                        ulGetCardImsiRslt,
-             VOS_UINT8                         pucImsi
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_SDC_GetCardImsiFailRecord(
     VOS_UINT32                          ulGetCardImsiRslt,
     VOS_UINT8                          *pucImsi
@@ -1004,21 +697,7 @@ VOS_VOID TAF_SDC_GetCardImsiFailRecord(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CalcTime
- 功能描述  : 计算时长
- 输入参数  : ulFirTime -- 起始计时
-             ulSecTime -- 结束计时
- 输出参数  : pulTotalTime -- 时长
- 返 回 值  : 成功返回VOS_OK; 失败返回VOS_ERR;
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月21日
-    作    者   : j00174725
-    修改内容   : V3R3 ROTS项目
-*****************************************************************************/
 VOS_UINT32  TAF_CalcTime(
                 VOS_UINT32  ulFirTime,
                 VOS_UINT32  ulSecTime,
@@ -1036,23 +715,7 @@ VOS_UINT32  TAF_CalcTime(
     return VOS_OK;
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
-/*****************************************************************************
- 函 数 名  :TAF_SDC_IsLteOnlyMode
- 功能描述  :判断当前接入模式是否为Lte only
- 输入参数  :pstRatOrder - 接入模式和优先级信息
- 输出参数  :无
- 返 回 值  :VOS_TRUE  - 当前为L单模
-            VOS_FALSE - 当前不为L单模
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年11月20日
-   作    者   : W00176964
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsLteOnlyMode(
     TAF_SDC_RAT_PRIO_STRU              *pstRatOrder
 )
@@ -1066,47 +729,23 @@ VOS_UINT32 TAF_SDC_IsLteOnlyMode(
     return VOS_FALSE;
 }
 
-/*******************************************************************************
-  函 数 名  : TAF_SDC_IsUsimStausValid
-  功能描述  : 判断SIM卡是否有效
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : VOS_FALSE:SIM卡无效
-              VOS_TRUE:SIM卡有效
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2013年11月20日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年1月23日
-    作    者   : z00161729
-    修改内容   : DTS2014012305088:svlte特性开启卡无效场景mtc无需上报pstransfer:0和1
-  3.日    期   : 2013年05月14日
-    作    者   : w00176964
-    修改内容   : eCall特性开发
-*******************************************************************************/
 VOS_UINT32 TAF_SDC_IsUsimStausValid(VOS_VOID)
 {
     VOS_UINT8                           ucSimCsRegStatus;
     VOS_UINT8                           ucSimPsRegStatus;
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-14, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     TAF_SDC_CALL_MODE_ENUM_UINT8        enCallMode;
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-14, end */
 #if (FEATURE_ON == FEATURE_LTE)
     TAF_SDC_RAT_PRIO_STRU              *pstRatPrio = VOS_NULL_PTR;
 
     pstRatPrio       = TAF_SDC_GetMsPrioRatList();
 #endif
 
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-14, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     enCallMode = TAF_SDC_GetCurCallMode();
 #endif
-    /* Added by w00176964 for V3R3C60_eCall项目, 2014-5-14, end */
 
     ucSimCsRegStatus = TAF_SDC_GetSimCsRegStatus();
     ucSimPsRegStatus = TAF_SDC_GetSimPsRegStatus();
@@ -1114,30 +753,32 @@ VOS_UINT32 TAF_SDC_IsUsimStausValid(VOS_VOID)
     if ((VOS_FALSE == ucSimPsRegStatus)
      && (VOS_FALSE == ucSimCsRegStatus))
     {
+        NAS_NORMAL_LOG(WUEPS_PID_TAF, "TAF_SDC_IsUsimStausValid(): SIM CS and PS reg status invalid");
         return VOS_FALSE;
     }
 
     /* 无卡时返回VOS_FALSE卡无效 */
     if (TAF_SDC_USIM_STATUS_NO_PRESENT == TAF_SDC_GetSimStatus())
     {
+        NAS_NORMAL_LOG(WUEPS_PID_TAF, "TAF_SDC_IsUsimStausValid(): SIM Not Present");
         return VOS_FALSE;
     }
 
     if (( VOS_FALSE == TAF_SDC_GetPsAttachAllowFlg())
      && ( VOS_FALSE == ucSimCsRegStatus))
     {
+        NAS_NORMAL_LOG(WUEPS_PID_TAF, "TAF_SDC_IsUsimStausValid(): SIM PS attach not allowed and CS reg status invalid");
         return VOS_FALSE;
     }
 
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-14, begin */
     if (( VOS_FALSE == TAF_SDC_GetCsAttachAllowFlg())
      && ( VOS_FALSE == ucSimPsRegStatus)
 #if (FEATURE_ON == FEATURE_ECALL)
      && (TAF_SDC_ECALL_ONLY != enCallMode)
 #endif
        )
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-14, end */
     {
+        NAS_NORMAL_LOG(WUEPS_PID_TAF, "TAF_SDC_IsUsimStausValid(): SIM CS attach not allowed and PS reg status invalid");
         return VOS_FALSE;
     }
 
@@ -1147,31 +788,16 @@ VOS_UINT32 TAF_SDC_IsUsimStausValid(VOS_VOID)
     if ((VOS_TRUE == TAF_SDC_IsLteOnlyMode(pstRatPrio))
      && (VOS_FALSE == ucSimPsRegStatus))
     {
+        NAS_NORMAL_LOG(WUEPS_PID_TAF, "TAF_SDC_IsUsimStausValid(): L only mode and SIM PS reg status invalid");
         return VOS_FALSE;
     }
 #endif
     return VOS_TRUE;
 
 }
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, begin */
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsImsVoiceSupportedInUE
- 功能描述  : 判断UE是否支持IMS VOICE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:IMS VOICE不支持
-             VOS_TRUE: IMS VOICE支持
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月31日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsImsVoiceSupportedInUE(VOS_VOID)
 {
     VOS_UINT32                          ulImsSupportFlag;
@@ -1188,21 +814,7 @@ VOS_UINT32 TAF_SDC_IsImsVoiceSupportedInUE(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsImsVoiceSupportedInNW
- 功能描述  : 判断网络是否支持IMS VOICE
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:IMS VOICE不支持
-             VOS_TRUE: IMS VOICE支持
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年12月31日
-   作    者   : w00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsImsVoiceSupportedInNW(VOS_VOID)
 {
     TAF_SDC_NETWORK_CAP_INFO_STRU      *pstCurNwCapInfo   = VOS_NULL_PTR;
@@ -1227,27 +839,8 @@ VOS_UINT32 TAF_SDC_IsImsVoiceSupportedInNW(VOS_VOID)
 
 
 #endif
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, end */
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SDC_PlmnId2Bcd
- 功能描述  : 将原PLMNid转化为BCD格式记录
-             例如:MCC为460,MNC为01时,
-             pstPlmnId->Mcc = 0x000604      pstPlmnId->Mcc = 0x00000460
-                                        ---->
-             pstPlmnId->Mnc = 0x0F0100      pstPlmnId->Mnc = 0x00000F01
- 输入参数  : TAF_SDC_PLMN_ID_STRU *pstPlmnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月10日
-    作    者   : l00198894
-    修改内容   : 新增+ECID命令
-*****************************************************************************/
 VOS_VOID TAF_SDC_PlmnId2Bcd(
     TAF_SDC_PLMN_ID_STRU               *pstPlmnId
 )
@@ -1289,24 +882,8 @@ VOS_VOID TAF_SDC_PlmnId2Bcd(
     }
     return;
 }
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
-/*******************************************************************************
-  函 数 名  : TAF_SDC_IsConfigCLInterWorkCOutside
-  功能描述  : 判断是否CL互操作方案
-  输入参数  : 无
-  输出参数  : 无
-  返 回 值  : VOS_FALSE:不是
-              VOS_TRUE:是
-  调用函数  :
-  被调函数  :
 
-  修改历史      :
-  1.日    期   : 2014年2月15日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-*******************************************************************************/
 VOS_UINT32 TAF_SDC_IsConfigCLInterWorkCOutside(VOS_VOID)
 {
     if (VOS_FALSE == TAF_SDC_GetLCEnableFlg())
@@ -1333,24 +910,9 @@ VOS_UINT32 TAF_SDC_IsConfigCLInterWorkCOutside(VOS_VOID)
     return VOS_FALSE;
 }
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsConfigCLMode
- 功能描述  : C Inside并且用户设置了C模
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月15日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsConfigCLMode(VOS_VOID)
 {
     TAF_SDC_RAT_PRIO_STRU              *pstRatPrio = VOS_NULL_PTR;
@@ -1370,21 +932,7 @@ VOS_UINT32 TAF_SDC_IsConfigCLMode(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_Is1xOnlyMode
- 功能描述  : 判断只支持1X模式
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月24日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_Is1xOnlyMode(VOS_VOID)
 {
     TAF_SDC_RAT_PRIO_STRU              *pstRatPrio      = VOS_NULL_PTR;
@@ -1399,21 +947,7 @@ VOS_UINT32 TAF_SDC_Is1xOnlyMode(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_Get1xConcurrentSupportedFlag
- 功能描述  : 判断1X是否支持并发业务
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_Get1xConcurrentSupportedFlag(VOS_VOID)
 {
     TAF_SDC_1X_SYS_INFO_STRU           *pst1xSysInfo;
@@ -1437,20 +971,7 @@ VOS_UINT32 TAF_SDC_Get1xConcurrentSupportedFlag(VOS_VOID)
 
 /*lint -restore */
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CheckDtmfKey
- 功能描述  : 检查DTMF key的合法性
- 输入参数  : VOS_CHAR  *pckey
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月15日
-    作    者   : g00261581
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CheckDtmfKey(
     VOS_CHAR                           *pckey
 )
@@ -1472,20 +993,7 @@ VOS_UINT32 TAF_SDC_CheckDtmfKey(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsCsNormalService
- 功能描述  : 判断CS域是否正常服务
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月20日
-    作    者   : l00198894
-    修改内容   : 新增
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsCsNormalService(VOS_VOID)
 {
     if (TAF_SDC_SERVICE_STATUS_NORMAL_SERVICE == TAF_SDC_GetCsServiceStatus())
@@ -1496,22 +1004,7 @@ VOS_UINT32 TAF_SDC_IsCsNormalService(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsBcchPlmnIdInDestSimPlmnList
- 功能描述  : 判断PLMN ID是否在列表中(卡类型的网络ID)
- 输入参数  : pstBcchPlmnId    -  需要判断的PLMN ID
-             ucSimPlmnNum     -  列表中plmn id的个数
-             pstSimPlmnIdList - plmn列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : PLMN ID在列表中
-             VOS_FALSE : PLMN ID不在列表中
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年2月27日
-   作    者   : z00161729
-   修改内容   : AT&T 支持EONS特性修改
-*****************************************************************************/
+
 VOS_UINT32 TAF_SDC_IsBcchPlmnIdInDestSimPlmnList (
     TAF_SDC_PLMN_ID_STRU               *pstBcchPlmnId,
     VOS_UINT8                           ucSimPlmnNum,
@@ -1536,26 +1029,7 @@ VOS_UINT32 TAF_SDC_IsBcchPlmnIdInDestSimPlmnList (
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_ExactlyCompareBcchPlmnwithSimPlmn
- 功能描述  : 精确比较SIM卡中存储PLMN与系统消息广播中PLMN是否相等,MNC完全相同才为相等，PLMN 属于 NA PCS1900 除外
-             1)一个plmn是Bcch格式的，一个plmn是Sim格式的进行比较时，
-               Bcch格式的plmn必须作为第一个入参，sim格式的必须作为第二个入参
-             2)两个Bcch格式的plmn比较时，入参顺序没关系
-             3)两个Sim格式的plmn比较时，入参顺序没关系
- 输入参数  : TAF_SDC_PLMN_ID_STRU    *pstBccPlmnId
-             TAF_SDC_PLMN_ID_STRU    *pstSimPlmnId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: PLMN ID相同
-             VOS_FALSE: PLMN ID不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月26日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_ExactlyCompareBcchPlmnwithSimPlmn(
     TAF_SDC_PLMN_ID_STRU                *pstBccPlmnId,
     TAF_SDC_PLMN_ID_STRU                *pstSimPlmnId
@@ -1589,26 +1063,7 @@ VOS_UINT32 TAF_SDC_ExactlyCompareBcchPlmnwithSimPlmn(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CompareBcchPlmnwithSimPlmn
- 功能描述  : 比较系统消息广播中PLMN与SIM卡中存储PLMN是否相等,
-             1)一个plmn是Bcch格式的，一个plmn是Sim格式的进行比较时，
-               Bcch格式的plmn必须作为第一个入参，sim格式的必须作为第二个入参
-             2)两个Bcch格式的plmn比较时，入参顺序没关系
-             3)两个Sim格式的plmn比较时，入参顺序没关系
- 输入参数  : TAF_SDC_PLMN_ID_STRU    *pstBccPlmnId
-             TAF_SDC_PLMN_ID_STRU    *pstSimPlmnId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: PLMN ID相同
-             VOS_FALSE: PLMN ID不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月26日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CompareBcchPlmnwithSimPlmn(
     TAF_SDC_PLMN_ID_STRU                *pstBccPlmnId,
     TAF_SDC_PLMN_ID_STRU                *pstSimPlmnId
@@ -1618,7 +1073,6 @@ VOS_UINT32 TAF_SDC_CompareBcchPlmnwithSimPlmn(
 
     ulCmpRlst   = VOS_FALSE;
 
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, begin */
     /* 如果需要精确比较MNC*/
     if (VOS_TRUE == TAF_SDC_GetPlmnExactlyCompareFlg())
     {
@@ -1626,7 +1080,6 @@ VOS_UINT32 TAF_SDC_CompareBcchPlmnwithSimPlmn(
 
         return ulCmpRlst;
     }
-    /* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-14, end */
 
     /* HPLMN Matching Criteria for mobiles which support PCS1900 for NA:
     1) The MS shall compare using all 3 digits the SIM-MCC with the BCCH-MCC.
@@ -1657,24 +1110,7 @@ VOS_UINT32 TAF_SDC_CompareBcchPlmnwithSimPlmn(
     return ulCmpRlst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CompareBcchPlmnBytewithSimPlmnByte_WithWildcard
- 功能描述  : 比较系统消息广播中PLMN中的某个字节与SIM卡中存储PLMN中的对应字节是否相等,
-             通配符可以匹配0~9的任何数字.
- 输入参数  : VOS_UINT32    ucHexBcchByte --16进制表示的某字节，可能是通配符
-             VOS_UINT32    ucHexSimByte  --16进制表示的某字节，可能是通配符
-             VOS_CHAR      cWildcard    --ASCII 表示的通配符
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 字节相同
-             VOS_FALSE: 字节不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月2日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CompareBcchPlmnBytewithSimPlmnByte_WithWildcard(
     VOS_UINT8                           ucHexBcchByte,
     VOS_UINT8                           ucHexSimByte,
@@ -1707,28 +1143,7 @@ VOS_UINT32 TAF_SDC_CompareBcchPlmnBytewithSimPlmnByte_WithWildcard(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CompareBcchMncwithSimMnc_WithWildcard
- 功能描述  : 比较系统消息广播中PLMN中的MCC与SIM卡中存储PLMN中的MCC是否相等,
-             通配符可以匹配0~9的任何数字，且非精确比较时，通配符不区分大小写
- 输入参数  : VOS_UINT32    ulBcchMcc
-             VOS_UINT32    ulSimMcc
-             VOS_UINT8     ucWildcard
-             VOS_UINT8     ucExactlyCmpFlg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: MCC相同
-             VOS_FALSE: MCC不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月2日
-   作    者   : c00318887
-   修改内容   : 新生成函数
- 2.日    期   : 2015年6月26日
-   作    者   : w00316404
-   修改内容   : 清理pc-lint告警
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CompareBcchMccwithSimMcc_WithWildcard(
     VOS_UINT32                          ulBcchMcc,
     VOS_UINT32                          ulSimMcc,
@@ -1765,31 +1180,7 @@ VOS_UINT32 TAF_SDC_CompareBcchMccwithSimMcc_WithWildcard(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CompareBcchMnc3BytewithSimMnc3Byte
- 功能描述  : 比较系统消息广播中PLMN中的MNC和SIM卡中存储PLMN中的MNC是否相等时,
-             MNC的最高位是否需要特殊处理:
-             1. 北美的国家码在310和316之间，比较最高位是否是0或F，则判为相同
-             2. 如果是非精确比较，BCCH的MNC最高位是F时，则也判为相同
-             注意参数顺序:
-             1)一个plmn是Bcch格式的，一个plmn是Sim格式的进行比较时，
-               Bcch格式的plmn必须作为第一个入参，sim格式的必须作为第二个入参
-             2)两个Bcch格式的plmn比较时，入参顺序没关系
-             3)两个Sim格式的plmn比较时，入参顺序没关系
- 输入参数  : TAF_SDC_PLMN_ID_STRU                *pstBccPlmnId,
-             TAF_SDC_PLMN_ID_STRU                *pstSimPlmnId,
-             VOS_UINT8                           ucExactlyCmpFlg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: MNC最高位相同
-             VOS_FALSE: MNC最高位不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月2日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CompareBcchMnc3BytewithSimMnc3Byte(
     TAF_SDC_PLMN_ID_STRU               *pstBccPlmnId,
     TAF_SDC_PLMN_ID_STRU               *pstSimPlmnId,
@@ -1830,28 +1221,7 @@ VOS_UINT32 TAF_SDC_CompareBcchMnc3BytewithSimMnc3Byte(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CompareBcchMncwithSimMnc_WithWildcard
- 功能描述  : 比较系统消息广播中PLMN中的MNC的低2个字节与SIM卡中存储PLMN中的MNC的低2个字节是否相等,
-             通配符可以匹配0~9的任何数字，且非精确比较时，通配符不区分大小写
- 输入参数  : VOS_UINT32    ulBcchMnc
-             VOS_UINT32    ulSimMnc
-             VOS_UINT8     ucWildcard
-             VOS_UINT8     ucExactlyCmpFlg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: MCC的低2个字节相同
-             VOS_FALSE: MCC的低2个字节不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月2日
-   作    者   : c00318887
-   修改内容   : 新生成函数
- 2.日    期   : 2015年6月26日
-   作    者   : w00316404
-   修改内容   : 清理pc-lint告警
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CompareBcchMncLow2ByteWithSimMnclowLow2Byte_WithWildcard(
     VOS_UINT32                          ulBcchMnc,
     VOS_UINT32                          ulSimMnc,
@@ -1888,29 +1258,7 @@ VOS_UINT32 TAF_SDC_CompareBcchMncLow2ByteWithSimMnclowLow2Byte_WithWildcard(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_ConvertSimPlmnToNasPLMN
- 功能描述  : 将SIM卡中的3字节格式PLMN转换为MCC和MNC分开的格式
-            (10.5.1.3 Location Area Identification)
-             8 7 6 5     4 3 2 1
-            Location Area Identification IEI       octet 1
-            MCC digit 2     MCC digit 1            octet 2
-            MNC digit 3     MCC digit 3            octet 3
-            MNC digit 2     MNC digit 1            octet 4
 
-            例如: 32f020(mcc:0x000302,mnc:0x0f0200) --> 230,02f
- 输入参数  : pstSimPlmn - sim卡格式plmn id
- 输出参数  : pstNasPlmn - 转换后plmn id
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年2月16日
-   作    者   : b00269685
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TAF_SDC_ConvertSimPlmnToNasPLMN(
     TAF_SDC_SIM_FORMAT_PLMN_ID          *pstSimPlmn,
     TAF_SDC_PLMN_ID_STRU                *pstNasPlmn
@@ -1946,30 +1294,7 @@ VOS_VOID  TAF_SDC_ConvertSimPlmnToNasPLMN(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CompareBcchMncwithSimMnc_WithWildcard
- 功能描述  : 比较系统消息广播中PLMN中的MNC与SIM卡中存储PLMN中的MNC是否相等,
-             通配符可以匹配0~9的任何数字，且非精确比较时，通配符不区分大小写,
-             PLMN 属于 NA PCS1900 特殊处理
-             1)一个plmn是Bcch格式的，一个plmn是Sim格式的进行比较时，
-               Bcch格式的plmn必须作为第一个入参，sim格式的必须作为第二个入参
-             2)两个Bcch格式的plmn比较时，入参顺序没关系
-             3)两个Sim格式的plmn比较时，入参顺序没关系
- 输入参数  : TAF_SDC_PLMN_ID_STRU                *pstBccPlmnId,
-             TAF_SDC_PLMN_ID_STRU                *pstSimPlmnId,
-             VOS_UINT8                           ucWildcard
-             VOS_UINT8                           ucExactlyCmpFlg
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: MNC相同
-             VOS_FALSE: MNC不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月2日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CompareBcchMncwithSimMnc_WithWildcard(
     TAF_SDC_PLMN_ID_STRU               *pstBccPlmnId,
     TAF_SDC_PLMN_ID_STRU               *pstSimPlmnId,
@@ -2024,21 +1349,7 @@ VOS_UINT32 TAF_SDC_CompareBcchMncwithSimMnc_WithWildcard(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsValidWildcard
- 功能描述  : 判断PLMN中的通配符是否是有效的通配符
- 输入参数  : VOS_CHAR    ucWildcard  --- 通配符
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 有效通配符
-             VOS_FALSE: 无效通配符
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月18日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsValidWildcard(
     VOS_CHAR                            cWildcard
 )
@@ -2057,22 +1368,7 @@ VOS_UINT32 TAF_SDC_IsValidWildcard(
     return VOS_FALSE;
 
 }
-/*****************************************************************************
- 函 数 名  : TAF_SDC_HexToAsciiOfPlmnByte
- 功能描述  : 将PLMN中的某字节十六进制表示的通配符转换成ASCII字符
-             比如: 0xA ---'A'; 0x2 ---'2', 不在0x0- -0x9,0xA--0xF范围则不变
- 输入参数  : VOS_UINT8    ucSrc  ---  通配符0-F的十六进制表示
- 输出参数  : VOS_UINT8   *pucDst ---  转换后的ASCII字符
- 返 回 值  : VOS_FALSE           --- 不合格式
-             VOS_TRUE            --- 格式正确，转换正确
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年3月18日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_SDC_HexToAsciiOfPlmnByte(
     VOS_UINT8                            ucSrc,
     VOS_UINT8                           *pucDst
@@ -2096,28 +1392,7 @@ VOS_VOID TAF_SDC_HexToAsciiOfPlmnByte(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_ExactlyCompareBcchPlmnwithSimPlmn_WithWildcard
- 功能描述  : 比较系统消息广播中PLMN与SIM卡中存储PLMN是否相等,
-              但PLMN 中MCC 和/或MNC 可能带有通配符，通配符可以和0~9 中的任何值匹配
-             1)一个plmn是Bcch格式的，一个plmn是Sim格式的进行比较时，
-               Bcch格式的plmn必须作为第一个入参，sim格式的必须作为第二个入参
-             2)两个Bcch格式的plmn比较时，入参顺序没关系
-             3)两个Sim格式的plmn比较时，入参顺序没关系
- 输入参数  : TAF_SDC_PLMN_ID_STRU    *pstBccPlmnId
-             TAF_SDC_PLMN_ID_STRU    *pstSimPlmnId
-             VOS_UINT8                        ucWildcard
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: PLMN ID相同
-             VOS_FALSE: PLMN ID不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月26日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_ExactlyCompareBcchPlmnwithSimPlmn_WithWildcard(
     TAF_SDC_PLMN_ID_STRU                *pstBccPlmnId,
     TAF_SDC_PLMN_ID_STRU                *pstSimPlmnId,
@@ -2158,25 +1433,7 @@ VOS_UINT32 TAF_SDC_ExactlyCompareBcchPlmnwithSimPlmn_WithWildcard(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_ConvertPlmnId2NasStyle
- 功能描述  : 将原PLMNid转化为NAS内部使用格式记录
-             例如:MCC为460,MNC为01时,
-             pstPlmnId->Mcc = 0x000604      pstPlmnId->Mcc = 0x00000460
-                                        <----
-             pstPlmnId->Mnc = 0x000100      pstPlmnId->Mnc = 0x00000001
- 输入参数  : TAF_PLMN_ID_STRU *pstPlmnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月25日
-   作    者   : z00161729
-   修改内容   : AT&T 支持EONS特性修改
-
-*****************************************************************************/
 VOS_VOID TAF_SDC_ConvertPlmnId2NasStyle(
     TAF_SDC_PLMN_ID_STRU               *pstPlmnId
 )
@@ -2219,21 +1476,7 @@ VOS_VOID TAF_SDC_ConvertPlmnId2NasStyle(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_GetOplFileType
- 功能描述  : 获取的OPL文件类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SDC_FILE_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月2日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SDC_FILE_TYPE_ENUM_UINT8  TAF_SDC_GetOplFileType(VOS_VOID)
 {
     VOS_UINT8                           ucSimType;
@@ -2268,21 +1511,7 @@ TAF_SDC_FILE_TYPE_ENUM_UINT8  TAF_SDC_GetOplFileType(VOS_VOID)
     return TAF_SDC_FILE_TYPE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_GetPnnFileType
- 功能描述  : 获取的PNN文件类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SDC_FILE_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月2日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SDC_FILE_TYPE_ENUM_UINT8  TAF_SDC_GetPnnFileType(VOS_VOID)
 {
     VOS_UINT8                           ucSimType;
@@ -2317,21 +1546,7 @@ TAF_SDC_FILE_TYPE_ENUM_UINT8  TAF_SDC_GetPnnFileType(VOS_VOID)
     return TAF_SDC_FILE_TYPE_BUTT;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_GetSpdiFileInfo
- 功能描述  : 获取的SPDI文件信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TAF_SDC_SPDI_FILE_INFO_STRU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月2日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SDC_SPDI_FILE_INFO_STRU* TAF_SDC_GetSpdiFileInfo(VOS_VOID)
 {
     VOS_UINT8                           ucSimType;
@@ -2365,21 +1580,7 @@ TAF_SDC_SPDI_FILE_INFO_STRU* TAF_SDC_GetSpdiFileInfo(VOS_VOID)
     return pstUsimSpdiInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsOperNameTypeSupport
- 功能描述  : 判断pnn或spn或mm info或cphs是否支持
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:支持
-             VOS_FALSE:不支持
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月26日
-   作    者   : z00161729
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  TAF_SDC_IsOperNameTypeSupport(
     TAF_SDC_OPER_NAME_TYPE_ENUM_UINT8   enOperNameType
 )
@@ -2400,28 +1601,7 @@ VOS_UINT32  TAF_SDC_IsOperNameTypeSupport(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CompareBcchPlmnwithSimPlmn_WithWildValue
- 功能描述  : 比较系统消息广播中PLMN与SIM卡中存储PLMN是否相等,
-             但PLMN 中MCC 和/或MNC 可能带有通配符，通配符可以和0~9 中的任何值匹配
-             1)一个plmn是Bcch格式的，一个plmn是Sim格式的进行比较时，
-               Bcch格式的plmn必须作为第一个入参，sim格式的必须作为第二个入参
-             2)两个Bcch格式的plmn比较时，入参顺序没关系
-             3)两个Sim格式的plmn比较时，入参顺序没关系
- 输入参数  : TAF_SDC_PLMN_ID_STRU    *pstBccPlmnId
-             TAF_SDC_PLMN_ID_STRU    *pstSimPlmnId
-             VOS_UINT8               ucWildcard
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: PLMN ID相同
-             VOS_FALSE: PLMN ID不相同
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年2月26日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CompareBcchPlmnwithSimPlmn_WithWildcard(
     TAF_SDC_PLMN_ID_STRU                *pstBccPlmnId,
     TAF_SDC_PLMN_ID_STRU                *pstSimPlmnId,
@@ -2470,22 +1650,7 @@ VOS_UINT32 TAF_SDC_CompareBcchPlmnwithSimPlmn_WithWildcard(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_GetImsiHomePlmn
- 功能描述  : 根据IMSI和MNC长度得到HPLMN
- 输入参数  : VOS_UINT8                          *pucImsi
-             VOS_UINT8                           ucUsimMncLenth
- 输出参数  : 无
- 返 回 值  : TAF_SDC_PLMN_ID_STRU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月23日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_SDC_PLMN_ID_STRU  TAF_SDC_GetImsiHomePlmn(
     VOS_UINT8                          *pucImsi,
     VOS_UINT8                           ucUsimMncLenth
@@ -2524,20 +1689,7 @@ TAF_SDC_PLMN_ID_STRU  TAF_SDC_GetImsiHomePlmn(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsImsSrvExist
- 功能描述  : 当前是否存在IMS业务
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  存在
-             VOS_FALSE: 不存在
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : IMS动态开关配置项目
-*****************************************************************************/
+
 VOS_UINT32 TAF_SDC_IsImsSrvExist(VOID)
 {
     VOS_UINT8                           ucImsVoiceFlag;
@@ -2578,19 +1730,7 @@ VOS_UINT32 TAF_SDC_IsSysCfgRatSupportHrpdAndLte(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlmnIdValid
- 功能描述  : 判断PLMN ID是否有效
- 输出参数  : VOS_VOID
- 返 回 值  : VOS_FALSE  : PLMN ID是无效值
-             VOS_TRUE : PLMN ID是有效值
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2015年05月29日
-   作    者   : f00179208
-   修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_UINT32 TAF_SDC_IsPlmnIdValid(
     TAF_SDC_PLMN_ID_STRU               *pstPlmnId
 )
@@ -2633,22 +1773,7 @@ VOS_UINT32 TAF_SDC_IsPlmnIdValid(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsPlatformRatCapNvimValid
- 功能描述  : 检查从NV中读取平台接入技术能力是否有效
- 输入参数  : pstNvPlatformRatCap 平台接入技术能力的NV项结构体指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:平台接入技术能力NV项有效
-             VOS_FALSE:平台接入技术能力NV项无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : s46746
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsPlatformRatCapNvimValid(
     PLATAFORM_RAT_CAPABILITY_STRU      *pstNvPlatformRatCap
 )
@@ -2683,25 +1808,7 @@ VOS_UINT32 TAF_SDC_IsPlatformRatCapNvimValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_ConvertNvPlatformRatToTafType
- 功能描述  : 把NV类型的平台接入技术能力转换成TAF类型的
- 输入参数  : enNvPlatformRatCap:NV类型的平台接入技术能力
- 输出参数  : 无
- 返 回 值  : TAF类型的平台接入技术能力
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : s46746
-    修改内容   : 新增函数
-
-  2.日    期   : 2014年07月18日
-    作    者   : y00213812
-    修改内容   : 新增CDMA的1X和EVDO模式
-
-*****************************************************************************/
 TAF_SDC_PLATFORM_RAT_TYPE_ENUM_UINT8 TAF_SDC_ConvertNvPlatformRatToTafType(
     PLATFORM_RAT_TYPE_ENUM_UINT16       enNvPlatformRatCap
 )
@@ -2748,21 +1855,7 @@ TAF_SDC_PLATFORM_RAT_TYPE_ENUM_UINT8 TAF_SDC_ConvertNvPlatformRatToTafType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsSyscfgSupportSpecRat
- 功能描述  : 判断当前SYSCFG是否支持特定的接入技术
- 输入参数  : TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月30日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsSyscfgSupportSpecRat(
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode
 )
@@ -2784,22 +1877,7 @@ VOS_UINT32 TAF_SDC_IsSyscfgSupportSpecRat(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsCurrentNormalServiceStatus
- 功能描述  : 判断当前是只是单域的服务状态处于非normal service
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:仅单个域非normal service，
-             VOS_FALSE:CS/PS域都不能提供正常服务
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月11日
-    作    者   : w00281933
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT8 TAF_SDC_IsCurrentNormalServiceStatus(void)
 {
@@ -2822,22 +1900,7 @@ VOS_UINT8 TAF_SDC_IsCurrentNormalServiceStatus(void)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsCurrentNormalRegStatus
- 功能描述  : 判断当前是只是单域的注册状态处于非normal service
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:仅单个域非normal service，
-             VOS_FALSE:CS/PS域都不能提供正常服务
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月11日
-    作    者   : w00281933
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_UINT8 TAF_SDC_IsCurrentNormalRegStatus(void)
 {
@@ -2866,20 +1929,37 @@ VOS_UINT8 TAF_SDC_IsCurrentNormalRegStatus(void)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_UpdateRoamFlag
- 功能描述  : 更新MMA保存的RoamFlag标示
- 输入参数  : enRegState       --MMC上报的注册状态消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年04月11日
-   作    者   : w00281933
-   修改内容   : 新生成函数(服务状态优化Phase II  合入时,把这个函数移到 TFA_MMA_COMM_FUNC.C)
-*****************************************************************************/
+VOS_UINT8 TAF_SDC_IsCurrentAppNormalRegStatus(void)
+{
+    TAF_SDC_REG_STATUS_ENUM_UINT8   ucPsRegStatus;
+    TAF_SDC_REG_STATUS_ENUM_UINT8   ulCsRegStatus;
+
+    ulCsRegStatus = TAF_SDC_GetAppCsRegStatus();
+    ucPsRegStatus = TAF_SDC_GetAppPsRegStatus();
+
+    /* 更新总的服务状态 */
+    if ((TAF_SDC_REG_REGISTERED_HOME_NETWORK == ulCsRegStatus)
+     || (TAF_SDC_REG_REGISTERED_ROAM == ulCsRegStatus))
+    {
+        NAS_NORMAL_LOG1(WUEPS_PID_TAF, "TAF_SDC_IsCurrentAppNormalRegStatus(): App CS normal reg status ", ulCsRegStatus);
+        return VOS_TRUE;
+    }
+    else if ((TAF_SDC_REG_REGISTERED_HOME_NETWORK == ucPsRegStatus)
+          || (TAF_SDC_REG_REGISTERED_ROAM == ucPsRegStatus))
+    {
+        NAS_NORMAL_LOG1(WUEPS_PID_TAF, "TAF_SDC_IsCurrentAppNormalRegStatus(): App PS normal reg status ", ucPsRegStatus);
+        return VOS_TRUE;
+    }
+    else
+    {
+        NAS_NORMAL_LOG2(WUEPS_PID_TAF, "TAF_SDC_IsCurrentAppNormalRegStatus(): App non-normal reg status CS, PS", ulCsRegStatus, ucPsRegStatus);
+        return VOS_FALSE;
+    }
+
+}
+
+
 VOS_VOID TAF_MMA_UpdateRoamFlag(
     TAF_SDC_REG_STATUS_ENUM_UINT8      enRegState
 )
@@ -2902,22 +1982,7 @@ VOS_VOID TAF_MMA_UpdateRoamFlag(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsNeedReportRegStatus_RegStatusInd
- 功能描述  : 收到注册状态时，是否需要上报注册状态
- 输入参数  : 服务域，旧的注册状态，新的注册状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  需要上报
-             VOS_FALSE: 不需要上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月11日
-    作    者   : w00281933
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsAppSepcDomainRegStaChg(
     TAF_SDC_SERVICE_DOMAIN_ENUM_UINT8   enCnDomainId,
     TAF_SDC_REG_STATUS_ENUM_UINT8       enRegState
@@ -2955,21 +2020,7 @@ VOS_UINT32 TAF_SDC_IsAppSepcDomainRegStaChg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_IsNeedReportRegStatusWhenNonnormalService_RegStatusInd
- 功能描述  : 非正常服务时是否需要上报注册状态改变
- 输入参数  : 服务域，旧的注册状态，新的注册状态
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:  需要上报
-             VOS_FALSE: 不需要上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月28日
-    作    者   : z00359541
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsNeedReportRegStatusWhenNonnormalService(
     TAF_SDC_SERVICE_DOMAIN_ENUM_UINT8   enCnDomainId,
     TAF_SDC_REG_STATUS_ENUM_UINT8       enRegState
@@ -3019,22 +2070,7 @@ VOS_UINT32 TAF_SDC_IsNeedReportRegStatusWhenNonnormalService(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_IsSpecRatInRatList
- 功能描述  : 判断特定的接入技术是否在接入技术列表中
- 输入参数  : TAF_MMA_RAT_TYPE_ENUM_UINT8         enRatType,
-             TAF_MMA_RAT_ORDER_STRU             *pstRatList
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月30日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_IsSpecRatInRatList(
     TAF_MMA_RAT_TYPE_ENUM_UINT8         enRatType,
     TAF_MMA_RAT_ORDER_STRU             *pstRatList
@@ -3060,22 +2096,7 @@ VOS_UINT32 TAF_SDC_IsSpecRatInRatList(
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_SDC_CovertCimisNumToBcd
- 功能描述  : 转换号码为十进制
- 输入参数  : ulSrcValude  -- BCD码长度
-             ulCodeMode   -- BCD码存放的位置
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 -按照协议还原计算值
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : y00245242
-    修改内容   : Create
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_CovertCimisNumToBcd(VOS_UINT32 ulSrcValude, VOS_UINT32 ulCodeMode)
 {
     VOS_UINT32                          ulTempl   = 0;
@@ -3111,21 +2132,7 @@ VOS_UINT32 TAF_SDC_CovertCimisNumToBcd(VOS_UINT32 ulSrcValude, VOS_UINT32 ulCode
     return ulDstValue;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SDC_ConvertCImsiBcdCode
- 功能描述  : 转换CIMSI格式到BCD码
- 输入参数  : VOS_UINT8 *pucCIMSI       -- BCD码存放的位置
-             VOS_UINT8 *pucAsciiStr  -- 字符串写入位置
 
- 输出参数  : pucStrCIMSI 存放转换后字符
-
- 返 回 值  :
-
- 修改历史      :
-  1.日    期   : 2015年11月12日
-    作    者   : y00245242
-    修改内容   : 新建
-*****************************************************************************/
 VOS_UINT32 TAF_SDC_ConvertCImsiBcdCode(
     VOS_UINT8                           *pucCIMSI,
     VOS_UINT8                           *pucStrCIMSI)

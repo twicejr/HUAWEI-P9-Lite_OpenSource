@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaTimerMgmt.h
-  版 本 号   : 初稿
-  作    者   : 闫志吉
-  生成日期   : 2012年6月27日
-  最近修改   :
-  功能描述   : MTA模块
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年6月27日
-    作    者   : Y00213812
-    修改内容   : V7R1C50 A-GPS项目新增
-
-******************************************************************************/
 
 #ifndef __TAFMTATIMERMGMT_H__
 #define __TAFMTATIMERMGMT_H__
@@ -50,7 +33,7 @@ extern "C" {
 /* ^nmr等待接入层回复nmr数据查询结果保护定时器时长 */
 #define TI_TAF_MTA_WAIT_AS_QRY_NMR_CNF_TIMER_LEN            (3 * TIMER_S_TO_MS_1000)
 
-#define TAF_MTA_CTX_MAX_TIMER_NUM                           (6)                 /* 由于Rf&Lcd干扰规避项目，将定时器资源从5个扩大到6个 by j00174725 */
+#define TAF_MTA_CTX_MAX_TIMER_NUM                           (6)
 
 #define TI_TAF_MTA_WAIT_WRR_AUTOTEST_QRY_CNF_TIMER_LEN      (3 * TIMER_S_TO_MS_1000)
 #define TI_TAF_MTA_WAIT_WRR_CELLINFO_QRY_CNF_TIMER_LEN      (3 * TIMER_S_TO_MS_1000)
@@ -70,9 +53,7 @@ extern "C" {
 #define TI_TAF_MTA_WAIT_PHY_HANDLEDECT_SET_CNF_TIMER_LEN    (3 * TIMER_S_TO_MS_1000)
 #define TI_TAF_MTA_WAIT_PHY_HANDLEDECT_QRY_CNF_TIMER_LEN    (3 * TIMER_S_TO_MS_1000)
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
 #define TI_TAF_MTA_WAIT_AS_ECID_SET_CNF_TIMER_LEN           (3 * TIMER_S_TO_MS_1000)
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
 
 #define TAF_MTA_RF_LCD_TIMER_INTERVAL_DEFAULT               (60 * TIMER_S_TO_MS_1000)
@@ -126,26 +107,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : TAF_MTA_TIMER_ID_ENUM
- 枚举说明  : MTA定时器的ID
- 1.日    期   : 2012年6月27日
-   作    者   : Y00213812
-   修改内容   : V7R1C50 A-GPS项目新增
- 2.日    期   : 2012年11月21日
-   作    者   : z00161729
-   修改内容  : 支持cerssi和nmr
-  3.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改
- 4.日    期   : 2013年03月13日
-   作    者   : z00214637
-   修改内容   : BodySAR项目
- 5.日    期   : 2013年06月04日
-   作    者   : s00217060
-   修改内容   : for V9R1_SVLTE
 
-*****************************************************************************/
 enum TAF_MTA_TIMER_ID_ENUM
 {
     /* CPOS下MTA等待AT下发XML码流保护定时器 */
@@ -185,9 +147,7 @@ enum TAF_MTA_TIMER_ID_ENUM
     TI_TAF_MTA_WAIT_PHY_HANDLEDECT_SET_CNF,
     TI_TAF_MTA_WAIT_PHY_HANDLEDECT_QRY_CNF,
 
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
     TI_TAF_MTA_WAIT_AS_ECID_SET_CNF,
-    /* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
     TI_TAF_MTA_WAIT_DSP_INIT_CNF,
 
     TI_TAF_MTA_RF_LCD_MIPI_CLK_REPORT,
@@ -238,13 +198,7 @@ enum TAF_MTA_TIMER_ID_ENUM
 };
 typedef VOS_UINT32  TAF_MTA_TIMER_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : TAF_MTA_TIMER_STATUS_ENUM
- 结构说明  : MTA定时器状态,停止或运行
- 1.日    期   : 2012年6月27日
-   作    者   : Y00213812
-   修改内容   : V7R1C50 A-GPS项目新增
-*****************************************************************************/
+
 enum TAF_MTA_TIMER_STATUS_ENUM
 {
     TAF_MTA_TIMER_STATUS_STOP                       = 0,    /* 定时器停止状态 */
@@ -253,13 +207,7 @@ enum TAF_MTA_TIMER_STATUS_ENUM
 };
 typedef VOS_UINT8 TAF_MTA_TIMER_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_MTA_TIMER_START_RESULT_ENUM
- 结构说明  : MTA定时器启动结果返回值
- 1.日    期   : 2012年6月27日
-   作    者   : Y00213812
-   修改内容   : V7R1C50 A-GPS项目新增
-*****************************************************************************/
+
 enum TAF_MTA_TIMER_START_RESULT_ENUM
 {
     TAF_MTA_TIMER_START_SUCCEE              = 0,            /* 定时器启动成功 */
@@ -280,13 +228,7 @@ typedef VOS_UINT8 TAF_MTA_TIMER_START_RESULT_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : TAF_MTA_TIMER_CXT_STRU
- 结构说明  : MTA定时器运行上下文
-  1.日    期   : 2012年6月27日
-    作    者   : Y00213812
-    修改内容   : V7R1C50 A-GPS项目新增
-*****************************************************************************/
+
 typedef struct
 {
     HTIMER                              hTimer;             /* 定时器的运行指针 */
@@ -295,13 +237,7 @@ typedef struct
     VOS_UINT8                           aucReserve[3];      /* 保留位 */
 } TAF_MTA_TIMER_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MTA_TIMER_INFO_STRU
- 结构说明  : log出MTA定时器运行情况
-  1.日    期   : 2012年6月27日
-    作    者   : Y00213812
-    修改内容   : V7R1C50 A-GPS项目新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;
@@ -310,13 +246,7 @@ typedef struct
     VOS_UINT32                          ulLen;              /* 定时器时长 */
 }TAF_MTA_TIMER_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MTA_TIMER_PRECISION_STRU
- 结构说明  : 非32K精度定时器消息表
-  1.日    期   : 2015年6月17日
-    作    者   : zwx247453
-    修改内容   : Refclkfreq项目新增
-*****************************************************************************/
+
 typedef struct
 {
     TAF_MTA_TIMER_ID_ENUM_UINT32        enTimerId;          /* TimerID */
@@ -357,8 +287,6 @@ TAF_MTA_TIMER_STATUS_ENUM_UINT8  TAF_MTA_GetTimerStatus(
     TAF_MTA_TIMER_ID_ENUM_UINT32        enTimerId
 );
 
-/* Deleted by wx270776 for OM融合, 2015-7-16, begin */
-/* Deleted by wx270776 for OM融合, 2015-7-16, end */
 
 #if ((VOS_OS_VER == VOS_WIN32) || (VOS_OS_VER == VOS_NUCLEUS))
 #pragma pack()

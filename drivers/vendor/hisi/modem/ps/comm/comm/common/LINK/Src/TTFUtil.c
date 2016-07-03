@@ -499,21 +499,7 @@ VOS_UINT32 TTF_Read32RegByBit(VOS_UINT32 ulRegAddr, VOS_UINT8 ucStartBit, VOS_UI
 }/* TTF_Read32RegByBit */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_CopyLink_Init
- 功能描述  : 初始化保存Pdu
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年04月11日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_CopyLink_DL_Init(TTF_COPYLINK_DL_STRU *pstTtfCpyLink)
 {
     pstTtfCpyLink->ulCopyNodeCnt   = 0;
@@ -522,23 +508,7 @@ VOS_UINT32 TTF_CopyLink_DL_Init(TTF_COPYLINK_DL_STRU *pstTtfCpyLink)
 }/* TTF_CopyLink_Init */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_CopyLink_Reg
- 功能描述  : 注册需要保存的Rlc Pdu
- 输入参数  : VOS_UINT8 *pucRegDataDst 需要拷贝的数据的目的地址
-              VOS_UINT8 *pucRegDataSrc 需要拷贝的数据的源地址
-              VOS_UINT16 usRegDataLen  需要保存的数据长度
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年04月11日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_CopyLink_DL_Reg
 (
     VOS_UINT32                          ulPid,
@@ -572,21 +542,7 @@ VOS_UINT32 TTF_CopyLink_DL_Reg
 }/* TTF_CopyLink_Reg */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_CopyLink_Execute
- 功能描述  : 执行保存RLC PDU操作
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年04月11日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_CopyLink_DL_Execute(VOS_UINT32 ulPid, TTF_COPYLINK_DL_STRU *pstTtfCpyLink)
 {
     VOS_UINT32                          ulCopyNodeLoop;
@@ -619,42 +575,14 @@ VOS_UINT32 TTF_CopyLink_DL_Execute(VOS_UINT32 ulPid, TTF_COPYLINK_DL_STRU *pstTt
 }/* TTF_CopyLink_Execute */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_CopyLink_Rel
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月24日
-    作    者   : huangfei
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TTF_CopyLink_DL_Rel( TTF_COPYLINK_DL_STRU *pstTtfCpyLink )
 {
     pstTtfCpyLink->ulCopyNodeCnt = 0;
 } /* TTF_CopyLink_Rel */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_CopyLink_Init
- 功能描述  : 初始化保存Pdu
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年04月11日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_CopyLink_UL_Init(TTF_COPYLINK_UL_STRU *pstTtfCpyLink)
 {
     pstTtfCpyLink->ulCopyNodeCnt   = 0;
@@ -663,23 +591,7 @@ VOS_UINT32 TTF_CopyLink_UL_Init(TTF_COPYLINK_UL_STRU *pstTtfCpyLink)
 }/* TTF_CopyLink_Init */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_CopyLink_Reg
- 功能描述  : 注册需要保存的Rlc Pdu
- 输入参数  : VOS_UINT8 *pucRegDataDst 需要拷贝的数据的目的地址
-              VOS_UINT8 *pucRegDataSrc 需要拷贝的数据的源地址
-              VOS_UINT16 usRegDataLen  需要保存的数据长度
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年04月11日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_CopyLink_UL_Reg
 (
     VOS_UINT32                          ulPid,
@@ -713,21 +625,7 @@ VOS_UINT32 TTF_CopyLink_UL_Reg
 }/* TTF_CopyLink_Reg */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_CopyLink_Execute
- 功能描述  : 执行保存RLC PDU操作
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年04月11日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TTF_CopyLink_UL_Execute(VOS_UINT32 ulPid, TTF_COPYLINK_UL_STRU *pstTtfCpyLink)
 {
     VOS_UINT32                          ulCopyNodeLoop;
@@ -760,21 +658,7 @@ VOS_UINT32 TTF_CopyLink_UL_Execute(VOS_UINT32 ulPid, TTF_COPYLINK_UL_STRU *pstTt
 }/* TTF_CopyLink_Execute */
 
 
-/*****************************************************************************
- 函 数 名  : TTF_CopyLink_Rel
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月24日
-    作    者   : huangfei
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  TTF_CopyLink_UL_Rel( TTF_COPYLINK_UL_STRU *pstTtfCpyLink )
 {
     pstTtfCpyLink->ulCopyNodeCnt = 0;
@@ -782,24 +666,7 @@ VOS_VOID  TTF_CopyLink_UL_Rel( TTF_COPYLINK_UL_STRU *pstTtfCpyLink )
 
 
 
-/*****************************************************************************
- 函 数 名  : TTF_InsertSortAsc16bit
- 功能描述  : 将元素类型为VOS_UINT16的数组，按照升序排序
- 输入参数  :
 
- 输出参数  :
-
- 返 回 值  :
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年3月28日
-    作    者   : Huangfei & Hefeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_InsertSortAsc16bit
 (
     VOS_UINT32                          ulPid,
@@ -849,25 +716,7 @@ VOS_VOID TTF_InsertSortAsc16bit
 
 
 
-/*****************************************************************************
- 函 数 名  : TTF_RemoveDupElement16bit
- 功能描述  : 将元素类型为VOS_UINT16的数组，移除相同,传入数组必须是有序的，且传入原始
-              数组大小值
- 输入参数  :
 
- 输出参数  :
-
- 返 回 值  :
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年3月28日
-    作    者   : Huangfei & Hefeng
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_RemoveDupElement16bit
 (
     VOS_UINT32                          ulPid,
@@ -920,25 +769,7 @@ VOS_VOID TTF_RemoveDupElement16bit
 }
 
 
-/*****************************************************************************
- 函 数 名  : TTF_RingBufWrite
- 功能描述  : 将数据拷贝对对应的环形Buffer中
- 输入参数  : VOS_UINT32 ulPid                  对应的Pid
-              VOS_UINT32 ulDstRingBufBaseAddr   对应环形Buffer的起始地址
-              VOS_UINT16 usOffset               拷贝时的偏移地址
-              VOS_UINT8 *pucSrcData             拷贝源数据地址
-              VOS_UINT16 usDataLen              拷贝数据的目的UPA邮箱的基地址
-              VOS_UINT16 usModLen               拷贝数据的目的邮箱的模
 
- 输出参数  : 无
- 返 回 值  : 无
-
- 修改历史      :
-  1.日    期   : 2010年9月7日
-    作    者   : x59651
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_RingBufWrite(VOS_UINT32 ulPid, VOS_UINT32 ulDstRingBufBaseAddr, VOS_UINT16 usOffset,
     VOS_UINT8 *pucSrcData, VOS_UINT16 usDataLen, VOS_UINT16 usModLen)
 {
@@ -978,25 +809,7 @@ VOS_VOID TTF_RingBufWrite(VOS_UINT32 ulPid, VOS_UINT32 ulDstRingBufBaseAddr, VOS
     return;
 } /* TTF_RingBufWrite */
 
-/*****************************************************************************
- 函 数 名  : TTF_RingBufRead
- 功能描述  : 将数据从对应的环形Buffer中拷贝出来
- 输入参数  :  VOS_UINT32 ulPid                  对应的Pid
-              VOS_UINT32 ulSrcRingBufBaseAddr   对应要拷贝的环形Buffer的起始地址
-              VOS_UINT16 usOffset               对应要拷贝时的偏移地址
-              VOS_UINT8 *pucDstData             拷贝的目的数据地址
-              VOS_UINT16 usDataLen              要拷贝数据的长度
-              VOS_UINT16 usModLen               拷贝数据的源邮箱的模
 
- 输出参数  : 无
- 返 回 值  : 无
-
- 修改历史      :
-  1.日    期   : 2011年7月18日
-    作    者   : w00165751
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TTF_RingBufRead
 (
     VOS_UINT32                          ulPid,

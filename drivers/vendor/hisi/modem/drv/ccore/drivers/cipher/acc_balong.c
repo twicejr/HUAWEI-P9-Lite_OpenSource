@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名 :  acc_balong.c
-*
-*   作    者 :  w00228729
-*
-*   描    述 :  完成组包加速功能
-*
-*   修改记录 :  2013年03月12日  v1.00  w00228729 创建
-*************************************************************************/
+
 #include <string.h>
 #include "securec.h"
 #include <osl_bio.h>
@@ -26,6 +16,8 @@ struct acc_chn_ctl acc_ctl = {
                              };
 
 struct acc_dbg_ctl acc_info = {0};
+#define acc_inc_ref cipher_inc_ref
+#define acc_dec_ref cipher_dec_ref
 
 
 
@@ -115,26 +107,35 @@ void acc_enable_bd_done_int(void)
 
 unsigned int mdrv_acc_get_bdq_addr(void)
 {
-	int i;
+	unsigned int i;
 	int j;
+	int ret;
 	void * sel_fifo = NULL;
 	unsigned int chn_busy;
 	unsigned int reg_base;
 	struct acc_fifo_ctl *f_ctl = NULL;
-
-	if(mdrv_cipher_enable())
-	{
-		ACC_ERROR_PRINT("CIPHER:fail to open clk\n");
-		return CIPHER_UNKNOWN_ERROR;
-	}
 	
 	reg_base = (unsigned int)acc_ctl.reg_base;
-	for(i = 0; i < (int)acc_ctl.acc_chn_num; i++)
+	for(i = 0; i < acc_ctl.acc_chn_num; i++)
 	{
+		ret = acc_inc_ref(i);
+		if (ret) {
+			return CIPHER_CHECK_ERROR;
+		}
+
+		if(mdrv_cipher_enable())
+		{
+			ACC_ERROR_PRINT("CIPHER:fail to open clk\n");
+			acc_dec_ref(i);
+			return CIPHER_UNKNOWN_ERROR;
+		}
+		
 		chn_busy = readl(reg_base + CIPHER_CHN_ENABLE(acc_ctl.chn_enum[i]));
 		chn_busy &= CHN_STATBIT;
-		if(!chn_busy)
+		if(!chn_busy) {
+			acc_dec_ref(i);
 			continue;
+		}
 		
 		for(j = 0; j < ACC_FIFO_NUM; j++)
 		{
@@ -143,6 +144,8 @@ unsigned int mdrv_acc_get_bdq_addr(void)
 				(ACC_STAT_WORK == f_ctl->status))
 				f_ctl->status = ACC_STAT_IDLE;
 		}
+
+		acc_dec_ref(i);
 	}
 
 	/*第一遍循环，寻找ACC_STAT_IDLE状态FIFO*/
@@ -300,9 +303,15 @@ int mdrv_acc_get_status(unsigned int chn)
 			return CIPHER_INVALID_CHN;
 	}
 
+	ret = acc_inc_ref(chn);
+	if (ret) {
+		return CIPHER_CHECK_ERROR;
+	}
+
 	if(mdrv_cipher_enable())
 	{
 		ACC_INFOR_PRINT("CIPHER:fail to open clk\n");
+		acc_dec_ref(chn);
 		return CIPHER_UNKNOWN_ERROR;
 	}
 	chn_busy = readl((unsigned int)acc_ctl.reg_base + CIPHER_CHN_ENABLE(chn));
@@ -319,6 +328,7 @@ int mdrv_acc_get_status(unsigned int chn)
 		}
 	}
 
+	acc_dec_ref(chn);
 	return ret;
 }
 
@@ -328,6 +338,7 @@ int mdrv_acc_enable(unsigned int chn, unsigned int fifo_addr)
 	struct acc_fifo_ctl *f_ctl = NULL;
 	unsigned int reg_val = 0;
 	unsigned int reg_base;
+	int ret;
 
 	if(!fifo_addr)
 	{
@@ -342,10 +353,16 @@ int mdrv_acc_enable(unsigned int chn, unsigned int fifo_addr)
 	{
 		return CIPHER_CHECK_ERROR;
 	}
+
+	ret = acc_inc_ref(chn);
+	if (ret) {
+		return ret;
+	}
 	
 	if(mdrv_cipher_enable())
 	{
 		ACC_INFOR_PRINT("CIPHER:fail to open clk\n");
+		acc_dec_ref(chn);
 		return CIPHER_UNKNOWN_ERROR;
 	}
 	reg_val = readl(reg_base + CIPHER_CHN_ENABLE(chn));
@@ -372,7 +389,7 @@ int mdrv_acc_enable(unsigned int chn, unsigned int fifo_addr)
 	reg_val = readl(reg_base + CIPHER_CHN_ENABLE(chn));
 	writel(reg_val | CHN_ENBITS, reg_base + CIPHER_CHN_ENABLE(chn));
 
-	//st_acc_chx_mgr.acc_debug.enable_times++;
+	acc_dec_ref(chn);
 	return 0;
 }
 

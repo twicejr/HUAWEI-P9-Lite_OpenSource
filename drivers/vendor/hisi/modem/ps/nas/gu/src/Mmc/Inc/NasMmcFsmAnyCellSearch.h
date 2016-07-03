@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmAnyCellSearch.h
-  版 本 号   : 初稿
-  作    者   : W00167002
-  生成日期   : 2011年4月29日
-  最近修改   :
-  功能描述   : NasMmcFsmAnyCellSearch.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年4月29日
-    作    者   : W00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -302,11 +285,9 @@ VOS_UINT32 NAS_MMC_RcvMmcAbortFsmMsg_AnyCellSearch(
 
 VOS_UINT32 NAS_MMC_IsNeedSndAsSuitableCellSelReq_AnyCellSearch(VOS_VOID);
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
 #if (FEATURE_ON == FEATURE_LTE)
 VOS_UINT32 NAS_MMC_IsNeedSndLmmSuitableCellSelReq_AnyCellSearch(VOS_VOID);
 #endif
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 VOS_UINT32 NAS_MMC_IsNeedRejectAnycellSerach_AnyCellSearch(VOS_VOID);
 

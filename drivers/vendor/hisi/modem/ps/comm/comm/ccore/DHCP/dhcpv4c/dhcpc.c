@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-  文   件  名: DhcpC.c
-  版   本  号: 初稿
-  作       者: j00142544
-  生成日期   : 2009-07-27
-  最近修改   :
-  功能描述   : DHCP Client模块的处理函数，负责对dhcp控制块的管理，地址的续租，
-               消息的接收以及发送处理
-  函数列表   :
-  修改历史   :
-  1、日   期 : 2007-07-27
-  作   者    : j00142544
-    修改内容 : 创建文件
-******************************************************************************/
 #include "dhcp_inc.h"
 #include "dhcpc_def.h"
 #include "dhcpc.h"
@@ -42,21 +25,7 @@ extern DHCP_SERVER_STATUS_S *g_pstDhcpServerStatus;
 #define    THIS_FILE_ID          PS_FILE_ID_DHCPC_C
 /*lint +e767*/
 
-/*****************************************************************************
- 函 数 名  : DHCPC_RenewTimeOut
- 功能描述  : 地址续租定时器超时的处理函数，扫描所有dhcp控制块，完成地址的续租处理
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年6月7日
-    作    者   : heguangwei 65937
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_RenewTimeOut( VOID )
 {
     ULONG i = 0;
@@ -132,7 +101,6 @@ VOID DHCPC_RenewTimeOut( VOID )
             {
                 pstDhcpNewcCtlBlk = pstDhcpcCtlBlk->pstNextNode;
                 /*地址重用只对已经上线的用户*/
-                /*modified by z00113478 ,有时会有莫名奇妙的状态进来*/
                 if ( ( DHCPC_STATE_LEASE == pstDhcpcCtlBlk->usDhcpStatus )
                      ||( DHCPC_STATE_ReNewing == pstDhcpcCtlBlk->usDhcpStatus )
                      ||( DHCPC_STATE_PreReBinding == pstDhcpcCtlBlk->usDhcpStatus )
@@ -143,14 +111,11 @@ VOID DHCPC_RenewTimeOut( VOID )
                     ulLease     = pstDhcpcCtlBlk->ulLease;
                     ulT1 = DHCPC_GET_T1_BY_LEASE(ulLease);
                     ulT2 = DHCPC_GET_T2_BY_LEASE(ulLease);
-                    /*取秒计数 modified by z00113478 at 20080703*/
                     ( VOS_VOID )PGP_TmNowInSec( &ulRetTimeInSec );
-                    /*取秒计数 modified by z00113478 at 20080703*/
                     ulIpUsedTime = ulRetTimeInSec - pstDhcpcCtlBlk->ulTimeStamp;
 
                     if( ulIpUsedTime*2 >= ulT2 + ulLease ) /* 15/16 lease */
                     {
-                        /* BEGIN: Modified for PN: DTS2012010500634  by guolixian 00171003, 2012/1/7  这里建议直接使用局部变量。*/
                         DHCPC_DebugPrint(PTM_LOG_DEBUG, "\r\n DHCPC_RenewTimeOut::Notify GTPC to delete context by Ip address!%u,%u,%d,%u,%u" ,
                         ulRetTimeInSec,pstDhcpcCtlBlk->ulTimeStamp,pstDhcpcCtlBlk->usDhcpStatus,i,pstDhcpcCtlBlk->ulDHCPCtxIdx );
                         pstDhcpcTempCtlBlk = &(stDhcpcTempCtlBlkNode.stDhcpcTmpCtlBlk );
@@ -169,16 +134,14 @@ VOID DHCPC_RenewTimeOut( VOID )
                         pstDhcpcTempCtlBlk->usVpnId = pstDhcpcCtlBlk->usVPNIndex;
                         pstDhcpcTempCtlBlk->aulIMSI[0] = pstDhcpcCtlBlk->aulIMSI[0];
                         pstDhcpcTempCtlBlk->aulIMSI[1] = pstDhcpcCtlBlk->aulIMSI[1];
-                        /* BEGIN: Added by jixiaoming for  IMEI跟踪 at 2012-8-17 */
                         pstDhcpcTempCtlBlk->aulIMEI[0] = pstDhcpcCtlBlk->aulIMEI[0];
                         pstDhcpcTempCtlBlk->aulIMEI[1] = pstDhcpcCtlBlk->aulIMEI[1];
-                        /* END: Added by jixiaoming for IMEI跟踪 at 2012-8-17 */
                         pstDhcpcTempCtlBlk->ucRole = pstDhcpcCtlBlk->ucRole;
                         /* 需要将用户类型和TEIDC赋值 */
                         pstDhcpcTempCtlBlk->ucUser = pstDhcpcCtlBlk->ucUser;
                         pstDhcpcTempCtlBlk->ulTEIDC = pstDhcpcCtlBlk->ulTEIDC;
                         pstDhcpcTempCtlBlk->ucLAPNo = pstDhcpcCtlBlk->ucLAPNo;
-                        pstDhcpcTempCtlBlk->ucRandomNo = pstDhcpcCtlBlk->ucRandomNo; /* 随机跟踪 DTS2012091903437 y00170683 */
+                        pstDhcpcTempCtlBlk->ucRandomNo = pstDhcpcCtlBlk->ucRandomNo;
 
                         /* 给LAP2发送消息，通知删除用户  */
                         DHCPC_DebugPrint(PTM_LOG_DEBUG, "\r\n DHCPC_RenewTimeOutMsg to lap%u,%d,%u!",
@@ -192,16 +155,13 @@ VOID DHCPC_RenewTimeOut( VOID )
                         DHCPC_FreeDhcpCtrlBlk( pstDhcpcCtlBlk->ulDHCPCtxIdx, pstDhcpcCtlBlk->ulTEIDC, pstDhcpcCtlBlk->ucUser, pstDhcpcCtlBlk->ulPDPIndex);
                         PGP_MemZero(&stDhcpcTempCtlBlkNode, sizeof(DHCPC_CTRLBLK_NODE));
                         pstDhcpcTempCtlBlk = NULL;
-                        /* z00175135 DTS2012011104522 防止大量续租失败时写共享队列失败 2012-02-02 start */
                         ulSndLAP2RelMsgCnt++;
                         if ( ulSndLAP2RelMsgCnt > 150 )
                         {
-                            /* 回退g_ulCtrlblkXaxis，下次超时函数时，会重新扫描该未扫描完的hash链 10.0消除阻塞操作by y00138047 */
                             g_ulCtrlblkXaxis = ulOldCtrlblkXaxis;
                             g_ulCtrlblkYaxis = 0;
                             return;
                         }
-                        /* z00175135 DTS2012011104522 防止大量续租失败时写共享队列失败 2012-02-02 end   */
                     }
                     else if ( ulIpUsedTime >=  ulT2 ) /* 7/8 lease */
                     {
@@ -264,21 +224,7 @@ VOID DHCPC_RenewTimeOut( VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetValidTestTime
- 功能描述  : 获取dhcp server状态探测的时间间隔
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月24日
-    作    者   : m00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_GetValidTestTime()
 {
     ULONG ulPrimTesttime = 0;
@@ -299,22 +245,7 @@ ULONG DHCPC_GetValidTestTime()
     return ulPrimTesttime;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_PriPrimarySrvStatusMaintenance
- 功能描述  : 主server状态维护
- 输入参数  : DHCP_SERVER_STATUS_S *pstDhcpServerStatus
-             ULONG ulDhcpGroupIndex
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月24日
-    作    者   : m00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_PriPrimarySrvStatusMaintenance(DHCP_SERVER_STATUS_S *pstDhcpServerStatus, ULONG ulDhcpGroupIndex)
 {
     ULONG ulRet = 0;
@@ -325,12 +256,10 @@ VOID DHCPC_PriPrimarySrvStatusMaintenance(DHCP_SERVER_STATUS_S *pstDhcpServerSta
 
     if (pstDhcpServerStatus->ucPrimSrvTimerStatus == DHCP_PRISRV_TIMER_DOWN)
     {
-        /* z00175135 DTS2012050400560 将定时器id清零 2012-07-03 start */
         if (0 != g_aulDhcpcSrvTimerId[ulDhcpGroupIndex])
         {
             (VOID)PGP_Timer_Delete(&(g_aulDhcpcSrvTimerId[ulDhcpGroupIndex]));
         }
-        /* z00175135 DTS2012050400560 将定时器id清零 2012-07-03 end   */
 
         if ( PGP_Timer_Create( DHCPC_SELF_CSI,
                                DHCPC_MSG_TYPE_TIMER,
@@ -355,21 +284,7 @@ VOID DHCPC_PriPrimarySrvStatusMaintenance(DHCP_SERVER_STATUS_S *pstDhcpServerSta
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_RetransNodeTimerOutProc
- 功能描述  : 重发节点超时时的处理
- 输入参数  : DHCPC_CTRLBLK_NODE *pCurrNode
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  : DHCPC_RetransTimeOut
 
- 修改历史      :
-  1.日    期   : 2012年11月24日
-    作    者   : m00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_RetransNodeTimerOutProc(DHCPC_CTRLBLK_NODE *pCurrNode)
 {
     ULONG ulDhcpGroupIndex = 0;
@@ -449,21 +364,7 @@ ULONG DHCPC_RetransNodeTimerOutProc(DHCPC_CTRLBLK_NODE *pCurrNode)
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_RetransTimeOut
- 功能描述  : 超时重发定时器回调处理函数
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  :VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 增加主备服务器，判断是否换服务器发送
-
-*****************************************************************************/
 VOID DHCPC_RetransTimeOut( VOID )
 {
     /*遍历重发定时器链表，
@@ -533,23 +434,7 @@ VOID DHCPC_RetransTimeOut( VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPv4C_TimerCallBack
- 功能描述  : V4 V6公用定时器的DHCPv4回调处理函数，目前只作V4续租消息超时处理
- 输入参数  : UCHAR ucIpType
-             ULONG ulTeidc
-             UCHAR ucEvent
- 输出参数  : VOID
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月24日
-    作    者   : mengyuanhui 00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPv4C_TimerCallBack(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent)
 {
     DHCP_SERVER_STATUS_S stDhcpServerStatus = {0};
@@ -614,21 +499,7 @@ VOID DHCPv4C_TimerCallBack(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent)
 
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_TimerOut
- 功能描述  : dhcp定时器超时函数
- 输入参数  : VOID
- 输出参数  : 无
- 返 回 值  :VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 增加主备服务器，判断是否换服务器发送
-
-*****************************************************************************/
 VOID DHCPC_TimerOut( VOID* pvArg )
 {
     ULONG    ulTimerType = 0;
@@ -666,21 +537,7 @@ VOID DHCPC_TimerOut( VOID* pvArg )
 
     return ;
 }
-/*****************************************************************************
- 函 数 名  : DHCPC_SeverTimeOut
- 功能描述  : 服务器状态探测定时器超时
- 输入参数  : void
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月27日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_SeverTimeOut( ULONG pvArg )
 {
     ULONG           ulServerIndex = 0;
@@ -696,9 +553,7 @@ VOID DHCPC_SeverTimeOut( ULONG pvArg )
 
     ulServerIndex = pvArg;
 
-    /* z00175135 DTS2012050400560 将定时器id清零 2012-07-03 start */
     g_aulDhcpcSrvTimerId[ulServerIndex] = 0;
-    /* z00175135 DTS2012050400560 将定时器id清零 2012-07-03 end   */
 
     ulRet = DHCPM_GetDhcpSrvCfgStatusByIndex(ulServerIndex, &stDhcpServer, &stDhcpServerStatus);
     if ( VOS_OK != ulRet )
@@ -713,7 +568,6 @@ VOID DHCPC_SeverTimeOut( ULONG pvArg )
     /* 修改定时器状态 使得主备切换时能够重新探测主服务器*/
     // pstDhcpcSrvGrp->ucPrimSrvTimerStatus = DHCP_PRISRV_TIMER_DOWN;
 
-    /* z00175135 DTS2012050400560 在Server Down的情况下才启动探测 2012-07-03 start */
     /*linyufeng 001766669 DHCPv6特性 2012-07-14 start*/
     if(DHCP_SEVER_GROUP_IS_IPV6 == stDhcpServer.ucIsDHCPv6)
     {
@@ -737,28 +591,12 @@ VOID DHCPC_SeverTimeOut( ULONG pvArg )
         }
     }
     /*linyufeng 001766669 DHCPv6特性 2012-07-14 end*/
-    /* z00175135 DTS2012050400560 在Server Down的情况下才启动探测 2012-07-03 end   */
 
 
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SetServerStatusToNormalByIndexAndIp
- 功能描述  : 收到DHCP Server响应消息的时候把对应的server状态置成normal
- 输入参数  : ULONG ulDhcpGroupIndex
-             ULONG ulIP
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月6日
-    作    者   : m00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_SetServerStatusToNormalByIndexAndIp(USHORT usDhcpGroupIndex, ULONG ulIP)
 {
     DHCP_SERVER_STATUS_S stDhcpServerStatus = {0};
@@ -809,21 +647,7 @@ ULONG DHCPC_SetServerStatusToNormalByIndexAndIp(USHORT usDhcpGroupIndex, ULONG u
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : DHCPC_PrintLap2DhcpMsg
- 功能描述  : 打印LAP消息的内容
- 输入参数  : LAP2_DHCPC_MSG_S* pstLap2Msg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月19日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_PrintLap2DhcpMsg(LAP2_DHCPC_MSG_S* pstLap2Msg)
 {
     if (NULL == pstLap2Msg)
@@ -903,8 +727,7 @@ ULONG DHCPC_ReceiveLAP2Msg( VOID* pMsgBuf )
 
             /* 收到地址强制回收消息 */
         case LAP2_SND2_DHCPC_ADDR_FORCE_REL_MSG:
-            /* BEGIN: Deleted for PN:DTS2011120700783 by guolixian 00171003, 2012/1/6
-            g_DHCPC_stHashTable没有初始化，这里调用可能导致单板异常复位*/
+            
             break;
 
             /* 收到地址冲突消息 */
@@ -945,21 +768,7 @@ VOID DHCPC_ReceiveLap2MbufMsg(PMBUF_S *pstMBuf)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_ReceiveServerMsg
- 功能描述  : 接收sd上送的server返回的消息，解包后做相应处理
- 输入参数  :  VOID* pstMsgBuf
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_ReceiveServerMbufMsg(PMBUF_S *pstMsgBuf)
 {
     /*server回应，
@@ -1045,21 +854,7 @@ ULONG DHCPC_ReceiveServerMbufMsg(PMBUF_S *pstMsgBuf)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_ReceiveServerMsg
- 功能描述  : 处理从sd发过来的dhcp server的响应消息
- 输入参数  : UCHAR *pucMsg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月18日
-    作    者   : y00138047
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_ReceiveServerMsg(UCHAR *pucMsg)
 {
     PMBUF_S *pstMsgBuf = NULL;
@@ -1086,21 +881,7 @@ VOID DHCPC_ReceiveServerMsg(UCHAR *pucMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_DelNode
- 功能描述  : 从超时重发链表中删除一个节点
- 输入参数  :  VOID* pstMsgBuf
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_DelNode( ULONG ulTimerIndex, DHCPC_CTRLBLK_NODE* pstCurrNode )
 {
     /*链表第一个节点*/
@@ -1144,21 +925,7 @@ VOID DHCPC_DelNode( ULONG ulTimerIndex, DHCPC_CTRLBLK_NODE* pstCurrNode )
 }
 
 /*ulSeconds:ulSeconds后的链表*/
-/*****************************************************************************
- 函 数 名  : DHCPC_InSertNodeAfterSecs
- 功能描述  : 向重发链表中插入一个节点
- 输入参数  :  VOID* pstMsgBuf
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_InSertNodeAfterSecs( ULONG ulSeconds,DHCPC_CTRLBLK_NODE* pstCurrNode )
 {
     ULONG pTmrIndex = 0;
@@ -1186,21 +953,7 @@ VOID DHCPC_InSertNodeAfterSecs( ULONG ulSeconds,DHCPC_CTRLBLK_NODE* pstCurrNode 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetDhcpTmpNode
- 功能描述  : 获取一个空闲的临时控制块节点
- 输入参数  :  VOID
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 DHCPC_CTRLBLK_NODE* DHCPC_GetDhcpTmpNode( VOID )
 {
     ULONG i = 0;
@@ -1219,21 +972,7 @@ DHCPC_CTRLBLK_NODE* DHCPC_GetDhcpTmpNode( VOID )
     return NULL;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_FreeDhcpTmpNode
- 功能描述  : 释放临时控制块节点
- 输入参数  :  VOID
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_FreeDhcpTmpNode( DHCPC_CTRLBLK_NODE* pNode )
 {
 
@@ -1250,20 +989,7 @@ VOID DHCPC_FreeDhcpTmpNode( DHCPC_CTRLBLK_NODE* pNode )
     return;
 }
 
-/*=======================================================================
- *  函数名称:              DHCPC_RenewIpAddr
- *  初稿完成:              2003/12/30
- *  作    者:             肖卫方
- *  函数功能:              向DHCPServer发送续租消息
- *  输入参数:              DHCPC_CTRLBLK *pstDhcpcCtlBlk
- *  输出参数:
- *  返回类型:              VOS_OK/VOS_ERR
- *  其他说明:              传入DHCP控制块，处理该消息时，需要根据用户类型来查找控制块
- *  调用函数:              VOS_MCWriteQue
- *  主调函数:              DHCPC_RenewTimeOut
- *  修改者  :              w00140934
- *  修改时间:              2010/08/05
- *=======================================================================*/
+
 ULONG DHCPC_RenewIpAddr( DHCPC_CTRLBLK *pstDhcpcCtlBlk )
 {
     LAP2_DHCPC_MSG_S stMsg = {0};
@@ -1302,15 +1028,7 @@ ULONG DHCPC_RenewIpAddr( DHCPC_CTRLBLK *pstDhcpcCtlBlk )
     return ulRet;
 }
 
-/*=======================================================================
- *  函数名称: DHCPC_SaveTmpDhcpCtrlBlkPtr
- *  初稿完成: 2010/08/05
- *  作    者: w00140934
- *  函数功能: 保存DHCP临时控制块
- *  输入参数: DHCPC_CTRLBLK_NODE* pDhcpCtrlBlkNodePtr
- *  返回类型: VOS_OK/VOS_ERR
- *  其他说明: 存储的是临时控制块节点的指针
- *=======================================================================*/
+
 ULONG DHCPC_SaveTmpDhcpCtrlBlkPtr( ULONG ulDHCPCtlIdx, ULONG ulTEIDC, UCHAR ucUser, ULONG ulPdpIndex, DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNodePtr )
 {
     ULONG ulRet = VOS_ERR;
@@ -1353,15 +1071,7 @@ ULONG DHCPC_SaveTmpDhcpCtrlBlkPtr( ULONG ulDHCPCtlIdx, ULONG ulTEIDC, UCHAR ucUs
     return ulRet;
 }
 
-/*=======================================================================
- *  函数名称: DHCPC_GetTmpDhcpCtrlBlkPtr
- *  初稿完成: 2010/08/05
- *  作    者: w00140934
- *  函数功能: 获取DHCP临时控制块
- *  输入参数: DHCPC_CTRLBLK *pstDhcpCtrBlk
- *  返回类型: pstDhcpCtrlBlkNode/NULL
- *  其他说明: 获取控制块中保存的临时控制块指针
- *=======================================================================*/
+
 DHCPC_CTRLBLK_NODE* DHCPC_GetTmpDhcpCtrlBlkPtr( DHCPC_CTRLBLK *pstDhcpCtrBlk )
 {
     DHCPC_CTRLBLK_NODE*    pstDhcpCtrlBlkNode = NULL;
@@ -1385,15 +1095,7 @@ DHCPC_CTRLBLK_NODE* DHCPC_GetTmpDhcpCtrlBlkPtr( DHCPC_CTRLBLK *pstDhcpCtrBlk )
     return NULL;
 }
 
-/*=======================================================================
- *  函数名称: DHCPC_SaveSdbDhcpCtrlBlk
- *  初稿完成: 2010/08/05
- *  作    者: w00140934
- *  函数功能: 保存DHCP控制块
- *  输入参数: DHCPC_TEMPCTRLBLK* pstDhcpTmpCtrlBlk, VOS_BOOL bIsRenewState
- *  返回类型: VOS_OK/VOS_ERR
- *  其他说明: 仅在收到ACK，而且检查合格情况下调用，状态变为BOUND
- *=======================================================================*/
+
 ULONG DHCPC_SaveSdbDhcpCtrlBlk( DHCPC_TEMPCTRLBLK* pstDhcpTmpCtrlBlk, VOS_BOOL bIsRenewState )
 {
     DHCPC_CTRLBLK        *pstDhcpCtrlBlk = NULL;
@@ -1432,17 +1134,15 @@ ULONG DHCPC_SaveSdbDhcpCtrlBlk( DHCPC_TEMPCTRLBLK* pstDhcpTmpCtrlBlk, VOS_BOOL b
 
         pstDhcpCtrlBlk->aulIMSI[0] = pstDhcpTmpCtrlBlk->aulIMSI[0];
         pstDhcpCtrlBlk->aulIMSI[1] = pstDhcpTmpCtrlBlk->aulIMSI[1];
-        /* BEGIN: Added by jixiaoming for  IMEI跟踪 at 2012-8-17 */
         pstDhcpCtrlBlk->aulIMEI[0] = pstDhcpTmpCtrlBlk->aulIMEI[0];
         pstDhcpCtrlBlk->aulIMEI[1] = pstDhcpTmpCtrlBlk->aulIMEI[1];
-        /* END: Added by jixiaoming for IMEI跟踪 at 2012-8-17 */
         pstDhcpCtrlBlk->ucRole = pstDhcpTmpCtrlBlk->ucRole;
         /*需要将用户类型、TEIDC和上下文索引赋值*/
 		pstDhcpCtrlBlk->ucUser = pstDhcpTmpCtrlBlk->ucUser;
         pstDhcpCtrlBlk->ulTEIDC = pstDhcpTmpCtrlBlk->ulTEIDC;
         pstDhcpCtrlBlk->ulPDPIndex = pstDhcpTmpCtrlBlk->ulPdpIndex;
         pstDhcpCtrlBlk->ucLAPNo = pstDhcpTmpCtrlBlk->ucLAPNo;
-        pstDhcpCtrlBlk->ucRandomNo = pstDhcpTmpCtrlBlk->ucRandomNo; /* 随机跟踪 DTS2012091903437 y00170683 */
+        pstDhcpCtrlBlk->ucRandomNo = pstDhcpTmpCtrlBlk->ucRandomNo;
 
         (VOID)PGP_TmNowInSec( &ulRetTimeInSec);
         pstDhcpCtrlBlk->ulTimeStamp = ulRetTimeInSec;
@@ -1464,21 +1164,7 @@ ULONG DHCPC_SaveSdbDhcpCtrlBlk( DHCPC_TEMPCTRLBLK* pstDhcpTmpCtrlBlk, VOS_BOOL b
     }
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_ResendMSG
- 功能描述  : 重发消息的处理函数
- 输入参数  :  DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_ResendMSG( DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode )
 {
     /*只重发DISCOVER和REQUEST消息*/
@@ -1534,22 +1220,7 @@ ULONG DHCPC_ResendMSG( DHCPC_CTRLBLK_NODE* pstDhcpCtrlBlkNode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SetReNewDhcpServerIp
- 功能描述  : 获取bit218号软参值，并根据软参值选择发送续租的dhcp server服务器ip地址
- 输入参数  : DHCPC_TEMPCTRLBLK *pstDhcpTmpCtrlBlk,
-             DHCPC_SRV_GRP_S *pstDHCPCSrvGrp
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  : DHCPC_OutPut
 
- 修改历史      :
-  1.日    期   : 2011-12-01
-    作    者   : zhangjinquan 00175135
-    修改内容   : 新生成函数 DTS2011080902075 根据问题单同步bit218处理 001
-
-*****************************************************************************/
 VOID DHCPC_SetReNewDhcpServerIp(DHCPC_TEMPCTRLBLK *pstDhcpTmpCtrlBlk, LAP_DHCP_CFG_S *pstDhcpServer,
                                 DHCP_SERVER_STATUS_S *pstDhcpServerStatus)
 {
@@ -1563,7 +1234,6 @@ VOID DHCPC_SetReNewDhcpServerIp(DHCPC_TEMPCTRLBLK *pstDhcpTmpCtrlBlk, LAP_DHCP_C
 
     if (0 == ucBit218Value)
     {
-        /* z00175135 根据bit218软参描述:bit218=0时只要主的ok就往主的发，否则往备发，没配置备的则往原server发 2012-04-12 start */
         if (DHCP_SEVER_NORMAL == pstDhcpServerStatus->ucPrimarySrvStatus)
         {
                 pstDhcpTmpCtrlBlk->ulSrvIp = pstDhcpServer->aulPrimaryServerIp[0];
@@ -1584,27 +1254,12 @@ VOID DHCPC_SetReNewDhcpServerIp(DHCPC_TEMPCTRLBLK *pstDhcpTmpCtrlBlk, LAP_DHCP_C
              DHCPC_DebugPrint(PTM_LOG_DEBUG,
                             "\r\n DHCPC_OutPut The Primary and Secondary both down! Send Lease Message To The Original DHCP Server!" );
         }
-        /* z00175135 根据bit218软参描述:bit218=0时只要主的ok就往主的发，否则往备发，没配置备的则往原server发 2012-04-12 end   */
     }
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_SetTmpCtrlBlkSrvIp
- 功能描述  : 设置release/decline消息中临时控制块的server IP
- 输入参数  : pstDhcpTmpCtrlBlk
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月29日
-    作    者   : m00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 void DHCPC_SetTmpCtrlBlkSrvIp(DHCPC_TEMPCTRLBLK *pstDhcpTmpCtrlBlk)
 {
     ULONG ulRet = VOS_OK;
@@ -1629,21 +1284,7 @@ void DHCPC_SetTmpCtrlBlkSrvIp(DHCPC_TEMPCTRLBLK *pstDhcpTmpCtrlBlk)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_OutPut
- 功能描述  : DHCP模块的udp发送函数
- 输入参数  : UCHAR ucPktType, DHCPC_TEMPCTRLBLK* pstDhcpTmpCtrlBlk, PMBUF_S* pMBuf, LONG* plSecondReturnCode
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LONG DHCPC_OutPut( UCHAR ucPktType, DHCPC_TEMPCTRLBLK* pstDhcpTmpCtrlBlk, PMBUF_S* pMBuf, LONG* plSecondReturnCode )
 {
     LONG                    lRetCode = VOS_OK;
@@ -1803,7 +1444,6 @@ LONG DHCPC_OutPut( UCHAR ucPktType, DHCPC_TEMPCTRLBLK* pstDhcpTmpCtrlBlk, PMBUF_
 
 
 
-                /* zhangjinquan z00175135 加写共享内存锁*/
                 //pstDHCPCSrvGrp->ucPrimarySrvTest = DHCP_PRISRV_TEST_DOWN;
                 ulRet = DHCPM_SetPrimarySrvTestByIndex(ulDhcpGroupIndex, DHCP_PRISRV_TEST_DOWN);
                 if ( VOS_OK != ulRet )
@@ -1956,9 +1596,7 @@ LONG DHCPC_OutPut( UCHAR ucPktType, DHCPC_TEMPCTRLBLK* pstDhcpTmpCtrlBlk, PMBUF_
             return VOS_ERR;
         }
 
-        /* zhangjinquan DTS2011080902075 根据问题单同步bit218处理 001 2011-12-01 start */
         DHCPC_SetReNewDhcpServerIp(pstDhcpTmpCtrlBlk, &stDhcpServer, &stDhcpServerStatus);
-        /* zhangjinquan DTS2011080902075 根据问题单同步bit218处理 001 2011-12-01 end   */
 
         /*构造发往DHCP Server消息的UDP头参数*/
         /* 这里的源地址有些疑问,为什么要填代理地址呢?dhcp server填的代理地址会转到ggsn吗?
@@ -2012,26 +1650,7 @@ LONG DHCPC_OutPut( UCHAR ucPktType, DHCPC_TEMPCTRLBLK* pstDhcpTmpCtrlBlk, PMBUF_
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_ConstructPhyAddr
- 功能描述  : 构造发送到DHCPserver的物理地址
- 输入参数  : DHCPC_TEMPCTRLBLK* pstTempCtrlBlk
-             UCHAR* szChaddr
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年11月21日
-    作    者   : caopu 110903
-    修改内容   :39号软参第3个bit为1，v1用户:MAC地址保持现有实现，使用IMSI的后十二位设置
-                            第3个bit位为0，v1用户:MAC地址的第一个字节使用槽位号填充，第二个字节使用vcpu号填充，其余的四个字节使用TEIDC填充
-
-                            39号软参第3个bit为1，v0用户保持现有实现不变:MAC地址保持现有实现，使用IMSI的后十二位设置
-                            第3个bit位为0，v0用户保持现有实现不变:MAC地址的第一个字节使用槽位号填充，第二个字节使用vcpu号填充，其余的四个字节使用上下文索引填充
-                                 -------------------------------------------------------------
-*****************************************************************************/
 VOID DHCPC_ConstructPhyAddr( DHCPC_TEMPCTRLBLK* pstTempCtrlBlk, UCHAR* szChaddr )
 {
     int ii = 0;
@@ -2072,7 +1691,6 @@ VOID DHCPC_ConstructPhyAddr( DHCPC_TEMPCTRLBLK* pstTempCtrlBlk, UCHAR* szChaddr 
         szChaddr[ii] = 0;
     }
 
-    /* BEGIN: Modified for PN:DS.UGWV9R9C02.EMC.PTM.0005 UGW9811 V900R009C02紧急呼叫特性by guolixian 00171003, 2012/2/9 */
     if((VOS_NULL_DWORD == pstTempCtrlBlk->aulIMSI[0])
         &&(VOS_NULL_DWORD == pstTempCtrlBlk->aulIMSI[1]))
     {
@@ -2096,24 +1714,9 @@ VOID DHCPC_ConstructPhyAddr( DHCPC_TEMPCTRLBLK* pstTempCtrlBlk, UCHAR* szChaddr 
         VOS_MemCpy((UCHAR*)( szChaddr ),&(usGroup),sizeof(USHORT));
         VOS_MemCpy( ( UCHAR* )( szChaddr+2 ),&(ulNetOrderDHCPCtlIdx),sizeof( ULONG ) );
     }
-    /* END:   Modified for PN:DS.UGWV9R9C02.EMC.PTM.0005 UGW9811 V900R009C02紧急呼叫特性 by guolixian 00171003, 2012/2/9 */
     return;
 }
-/*****************************************************************************
- 函 数 名  : DHCPC_GetDhcpCtrlBlk
- 功能描述  : 动态申请DHCP控制块结构
- 输入参数  : DHCPC_CTRLBLK **ppstDhcp_CtrlBlk
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年11月21日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_GetDhcpCtrlBlk( DHCPC_CTRLBLK **ppstDhcpCtrlBlk )
 {
     if ( NULL == ppstDhcpCtrlBlk )
@@ -2131,24 +1734,7 @@ ULONG DHCPC_GetDhcpCtrlBlk( DHCPC_CTRLBLK **ppstDhcpCtrlBlk )
     PGP_MemZero( *ppstDhcpCtrlBlk, sizeof( DHCPC_CTRLBLK ) );
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : DHCPC_FreeDhcpCtrlBlk
- 功能描述  : 释放DHCP控制块结构
- 输入参数  : ULONG ulCtrlBlkIndex, ULONG ulTEIDC, UCHAR ucUser, ULONG ulPDPIndex
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年11月21日
-    作    者   : caopu
-    修改内容   : 新生成函数
-  2.日    期   : 2010年08月06日
-    作    者   : w00140934
-    修改内容   : 修改控制块结构
-
-*****************************************************************************/
 VOID DHCPC_FreeDhcpCtrlBlk( ULONG ulCtrlBlkIndex, ULONG ulTEIDC, UCHAR ucUser, ULONG ulPDPIndex )
 {
     ULONG ulHashKey = 0;
@@ -2167,11 +1753,9 @@ VOID DHCPC_FreeDhcpCtrlBlk( ULONG ulCtrlBlkIndex, ULONG ulTEIDC, UCHAR ucUser, U
     pstCurDhcpcCtlBlk = g_pstDhcpcCtrlBlkRec[ulHashKey];
     if (pstCurDhcpcCtlBlk->ulTEIDC == ulTEIDC)
     {
-        /* DHCP Lease backup  删除，在租约超时函数中处理--w00140934*/
         //DHCPC_Delete_BackupChain(ulCtrlBlkIndex);
         g_pstDhcpcCtrlBlkRec[ulHashKey] = pstCurDhcpcCtlBlk->pstNextNode;
         DHCP_Free( DHCPC_HANDLE, pstCurDhcpcCtlBlk );
-        /* zhangjinquan DTS2011073004013 释放后置空 */
         pstCurDhcpcCtlBlk = NULL;
         DHCPC_DebugPrint(PTM_LOG_DEBUG, "\r\n--> DHCPC_FreeDhcpCtrlBlk ulCtrlBlkIndex OK" );
         return;
@@ -2186,11 +1770,9 @@ VOID DHCPC_FreeDhcpCtrlBlk( ULONG ulCtrlBlkIndex, ULONG ulTEIDC, UCHAR ucUser, U
         /* V1用户,如果TEIDC相等则找到了要删除的控制块*/
         if (pstCurDhcpcCtlBlk->ulTEIDC == ulTEIDC)
         {
-            /* DHCP Lease backup  删除，在租约超时函数中处理--w00140934*/
             //DHCPC_Delete_BackupChain(ulCtrlBlkIndex);
             pstPreDhcpcCtlBlk->pstNextNode = pstCurDhcpcCtlBlk->pstNextNode;
             DHCP_Free( DHCPC_HANDLE, pstCurDhcpcCtlBlk );
-            /* zhangjinquan DTS2011073004013 释放后置空 */
             pstCurDhcpcCtlBlk = NULL;
             DHCPC_DebugPrint(PTM_LOG_DEBUG, "\r\n--> DHCPC_FreeDhcpCtrlBlk ulCtrlBlkIndex OK" );
             return;
@@ -2205,23 +1787,7 @@ VOID DHCPC_FreeDhcpCtrlBlk( ULONG ulCtrlBlkIndex, ULONG ulTEIDC, UCHAR ucUser, U
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_EncapBackBlkByCtrlBlk
- 功能描述  : 根据dhcp控制块封装dhcp备份块
- 输入参数  : UCHAR ucIpType                   地址类型.IPV4、IPV6
-             DHCPC_CTRLBLK *pstDhcpCtrlBlk    dhcp控制块
-             DHCPC_BACK_BLK_S *pstDhcpBackBlk dhcp备份块
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_EncapBackBlkByCtrlBlk(UCHAR ucIpType, DHCPC_CTRLBLK *pstDhcpCtrlBlk,
                                         DHCPC_BACK_BLK_S *pstDhcpBackBlk)
 {
@@ -2272,23 +1838,7 @@ VOID DHCPC_EncapBackBlkByCtrlBlk(UCHAR ucIpType, DHCPC_CTRLBLK *pstDhcpCtrlBlk,
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_FillCtrlBlkByBackBlk
- 功能描述  : 将dhcp备份块中的内容填入dhcp控制块
- 输入参数  : UCHAR ucIpType
-             DHCPC_CTRLBLK *pstDhcpCtrlBlk
-             DHCPC_BACK_BLK_S *pstDhcpBackBlk
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月26日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_FillCtrlBlkByBackBlk(UCHAR ucIpType, DHCPC_CTRLBLK *pstDhcpCtrlBlk,
                                         DHCPC_BACK_BLK_S *pstDhcpBackBlk)
 {
@@ -2357,25 +1907,7 @@ VOID DHCPC_FillCtrlBlkByBackBlk(UCHAR ucIpType, DHCPC_CTRLBLK *pstDhcpCtrlBlk,
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_OutPut
- 功能描述  : DHCPC模块控制块备份函数，从DHCP控制块数组中取出待备份的DHCP控制块，并将其放入备份结构中
- 输入参数  : char **ppbuff, ULONG ulIndex, ULONG ulTEIDC, UCHAR ucUser, ULONG ulPDPIndex
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年07月27日
-    作    者   : tianyang 00144555
-    修改内容   : 增加DHCPV6特性
-
-*****************************************************************************/
 ULONG DHCPC_BackupProc( char **ppbuff, UCHAR ucIpType, ULONG ulTEIDC)
 {
     ULONG ulRet = 0;
@@ -2433,23 +1965,7 @@ ULONG DHCPC_BackupProc( char **ppbuff, UCHAR ucIpType, ULONG ulTEIDC)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_BkRestoreProcforV4
- 功能描述  : 处理DHCPCV4备份函数，“封装老函数”
- 输入参数  : char **ppbuff
-             UCHAR ucIpType
-             ULONG ulTEIDC
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_BkRestoreProcforV4( char **ppbuff, UCHAR ucIpType, ULONG ulTEIDC )
 {
     DHCPC_CTRLBLK *pstDhcpcCtlBlk = NULL;
@@ -2489,23 +2005,7 @@ ULONG DHCPC_BkRestoreProcforV4( char **ppbuff, UCHAR ucIpType, ULONG ulTEIDC )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_BkRestoreProcforV6
- 功能描述  : 处理DHCPCV6备份函数
- 输入参数  : char **ppbuff
-             UCHAR ucIpType
-             ULONG ulTEIDC
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_BkRestoreProcforV6( char **ppbuff, UCHAR ucIpType, ULONG ulTEIDC )
 {
     ULONG ulRet = 0;
@@ -2515,14 +2015,12 @@ ULONG DHCPC_BkRestoreProcforV6( char **ppbuff, UCHAR ucIpType, ULONG ulTEIDC )
     DHCPV6C_DBGCNT_ADD(E_DHCPV6C_BAKRESTORE);
 
     /* 状态不对,不进行备份 */
-    /*BEGIN DTS2012101907734 判断条件修改为DHCPv6控制块状态 by mengyuanhui 00221593*/
     if (DHCPV6C_STATE_BOUND != ((DHCPC_BACK_BLK_S *)(*ppbuff))->usDhcpStatus)
     {
         DHCPV6C_DBGCNT_ADD(E_DHCPV6C_BAKRESTORE_STAT_ERR);
         DHCPC_DebugPrint(PTM_LOG_INFO, "\r\n state (%u) !", ((DHCPC_BACK_BLK_S *)(*ppbuff))->usDhcpStatus);
         //return VOS_ERR; 暂时删除
     }
-    /*END DTS2012101907734 判断条件修改为DHCP控制块状态 by mengyuanhui 00221593*/
 
     (VOID)DHCPC_QueryDhcpcContext(LAP_IPV6, ulTEIDC, &pstCtrlBlk);
     if ( NULL != pstCtrlBlk )
@@ -2592,26 +2090,7 @@ ULONG DHCPC_BkRestoreProcforV6( char **ppbuff, UCHAR ucIpType, ULONG ulTEIDC )
     DHCPC_DebugPrint(PTM_LOG_DEBUG, "ulRet=%u!", ulRet );
     return ulRet;
 }
-/*****************************************************************************
- 函 数 名  : DHCPC_OutPut
- 功能描述  : DHCPC模块控制块在备板的备份恢复重建函数，从备份结构中取出待备份
-             的DHCP控制块内容，并将其放入DHCP控制块数组中
- 输入参数  : char **ppbuff, ULONG ulIndex, ULONG ulTEIDC, UCHAR ucUser, ULONG ulPDPIndex
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年07月27日
-    作    者   : tianyang 00144555
-    修改内容   : 增加DHCPV6特性,封装老的DHCPV4处理功能
-
-*****************************************************************************/
 ULONG DHCPC_BKRestoreProc( char **ppbuff, UCHAR ucIpType, ULONG ulTEIDC )
 {
     ULONG ulRetValue = 0;
@@ -2658,26 +2137,7 @@ ULONG DHCPC_BKRestoreProc( char **ppbuff, UCHAR ucIpType, ULONG ulTEIDC )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_BKDeleteProc
- 功能描述  : DHCPC模块控制块在备板的备份删除函数，从备份结构中取出待备份的DHCP
-             控制块内容，并将其放入DHCP控制块数组中
- 输入参数  : char **ppbuff, ULONG ulIndex, ULONG ulTEIDC, UCHAR ucUser, ULONG ulPDPIndex
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年12月26日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年07月31日
-    作    者   : caopu
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_BKDeleteProc( UCHAR ucIpType, ULONG ulTEIDC, UCHAR ucUser, ULONG ulPDPIndex )
 {
     ULONG ulRet = 0;
@@ -2720,42 +2180,13 @@ ULONG DHCPC_BKDeleteProc( UCHAR ucIpType, ULONG ulTEIDC, UCHAR ucUser, ULONG ulP
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : DHCPC_Delete_BackupChain
- 功能描述  : 从备份链表中删除节点
- 输入参数  : DHCP控制块索引
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年07月30日
-    作    者   : jiahuidong 00142544
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_Delete_BackupChain(ULONG ulCtrlBlkIndex)
 {
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_NotifyBKUpdate
- 功能描述  : 通知CKP更新备份的dhcp控制块
- 输入参数  : DHCPC_CTRLBLK *
- 输出参数  : 无
- 返 回 值  : VOS_OK  正常结束
-             VOS_ERR 通知备份失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年07月22日
-    作    者   : jixiaoming
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_NotifyBKUpdate(ULONG ulTeidc)
 {
     ULONG ulRet = 0;
@@ -2781,21 +2212,7 @@ ULONG DHCPC_NotifyBKUpdate(ULONG ulTeidc)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_GetDiffTimeToCur
- 功能描述  : 获取从时间戳到当前时间的时间差
- 输入参数  : ULONG ulStampTime
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_GetDiffTimeToCur(ULONG ulStampTime)
 {
     ULONG ulCurTimeInSec = 0;
@@ -2813,21 +2230,7 @@ ULONG DHCPC_GetDiffTimeToCur(ULONG ulStampTime)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_TimerRestoreProc
- 功能描述  : 1+1备板定时器重建，N+1备升主时定时器重建
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcCtlBlk
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月3日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_TimerRestoreProc(DHCPC_CTRLBLK *pstDhcpcCtlBlk)
 {
     ULONG ulRet = VOS_OK;
@@ -2879,23 +2282,7 @@ ULONG DHCPV6C_TimerRestoreProc(DHCPC_CTRLBLK *pstDhcpcCtlBlk)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_T1TimerRestoreProc
- 功能描述  : T1定时器重建
- 输入参数  : ULONG ulT1
-             ULONG ulDiffTime
-             DHCPC_CTRLBLK *pstDhcpcCtlBlk
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月3日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_T1TimerRestoreProc(ULONG ulT1, ULONG ulDiffTime, DHCPC_CTRLBLK *pstDhcpcCtlBlk)
 {
     ULONG ulRet = 0;
@@ -2915,23 +2302,7 @@ ULONG DHCPV6C_T1TimerRestoreProc(ULONG ulT1, ULONG ulDiffTime, DHCPC_CTRLBLK *ps
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_T2TimerRestoreProc
- 功能描述  : T2定时器重建
- 输入参数  : ULONG ulT1
-             ULONG ulDiffTime
-             DHCPC_CTRLBLK *pstDhcpcCtlBlk
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月3日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_T2TimerRestoreProc(ULONG ulDiffTime, DHCPC_CTRLBLK *pstDhcpcCtlBlk)
 {
     ULONG ulT2 = 0;
@@ -2966,22 +2337,7 @@ ULONG DHCPV6C_T2TimerRestoreProc(ULONG ulDiffTime, DHCPC_CTRLBLK *pstDhcpcCtlBlk
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_LeaseExpireTimerRestoreProc
- 功能描述  : 租约定时器重建
- 输入参数  : ULONG ulDiffTime
-             DHCPC_CTRLBLK *pstDhcpcCtlBlk
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月3日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_LeaseExpireTimerRestoreProc(ULONG ulDiffTime, DHCPC_CTRLBLK *pstDhcpcCtlBlk)
 {
     ULONG   ulRet = 0;
@@ -3016,21 +2372,7 @@ ULONG DHCPV6C_LeaseExpireTimerRestoreProc(ULONG ulDiffTime, DHCPC_CTRLBLK *pstDh
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_SendtoTimRestoreforSpud
- 功能描述  : 1+1备份时启动定时器重建函数
- 输入参数  : ULONG ulHashValue
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV6C_SendtoTimRestoreforSpud(ULONG ulHashValue)
 {
     DHCPC_INNER_MSG_S stInnerMsg = {0};
@@ -3046,21 +2388,7 @@ VOID DHCPV6C_SendtoTimRestoreforSpud(ULONG ulHashValue)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_TimerRestoreForSpud
- 功能描述  : 1+1spu板定时器重建流程
- 输入参数  : DHCPC_INNER_MSG_S *pstInnerMsg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV6C_TimerRestoreForSpud(DHCPC_INNER_MSG_S *pstInnerMsg)
 {
     ULONG ulRet = 0;
@@ -3134,21 +2462,7 @@ VOID DHCPV6C_TimerRestoreForSpud(DHCPC_INNER_MSG_S *pstInnerMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_BoardStatChgTimerOutCallBack
- 功能描述  : 单板备升主定时器超时处理函数
- 输入参数  : VOID *pArg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月27日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_BoardStatChgTimerOutCallBack(VOID *pArg)
 {
     DHCPV6C_DBGCNT_ADD(E_DHCPV6C_CNT_TRC_2);
@@ -3169,20 +2483,7 @@ VOID DHCPC_BoardStatChgTimerOutCallBack(VOID *pArg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_StartLeaseRebuildWaitTimer
- 功能描述  : 启动租约重建等待定时器
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月1日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_StartLeaseRebuildWaitTimer()
 {
     ULONG ulRet = VOS_ERR;
@@ -3211,20 +2512,7 @@ ULONG DHCPC_StartLeaseRebuildWaitTimer()
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_SendInnerMsgForBoardStateChange
- 功能描述  : 发送内部队列，处理单板状态变化消息
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月16日
-    作    者   : mengyuanhui 00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV6C_SendInnerMsgForBoardStateChange()
 {
     DHCPC_INNER_MSG_S stInnerMsg = {0};
@@ -3237,21 +2525,7 @@ VOID DHCPV6C_SendInnerMsgForBoardStateChange()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_ProcBoardStateChangeMsg
- 功能描述  : 单板状态变化消息处理函数。DTS2014011300825 10.1CRM回调中不能启动定时器
-             修改成发内部队列，在内部队列中创建定时器
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月16日
-    作    者   : mengyuanhui 00221593
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV6C_ProcBoardStateChangeMsg()
 {
     ULONG ulRet = VOS_ERR;
@@ -3270,44 +2544,14 @@ VOID DHCPV6C_ProcBoardStateChangeMsg()
 }
 
 
-/*****************************************************************************
- 函 数 名  : DHCPC_BoardStateChgProc
- 功能描述  : 本板主备状态改变处理函数
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月27日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_BoardStateChgProc()
 {
     DHCPV6C_SendInnerMsgForBoardStateChange();
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : DHCPC_StateOfBoardChgCallback
- 功能描述  : 单板状态改变处理函数
- 输入参数  : CRM_SPUSTATE_CHG_ENUM enEvent
-             UCHAR ucGroupID
-             UCHAR ucSlotID
-             UCHAR ucCpuID
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : tianyang 00144555
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPC_StateOfBoardChgCallback( CRM_SPUSTATE_CHG_ENUM enEvent, UCHAR ucGroupID, UCHAR ucSlotID, UCHAR ucCpuID, UCHAR ucSGIndex)
 {
     if (ucGroupID != CRM_GetSelfGroupId())

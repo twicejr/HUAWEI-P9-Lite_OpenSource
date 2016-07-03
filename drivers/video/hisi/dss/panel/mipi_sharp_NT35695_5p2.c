@@ -17,7 +17,7 @@
 #include "mipi_sharp_NT35695_5p5.h"
 #include <huawei_platform/log/log_jank.h>
 #include <linux/hisi/hw_cmdline_parse.h>
-#include "display_effect_sharp_NT35695_5p5.h"
+#include "include/display_effect_sharp_NT35695_5p2.h"
 
 #define DTS_COMP_SHARP_NT35695_5P2 "hisilicon,mipi_sharp_NT35695_5P2"
 #define LCD_VDDIO_TYPE_NAME	"lcd-vddio-type"
@@ -31,6 +31,8 @@
 #define PACKET_PIXELS_SIZE	(216)
 #define PACKET_SIZE	(PACKET_PIXELS_SIZE*3+1)
 #define BACKLIGHT_PRINT_TIMES	10
+#define BACKLIGHT_255_MAX	(183)
+#define BACKLIGHT_10000_MAX	(7171)
 
 static int checksum_pic_n = 0;
 static uint32_t expected_checksum[CHECKSUM_PIC_N][CHECKSUM_SIZE] = {
@@ -959,6 +961,18 @@ static int mipi_sharp_panel_set_backlight(struct platform_device *pdev, uint32_t
 
 	if (!bl_level) {
 		HISI_FB_INFO("Set backlight to 0 !!!\n");
+	}
+
+	if (255 == hisifd->panel_info.bl_max) {
+		if (bl_level > BACKLIGHT_255_MAX) {
+			bl_level = BACKLIGHT_255_MAX;
+			HISI_FB_INFO("bl_level over BACKLIGHT_255_MAX, set to %d\n",bl_level);
+		}
+	} else {
+		if (bl_level > BACKLIGHT_10000_MAX) {
+			bl_level = BACKLIGHT_10000_MAX;
+			HISI_FB_INFO("bl_level over BACKLIGHT_10000_MAX, set to %d\n",bl_level);
+		}
 	}
 
 	if (hisifd->panel_info.bl_set_type & BL_SET_BY_PWM) {
@@ -2104,19 +2118,21 @@ static ssize_t mipi_sharp_panel_info_show(struct platform_device *pdev, char *bu
 	}
 
 	if (new_lcd_supported) {
-		HISI_FB_INFO("VN1 and later, panel_info.bl_max is %d\n", hisifd->panel_info.bl_max);
-		if(255 == hisifd->panel_info.bl_max) {
-			bl_max_val = 198;
-		} else {
-			bl_max_val = 7680;
-		}
-		bl_min_val = hisifd->panel_info.bl_min;
-		bl_device_level = 10000;	//MPS bl ic
+		HISI_FB_INFO("V4 and later, panel_info.bl_max is %d\n", hisifd->panel_info.bl_max);
+		/*MPS bl ic*/
+		bl_device_level = 10000;
 	} else {
-		bl_max_val = hisifd->panel_info.bl_max;
-		bl_min_val = hisifd->panel_info.bl_min;
-		bl_device_level = 255;		//TI bl ic
+		/*TI bl ic*/
+		bl_device_level = 255;
 	}
+
+	if(255 == hisifd->panel_info.bl_max) {
+		bl_max_val = BACKLIGHT_255_MAX;
+	} else {
+		bl_max_val = BACKLIGHT_10000_MAX;
+	}
+
+	bl_min_val = hisifd->panel_info.bl_min;
 
 	if (255 == hisifd->panel_info.bl_max) {
 		HISI_FB_INFO("factory version\n");
@@ -2183,6 +2199,7 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 	uint32_t lcd_display_type = 0;
 	uint32_t lcd_ifbc_type = 0;
 	int panel_lcd_id = 0;
+	uint32_t support_mode = 0;
 
 	panel_lcd_id = (int)simple_strtol(panel_lcd_id_buf, NULL, 0);
 #ifdef CONFIG_HUAWEI_TS
@@ -2256,12 +2273,12 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 		pinfo->blpwm_input_ena = 1;
 
 #ifdef CONFIG_BACKLIGHT_10000
-	pinfo->bl_min = 157;
+	pinfo->bl_min = 117;
 	pinfo->bl_max = 9960;
 	pinfo->bl_default = 4000;
 	pinfo->blpwm_precision_type = BLPWM_PRECISION_10000_TYPE;
 #else
-	pinfo->bl_min = 4;
+	pinfo->bl_min = 3;
 	pinfo->bl_max = 255;
 	pinfo->bl_default = 102;
 #endif
@@ -2275,11 +2292,16 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 	pinfo->lcd_uninit_step_support = 1;
 
 	pinfo->color_temperature_support = 1;
-	pinfo->comform_mode_support = 1;
+
 	pinfo->panel_effect_support = 1;
-	g_support_mode = COMFORM_MODE | LED_RG_COLOR_TEMP_MODE;
-	g_led_rg_para1 = 7;
-	g_led_rg_para2 = 30983;
+
+	pinfo->color_temp_rectify_support = 1;
+	pinfo->color_temp_rectify_R = 31225; /*95.29%percent*/
+	pinfo->color_temp_rectify_G = 32768; /*100% percent*/
+	pinfo->color_temp_rectify_B = 32689; /*99.76% percent*/
+
+	g_led_rg_para1 = 6;
+	g_led_rg_para2 = 31238;
 
 	//prefix ce & sharpness
 	pinfo->prefix_ce_support = 0;
@@ -2316,6 +2338,17 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 		pinfo->acm_lut_sata_table_len = ARRAY_SIZE(acm_lut_sata_table);
 		pinfo->acm_lut_satr_table = acm_lut_satr_table;
 		pinfo->acm_lut_satr_table_len = ARRAY_SIZE(acm_lut_satr_table);
+		pinfo->cinema_acm_lut_hue_table = cinema_acm_lut_hue_table;
+		pinfo->cinema_acm_lut_hue_table_len
+			= ARRAY_SIZE(cinema_acm_lut_hue_table);
+		pinfo->cinema_acm_lut_sata_table
+			= cinema_acm_lut_sata_table;
+		pinfo->cinema_acm_lut_sata_table_len
+			= ARRAY_SIZE(cinema_acm_lut_sata_table);
+		pinfo->cinema_acm_lut_satr_table
+			= cinema_acm_lut_satr_table;
+		pinfo->cinema_acm_lut_satr_table_len
+			= ARRAY_SIZE(cinema_acm_lut_satr_table);
 		pinfo->acm_valid_num = acm_valid_num;
 		pinfo->r0_hh = acm_r0_hh;
 		pinfo->r0_lh = acm_r0_lh;
@@ -2332,6 +2365,21 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 		pinfo->r6_hh = acm_r6_hh;
 		pinfo->r6_lh = acm_r6_lh;
 
+		pinfo->cinema_acm_valid_num = 7;
+		pinfo->cinema_r0_hh = 0x7f;
+		pinfo->cinema_r0_lh = 0x3c3;
+		pinfo->cinema_r1_hh = 0xff;
+		pinfo->cinema_r1_lh = 0x80;
+		pinfo->cinema_r2_hh = 0x17f;
+		pinfo->cinema_r2_lh = 0x100;
+		pinfo->cinema_r3_hh = 0x1ff;
+		pinfo->cinema_r3_lh = 0x180;
+		pinfo->cinema_r4_hh = 0x27f;
+		pinfo->cinema_r4_lh = 0x200;
+		pinfo->cinema_r5_hh = 0x2ff;
+		pinfo->cinema_r5_lh = 0x280;
+		pinfo->cinema_r6_hh = 0x37f;
+		pinfo->cinema_r6_lh = 0x300;
 		//ACM_CE
 		pinfo->acm_ce_support = 1;
 	}
@@ -2383,6 +2431,11 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 		pinfo->gamma_lut_table_G = gamma_lut_table_G;
 		pinfo->gamma_lut_table_B = gamma_lut_table_B;
 		pinfo->gamma_lut_table_len = ARRAY_SIZE(gamma_lut_table_R);
+		pinfo->cinema_gamma_lut_table_R = cinema_gamma_lut_table_R;
+		pinfo->cinema_gamma_lut_table_G = cinema_gamma_lut_table_G;
+		pinfo->cinema_gamma_lut_table_B = cinema_gamma_lut_table_B;
+		pinfo->cinema_gamma_lut_table_len
+			= ARRAY_SIZE(cinema_gamma_lut_table_R);
 		pinfo->igm_lut_table_R = igm_lut_table_R;
 		pinfo->igm_lut_table_G = igm_lut_table_G;
 		pinfo->igm_lut_table_B = igm_lut_table_B;
@@ -2396,7 +2449,17 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 		pinfo->xcc_support = 1;
 		pinfo->xcc_table = xcc_table;
 		pinfo->xcc_table_len = ARRAY_SIZE(xcc_table);
+		pinfo->comform_mode_support = 1;
+		pinfo->cinema_mode_support = 1;
 	}
+
+	if(pinfo->comform_mode_support == 1){
+		support_mode = (support_mode | COMFORM_MODE);
+	}
+	if(pinfo->cinema_mode_support == 1){
+		support_mode = (support_mode | CINEMA_MODE);
+	}
+	g_support_mode = support_mode | LED_RG_COLOR_TEMP_MODE;
 
 	//ldi
 	pinfo->ldi.h_back_porch = 23;//50;

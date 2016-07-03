@@ -18,18 +18,14 @@
 #include "AtTestParaCmd.h"
 
 
-//DTS2012041801532 w00182550 NV归一化 start in 2012-04-12
 #if(FEATURE_ON == FEATURE_LTE)
 #include "LNvCommon.h"
 #include "RrcNvInterface.h"
 #include "msp_nvim.h"
 #endif
-/* DTS2012041801532 w00182550 NV归一化 start in 2012-04-12 */
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 
 #if (FEATURE_ON==FEATURE_LTE)
 #include "at_lte_common.h"
@@ -124,9 +120,7 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^BSN",      VOS_NULL_PTR},
 
-/* Modify by c00172979 for V7代码同步, 2012-04-13, Begin   */
 #if ( FEATURE_ON == FEATURE_LTE )
-/* Modify by c00172979 for V7代码同步, 2012-04-13, End   */
     {AT_CMD_SFM,
     At_SetSfm,          AT_SET_PARA_TIME,   At_QrySfm,            AT_NOT_SET_TIME,    VOS_NULL_PTR , AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
@@ -140,13 +134,11 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^TMODE",    (VOS_UINT8*)"(0,1,2,3,4,11,12,13,14,15,16,17,18,19)"},
 
-    /* DTS2012041801532 w00182550 NV归一化 start in 2012-04-12 */
     {AT_CMD_FCHAN,
     At_SetFChanPara,     AT_SET_PARA_TIME,   At_QryFChanPara,       AT_QRY_PARA_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_FCHAN_OTHER_ERR  ,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FCHAN",    (VOS_UINT8*)"(0-7),(0-255),(0-65535)"},
-    /* DTS2012041801532 w00182550 NV归一化 end in 2012-04-12 */
 
     {AT_CMD_FTXON,
     At_SetFTxonPara,     AT_SET_PARA_TIME,   At_QryFTxonPara,       AT_QRY_PARA_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
@@ -154,14 +146,12 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_FTXON_OTHER_ERR  ,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FTXON",    (VOS_UINT8*)"(0,1,2)"},
 
-    /* Modify by w00199382 for V7代码同步, 2012-04-07, Begin   */
     {AT_CMD_FDAC,
     AT_SetFDac,          AT_SET_PARA_TIME,   AT_QryFDac,            AT_NOT_SET_TIME,    At_TestFdacPara , AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FDAC",     (VOS_UINT8*)"(0-65536)"},
 
-    /* Modify by w00199382 for V7代码同步, 2012-04-07, End   */
 
     {AT_CMD_FRXON,
     At_SetFRxonPara,     AT_SET_PARA_TIME,   At_QryFRxonPara,       AT_QRY_PARA_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
@@ -169,14 +159,12 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_FRXON_OTHER_ERR  ,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FRXON",    (VOS_UINT8*)"(0-1)"},
 
-    /* Modify by w00199382 for V7代码同步, 2012-04-07, Begin   */
     {AT_CMD_FPA,
     At_SetFpaPara,       AT_SET_PARA_TIME,   At_QryFpaPara,         AT_NOT_SET_TIME,    VOS_NULL_PTR ,    AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_FPA_OTHER_ERR  ,      CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^FPA",      (VOS_UINT8*)"(0-255)"},
 
-    /* Modify by w00199382 for V7代码同步, 2012-04-07, End   */
 
     {AT_CMD_FLNA,
     At_SetFlnaPara,      AT_SET_PARA_TIME,   At_QryFlnaPara,        AT_QRY_PARA_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
@@ -215,9 +203,7 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^GPIOPL",   (VOS_UINT8*)"(@GPIOPL)"},
 
-    /* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 #if ( FEATURE_ON == FEATURE_LTE )
-    /* DTS2012041801532 w00182550 NV归一化 start in 2012-04-12 */
     {AT_CMD_GETEXBANDINFO,
     AT_SetExbandInfoPara,      AT_NOT_SET_TIME,  VOS_NULL_PTR,            AT_NOT_SET_TIME,   VOS_NULL_PTR, AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
@@ -229,7 +215,6 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS,       CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^GETEXBANDTESTINFO",      (VOS_UINT8*)"(101-116),(14,50,100,150,200)"},
-    /* DTS2012041801532 w00182550 NV归一化 end in 2012-04-12 */
     /* 生产NV恢复 */
     {AT_CMD_INFORRS,
     At_SetInfoRRS,       AT_SET_PARA_TIME,    VOS_NULL_PTR,          AT_NOT_SET_TIME,   VOS_NULL_PTR ,    AT_NOT_SET_TIME,
@@ -237,7 +222,6 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^INFORRS",  VOS_NULL_PTR},
 #endif
-    /* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 #ifdef FEATURE_UPGRADE_TL
     {AT_CMD_INFORBU,
@@ -309,14 +293,12 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^TMMI",  (VOS_UINT8*)"(0,1)"},
 
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
     /* V7R1要求使用"=?"查询充电使能状态 */
     {AT_CMD_TCHRENABLE,
     AT_SetChrgEnablePara,AT_NOT_SET_TIME,    AT_QryChrgEnablePara,  AT_NOT_SET_TIME,   AT_TestChrgEnablePara, AT_SET_PARA_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS,    CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^TCHRENABLE",(VOS_UINT8*)"(0,1,4)"},
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
 
     {AT_CMD_TCHRINFO,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,    AT_QryChrgInfoPara,    AT_NOT_SET_TIME,   At_CmdTestProcERROR, AT_NOT_SET_TIME,
@@ -402,13 +384,11 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^WIDATARATE",  (VOS_UINT8*)"(0-65535)"},
 
-    /* Modified by L00171473 for DTS2012020106679,AT WT工位 2012-01-17  Begin */
     {AT_CMD_WIPOW,
     AT_SetWiFiPowerPara,  AT_NOT_SET_TIME, AT_QryWiFiPowerPara,  AT_NOT_SET_TIME, At_CmdTestProcERROR, AT_NOT_SET_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^WIPOW",    (VOS_UINT8*)"(0-65535)"},
-    /* Modified by L00171473 for DTS2012020106679,AT WT工位 2012-01-17  End */
 
     {AT_CMD_WITX,
     AT_SetWiFiTxPara,     AT_NOT_SET_TIME, AT_QryWiFiTxPara,     AT_NOT_SET_TIME, At_CmdTestProcERROR, AT_NOT_SET_TIME,
@@ -469,8 +449,6 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_ERROR, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^NVWR",(VOS_UINT8*)"(0-65535),(0-2048),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data),(@data)"},
-    /* Added by 傅映君/f62575 for AT Project, SIM卡保护标志确认, 2011/11/15, begin */
-	/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 
     {AT_CMD_NVWRPART,
     AT_SetNVWRPartPara,       AT_SET_PARA_TIME,  VOS_NULL_PTR,        AT_NOT_SET_TIME,  VOS_NULL_PTR, AT_NOT_SET_TIME,
@@ -484,10 +462,7 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_ERROR, CMD_TBL_PIN_IS_LOCKED,
     (VOS_UINT8*)"^CURC", (VOS_UINT8*)"(0-2)"},
-	/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
-    /* Added by 傅映君/f62575 for AT Project, SIM卡保护标志确认, 2011/11/15, end */
 
-    /* Modify by w00199382 for V7代码同步, 2012-04-07, Begin   */
 
     {AT_CMD_SN,
     At_SetSnPara,        AT_NOT_SET_TIME,    VOS_NULL_PTR,           AT_NOT_SET_TIME,    At_CmdTestProcOK, AT_NOT_SET_TIME,
@@ -495,7 +470,6 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_DEVICE_OTHER_ERROR, CMD_TBL_PIN_IS_LOCKED,
     (TAF_UINT8*)"^SN",       VOS_NULL_PTR},
 
-    /* Modify by w00199382 for V7代码同步, 2012-04-07, End   */
 
     {AT_CMD_TBAT,
     AT_SetTbatPara,     AT_SET_PARA_TIME,   AT_QryTbatPara,  AT_QRY_PARA_TIME,  VOS_NULL_PTR, AT_SET_PARA_TIME,
@@ -521,13 +495,11 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (TAF_UINT8*)"^CMDLEN",    (VOS_UINT8 *)"(0-65535),(0-65535)"},
 
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
     {AT_CMD_TSELRF,
     AT_SetTseLrfPara,        AT_SET_PARA_TIME,   AT_QryTseLrfPara,  AT_QRY_PARA_TIME,  VOS_NULL_PTR, AT_SET_PARA_TIME,
     VOS_NULL_PTR,        AT_NOT_SET_TIME,
     AT_CME_INCORRECT_PARAMETERS, CMD_TBL_PIN_IS_LOCKED,
     (TAF_UINT8*)"^TSELRF",    (VOS_UINT8 *)"(0-255),(0-255)"},
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
 
     {AT_CMD_HUK,
     AT_SetHukPara,              AT_SET_PARA_TIME,   VOS_NULL_PTR,   AT_NOT_SET_TIME,  AT_TestHsicCmdPara,  AT_NOT_SET_TIME,
@@ -683,21 +655,7 @@ AT_PAR_CMD_ELEMENT_STRU g_astAtDeviceCmdTbl[] = {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : At_TestTmodePara
- 功能描述  : TMODE测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月9日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_TestTmodePara(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -717,21 +675,7 @@ VOS_UINT32 At_TestTmodePara(VOS_UINT8 ucIndex)
 
 }
 
-/*****************************************************************************
- 函 数 名  : At_TestFdacPara
- 功能描述  : FDAC测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月9日
-    作    者   : w00181244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_TestFdacPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usLength;
@@ -761,52 +705,20 @@ VOS_UINT32 At_TestFdacPara(VOS_UINT8 ucIndex)
 
 }
 
-/*****************************************************************************
- 函 数 名  : At_RegisterDeviceCmdTable
- 功能描述  : 注册装备命令表
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月21日
-    作    者   : 鲁琳/l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 At_RegisterDeviceCmdTable(VOS_VOID)
 {
     return AT_RegisterCmdTable(g_astAtDeviceCmdTbl, sizeof(g_astAtDeviceCmdTbl)/sizeof(g_astAtDeviceCmdTbl[0]));
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_TestSsidPara
- 功能描述  : SSID测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月28日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月17日
-    作    者   : z60575
-    修改内容   : MULTI_SSID修改
-*****************************************************************************/
 VOS_UINT32 AT_TestSsidPara(VOS_UINT8 ucIndex)
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI))
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
     gstAtSendData.usBufLen = (TAF_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                                     (TAF_CHAR *)pgucAtSndCodeAddr,
@@ -817,29 +729,13 @@ VOS_UINT32 AT_TestSsidPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestWikeyPara
- 功能描述  : WIKEY测试命令
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月28日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestWikeyPara(VOS_UINT8 ucIndex)
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI) )
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
     gstAtSendData.usBufLen = (TAF_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                                     (TAF_CHAR *)pgucAtSndCodeAddr,
@@ -851,24 +747,7 @@ VOS_UINT32 AT_TestWikeyPara(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetTbatPara
- 功能描述  : ^TBAT设置命令
- 输入参数  : VOS_UINT8 ucIndex      用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : f62575
-    修改内容   : 新生成函数
- 2.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : BalongV300R002 Build优化项目:删除FEATURE_CHARGE宏
-
-*****************************************************************************/
 VOS_UINT32 AT_SetTbatPara(VOS_UINT8 ucIndex)
 {
 #if (FEATURE_ON == FEATURE_LTE)
@@ -966,21 +845,7 @@ VOS_UINT32 AT_SetTbatPara(VOS_UINT8 ucIndex)
     */
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryTbatPara
- 功能描述  : ^TBAT查询命令，用于获取电池的安装方式
- 输入参数  : VOS_UINT8 ucIndex      用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryTbatPara(VOS_UINT8 ucIndex)
 {
     /*
@@ -996,12 +861,10 @@ VOS_UINT32 AT_QryTbatPara(VOS_UINT8 ucIndex)
         return AT_DEVICE_OTHER_ERROR;
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_CHARGE) )
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
     if (TAF_SUCCESS == AT_FillAndSndAppReqMsg(gastAtClientTab[ucIndex].usClientId,
                                                gastAtClientTab[ucIndex].opId,
@@ -1019,43 +882,14 @@ VOS_UINT32 AT_QryTbatPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetPstandbyPara
- 功能描述  : 设置单板进入到待机状态。
- 输入参数  : VOS_UINT8 ucIndex      用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年2月21日
-    作    者   : w00199382
-    修改内容   : B060项目增加底软相关接口调用
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目 :删除特性宏
-  4.日    期   : 2012年04月13日
-    作    者   : f62575
-    修改内容   : V7代码同步: 删除WIFI_POWER_SHUTDOWN，oledPwrOff和DRV_PWRCTRL_USB_LOWPOWER_ENTER的调用，
-                        替换为DRV_PWRCTRL_STANDBYSTATEACPU (BSP_PWRCTRL_StandbyStateAcpu)
-  5.日    期   : 2014年2月14日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:开关机函数调整
-*****************************************************************************/
 VOS_UINT32 AT_SetPstandbyPara(VOS_UINT8 ucIndex)
 {
     DRV_AGENT_PSTANDBY_REQ_STRU         stPstandbyInfo;
 
 #ifdef FEATURE_UPGRADE_TL
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, begin */
     TAF_MMA_PHONE_MODE_PARA_STRU        stPhoneModePara;
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, end */
 
 #endif
 
@@ -1090,7 +924,6 @@ VOS_UINT32 AT_SetPstandbyPara(VOS_UINT8 ucIndex)
     3、关中断
     4、调用底软接口进入深睡
     */
-    /* Modify by f62575 for V7代码同步, 2012-04-07, Begin   */
     stPstandbyInfo.ulStandbyTime = gastAtParaList[0].ulParaValue;
     stPstandbyInfo.ulSwitchTime   = gastAtParaList[1].ulParaValue;
 
@@ -1110,25 +943,20 @@ VOS_UINT32 AT_SetPstandbyPara(VOS_UINT8 ucIndex)
     /* V7R2采用关机进入低功耗流程流程 */
 #ifdef FEATURE_UPGRADE_TL
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, begin */
     stPhoneModePara.PhMode = TAF_PH_MODE_MINI;
 
     if (VOS_TRUE == TAF_MMA_PhoneModeSetReq(WUEPS_PID_AT, gastAtClientTab[ucIndex].usClientId, 0, &stPhoneModePara))
     {
-        /* Modified by zwx247453 for pc工程转3650, 2015-08-24, begin */
         /* 设置当前操作类型 */
         gastAtClientTab[ucIndex].CmdCurrentOpt = (AT_CMD_CURRENT_OPT_ENUM)AT_CMD_PSTANDBY_SET;
-        /* Modified by zwx247453 for pc工程转3650, 2015-08-24, end */
 
         return AT_WAIT_ASYNC_RETURN;    /* 返回命令处理挂起状态 */
     }
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, end */
 #endif
 
     return AT_SUCCESS;
 }
 
-/* DTS2012041801532 w00182550 NV归一化 start in 2012-04-12 */
 #if(FEATURE_ON == FEATURE_LTE)
 VOS_UINT32 AT_SetExbandInfoPara(VOS_UINT8 ucIndex)
 {
@@ -1273,29 +1101,8 @@ VOS_UINT32 AT_SetExbandTestInfoPara(VOS_UINT8 ucIndex)
       return AT_OK;
 }
 #endif
-/* DTS2012041801532 w00182550 NV归一化 end in 2012-04-12 */
 
-/*****************************************************************************
- 函 数 名  : AT_WriteWiWep
- 功能描述  : 写WIFI KEY到NV项
- 输入参数  : VOS_UINT32                          ulIndex        WIFI KEY在NV项中的索引
-             VOS_UINT32                          ulWiWepLen     WIFI KEY长度
-             VOS_UINT8                           aucWiWep[]     WIFI KEY内容
-             AT_WIFI_SEC_STRU                   *pstWifiSecInfo WIFI KEY所在NV的数据结构
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月10日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月6日
-    作    者   : l60609
-    修改内容   : DTS20120033007015:调整NV50012的结构四字节对齐
-*****************************************************************************/
 VOS_UINT32 AT_WriteWiWep(
     VOS_UINT32                          ulIndex,
     VOS_UINT8                           aucWiWep[],
@@ -1351,28 +1158,7 @@ VOS_UINT32 AT_WriteWiWep(
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetWiwepPara
- 功能描述  : 设置指定INDEX的WiFi WEP（WIFI的KEY）内容
- 输入参数  : VOS_UINT8 ucIndex      用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月6日
-    作    者   : l60609
-    修改内容   : DTS20120033007015:调整NV50012的结构四字节对齐
-
-  3.日    期   : 2012年9月17日
-    作    者   : z60575
-    修改内容   : MULTI_SSID修改
-*****************************************************************************/
 VOS_UINT32 AT_SetWiwepPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulIndex;
@@ -1380,12 +1166,10 @@ VOS_UINT32 AT_SetWiwepPara(VOS_UINT8 ucIndex)
     VOS_UINT32                          ulRet;
     TAF_AT_MULTI_WIFI_SEC_STRU         *pstWifiSecInfo;
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI))
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
     /* 输入参数检查: 有且仅有< index >和< content >两个参数 */
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
@@ -1444,27 +1228,7 @@ VOS_UINT32 AT_SetWiwepPara(VOS_UINT8 ucIndex)
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryWiwepPara
- 功能描述  : WIFI KEY信息查询
- 输入参数  : VOS_UINT8 ucIndex      用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年4月6日
-    作    者   : l60609
-    修改内容   : DTS20120033007015:调整NV50012的结构四字节对齐
-  3.日    期   : 2012年9月17日
-    作    者   : z60575
-    修改内容   : MULTI_SSID修改
-*****************************************************************************/
 VOS_UINT32 AT_QryWiwepPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulRet;
@@ -1478,12 +1242,10 @@ VOS_UINT32 AT_QryWiwepPara(VOS_UINT8 ucIndex)
     VOS_UINT8                           aucWepKeyLen4[AT_WIFI_MAX_SSID_NUM];
     VOS_UINT8                           ucWepKeyNum;
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI))
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
     /* 为读取WIFI KEY申请内存，读NV项en_NV_Item_WIFI_KEY获取WIFI KEY信息 */
     pstWifiSecInfo = (TAF_AT_MULTI_WIFI_SEC_STRU *)PS_MEM_ALLOC(WUEPS_PID_AT,
@@ -1648,29 +1410,13 @@ VOS_UINT32 AT_QryWiwepPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestWiwepPara
- 功能描述  : WIWEP的测试命令，输出工位支持的WIFI KEY总数
- 输入参数  : VOS_UINT8 ucIndex      用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestWiwepPara(VOS_UINT8 ucIndex)
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI) )
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
     gstAtSendData.usBufLen = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
                                                    (VOS_CHAR *)pgucAtSndCodeAddr,
@@ -1682,31 +1428,15 @@ VOS_UINT32 AT_TestWiwepPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestWifiPaRangePara
- 功能描述  : AT^WIPARANGE测试函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月02日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestWifiPaRangePara (VOS_UINT8 ucIndex)
 {
     AT_WIFI_MODE_ENUM_UINT8             ucWifiMode;
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (BSP_MODULE_UNSUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI) )
     {
         return AT_ERROR;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
     /* 初始化 */
     ucWifiMode                          = (VOS_UINT8)WIFI_GET_PA_MODE();
@@ -1747,27 +1477,7 @@ VOS_UINT32 AT_TestWifiPaRangePara (VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_GetTseLrfLoadDspInfo
- 功能描述  : ^TSELRF命令是否触发LOAD DSP
- 输入参数  : AT_TSELRF_PATH_ENUM_UINT32          enPath     射频通路编号
-             VOS_BOOL                           *pbLoadDsp  是否触发LOAD DSP
-                     VOS_FALSE                              不触发LOAD DSP操作
-                     VOS_TRUE                               触发LOAD DSP操作
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月10日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年01月16日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改(load mode 修改)
-
-*****************************************************************************/
 VOS_VOID AT_GetTseLrfLoadDspInfo(
     AT_TSELRF_PATH_ENUM_UINT32          enPath,
     VOS_BOOL                           *pbLoadDsp,
@@ -1816,30 +1526,7 @@ VOS_VOID AT_GetTseLrfLoadDspInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetTseLrfPara
- 功能描述  : ^TSELRF的设置操作
- 输入参数  : VOS_UINT8 ucIndex  用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 返回执行结果成功或相应错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月10日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月21日
-    作    者   : f62575
-    修改内容   : V7代码同步: 增加PATH参数保护
-  3.日    期   : 2012年05月04日
-    作    者   : f62575
-    修改内容   : DTS2012040600347，支持先配分集后打开接收机的新装备流程
-  4.日    期   : 2012年05月05日
-    作    者   : f62575
-    修改内容   : DTS2012050502003，解决V7版本AT^TSELRF=1命令无响应问题
-
-*****************************************************************************/
 VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
 {
     DRV_AGENT_TSELRF_SET_REQ_STRU       stTseLrf;
@@ -1850,7 +1537,6 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
         return AT_ERROR;
     }
 
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
 #if (FEATURE_ON == FEATURE_LTE)
     if ((AT_TSELRF_PATH_WCDMA_PRI!=gastAtParaList[0].ulParaValue)
      && (AT_TSELRF_PATH_WCDMA_DIV!=gastAtParaList[0].ulParaValue)
@@ -1859,7 +1545,6 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
         return atSetTselrfPara(ucIndex);
     }
 #endif
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
 
 #if(FEATURE_UE_MODE_TDS == FEATURE_ON)
     if(AT_TSELRF_PATH_TD == gastAtParaList[0].ulParaValue)
@@ -1877,7 +1562,6 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
 
     if (AT_TSELRF_PATH_WIFI == gastAtParaList[0].ulParaValue)
     {
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         if ( BSP_MODULE_SUPPORT == mdrv_misc_support_check(BSP_MODULE_TYPE_WIFI) )
         {
             /*WIFI未Enable直接返回失败*/
@@ -1894,7 +1578,6 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
         {
             return AT_ERROR;
         }
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
     }
 
     if (AT_TMODE_FTM != g_stAtDevCmdCtrl.ucCurrentTMode)
@@ -1923,13 +1606,11 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
         return AT_WAIT_ASYNC_RETURN;
     }
 
-    /* Modify by f62575 for V7代码同步, 2012-04-07, Begin   */
     if ((AT_TSELRF_PATH_GSM != gastAtParaList[0].ulParaValue)
      && (AT_TSELRF_PATH_WCDMA_PRI != gastAtParaList[0].ulParaValue))
     {
         return AT_ERROR;
     }
-    /* Modify by f62575 for V7代码同步, 2012-04-07, End   */
 
     /* 此处判断是否需要重新加载DSP: 需要则发请求到C核加载DSP，否则，直接返回OK */
     AT_GetTseLrfLoadDspInfo(gastAtParaList[0].ulParaValue, &bLoadDsp, &stTseLrf);
@@ -1954,31 +1635,13 @@ VOS_UINT32 AT_SetTseLrfPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryTseLrfPara
- 功能描述  : 查询命令用来返回单板支持的所有情况，每种情况分行显示，每个<path>
-             类型只显示一行，
-             举例来说，如支持2组WIFI天线，可显示为”^TSELRF: 7,0,1”
- 输入参数  : VOS_UINT8 ucIndex 用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 返回执行结果成功或相应错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月10日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryTseLrfPara(VOS_UINT8 ucIndex)
 {
 
-    /*DTS2012041102190 : h00135900 start in 2011-04-11 AT代码融合*/
 #if(FEATURE_LTE == FEATURE_ON)
     return atQryTselrfPara(ucIndex);
 #else
-    /*DTS2012041102190 : h00135900 end in 2011-04-11 AT代码融合*/
     VOS_UINT16                          usLength;
 
     usLength = (VOS_UINT16)At_sprintf(AT_CMD_MAX_LEN,
@@ -2027,23 +1690,7 @@ VOS_UINT32 AT_QryTseLrfPara(VOS_UINT8 ucIndex)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetCmdlenPara
- 功能描述  : 告知单板PC一次期望发送的字符个数和PC期望单板一次发送的字符个数
-             该命令用于支撑SIMLOCK数据的分段发送，BALONG无此需求，仅返回OK保证工
-             位归一化流程正常执行
- 输入参数  : VOS_UINT8 ucIndex      用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetCmdlenPara(VOS_UINT8 ucIndex)
 {
     if(AT_CMD_OPT_SET_PARA_CMD != g_stATParseCmd.ucCmdOptType)
@@ -2066,22 +1713,7 @@ VOS_UINT32 AT_SetCmdlenPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryCmdlenPara
- 功能描述  : 查询单板最大可以直接接收AT命令字符个数，以及单板通过AT一次最大
-             可以响应的字符个数，该字符个数均不包含AT这两个字符。
- 输入参数  : VOS_UINT8 ucIndex      用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryCmdlenPara(VOS_UINT8 ucIndex)
 {
     /*
@@ -2101,26 +1733,7 @@ VOS_UINT32 AT_QryCmdlenPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_UpdateMacPara
- 功能描述  : 更新MAC地址到NV
-             是否支持2个MAC待确认；
- 输入参数  : VOS_UINT8                           aucMac[]   MAC地址字符串首地址
-             VOS_UINT16                          usMacLength    MAC地址字符串长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             操作成功，返回AT_OK
-             物理号长度不合法返回AT_PHYNUM_LENGTH_ERR
-             MT内部错误，返回AT_ERROR
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_UpdateMacPara(
     VOS_UINT8                           aucMac[],
     VOS_UINT16                          usMacLength
@@ -2165,35 +1778,11 @@ VOS_UINT32 AT_UpdateMacPara(
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetTmodeAutoPowerOff
- 功能描述  : 自动关机的装备命令，仅E5产品形态支持，其他产品形态返回ERROR
-             产线要求先通知用户AT命令已执行，满足产线的时效需求
-             用户通过检测端口是否消失来确认任务是否正确执行
- 输入参数  : VOS_UINT8 ucIndex      用户索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2014年2月14日
-    作    者   : w00167002
-    修改内容   : L-C互操作项目:开关机函数调整
-*****************************************************************************/
 VOS_UINT32 AT_SetTmodeAutoPowerOff(VOS_UINT8 ucIndex)
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, begin */
     TAF_MMA_PHONE_MODE_PARA_STRU        stPhModeSet;
-    /* Modified by w00167002 for L-C互操作项目, 2014-2-14, end */
 
     VOS_UINT8                             *pucSystemAppConfig;
 
@@ -2209,43 +1798,25 @@ VOS_UINT32 AT_SetTmodeAutoPowerOff(VOS_UINT8 ucIndex)
            此命令执行完成后已下电，无需等待异步返回
         */
 
-        /* Modified by w00167002 for L-C互操作项目, 2014-2-14, begin */
         stPhModeSet.PhMode  = TAF_PH_MODE_POWEROFF;
 
         if (VOS_TRUE == TAF_MMA_PhoneModeSetReq(WUEPS_PID_AT, gastAtClientTab[ucIndex].usClientId, 0, &stPhModeSet))
         {
             return AT_OK;
         }
-        /* Modified by w00167002 for L-C互操作项目, 2014-2-14, end */
         else
         {
             return AT_ERROR;
         }
 
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     return AT_ERROR;
 
 }
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
 
-/*****************************************************************************
- 函 数 名  : AT_SDParamErrCode
- 功能描述  : SD命令参数错误返回错误码的处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月19日
-    作    者   : c64416
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SDParamErrCode(VOS_VOID)
 {
     if(0 == g_stATParseCmd.ucParaCheckIndex)
@@ -2262,24 +1833,8 @@ VOS_UINT32 AT_SDParamErrCode(VOS_VOID)
     }
 }
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
-/*****************************************************************************
- 函 数 名  : AT_GetSpecificPort
- 功能描述  : 获取指定类型的端口
- 输入参数  : VOS_UINT8                           ucPortType 端口类型
- 输出参数  : VOS_UINT32                         *pulPortPos 端口在NV项中的偏移
-             VOS_UINT32                         *pulPortNum NV项中的端口总数
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID AT_GetSpecificPort(
     VOS_UINT8                           ucPortType,
     VOS_UINT8                           aucRewindPortStyle[],
@@ -2310,24 +1865,7 @@ VOS_VOID AT_GetSpecificPort(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ExistSpecificPort
- 功能描述  : 是否存在指定类型的端口
- 输入参数  : VOS_UINT8              ucPortType 端口类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             VOS_TRUE    存在指定类型的端口
-                                    VOS_FALSE 不存在指定类型的端口
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 AT_ExistSpecificPort(VOS_UINT8 ucPortType)
 {
     AT_DYNAMIC_PID_TYPE_STRU            stDynamicPidType;
@@ -2370,23 +1908,7 @@ VOS_UINT32 AT_ExistSpecificPort(VOS_UINT8 ucPortType)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_OpenDiagPort
- 功能描述  : 打开DIAG端口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 AT_OpenDiagPort(VOS_VOID)
 {
     AT_DYNAMIC_PID_TYPE_STRU            stDynamicPidType;
@@ -2458,23 +1980,7 @@ VOS_UINT32 AT_OpenDiagPort(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CloseDiagPort
- 功能描述  : 关闭DIAG端口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             ATC返回码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 AT_CloseDiagPort(VOS_VOID)
 {
     AT_DYNAMIC_PID_TYPE_STRU            stDynamicPidType;
@@ -2556,26 +2062,7 @@ VOS_UINT32 AT_CloseDiagPort(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_ExistSpecificPortChange
- 功能描述  : 是否存在指定类型的端口变更权限
- 输入参数  : VOS_UINT8                           ucPortType 端口类型
-             VOS_UINT8                           aucOldRewindPortStyle[]变更前的端口集合
-             VOS_UINT8                           aucNewRewindPortStyle[]变更后的端口集合
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             VOS_TRUE    存在指定类型的端口变更
-                                    VOS_FALSE 不存在指定类型的端口变更
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 AT_ExistSpecificPortChange(
     VOS_UINT8                           ucPortType,
     VOS_UINT8                           aucOldRewindPortStyle[],
@@ -2612,23 +2099,7 @@ VOS_UINT32 AT_ExistSpecificPortChange(
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_CheckSetPortRight
- 功能描述  : 是否存在指定类型的端口变更
- 输入参数  : VOS_UINT8                           aucOldRewindPortStyle[]变更前的端口集合
-             VOS_UINT8                           aucNewRewindPortStyle[]变更后的端口集合
- 输出参数  : 无
- 返 回 值  : VOS_UINT32             AT_OK       权限检查通过
-                                    AT_ERROR    权限检查不通过
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月3日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_CheckSetPortRight(
     VOS_UINT8                           aucOldRewindPortStyle[],
     VOS_UINT8                           aucNewRewindPortStyle[]
@@ -2650,21 +2121,7 @@ VOS_UINT32 AT_CheckSetPortRight(
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetHsspt
- 功能描述  : 设置RRC版本信息,函数的参数正常性检测放在该模块做.
- 输入参数  : ucIndex    - 用户索引
- 输出参数  : 无
- 返 回 值  : 返回出错信息或OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetHsspt(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucRRCVer;
@@ -2701,20 +2158,7 @@ VOS_UINT32 AT_SetHsspt(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryHsspt
- 功能描述  : 查询RRC版本信息
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : 返回出错信息或OK
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月21日
-    作    者   : l60609
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 AT_QryHsspt(VOS_UINT8 ucIndex)
 {
     VOS_UINT8                           ucRRCVer;
@@ -2747,29 +2191,11 @@ VOS_UINT32 AT_QryHsspt(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_TestHsicCmdPara
- 功能描述  : HSIC通道命令测试命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年04月19日
-    作    者   : l00198894
-    修改内容   : AP-Modem锁网锁卡项目新增函数
-  2.日    期   : 2012年8月13日
-    作    者   : l60609
-    修改内容   : MUX:增加MUX通道的处理
-*****************************************************************************/
 VOS_UINT32 AT_TestHsicCmdPara(VOS_UINT8 ucIndex)
 {
     /* 通道检查 */
-    /* Modified by L60609 for MUX，2012-08-13,  Begin */
     if (VOS_FALSE == AT_IsApPort(ucIndex))
-    /* Modified by L60609 for MUX，2012-08-13,  End */
     {
         return AT_ERROR;
     }
@@ -2778,21 +2204,7 @@ VOS_UINT32 AT_TestHsicCmdPara(VOS_UINT8 ucIndex)
 }
 
 #if(FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : At_TestTdsScalibPara
- 功能描述  : ^SCALIB测试命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月30日
-    作    者   : z00212940
-    修改内容   : TDS新增函数
-
-*****************************************************************************/
 VOS_UINT32 At_TestTdsScalibPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                           usLength;
@@ -2807,21 +2219,7 @@ VOS_UINT32 At_TestTdsScalibPara(VOS_UINT8 ucIndex)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : AT_TestSimlockUnlockPara
- 功能描述  : ^SIMLOCKUNLOCK测试命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月19日
-    作    者   : 李紫剑/00198894
-    修改内容   : STK补充特性及DCM需求开发项目新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_TestSimlockUnlockPara( VOS_UINT8 ucIndex )
 {
     /* 通道检查 */
@@ -2839,21 +2237,7 @@ VOS_UINT32 AT_TestSimlockUnlockPara( VOS_UINT8 ucIndex )
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_String2Hex
- 功能描述  : 完成字符串转16进制数功能
- 输入参数  : nptr [in/out] 输入的字符串内容指针
-             usLen [in] 输入的字符串长度
- 输出参数  : pRtn [in/out] 由字符串转换所得整型值
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月28日
-    作    者   : d00212987
-    修改内容   : 移植北京原有AT 命令读写NV操作
-*****************************************************************************/
 VOS_UINT32 AT_String2Hex( VOS_UINT8 *nptr,VOS_UINT16 usLen, VOS_UINT32 *pRtn)
 {
     VOS_UINT32                          c     = 0;         /* current Char */
@@ -2896,23 +2280,7 @@ VOS_UINT32 AT_String2Hex( VOS_UINT8 *nptr,VOS_UINT16 usLen, VOS_UINT32 *pRtn)
     return AT_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NVWRGetParaInfo
- 功能描述  : 获取输入参数信息
- 输入参数  : *pucPara  :
-             *pucValue :
-             **pucParaDst
 
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年06月28日
-    作    者   : d00212987
-    修改内容   : 移植北京原有AT 命令读写NV操作
-*****************************************************************************/
 VOS_UINT32 AT_NVWRGetItemValue( VOS_UINT8 *pucPara,  VOS_UINT8 *pucValue,  VOS_UINT8 **pucParaDst)
 {
     VOS_UINT32                          ulTmp = 0;
@@ -2956,20 +2324,7 @@ VOS_UINT32 AT_NVWRGetItemValue( VOS_UINT8 *pucPara,  VOS_UINT8 *pucValue,  VOS_U
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_NVWRGetParaInfo
- 功能描述  : ^NVWRITE命令处理函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月28日
-    作    者   : d00212987
-    修改内容   : 移植北京原有AT 命令读写NV操作
-*****************************************************************************/
 VOS_UINT32 AT_NVWRGetParaInfo( AT_PARSE_PARA_TYPE_STRU * pstPara, VOS_UINT8 * pu8Data, VOS_UINT32 * pulLen)
 {
     VOS_UINT32                          ulNum = 0;
@@ -3024,20 +2379,7 @@ VOS_UINT32 AT_NVWRGetParaInfo( AT_PARSE_PARA_TYPE_STRU * pstPara, VOS_UINT8 * pu
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetNVReadPara
- 功能描述  : ^NVREAD命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月28日
-    作    者   : d00212987
-    修改内容   : 移植北京原有AT 命令读写NV操作
-*****************************************************************************/
 VOS_UINT32 AT_SetNVReadPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usNvId  = 0;
@@ -3132,23 +2474,7 @@ VOS_UINT32 AT_SetNVReadPara(VOS_UINT8 ucIndex)
     return AT_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetNVReadPara
- 功能描述  : ^NVWRITE命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月28日
-    作    者   : d00212987
-    修改内容   : 移植北京原有AT 命令读写NV操作
-  2.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : NVWR命令安全控制
-*****************************************************************************/
 VOS_UINT32 AT_SetNVWritePara(VOS_UINT8 ucIndex)
 {
     VOS_UINT16                          usNvId = 0;
@@ -3274,25 +2600,7 @@ VOS_UINT32 AT_SetNVWritePara(VOS_UINT8 ucIndex)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_SetNVWRPartPara
- 功能描述  : ^NVWRLEN设置命令处理
- 输入参数  : VOS_UINT8 ucClientId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月21日
-    作    者   : s00318873
-    修改内容   : 新生成函数 for DTS2015042202710
-
-  2.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : NVWR命令安全控制
-
-*****************************************************************************/
 VOS_UINT32 AT_SetNVWRPartPara(VOS_UINT8 ucClientId)
 {
     VOS_UINT32                          ulRet;
@@ -3428,40 +2736,14 @@ VOS_UINT32 AT_SetNVWRPartPara(VOS_UINT8 ucClientId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : AT_GetNvRdDebug
- 功能描述  : 显示NV读写调测信息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年06月28日
-    作    者   : d00212987
-    修改内容   : 移植北京原有AT 命令读写NV操作
-*****************************************************************************/
 VOS_VOID AT_GetNvRdDebug(VOS_VOID)
 {
     (VOS_VOID)vos_printf("\n g_ulNVRD=0x%x \n",g_ulNVRD);
     (VOS_VOID)vos_printf("\n g_ulNVWR=0x%x \n",g_ulNVWR);
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryFPllStatusPara
- 功能描述  : 查询G或W PLL状态
- 输入参数  : ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月29日
-    作    者   : L00256032
-    修改内容   : Added for PLL status query
-*****************************************************************************/
 VOS_UINT32 AT_QryFPllStatusPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulReceiverPid;
@@ -3525,20 +2807,7 @@ VOS_UINT32 AT_QryFPllStatusPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : At_RfPllStatusCnfProc
- 功能描述  : AT处理GPHY/WPHY回复的PLL状态查询响应消息
- 输入参数  : pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月29日
-    作    者   : L00256032
-    修改内容   : Added for PLL status query
-*****************************************************************************/
 VOS_VOID At_RfPllStatusCnfProc(PHY_AT_RF_PLL_STATUS_CNF_STRU *pstMsg)
 {
     VOS_UINT8                           ucIndex;
@@ -3571,20 +2840,7 @@ VOS_VOID At_RfPllStatusCnfProc(PHY_AT_RF_PLL_STATUS_CNF_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryFpowdetTPara
- 功能描述  : 读寄存器PDEG值
- 输入参数  : ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月6日
-    作    者   : d00212987
-    修改内容   : Added for PDEA status query
-*****************************************************************************/
 VOS_UINT32 AT_QryFpowdetTPara(VOS_UINT8 ucIndex)
 {
     AT_PHY_POWER_DET_REQ_STRU          *pstMsg;
@@ -3626,18 +2882,7 @@ VOS_UINT32 AT_QryFpowdetTPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : At_RfFPOWDETCnfProc
- 功能描述  : AT处理WPHY回复读到的寄存器PDEG值
- 输入参数  : pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
 
- 修改历史      :
-  1.日    期   : 2014年5月6日
-    作    者   : d00212987
-    修改内容   : Added for PDEA status query
-*****************************************************************************/
 VOS_VOID At_RfFpowdetTCnfProc(PHY_AT_POWER_DET_CNF_STRU *pstMsg)
 {
     VOS_UINT8                           ucIndex;
@@ -3678,20 +2923,7 @@ VOS_VOID At_RfFpowdetTCnfProc(PHY_AT_POWER_DET_CNF_STRU *pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_SetNvwrSecCtrlPara
- 功能描述  : ^NVWRSECCTRL设置命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 AT_SetNvwrSecCtrlPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulResult;
@@ -3754,20 +2986,7 @@ VOS_UINT32 AT_SetNvwrSecCtrlPara(VOS_UINT8 ucIndex)
     return AT_WAIT_ASYNC_RETURN;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaNvwrSecCtrlSetCnf
- 功能描述  : AT模块收到MTA模块消息处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaNvwrSecCtrlSetCnf( VOS_VOID *pMsg )
 {
     AT_MTA_MSG_STRU                    *pstRcvMsg;
@@ -3823,20 +3042,7 @@ VOS_UINT32 AT_RcvMtaNvwrSecCtrlSetCnf( VOS_VOID *pMsg )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryNvwrSecCtrlPara
- 功能描述  : ^NWSECCTRL查询命令处理函数
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT32 AT_QryNvwrSecCtrlPara(VOS_UINT8 ucIndex)
 {
     TAF_NV_NVWR_SEC_CTRL_STRU           stNvwrSecCtrlNV;
@@ -3861,21 +3067,7 @@ VOS_UINT32 AT_QryNvwrSecCtrlPara(VOS_UINT8 ucIndex)
     return ulResult;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_IsNVWRAllowedNvId
- 功能描述  : 判断命令^NVWR、^NVWREX能否修改此NV_ID
- 输入参数  : usNvId
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   -- 允许修改
-             VOS_FLASE  -- 不允许修改
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月04日
-    作    者   : l00198894
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_BOOL AT_IsNVWRAllowedNvId(VOS_UINT16 usNvId)
 {
     TAF_NV_NVWR_SEC_CTRL_STRU           stNvwrSecCtrlNV;
@@ -3920,20 +3112,7 @@ VOS_BOOL AT_IsNVWRAllowedNvId(VOS_UINT16 usNvId)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-函 数 名  :AT_AsciiToHex
-功能描述  :转换字符串格式
-输入参数  :
 
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
-
-修订记录  :
-1. 日    期   : 2015年07月23日
-   作    者   : z00316370
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 AT_AsciiToHex(
     VOS_UINT8                          *pucSrc,
@@ -3961,20 +3140,7 @@ VOS_UINT32 AT_AsciiToHex(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :AT_AsciiToHexCode
-功能描述  :转换字符串格式，逆序,"1234"->0x3412
-输入参数  :
 
-输出参数  :无
-返 回 值  :VOS_OK    :失败
-           VOS_ERR   :成功
-
-修订记录  :
-1. 日    期   : 2015年7月23日
-   作    者   : z00316370
-   修改内容   : Creat
-*****************************************************************************/
 
 VOS_UINT32 AT_AsciiToHexCode_Revers(
     VOS_UINT8                          *pucSrc,
@@ -4011,22 +3177,7 @@ VOS_UINT32 AT_AsciiToHexCode_Revers(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_Hex2Ascii
- 功能描述  : 将十六进制数字字符串转换成ASCII码表示的数字字符串,逆序,0x3412 --> "1234"
- 输入参数  : VOS_UINT8  aucHex[]十进制数字字符串首地址
-             VOS_UINT32 ulLength      十进制数字字符串长度
- 输出参数  : VOS_UINT8  aucAscii[]    ASCII码表示的数字字符串首地址
- 返 回 值  : VOS_UINT32 转换结果: VOS_OK转换成功，VOS_ERR转换失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_Hex2Ascii_Revers(
     VOS_UINT8                           aucHex[],
     VOS_UINT32                          ulLength,
@@ -4080,22 +3231,7 @@ VOS_UINT32 AT_Hex2Ascii_Revers(
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : AT_SetMeidPara
- 功能描述  : 设置修改MEID,命令格式%MEID=<meid number>
- 输入参数  : ucIndex - 用户索引
- 输出参数  : 无
- 返 回 值  : AT_OK - 成功
-             AT_DEVICE_OTHER_ERROR或 AT_DATA_UNLOCK_ERROR - 失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_SetMeidPara(VOS_UINT8 ucIndex)
 {
     AT_MTA_MEID_SET_REQ_STRU            stMeIdReq;
@@ -4147,21 +3283,7 @@ VOS_UINT32 AT_SetMeidPara(VOS_UINT8 ucIndex)
 
 }
 
-/*****************************************************************************
- 函 数 名  : AT_QryMeidPara
- 功能描述  : AT%MEID查询MEID
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月17日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_QryMeidPara(VOS_UINT8 ucIndex)
 {
     VOS_UINT32                          ulResult;
@@ -4194,21 +3316,7 @@ VOS_UINT32 AT_QryMeidPara(VOS_UINT8 ucIndex)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMeidSetCnf
- 功能描述  : ID_MTA_AT_MEID_SET_CNF消息处理函数,^MEID设置结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年07月23日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMeidSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -4272,21 +3380,7 @@ VOS_UINT32 AT_RcvMtaMeidSetCnf(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : AT_RcvMtaMeidQryCnf
- 功能描述  : ID_MTA_AT_MEID_QRY_CNF消息处理函数,^MEID设置结果
- 输入参数  : VOS_VOID *pstMsg - 消息指针
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 AT_RcvMtaMeidQryCnf(
     VOS_VOID                           *pMsg
 )

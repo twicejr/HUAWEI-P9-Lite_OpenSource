@@ -199,7 +199,7 @@ typedef struct tagSFE_MBUF_EXPAND
     UINT32 u32PktDstIp;         /* 报文的目的IP,网络字节序 */
     UINT8  u8IpHdrLen;          /* IP头长度 */
     UINT8  u8TransHdrLen;       /* 传输层头的长度 */
-    UINT8  u8StatDirection;     /* 问题单:DTS2010110502669,添加了业务统计方向标志 */
+    UINT8  u8StatDirection;
     UINT8  u8Reserve;           /* 预留字段 */    
     UINT32 u32DupPktLen;        /* TCP代理发送时标识重传数据长度 */
     SFE_PKTINFO_USERPRIVATE_S    stUsrPrivateData;  /* 产品自有信息 */
@@ -338,7 +338,6 @@ typedef struct tagSFE_MBuf
 /* 子端口号无效值 */
 #define SFE_SUBPORT_NOT_USE 0xFFFF
 
-/* Modify by huangqingxin177429, at 2012-05-04. 修改原因: pclint告警消除 */
 /* 一维接口模式下, 设置报文入接口的信息 */
 #define SFE_MBUF_SET_RX_IFINFO(pstMbuf, u8RcvPortType, u16RcvPortID) \
 { \

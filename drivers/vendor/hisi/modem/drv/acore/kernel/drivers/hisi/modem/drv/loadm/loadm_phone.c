@@ -62,9 +62,6 @@
 #include <linux/kthread.h>
 #include <linux/delay.h>
 #include <product_config.h>
-#include <bsp_ipc.h>
-#include <bsp_dsp.h>
-#include <bsp_dspload.h>
 
 #include <bsp_shared_ddr.h>
 #include <bsp_hardtimer.h>
@@ -134,6 +131,17 @@ static int modem_sysboot_start_init(void *data)
     if (ret)
     {
         printk(KERN_ERR "%s his_load_image_start_up fail ",__func__);
+    }
+
+    /*只在MBB平台上需要发送复位请求中断*/
+    ret = bsp_load_notify_ccpu_start();
+    if (ret)
+    {
+        printk(KERN_ERR"send ipc to unreset ccore failed, ret=0x%x\n", ret);
+    }
+    else
+    {
+        printk(KERN_ERR"send ipc to unreset ccore succeed\n");
     }
 
     return 0;

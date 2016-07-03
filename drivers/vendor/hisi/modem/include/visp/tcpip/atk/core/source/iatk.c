@@ -71,24 +71,7 @@ ATK_INT_OBJ_S g_stIP_ATK_INT_OBJ =
     &g_IComInt_Atk_CFG,
 };
 
-/*******************************************************************************
-*    Func Name: ATK_QueryInterface
-* Date Created: 2014-08-07
-*       Author: a00900892
-*  Description: Queries Vtbale instances for MultiCOM usage    
-*        Input: IUnknown *This: this ÷∏’Î
-                COMP_IID iid:   Com interface id
-*       Output: LPVOID *ppvObj: Vtable instance
-*       Return: VOS_OK  success
-                VOS_ERR error
-*      Caution: Not used for single instance COM  
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME                        DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2014-08-07  a00900892                    Create
-*
-*******************************************************************************/
+
 ULONG ATK_QueryInterface(IUnknown *This, COMP_IID iid, LPVOID *ppvObj)
 {
     /* SYSTRACE (MID_IP_PP4, IP_PP4_COM, 0, 0, 0, 0); */\

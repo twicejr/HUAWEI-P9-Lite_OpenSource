@@ -1,13 +1,4 @@
-/*******************************************************************************
-  Copyright     : 2005-2007, Huawei Tech. Co., Ltd.
-  File name     : EmmService.c
-  Description   : EMM SERVICE REQUEST功能相关处理用源文件
-  Function List :
 
-  History       :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-    2.  leili       00132387    2009.06.25   BJ9001269 收到系统消息后处理优化
-*******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -43,16 +34,7 @@ extern "C" {
 
 
 
-/*******************************************************************************
-  Module   :
-  Function :NAS_EMM_MsSerInitMsgRabmDrbSetupInds
-  Input    :
-  Output   :
-  NOTE     :
-  Return   :
-  History  :
-    1.  Zhouyan 00125190  2008.09.10  新规作成
-*******************************************************************************/
+
 VOS_UINT32 NAS_EMM_MsSerInitMsgRabmDrbSetupInd(VOS_UINT32  ulMsgId,
                                                    VOS_VOID   *pMsgStru)
 {
@@ -121,19 +103,7 @@ VOS_VOID NAS_EMM_SER_SndEsmBufMsg( VOS_VOID )
 }
 
 
-/*******************************************************************************
-  Module   : NAS_EMM_SER_RcvRabmDrbSetupInd
-  Function : 收到EMM_ERABM_DRB_SETUP_IND原语后的处理
-  Input    : VOS_VOID *pMsg     原语首地址
-  Output   : 无
-  NOTE     : 无
-  Return   : VOS_UINT32
-  History  :
-    1.  Zhouyan 00125190     2008.09.09  新规作成
-    2.  lihong 00150010      2009-06-23  Modify
-    3.  lihong 00150010      2012-12-18  Modify:Emergency
-    4.  leixinatiao 00258641 2015-07-23 关键信息上报
-*******************************************************************************/
+
 VOS_VOID    NAS_EMM_SER_RcvRabmDrbSetupInd(const VOS_VOID   *pMsgStru)
 {
     NAS_LMM_OM_TAU_START_TYPE_ENUM_UINT32 enTauStartType = NAS_LMM_OM_TAU_START_TYPE_OTHERS;
@@ -240,18 +210,7 @@ VOS_VOID    NAS_EMM_SER_RcvRabmDrbSetupInd(const VOS_VOID   *pMsgStru)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgMmCsfbSerAbortNotify
- Description     : 预处理MM的CSFB ABORT请求消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong        00150010      2012-02-27  Draft Enact
-    2.leixiantiao   00258641      2015-07-09  fix DTS2015062509266
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_UINT32  NAS_EMM_PreProcMsgMmCsfbSerAbortNotify( MsgBlock * pMsg )

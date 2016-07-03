@@ -45,13 +45,7 @@ static struct device_attribute attributes[] = {
 
 
 
-/*****************************************************************************
- Description : 通过业务名字获得业务ID
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static int get_id_by_name(const char *name)
 {
     int i = 0;
@@ -75,13 +69,7 @@ static int get_id_by_name(const char *name)
     return hisi_id;
 }
 
-/*****************************************************************************
- Description : 查找与当前业务互斥并且已启动的业务
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static int find_mutex_id(int id)
 {
     int i = 0;
@@ -102,13 +90,7 @@ static int find_mutex_id(int id)
     return ret;
 }
 
-/*****************************************************************************
- Description : 实现业务注册的函数
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static int hisi_mutex_register(int cur_id)
 {
     int mutex_id = -1;
@@ -163,13 +145,7 @@ static int hisi_mutex_register(int cur_id)
     return START_OK;
 
 }
-/*****************************************************************************
- Description : 外部接口，内核态业务启动时，调用此函数注册
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 int hisi_mutex_mng_service_start(int  hisi_id, pPREEMPTFUNC callback)
 {
     int ret = 0;
@@ -223,13 +199,7 @@ int hisi_mutex_mng_service_start(int  hisi_id, pPREEMPTFUNC callback)
     return ret;
 }
 
-/*****************************************************************************
- Description : 外部接口，内核态业务停止时，调用此函数注册
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 int hisi_mutex_mng_service_stop(int  hisi_id)
 {
     struct operation_data *cur_operation = NULL;
@@ -263,13 +233,7 @@ int hisi_mutex_mng_service_stop(int  hisi_id)
     return STOP_OK;
 }
 
-/*****************************************************************************
- Description : 外部接口，内核态业务启动后，调用此函数配置心跳
-  History
-  1.Date: 2013/12/10
-    Author : b00260479
-    Modification : Created function
-*****************************************************************************/
+
 int hisi_mutex_mng_notify_alive(int  hisi_id)
 {
     struct operation_data *cur_operation = NULL;
@@ -298,13 +262,7 @@ int hisi_mutex_mng_notify_alive(int  hisi_id)
     return STATUS_ALIVE;
 }
 
-/*****************************************************************************
- Description : 设备节点，用户态业务启动时，调用此函数注册
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static ssize_t hisi_app_service_start(struct device *pdev, struct device_attribute *attr,
                         const char *buf, size_t size)
 {
@@ -360,13 +318,7 @@ static ssize_t hisi_app_service_start(struct device *pdev, struct device_attribu
     return ret;
 }
 
-/*****************************************************************************
- Description : 设备节点，用户态业务停止时，调用此函数注册
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static ssize_t hisi_app_service_stop(struct device *pdev, struct device_attribute *attr,
                         const char *buf, size_t size)
 {
@@ -406,13 +358,7 @@ static ssize_t hisi_app_service_stop(struct device *pdev, struct device_attribut
     return STOP_OK;
 }
 
-/*****************************************************************************
- Description : 设备节点，用户态业务读取抢占消息
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static ssize_t notify_preempt_to_app_mirror(struct device *pdev, struct device_attribute *attr,
                        char *buf)
 {
@@ -434,13 +380,7 @@ static ssize_t notify_preempt_to_app_mirror(struct device *pdev, struct device_a
 	
 }
 
-/*****************************************************************************
- Description : 设备节点，用户态业务读取抢占消息
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static ssize_t notify_preempt_to_app_wifidisplay(struct device *pdev, struct device_attribute *attr,
                        char *buf)
 {
@@ -463,13 +403,7 @@ static ssize_t notify_preempt_to_app_wifidisplay(struct device *pdev, struct dev
 
 }
 
-/*****************************************************************************
- Description : 设备节点，用户态业务读取抢占消息
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static ssize_t notify_preempt_to_app_hmp(struct device *pdev, struct device_attribute *attr,
                        char *buf)
 {
@@ -491,13 +425,7 @@ static ssize_t notify_preempt_to_app_hmp(struct device *pdev, struct device_attr
 
 }
 
-/*****************************************************************************
- Description : 设备节点，用户态业务配置心跳信息
-  History
-  1.Date: 2013/12/10
-    Author : b00260479
-    Modification : Created function
-*****************************************************************************/
+
 static ssize_t  notify_alive_to_app_mirror(struct device *pdev, struct device_attribute *attr,
                       const char *buf, size_t size)
 {
@@ -522,13 +450,7 @@ static ssize_t  notify_alive_to_app_mirror(struct device *pdev, struct device_at
     return size;
 }
 
-/*****************************************************************************
- Description : 设备节点，用户态业务配置心跳信息
-  History
-  1.Date: 2013/12/10
-    Author : b00260479
-    Modification : Created function
-*****************************************************************************/
+
 static ssize_t  notify_alive_to_app_wifidisplay(struct device *pdev, struct device_attribute *attr,
                       const char *buf, size_t size)
 {
@@ -553,13 +475,7 @@ static ssize_t  notify_alive_to_app_wifidisplay(struct device *pdev, struct devi
     return size;
 }
 
-/*****************************************************************************
- Description : 设备节点，用户态业务配置心跳信息
-  History
-  1.Date: 2013/12/10
-    Author : b00260479
-    Modification : Created function
-*****************************************************************************/
+
 static ssize_t  notify_alive_to_app_hmp(struct device *pdev, struct device_attribute *attr,
                       const char *buf, size_t size)
 {
@@ -607,13 +523,7 @@ static int remove_sysfs_interfaces(struct device *dev)
     return 0;
 }
 
-/*****************************************************************************
- Description : 注册中心初始化函数
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static int  mutex_service_probe(struct platform_device *pdev)
 {
     int i = 0;
@@ -635,13 +545,7 @@ static int  mutex_service_probe(struct platform_device *pdev)
     return 0;
 }
 
-/*****************************************************************************
- Description : 注册中心退出函数
-  History
-  1.Date: 2013/11/22
-    Author : l00249396
-    Modification : Created function
-*****************************************************************************/
+
 static int  mutex_service_remove(struct platform_device *pdev)
 {
     g_mutex_service_ready = 0;

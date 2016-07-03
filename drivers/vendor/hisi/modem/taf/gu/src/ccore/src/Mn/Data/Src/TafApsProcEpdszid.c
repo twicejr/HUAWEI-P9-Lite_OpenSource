@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafApsProcEpdszid.c
-  版 本 号   : 初稿
-  作    者   : g00261581
-  生成日期   : 2014年12月30日
-  最近修改   :
-  功能描述   : TAF APS Proc EPDSZID function
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -47,61 +30,19 @@ extern "C" {
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetEpdszidCtx
- 功能描述  : Get Epdszid Ctx Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_EPDSZID_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_EPDSZID_CTX_STRU* TAF_APS_GetEpdszidCtx(VOS_VOID)
 {
     return &(g_stTafApsCtx.stCdataCtx.stEpdszidCtx);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetEpdszidType
- 功能描述  : get Epdszid type
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_APS_EPDSZID_SUPPORT_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_EPDSZID_SUPPORT_TYPE_ENUM_UINT8 TAF_APS_GetEpdszidType(VOS_VOID)
 {
     return g_stTafApsCtx.stCdataCtx.stEpdszidCtx.enEpdszidType;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetEpdszidType
- 功能描述  : Set Epdszid type
- 输入参数  : TAF_APS_EPDSZID_SUPPORT_TYPE_ENUM_UINT8      enEpdszidType
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月6日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetEpdszidType(
     TAF_APS_EPDSZID_SUPPORT_TYPE_ENUM_UINT8       enEpdszidType
 )
@@ -111,41 +52,13 @@ VOS_VOID TAF_APS_SetEpdszidType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetEpdszidHatTimerLen
- 功能描述  : Get Hat Timer Len
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetEpdszidHatTimerLen(VOS_VOID)
 {
     return g_stTafApsCtx.stCdataCtx.stEpdszidCtx.ucHatTimerLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetEpdszidHatTimerLen
- 功能描述  : Set Hat Timer Len
- 输入参数  : VOS_UINT8                           ucHatTimerLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetEpdszidHatTimerLen(
     VOS_UINT8                           ucHatTimerLen
 )
@@ -153,41 +66,13 @@ VOS_VOID TAF_APS_SetEpdszidHatTimerLen(
     g_stTafApsCtx.stCdataCtx.stEpdszidCtx.ucHatTimerLen = ucHatTimerLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetEpdszidHtTimerLen
- 功能描述  : Get Ht Timer Len
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetEpdszidHtTimerLen(VOS_VOID)
 {
     return g_stTafApsCtx.stCdataCtx.stEpdszidCtx.ucHtTimerLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetEpdszidHtTimerLen
- 功能描述  : Set Ht Timer Len
- 输入参数  : VOS_UINT8                           ucHtTimerLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetEpdszidHtTimerLen(
     VOS_UINT8                           ucHtTimerLen
 )
@@ -195,41 +80,13 @@ VOS_VOID TAF_APS_SetEpdszidHtTimerLen(
     g_stTafApsCtx.stCdataCtx.stEpdszidCtx.ucHtTimerLen = ucHtTimerLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCurrPacketZoneListLen
- 功能描述  : Get Current Packet zone list len
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetCurrPacketZoneListLen(VOS_VOID)
 {
     return g_stTafApsCtx.stCdataCtx.stEpdszidCtx.ucEpdszidCurrListLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetCurrPacketZoneListLen
- 功能描述  : Set Current Packet zone list Len
- 输入参数  : VOS_UINT8                           ucZoneListLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetCurrPacketZoneListLen(
     VOS_UINT8                           ucZoneListLen
 )
@@ -239,22 +96,7 @@ VOS_VOID TAF_APS_SetCurrPacketZoneListLen(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReduceEpdszidInZoneList
- 功能描述  : Current Packet Zone List Len is Less than Max Packe Zone List
-             Len, So need to reduce some old epdszid record
- 输入参数  : VOS_UINT8                           ucMaxZoneListLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ReduceEpdszidInZoneList(
     VOS_UINT8                           ucMaxZoneListLen
 )
@@ -275,41 +117,13 @@ VOS_VOID TAF_APS_ReduceEpdszidInZoneList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetMaxPacketZoneListLen
- 功能描述  : Get Max Packet zone list len
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetMaxPacketZoneListLen(VOS_VOID)
 {
     return g_stTafApsCtx.stCdataCtx.stEpdszidCtx.ucEpdszidMaxListLen;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetMaxPacketZoneListLen
- 功能描述  : Set Max Packet zone list Len
- 输入参数  : VOS_UINT8                           ucMaxZoneListLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetMaxPacketZoneListLen(
     VOS_UINT8                           ucMaxZoneListLen
 )
@@ -319,41 +133,13 @@ VOS_VOID TAF_APS_SetMaxPacketZoneListLen(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetHysEnableFlg
- 功能描述  : Get Hysteresis enable Flg
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetHysEnableFlg(VOS_VOID)
 {
     return g_stTafApsCtx.stCdataCtx.stEpdszidCtx.ucEpdszidHysEnableFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetHysEnableFlg
- 功能描述  : Set Hysteresis enable Flg
- 输入参数  : VOS_UINT8                           ucHysEnableFlg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetHysEnableFlg(
     VOS_UINT8                           ucHysEnableFlg
 )
@@ -363,41 +149,13 @@ VOS_VOID TAF_APS_SetHysEnableFlg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetHysActivationInd
- 功能描述  : Get HAI(HYSTEERESIS ACTIVATION INDICATOR) value
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetHysActivationInd(VOS_VOID)
 {
     return g_stTafApsCtx.stCdataCtx.stEpdszidCtx.ucEpdszidHai;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetHysActivationInd
- 功能描述  : Set HAI(HYSTEERESIS ACTIVATION INDICATOR) value
- 输入参数  : VOS_UINT8                           ucHysActivationInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetHysActivationInd(
     VOS_UINT8                           ucHysActivationInd
 )
@@ -407,41 +165,13 @@ VOS_VOID TAF_APS_SetHysActivationInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetEpdszidChgReOrigScene
- 功能描述  : Get Epdszid Chg ReOrig Scene Enum value
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_EPDSZID_CHG_REORIG_TYPE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_EPDSZID_CHG_REORIG_SCENE_ENUM_UINT8 TAF_APS_GetEpdszidChgReOrigScene(VOS_VOID)
 {
     return g_stTafApsCtx.stCdataCtx.stEpdszidCtx.enReOrigScene;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetEpdszidChgReOrigScene
- 功能描述  : Set Epdszid ReOrig flg after dormant timer expired
- 输入参数  : TAF_APS_CDATA_EPDSZID_CHG_REORIG_TYPE_ENUM_UINT8          enReOrigScene
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetEpdszidChgReOrigScene(
     TAF_APS_CDATA_EPDSZID_CHG_REORIG_SCENE_ENUM_UINT8       enReOrigScene
 )
@@ -451,41 +181,13 @@ VOS_VOID TAF_APS_SetEpdszidChgReOrigScene(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetCurrEpdszidInfo
- 功能描述  : Get Current EPDSZID Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_EPDSZID_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_EPDSZID_STRU* TAF_APS_GetCurrEpdszidInfo(VOS_VOID)
 {
     return &g_stTafApsCtx.stCdataCtx.stEpdszidCtx.stCurrEpdszid;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetCurrEpdszidInfo
- 功能描述  : Update Current EPDSZID Info
- 输入参数  : TAF_APS_CDATA_EPDSZID_STRU         *pstEpdszid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetCurrEpdszidInfo(
     TAF_APS_CDATA_EPDSZID_STRU         *pstEpdszid
 )
@@ -497,43 +199,13 @@ VOS_VOID TAF_APS_SetCurrEpdszidInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetHrpdEpdszidInfo
- 功能描述  : 获取HRPD Pzid Sid Nid信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_HRPD_EPDSZID_CTX_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_HRPD_EPDSZID_CTX_STRU* TAF_APS_GetHrpdEpdszidInfo(VOS_VOID)
 {
     return &g_stTafApsCtx.stCdataCtx.stHrpdEpdszidInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetHrpdEpdszidInfo
- 功能描述  : 更新Hrpd Pzid Sid Nid信息
- 输入参数  : VOS_UINT16                          usSid
-             VOS_UINT16                          usNid
-             VOS_UINT8                           ucPzid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetHrpdEpdszidInfo(
     VOS_UINT16                          usSid,
     VOS_UINT16                          usNid,
@@ -547,21 +219,7 @@ VOS_VOID TAF_APS_SetHrpdEpdszidInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetOldestEntryInZoneList
- 功能描述  : Get the Oldest Epdszid Entry Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_APS_CDATA_EPDSZID_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TAF_APS_CDATA_EPDSZID_STRU* TAF_APS_GetOldestEntryInZoneList(VOS_VOID)
 {
     VOS_UINT8                           ucZoneListLen;
@@ -571,22 +229,7 @@ TAF_APS_CDATA_EPDSZID_STRU* TAF_APS_GetOldestEntryInZoneList(VOS_VOID)
     return &g_stTafApsCtx.stCdataCtx.stEpdszidCtx.astEpdszidList[ucZoneListLen - 1];
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CheckEpdszidIsTheSame
- 功能描述  : Check if Epdszid Info is the same
- 输入参数  : TAF_APS_CDATA_EPDSZID_STRU         *pstDesEpdszid
-             TAF_APS_CDATA_EPDSZID_STRU         *pstSrcEpdszid
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_CheckEpdszidIsTheSame(
     TAF_APS_CDATA_EPDSZID_STRU         *pstDesEpdszid,
     TAF_APS_CDATA_EPDSZID_STRU         *pstSrcEpdszid
@@ -631,21 +274,7 @@ VOS_UINT32 TAF_APS_CheckEpdszidIsTheSame(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsEpdszidExistInZoneList
- 功能描述  : 判断Epdszid是否在Packet Zone List中存在
- 输入参数  : TAF_APS_CDATA_EPDSZID_STRU         *pstEpdszid
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月5日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsEpdszidExistInZoneList(
     TAF_APS_CDATA_EPDSZID_STRU         *pstEpdszid
 )
@@ -666,21 +295,7 @@ VOS_UINT32 TAF_APS_IsEpdszidExistInZoneList(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_GetEpdszidIndexInZoneList
- 功能描述  : If Epdszid existed in the Packet Zone List,return the seq num,Else return -1
- 输入参数  : TAF_APS_CDATA_EPDSZID_STRU         *pstEpdszid
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_APS_GetEpdszidIndexInZoneList(
     TAF_APS_CDATA_EPDSZID_STRU         *pstEpdszid
 )
@@ -701,21 +316,7 @@ VOS_UINT8 TAF_APS_GetEpdszidIndexInZoneList(
     return TAF_APS_CDMA_EPDSZID_INVAILD_SEQ_NUM;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_AddEpdszidToZoneList
- 功能描述  : Add One EPDSZID to Packet Zone List
- 输入参数  : TAF_APS_CDATA_EPDSZID_STRU         *pstEpdszid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_AddEpdszidToZoneList
 (
     TAF_APS_CDATA_EPDSZID_STRU         *pstEpdszid
@@ -776,21 +377,7 @@ VOS_VOID TAF_APS_AddEpdszidToZoneList
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DeleteOldestEntryInZoneList
- 功能描述  : Delete The Last Epdszid entry in the packet zone list(The Last is the Oldest)
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月24日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_DeleteOldestEntryInZoneList(VOS_VOID)
 {
     VOS_UINT8                           ucZoneListLen;
@@ -810,21 +397,7 @@ VOS_VOID TAF_APS_DeleteOldestEntryInZoneList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_DeleteOneEntryInZoneList
- 功能描述  : Delete One Epdszid Entry In Zone List
- 输入参数  : VOS_UINT8                           ucSeqNum
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_DeleteOneEntryInZoneList(
     VOS_UINT8                           ucIndex
 )
@@ -856,21 +429,7 @@ VOS_VOID TAF_APS_DeleteOneEntryInZoneList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_MoveEntryToLastPositionInZoneList
- 功能描述  : Move One entry to the Last Position In Zone List
- 输入参数  : VOS_UINT8                           ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月12日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_MoveEntryToLastPositionInZoneList(
     VOS_UINT8                           ucIndex
 )
@@ -902,21 +461,7 @@ VOS_VOID TAF_APS_MoveEntryToLastPositionInZoneList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_InitPacketZoneList
- 功能描述  : Init Packet Zone List
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_InitPacketZoneList(VOS_VOID)
 {
     VOS_UINT8                           ucIndex;
@@ -934,21 +479,7 @@ VOS_VOID TAF_APS_InitPacketZoneList(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_InitCurrEpdszidInfo
- 功能描述  : Init Current Epdszid Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月7日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_InitCurrEpdszidInfo(VOS_VOID)
 {
     g_stTafApsCtx.stCdataCtx.stEpdszidCtx.stCurrEpdszid.usSid        = TAF_APS_CDMA_EPDSZID_INVAILD_SID;
@@ -959,21 +490,7 @@ VOS_VOID TAF_APS_InitCurrEpdszidInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReadEpdszidFeatureCfgFromNv
- 功能描述  : Get Epdszid Feature Cfg From Nv
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ReadEpdszidFeatureCfgFromNv(VOS_VOID)
 {
     CNAS_NVIM_1X_EPDSZID_FEATURE_CFG_STRU  stEpdszidFeatureCfg;
@@ -1005,21 +522,7 @@ VOS_VOID TAF_APS_ReadEpdszidFeatureCfgFromNv(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_InitEpdszidCtx
- 功能描述  : Init EPDSZID Ctx Info
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月5日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_InitEpdszidCtx(VOS_VOID)
 {
     TAF_APS_CDATA_EPDSZID_CTX_STRU               *pstEpdszidCtx;
@@ -1043,21 +546,7 @@ VOS_VOID TAF_APS_InitEpdszidCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ReleaseEpdszidResource
- 功能描述  : Relese Epdszid Resource
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月7日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ReleaseEpdszidResource(VOS_VOID)
 {
     TAF_APS_InitEpdszidCtx();
@@ -1067,21 +556,7 @@ VOS_VOID TAF_APS_ReleaseEpdszidResource(VOS_VOID)
     TAF_APS_EpdszidStopHt();
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_EpdszidSocmDisableReconn
- 功能描述  : SOCM Msg Disable Epdszid Reconn Feature
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_EpdszidSocmDisableReconn(VOS_VOID)
 {
     /* Max Packet Zone List Len si set to 1 */
@@ -1103,21 +578,7 @@ VOS_VOID TAF_APS_EpdszidSocmDisableReconn(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_EpdszidSocmEnableReconn
- 功能描述  : SOCM Msg Enable Epdszid Reconn Feature, Also Config Hysteresis Feature
- 输入参数  : VOS_UINT8                           ucMaxZoneListLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_EpdszidSocmEnableReconn(
     VOS_UINT8                           ucMaxZoneListLen
 )
@@ -1156,21 +617,7 @@ VOS_VOID TAF_APS_EpdszidSocmEnableReconn(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_EpdszidSocmClearPacketZoneList
- 功能描述  : SOCM Msg Clear Packet Zone List
- 输入参数  : VOS_UINT8                           ucMaxZoneListLen
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_EpdszidSocmClearPacketZoneList(
     VOS_UINT8                           ucMaxZoneListLen
 )
@@ -1189,21 +636,7 @@ VOS_VOID TAF_APS_EpdszidSocmClearPacketZoneList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_EpdszidScomTransferPzid
- 功能描述  : SOCM Msg Ntf APS to Transfer Pzid info to BS
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_EpdszidScomTransferPzid(
     XCC_APS_SO_CTRL_MSG_IND_STRU       *pstSoCtrlMsgInd
 )
@@ -1214,21 +647,7 @@ VOS_VOID TAF_APS_EpdszidScomTransferPzid(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_EpdszidStopHat
- 功能描述  : Stop Hysteresis Activation Timer
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_EpdszidStopHat(VOS_VOID)
 {
     /* If HAT is running ,stop it */
@@ -1240,21 +659,7 @@ VOS_VOID TAF_APS_EpdszidStopHat(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_EpdszidProcHt
- 功能描述  : Start Hysteresis Timer
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_EpdszidProcHt(VOS_VOID)
 {
     TAF_APS_CDATA_EPDSZID_STRU         *pstLastEpdszid;
@@ -1305,21 +710,7 @@ VOS_VOID TAF_APS_EpdszidProcHt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_EpdszidStopHt
- 功能描述  : Stop Hysteresis Timer
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_EpdszidStopHt(VOS_VOID)
 {
     /* If HT is running ,stop it */
@@ -1331,21 +722,7 @@ VOS_VOID TAF_APS_EpdszidStopHt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcEpdszidEnterDormant
- 功能描述  : When enter Dormant State, start HAT/HT
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月5日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcEpdszidEnterDormant(VOS_VOID)
 {
     TAF_APS_CDATA_EPDSZID_STRU         *pstCurrEpdszid;
@@ -1395,22 +772,7 @@ VOS_VOID TAF_APS_ProcEpdszidEnterDormant(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcEpdszidAfterRcvXccOrigDataCallCnf
- 功能描述  : After rcv xcc orig data cnf, Add epdszid into Packet
-             zone List
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcEpdszidAfterRcvXccOrigDataCallCnf(VOS_VOID)
 {
     TAF_APS_CDATA_EPDSZID_STRU         *pstCurrEpdszid;
@@ -1423,22 +785,7 @@ VOS_VOID TAF_APS_ProcEpdszidAfterRcvXccOrigDataCallCnf(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcEpdszidHaiChangeInd
- 功能描述  : Data Exchange occurs, Hai change from 0 to 1, Stop HAT,HT, updata Max Packet zone List
-             len to 1
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcEpdszidHaiChangeInd(VOS_VOID)
 {
     /* If HAT is running ,stop it */
@@ -1461,21 +808,7 @@ VOS_VOID TAF_APS_ProcEpdszidHaiChangeInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcEpdszidHatExpired
- 功能描述  : When HAT expired , Update Max Packet Zone List Len
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcEpdszidHatExpired(VOS_VOID)
 {
     /* Max Packet Zone List Len is set to 4 */
@@ -1487,21 +820,7 @@ VOS_VOID TAF_APS_ProcEpdszidHatExpired(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcEpdszidHtExpired
- 功能描述  : When HT expried, Update Packet Zone List, And Decide whether
-             begin Re-Conect or not
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcEpdszidHtExpired(VOS_VOID)
 {
     TAF_APS_CDATA_EPDSZID_STRU         *pstExpiredEntry;
@@ -1527,26 +846,7 @@ VOS_VOID TAF_APS_ProcEpdszidHtExpired(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcMmaEpdszidInfo
- 功能描述  : Proc Epdszid Info sent from MMA
- 输入参数  : VOS_UINT16                          usSid
-             VOS_UINT16                          usNid
-             VOS_UINT8                           ucPzid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月24日
-    作    者   : Y00213812
-    修改内容   : SID改变后需要停止DORMANT定时器
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcMmaEpdszidInfo(
     VOS_UINT16                          usSid,
     VOS_UINT16                          usNid,
@@ -1638,23 +938,7 @@ VOS_VOID TAF_APS_ProcMmaEpdszidInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcXregEpdszidRegBeginInd
- 功能描述  : Proc Xreg Reg Begin Ind msg
- 输入参数  : VOS_UINT16                          usSid
-             VOS_UINT16                          usNid
-             VOS_UINT8                           ucPzid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcXregEpdszidRegBeginInd(
     VOS_UINT16                          usSid,
     VOS_UINT16                          usNid,

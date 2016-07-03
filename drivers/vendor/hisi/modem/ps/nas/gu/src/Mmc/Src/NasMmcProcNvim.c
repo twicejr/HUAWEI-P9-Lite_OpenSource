@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcProcNvim.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2010年5月10日
-  最近修改   :
-  功能描述   : MMC处理NV项的读写文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年05月9日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -40,10 +23,8 @@
 #endif
 
 #include "ScInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 
 
 /* DSDS使能NV从TTF读取 */
@@ -52,9 +33,7 @@
 
 #include "NasMmcComFunc.h"
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, begin */
 #include "SysNvId.h"
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
 #include "NasMmcPlmnSelectionStrategy.h"
 #ifdef __cplusplus
 #if __cplusplus
@@ -74,21 +53,7 @@ extern "C" {
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCsOnlyDataServiceSupportNvim
- 功能描述  : 读取用户定制NV项，控制PS注册被禁止时是否允许数据业务触发PS域注册
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月12日
-    作    者   : f62575
-    修改内容   : DTS2014012902032: en_NV_Item_CS_ONLY_DATA_SERVICE_SUPPORT_FLG
-数据修改为从内存中获取
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadCsOnlyDataServiceSupportNvim( VOS_VOID )
 {
     NAS_MML_CS_ONLY_DATA_SERVICE_SUPPORT_FLG_STRU           stCsOnlyDataServiceSupportFlg;
@@ -127,22 +92,7 @@ VOS_VOID NAS_MMC_ReadCsOnlyDataServiceSupportNvim( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLteDisabledUseLteInfoFlagNvim
- 功能描述  : 读取l disabled场景，是否从l获取安全上下文和guti映射信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月25日
-    作    者   : z00161729
-    修改内容   : DTS2014022206794:GCF 9.2.1.2.1b/9.2.3.2.3/9.2.1.2.1失败disable
-                 lte时rau需要从L获取安全上下文
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLteDisabledUseLteInfoFlagNvim(VOS_VOID)
 {
     NAS_MMC_LTE_DISABLED_USE_LTE_INFO_FLAG_STRU             stLDisabledUseLInfoFlag;
@@ -180,21 +130,7 @@ VOS_VOID NAS_MMC_ReadLteDisabledUseLteInfoFlagNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadWgRfMainBandNvim
- 功能描述  : 从NV中获取手机支持的GU接入技术的主集通路
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月10日
-    作    者   : f62575
-    修改内容   : DTS2014012600456: en_NV_Item_WG_RF_MAIN_BAND
-数据修改为从内存中获取
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadWgRfMainBandNvim( VOS_VOID )
 {
     NAS_NVIM_WG_RF_MAIN_BAND_STRU       stRfMainBand;
@@ -220,21 +156,7 @@ VOS_VOID NAS_MMC_ReadWgRfMainBandNvim( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLauRejTrigPlmnSearchNvim
- 功能描述  : 读取NV项
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月21日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLauRejTrigPlmnSearchNvim( VOS_VOID )
 {
     NAS_NVIM_LAU_REJ_TRIG_PLMN_SEARCH_CFG_STRU              stLauRejCfg;
@@ -279,21 +201,7 @@ VOS_VOID NAS_MMC_ReadLauRejTrigPlmnSearchNvim( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLauRejNeedRetryWhenCmSrvExist
- 功能描述  : 读取NV项
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月21日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLauRejNeedNoRetryWhenCmSrvExistNvim( VOS_VOID )
 {
     NAS_MML_LAU_REJ_NORETRY_WHEN_CM_SRV_EXIST_CFG_STRU     *pstLauRejCfg = VOS_NULL_PTR;
@@ -341,21 +249,7 @@ VOS_VOID NAS_MMC_ReadLauRejNeedNoRetryWhenCmSrvExistNvim( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRoamingRejectNoRetryFlgNvim
- 功能描述  : 从NV中获取是否支持收到reject 17时不再重试的定制
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年4月29日
-   作    者   : l00208543
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRoamingRejectNoRetryFlgNvim( VOS_VOID )
 {
     NAS_MML_ROAMINGREJECT_NORETYR_CFG_STRU                 *pstNoRetryCfg = VOS_NULL_PTR;
@@ -401,26 +295,7 @@ VOS_VOID NAS_MMC_ReadRoamingRejectNoRetryFlgNvim( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadImeisvNvim
- 功能描述  : 从NV中获取IMEISV的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年7月13日
-   作    者   : zhoujun 40661
-   修改内容   : 新生成函数
- 2.日    期   : 2012年12月13日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
- 3.日    期   : 2013年05月21日
-   作    者   : Y00213812
-   修改内容   : 调用SC端口读取IMEI号码的NV项
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadImeisvNvim( VOS_VOID )
 {
     VOS_UINT8                           aucImeisv[NV_ITEM_IMEI_SIZE];
@@ -477,30 +352,7 @@ VOS_VOID NAS_MMC_ReadImeisvNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSupported3GppReleaseNvim
- 功能描述  : 从NV中读取协议版本,包括获取G和W 3GPP协议版本,
-             获取MS支持SGSN的版本，主要用于终端上报的SGSN版本,
-             获取MS支持MSC的版本，主要用于终端上报的MSC版本
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月14日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : s46746
-    修改内容   : 对于R7、R8新增信息单元,使用协议版本控制
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadSupported3GppReleaseNvim(VOS_VOID)
 {
     NAS_MML_MS_3GPP_REL_STRU           *pstMs3GppRel = VOS_NULL_PTR;
@@ -570,22 +422,7 @@ VOS_VOID NAS_MMC_ReadSupported3GppReleaseNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadClassMark1Nvim
- 功能描述  : 从NV中获取ClassMark1信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月14日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadClassMark1Nvim(VOS_VOID)
 {
     VOS_UINT8                           ucClassmark1;
@@ -607,22 +444,7 @@ VOS_VOID NAS_MMC_ReadClassMark1Nvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadClassMark2Nvim
- 功能描述  : 从NV中获取ClassMark2信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月14日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadClassMark2Nvim(VOS_VOID)
 {
     VOS_UINT8                           aucClassmark2[NAS_MML_CLASSMARK2_LEN];
@@ -645,25 +467,7 @@ VOS_VOID NAS_MMC_ReadClassMark2Nvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateNetworkCapabilityGeaValue
- 功能描述  : 获取NV项en_NV_Item_GEA_SUPPORT_CTRL，更新network capability的GEA1,GEA2值。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月15日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_UpdateNetworkCapabilityGeaValue(VOS_VOID)
 {
     NAS_MMC_NVIM_GPRS_GEA_ALG_CTRL_STRU stGeaSupportCtrl;
@@ -752,29 +556,7 @@ VOS_VOID NAS_MMC_UpdateNetworkCapabilityGeaValue(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadNetworkCapabilityNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_NetworkCapability
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2011年7月14日
-   作    者   : z00161729
-   修改内容   : 新生成函数
 
- 2.日    期   : 2011年8月19日
-   作    者   : w00167002
-   修改内容   : V7R1 PHASEII 重构: 内存分配赋值越界，导致崩溃
- 3.日    期   : 2012年8月10日
-   作    者   : L00171473
-   修改内容   : DTS2012082204471, TQE清理
- 4.日    期   : 2013年05月20日
-   作    者   : m00217266
-   修改内容   : nv项拆分
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadNetworkCapabilityNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_NETWORK_CAPABILITY_STRU                    stNetworkCap;/*network capability*/
@@ -821,23 +603,7 @@ VOS_VOID NAS_MMC_ReadNetworkCapabilityNvim(VOS_VOID)
     return;
 }
 
-/* Added by w00176964 for 短信支持能力和UC2能力NV优化, 2013-3-11, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUcs2CustomizationNvim
- 功能描述  : 从NV中获取NV项: NV_Item_UCS2_Customization
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年3月11日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadUcs2CustomizationNvim(VOS_VOID)
 {
     NAS_MML_MS_CAPACILITY_INFO_STRU                        *pstMsCapability = VOS_NULL_PTR;
@@ -881,22 +647,7 @@ VOS_VOID NAS_MMC_ReadUcs2CustomizationNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCloseSmsCapabilityConfigNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_Close_SMS_Capability_Config
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2013年3月11日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadCloseSmsCapabilityConfigNvim(VOS_VOID)
 {
     NAS_MML_MS_CAPACILITY_INFO_STRU                        *pstMsCapability = VOS_NULL_PTR;
@@ -943,30 +694,10 @@ VOS_VOID NAS_MMC_ReadCloseSmsCapabilityConfigNvim(VOS_VOID)
 
     return;
 }
-/* Added by w00176964 for 短信支持能力和UC2能力NV优化, 2013-3-11, end */
 
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLteRoamConfigNvim
- 功能描述  : 从NV中获取LTE国际漫游配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月6日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月25日
-    作    者   : w00176964
-    修改内容   : DTS2012042403564:读取NV先读取长度
-  3.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLteRoamConfigNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_LTE_INTERNATIONAL_ROAM_CFG_STRU            stLteRoamNvCfg;
@@ -1007,22 +738,7 @@ VOS_VOID NAS_MMC_ReadLteRoamConfigNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLNasReleaseNvim
- 功能描述  : 从NV中读取L协议版本
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2013年12月24日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月18日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadLNasReleaseNvim(VOS_VOID)
 {
     LNAS_LMM_NV_NAS_RELEASE_STRU        stNvNasRelease;
@@ -1073,20 +789,7 @@ VOS_VOID NAS_MMC_ReadLNasReleaseNvim(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRPLMNConfigNvim
- 功能描述  : 从NV中获取LTE国际漫游配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月24日
-    作    者   : t00173447
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRPLMNConfigNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_ROAM_SEARCH_RPLMN_CFG_STRU            stRoamPlmnSearchNvCfg;
@@ -1119,23 +822,7 @@ VOS_VOID NAS_MMC_ReadRPLMNConfigNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDisableLTEOnBandConfigNvim
- 功能描述  : 从NV中获取LTE国际漫游配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月24日
-    作    者   : t00173447
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月27日
-    作    者   : s00217060
-    修改内容   : 9251 NV项废弃，新增3001 NV，配合接入层修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadSBMCustomDualIMSIConfigNvim(VOS_VOID)
 {
     /* en_NV_Item_SBM_CUSTOM_DUAL_IMSI-->en_NV_Item_SBM_CUSTOM_DUAL_IMSI_NEW
@@ -1171,29 +858,7 @@ VOS_VOID NAS_MMC_ReadSBMCustomDualIMSIConfigNvim(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDailRejectConfigNvim
- 功能描述  : 从NV中获取拨号被拒配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年3月6日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月25日
-    作    者   : w00176964
-    修改内容   : DTS2012042403564:读取NV先读取长度
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadDailRejectConfigNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_DAIL_REJECT_CFG_STRU   stDellRejectCfg;
@@ -1229,29 +894,7 @@ VOS_VOID NAS_MMC_ReadDailRejectConfigNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadMsModeNvim
- 功能描述  : 从NVIM中获取手机模式信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月18日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年4月23日
-    作    者   : w00166186
-    修改内容   : DTS2012033104746,关机状态设置服务域为ANY不生效
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ReadMsModeNvim( VOS_VOID )
 {
     NAS_NVIM_MS_CLASS_STRU              stMsClass;
@@ -1298,26 +941,7 @@ VOS_VOID  NAS_MMC_ReadMsModeNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUserSetBandNvim
- 功能描述  : 从NV中获取当前用户设置的G/W/L频段
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月19日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUserSetBandNvim(VOS_VOID)
 {
     NVIM_UE_SUPPORT_FREQ_BAND_STRU                          stUserSetFreqBand;
@@ -1354,26 +978,7 @@ VOS_VOID NAS_MMC_ReadUserSetBandNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUseSingleRplmnFlagNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_Use_Single_Rplmn_When_Area_Lost.
-             FT Orange TA问题新增,丢网时到另一模式搜索同一个Rplmn
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年7月19日
-    作    者   : z00161729
-    修改内容   : 新增函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadUseSingleRplmnFlagNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_USE_SINGLE_RPLMN_STRU  stUseSingleRplmnFlag;
@@ -1423,28 +1028,7 @@ VOS_VOID NAS_MMC_ReadUseSingleRplmnFlagNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRplmnWithRatNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_RPlmnWithRat
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月19日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年1月28日
-    作    者   : w00176964
-    修改内容   : DTS2013012802243:单板首次升级自动注册到TDS网络
-  4.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadRplmnWithRatNvim(VOS_VOID)
 {
     NAS_NVIM_RPLMN_WITH_RAT_STRU        stRplmn;
@@ -1500,19 +1084,7 @@ VOS_VOID NAS_MMC_ReadRplmnWithRatNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadNvimLastRplmnRat
- 功能描述  : 从NV中获取NV项LastRplmnRat: en_NV_Item_RPlmnWithRat
- 输入参数  : 无
- 输出参数  : penNvimLastRplmnRat
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2014年10月8日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadNvimLastRplmnRat(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8    *penNvimLastRplmnRat
 )
@@ -1546,22 +1118,7 @@ VOS_VOID NAS_MMC_ReadNvimLastRplmnRat(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_WriteRplmnWithRatNvim
- 功能描述  : 写NV: en_NV_Item_RPlmnWithRat
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年8月6日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_WriteRplmnWithRatNvim(VOS_VOID)
 {
     NAS_NVIM_RPLMN_WITH_RAT_STRU        stRplmn;
@@ -1587,41 +1144,10 @@ VOS_VOID NAS_MMC_WriteRplmnWithRatNvim(VOS_VOID)
 
 #if   (FEATURE_ON == FEATURE_LTE)
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadTinInfoNvim
- 功能描述  : 从NVIM中获取TIN信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月18日
-    作    者   : z00161729
-    修改内容   : V7R1 phase II调整全局变量修改
-
-  3.日    期   : 2011年11月18日
-    作    者   : zhoujun /40661
-    修改内容   : DTS2011111402309,last imsi保存有问题需要修改
-  4.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2013年01月28日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，增加平台不支持LTE时异常保护
-  6.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadTinInfoNvim( VOS_VOID )
 {
-    /* Modified by l00167671 for NV拆分项目 , 2013-05-17, begin */
     NAS_NVIM_TIN_INFO_STRU          stTinInfo;
-    /* Modified by l00167671 for NV拆分项目 , 2013-05-17, end */
 
     NAS_MML_RPLMN_CFG_INFO_STRU        *pstRplmnCfgInfo = VOS_NULL_PTR;
 
@@ -1630,7 +1156,6 @@ VOS_VOID NAS_MMC_ReadTinInfoNvim( VOS_VOID )
 
     pstRplmnCfgInfo = NAS_MML_GetRplmnCfg();
 
-    /* Modified by l00167671 for NV拆分项目 , 2013-05-17, begin */
     if ( NV_OK != NV_Read(en_NV_Item_TIN_INFO,
                           &stTinInfo,
                           sizeof(stTinInfo) ))
@@ -1639,7 +1164,6 @@ VOS_VOID NAS_MMC_ReadTinInfoNvim( VOS_VOID )
 
         return;
     }
-    /* Modified by l00167671 for NV拆分项目 , 2013-05-17, end */
 
     PS_MEM_CPY(pstRplmnCfgInfo->aucLastImsi, stTinInfo.aucImsi, sizeof(pstRplmnCfgInfo->aucLastImsi));
     pstRplmnCfgInfo->enTinType = (NAS_MML_TIN_TYPE_ENUM_UINT8)stTinInfo.ucTinType;
@@ -1659,23 +1183,7 @@ VOS_VOID NAS_MMC_ReadTinInfoNvim( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_WriteTinInfoNvim
- 功能描述  : 更新TIN INFO的内容到NVIM
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年11月18日
-   作    者   : zhoujun /40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID  NAS_MMC_WriteTinInfoNvim(
     NAS_MML_TIN_TYPE_ENUM_UINT8         enTinType,
     VOS_UINT8                          *pucImsi
@@ -1683,9 +1191,7 @@ VOS_VOID  NAS_MMC_WriteTinInfoNvim(
 {
     NAS_MML_RPLMN_CFG_INFO_STRU        *pstRplmnCfgInfo = VOS_NULL_PTR;
 
-    /* Modified by l00167671 for NV拆分项目 , 2013-05-17, begin */
     NAS_NVIM_TIN_INFO_STRU              stTinInfo;
-    /* Modified by l00167671 for NV拆分项目 , 2013-05-17, end */
 
     pstRplmnCfgInfo = NAS_MML_GetRplmnCfg();
 
@@ -1717,30 +1223,7 @@ VOS_VOID  NAS_MMC_WriteTinInfoNvim(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLteCsServiceConfigNvim
- 功能描述  : 从NV中获取L支持的cs业务配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月28日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年3月3日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB调整:周君检视意见，MML不需要存储NVIM激活标志，
-                 减少内存的使用(更改结构体为枚举NAS_MML_LTE_CS_SERVICE_CFG_ENUM_UINT8)
-  3.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLteCsServiceConfigNvim(VOS_VOID)
 {
     NAS_NVIM_LTE_CS_SERVICE_CFG_STRU                        stLteCsServiceCfg;
@@ -1791,23 +1274,7 @@ VOS_VOID NAS_MMC_ReadLteCsServiceConfigNvim(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadHoWaitSysinfoTimeLenNvim
- 功能描述  : 从NV中获取CSFB HO流程等系统消息时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月14日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadHoWaitSysinfoTimeLenNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_HO_WAIT_SYSINFO_TIMER_CFG_STRU             stHoTimerCfg;
@@ -1844,25 +1311,7 @@ VOS_VOID NAS_MMC_ReadHoWaitSysinfoTimeLenNvim(VOS_VOID)
     return;
 }
 #endif
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCsfbEmgCallLaiChgLauFirstNvim
- 功能描述  : 从NV中获取csfb紧急呼叫到GU，MM收到系统消息lai改变先做lau还是
-             先进行呼叫等呼叫结束后再做lau标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadCsfbEmgCallLaiChgLauFirstNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_CSFB_EMG_CALL_LAI_CHG_LAU_FIRST_CFG_STRU   stCsfbEmgCallLauFirstCfg;
@@ -1899,29 +1348,10 @@ VOS_VOID NAS_MMC_ReadCsfbEmgCallLaiChgLauFirstNvim(VOS_VOID)
     return;
 }
 
-/* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-14, end */
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadEHPlmnSupportNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_Standard_EHplmn_Support_Flg
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadEHPlmnSupportNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_EHPLMN_SUPPORT_FLG_STRU                    stEHPlmnSupportFlg;
@@ -1959,22 +1389,7 @@ VOS_VOID NAS_MMC_ReadEHPlmnSupportNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadActingHPlmnSupportNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_ACTING_PLMN_SUPPORT_FLAG
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2012年6月11日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM项目新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadActingHPlmnSupportNvim(VOS_VOID)
 {
     NVIM_ACTING_HPLMN_SUPPORT_FLAG_STRU                     stActingHPlmnSupport;
@@ -2012,29 +1427,7 @@ VOS_VOID NAS_MMC_ReadActingHPlmnSupportNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSearchHPlmnFlgAutoModeNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_SrchHplmnFlg_StartOrAreaLostInAutoMode
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年7月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-  4.日    期   : 2014年3月19日
-    作    者   : w00242748
-    修改内容   : DTS2014031200137:当NV特性打开时，自动开机或者搜网时，如果首次搜索RPLMN的话，
-                 需要将HPLMN/EHPLMN带给接入层。
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadSearchHPlmnFlgAutoModeNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_AUTO_SEARCH_HPLMN_FLG_STRU                 stHplmnSearchFlg;
@@ -2070,20 +1463,7 @@ VOS_VOID NAS_MMC_ReadSearchHPlmnFlgAutoModeNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadAddEhplmnWhenSrchHplmnFlgNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_SrchHplmnFlg_StartOrAreaLostInAutoMode
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
 
-  1.日    期   : 2015年9月30日
-    作    者   : c00318887
-    修改内容   : 新建函数
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_ReadAddEhplmnWhenSrchHplmnNvim(VOS_VOID)
 {
@@ -2123,25 +1503,7 @@ VOS_VOID NAS_MMC_ReadAddEhplmnWhenSrchHplmnNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSearchHPlmnFlgManualModeNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_SrchHplmnFlg_StartInManualMode
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2010年7月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadSearchHPlmnFlgManualModeNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_MANUAL_SEARCH_HPLMN_FLG_STRU               stManualSearchHplmnFlg;
@@ -2179,25 +1541,7 @@ VOS_VOID NAS_MMC_ReadSearchHPlmnFlgManualModeNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSearchHplmnFlgPowerOnNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_SearchHplmnAtPowerOn
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadSearchHplmnFlgPowerOnNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_HPLMN_SEARCH_POWERON_STRU                  stHplmnSearchPowerOn;
@@ -2235,25 +1579,7 @@ VOS_VOID NAS_MMC_ReadSearchHplmnFlgPowerOnNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadEnhancedHPlmnSearchFlagNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_Enhanced_Hplmn_Srch_Flg
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadEnhancedHPlmnSearchFlagNvim(VOS_VOID)
 {
     NAS_MML_BG_SEARCH_CFG_INFO_STRU                        *pstBgSearchCfg = VOS_NULL_PTR;
@@ -2288,26 +1614,7 @@ VOS_VOID NAS_MMC_ReadEnhancedHPlmnSearchFlagNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSpecialRoamFlgNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_Special_Roam_Flag
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月20日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadSpecialRoamFlgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_SPECIAL_ROAM_STRU      stSpecialRoam;
@@ -2341,23 +1648,7 @@ VOS_VOID NAS_MMC_ReadSpecialRoamFlgNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadNetworkNameNvim
- 功能描述  : 从NV项en_NV_Item_Network_Name_From_MM_Info中读取保存的网络通过MM INFO下发的长短网络名
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2010年7月26日
-   作    者   : zhoujun \40661
-   修改内容   : 新生成函数
- 2.日    期   : 2013年5月17日
-   作    者   : l00167671
-   修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadNetworkNameNvim( VOS_VOID )
 {
     NAS_MMC_NVIM_OPERATOR_NAME_INFO_STRU                    stNvimOperatorName;
@@ -2378,27 +1669,7 @@ VOS_VOID NAS_MMC_ReadNetworkNameNvim( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MML_IsInNvEplmnList
- 功能描述  : 判断PLMN ID是否在NV中的EPLMN LIST列表中
- 输入参数  : pstPlmnId:需要判断的PLMN ID
-             ucPlmnNum:PLMN ID个数
-             pstPlmnIdList:PLMN ID列表
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : PLMN ID在禁止列表中
-             VOS_FALSE : PLMN ID不在禁止列表中
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2012年02月15日
-   作    者   : w00176964
-   修改内容   : 新生成函数
 
-  2.日    期   : 2012年2月15日
-    作    者   : z40661
-    修改内容   : 该函数以前在MML中,将其放入MMC中，MML不需要包含nviminterfac-
-                 e.h
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsInNvEplmnList(
     NVIM_PLMN_VALUE_STRU               *pstPlmnId,
     VOS_UINT8                           ucPlmnNum,
@@ -2424,20 +1695,7 @@ VOS_UINT32 NAS_MMC_IsInNvEplmnList(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertMmlPlmnIdToNvimEquPlmn
- 功能描述  : 将MML格式的PlmnID转换为Nvim的Eplmn
-              23002f(MML的格式 Mcc:0x000302,Mnc:0x0f0200)-->2,3,0,0,2,f
- 输入参数  : pstPlmnId: MML的PLMN ID
- 输出参数  : pstNvimPlmnId: NvimEPlmn格式
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2012年03月15日
-   作    者   : l00130025
-   修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ConvertMmlPlmnIdToNvimEquPlmn(
     NAS_MML_PLMN_ID_STRU               *pstMmlPlmnId,
     NVIM_PLMN_VALUE_STRU               *pstNvimPlmnId
@@ -2459,19 +1717,7 @@ VOS_VOID NAS_MMC_ConvertMmlPlmnIdToNvimEquPlmn(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertMmlEquListToNvimEquPlmnList
- 功能描述  : 将MML格式的Eplmn列表转换为Nvim的Eplmn列表
- 输入参数  : pstMmlEPlmnList: MML的EplmnList
- 输出参数  : pstNvimEPlmnList:Nvim格式的EPlmnList
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2012年03月15日
-   作    者   : l00130025
-   修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ConvertMmlEquListToNvimEquPlmnList(
     NAS_MML_EQUPLMN_INFO_STRU          *pstMmlEPlmnList,
     NVIM_EQUIVALENT_PLMN_LIST_STRU     *pstNvimEPlmnList
@@ -2496,21 +1742,7 @@ VOS_VOID NAS_MMC_ConvertMmlEquListToNvimEquPlmnList(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsNvimEPlmnListEqual
- 功能描述  : 判断2个NVIM_EQUIVALENT_PLMN_LIST_STRU是否相同
- 输入参数  : pstNvimEPlmnList1,pstNvimEPlmnList2待比较的2个NvimPlmnList
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  : 2个EplmnList相同
-              VOS_FALSE : 2个EplmnList不同
- 调用函数  :
- 被调函数  :
- 修改历史      :
-    1.日    期   : 2012年03月15日
-      作    者   : l00130025
-      修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
 
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsNvimEPlmnListEqual(
     NVIM_EQUIVALENT_PLMN_LIST_STRU     *pstNvimEPlmnList1,
     NVIM_EQUIVALENT_PLMN_LIST_STRU     *pstNvimEPlmnList2
@@ -2562,21 +1794,7 @@ VOS_UINT32 NAS_MMC_IsNvimEPlmnListEqual(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_DeleteEPlmnList
- 功能描述  : 删除当前的Eplmn列表，在Eps注册被拒时调用
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年03月15日
-   作    者   : l00130025
-   修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_DeleteEPlmnList( VOS_VOID )
 {
     NAS_MML_EQUPLMN_INFO_STRU          *pstEPlmnList    = VOS_NULL_PTR;
@@ -2602,26 +1820,7 @@ VOS_VOID NAS_MMC_DeleteEPlmnList( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_WriteEplmnNvim
- 功能描述  : 将Eplmn更新到NV中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月14日
-    作    者   : likelai
-    修改内容   : 新生成函数
-  2.日    期   : 2011年7月26日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase II,全局变量调整
-  3.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-*****************************************************************************/
 VOS_VOID NAS_MMC_WriteEplmnNvim(VOS_VOID)
 {
     VOS_UINT32                          ulUpdateNvFlag;
@@ -2690,22 +1889,7 @@ VOS_VOID NAS_MMC_WriteEplmnNvim(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadHplmnFirstSearchPeriodNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_HPlmnFirstTimer
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadHplmnFirstSearchPeriodNvim(VOS_VOID)
 {
     NAS_NVIM_HPLMN_FIRST_TIMER_STRU stFirstHplmnTime;
@@ -2727,22 +1911,7 @@ VOS_VOID NAS_MMC_ReadHplmnFirstSearchPeriodNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDefaultHplmnSrchPeriodNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_Default_Hplmn_Srch_Peri
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadDefaultHplmnSrchPeriodNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_DEFAULT_MAX_HPLMN_PERIOD_STRU   stDefaultHplmnSrchPeri;
@@ -2774,21 +1943,7 @@ VOS_VOID NAS_MMC_ReadDefaultHplmnSrchPeriodNvim(VOS_VOID)
     return;
 }
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadHighPrioPlmnRefreshTriggerBGSearchFlagNvim
- 功能描述  : 读取en_NV_Item_HIGH_PRIO_PLMN_REFRESH_TRIGGER_BG_SEARCH_CFG nv项内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月28日
-    作    者   : c00318887
-    修改内容   : for file refresh 新增
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadHighPrioPlmnRefreshTriggerBGSearchFlagNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_HIGH_PRIO_PLMN_REFRESH_TRIGGER_BG_SEARCH_STRU  stHighPrioPlmnRefreshTriggerBGSearchCfg;
@@ -2831,23 +1986,8 @@ VOS_VOID NAS_MMC_ReadHighPrioPlmnRefreshTriggerBGSearchFlagNvim(VOS_VOID)
     return;
 }
 
-/* Added by c00318887 for file refresh需要触发背景搜, 2015-4-28, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSrchHplmnTtimerValueNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_SearchHplmnTtimerValue
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadSrchHplmnTtimerValueNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_SEARCH_HPLMN_TIMER_STRU stSrchHplmnTimer;
@@ -2875,23 +2015,7 @@ VOS_VOID NAS_MMC_ReadSrchHplmnTtimerValueNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadWhiteOpeLockPlmnInfoNvim
- 功能描述  : 锁网功能开启时从内存和NV中获取到锁网运营商PLMN(白名单)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadWhiteOpeLockPlmnInfoNvim( VOS_VOID )
 {
     NAS_MMC_NVIM_OPER_LOCK_WHITEPLMN_STRU stOperLockPlmnList;
@@ -2926,26 +2050,7 @@ VOS_VOID NAS_MMC_ReadWhiteOpeLockPlmnInfoNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadBlackOperLockPlmnInfoNvim
- 功能描述  : 锁网功能开启时从内存和NV中获取到锁网运营商PLMN(黑名单)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadBlackOperLockPlmnInfoNvim( VOS_VOID )
 {
     NAS_MMC_NVIM_OPER_LOCK_BLACKPLMN_STRU stOperLockPlmnList;
@@ -2979,21 +2084,7 @@ VOS_VOID NAS_MMC_ReadBlackOperLockPlmnInfoNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsRatForbiddenListNvimParaRangeValid
- 功能描述  : 检查rat forbidden list参数范围是否合法。
- 输入参数  : pstParaValue:NVIM的参数范围
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月12日
-    作    者   : z00234330
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsRatForbiddenListNvimParaRangeValid(
     NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_STRU *pstParaValue
 )
@@ -3022,31 +2113,7 @@ VOS_UINT32 NAS_MMC_IsRatForbiddenListNvimParaRangeValid(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsRatForbiddenListNvimValid
- 功能描述  : 对en_NV_Item_Rat_Forbidden_List_Accord_Imsi_Config统一做参数检查
- 目前只支持禁止LTE或同时禁止LTE+3G，
- 因此需要检查NV中配置的禁止RAT数目和禁止的接入技术是否符合该要求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 只允许以下两种禁止网络制式的组合:
-
- 1. NUM = 1; RAT = LTE;
- 2. NUM = 2; RAT = LTE + 3G;
-
- 修改历史      :
-  1.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 新生成函数，目前仅支持NV中配置禁止LTE或者禁止LTE+UTRAN，
-                 NV中配置其他禁止网络制式的组合认为是非法参数
- 2.日    期   : 2013年12月11日
-   作    者   : z00234330
-   修改内容   : dts2013121106833,降圈复杂度
-*****************************************************************************/
 VOS_UINT8 NAS_MMC_IsRatForbiddenListNvimValid(
     NAS_MMC_NVIM_RAT_FORBIDDEN_LIST_STRU *pstParaValue
 )
@@ -3109,21 +2176,7 @@ VOS_UINT8 NAS_MMC_IsRatForbiddenListNvimValid(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertNvimRatToMmlType
- 功能描述  : 将Nvim的接入技术转换成Mml的类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 新生成函数，目前仅支持NV中配置禁止LTE或者禁止LTE+UTRAN，
-                 NV中配置其他禁止网络制式的组合认为是非法参数
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ConvertNvimRatToMmlType(
     NAS_MMC_NVIM_PLATFORM_SUPPORT_RAT_ENUM_UINT8            enNvRatType,
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8                        *penMmlRatType
@@ -3151,21 +2204,7 @@ VOS_UINT32 NAS_MMC_ConvertNvimRatToMmlType(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRatForbiddenListConfigNvim
- 功能描述  : 读取根据卡类型禁止某些网络制式的NV配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月01日
-    作    者   : l00208543
-    修改内容   : 新生成函数，目前仅支持NV中配置禁止LTE或者禁止LTE+UTRAN，
-                 NV中配置其他禁止网络制式的组合认为是非法参数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRatForbiddenListConfigNvim( VOS_VOID )
 {
     VOS_UINT32                                              i;
@@ -3231,30 +2270,7 @@ VOS_VOID NAS_MMC_ReadRatForbiddenListConfigNvim( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDisabledRatPlmnInfoNvim
- 功能描述  : 读取禁止接入技术的PLMN信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月15日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2015年1月14日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-
-  4.日    期   : 2015年4月18日
-    作    者   : w00167002
-    修改内容   : DTS2015032709270:NV中最大禁止网络的个数为8个。
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadDisabledRatPlmnInfoNvim( VOS_VOID )
 {
     NAS_MMC_NVIM_DISABLED_RAT_PLMN_INFO_STRU                stDisabledRatPlmnList;
@@ -3294,27 +2310,7 @@ VOS_VOID NAS_MMC_ReadDisabledRatPlmnInfoNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUserCfgEhplmnInfoNvim
- 功能描述  : NV en_NV_Item_User_Cfg_Ehplmn_Info中获取到用户配置的EHplmn信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月6日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月22日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2014年12月22日
-    作    者   : wx270776
-    修改内容   : 增加扩展的Ehplmn组
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUserCfgExtEhplmnInfoNvim( VOS_VOID )
 {
     VOS_UINT32                                              i;
@@ -3396,25 +2392,7 @@ VOS_VOID NAS_MMC_ReadUserCfgExtEhplmnInfoNvim( VOS_VOID )
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadStandardSTKSteeringOfRoamingFlgNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_SrchHplmnFlg_StartOrAreaLostInAutoMode
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadStandardSTKSteeringOfRoamingFlgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_STK_STEERING_OF_ROAMING_SUPPORT_FLG_STRU   stStkSteeringOfRoamingSupportFlg;
@@ -3444,26 +2422,7 @@ VOS_VOID NAS_MMC_ReadStandardSTKSteeringOfRoamingFlgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCsRejSearchSupportFlagNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_SteeringofRoaming_SUPPORT_CTRL,
-             vodafone的搜网定制需求,CS域失败四次后下发搜网请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadCsRejSearchSupportFlagNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_CS_REJ_SEARCH_SUPPORT_STRU  stCsRejSearchSupportFlg;
@@ -3496,25 +2455,7 @@ VOS_VOID NAS_MMC_ReadCsRejSearchSupportFlagNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadAutoAttachNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_Autoattach
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年05月17日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadAutoAttachNvim(VOS_VOID)
 {
     NAS_NVIM_AUTOATTACH_STRU            stAutoattachFlag;
@@ -3541,25 +2482,7 @@ VOS_VOID NAS_MMC_ReadAutoAttachNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadPlmnSelectionModeNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_SelPlmn_Mode
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadPlmnSelectionModeNvim(VOS_VOID)
 {
     NAS_NVIM_SELPLMN_MODE_STRU                          stPlmnSelMode;
@@ -3586,22 +2509,7 @@ VOS_VOID NAS_MMC_ReadPlmnSelectionModeNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_WritePlmnSelectionModeNvim
- 功能描述  : 写NV项: en_NV_Item_SelPlmn_Mode
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月29日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_WritePlmnSelectionModeNvim(VOS_VOID)
 {
     NAS_NVIM_SELPLMN_MODE_STRU          stPlmnSelMode;
@@ -3621,25 +2529,7 @@ VOS_VOID NAS_MMC_WritePlmnSelectionModeNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadEquivalentPlmnNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_EquivalentPlmn
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月15日
-    作    者   : l00130025
-    修改内容   : DTS2012021407803,Eplmn维护修改，避免手动搜网重选被拒触发死循环
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadEquivalentPlmnNvim(VOS_VOID)
 {
 
@@ -3692,22 +2582,7 @@ VOS_VOID NAS_MMC_ReadEquivalentPlmnNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadMaxForbRoamLaNvim
- 功能描述  : 从NV中获取NV项: en_NV_Item_Max_Forb_Roam_La
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadMaxForbRoamLaNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_MAX_FORB_ROAM_LA_STRU   stMaxForbRoamLa;
@@ -3736,24 +2611,7 @@ VOS_VOID NAS_MMC_ReadMaxForbRoamLaNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadGsmForbidAccessInfoNvim
- 功能描述  : 从en_NV_Item_EFust_Service_Cfg NV中获取GSM是否禁止接入信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月26日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadGsmForbidAccessInfoNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_EFUST_SERVICE_CFG_STRU  stEfustServiceCfg;
@@ -3780,27 +2638,7 @@ VOS_VOID NAS_MMC_ReadGsmForbidAccessInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRoamBrokerRegisterFailCntNvim
- 功能描述  : 从NV中获取注册失败次数信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月27日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年1月17日
-    作    者   : w00167002
-    修改内容   : DTS2011122006209:增加保存RoamBroker是否激活内容
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRoamBrokerRegisterFailCntNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_REG_FAIL_CNT_STRU       stRegisterFailCnt;
@@ -3833,30 +2671,7 @@ VOS_VOID NAS_MMC_ReadRoamBrokerRegisterFailCntNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadPsLociNvim
- 功能描述  : 从NV中获取PS Loci文件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月29日
-    作    者   : s46746
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月12日
-    作    者   : zhoujun /40661
-    修改内容   : DTS2011101103567
-  3.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadPsLociNvim(VOS_VOID)
 {
     NAS_NVIM_PS_LOCI_SIM_FILES_STRU stPsLocInfo;
@@ -3893,22 +2708,7 @@ VOS_VOID NAS_MMC_ReadPsLociNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_WritePsLociNvim
- 功能描述  : 写PS Loci文件
- 输入参数  : pstPsLocInfo PS loc信息
-             ulSize       PS loc信息的大小
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月11日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_WritePsLociNvim(
     VOS_UINT8                          *pstPsLocInfo,
     VOS_UINT32                          ulSize
@@ -3957,26 +2757,7 @@ VOS_VOID NAS_MMC_WritePsLociNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRoamCfgInfoNvim
- 功能描述  : 从en_NV_Item_Roam_Capa NV中获取漫游特性
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月18日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRoamCfgInfoNvim(VOS_VOID)
 {
     NAS_NVIM_ROAM_CFG_INFO_STRU         stRoamFeature;
@@ -4010,26 +2791,7 @@ VOS_VOID NAS_MMC_ReadRoamCfgInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDtSingleDomainPlmnSearchNvim
- 功能描述  : 从NV中获取DT单域注册失败达到最大次数搜网定制
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月29日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadDtSingleDomainPlmnSearchNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_CNT_STRU                stSingleDomainFailCnt;
@@ -4067,30 +2829,7 @@ VOS_VOID NAS_MMC_ReadDtSingleDomainPlmnSearchNvim(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLastImsiFromNvim
- 功能描述  : V3R2获取保存在NVIM中的last imsi的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月17日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年3月2日
-    作    者   : z40661
-    修改内容   : DTS2012021703361，读取last imsi出错
-  3.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ReadLastImsiNvim( VOS_VOID )
 {
 
@@ -4123,28 +2862,7 @@ VOS_VOID  NAS_MMC_ReadLastImsiNvim( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateLastImsi
- 功能描述  : V3R2更新保存在NVIM中的last imsi的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月17日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年3月2日
-    作    者   : z40661
-    修改内容   : DTS2012021703361，读取last imsi出错
-
-  3.日    期   : 2013年05月20日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 
 VOS_VOID NAS_MMC_UpdateLastImsi( VOS_VOID )
 {
@@ -4181,30 +2899,7 @@ VOS_VOID NAS_MMC_UpdateLastImsi( VOS_VOID )
 
 }
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReaducWcdmaPriorityGsmFlgNvim
- 功能描述  : 从NV中获取H3G需求,W网络优先于GSM网络定制
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-  4.日    期   : 2013年12月13日
-    作    者   : z00161729
-    修改内容   : DTS2013121206933:非高优先级可用高低质量的网络按syscfg设置接入技术优先级排序，9055 nv项控制
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReaducWcdmaPriorityGsmNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_WCDMA_PRIORITY_GSM_FLG_STRU                stWcdmaPriorityGsm;
@@ -4244,26 +2939,7 @@ VOS_VOID NAS_MMC_ReaducWcdmaPriorityGsmNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadPsOnlyCsServiceSupportNvim
- 功能描述  : 从NV中获取服务域设置为PS ONLY时，是否支持CS域短信和呼叫业务(紧急呼叫除外)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadPsOnlyCsServiceSupportNvim(VOS_VOID)
 {
     NAS_NVIM_PS_ONLY_CS_SERVICE_SUPPORT_FLG_STRU            stPsOnlyCsServiceSupportFlg;
@@ -4307,26 +2983,7 @@ VOS_VOID NAS_MMC_ReadPsOnlyCsServiceSupportNvim(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadAPPConfigSupportNvim
- 功能描述  : 从NV中获取服务域设置为PS ONLY时，是否支持CS域短信和呼叫业务(紧急呼叫除外)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年05月17日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadAPPConfigSupportNvim(VOS_VOID)
 {
     NAS_MML_MISCELLANEOUS_CFG_INFO_STRU                    *pstMiscellaneousCfgInfo = VOS_NULL_PTR;
@@ -4368,29 +3025,8 @@ VOS_VOID NAS_MMC_ReadAPPConfigSupportNvim(VOS_VOID)
     return;
 }
 
-/* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadAisRoamingNvim
- 功能描述  : 读取NVIM中的泰国AIS特性开关
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年5月17日
-    作    者   : zhoujun \ 40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadAisRoamingNvim( VOS_VOID  )
 {
     NAS_MMC_NVIM_AIS_ROAMING_CFG_STRU   stNvimAisRoamingCfg;
@@ -4418,28 +3054,8 @@ VOS_VOID NAS_MMC_ReadAisRoamingNvim( VOS_VOID  )
     pstAisRoamingCfg->stSimHPlmnId.ulMnc     = stNvimAisRoamingCfg.stSimHPlmnId.ulMnc;
 }
 
-/* Modified by z40661 for 泰国AIS特性 2012-05-17, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUserAutoReselCfgNvim
- 功能描述  : 从NV中获取en_NV_Item_User_Auto_Resel_Switch NV项内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年5月15日
-   作    者   : l00130025
-   修改内容   : DTS2012012903053:Ts23.122 ch4.4.3.2.1 Auto user reselecton功能支持
- 2.日    期   : 2012年12月13日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUserAutoReselCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_USER_AUTO_RESEL_CFG_STRU    stUserAutoReselCfg;
@@ -4475,26 +3091,7 @@ VOS_VOID NAS_MMC_ReadUserAutoReselCfgNvim(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadScanCtrlNvim
- 功能描述  : 从NV项en_NV_Item_Scan_Ctrl_Para中读取是否支持搜索控制
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月11日
-    作    者   : l60609
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadScanCtrlNvim(VOS_VOID)
 {
     NVIM_SCAN_CTRL_STRU                 stNvScanCtrl;
@@ -4534,23 +3131,7 @@ VOS_VOID NAS_MMC_ReadScanCtrlNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadHPlmnSearchRegardLessMccNvim
- 功能描述  : 从NV中获取en_NV_Item_HPLMN_SEARCH_REGARDLESS_MCC_SUPPORT
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月11日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadHPlmnSearchRegardLessMccNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_HPLMN_SEARCH_REGARDLESS_MCC_SUPPORT_STRU   stHplmnSearchRegardlessMcc;
@@ -4584,26 +3165,7 @@ VOS_VOID NAS_MMC_ReadHPlmnSearchRegardLessMccNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertNivmActionToMmlType
- 功能描述  : 将从NV中读取的动作类型转化为MMC类型
- 输入参数  : enNvAction:NV中定义的操作
- 输出参数  : penMmlAction
- 返 回 值  : VOS_TRUE 转化成功
-             VOS_FALSE 转化失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月11日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM新生成函数
-  2.日    期   : 2014年8月19日
-    作    者   : w00167002
-    修改内容   : DTS2014081905808:在配置PS注册拒绝14时候，若当前在HOME PLMN上，则可能
-               触发循环乒乓，修改为增加ACTION动作:在漫游网络上触发选网，在HOME网络上
-               不生效，按现有流程进行处理
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ConvertNivmActionToMmlType(
     NAS_MMC_NVIM_SINGLE_DOMAIN_REG_FAIL_ACTION_ENUM_UINT8   enNvAction,
     NAS_MML_SINGLE_DOMAIN_REG_FAIL_ACTION_ENUM_UINT8       *penMmlAction
@@ -4639,22 +3201,7 @@ VOS_UINT32 NAS_MMC_ConvertNivmActionToMmlType(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadPrioHplmnActCfgNvim
- 功能描述  : 从NV中获取定制的接入技术NV
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
- 1.日    期   : 2012年6月9日
-   作    者   : l00130025
-   修改内容   : DTS2012060400029:添加对HPLMNAct优先接入技术的定制；目前USim卡中HPLMNACT很多不支持L
- 2.日    期   : 2012年12月13日
-   作    者   : L00171473
-   修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_ReadPrioHplmnActCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_PRIO_HPLMNACT_CFG_STRU    stHplmnActCfg;
@@ -4697,22 +3244,7 @@ VOS_VOID NAS_MMC_ReadPrioHplmnActCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertNivmRegCauseToMmlType
- 功能描述  : 将从NV中读取的动作类型转化为MML类型
- 输入参数  : enNvCause :nv中定制原因值
- 输出参数  : penMmcCause: MML的定义的原因值
- 返 回 值  : VOS_TRUE 转化成功
-             VOS_FALSE 转化失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月11日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ConvertNivmRegCauseToMmlType(
     NAS_MMC_NVIM_REG_FAIL_CAUSE_ENUM_UINT16                 enNvCause,
     NAS_MML_REG_FAIL_CAUSE_ENUM_UINT16                     *penMmlCause
@@ -4737,23 +3269,7 @@ VOS_UINT32 NAS_MMC_ConvertNivmRegCauseToMmlType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSingleDomainFailActionListNvim
- 功能描述  : 从NV中获取en_NV_Item_SINGLE_DOMAIN_FAIL_ACTION_LIST
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月11日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadSingleDomainFailActionListNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_SINGLE_DOMAIN_FAIL_ACTION_LIST_STRU    stSingleDomainFailAction;
@@ -4830,26 +3346,7 @@ VOS_VOID NAS_MMC_ReadSingleDomainFailActionListNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRegFailNetWorkFailureCustomFlagNvim
- 功能描述  : 从NV中获取en_NV_Item_CS_FAIL_NETWORK_FAILURE_PLMN_SEARCH_FLAG
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月11日
-    作    者   : w00166186
-    修改内容   : AT&T&DCM新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRegFailNetWorkFailureCustomFlagNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_REG_FAIL_NETWORK_FAILURE_CUSTOM_FLG_STRU   stCsRegFailNetFailureCustom;
@@ -4889,24 +3386,7 @@ VOS_VOID NAS_MMC_ReadRegFailNetWorkFailureCustomFlagNvim(VOS_VOID)
     return;
 }
 
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-13, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadPlmnExactlyCompareNvim
- 功能描述  : 从NV中获取en_NV_Item_PLMN_EXACTLY_COMPARE_FLG
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月15日
-    作    者   : t00212959
-    修改内容   : DCM定制需求和遗留问题新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadPlmnExactlyCompareNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_PLMN_EXACTLY_COMPARE_FLAG_STRU             stPlmnExactlyCompara;
@@ -4942,32 +3422,8 @@ VOS_VOID NAS_MMC_ReadPlmnExactlyCompareNvim(VOS_VOID)
 
     return;
 }
-/* Added by t00212959 for DCM定制需求和遗留问题, 2012-8-13, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCustomizeServiceNvim
- 功能描述  : 从en_NV_Item_CustomizeService中获取是否支持cs语音业务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月8日
-    作    者   : z00161729
-    修改内容   : DTS2012083007796:无卡支持语音业务时开机应优先选择gu下anycell驻留
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-
-  4.日    期   : 2014年3月28日
-    作    者   : z00234330
-    修改内容   : dts2014032608235,nv8271,设置为0,0,表示不支持语音业务,mmc错误的判断了,认为支持语音业务。
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadCustomizeServiceNvim(VOS_VOID)
 {
     NAS_NVIM_CUSTOMIZE_SERVICE_STRU                         stCustomServ;
@@ -5011,23 +3467,7 @@ VOS_VOID NAS_MMC_ReadCustomizeServiceNvim(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadHplmnRegisterCtrlNvim
- 功能描述  : 从NV中获取en_NV_Item_HPLMN_REGISTER_CTRL_FLG
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月29日
-    作    者   : w00176964
-    修改内容   : U9700_BVT测试:增加NV控制HPLMN注册被拒后是否继续发起注册
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadHplmnRegisterCtrlNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_HPLMN_REGISTER_CTRL_FLAG_STRU              stHplmnRegisterCtrlFlg;
@@ -5064,20 +3504,7 @@ VOS_VOID NAS_MMC_ReadHplmnRegisterCtrlNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadH3gCtrlNvim
- 功能描述  : 从NV中获取en_NV_Item_H3G_CTRL_FLG
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月10日
-    作    者   : w00176964
-    修改内容   : 增加NV控制H3g漫游的一些特性
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadH3gCtrlNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_H3G_CTRL_FLAG_STRU     stH3gCtrlFlg;
@@ -5108,29 +3535,7 @@ VOS_VOID NAS_MMC_ReadH3gCtrlNvim(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCellSignReportCfgNvim
- 功能描述  : 从NV中读取信号质量上报相关配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月21日
-    作    者   : z00161729
-    修改内容   : 支持cerssi新增函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  3.日    期   : 2013年1月9日
-    作    者   : t00212959
-    修改内容   : DTS2013010809978,增加时间间隔
-  4.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadCellSignReportCfgNvim( VOS_VOID )
 {
 
@@ -5181,26 +3586,7 @@ VOS_VOID NAS_MMC_ReadCellSignReportCfgNvim( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_WriteCellSignReportCfgNvim
- 功能描述  : 写NV项: en_NV_Item_CELL_SIGN_REPORT_CFG
- 输入参数  : ucSignThreshold - ^cerssi设置的信号质量门限
-             ucMinRptTimerInterval - ^cerssi设置的间隔时间
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2011年11月26日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年1月9日
-    作    者   : t00212959
-    修改内容   : DTS2013010809978,增加时间间隔
-  3.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-*****************************************************************************/
+
 VOS_VOID NAS_MMC_WriteCellSignReportCfgNvim(VOS_UINT8 ucSignThreshold,VOS_UINT8 ucMinRptTimerInterval)
 {
     NAS_NVIM_CELL_SIGN_REPORT_CFG_STRU  stCellSignReportCfg;
@@ -5223,29 +3609,7 @@ VOS_VOID NAS_MMC_WriteCellSignReportCfgNvim(VOS_UINT8 ucSignThreshold,VOS_UINT8 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadPlatformRatCapNvim
- 功能描述  : 从NV中读取平台接入技术能力
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : s00217060
-    修改内容   : 新增函数
-  2.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-  3.日    期   : 2014年12月8日
-    作    者   : s00217060
-    修改内容   : 在kmsg中增加平台能力的可维可测
-  4.日    期   : 2015年3月11日
-    作    者   : wx270776
-    修改内容   : DTS2015011212939:增加复位场景
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadPlatformRatCapNvim( VOS_VOID )
 {
     NAS_MML_PLATFORM_RAT_CAP_STRU              *pstPlatformRatCap = VOS_NULL_PTR;
@@ -5332,30 +3696,7 @@ VOS_VOID NAS_MMC_ReadPlatformRatCapNvim( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsPlatformRatCapNvimValid
- 功能描述  : 从NV中读取平台接入技术能力
- 输入参数  : pstNvPlatformRatCap 平台接入技术能力的NV项结构体指针
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:平台接入技术能力NV项有效
-             VOS_FALSE:平台接入技术能力NV项无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : s00217060
-    修改内容   : 新增函数
-  2.日    期   : 2013年8月29日
-    作    者   : w00242748
-    修改内容   : KLOC告警清理
-  3.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : PCINT清理
-  4.日    期   : 2014年12月8日
-    作    者   : s00217060
-    修改内容   : kmsg中增加平台能力的可维可测
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsPlatformRatCapNvimValid(
     PLATAFORM_RAT_CAPABILITY_STRU              *pstNvPlatformRatCap
 )
@@ -5364,10 +3705,8 @@ VOS_UINT32 NAS_MMC_IsPlatformRatCapNvimValid(
     VOS_UINT32                          j;
 
     /* 如果平台支持的接入技术个数为0，返回无效 */
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
     if ((0 == pstNvPlatformRatCap->usRatNum)
       ||( pstNvPlatformRatCap->usRatNum > PLATFORM_MAX_RAT_NUM))
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
     {
         NAS_TRACE_HIGH("en_NV_Item_PLATFORM_RAT_CAP RatNum Invalid, RatNum = %d", pstNvPlatformRatCap->usRatNum);
 
@@ -5400,22 +3739,7 @@ VOS_UINT32 NAS_MMC_IsPlatformRatCapNvimValid(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertNvimTypePlatformRatCapToNasType
- 功能描述  : 把NV类型的平台接入技术能力转换成NAS类型的
- 输入参数  : enNvPlatformRatCap:NV类型的平台接入技术能力
- 输出参数  : *penNasPlatformRatCap:NAS类型的平台接入技术能力
- 返 回 值  :  VOS_TRUE:转换成功
-              VOS_FALSE:转换失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年12月25日
-    作    者   : s00217060
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ConvertNvimTypePlatformRatCapToNasType(
     PLATFORM_RAT_TYPE_ENUM_UINT16                       enNvPlatformRatCap,
     NAS_MML_PLATFORM_RAT_TYPE_ENUM_UINT8               *penNasPlatformRatCap
@@ -5459,23 +3783,7 @@ VOS_UINT32 NAS_MMC_ConvertNvimTypePlatformRatCapToNasType(
 
 
 #if  (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadEnableLteTimerLenNvim
- 功能描述  : 从NV中获取enable lte定时器时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月24日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadEnableLteTimerLenNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_ENABLE_LTE_TIMER_LEN_STRU                  stEnableLteTimerLen;
@@ -5539,21 +3847,7 @@ VOS_VOID NAS_MMC_ReadEnableLteTimerLenNvim(VOS_VOID)
     return;
 }
 
-/* Added by c00318887 for 移植T3402 , 2015-6-17, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDisableLteStartT3402EnableLteCfgNvim
- 功能描述  : 读取en_NV_Item_DISABLE_LTE_START_T3402_ENABLE_LTE_CFG nv项内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月28日
-    作    者   : c00318887
-    修改内容   : for file refresh 新增
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadDisableLteStartT3402EnableLteCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_DISABLE_LTE_START_T3402_ENABLE_LTE_CFG_STRU        stDisableLteStartT3402EnableLteCfg;
@@ -5593,26 +3887,9 @@ VOS_VOID NAS_MMC_ReadDisableLteStartT3402EnableLteCfgNvim(VOS_VOID)
     return;
 }
 
-/* Added by c00318887 for 移植T3402 , 2015-6-17, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCsfbRauFollowOnFlgNvim
- 功能描述  : 读取NV项中，Csfb mt/mo过程中，RAU是否需要带follow on标记
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月25日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月25日
-    作    者   : w00242748
-    修改内容   : DTS2014053105098:CSFB mo是否需要带follow on增加NV控制
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadCsfbRauFollowOnFlgNvim(VOS_VOID)
 {
     NAS_MMC_CSFB_RAU_FOLLOW_ON_FLAG_STRU                    stCsfbRauFollowOnFlg;
@@ -5651,20 +3928,7 @@ VOS_VOID NAS_MMC_ReadCsfbRauFollowOnFlgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLteCustomMccInfoNvim
- 功能描述  : 读取NV 0xD22A，获取是否删除FDD的总控开关
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月27日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLteCustomMccInfoNvim(VOS_VOID)
 {
     LTE_CUSTOM_MCC_INFO_STRU            stLteCustomMccInfo;
@@ -5700,20 +3964,7 @@ VOS_VOID NAS_MMC_ReadLteCustomMccInfoNvim(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCsgCfgNvim
- 功能描述  : 读CSG配置nv项
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月14日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadCsgCfgNvim(VOS_VOID)
 {
     NAS_NVIM_CSG_CTRL_CFG_STRU         stCsgCtrlCfgNvim;
@@ -5757,20 +4008,7 @@ VOS_VOID NAS_MMC_ReadCsgCfgNvim(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSvlteSupportFlagNvim
- 功能描述  : 读取svlte是否支持nv
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月3日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadSvlteSupportFlagNvim(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
@@ -5808,20 +4046,7 @@ VOS_VOID NAS_MMC_ReadSvlteSupportFlagNvim(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadPsTransferCfgNvim
- 功能描述  : 初始化PS域迁移NV
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月28日
-    作    者   : x00203213
-    修改内容   : V9R1C53 读取PS TRANSFER的NV
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadPsTransferCfgNvim(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
@@ -5862,29 +4087,7 @@ VOS_VOID NAS_MMC_ReadPsTransferCfgNvim(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDsdaPlmnSearchEnhancedCfgNvim
- 功能描述  : 控制通过两个Modem的信息交互的增强型的搜索策略；当前支持的策略为：
-             通过另一Modem的PLMN信息,控制FDD搜网是否跳过的策略。
-             比如GUTL+G的版本，当副卡已经驻留在国内G网的时候，主卡搜网可以跳过FDD的搜索（中移动国内只需要支持TDD模式）
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月23日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月24日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-  3.日    期   : 2014年1月26日
-    作    者   : z00161729
-    修改内容   : DTS2014012305088:支持增强NCELL搜网，如果Modem1传递过来的邻区信息不存在的情况下，
-                 通过历史频点支持NCELL搜索。如果Modem1传递过来的邻区信息存在，以邻区信息NCELL搜索
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadDsdaPlmnSearchEnhancedCfgNvim(VOS_VOID)
 {
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
@@ -5929,24 +4132,7 @@ VOS_VOID NAS_MMC_ReadDsdaPlmnSearchEnhancedCfgNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRoamPlmnSelectionSortCfgNvim
- 功能描述  : 读取漫游搜网排序配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月23日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月28日
-    作    者   : s00217060
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRoamPlmnSelectionSortCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_ROAM_PLMN_SELECTION_SORT_CFG_STRU          stNvRoamSortCfg;
@@ -6000,24 +4186,7 @@ VOS_VOID NAS_MMC_ReadRoamPlmnSelectionSortCfgNvim(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadNonOosPlmnSearchFeatureSupportCfgNvim
- 功能描述  : 读取history搜定时器时长
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月23日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年10月28日
-    作    者   : h00281185
-    修改内容   : 將原有History NV改為 en_NV_Item_Non_Oos_Plmn_Search_Feature_Support_Cfg
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadNonOosPlmnSearchFeatureSupportCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_NON_OOS_PLMN_SEARCH_FEATURE_SUPPORT_CFG_STRU                   stNonOosPlmnSearchFeatureSupportCfg;
@@ -6074,21 +4243,7 @@ VOS_VOID NAS_MMC_ReadNonOosPlmnSearchFeatureSupportCfgNvim(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadOosPlmnSearchStrategyCfgNvim
- 功能描述  : 读取搜网定时器次数和时长
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月10日
-    作    者   : h00281185
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadOosPlmnSearchStrategyCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_OOS_PLMN_SEARCH_STRATEGY_CFG_STRU          stOosPlmnSearchStrategyCfg;
@@ -6158,20 +4313,7 @@ VOS_VOID NAS_MMC_ReadOosPlmnSearchStrategyCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadGetGeoCfgInfoNvim
- 功能描述  : 读取获取国家码的配置信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月25日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadGetGeoCfgInfoNvim(VOS_VOID)
 {
     NAS_NVIM_GET_GEO_CFG_INFO_STRU                          stGetGeoCfgInfo;
@@ -6222,21 +4364,7 @@ VOS_VOID NAS_MMC_ReadGetGeoCfgInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadIsrSupportNvim
- 功能描述  : 读取ISR是否激活的NVIM项
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月23日
-    作    者   : z00234330
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ReadIsrSupportNvim( VOS_VOID )
 {
     VOS_UINT32                          ulLen;
@@ -6267,21 +4395,7 @@ VOS_VOID  NAS_MMC_ReadIsrSupportNvim( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRefreshRplmnWhenEplmnInvalidCfgNvim
- 功能描述  : 读取EPLMN无效时候是否删除RPLMN配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月10日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRefreshRplmnWhenEplmnInvalidCfgNvim(VOS_VOID)
 {
     NAS_NVIM_REFRESH_RPLMN_WHEN_EPLMN_INVALID_CFG_STRU      stRefreshRplmnCfg;
@@ -6331,20 +4445,7 @@ VOS_VOID NAS_MMC_ReadRefreshRplmnWhenEplmnInvalidCfgNvim(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_PTM)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadErrlogCtrlInfoNvim
- 功能描述  : 根据NV:en_NV_Item_ErrLogCtrlInfo初始化ErrlogInfo
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月23日
-    作    者   : f00179208
-    修改内容   : 商用ErrLog上报及工程模式扩展目新增函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadErrlogCtrlInfoNvim(VOS_VOID)
 {
     VOS_UINT32                          ulResult;
@@ -6373,20 +4474,7 @@ VOS_VOID NAS_MMC_ReadErrlogCtrlInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadErrlogNwSrchRecordcfgNvim
- 功能描述  : 根据NV:en_NV_Item_Nw_Search_Chr_Record_Cfg初始化ErrlogInfo
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : f00179208
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadErrlogNwSrchRecordcfgNvim(VOS_VOID)
 {
     VOS_UINT32                              ulResult;
@@ -6433,19 +4521,7 @@ VOS_VOID NAS_MMC_ReadErrlogNwSrchRecordcfgNvim(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadAccBarPlmnSearchNvim
- 功能描述  : 读取非HPLMN/RPLMN网络下接入禁止后是否发起plmn搜网的NVIM项
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : s00190137
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadAccBarPlmnSearchNvim(VOS_VOID)
 {
     VOS_UINT32                                              ulLen;
@@ -6479,25 +4555,7 @@ VOS_VOID NAS_MMC_ReadAccBarPlmnSearchNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUserCfgOPlmnInfoNvim
- 功能描述  : 根据NV:en_NV_Item_USER_CFG_OPLMN_LIST初始化stUserCfgPlmnInfo
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : s00190137
-  2.日    期    : 2013年11月26日
-    作    者    : s00190137
-    修改内容    : 将最大支持设置的OPLMN扩展到256个
-  3.日    期   : 2015年10月08日
-    作    者   : zwx247453
-    修改内容   : 清除Coverity告警
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUserCfgOPlmnInfoNvim(VOS_VOID)
 {
     VOS_UINT32                                              ulLen;
@@ -6592,33 +4650,7 @@ VOS_VOID NAS_MMC_ReadUserCfgOPlmnInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDplmnNplmnInfoNvim
- 功能描述  : 根据NV:en_NV_Item_Cfg_Dplmn_Nplmn初始化DPLMN NPLMN
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月14日
-    作    者   : c00188733
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月3日
-    作    者   : z00161729
-    修改内容   : 开机漫游搜网项目修改
-  3.日    期   : 2015年10月08日
-    作    者   : zwx247453
-    修改内容   : 清除Coverity告警
-
-  3.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-  4.日    期   : 2015年12月12日
-    作    者   : s00217060
-    修改内容   : DTS2015120901555:读完NV加打印
-*****************************************************************************/
  VOS_VOID  NAS_MMC_ReadDplmnNplmnInfoNvim(VOS_VOID)
 {
     NAS_MML_PLMN_ID_STRU                                    stHplmnId;
@@ -6665,20 +4697,7 @@ VOS_VOID NAS_MMC_ReadUserCfgOPlmnInfoNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_WriteApPresetAndSelfLearnDplmnNplmnToNvim
- 功能描述  : 将全局变量中AP预置的以及自学习的DPLMN NPLMN写入到NV中
- 输入参数  :VOS_VOID
- 输出参数  : 无
- 返 回 值  :VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_WriteApPresetAndSelfLearnDplmnNplmnToNvim(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
 )
@@ -6698,24 +4717,7 @@ VOS_VOID NAS_MMC_WriteApPresetAndSelfLearnDplmnNplmnToNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateDplmnNplmnCfgNvim
- 功能描述  : 更新DPLMN/NPLMN Cfg 到对应的NVIM
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月2日
-    作    者   : s00217060
-    修改内容   : DTS2015070103821:coverity
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadDplmnNplmnCfgNvim(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
 )
@@ -6746,21 +4748,7 @@ VOS_VOID NAS_MMC_ReadDplmnNplmnCfgNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateDplmnNplmnCfgNvim
- 功能描述  : 更新DPLMN/NPLMN Cfg 到对应的NVIM
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateDplmnNplmnCfgNvim(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
 )
@@ -6807,24 +4795,7 @@ VOS_VOID NAS_MMC_UpdateDplmnNplmnCfgNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadFirstPresetDplmnNplmnCfgNvim
- 功能描述  : 读取NV en_NV_Item_First_Preset_Dplmn_Nplmn_Cfg，并更新到全局变量中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月2日
-    作    者   : s00217060
-    修改内容   : DTS2015070103821修改:coverity
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadFirstPresetDplmnNplmnCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU                 *pstNvimCfgDPlmnNPlmnInfo = VOS_NULL_PTR;
@@ -6874,21 +4845,7 @@ VOS_VOID NAS_MMC_ReadFirstPresetDplmnNplmnCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateApPresetDplmnToFirstPresetDplmnNplmnCfgNvim
- 功能描述  : 更新 DPLMN List 到对应的NV en_NV_Item_First_Preset_Dplmn_Nplmn_Cfg
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateApPresetDplmnToFirstPresetDplmnNplmnCfgNvim(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
 )
@@ -6957,24 +4914,7 @@ VOS_VOID NAS_MMC_UpdateApPresetDplmnToFirstPresetDplmnNplmnCfgNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSecondPresetDplmnNplmnCfgNvim
- 功能描述  : 读取NV en_NV_Item_Second_Preset_Dplmn_Nplmn_Cfg，并更新到全局变量中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月2日
-    作    者   : s00217060
-    修改内容   : DTS2015070103821:coverity
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadSecondPresetDplmnNplmnCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_CFG_DPLMN_NPLMN_INFO_STRU                 *pstNvimCfgDPlmnNPlmnInfo = VOS_NULL_PTR;
@@ -7031,25 +4971,7 @@ VOS_VOID NAS_MMC_ReadSecondPresetDplmnNplmnCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateApPresetDplmnToSecondPresetDplmnNplmnCfgNvim
- 功能描述  : 更新DPLMN List 到对应的NV en_NV_Item_Second_Preset_Dplmn_Nplmn_Cfg
-             全局变量NAS_MMC_GetDPlmnNPlmnCfgInfo()的第256 至 512 个DPLMN更新到此NV中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月12日
-    作    者   : s00217060
-    修改内容   : DTS2015120901555修改：NAS_MML_MIN参数不能用表达式
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateApPresetDplmnToSecondPresetDplmnNplmnCfgNvim(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
 )
@@ -7125,25 +5047,7 @@ VOS_VOID NAS_MMC_UpdateApPresetDplmnToSecondPresetDplmnNplmnCfgNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSelfLearnDplmnNplmnCfgNvim
- 功能描述  : NV en_NV_Item_Self_Learn_Dplmn_Nplmn_Cfg中保存的是UE自学习得到的DPLMN，
-             读取此NV并保存到相应的全局变量中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月2日
-    作    者   : s00217060
-    修改内容   : DTS2015070103821:coverity
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadSelfLearnDplmnNplmnCfgNvim(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                     *pstDPlmnNPlmnCfgInfo
 )
@@ -7190,25 +5094,7 @@ VOS_VOID NAS_MMC_ReadSelfLearnDplmnNplmnCfgNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_UpdateSelfLearnDplmnNplmnToSelfLearnDplmnNplmnCfgNvim
- 功能描述  : 更新电信 CT DPLMN/NPLMN Cfg 到对应的NV en_NV_Item_Self_Learn_Dplmn_Nplmn_Cfg
-             全局变量NAS_MMC_GetDPlmnNPlmnCfgInfo()的AP预置DPLMN之后的自学习类型的DPLMN更新到此NV中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-  2.日    期   : 2015年12月12日
-    作    者   : s00217060
-    修改内容   : DTS2015120901555修改：NAS_MML_MIN参数不能用表达式
-
-*****************************************************************************/
 VOS_VOID NAS_MMC_UpdateSelfLearnDplmnNplmnToSelfLearnDplmnNplmnCfgNvim(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
 )
@@ -7310,26 +5196,7 @@ VOS_VOID NAS_MMC_UpdateSelfLearnDplmnNplmnToSelfLearnDplmnNplmnCfgNvim(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_WriteSelfLearnDplmnNplmnToNvim
- 功能描述  : 将全局变量中的DPLMN NPLMN写入到NV中
- 输入参数  :VOS_VOID
- 输出参数  : 无
- 返 回 值  :VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年7月14日
-   作    者   : c00188733
-   修改内容   : 新生成函数
- 2.日    期   : 2014年11月3日
-   作    者   : z00161729
-   修改内容   : 开机漫游搜网项目修改
- 3.日    期   : 2015年10月21日
-   作    者   : l00289540
-   修改内容   : ROAM_PLMN_SELECTION_OPTIMIZE_3.0 修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_WriteSelfLearnDplmnNplmnToNvim(
     NAS_MMC_DPLMN_NPLMN_CFG_INFO_STRU                      *pstDPlmnNPlmnCfgInfo
 )
@@ -7346,23 +5213,7 @@ VOS_VOID NAS_MMC_WriteSelfLearnDplmnNplmnToNvim(
 /* NAS_MMC_JudegeHplmnType 删除 */
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadModemRfShareCfgNvim
- 功能描述  : 根据NV:NV_MODEM_RF_SHARE_EX_CFG初始化是否支持DSDS
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月21日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月9日
-    作    者   : lwx277467
-    修改内容   : DTS2015072005238
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadModemRfShareCfgNvim(VOS_VOID)
 {
     NV_MODEM_RF_SHARE_CFG_EX_STRU          stNvimRfShareCfgExInfo;
@@ -7397,20 +5248,7 @@ VOS_VOID NAS_MMC_ReadModemRfShareCfgNvim(VOS_VOID)
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDsdsEndSessionDelayNvim
- 功能描述  : 读取NV:en_NV_Item_DSDS_END_SESSION_DELAY并设置延迟时间
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月17日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadDsdsEndSessionDelayNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_DSDS_END_SESSION_DELAY_STRU                stNvimDsdsEndSessionDelay;
@@ -7454,20 +5292,7 @@ VOS_VOID NAS_MMC_ReadDsdsEndSessionDelayNvim(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUmtsCodecTypeNvim
- 功能描述  : 读取NV:en_NV_Item_UMTS_CODEC_TYPE
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月8日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ReadUmtsCodecTypeNvim(VOS_VOID)
 {
     MN_CALL_UMTS_CODEC_TYPE_STRU        stNvimCodecType;
@@ -7489,20 +5314,7 @@ VOS_VOID  NAS_MMC_ReadUmtsCodecTypeNvim(VOS_VOID)
     NAS_MML_CALL_SetCallUmtsCodecType(&stCodecType);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadItemMdeCodecNvim
- 功能描述  : 读取NV:en_NV_Item_UMTS_CODEC_TYPE
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月8日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ReadMedCodecTypeNvim(VOS_VOID)
 {
     MN_CALL_NIMV_ITEM_CODEC_TYPE_STRU   stNvimCodecType;
@@ -7524,20 +5336,7 @@ VOS_VOID  NAS_MMC_ReadMedCodecTypeNvim(VOS_VOID)
     NAS_MML_CALL_SetCallGsmCodecType(&stCodecType);
 }
 
-/* Added by f00261443 for VoLTE_PhaseIII项目, 2013-12-24, Begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadImsVoiceMMEnableNvim
- 功能描述  : 读取Ims Voice 移动性管理相关NV 写入MML中
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月25日
-    作    者   : f00261443
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadImsVoiceMMEnableNvim(VOS_VOID)
 {
     NAS_MMC_IMS_VOICE_MOBILE_MANAGEMENT stImsVoiceMM;
@@ -7579,22 +5378,8 @@ VOS_VOID NAS_MMC_ReadImsVoiceMMEnableNvim(VOS_VOID)
 
     return;
 }
-/* Added by f00261443 for VoLTE_PhaseIII项目, 2013-12-24, End */
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLcCtrlParaNvim
- 功能描述  : 读取LC特性配置nv
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLcCtrlParaNvim(VOS_VOID)
 {
     TAF_NV_LC_CTRL_PARA_STRU            stLcCtrlPara;
@@ -7622,23 +5407,7 @@ VOS_VOID NAS_MMC_ReadLcCtrlParaNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadIgnoreAuthRejFlgNvim
- 功能描述  : 读取是否移除鉴权拒绝的NVIM项
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月18日
-    作    者   : l00215384
-	修改内容    : 新增
-  2.日    期   : 2015年10月08日
-    作    者   : zwx247453
-    修改内容   : 清除Coverity告警
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadIgnoreAuthRejFlgNvim(VOS_VOID)
 {
     VOS_UINT32                                              ulLen;
@@ -7681,23 +5450,7 @@ VOS_VOID NAS_MMC_ReadIgnoreAuthRejFlgNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadHighPrioRatHplmnTimerCfgNvim
- 功能描述  : 从NVIM中获取的High Prio Rat Hplmn Timer定时器的时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年10月25日
-    作    者   : b00269685
-    修改内容   : 增加TD下定时器次数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadHighPrioRatHplmnTimerCfgNvim( VOS_VOID  )
 {
     NAS_MML_HIGH_PRIO_RAT_HPLMN_TIMER_CFG_STRU       *pstHighRatHplmnTimerCfg = VOS_NULL_PTR;
@@ -7729,20 +5482,7 @@ VOS_VOID NAS_MMC_ReadHighPrioRatHplmnTimerCfgNvim( VOS_VOID  )
 }
 
 #if  (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUltraFlashCsfbSupportFlgNvim
- 功能描述  : 读取是否支持ultra flash csfb的NVIM项
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUltraFlashCsfbSupportFlgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_ULTRA_FLASH_CSFB_SUPPORT_FLG_STRU          stUltraFlashCsfbSupport;
@@ -7772,23 +5512,7 @@ VOS_VOID NAS_MMC_ReadUltraFlashCsfbSupportFlgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSrvccSupportFlgNvim
- 功能描述  : 读取是否支持ultra flash csfb的NVIM项
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年05月30日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2014年10月8日
-    作    者   : b00269685
-    修改内容   : 增加是否支持srvcc标志
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadSrvccSupportFlgNvim(VOS_VOID)
 {
     IMS_NV_IMS_CAP_STRU                 stImsCap;
@@ -7831,20 +5555,7 @@ VOS_VOID NAS_MMC_ReadSrvccSupportFlgNvim(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_Read3GPP2UplmnNotPrefFlgNvim
- 功能描述  : 读取是否支持3gpp2 UPLMN不是优选网络
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年06月13日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_Read3GPP2UplmnNotPrefFlgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_3GPP2_UPLMN_NOT_PREF_STRU                  st3GPP2UplmnNotPref;
@@ -7874,20 +5585,7 @@ VOS_VOID NAS_MMC_Read3GPP2UplmnNotPrefFlgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDamCfgNvim
- 功能描述  : 读取支持DAM特性相关的配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : z00161729
-    修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadDamCfgNvim(VOS_VOID)
 {
     PS_NV_DAM_CONFIG_PARA_STRU                  stDamCfgInfo;
@@ -7982,20 +5680,7 @@ VOS_VOID NAS_MMC_ReadDamCfgNvim(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadSyscfgTriPlmnSrchCfgNvim
- 功能描述  : 读取SYSCFG触发搜网的配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年07月14日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadSyscfgTriPlmnSrchCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_SYSCFG_TRIGGER_PLMN_SEARCH_CFG_STRU        stSyscfgTriPlmnSrchCfg;
@@ -8033,20 +5718,7 @@ VOS_VOID NAS_MMC_ReadSyscfgTriPlmnSrchCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadChangeNwCauseCfgNvim
- 功能描述  : 从NV项读取用户配置的网侧拒绝原因信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年10月20日
-   作    者   : h00285180
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_MMC_ReadChangeNwCauseCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_CHANGE_NW_CAUSE_CFG_STRU                   stNvConfigCause;
@@ -8107,24 +5779,7 @@ VOS_VOID  NAS_MMC_ReadChangeNwCauseCfgNvim(VOS_VOID)
     NAS_MML_SetChangeNWCauseCfg(&stNvConfigCause);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRelPsSignalConCfgNvim
- 功能描述  : 从NVIM中获取配置的t3340和T3440 定时器的时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月04日
-    作    者   : h00285180
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月17日
-    作    者   : z00161729
-    修改内容   : DTS2015071505434:rau或attach请求不带follow on，网络回复attach accept或rau accept中携带follow on proceed标识，gmm需要
-                增加判断如果ps rab存在或存在rabm重建或sm业务请求或cds存在缓存数据则不启动T3340，否则启动t3340开启网络防呆功能
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRelPsSignalConCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_REL_PS_SIGNAL_CON_CFG_STRU                 stRelPsSigConCfg;
@@ -8155,19 +5810,7 @@ VOS_VOID NAS_MMC_ReadRelPsSignalConCfgNvim(VOS_VOID)
 }
 
 #if  (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLteRejCause14CfgNvim
- 功能描述  : 从NV中获取LTE #14拒绝优化配置信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-  1.日    期   : 2015年1月5日
-    作    者   : h00285180
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLteRejCause14CfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_LTE_REJ_CAUSE_14_CFG_STRU    stLteRejCause14Cfg;
@@ -8198,20 +5841,7 @@ VOS_VOID NAS_MMC_ReadLteRejCause14CfgNvim(VOS_VOID)
 #endif
 
 #if  (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadImsRatSupportNvim
- 功能描述  : 从NV中IMS是否支持
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月11日
-    作    者   : s00217060
-    修改内容   : VOLTE SWITCH新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadImsRatSupportNvim(VOS_VOID)
 {
     VOS_UINT32                                  ulLength;
@@ -8245,20 +5875,7 @@ VOS_VOID NAS_MMC_ReadImsRatSupportNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadImsCapNvim
- 功能描述  : 从NV中IMS是否支持
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月11日
-    作    者   : s00217060
-    修改内容   : VOLTE SWITCH新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadImsCapNvim(VOS_VOID)
 {
     VOS_UINT32                                  ulLength;
@@ -8293,20 +5910,7 @@ VOS_VOID NAS_MMC_ReadImsCapNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadUssdOnImsNvim
- 功能描述  : 从NV中IMS是否支持
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月11日
-    作    者   : s00217060
-    修改内容   : VOLTE SWITCH新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadUssdOnImsNvim(VOS_VOID)
 {
     VOS_UINT32                                  ulLength;
@@ -8343,20 +5947,7 @@ VOS_VOID NAS_MMC_ReadUssdOnImsNvim(VOS_VOID)
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadDsdsActiveModemModeNvim
- 功能描述  : 从NVIM中获取当前DSDS下是否双卡
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月11日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadDsdsActiveModemModeNvim(VOS_VOID)
 {
     TAF_NV_DSDS_ACTIVE_MODEM_MODE_STRU  stMode;
@@ -8386,20 +5977,7 @@ VOS_VOID NAS_MMC_ReadDsdsActiveModemModeNvim(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCsmoSupportedCfgNvim
- 功能描述  : 从NVIM中获取当前是否配置支持CSMO
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月11日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadCsmoSupportedCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_CSMO_SUPPORTED_CFG_STRU  stNvimCfgCsmoInfo;
@@ -8427,20 +6005,7 @@ VOS_VOID NAS_MMC_ReadCsmoSupportedCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCsmoSupportedCfgNvim
- 功能描述  : 从NVIM中获取当前是否配置支持CSMO
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月11日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadT3212TimerCfgNvim(VOS_VOID)
 {
     NAS_MML_T3212_TIMER_INFO_CONFIG_STRU                   *pstT3212Info        = VOS_NULL_PTR;
@@ -8499,20 +6064,7 @@ VOS_VOID NAS_MMC_ReadT3212TimerCfgNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadRoamDisplayCfgNvim
- 功能描述  : 从NVIM中获取当前判断是否漫游时是否要考虑EPLMN
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月20日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadRoamDisplayCfgNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_ROAM_DISPLAY_CFG_STRU          stNvimRoamDisplayCfg;;
@@ -8541,20 +6093,7 @@ VOS_VOID NAS_MMC_ReadRoamDisplayCfgNvim(VOS_VOID)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLteOos2GPrefPlmnSelCfgNvim
- 功能描述  : 读取Lte OOS选网优化NV配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月03日
-    作    者   : h00285180
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLteOos2GPrefPlmnSelCfgNvim(VOS_VOID)
 {
     VOS_UINT32                                              i;
@@ -8598,20 +6137,7 @@ VOS_VOID NAS_MMC_ReadLteOos2GPrefPlmnSelCfgNvim(VOS_VOID)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadPsRegFailMaxTimesTrigLauOnceFlgNvim
- 功能描述  : 从NVIM中获取联合Attach/Rau建链失败达到最大次数是否只触发一次LAU的NV配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadPsRegFailMaxTimesTrigLauOnceFlgNvim(VOS_VOID)
 {
     NAS_NVIM_PS_REG_FAIL_MAX_TIMES_TRIG_LAU_ONCE_CFG_STRU stPsRegFailMaxTimesTrigLauOnce;
@@ -8649,20 +6175,7 @@ VOS_VOID NAS_MMC_ReadPsRegFailMaxTimesTrigLauOnceFlgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadKeepSrchHplmnEvenRejByCause13Nvim
- 功能描述  : 从NVIM中获取HPLMN注册被#13拒绝之后是否再搜该HPLMN with rat的NV配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadKeepSrchHplmnEvenRejByCause13Nvim(VOS_VOID)
 {
     NAS_NVIM_KEEP_SRCH_HPLMN_EVEN_REJ_BY_CAUSE_13_CFG_STRU  stKeepSrchHplmnEvenRejByCause13;
@@ -8700,20 +6213,7 @@ VOS_VOID NAS_MMC_ReadKeepSrchHplmnEvenRejByCause13Nvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadEpsRejByCause14InVplmnAllowPsRegFlgNvim
- 功能描述  : 从NVIM中获取VPLMN注册被#14拒绝之后是否允许在2/3G PS域注册的NV配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadEpsRejByCause14InVplmnAllowPsRegFlgNvim(VOS_VOID)
 {
     NAS_NVIM_EPS_REJ_BY_CAUSE_14_IN_VPLMN_ALLOW_PS_REG_CFG_STRU stEpsRejByCause14InVplmnAllowPsRegCfg;
@@ -8754,20 +6254,7 @@ VOS_VOID NAS_MMC_ReadEpsRejByCause14InVplmnAllowPsRegFlgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCarryEplmnWhenSrchRplmnCfgNvim
- 功能描述  : 从NVIM中读取搜索RPLMN是否需要携带EPLMN的NV配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : l00289540
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadCarryEplmnWhenSrchRplmnCfgNvim(VOS_VOID)
 {
     NAS_NVIM_CARRY_EPLMN_WHEN_SRCH_RPLMN_CFG_STRU           stCarryEplmnWhenSrchRplmnCfg;
@@ -8846,20 +6333,7 @@ VOS_VOID NAS_MMC_ReadCarryEplmnWhenSrchRplmnCfgNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadProtectMtCsfbPagingProcedureLenNvim
- 功能描述  : 从NVIM中获取mt csfb paging procedure timer的长度
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月4日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadProtectMtCsfbPagingProcedureLenNvim(VOS_VOID)
 {
     NAS_MMC_NVIM_PROTECT_MT_CSFB_PAGING_PROCEDURE_LEN_STRU  stNvimProtectMtCsfbPagingProcedureLen;;
@@ -8894,21 +6368,7 @@ VOS_VOID NAS_MMC_ReadProtectMtCsfbPagingProcedureLenNvim(VOS_VOID)
     return;
 }
 
-/* added by y00176023 for DTS2015091602371 澳电低优先级ANYCELL搜LTE定制, 2015-9-17, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadLowPrioAnycellsearchLteCfgNvim
- 功能描述  : 从NVIM中获取当前值判断anyCell 搜是否优先搜索3G/2G
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月19日
-    作    者   : y00176023
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadLowPrioAnycellsearchLteCfgNvim(VOS_VOID)
 {
     NAS_NVIM_LOW_PRIO_ANYCELL_SEARCH_LTE_FLG_STRU           stNvimLowPrioAnycellsearchLteCfg;
@@ -8935,23 +6395,9 @@ VOS_VOID NAS_MMC_ReadLowPrioAnycellsearchLteCfgNvim(VOS_VOID)
 
     return;
 }
-/* added by y00176023 for DTS2015091602371 澳电低优先级ANYCELL搜LTE定制, 2015-9-17, end */
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadCsRegFailForbLaTimeCfgNvim
- 功能描述  : 读取en_NV_Item_CS_REG_FAIL_CAUSE_FORB_LA_TIME_CFG 配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : z00359541
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadCsRegFailForbLaTimeCfgNvim(VOS_VOID)
 {
     NAS_MML_FORB_LA_WITH_VALID_PERIOD_CFG_INFO_LIST_STRU   *pstForbLaWithValidPeriodCfg = VOS_NULL_PTR;
@@ -8994,20 +6440,7 @@ VOS_VOID NAS_MMC_ReadCsRegFailForbLaTimeCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadKeepCsForbInfoWhenPsRegSuccCfgNvim
- 功能描述  : 读取en_NV_Item_KEEP_CS_FORB_INFO_WHEN_PS_REG_SUCC_CFG 配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月11日
-    作    者   : z00359541
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadKeepCsForbInfoWhenPsRegSuccCfgNvim(VOS_VOID)
 {
     NAS_NVIM_KEEP_CS_FORB_INFO_WHEN_PS_REG_SUCC_STRU           stKeepCsForbInfoCfg;
@@ -9042,23 +6475,7 @@ VOS_VOID NAS_MMC_ReadKeepCsForbInfoWhenPsRegSuccCfgNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ReadClearCksnCfgNvim
- 功能描述  : 读取en_NV_Item_CLEAR_CKSN_CFG 配置
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月4日
-    作    者   : z00359541
-    修改内容   : 新建
-  2.日    期   : 2016年1月19日
-    作    者   : c00318887
-    修改内容   : 扩充NV
-*****************************************************************************/
 VOS_VOID NAS_MMC_ReadClearCksnCfgNvim(VOS_VOID)
 {
     NAS_NVIM_CLEAR_CKSN_STRU            stClearCksnCfg;

@@ -1,36 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : NasGmmInterface.h
-  Author      : Roger Leo
-  Version     : V200R001
-  Date        : 2005-08-06
-  Description : 该头文件定义了NAS子系统MM子层GMM模块外部接口头文件
-  History     :
-  1. Date:2005-08-06
-     Author: Roger Leo
-     Modification:update
-  2. Date:2006-03-04
-     Author: Roger Leo
-     Modification:删除了与头文件SmsGmmInterface.h中重复的声明
-  3.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  4.日    期   : 2006年8月11日
-    作    者   : fanzhibin id:49086
-    修改内容   : 问题单号:A32D04825
-  5.日    期   : 2007年10月27日
-    作    者   : L47619
-    修改内容   : 问题单号:A32D13038
-  6.日    期   : 2008年08月05日
-    作    者   : s46746
-    修改内容   : 问题单号:AT2D04423,提供短消息模块获取当前PS是否可用的API函数
-  7.日    期   : 2009年05月14日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D11898/AT2D11828,在IDLE态下发送PS域短信，没有按照ATTACH ACCEPT消息中Radio Priority for SMS来请求资源
-  8.日    期   : 2011年04月18日
-    作    者   : A00165503
-    修改内容   : GMM与RABM之间的接口信息都集中放入GmmRabmInterface.h中
-************************************************************************/
+
 
 #ifndef _NAS_GMM_INTERFACE_H_
 #define _NAS_GMM_INTERFACE_H_

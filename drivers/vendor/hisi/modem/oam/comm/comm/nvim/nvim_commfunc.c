@@ -42,20 +42,7 @@ VOS_CHAR                  g_acNvCcpuWriteSlicePath[] = "/mnvm2:0/C_NvWriteSlice.
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NV_RecordNvWriteSlice
- 功能描述  : 记录Nv id 写 Slice值
- 输入参数  : usNvId         : Nv id
-             ulNvWriteSlice : 写入Nv id 的slice值
 
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : d00212987
-    修改内容   : 新增
-*****************************************************************************/
 VOS_VOID NV_RecordNvWriteSlice(VOS_UINT16 usNvId, VOS_UINT32 ulNvWriteSlice)
 {
     FILE                               *pFIle;
@@ -382,25 +369,7 @@ VOS_UINT32 NV_Get16BitLength(VOS_UINT16 usID, VOS_UINT16 *pusLength)
     return NV_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_NvIdCheck
- 功能描述  : NV ID 合法性检查
- 输入参数  : usID:     NV ID
-             ulOffset: 相对正常NV偏移位置,如需要读取正常NV,偏移量为0
-             pItem:    存放NV buffer
-             ulLength: 操作 NV 长度
 
- 输出参数  : pstNvIdReturnInfo
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年03月13日
-    作    者   : d00212987
-    修改内容   : 代码优化
-
-*****************************************************************************/
 VOS_UINT32 NV_NvIdCheck(MODEM_ID_ENUM_UINT16               enModemID,
                         VOS_UINT16                              usID,
                         VOS_UINT32                              ulOffset,
@@ -488,25 +457,7 @@ VOS_UINT32 NV_NvIdCheck(MODEM_ID_ENUM_UINT16               enModemID,
     return NV_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NV_WriteDataToFile
- 功能描述  : NV 文件写入
- 输入参数  : pItem:          写内容
-             ulLength:       内容长度
-             ulWriteOffset:  写指针偏移量
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年05月24日
-    作    者   : d00212987
-    修改内容   : V7R1C50 Flashless PhaseII项目新增函数
-  2.日    期   : 2013年03月13日
-    作    者   : d00212987
-    修改内容   : 代码优化
-*****************************************************************************/
 VOS_UINT32 NV_WriteDataToFile(
     FILE                               *fp,
     VOS_VOID                           *pItem,

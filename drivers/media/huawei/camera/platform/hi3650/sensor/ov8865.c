@@ -17,6 +17,8 @@ static hwsensor_vtbl_t s_ov8865_vtbl;
 
 static int ov8865_config(hwsensor_intf_t* si, void  *argp);
 
+static bool s_ov8865_power_on = false;
+
 static struct sensor_power_setting ov8865_power_setting[] = {
 
 	//SENSOR+MISP IO [GPIO]
@@ -203,10 +205,16 @@ ov8865_config(
 	cam_debug("ov8865 cfgtype = %d",data->cfgtype);
 	switch(data->cfgtype){
 		case SEN_CONFIG_POWER_ON:
-			ret = si->vtbl->power_up(si);
+			if (!s_ov8865_power_on) {
+				ret = si->vtbl->power_up(si);
+				s_ov8865_power_on = true;
+			}
 			break;
 		case SEN_CONFIG_POWER_OFF:
-			ret = si->vtbl->power_down(si);
+			if (s_ov8865_power_on) {
+				ret = si->vtbl->power_down(si);
+				s_ov8865_power_on = false;
+			}
 			break;
 		case SEN_CONFIG_WRITE_REG:
 			break;

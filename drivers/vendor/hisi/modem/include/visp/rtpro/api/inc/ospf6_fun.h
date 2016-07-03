@@ -175,13 +175,11 @@
     (x)[3] = VOS_NTOHL((x)[3]);\
 }
 
-/* Added by likaikun00213099, 邻居查询新增维测信息, 2014/4/18 */
 #define OSPF6_ADDRESS_IS_UNSPECIFIED(x) \
     ((0 == ((x)[0])) \
      && (0 == ((x)[1])) \
      && (0 == ((x)[2])) \
      && (0 == ((x)[3])))
-/* End of Added by likaikun00213099, 邻居查询新增维测信息, 2014/4/18 */
 
 /* 32bits整数倍前缀长度 */
 #define OSPF6_PREFX_LEN_32           32
@@ -275,7 +273,6 @@
 #define OSPF6_IS_LINK_LOCAL(address)                       \
                                 ((address[0] == 0xFE) &&   \
                                 ((address[1] & 0xC0) == 0x80))
-/* Modified by yanlei00216869, 解决问题：先修改接口网络类型，然后将接口加入OSPF进程失败, 2014/9/28   问题单号:DTS2014092504795 */
 /*默认情况按照广播网络类型处理*/
 #define OSPF6_FILL_DEF_HELLO_DEAD_ITVL(pstIntfMib) \
 { \
@@ -364,8 +361,8 @@ typedef struct ifv6_cfg_list_entry_tag
 {
     NBB_LLQE if_cfg_list_node;
     NBB_ULONG instance_id;
-    NBB_ULONG ref_bits;                     /*此字段表示是否存在可用于下发mib的信息 DTS2014042507127*/
-    NBB_ULONG attr_bits;                    /*此字段表示是否存在用户有效配置 DTS2014042507127*/
+    NBB_ULONG ref_bits;
+    NBB_ULONG attr_bits;
     NBB_ULONG net_type; 
     NBB_ULONG cost;
     NBB_ULONG priority;
@@ -511,7 +508,6 @@ typedef struct tagOSPF6_ENTITY_KEY
     USHORT usFilterProceId;                       /*过滤进程ID*/
 }OSPF6_ENTITY_KEY_S;
 
-/*Added by w00207740, 查询某一进程下的MJ信息, 2013/12/28 */
 typedef struct tagOSPF6_PMMJ_KEY
 {
     USHORT usProcessId;                           /*进程ID*/
@@ -520,7 +516,6 @@ typedef struct tagOSPF6_PMMJ_KEY
     ULONG ulPartnerIndex;
 }OSPF6_PMMJ_KEY_S;
 
-/*Added by w00207740, 添加以slave身份进行join的关系, 2014/1/3 */
 typedef struct tagOSPF6_PMSJ_KEY_S
 {
     USHORT usProcessId;                           /*进程ID*/
@@ -714,7 +709,6 @@ extern NBB_VOID  ospf6_set_if_default (IFV6_CFG_LIST_ENTRY *if_cfg_list_entry);
 extern NBB_ULONG ospf6_joinToOther(NBB_USHORT usProcId,NBB_USHORT bUndoConfig,
                                             NBB_ULONG InterfaceId,NBB_ULONG PartnerIndex);
 extern NBB_ULONG ospf6_cfg_process(OSPF6_MIBPROC_S *pstProcIn);
-/*Added by yanlei00216869, 解决问题: 删除ospfv3进程不彻底导致重建进程后绑定接口接口状态错误，问题单:DTS2014053103949 , 2014/9/11 */
 extern NBB_ULONG ospf6_get_join_proc_by_vrfindex(NBB_ULONG vrf_index,
                                   NBB_ULONG *rtm_index, NBB_ULONG *sck_index);
 extern VOID ospf6_ent_info_output(OSPF6_ENTITY_SHOW_S *pstShowInfo);
@@ -749,7 +743,6 @@ extern VOID ospf6_copy_cfg_intf_info(IFV6_ENABLE_LIST_ENTRY *walk_if_enable_cb,
 extern VOID ospf6_cfg_intf_info_output(OSPF6_SHOWINTFBIND_S *pstCfgIntfIn);
 extern NBB_ULONG ospf6_cfg_ent_attribute_mib(VOID *pAttrInfo, NBB_ULONG ulAttrType);
 extern NBB_ULONG ospf6_add_nm_process_mib(NBB_USHORT process_id, NBB_ULONG sck_index);
-/*Added by yanlei00216869, 解决问题: 删除ospfv3进程不彻底导致重建进程后绑定接口接口状态错误，问题单:DTS2014053103949 , 2014/9/11 */
 extern NBB_ULONG ospf6_del_nm_process_mib(NBB_USHORT process_id);
 extern NBB_ULONG ospf6_check_process_attr_para(VOID *pstProcAttrIn);
 extern ULONG ospf6_cfg_asbr(ULONG ulProcessId,ULONG ulUndoFlag);

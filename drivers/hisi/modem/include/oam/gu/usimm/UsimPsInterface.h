@@ -1,17 +1,6 @@
 
 
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : UsimPsInterface.h
-  Author      : zhuli 00100318
-  Version     : V200R001
-  Date        : 2008-09-23
-  Description : 该头文件定义了---usim模块对外的接口定义
-  History     :
-  1. Date:2008-09-23
-     Author: zhuli
-     Modification:Create
-************************************************************************/
+
 
 #ifndef _USIMM_TAFUSIMMINTERFACE_H_
 #define _USIMM_TAFUSIMMINTERFACE_H_
@@ -1970,14 +1959,7 @@ enum USIMM_EFSTATUS_ENUM
 };
 typedef VOS_UINT8      USIMM_EFSTATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : USIMM_AID_TYPE_ENUM_UINT32
- 结构说明  : AID类型枚举值
- 修改历史      :
-  1.日    期   : 2013年12月19日
-    作    者   : h59254
-    修改内容   :
-*****************************************************************************/
+
 enum USIMM_AID_TYPE_ENUM
 {
     USIMM_AID_TYPE_USIM                 = USIMM_GUTL_APP,    /* USIM的AID */
@@ -1987,14 +1969,7 @@ enum USIMM_AID_TYPE_ENUM
 };
 typedef VOS_UINT32  USIMM_AID_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名    : USIMM_TR_PARA_ENUM_32
- 结构说明  : TERMINAL RESPONSE透传参数
- 修改历史      :
-  1.日    期   : 2014年02月15日
-    作    者   : h59254
-    修改内容   :
-*****************************************************************************/
+
 enum USIMM_TR_PARA_ENUM
 {
     USIMM_TR_TYPE_BALONG    = 0,
@@ -3525,19 +3500,7 @@ extern VOS_UINT32 USIMM_GetCardCGType(
     VOS_BOOL                            *pbHasCModule,
     VOS_BOOL                            *pbHasWGModule);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetAid
-功能描述  :获取AID请求
-输入参数  :ulAidType:AID类型
-输出参数  :pulLen:返回的数据长度
-           pucAid:AID的内容
-返 回 值  :USIMM_API_SUCCESS:成功，其余失败
 
-修订记录  :
-1.日    期  : 2013年12月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
 extern VOS_UINT32 USIMM_GetAid(
     VOS_UINT32                              ulAidType,
     VOS_UINT32                              *pulLen,
@@ -3600,63 +3563,19 @@ extern VOS_VOID USIMM_SaveHvteeVsimData(
 #endif
 
 /*单编译接口的声明 */
-/*****************************************************************************
-函 数 名  :USIMM_IsSvlte
-功能描述  :判断单独编译接口是否是SVLTE　
-输入参数  :无
-输出参数  :无
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_IsSvlte(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  :USIMM_IsServiceAvailable_Instance
-功能描述  :获取卡服务状态　
-输入参数  :enModemID:Modem ID
-           enService:服务ID
-输出参数  :无
-返 回 值  :PS_USIM_SERVICE_NOT_AVAILIABLE
-           PS_USIM_SERVICE_NOT_AVAILIABLE
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_IsServiceAvailable_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     UICC_SERVICES_TYPE_ENUM_UINT32      enService);
 
-/*****************************************************************************
-函 数 名  :USIMM_IsTestCard
-功能描述  :判断当前是否是测试卡，仅SIM/USIM卡中的PLMN号与NV项中的PLMN匹配时返回VOS_TRUE
-           其它任何情况下都返回VOS_FALSE，如无卡，快速开机，IMSI未读取到，未初始化完成等
-输入参数  :enModemID:Modem ID
-输出参数  :无
-返 回 值  :VOS_TRUE/VOS_FALSE
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_BOOL USIMM_IsTestCard_Instance(
     MODEM_ID_ENUM_UINT16                enModemID);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetPinStatus_Instance
-功能描述  :获取PIN信息　
-输入参数  :ucType:PIN类型
-           enModemID:Modem ID
-输出参数  : pucBeEnable:  PIN是否开启
-            pucBeNeed:PIN是否需要
-            pucNum:PIN剩余次数
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetPinStatus_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT8                          *pucType,
@@ -3664,37 +3583,13 @@ extern VOS_UINT32 USIMM_GetPinStatus_Instance(
     VOS_UINT8                          *pucBeNeed,
     VOS_UINT8                          *pucNum);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCardType_Instance
-功能描述  :获取卡类型和卡服务状态　
-输入参数  :enModemID:Modem ID
-输出参数  :pucCardStatus:卡类型
-           pucCardType:卡状态
-返 回 值  :USIMM_API_SUCCESS
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetCardType_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     USIMM_CARD_TYPE_ENUM_UINT32         enCardType,
     USIMM_CARD_SERVIC_ENUM_UINT32      *pulCardStatus);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCachedFile
-功能描述  :获取缓冲的文件内容接口
-输入参数  :enModemID:Modem ID
-输出参数  :usFileID:读取的文件ID
-           pulDataLen:返回文件的内容长度
-           ppucData:返回文件内容的地址
-           enAppType:应用类型
-返回值    :USIMM_API_RESULT_ENUM类型
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetCachedFile_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_CHAR                            *pucFilePath,
@@ -3702,92 +3597,32 @@ extern VOS_UINT32 USIMM_GetCachedFile_Instance(
     VOS_UINT8                           **ppucData,
     USIMM_CARDAPP_ENUM_UINT32           enAppType);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCardIMSI_Instance
-功能描述  :获取IMSI接口
-输入参数  :enModemID:Modem ID
-输出参数  :pucImsi 存储文件内容
-返回值    :USIMM_API_RESULT_ENUM类型
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetCardIMSI_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT8                          *pucImsi);
 
-/*****************************************************************************
-函 数 名  : USIMM_GetPinRemainTime_Instance
-功能描述  : 获取pin码操作剩余次数
-输入参数  : enModemID:Modem ID
-输出参数  : pin码操作剩余次数
-返 回 值  : VOS_UINT32，表示函数执行结果
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetPinRemainTime_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     USIMM_PIN_REMAIN_STRU              *pstRemainTime);
 
-/*****************************************************************************
-函 数 名  : USIMM_BdnQuery
-功能描述  : BDN状态查询接口
-输入参数  : enModemID:Modem ID
-输出参数  : pulState:BDN状态
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_VOID USIMM_BdnQuery_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT32                         *pulState);
 
-/*****************************************************************************
-函 数 名  : USIMM_FdnQuery
-功能描述  : FDN状态查询接口
-输入参数  : enModemID:Modem ID
-输出参数  : pulState:FDN状态
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_VOID USIMM_FdnQuery_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT32                         *pulUsimFdnState,
     VOS_UINT32                         *pulCsimFdnState);
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimIsActive_Instance
-功能描述  :更新文件操作　
-输入参数  :enModemID:Modem ID
-输出参数  :无
-返回值    :USIMM_API_RESULT_ENUM类型
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_VsimIsActive_Instance(
     MODEM_ID_ENUM_UINT16                enModemID);
 
-/*****************************************************************************
-函 数 名  : USIMM_GetCardTypeByAppType_Instance
-功能描述  : FDN状态查询接口
-输入参数  : enModemID:Modem ID
-            enAppType:应用类型
-输出参数  : pucCardStatus:卡服务状态
-            pucCardType:卡状态
-返 回 值  : VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期   : 2015年2月11日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetCardTypeByAppType_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT8                          *pucCardStatus,
@@ -5786,14 +5621,7 @@ enum USIMM_EFSTATUS_ENUM
 };
 typedef VOS_UINT8      USIMM_EFSTATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : USIMM_AID_TYPE_ENUM_UINT32
- 结构说明  : AID类型枚举值
- 修改历史      :
-  1.日    期   : 2013年12月19日
-    作    者   : h59254
-    修改内容   :
-*****************************************************************************/
+
 enum USIMM_AID_TYPE_ENUM
 {
     USIMM_AID_TYPE_USIM                 = 0,    /* USIM的AID */
@@ -5803,14 +5631,7 @@ enum USIMM_AID_TYPE_ENUM
 };
 typedef VOS_UINT32  USIMM_AID_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 结构名    : USIMM_TR_PARA_ENUM_32
- 结构说明  : TERMINAL RESPONSE透传参数
- 修改历史      :
-  1.日    期   : 2014年02月15日
-    作    者   : h59254
-    修改内容   :
-*****************************************************************************/
+
 enum USIMM_TR_PARA_ENUM
 {
     USIMM_TR_TYPE_BALONG    = 0,
@@ -6790,19 +6611,7 @@ extern VOS_BOOL USIMM_VsimIsActive(VOS_VOID);
 
 extern VOS_UINT32 USIMM_GetCardCGType(VOS_UINT8 *pucCardMode, VOS_UINT8 *pucHasCModule, VOS_UINT8 *pucHasWGModule);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetAid
-功能描述  :获取AID请求
-输入参数  :ulAidType:AID类型
-输出参数  :pulLen:返回的数据长度
-           pucAid:AID的内容
-返 回 值  :USIMM_API_SUCCESS:成功，其余失败
 
-修订记录  :
-1.日    期  : 2013年12月19日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
 extern VOS_UINT32 USIMM_GetAid(VOS_UINT32 ulAidType, VOS_UINT32 *pulLen, VOS_UINT8 *pucAid);
 
 extern VOS_VOID USIMM_SessionIdToChanNum(VOS_UINT32 ulSessionId, VOS_UINT32 *pulChanNum);
@@ -6834,62 +6643,18 @@ extern VOS_INT32 USIMM_Mkdir(VOS_CHAR *pcDirName);
 #endif
 
 /*单编译接口的声明 */
-/*****************************************************************************
-函 数 名  :USIMM_IsSvlte
-功能描述  :判断单独编译接口是否是SVLTE　
-输入参数  :无
-输出参数  :无
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_IsSvlte(VOS_VOID);
 
-/*****************************************************************************
-函 数 名  :USIMM_IsServiceAvailable_Instance
-功能描述  :获取卡服务状态　
-输入参数  :enModemID:Modem ID
-           enService:服务ID
-输出参数  :无
-返 回 值  :PS_USIM_SERVICE_NOT_AVAILIABLE
-           PS_USIM_SERVICE_NOT_AVAILIABLE
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_IsServiceAvailable_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     UICC_SERVICES_TYPE_ENUM_UINT32     enService);
 
-/*****************************************************************************
-函 数 名  :USIMM_IsTestCard
-功能描述  :判断当前是否是测试卡，仅SIM/USIM卡中的PLMN号与NV项中的PLMN匹配时返回VOS_TRUE
-           其它任何情况下都返回VOS_FALSE，如无卡，快速开机，IMSI未读取到，未初始化完成等
-输入参数  :enModemID:Modem ID
-输出参数  :无
-返 回 值  :VOS_TRUE/VOS_FALSE
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_BOOL USIMM_IsTestCard_Instance(MODEM_ID_ENUM_UINT16 enModemID);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetPinStatus_Instance
-功能描述  :获取PIN信息　
-输入参数  :ucType:PIN类型
-           enModemID:Modem ID
-输出参数  : pucBeEnable:  PIN是否开启
-            pucBeNeed:PIN是否需要
-            pucNum:PIN剩余次数
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetPinStatus_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT8                          *pucType,
@@ -6897,124 +6662,40 @@ extern VOS_UINT32 USIMM_GetPinStatus_Instance(
     VOS_UINT8                          *pucBeNeed,
     VOS_UINT8                          *pucNum);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCardType_Instance
-功能描述  :获取卡类型和卡服务状态　
-输入参数  :enModemID:Modem ID
-输出参数  :pucCardStatus:卡类型
-           pucCardType:卡状态
-返 回 值  :USIMM_API_SUCCESS
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 USIMM_GetCardType_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     USIMM_CARD_TYPE_ENUM_UINT32         enCardType,
     USIMM_CARD_SERVIC_ENUM_UINT32      *pulCardStatus);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCachedFile
-功能描述  :获取缓冲的文件内容接口
-输入参数  :enModemID:Modem ID
-输出参数  :usFileID:读取的文件ID
-           pulDataLen:返回文件的内容长度
-           ppucData:返回文件内容的地址
-           enAppType:应用类型
-返回值    :USIMM_API_RESULT_ENUM类型
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetCachedFile_Instance(MODEM_ID_ENUM_UINT16  enModemID, VOS_CHAR  *pucFilePath, VOS_UINT32   *pulDataLen, VOS_UINT8 **ppucData, USIMM_CARDAPP_ENUM_UINT32  enAppType);
 
-/*****************************************************************************
-函 数 名  :USIMM_GetCardIMSI_Instance
-功能描述  :获取IMSI接口
-输入参数  :enModemID:Modem ID
-输出参数  :pucImsi 存储文件内容
-返回值    :USIMM_API_RESULT_ENUM类型
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetCardIMSI_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT8                          *pucImsi);
 
-/*****************************************************************************
-函 数 名  : USIMM_GetPinRemainTime_Instance
-功能描述  : 获取pin码操作剩余次数
-输入参数  : enModemID:Modem ID
-输出参数  : pin码操作剩余次数
-返 回 值  : VOS_UINT32，表示函数执行结果
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetPinRemainTime_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     USIMM_PIN_REMAIN_STRU              *pstRemainTime);
 
-/*****************************************************************************
-函 数 名  : USIMM_BdnQuery
-功能描述  : BDN状态查询接口
-输入参数  : enModemID:Modem ID
-输出参数  : pulState:BDN状态
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_VOID USIMM_BdnQuery_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT32                         *pulState);
 
-/*****************************************************************************
-函 数 名  : USIMM_FdnQuery
-功能描述  : FDN状态查询接口
-输入参数  : enModemID:Modem ID
-输出参数  : pulState:FDN状态
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_VOID USIMM_FdnQuery_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT32                         *pulUsimFdnState,
     VOS_UINT32                         *pulCsimFdnState);
 
-/*****************************************************************************
-函 数 名  :USIMM_VsimIsActive_Instance
-功能描述  :更新文件操作　
-输入参数  :enModemID:Modem ID
-输出参数  :无
-返回值    :USIMM_API_RESULT_ENUM类型
-修订记录  :
-1. 日    期   : 2013年8月30日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_VsimIsActive_Instance(MODEM_ID_ENUM_UINT16 enModemID);
 
-/*****************************************************************************
-函 数 名  : USIMM_GetCardTypeByAppType_Instance
-功能描述  : FDN状态查询接口
-输入参数  : enModemID:Modem ID
-            enAppType:应用类型
-输出参数  : pucCardStatus:卡服务状态
-            pucCardType:卡状态
-返 回 值  : VOS_OK/VOS_ERR
-修订记录  :
-1. 日    期   : 2015年2月11日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 USIMM_GetCardTypeByAppType_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     VOS_UINT8                          *pucCardStatus,
@@ -7022,19 +6703,7 @@ extern VOS_UINT32 USIMM_GetCardTypeByAppType_Instance(
     USIMM_CARDAPP_ENUM_UINT32           enAppType);
 
 
-/*****************************************************************************
-函 数 名  :USIMM_SaveHvteeVsimData
-功能描述  :保存共享内存中的VSIM数据
-输入参数  : ulDataLen: 数据长度
-            pucVsimData:数据内容
-输出参数  : 无
-返 回 值  : 无
 
-修订记录  :
-1.日    期  : 2014年10月09日
-  作    者  : 祝锂
-  修改内容  : Create
-*****************************************************************************/
 
 extern VOS_VOID USIMM_SaveHvteeVsimData(
     VOS_UINT32                          ulDataLen,

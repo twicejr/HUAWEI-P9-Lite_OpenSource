@@ -376,21 +376,7 @@ VOS_VOID CNAS_HSM_SndInternalConnMnmtResultInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSM_BuildHsmHrpdPaRatModeNtfMsg
- 功能描述  : 构造hsm hrpd pa rat mode ntf 消息
- 输入参数  : CAS_CNAS_HRPD_PA_RAT_MODE_NTF_STRU                     *pstCasHrpdPaRatModeNtf
- 输出参数  : CNAS_HSM_HSM_HRPD_PA_RAT_MODE_NTF_STRU                 *pstHsmHrpdPaRatModeNtf
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月15日
-    作    者   : y00307564
-    修改内容   : 新生成函数，调用者保证收到的ID_CAS_CNAS_HRPD_PA_RAT_MODE_NTF中的enPaMode不为butt
-
-*****************************************************************************/
 VOS_VOID CNAS_HSM_BuildHsmHrpdPaRatModeNtfMsg(
     CAS_CNAS_HRPD_PA_RAT_MODE_NTF_STRU                     *pstCasHrpdPaRatModeNtf,
     CNAS_HSM_HSM_HRPD_PA_RAT_MODE_NTF_STRU                 *pstHsmHrpdPaRatModeNtf

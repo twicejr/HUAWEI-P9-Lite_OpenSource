@@ -236,16 +236,7 @@ VOS_VOID IMSA_CallEntityUpdateByCallSummary(IMSA_CALL_ENTITY_STRU *pstCallEntity
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallDtmfInfoInit
- Description    : 初始化DTMF信息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310     2013-12-06  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallDtmfInfoInit(VOS_VOID)
 {
     VOS_UINT8                          ucIndex = 0;
@@ -331,16 +322,7 @@ TAF_CS_CAUSE_ENUM_UINT32 IMSA_CallSaveDtmfInfo(VOS_UINT8 ucCallId,
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CallDeleteSavedDtmfInfo
- Description    : 删除缓存中ucIndex标识的DTMF信息
- Input          : ucIndex 数组下标
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310     2013-12-06  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallDeleteSavedDtmfInfo(VOS_UINT8 ucIndex)
 {
     VOS_UINT8 i = 0;
@@ -367,16 +349,7 @@ VOS_VOID IMSA_CallDeleteSavedDtmfInfo(VOS_UINT8 ucIndex)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallClearDtmfInfo
- Description    : 清除DTMF信息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.xiongxianghui 00253310     2013-12-06  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallClearDtmfInfo(TAF_CS_CAUSE_ENUM_UINT32 enCause)
 {
     IMSA_CALL_MANAGER_STRU            *pstCallCtx  = IMSA_CallCtxGet();
@@ -450,16 +423,7 @@ VOS_VOID IMSA_CallClearDtmfInfo(TAF_CS_CAUSE_ENUM_UINT32 enCause)
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSrvccSuccClearDtmfInfo
- Description    : SRVCC成功时清除DTMF信息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010     2014-01-04  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallSrvccSuccClearDtmfInfo(TAF_CS_CAUSE_ENUM_UINT32 enCause)
 {
     IMSA_CALL_MANAGER_STRU            *pstCallCtx  = IMSA_CallCtxGet();
@@ -700,17 +664,7 @@ VOS_VOID  IMSA_CallRcvImsStopDtmfOk( VOS_VOID )
 
     return;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgOKOrERRORToSpmSupsCmreq
- Description    : IMS REASON OK消息的处理
- Input          : ulFindOpidResult----------IMSA_CallImsMsgFind执行结果
-                  pstOutputCallEvent--------IMS OUTPUT CALL消息指针
- Output         : VOS_UINT32
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2014-07-08  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallProcImsMsgOKOrERRORToSpmSupsCmreq
 (
     VOS_VOID
@@ -775,17 +729,7 @@ VOS_VOID IMSA_CallProcImsMsgOKOrERRORToSpmSupsCmreq
     }
     return;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgOKWhenFindOpidSucc
- Description    : IMS REASON OK消息的处理
- Input          : ulFindOpidResult----------IMSA_CallImsMsgFind执行结果
-                  pstOutputCallEvent--------IMS OUTPUT CALL消息指针
- Output         : VOS_UINT32
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2014-07-08  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgOKWhenFindOpidSucc
 (
     const IMSA_IMS_OUTPUT_CALL_EVENT_STRU  *pstOutputCallEvent
@@ -886,17 +830,7 @@ VOS_UINT32 IMSA_CallProcImsMsgOKWhenFindOpidSucc
     return ulResult;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgOk
- Description    : IMS REASON OK消息的处理
- Input          : pstOutputCallEvent      D2输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-12-23  Moidfy:Redail
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgOk(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent)
 {
     VOS_UINT32                          ulResult        = VOS_FALSE;
@@ -934,18 +868,7 @@ VOS_UINT32 IMSA_CallProcImsMsgOk(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutpu
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallEntitySaveErrorInfo
- Description    : 如果D2携带Reason Description，则进行解析并保存在呼叫实体中
- Input          : pstCallEntity         呼叫实体
-                  pstOutputCallEvent      D2输出事件
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.liuhua 212067      2013-07-20  Draft Enact
-      2.lihong 00150010    2013-10-09  Modify
-*****************************************************************************/
 VOS_VOID IMSA_CallEntitySaveErrorInfo
 (
     IMSA_CALL_ENTITY_STRU                  *pstCallEntity,
@@ -1056,16 +979,7 @@ VOS_VOID  IMSA_CallRcvImsStartDtmfError( VOS_VOID )
 
     return;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallRcvImsOrigReqError
- Description    : Orig Req失败处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2014-07-24  Draft Enact
-*****************************************************************************/
 VOS_VOID  IMSA_CallRcvImsOrigReqError
 (
     const IMSA_IMS_OUTPUT_CALL_EVENT_STRU  *pstOutputCallEvent
@@ -1131,18 +1045,7 @@ VOS_VOID  IMSA_CallRcvImsOrigReqError
     return;
 }
 
-/* lihong00150010 2014-04-21 降全复杂度 begin */
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgError
- Description    : IMS REASON ERROR消息的处理
- Input          : ulFindOpidResult----------IMSA_CallImsMsgFind执行结果
-                  pstOutputCallEvent--------IMS OUTPUT CALL消息指针
- Output         : VOS_UINT32
- Return Value   : 处理结果
 
- History        :
-      1.lihong 00150010    2014-04-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgErrorWhenFindOpidSucc
 (
     const IMSA_IMS_OUTPUT_CALL_EVENT_STRU  *pstOutputCallEvent,
@@ -1283,18 +1186,7 @@ VOS_UINT32 IMSA_CallProcImsMsgErrorWhenFindOpidSucc
     return ulResult;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgError
- Description    : IMS REASON ERROR消息的处理
- Input          : pstOutputCallEvent      D2输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 0015001     2013-09-30  Modify
-      3.lihong 00150010    2013-12-23  Moidfy:Redail
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgError(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent)
 {
     IMSA_CALL_ENTITY_STRU              *pstCallEntity   = VOS_NULL_PTR;
@@ -1329,7 +1221,6 @@ VOS_UINT32 IMSA_CallProcImsMsgError(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOu
 
     return IMSA_CallProcImsMsgErrorWhenFindOpidSucc(pstOutputCallEvent, ulResult);
 }
-/* lihong00150010 2014-04-21 降全复杂度 end */
 
 /*****************************************************************************
  Function Name  : IMSA_CallProcImsMsgIncoming
@@ -1428,19 +1319,7 @@ VOS_VOID IMSA_CallSetSpmEmergencyCat(const IMSA_IMS_EMERGENCY_TYPE_ENUM_UINT8 Em
     }
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallEntityProcErrorInfo380ForNormal
- Description    : 正常呼叫被380拒绝的处理
- Input          : pstCallEntity      呼叫实体
-                  pstImsError        错误信息
- Output         : VOS_UINT32
- Return Value   : 处理结果:0表示不发RELEASED事件，1表示发RELEASED事件
 
- History        :
-      1.liuhua 212067      2013-07-25  Draft Enact
-      2.lihong 00150010    2013-09-02  Modify
-      3.wangchen 00209181  2014-12-09  Modify:DTS2014112906255
-*****************************************************************************/
 VOS_UINT32 IMSA_CallEntityProcErrorInfo380ForNormal(IMSA_CALL_ENTITY_STRU *pstCallEntity, const IMSA_IMS_CALL_ERROR_STRU *pstImsError)
 {
     IMSA_CALL_MANAGER_STRU             *pstCallCtx = IMSA_CallCtxGet();
@@ -1602,19 +1481,7 @@ VOS_UINT32 IMSA_CallEntityProcErrorInfo380ForNormal(IMSA_CALL_ENTITY_STRU *pstCa
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallEntityProcErrorInfo380ForEmc
- Description    : 紧急呼叫被380拒绝的处理
- Input          : pstCallEntity      呼叫实体
-                  pstImsError        错误信息
- Output         : VOS_UINT32
- Return Value   : 处理结果:0表示不发RELEASED事件，1表示发RELEASED事件
 
- History        :
-      1.liuhua 212067      2013-07-25  Draft Enact
-      2.lihong 00150010    2013-09-02  Modify
-      3.wangchen 00209181   2014-12-09 Modify:DTS2014112906255
-*****************************************************************************/
 VOS_UINT32 IMSA_CallEntityProcErrorInfo380ForEmc
 (
     IMSA_CALL_ENTITY_STRU        *pstCallEntity,
@@ -1687,18 +1554,7 @@ VOS_UINT32 IMSA_CallEntityProcErrorInfo380ForEmc
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallEntityProcErrorInfo380ForEmc
- Description    : 呼叫被380拒绝的处理
- Input          : pstCallEntity      呼叫实体
-                  pstImsError        错误信息
- Output         : VOS_UINT32
- Return Value   : 处理结果:0表示不发RELEASED事件，1表示发RELEASED事件
 
- History        :
-      1.liuhua 212067      2013-07-25  Draft Enact
-      2.lihong 00150010    2013-09-02  Modify
-*****************************************************************************/
 VOS_UINT32 IMSA_CallEntityProcErrorInfo380(IMSA_CALL_ENTITY_STRU *pstCallEntity, const IMSA_IMS_CALL_ERROR_STRU *pstImsError)
 {
     VOS_UINT32 ulResult = VOS_TRUE;
@@ -1778,17 +1634,7 @@ VOS_UINT32 IMSA_CallEntityProcErrorInfo504(IMSA_CALL_ENTITY_STRU *pstCallEntity,
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcErrorInfo
- Description    : 根据服务器返回的错误信息进行处理
- Input          : pstCallEntity      呼叫实体
- Output         : VOS_VOID
- Return Value   : 处理结果:0表示不发RELEASED事件，1表示发RELEASED事件
 
- History        :
-      1.liuhua 212067      2013-07-20  Draft Enact
-      2.lihong 00150010    2013-09-02  Modify
-*****************************************************************************/
 VOS_UINT32 IMSA_CallEntityProcErrorInfo(IMSA_CALL_ENTITY_STRU *pstCallEntity, const IMSA_IMS_CALL_ERROR_STRU *pstImsError)
 {
     VOS_UINT32 ulResult = VOS_TRUE;
@@ -1817,17 +1663,7 @@ VOS_UINT32 IMSA_CallEntityProcErrorInfo(IMSA_CALL_ENTITY_STRU *pstCallEntity, co
     return ulResult;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallTransImsErr2SpmErr
- Description    : 将IMS错误原因值转化为SPM错误原因值
- Input          : ulImsErr-------------------IMS错误原因值
- Output         : VOS_VOID
- Return Value   : TAF_CS_CAUSE_ENUM_UINT32
 
- History        :
-      1.lihong      00150010    2013-09-02  Draft Enact
-      2.leixiantiao 00258641    2015-12-11  for DTS2015121609605
-*****************************************************************************/
 TAF_CS_CAUSE_ENUM_UINT32 IMSA_CallTransImsErr2SpmErr
 (
     const IMSA_IMS_OUTPUT_ERROR_STRU              *pstErrorCode
@@ -1881,17 +1717,7 @@ TAF_CS_CAUSE_ENUM_UINT32 IMSA_CallTransImsErr2SpmErr
     return enSpmErr;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallIsExitMoNormalCall
- Description    : 释放CALL的公共处理
- Input          : pstCallEntity----------CALL实体指针
-                  ulResult---------------原因值
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallIsExitMoNormalCall()
 {
     IMSA_CALL_MANAGER_STRU             *pstCallCtx  = IMSA_CallCtxGet();
@@ -1911,17 +1737,7 @@ VOS_UINT32 IMSA_CallIsExitMoNormalCall()
     return IMSA_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallIsExitMoNormalCall
- Description    : 释放CALL的公共处理
- Input          : pstCallEntity----------CALL实体指针
-                  ulResult---------------原因值
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallIsExitEmcCall()
 {
     IMSA_CALL_MANAGER_STRU             *pstCallCtx  = IMSA_CallCtxGet();
@@ -1940,17 +1756,7 @@ VOS_UINT32 IMSA_CallIsExitEmcCall()
     }
     return IMSA_FALSE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallIsExitMoNormalCall
- Description    : 释放CALL的公共处理
- Input          : pstCallEntity----------CALL实体指针
-                  ulResult---------------原因值
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallIsExitMtCall()
 {
     IMSA_CALL_MANAGER_STRU             *pstCallCtx  = IMSA_CallCtxGet();
@@ -1968,17 +1774,7 @@ VOS_UINT32 IMSA_CallIsExitMtCall()
     }
     return IMSA_FALSE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallReleaseMtCallBeforSendToSpm
- Description    : 释放CALL的公共处理
- Input          : pstCallEntity----------CALL实体指针
-                  ulResult---------------原因值
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181    2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallReleaseMtCallBeforSendToSpm
 (
     IMSA_CALL_ENTITY_STRU              *pstCallEntity
@@ -2015,18 +1811,7 @@ VOS_VOID IMSA_CallReleaseMtCallBeforSendToSpm
     #endif
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallReleaseCallCommonProc
- Description    : 释放CALL的公共处理
- Input          : pstCallEntity----------CALL实体指针
-                  ulResult---------------原因值
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.lihong 00150010    2013-09-29  Draft Enact
-      2.sunbing 49683      2013-10-16  Modify for SRVCC
-*****************************************************************************/
 VOS_VOID IMSA_CallReleaseCallCommonProc
 (
     IMSA_CALL_ENTITY_STRU              *pstCallEntity,
@@ -2108,17 +1893,7 @@ VOS_VOID IMSA_CallReleaseCallCommonProc
     #endif
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallClearLocalAlertInfo
- Description    : 启动HIFI后，清除本地振铃信息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.sunbing 49683      2013-10-11  Draft Enact
-      2.wangchen 00209181   2015-07-30 Modify:DTS2015072500342
-*****************************************************************************/
 VOS_VOID IMSA_CallClearLocalAlertInfo(VOS_VOID )
 {
     VOS_UINT32 i = 0;
@@ -2137,16 +1912,7 @@ VOS_VOID IMSA_CallClearLocalAlertInfo(VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallIsNeedCsRedialSrvccSucc
- Description    : 判断SRVCC成功后此CALL是否有可能到CS域重播
- Input          : pstCallEntity----------CALL实体指针
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.lihong 00150010    2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallIsNeedCsRedialSrvccSucc
 (
     const IMSA_CALL_ENTITY_STRU        *pstCallEntity
@@ -2170,17 +1936,7 @@ VOS_UINT32 IMSA_CallIsNeedCsRedialSrvccSucc
 
     return IMSA_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallIsResourceReady
- Description    : 判断呼叫所需要的资源是否已经预留成功
- Input          : pstCallEntity----------CALL实体指针
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2014-06-23  Draft Enact
-      2.wangchen 00209181   2015-03-17  Modify:volte
-*****************************************************************************/
 IMSA_CALL_CALL_REASON_RESOURCE_RESULT_ENUM_UINT8 IMSA_CallIsResourceReady
 (
     IMSA_CALL_ENTITY_STRU              *pstCallEntity
@@ -2214,16 +1970,7 @@ IMSA_CALL_CALL_REASON_RESOURCE_RESULT_ENUM_UINT8 IMSA_CallIsResourceReady
     return IMSA_CALL_CALL_REASON_RESOURCE_FAILED;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallFindCauseInRedialCauseList
- Description    : 在IMS域内重播原因值列表中查找某原因值
- Input          : usSipStatusCode--------------SIP原因值
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010    2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallFindCauseInRedialCauseList
 (
     VOS_UINT16                          usSipStatusCode
@@ -2245,17 +1992,7 @@ VOS_UINT32 IMSA_CallFindCauseInRedialCauseList
     return IMSA_FAIL;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallIsNeedRedial
- Description    : 判定是否需要重播
- Input          : pstCallEntity-----------CALL实体指针
-                  usSipStatusCode---------SIP原因值
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010    2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallIsNeedRedial
 (
     const IMSA_CALL_ENTITY_STRU        *pstCallEntity,
@@ -2339,19 +2076,7 @@ VOS_UINT32 IMSA_CallIsNeedRedial
 
     return IMSA_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgDisconnect
- Description    : IMS DISCONNECT事件的处理
- Input          : pstOutputCallEvent      输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-09-02  Modify
-      3.lihong 00150010    2013-12-20  Modify:SRVCC Buffer and Redial
-      4.wangchen 00209181  2014-12-09  Modify:DTS2014112906255
-*****************************************************************************/
 VOS_VOID IMSA_CallProcImsMsgDisconnectNoErrInfo
 (
     IMSA_CALL_ENTITY_STRU              *pstCallEntity
@@ -2429,6 +2154,10 @@ VOS_VOID IMSA_CallProcImsMsgDisconnectNoErrInfo
                                 VOS_FALSE);
         #endif
     }
+    else if (IMSA_TRUE == pstCallEntity->ucSipLostRelCallFlag)
+    {
+        enSpmErr = TAF_CS_CAUSE_IMSA_RETRY_VIA_CS;
+    }
     else if (IMSA_TRUE == pstCallEntity->ucIsImsaRelCallFlag)
     {
         enSpmErr = TAF_CS_CAUSE_IMSA_ERROR;
@@ -2448,19 +2177,7 @@ VOS_VOID IMSA_CallProcImsMsgDisconnectNoErrInfo
     return;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgDisconnect
- Description    : IMS DISCONNECT事件的处理
- Input          : pstOutputCallEvent      输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-09-02  Modify
-      3.lihong 00150010    2013-12-20  Modify:SRVCC Buffer and Redial
-      4.wangchen 00209181  2014-12-09  Modify:DTS2014112906255
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgDisconnect
 (
     const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent
@@ -2595,16 +2312,7 @@ VOS_UINT32 IMSA_CallProcImsMsgWaiting(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pst
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcMocallImsMsgInitializing
- Description    : IMS 初始化事件的处理
- Input          : pstOutputCallEvent      输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcMocallImsMsgInitializing
 (
     const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent,
@@ -2665,16 +2373,7 @@ VOS_UINT32 IMSA_CallProcMocallImsMsgInitializing
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcMocallImsMsgInitializing
- Description    : IMS 初始化事件的处理
- Input          : pstOutputCallEvent      输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcMtcallImsMsgInitializing
 (
     const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent
@@ -2790,19 +2489,7 @@ VOS_UINT32 IMSA_CallProcMtcallImsMsgInitializing
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgInitializing
- Description    : IMS 初始化事件的处理
- Input          : pstOutputCallEvent      输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-12-06  Modify:Emc dedicated
-      3.lihong 00150010    2013-12-23  Modify:Redail
-      4.wangchen 00209181  2014-12-09  Modify:DTS2014112906255
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgInitializing(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent)
 {
     IMSA_CALL_ENTITY_STRU              *pstCallEntity = VOS_NULL_PTR;
@@ -3204,16 +2891,7 @@ VOS_UINT32 IMSA_CallProcImsMsgEmergencyInd(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgModifyInd
- Description    : IMS 通知对端请求发起voice<->video的切换
- Input          : pstOutputCallEvent      输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181 2014-06-19   Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgModifyStatusInd(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent)
 {
     IMSA_SPM_CALL_MODIFY_STATUS_IND_STRU  *pstModifyStatusInd = VOS_NULL_PTR;
@@ -3267,16 +2945,7 @@ VOS_UINT32 IMSA_CallProcImsMsgModifyStatusInd(const IMSA_IMS_OUTPUT_CALL_EVENT_S
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgModifyInd
- Description    : IMS 响应UE发起的voice<->video的切换
- Input          : pstOutputCallEvent      输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181 2014-06-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgModifyStatusBegin(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent)
 {
     IMSA_SPM_CALL_MODIFY_STATUS_IND_STRU  *pstModifyStatusInd = VOS_NULL_PTR;
@@ -3328,16 +2997,7 @@ VOS_UINT32 IMSA_CallProcImsMsgModifyStatusBegin(const IMSA_IMS_OUTPUT_CALL_EVENT
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgModifyInd
- Description    : IMS 响应UE发起的voice<->video的切换
- Input          : pstOutputCallEvent      输出事件
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181 2014-06-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgModifyStatusEnd(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent)
 {
     IMSA_SPM_CALL_MODIFY_STATUS_IND_STRU  *pstModifyStatusInd = VOS_NULL_PTR;
@@ -3408,17 +3068,7 @@ VOS_UINT32 IMSA_CallProcImsMsgModifyStatusEnd(const IMSA_IMS_OUTPUT_CALL_EVENT_S
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsMsgEconfNotifyInd
- Description    : IMS 增强型多方通话的notify消息的处理
- Input          : pstCallEntity      对应的IMSA呼叫实体
-                  pstCallSummary     对应的D2呼叫信息
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181   2014-12-15  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsMsgEconfNotifyInd(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent)
 {
     IMSA_CALL_ENTITY_STRU                   *pstCallEntity = VOS_NULL_PTR;
@@ -3566,16 +3216,7 @@ VOS_UINT32 IMSA_CallProcImsMsgMtBegin(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pst
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallIsProccessCallSwap
- Description    : 判断当前是否正在执行CALL SWAP操作
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : 如果是则返回VOS_TRUE, 否者返回VOS_FALSE
 
- History        :
-      1.liuhua 212067      2013-07-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallIsProccessCallSwap(VOS_VOID)
 {
     IMSA_CALL_MANAGER_STRU *pstCallCtx = IMSA_CallCtxGet();
@@ -3617,16 +3258,7 @@ VOS_UINT32 IMSA_CallIsAllCallOnHold(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOu
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallIsAllCallInConference
- Description    : D2上报的所有呼叫都在会议里
- Input          : pstOutputCallEvent      D2输出事件
- Output         : VOS_VOID
- Return Value   : 如果是，则返回VOS_TRUE;如果不是，则返回VOS_FALSE
 
- History        :
-      1.lihong 00150010      2013-08-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallIsAllCallInConference(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *pstOutputCallEvent)
 {
     VOS_UINT32 i = 0;
@@ -3749,18 +3381,7 @@ TAF_CALL_ECONF_STATE_ENUM_U8 IMSA_EconfImsState2CsState(IMSA_IMS_ECONF_CALLER_ST
     return enNewState;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsStateActive
- Description    : IMS 呼叫状态(active)的处理
- Input          : pstCallEntity      对应的IMSA呼叫实体
-                  pstCallSummary     对应的D2呼叫信息
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-12-23  Modify
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsStateActive(IMSA_CALL_ENTITY_STRU *pstCallEntity, const IMSA_IMS_CALL_SUMMARY_STRU *pstCallSummary)
 {
     IMSA_CALL_STATUS_ENUM_UINT8         enPreStatus = IMSA_CALL_STATUS_BUTT;
@@ -3974,18 +3595,7 @@ VOS_UINT32 IMSA_CallProcImsStateHeld(IMSA_CALL_ENTITY_STRU *pstCallEntity, const
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsStateTrying
- Description    : IMS 呼叫状态(trying)的处理
- Input          : pstCallEntity      对应的IMSA呼叫实体
-                  pstCallSummary     对应的D2呼叫信息
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.wangchen 00209181  2015-07-02   Modify:非中移动定制版本也启动TCALL，所以需要删除中移动定制条件
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsStateTrying(IMSA_CALL_ENTITY_STRU *pstCallEntity, const IMSA_IMS_CALL_SUMMARY_STRU *pstCallSummary)
 {
     IMSA_CALL_STATUS_ENUM_UINT8 enPreStatus = IMSA_CALL_STATUS_BUTT;
@@ -4091,18 +3701,7 @@ VOS_UINT32 IMSA_CallProcImsStateDialing(IMSA_CALL_ENTITY_STRU *pstCallEntity, co
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsStateAlerting
- Description    : IMS 呼叫状态(alerting)的处理
- Input          : pstCallEntity      对应的IMSA呼叫实体
-                  pstCallSummary     对应的D2呼叫信息
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-12-23  Modify
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsStateAlerting(IMSA_CALL_ENTITY_STRU *pstCallEntity, const IMSA_IMS_CALL_SUMMARY_STRU *pstCallSummary)
 {
     IMSA_CALL_STATUS_ENUM_UINT8         enPreStatus = IMSA_CALL_STATUS_BUTT;
@@ -4172,14 +3771,12 @@ VOS_UINT32 IMSA_CallProcImsStateAlerting(IMSA_CALL_ENTITY_STRU *pstCallEntity, c
         {
             IMSA_CallSendSpmLocalAlertingInd(MN_CLIENT_ID_BROADCAST, VOS_TRUE);
         }
-        /* lihong00150010 上报网络放音导致AT修改CODEC类型问题 begin */
         else
         {
             /* IMSA_CallSendSpmLocalAlertingInd(MN_CLIENT_ID_BROADCAST, VOS_FALSE); */
             IMSA_INFO_LOG("IMSA_CallProcImsStateAlerting: do not send ID_IMSA_SPM_CHANNEL_INFO_IND");
             TLPS_PRINT2LAYER_INFO(IMSA_CallProcImsStateAlerting_ENUM, 2);
         }
-        /* lihong00150010 上报网络放音导致AT修改CODEC类型问题 end */
 
         /* 通知SPM */
         (VOS_VOID)IMSA_CallSendSpmStateEvt( pstCallEntity->ucSpmcallId,
@@ -4200,18 +3797,7 @@ VOS_UINT32 IMSA_CallProcImsStateAlerting(IMSA_CALL_ENTITY_STRU *pstCallEntity, c
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsStateIncoming
- Description    : IMS 呼叫状态(incoming)的处理
- Input          : pstCallEntity      对应的IMSA呼叫实体
-                  pstCallSummary     对应的D2呼叫信息
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-12-23  Modify:Redial
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsStateIncoming(IMSA_CALL_ENTITY_STRU *pstCallEntity, const IMSA_IMS_CALL_SUMMARY_STRU *pstCallSummary)
 {
     VOS_UINT32                          ulResult            = VOS_TRUE;
@@ -4346,25 +3932,36 @@ VOS_UINT32 IMSA_CallProcImsStateWaiting(IMSA_CALL_ENTITY_STRU *pstCallEntity, co
     return IMSA_CallProcImsStateIncoming(pstCallEntity, pstCallSummary);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsStateInitializing
- Description    : IMS 呼叫状态(initializing)的处理
- Input          : pstCallEntity      对应的IMSA呼叫实体
-                  pstCallSummary     对应的D2呼叫信息
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcImsStateInitializing(IMSA_CALL_ENTITY_STRU *pstCallEntity, const IMSA_IMS_CALL_SUMMARY_STRU *pstCallSummary)
 {
-    /**
-     * 暂不处理，逻辑均在INITIALIZING EVENT中进行
-     */
+    /* 视频被叫，UE收到invite消息类型为视频，在收到update消息时，检测到呼叫类型
+       发生变化，需要给IMSA发送CALL LIST，呼叫状态为IMSA_IMS_CALL_STATE_INITIALIZING，
+       呼叫类型根据update填写 */
+    IMSA_CALL_MANAGER_STRU *pstCallCtx = IMSA_CallCtxGet();
 
-    (VOS_VOID)pstCallEntity;
-    (VOS_VOID)pstCallSummary;
+    /* 如果没有找到对应的呼叫实体，直接返回失败 */
+    if (VOS_NULL_PTR == pstCallEntity)
+    {
+        return VOS_FALSE;
+    }
+
+    /* 判断呼叫类型是否改变 */
+    if (pstCallEntity->enType != (IMSA_CALL_TYPE_ENUM_UINT8)pstCallSummary->enCallMode)
+    {
+        /* 更新呼叫类型 */
+        pstCallEntity->enType = (IMSA_CALL_TYPE_ENUM_UINT8)pstCallSummary->enCallMode;
+
+        /* 判断是否通知资源预留结果 */
+        if (IMSA_CALL_CALL_REASON_RESOURCE_READY == IMSA_CallIsResourceReady(pstCallEntity))
+        {
+            (VOS_VOID)IMSA_CallSendImsMsgResRsp(pstCallEntity->ucImscallId,
+                                                pstCallEntity->ulResRspOpId,
+                                                IMSA_CALL_CALL_REASON_RESOURCE_READY);
+
+            IMSA_StopTimer(&pstCallCtx->stResReadyTimer);
+        }
+    }
 
     return VOS_TRUE;
 }
@@ -4487,16 +4084,7 @@ VOS_UINT32 IMSA_CallProcImsMsgCallList(const IMSA_IMS_OUTPUT_CALL_EVENT_STRU *ps
     return ulResult;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallImsSupsrvInfo2TafSupsrvInfo
- Description    : IMS 补充业务类型到 TAF补充业务类型映射
- Input          : enSupsrvNotification   IMS补充业务类型
- Output         :
- Return Value   : 映射补充业务类型
 
- History        :
-      1.wangchen 00209181   2013-12-19  Draft Enact
-*****************************************************************************/
 MN_CALL_SS_NOTIFY_CODE_ENUM_U8 IMSA_CallImsSupsrvInfo2TafSupsrvInfo
 (
     IMSA_IMS_SUPSRV_CALL_NOTICE_ENUM_UINT32 enSupsrvNotification
@@ -4554,17 +4142,7 @@ MN_CALL_SS_NOTIFY_CODE_ENUM_U8 IMSA_CallImsSupsrvInfo2TafSupsrvInfo
 
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcImsSupsrvInfo()
- Description    : IMS补充业务的事件处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.wangchen 00209181   2013-12-19  Draft Enact
-      2.wangchen 00209181   2014-12-01  Modify:DTS2014112906255
-*****************************************************************************/
 VOS_VOID IMSA_CallProcImsSupsrvInfo
 (
     const IMSA_IMS_CALL_SUPSRV_INFO_STRU  *pstSupsrvInfo,
@@ -4638,17 +4216,7 @@ VOS_VOID IMSA_ImsMsgCallEvent(VOS_VOID *pCallEvent)
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- Function Name  : IMSA_CallReleaseCallResourceCommonProc
- Description    : 释放CALL的公共处理
- Input          : pstCallEntity----------CALL实体指针
-                  ulResult---------------原因值
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-       1.wangchen 00209181   2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallReleaseCallResourceCommonProc(VOS_VOID)
 {
     if (PS_RRM_RF_SHARED != IMSA_Dsds_RRM_RfResourceIsShared())

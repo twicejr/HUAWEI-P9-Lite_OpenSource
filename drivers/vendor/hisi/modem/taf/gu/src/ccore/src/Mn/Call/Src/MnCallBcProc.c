@@ -1,40 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallBcProc.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2006年12月1日
-  最近修改   : 2006年12月1日
-  功能描述   : 实现CS呼叫中承载能力相关参数的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年12月09日
-    作    者   : s62952
-    修改内容   :根据问题单AT2D06968
-  3.日    期   : 2009年05月06日
-    作    者   : s62952
-    修改内容   :根据问题单AT2D11585
-  4.日    期   : 2009年05月14日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D11670, 执行GCF 协议用例8.2.4.1.cs 由于NAS cc setup消息填充与脚本不匹配导致用例inconclusive
-  5.日    期   : 2009年12月6日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D15311,增加手机支持的能力,半速率和AMR
-
-  6.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  7.日    期   : 2010年4月7日
-    作    者   : zhoujun /z40661
-    修改内容   : 可配置当前CODEC类型
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -50,10 +14,8 @@
 #include "MnCallCtx.h"
 #include "MnCallProcNvim.h"
 
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, begin */
 #include "NasNvInterface.h"
 #include "TafNvInterface.h"
-/* Added by l00167671 for NV拆分项目 , 2013-05-17, end*/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -287,22 +249,7 @@ LOCAL MN_CALL_BC_FIELD_INFO_STRU    f_astMnCallBcFldInfo[MN_CALL_BC_NUM_OF_FIELD
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_IsCodecTypeValid
- 功能描述  : 判断当前的参数是否合法
- 输入参数  : ucCodecType    - 当前的codec类型是否合法
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:合法
-              VOS_FALSE:非法
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  MN_CALL_IsCodecTypeValid(
     VOS_UINT8                           ucCodecType
 )
@@ -321,22 +268,7 @@ VOS_UINT32  MN_CALL_IsCodecTypeValid(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_IsUmtsCodecTypeValid
- 功能描述  : 判断UMTS的codec类型是否合法
- 输入参数  : ucUmtsCodecType:UMTS的codec类型
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:合法
-             VOS_FALSE:非法
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月25日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  MN_CALL_IsUmtsCodecTypeValid(
     VOS_UINT8                           ucUmtsCodecType
 )
@@ -351,24 +283,7 @@ VOS_UINT32  MN_CALL_IsUmtsCodecTypeValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GsmCapaProcInit
- 功能描述  : 2G下支持的语音能力初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月25日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月22日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-
-*****************************************************************************/
 VOS_VOID  MN_CALL_GsmCapaProcInit( VOS_VOID )
 {
     /* 初始化语音编码版本列表 */
@@ -427,24 +342,7 @@ VOS_VOID  MN_CALL_GsmCapaProcInit( VOS_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UmtsCapaProcInit
- 功能描述  : 3G下支持的语音能力初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月25日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月222日
-    作    者   : j00177245
-    修改内容   : 清理Coverity
-
-*****************************************************************************/
 VOS_VOID  MN_CALL_UmtsCapaProcInit( VOS_VOID )
 {
     MN_CALL_UMTS_CODEC_TYPE_STRU        stCodecType;
@@ -499,41 +397,7 @@ VOS_VOID  MN_CALL_UmtsCapaProcInit( VOS_VOID )
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CapaProcInit
- 功能描述  : 初始化Capability Proc模块。主要是初始化语音编码版本列表和
-             BC字段信息列表。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2008年12月09日
-    作    者   : s62952
-    修改内容   :根据问题单AT2D06968
- 3.日    期   : 2009年05月06日
-    作    者   : s62952
-    修改内容   :根据问题单AT2D11585
- 4.日    期   : 2009年06月23日
-    作    者   : z00161729
-    修改内容   :根据问题单DTS2010062200036,修改支持的语音编码版本顺序
-
- 5.日    期   : 2012年2月9日
-   作    者   : z40661
-   修改内容   : 将语音能力和优先级写入NVIM中，支持后续扩展
- 6.日    期   : 2012年8月10日
-   作    者   : L00171473
-   修改内容   : DTS2012082204471, TQE清理
-
-  7.日    期   : 2012年9月25日
-    作    者   : z40661
-    修改内容   : DTS2012101809567,语音支持的能力需要区分G和W模式
-*****************************************************************************/
 VOS_VOID MN_CALL_CapaProcInit()
 {
     MN_CALL_GsmCapaProcInit();
@@ -545,21 +409,7 @@ VOS_VOID MN_CALL_CapaProcInit()
 } /* MN_CALL_CapaProcInit */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ConfigGsmCapaProc
- 功能描述  : 可配置当前CODEC类型
- 输入参数  : enCapaConfig  - 当前需要配置的GSM支持的CODEC类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32 - 设置成功或失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月7日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_ConfigGsmCapaProc(
     NAS_OM_GSM_CODEC_CONFIG_ENUM_U8     enCapaConfig
 )
@@ -628,24 +478,7 @@ VOS_UINT32 MN_CALL_ConfigGsmCapaProc(
     return ulRlst;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ConvertMnCodecToOmCodec
- 功能描述  : 将GSM当前使用的Codec类型，转换为Om接口中的类型
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回转换后的参数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月17日
-    作    者   : l00130025
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 增加AMR-WB
-*****************************************************************************/
 NAS_OM_CURR_CODEC_TYPE_ENUM_U8  MN_CALL_ConvertMnCodecToOmCodec(
     MN_CALL_CODEC_TYPE_ENUM_U8          enCodecType
 )
@@ -687,24 +520,7 @@ NAS_OM_CURR_CODEC_TYPE_ENUM_U8  MN_CALL_ConvertMnCodecToOmCodec(
     return enCurrentOmCodecType;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_Convet
- 功能描述  : 将GSM支持的语音版本转换为FR，HR，EFR，AMR等
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回转换后的参数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年4月9日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 增加支持AMR-WB功能
-*****************************************************************************/
 NAS_OM_GSM_CODEC_CONFIG_ENUM_U8  MN_CALL_ConvertSpeechVers(VOS_VOID )
 {
     VOS_UINT32                          i = 0;
@@ -747,21 +563,7 @@ NAS_OM_GSM_CODEC_CONFIG_ENUM_U8  MN_CALL_ConvertSpeechVers(VOS_VOID )
     return enGsmCodecConfig;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BcIsValueSupported
- 功能描述  : 判断某个BC字段是否支持某个特定的值
- 输入参数  : enFldName - 字段名称
-              ucValue   - 需要判断的值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE表示支持，VOS_FALSE表示不支持
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_CALL_BcIsValueSupported(
     MN_CALL_BC_FLD_NAME_ENUM            enFldName,
     VOS_UINT8                           ucValue
@@ -769,9 +571,7 @@ VOS_UINT32 MN_CALL_BcIsValueSupported(
 {
     VOS_UINT32 i;
 
-    /* Modified by z00234330 for PCLINT清理, 2014-07-07, begin */
     if (MN_CALL_BC_NUM_OF_FIELD <= enFldName)
-    /* Modified by z00234330 for PCLINT清理, 2014-07-07, end */
     {
         /* 字段名错误 */
         return VOS_FALSE;
@@ -798,25 +598,7 @@ VOS_UINT32 MN_CALL_BcIsValueSupported(
 } /* MN_CALL_BcIsValueSupported */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetInfoFromBstSpeed
- 功能描述  : 从CBST设置的Speed参数中获取信息
- 输入参数  : enSpeed - 当前CBST设置的Speed参数
- 输出参数  : pucUserRate - User rate
-              pucFnur     - Fixed network user rate
-              pucVarParm  - 可变参数，不同的返回值表示不同的含义
- 返 回 值  : 可变参数的含义，详见MN_CALL_VAR_PARM_ENUM的定义
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2009年05月14日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D11670, 执行GCF 协议用例8.2.4.1.cs 由于NAS cc setup消息填充与脚本不匹配导致用例inconclusive
-*****************************************************************************/
 MN_CALL_VAR_PARM_ENUM  MN_CALL_GetInfoFromBstSpeed(
     MN_CALL_BST_SPEED_ENUM_UINT8        enSpeed,
     VOS_UINT8                           *pucUserRate,
@@ -1010,18 +792,7 @@ MN_CALL_VAR_PARM_ENUM  MN_CALL_GetInfoFromBstSpeed(
     }
 
 } /* MN_CALL_CcaGetInfoFromBstSpeed */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetRealSpeechVers
- 功能描述  : 获得真实的SpeechVers
- 输入参数  : bIsSupportTTYModeFlg   --是否支持TTY MODE
- 输出参数  : pstSpeechVers
- 返 回 值  : VOS_VOID
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_GetRealSpeechVers(
     VOS_BOOL                            bIsSupportTTYModeFlg,
     MN_CALL_BC_SPEECH_VERS_STRU        *pstSpeechVers
@@ -1051,28 +822,7 @@ VOS_VOID TAF_CALL_GetRealSpeechVers(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BuildBcForSpeech
- 功能描述  : 构造语音业务的BC参数
- 输入参数  : 无
- 输出参数  : pstBc - 构造好的BC参数。
- 返 回 值  : 构造的结果，VOS_OK表示构造成功，VOS_ERR表示构造失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 增加ALS多线路支持
-
-  3.日    期   : 2015年2月7日
-    作    者   : w00316404
-    修改内容   : M项目TTY功能: 增加根据TTY MODE来置CTM标志位
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BuildBcForSpeech(
     NAS_CC_IE_BC_STRU                   *pstBc,
     MN_CALL_DIR_ENUM_U8                 enCallDir,
@@ -1082,7 +832,6 @@ VOS_UINT32  MN_CALL_BuildBcForSpeech(
     VOS_UINT32                          i;
     VOS_UINT8                           ucExtVal;
     NAS_CC_IE_BC_OCTET3B_STRU           *pstOctet3x = VOS_NULL_PTR;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     VOS_BOOL                            bIsSupportTTYModeFlg;
@@ -1093,7 +842,6 @@ VOS_UINT32  MN_CALL_BuildBcForSpeech(
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     if (f_stMnCallSphVers.ucCnt > MN_CALL_BC_MAX_SPH_VER_NUM)
     {
@@ -1104,7 +852,6 @@ VOS_UINT32  MN_CALL_BuildBcForSpeech(
     /* 设置存在BC参数 */
     NAS_IE_SET_PRESENT(pstBc);
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     /* 填写BC参数的Octet 3*/
     if (MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucAlsSupportFlg )
     {
@@ -1126,7 +873,6 @@ VOS_UINT32  MN_CALL_BuildBcForSpeech(
     {
         pstBc->Octet3.InfoTransCap = NAS_CC_ITC_SPEECH;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     pstBc->Octet3.TransferMode = MN_CALL_BC_FIXED_FLD_VAL(MN_CALL_BC_FLD_TRANS_MOD);
     pstBc->Octet3.CodingStd = MN_CALL_BC_FIXED_FLD_VAL(MN_CALL_BC_FLD_CODING_STD);
@@ -1185,20 +931,7 @@ VOS_UINT32  MN_CALL_BuildBcForSpeech(
 
 } /* MN_CALL_BuildBcForSpeech */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetWaiurFromFunr
- 功能描述  : 获取当前呼叫需要的空口用户速率；
- 输入参数  : NULL
- 输出参数  : NULL
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年7月10日
-    作    者   : 傅映君62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_CALL_GetWaiurFromFunr(
     VOS_UINT32                          ulFnur
 )
@@ -1257,27 +990,7 @@ VOS_UINT32 MN_CALL_GetWaiurFromFunr(
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BuildBcForData
- 功能描述  : 构造数据业务的BC参数
- 输入参数  : enTaMode - TA模式
-              pstDataCfg - 承载业务类型
- 输出参数  : pstBc - 构造好的BC参数。
- 返 回 值  : 构造BC的数目，0表示构造失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月21日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012052100994,拨打可视电话，发给网侧的承载类型不对
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BuildBcForData(
     MN_CALL_TA_MODE_ENUM_UINT8          enTaMode,
     const MN_CALL_CS_DATA_CFG_INFO_STRU *pstDataCfg,
@@ -1563,31 +1276,7 @@ VOS_UINT32  MN_CALL_BuildBcForData(
 } /* MN_CALL_BuildBcForData */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BuildBcOfSetup
- 功能描述  : 构造SETUP消息中的BC参数
- 输入参数  : enCallType - 本次呼叫的呼叫类型。如果呼叫模式不为single，则该参数为
-                       第一个业务的类型。
-              enCallMode - 本次呼叫的呼叫模式
-              enTaMode   - 本次呼叫的TA模式，只对数据呼叫有效。
-              pstBsType  - 本次呼叫的承载业务类型，只对数据呼叫有效。
- 输出参数  : pstBc1 - 第一个业务的承载能力。
-              pstBc2 - 第二个业务的承载能力，当呼叫模式不为single时，将输出该参数。
- 返 回 值  : 构造的BC参数的个数，可能的值为0、1、2，0表示构造失败。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月21日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012052100994,拨打可视电话，发给网侧的承载类型不对
-  3.日    期   : 2014年04月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature功能修改
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BuildBcOfSetup(
     MN_CALL_TYPE_ENUM_U8                enCallType,
     MN_CALL_MODE_ENUM_U8                enCallMode,
@@ -1603,23 +1292,19 @@ VOS_UINT32  MN_CALL_BuildBcOfSetup(
     switch(enCallType)
     {
     case MN_CALL_TYPE_VOICE:
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-5-13, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     case MN_CALL_TYPE_TEST:
     case MN_CALL_TYPE_RECFGURATION:
 #endif
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-5-13, end */
         /* 构造语音呼叫的BC参数 */
         ulRes = MN_CALL_BuildBcForSpeech(pstBc1,MN_CALL_DIR_MO,MN_CALL_TYPE_VOICE);
         break;
 
     case MN_CALL_TYPE_EMERGENCY:
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-5-13, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
     case MN_CALL_TYPE_MIEC:
     case MN_CALL_TYPE_AIEC:
 #endif
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-5-13, end */
         /* 构造紧急呼叫的BC参数 */
         ulRes = MN_CALL_BuildBcForSpeech(pstBc1,MN_CALL_DIR_MO,MN_CALL_TYPE_EMERGENCY);
         break;
@@ -1676,21 +1361,7 @@ VOS_UINT32  MN_CALL_BuildBcOfSetup(
 } /* MN_CALL_BuildBcOfSetup */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BcCompChkOct3
- 功能描述  : 对BC参数的Octet3, 3a及3b etc进行兼容性检查
- 输入参数  : pstBc - 要检查的BC参数
- 输出参数  : 无
- 返 回 值  : VOS_OK  - 兼容性检查通过
-             VOS_ERR - 兼容性检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BcCompChkOct3(
     const NAS_CC_IE_BC_STRU             *pstBc
 )
@@ -1709,21 +1380,7 @@ VOS_UINT32  MN_CALL_BcCompChkOct3(
 } /* MN_CALL_BcCompChkOct3 */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BcCompChkOct4
- 功能描述  : 对BC参数的Octet4进行兼容性检查
- 输入参数  : pstBc - 要检查的BC参数
- 输出参数  : 无
- 返 回 值  : VOS_OK  - 兼容性检查通过
-             VOS_ERR - 兼容性检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BcCompChkOct4(
     const NAS_CC_IE_BC_STRU             *pstBc
 )
@@ -1748,21 +1405,7 @@ VOS_UINT32  MN_CALL_BcCompChkOct4(
 } /* MN_CALL_BcCompChkOct4 */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BcCompChkOct5
- 功能描述  : 对BC参数的Octet5, 5a, 5b进行兼容性检查
- 输入参数  : pstBc - 要检查的BC参数
- 输出参数  : 无
- 返 回 值  : VOS_OK  - 兼容性检查通过
-             VOS_ERR - 兼容性检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BcCompChkOct5(
     const NAS_CC_IE_BC_STRU             *pstBc
 )
@@ -1822,21 +1465,7 @@ VOS_UINT32  MN_CALL_BcCompChkOct5(
 } /* MN_CALL_BcCompChkOct5 */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BcCompChkOct6
- 功能描述  : 对BC参数的Octet6, 6a, 6b, 6c, 6d, 6e, 6f, 6g进行兼容性检查
- 输入参数  : pstBc - 要检查的BC参数
- 输出参数  : 无
- 返 回 值  : VOS_OK  - 兼容性检查通过
-             VOS_ERR - 兼容性检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BcCompChkOct6(
     const NAS_CC_IE_BC_STRU             *pstBc
 )
@@ -1945,21 +1574,7 @@ VOS_UINT32  MN_CALL_BcCompChkOct6(
 } /* MN_CALL_BcCompChkOct6 */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BcCompChkOct7
- 功能描述  : 对BC参数的Octet7进行兼容性检查
- 输入参数  : pstBc - 要检查的BC参数
- 输出参数  : 无
- 返 回 值  : VOS_OK  - 兼容性检查通过
-             VOS_ERR - 兼容性检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BcCompChkOct7(
     const NAS_CC_IE_BC_STRU             *pstBc
 )
@@ -1979,25 +1594,7 @@ VOS_UINT32  MN_CALL_BcCompChkOct7(
 } /* MN_CALL_BcCompChkOct7 */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BcCompChk
- 功能描述  : 对BC参数进行兼容性检查。
- 输入参数  : pstBc - 要检查的BC参数
- 输出参数  : 无
- 返 回 值  : VOS_OK  - 兼容性检查通过
-             VOS_ERR - 兼容性检查失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 支持ALS多线路呼叫
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BcCompChk(
     const NAS_CC_IE_BC_STRU            *pstBc
 )
@@ -2084,25 +1681,7 @@ VOS_UINT32  MN_CALL_BcCompChk(
 
 } /* MN_CALL_BcCompChk */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_NegotSpeechBcForCallConf
- 功能描述  : 协商语音呼叫SETUP消息中的BC参数，得到CALL CONFIRM消息需要的BC参数。
- 输入参数  : pstBcOfSetup - 当前设置的承载业务类型，当SETUP消息的呼叫类型为VOICE时该参数将被忽略。
-             pstBcOfConf     - SETUP消息中的BC参数
- 输出参数  : pstBcOfConf     - 协商后的BC参数
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年12月29日
-    作    者   : 周君 40661
-    修改内容   : 新生成函数
-  2.日    期   : 2015年2月15日
-    作    者   : w00316404
-    修改内容   : 支持TTY MODE的情况下，修改CTM标志位
-*****************************************************************************/
 VOS_VOID  MN_CALL_NegotSpeechBcForCallConf(
     NAS_CC_IE_BC_STRU                   *pstBcOfSetup,
     NAS_CC_IE_BC_STRU                   *pstBcOfConf
@@ -2175,22 +1754,7 @@ VOS_VOID  MN_CALL_NegotSpeechBcForCallConf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_NegotUIL2PForCallConf
- 功能描述  : 协商数据呼叫SETUP消息中的BC参数中UIL2P，得到CALL CONFIRM消息需要的BC参数中UIL2P。
- 输入参数  : pstBcOfSetup - 当前设置的承载业务类型，当SETUP消息的呼叫类型为VOICE时该参数将被忽略。
-             pstBcOfConf     - SETUP消息中的BC参数
- 输出参数  : pstBcOfConf     - 协商后的BC参数
- 返 回 值  : VOS_TRUE 表示CALL CONF消息中需要携带该BC参数；
-             VOS_FALSE 表示CALL CONF消息中不需要携带该BC参数。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月29日
-    作    者   : 周君 40661
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  MN_CALL_NegotUIL2PForCallConf(
     NAS_CC_IE_BC_STRU                   *pstBcOfSetup,
     NAS_CC_IE_BC_STRU                   *pstBcOfConf
@@ -2243,26 +1807,7 @@ VOS_UINT32  MN_CALL_NegotUIL2PForCallConf(
     return ulIncBc;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_NegotBcForCallConf
- 功能描述  : 协商SETUP消息中的BC参数，得到CALL CONFIRM消息需要的BC参数。
- 输入参数  : pstBcOfSetup - 当前设置的承载业务类型，当SETUP消息的呼叫类型为VOICE时该参数将被忽略。
-              pstBcOfConf     - SETUP消息中的BC参数
- 输出参数  : pstBcOfConf     - 协商后的BC参数
- 返 回 值  : VOS_TRUE 表示CALL CONF消息中需要携带该BC参数；
-             VOS_FALSE 表示CALL CONF消息中不需要携带该BC参数。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : R7协议升级修改函数圈复杂度
-*****************************************************************************/
 VOS_UINT32  MN_CALL_NegotBcForCallConf(
     NAS_CC_IE_BC_STRU                   *pstBcOfSetup,
     NAS_CC_IE_BC_STRU                   *pstBcOfConf
@@ -2365,25 +1910,7 @@ VOS_UINT32  MN_CALL_NegotBcForCallConf(
 } /* MN_CALL_NegotBcForCallConf */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BuildBcForSns
- 功能描述  : 构造单号码方案的BC参数
- 输入参数  : enSnsMode - 当前设置的单号码方案模式
-              pstBsType - 本次呼叫的承载业务类型，当单号码方案模式为VOICE时忽略该参数。
- 输出参数  : pstBc1 - 第一个业务的BC参数
-              pstBc2 - 第二个业务的BC参数
- 返 回 值  : 构造的BC参数的个数，可能的值为0、1、2，0表示构造失败。
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2006年12月1日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月21日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012052100994,拨打可视电话，发给网侧的承载类型不对
-*****************************************************************************/
 VOS_UINT32  MN_CALL_BuildBcForSns(
     MN_CALL_SNS_MODE_ENUM_UINT8         enSnsMode,
     const MN_CALL_CS_DATA_CFG_INFO_STRU *pstDataCfg,
@@ -2462,29 +1989,10 @@ VOS_UINT32  MN_CALL_BuildBcForSns(
 
 } /* MN_CALL_BuildBcForSns */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
-
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_FillGsmSupCodecList
- 功能描述  : 填写GSM支持的codec list
- 输入参数  : 无
- 输出参数  : punCodecList :当前GSM支持的codec类型
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 新生成函数
 
-  2.日    期   : 2015年2月7日
-    作    者   : w00316404
-    修改内容   : M项目TTY功能: 增加根据TTY MODE来置CTM标志位
-*****************************************************************************/
 VOS_VOID  MN_CALL_FillGsmSupCodecList(
     MN_CALL_SUPPORT_CODEC_UNION        *punCodecList
 )
@@ -2528,26 +2036,7 @@ VOS_VOID  MN_CALL_FillGsmSupCodecList(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_FillUmtsSupCodecList
- 功能描述  : 填写UMTS支持的codec list
- 输入参数  : 无
- 输出参数  : punCodecList :当前UMTS支持的codec类型
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月25日
-    作    者   : z40661
-    修改内容   : DTS2012101809567,语音支持的能力需要区分G和W模式
-  3.日    期   : 2015年2月7日
-    作    者   : w00316404
-    修改内容   : M项目TTY功能: 增加根据TTY MODE来置CTM标志位
-*****************************************************************************/
 VOS_VOID  MN_CALL_FillUmtsSupCodecList(
     MN_CALL_SUPPORT_CODEC_UNION        *punCodecList
 )

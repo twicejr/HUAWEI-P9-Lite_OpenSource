@@ -194,18 +194,7 @@ VOS_VOID  NAS_ERABM_TaskEntry( MsgBlock* pMsg )
 
 }
 
-/*******************************************************************************
- Function Name  : NAS_ERABM_TimerStart()
- Description    : RABM定时器启动函数
- Input          : VOS_UINT32  ulTimerLen    Timer的时长
-                  VOS_UINT8   ecTimerName   Timer的名字
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-  1.杨茜惠 00135146      2008-09-3  Draft Enact
-  2.lihong 00150010      2012-12-14 Modify:Emergency
-*******************************************************************************/
 VOS_VOID NAS_ERABM_TimerStart
 (
     VOS_UINT32                          ulTimerLen,
@@ -300,17 +289,7 @@ VOS_VOID NAS_ERABM_TimerStart
     }
 }
 
-/*******************************************************************************
- Function Name  : NAS_ERABM_TimerStop()
- Description    : RABM定时器停止函数
- Input          : VOS_UINT8 ecTimerName
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-  1.杨茜惠  00135146      2008-09-3  Draft Enact
-  2.杨茜惠  00135146      2009-9-19  BN8D01065   Modify
-*******************************************************************************/
 VOS_VOID NAS_ERABM_TimerStop( NAS_ERABM_TIMER_NAME_ENUM_UINT8 enTimerName )
 {
     NAS_ERABM_START_TIMER_STRU       *pstTimerInfo = VOS_NULL_PTR;
@@ -421,18 +400,7 @@ NAS_ERABM_TIMER_STATE_ENUM_UINT32  NAS_ERABM_IsTimerRunning( NAS_ERABM_TIMER_NAM
 
 }
 
-/*******************************************************************************
- Function Name  : NAS_ERABM_Init()
- Description    : RABM模块初始化函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-  1.杨茜惠 00135146      2008-09-5  Draft Enact
-  2.杨茜惠 00135146      2009-9-19  BN8D01065   Modify
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_Init(VOS_VOID)
 {
     VOS_UINT8                     ucTimerIndex  = 0;
@@ -535,16 +503,7 @@ VOS_VOID NAS_ERABM_Init(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_ERABM_PidInit
- Discription    : RABM的PID初始化函数
- Input          :
- Output         : None
- Return Value   : None
 
- History:
-      1.yangqianhui 00135146      2008-09-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_PidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
     switch ( ip )
@@ -624,17 +583,7 @@ NAS_ERABM_SERVICE_STATE_ENUM_UINT32  NAS_ERABM_GetEmmSrState( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_ClearEsmResource
- Description     : 清空RABM资源
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
-  History        :
-  1.杨茜惠 00135146      2008-09-5  Draft Enact
-  2.杨茜惠 00135146      2009-9-19  BN8D01065   Modify
-*****************************************************************************/
 VOS_VOID NAS_ERABM_ClearRabmResource( VOS_VOID )
 {
     VOS_UINT8                     ucTimerIndex  = NAS_ERABM_NULL;
@@ -1372,17 +1321,7 @@ VOS_VOID NAS_ERABM_PrintRabmSendMsg
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_GetActiveEpsBearerNum
- Description     : 获取激活EPS承载数
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
-  History        :
-  1.lihong00150010      2011-12-05      Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_GetActiveEpsBearerNum( VOS_VOID )
 {
     VOS_UINT32                 ulEpsbId     = NAS_ERABM_MIN_EPSB_ID;
@@ -1403,20 +1342,7 @@ VOS_UINT32 NAS_ERABM_GetActiveEpsBearerNum( VOS_VOID )
     return ulActiveNum;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_SndOmErabmTimerStatus
- 功能描述  : 发送消息给OM模块，ERABM定时器运行完成
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年12月6日
-   作    者   : niuxiufan 00181501
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_SndOmErabmTimerStatus(
     NAS_ERABM_TIMER_RUN_STA_ENUM_UINT32        enTimerStatus,
     NAS_ERABM_TIMER_NAME_ENUM_UINT8           enTimerId,
@@ -1448,20 +1374,7 @@ VOS_VOID  NAS_ERABM_SndOmErabmTimerStatus(
     NAS_ERABM_MEM_FREE(pstMsg);
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_REABM_RcvRabmRrmStatusInd
- 功能描述  : 收到RRM有RF资源通知处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月09日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_REABM_RcvRabmRrmStatusInd()
 {
     /* 在NAS_ERABM_RF_RECOVERY_RB_REEST_TIMER运行期间尝试RB重建 */
@@ -1479,20 +1392,7 @@ VOS_VOID NAS_REABM_RcvRabmRrmStatusInd()
     }
     return;
 }
-/*****************************************************************************
- 函 数 名  : NAS_ERABM_RrmMsgDistr
- 功能描述  : RRM消息处理入口
- 输入参数  : 消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年01月09日
-   作    者   : leixiantiao 00258641
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NAS_ERABM_RrmMsgDistr(VOS_VOID *pRcvMsg)
 {
     PS_MSG_HEADER_STRU            *pRrcMsg;
@@ -1510,17 +1410,7 @@ VOS_VOID NAS_ERABM_RrmMsgDistr(VOS_VOID *pRcvMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SecuMemCpy
- Description     : 安全memcpy
- Input           : VOS_VOID* pDst, VOS_UINT32 ulMaxBuffer, const VOS_VOID* pSrc,
-                   VOS_UINT32  ulLength, VOS_UINT32 ulLineNO, VOS_UINT32 ulFileID
- Output          : None
- Return          : VOS_INT32
 
- History         :
-    1.z00297373    2015-12-28  Draft Enact
-*****************************************************************************/
 VOS_INT32 NAS_ERABM_SecuMemCpy
 (
     VOS_VOID            * pDst,
@@ -1545,16 +1435,7 @@ VOS_INT32 NAS_ERABM_SecuMemCpy
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Function Name   : NAS_ERABM_InitEhrpdIdInfo
- Description     : 初始化RABM的EHRPD承载管理实体中指定承载ID的上下文信息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History        :
-    1.sunjitan 00193151      2016-01-14  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ERABM_InitEhrpdIdInfo(VOS_UINT32    ulEhrpdBearerId)
 {
     NAS_ERABM_INFO_STRU                *pstEhrpdBearerInfo;
@@ -1586,16 +1467,7 @@ VOS_VOID NAS_ERABM_InitEhrpdIdInfo(VOS_UINT32    ulEhrpdBearerId)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_InitEhrpdEntity
- Description     : 初始化RABM的EHRPD承载管理实体
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History        :
-    1.sunjitan 00193151      2015-12-30  Draft Enact
-*****************************************************************************/
 VOS_VOID NAS_ERABM_InitEhrpdEntity(VOS_VOID)
 {
     VOS_UINT32                          ulEhrpdBearerId;
@@ -1618,16 +1490,7 @@ VOS_VOID NAS_ERABM_InitEhrpdEntity(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_GetActiveEhrpdBearerNum
- Description     : 获取激活的EHRPD承载数
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_UINT32
 
- History        :
-    1.sunjitan 00193151      2015-12-30  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_GetActiveEhrpdBearerNum(VOS_VOID)
 {
     VOS_UINT32                 ulEpsbId     = NAS_ERABM_MIN_EPSB_ID;

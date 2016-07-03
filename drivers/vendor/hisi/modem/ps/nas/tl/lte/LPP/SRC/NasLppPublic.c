@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLppPublic.c
-    Description : LPP的公共处理
-    History     :
-    1. lifuxin 00253982 2015-7-7  新开发
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -308,16 +299,7 @@ NAS_LPP_TIMER_PROC_FUNC  NAS_LPP_GetTimerProcFun( NAS_LPP_TIMER_PARA_ENUM_UINT8 
     return pfTimerFun;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_IsTimerNameValid
- Description     : 判断定时器名是否合法
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lifuxin 00253982       2015-07-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_IsTimerNameValid
 (
     VOS_UINT32                          ulSessionIndex,
@@ -366,45 +348,18 @@ VOS_UINT32  NAS_LPP_IsTimerNameValid
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetGnssLocInfoInvalidTimer
- Description    : 获取 GNSS 位置信息失效定时器
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.wangensheng 00324863 2015-10-22  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetGnssLocInfoInvalidTimer( VOS_VOID )
 {
     return &(NAS_LPP_GetLppEntityCtx()->stStructDataForGnss.stLppGnssLocInfoInvalidTimer);
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_GetGnssCapCnfTimer
- Description    : 获取GNSS CAP CNF 定时器
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.wangensheng 00324863 2015-10-22  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetGnssCapCnfTimer( VOS_VOID )
 {
     return &(NAS_LPP_GetLppEntityCtx()->stStructDataForGnss.stLppWaitForGnssCapCnfTimer);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetSequenceNumberInvalidTimer
- Description    : Get LPP的SequenceNumberInvalid的定时器
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetSequenceNumberInvalidTimer
 (
     VOS_UINT32                          ulSessionIndex
@@ -413,18 +368,7 @@ NAS_LPP_TIMER_STRU*  NAS_LPP_GetSequenceNumberInvalidTimer
     return &(NAS_LPP_GetLppEntityCtx()->stSessionEntityPool.astLppSessionEntity[ulSessionIndex].stSequenceNumInvalid);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_GetTimer
- Description     : 获取定时器
- Input           : enTimerType------------------定时器类型
-                   ulSessionSuffix--------------定时器所在的会话数组下标
-                   ulTransSuffix----------------定时器所在的transaction会话数组下标
- Output          : None
- Return          : NAS_LPP_TIMER_STRU*
 
- History         :
-    1.lifuxin  00253982    2015-07-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetTimer
 (
     VOS_UINT32                              ulSessionIndex,
@@ -597,16 +541,7 @@ VOS_UINT32  NAS_LPP_GetPrtclTimeLen
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LPP_GetTimerLen
- Description     : 获取定时器时长
- Input           : enTimerType------------------定时器类型
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lifuxin 00253982      2015-07-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetTimerLen
 (
     NAS_LPP_TIMER_PARA_ENUM_UINT8           enTimeName,
@@ -637,16 +572,7 @@ VOS_UINT32  NAS_LPP_GetTimerLen
     return ulTimerLen;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_TimerStart
- Discription    : 启动某一transaction的某种类型的定时器
- Input          : VOS_UINT32  ulIndex
-                  NAS_LPP_TIMER_PARA_ENUM_UINT8   enTimerType
- Output         : VOS_VOID
- Return         : None
- History:
-    lifuxin 00253982 2015-07-18 新开发
-*****************************************************************************/
+
 VOS_VOID NAS_LPP_TimerStart
 (
     VOS_UINT32                          ulSessionIndex,
@@ -735,15 +661,7 @@ VOS_VOID NAS_LPP_TimerStart
     /*TODO*/
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_TimerStop
- Discription    : 停止LPP的定时器
- Input          :
- Output         : VOS_VOID
- Return         : None
- History:
-      1.lifuxin 00253982      2015-07-20  Draft Enac
-*****************************************************************************/
+
 /*lint -e438*/
 VOS_VOID NAS_LPP_TimerStop
 (
@@ -798,31 +716,13 @@ VOS_VOID NAS_LPP_TimerStop
     }
 }
 /*lint +e438*/
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppEntityCtx
- Description    : LPP模块的实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_ENTITY_STRU
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 NAS_LPP_ENTITY_STRU*  NAS_LPP_GetLppEntityCtx( VOS_VOID )
 {
     return (&g_stNasLppEntity);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_ClearLppMsgBuff
- Description    : LPP模块的实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_ENTITY_STRU
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_ClearLppMsgBuff( VOS_VOID )
 {
     NAS_LPP_MEM_SET_S(&stLppMsgBuff, sizeof(LPP_MESSAGE_STRU), 0, sizeof(LPP_MESSAGE_STRU));
@@ -830,16 +730,7 @@ VOS_VOID  NAS_LPP_ClearLppMsgBuff( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppMsgBuff
- Description    : LPP模块的实体入口
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_ENTITY_STRU
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 LPP_MESSAGE_STRU*  NAS_LPP_GetLppMsgBuff( VOS_VOID )
 {
     return (&stLppMsgBuff);
@@ -1082,31 +973,13 @@ NAS_LPP_UP_MSG_BUFF_POOL_STRU * NAS_LPP_GetLppUpMsgBuffPool( VOS_VOID )
     return (&(g_stNasLppEntity.stUpMsgBuffPool));
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppConnStatus
- Description    : Get LPP的连接状态
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_CONN_STATUS_ENUM_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 NAS_LPP_CONN_STATUS_ENUM_UINT32  NAS_LPP_GetLppConnStatus( VOS_VOID )
 {
     return (NAS_LPP_GetLppEntityCtx()->stLppConnManage.enConectStatus);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SetLppConnStatus
- Description    : set LPP的连接状态
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SetLppConnStatus(NAS_LPP_CONN_STATUS_ENUM_UINT32 enConnStatus)
 {
     NAS_LPP_INFO_LOG1("NAS_LPP_SetLppConnStatus: CONN STATUS =!", enConnStatus);
@@ -1117,32 +990,14 @@ VOS_VOID  NAS_LPP_SetLppConnStatus(NAS_LPP_CONN_STATUS_ENUM_UINT32 enConnStatus)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppNvParaConfig
- Description    : Get LPP NV配置结构
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_CONN_STATUS_ENUM_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 NAS_LPP_NV_CONFIG_STRU*  NAS_LPP_GetLppNvParaConfig(VOS_VOID)
 {
 
     return &(NAS_LPP_GetLppEntityCtx()->stLppNvConfig);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppTransAttepCnt
- Description    : Get LPP 消息尝试传输计数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetLppTransAttepCnt(VOS_VOID)
 {
     VOS_UINT32      usAttempeTransCnt = 0;
@@ -1153,96 +1008,42 @@ VOS_UINT32  NAS_LPP_GetLppTransAttepCnt(VOS_VOID)
     return usAttempeTransCnt;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppLayerSwitchFlag
- Description    : 是否打开LPP可维可测消息的总开关
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-9-24  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_LPP_GetLppLayerSwitchFlag(VOS_VOID)
 {
 
     return (NAS_LPP_GetLppEntityCtx()->stLppNvConfig.ucLppLayerSwitch);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppLayerNormFlag
- Description    : 是否打开LPP可维可测消息NORMAL等级
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-9-24  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_LPP_GetLppLayerNormFlag(VOS_VOID)
 {
 
     return (NAS_LPP_GetLppEntityCtx()->stLppNvConfig.ucLppLayerNorm);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppLayerInfoFlag
- Description    : 是否打开LPP可维可测消息INFO等级
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-9-24  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_LPP_GetLppLayerInfoFlag(VOS_VOID)
 {
 
     return (NAS_LPP_GetLppEntityCtx()->stLppNvConfig.ucLppLayerInfo);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppLayerWarnFlag
- Description    : 是否打开LPP可维可测消息WARN等级
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-9-24  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_LPP_GetLppLayerWarnFlag(VOS_VOID)
 {
 
     return (NAS_LPP_GetLppEntityCtx()->stLppNvConfig.ucLppLayerWarn);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppLayerErrFlag
- Description    : 是否打开LPP可维可测消息Err等级
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-9-24  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_LPP_GetLppLayerErrFlag(VOS_VOID)
 {
 
     return (NAS_LPP_GetLppEntityCtx()->stLppNvConfig.ucLppLayerErr);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppIntraDataCnfTimerLen
- Description    : Get LPP Intra Data Cnf 的定时器时长
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetLppIntraDataCnfTimerLen(VOS_VOID)
 {
     /*等内部data cnf的时间等于建链次数乘以最大的等待建链定时器时长10s，然后乘以1000转成毫秒*/
@@ -1254,16 +1055,7 @@ VOS_UINT32  NAS_LPP_GetLppIntraDataCnfTimerLen(VOS_VOID)
     return (NAS_LPP_GetLppTransAttepCnt()* 10 * 1000);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppEstCnt
- Description    : Get LPP的建链次数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_CONN_STATUS_ENUM_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetTransLppMsgCnt( VOS_VOID )
 {
     VOS_UINT32      ulEstOrDataCnt = 0;
@@ -1274,16 +1066,7 @@ VOS_UINT32  NAS_LPP_GetTransLppMsgCnt( VOS_VOID )
     return ulEstOrDataCnt;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_TransLppMsgAddCnt
- Description    : LPP消息建链直传次数加1
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_TransLppMsgAddCnt(VOS_VOID)
 {
     NAS_LPP_GetLppEntityCtx()->stLppConnManage.ulEstOrDataCnt += 1;
@@ -1291,16 +1074,7 @@ VOS_VOID  NAS_LPP_TransLppMsgAddCnt(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_ClearLppEstCnt
- Description    : 清空建链次数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_CONN_STATUS_ENUM_UINT32
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_ClearLppTransCnt(VOS_VOID)
 {
     NAS_LPP_GetLppEntityCtx()->stLppConnManage.ulEstOrDataCnt = 0;
@@ -1309,16 +1083,7 @@ VOS_VOID  NAS_LPP_ClearLppTransCnt(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetSessionEntity
- Description    : Get某一session实体
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_SESSION_ENTITY_ELEMENT_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 NAS_LPP_SESSION_ENTITY_ELEMENT_STRU*  NAS_LPP_GetSessionEntity
 (
     VOS_UINT32                          ulSessionIndex
@@ -1332,17 +1097,7 @@ NAS_LPP_SESSION_ENTITY_ELEMENT_STRU*  NAS_LPP_GetSessionEntity
     return &(NAS_LPP_GetLppEntityCtx()->stSessionEntityPool.astLppSessionEntity[ulSessionIndex]);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetTransEntityIndx
- Description    : Get某一transaction实体index
 
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT32(返回的transaction实体在内存池中的索引值)
-
- History        :
-      1.lifuxin 00253982 2015-7-13  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_LPP_GetTransIdIndex
 (
     VOS_UINT8                          ucSessionIndex,
@@ -1391,16 +1146,7 @@ NAS_LPP_TRANSACTION_ELEMENT_ENTITY_STRU  *NAS_LPP_GetTransEntity
     return pstTransElementEntity;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetTransactionTimer
- Description    : Get LPP的Transaction timer
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*s
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetTransactionTimer
 (
     VOS_UINT32                          ulSessionIndex,
@@ -1419,16 +1165,7 @@ NAS_LPP_TIMER_STRU*  NAS_LPP_GetTransactionTimer
     return &(pstTransElementEntity->stLppTimer);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetResPonseTimer
- Description    : Get LPP的Response Timer
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetResPonseTimer
 (
     VOS_UINT8                          ucSessionIndex,
@@ -1466,16 +1203,7 @@ NAS_LPP_TIMER_STRU*  NAS_LPP_GetResPonseTimer
     return &(pstLppCommCfgInfo->stReportCriteria.u.stReportOnce.stLppTimer);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetPeriodTimer
- Description    : Get LPP的Period Timer
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetPeriodTimer
 (
     VOS_UINT8                          ucSessionIndex,
@@ -1514,16 +1242,7 @@ NAS_LPP_TIMER_STRU*  NAS_LPP_GetPeriodTimer
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetDurationTimer
- Description    : Get LPP的Duration Timer
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetDurationTimer
 (
     VOS_UINT8                          ucSessionIndex,
@@ -1562,16 +1281,7 @@ NAS_LPP_TIMER_STRU*  NAS_LPP_GetDurationTimer
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLastTriggerCellGloId
- Description    : Get LPP的小区改变的ID信息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 LRRC_LPP_CELL_GLOBAL_ID_INFO_STRU*  NAS_LPP_GetLastTriggerCellGloId( VOS_VOID )
 {
     NAS_LPP_ECID_MEAS_RESULT_STRU *pstEcidMeasRslt;
@@ -1581,16 +1291,7 @@ LRRC_LPP_CELL_GLOBAL_ID_INFO_STRU*  NAS_LPP_GetLastTriggerCellGloId( VOS_VOID )
     return &(pstEcidMeasRslt->stLastGlobalIdInfo);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLastTriggerLastPhyCellId
- Description    : Get LPP上次驻留的物理小区ID
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_UINT16  NAS_LPP_GetLastTriggerLastPhyCellId( VOS_VOID )
 {
     NAS_LPP_ECID_MEAS_RESULT_STRU *pstEcidMeasRslt;
@@ -1600,16 +1301,7 @@ VOS_UINT16  NAS_LPP_GetLastTriggerLastPhyCellId( VOS_VOID )
     return (pstEcidMeasRslt->usLastPhyCellId);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLastTriggerLastPhyCellId
- Description    : Get LPP上次驻留的物理小区ID
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SetLastTriggerLastPhyCellId(VOS_UINT16 usPhyCellId)
 {
     NAS_LPP_ECID_MEAS_RESULT_STRU *pstEcidMeasRslt;
@@ -1621,30 +1313,12 @@ VOS_VOID  NAS_LPP_SetLastTriggerLastPhyCellId(VOS_UINT16 usPhyCellId)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetConnManageTimer
- Description    : Get LPP的connMange timer
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_TIMER_STRU*
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_TIMER_STRU*  NAS_LPP_GetConnManageTimer( VOS_VOID )
 {
     return &(NAS_LPP_GetLppEntityCtx()->stLppConnManage.stLppTimer);
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_GetSessionEntityReportType
- Description    : Get LPP上报位置方式枚举
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : NAS_LPP_REPORT_LOCATION_TYPE_ENUM_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_LPP_GetSessionEntityReportType
 (
     VOS_UINT8                           ucSessionIndex,
@@ -1676,16 +1350,7 @@ VOS_UINT8  NAS_LPP_GetSessionEntityReportType
     return(pstLppCommCfgInfo->stReportCriteria.enType);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetDownLinkLocationReqIEAddr
- Description    : Get LPP下行位置信息请求的实际地址
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 LPP_REQ_LOCATION_INFO_R9_IES_STRU*  NAS_LPP_GetDownLinkLocationReqIEAddr
 (
     LPP_MESSAGE_STRU                   *pstLppMsg
@@ -1694,16 +1359,7 @@ LPP_REQ_LOCATION_INFO_R9_IES_STRU*  NAS_LPP_GetDownLinkLocationReqIEAddr
     return &(pstLppMsg->stLppMessageBody.u.stC1.u.stRequestLocationInformation.u.stC1.u.stReqLocationInfoR9);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetDownLinkCapReqIEAddr
- Description    : Get LPP下行能力信息请求的实际地址
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 LPP_REQUEST_CAPABILITIES_R9_IES_STRU*  NAS_LPP_GetDownLinkCapReqIEAddr
 (
     LPP_MESSAGE_STRU                   *pstLppMsg
@@ -1713,16 +1369,7 @@ LPP_REQUEST_CAPABILITIES_R9_IES_STRU*  NAS_LPP_GetDownLinkCapReqIEAddr
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpLinkProvideCapIEAddr
- Description    : Get LPP下行能力请求的实际地址
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 LPP_PROVIDE_CAPABILITIES_R9_IES_STRU*  NAS_LPP_GetUpLinkProvideCapIEAddr
 (
     LPP_MESSAGE_STRU                   *pstLppMsg
@@ -1731,16 +1378,7 @@ LPP_PROVIDE_CAPABILITIES_R9_IES_STRU*  NAS_LPP_GetUpLinkProvideCapIEAddr
     return &(pstLppMsg->stLppMessageBody.u.stC1.u.stProvideCapabilities.u.stC1.u.stProvideCapabilitiesR9);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpLinkProvideLocIEAddr
- Description    : Get LPP下行能力请求的实际地址
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 LPP_PROVIDE_LOCATION_INFO_R9_IES_STRU*  NAS_LPP_GetUpLinkProvideLocIEAddr
 (
     LPP_MESSAGE_STRU                   *pstLppMsg
@@ -1782,16 +1420,7 @@ NAS_LPP_GNSS_DATA_STRU *NAS_LPP_GetGnssData( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLrrcRxTxTimeDiffMeasFlag
- Description    : 得到LRRC是否支持RxTxTimeDiffMeas
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_UINT8  NAS_LPP_GetLrrcRxTxTimeDiffMeasFlag(VOS_VOID)
 {
     return (NAS_LPP_GetLppEntityCtx()->stLrrcSupCapability.stRrcCapbility.ucUeRxTxTimeDiffMeasFlag);
@@ -1799,16 +1428,7 @@ VOS_UINT8  NAS_LPP_GetLrrcRxTxTimeDiffMeasFlag(VOS_VOID)
 
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetPositionTechEcid
- Description    : 获取网侧请求的定位技术ECID
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetPositionTechEcid(VOS_UINT8 ucTransIndx)
 {
     NAS_LPP_LOC_TECH_RUNING_STRU  stPosSearchRslt;
@@ -1827,16 +1447,7 @@ VOS_UINT32  NAS_LPP_GetPositionTechEcid(VOS_UINT8 ucTransIndx)
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetPositionTechOtdoa
- Description    : 获取网侧请求的定位技术Otdoa
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetPositionTechOtdoa(VOS_UINT8 ucTransIndx)
 {
     NAS_LPP_LOC_TECH_RUNING_STRU  stPosSearchRslt;
@@ -1856,16 +1467,7 @@ VOS_UINT32  NAS_LPP_GetPositionTechOtdoa(VOS_UINT8 ucTransIndx)
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetPositionTechGnss
- Description    : 获取网侧请求的定位技术Gnss
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetPositionTechGnss(VOS_UINT8 ucTransIndx)
 {
     NAS_LPP_LOC_TECH_RUNING_STRU  stPosSearchRslt;
@@ -1884,16 +1486,7 @@ VOS_UINT32  NAS_LPP_GetPositionTechGnss(VOS_UINT8 ucTransIndx)
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SearchRunningPositionTech
- Description    : 获取指定定位技术的运行实体的ID
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_LOC_TECH_MAP_STRU*  NAS_LPP_SearchRunningPositionTech
 (
     NAS_LPP_POSITION_TECH_ENUM_UINT8        enPositionTech
@@ -2101,16 +1694,7 @@ VOS_VOID NAS_LPP_SearchRunningPosTechByIndx2
     return;
 }
 #if 0
-/*****************************************************************************
- Function Name   : NAS_LPP_SearchSessionTransIndxByTransIndx
- Description     : 根据TransaIndx得到SessionTransIndx
- Input           : None
- Output          : None
- Return          : UINT32
 
- History         :
-    1.lifuxin 00253982      2015-10-24  Draft Enact
-*****************************************************************************/
 VOS_UINT8 NAS_LPP_SearchSessionTransIndxByTransIndx(VOS_UINT8 ulSessionIndx, VOS_UINT8 ucTransIndx )
 {
     NAS_LPP_SESSION_ENTITY_POOL_STRU        *pstSessionEntityPool = NAS_LPP_NULL_PTR;
@@ -2131,16 +1715,7 @@ VOS_UINT8 NAS_LPP_SearchSessionTransIndxByTransIndx(VOS_UINT8 ulSessionIndx, VOS
     return ucSessionTransIndx;
 }
 #endif
-/*****************************************************************************
- Function Name  : NAS_LPP_AddRunningPositionTech
- Description    : 获取指定定位技术的运行实体的ID
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_AddRunningPositionTech
 (
     NAS_LPP_POSITION_TECH_ENUM_UINT8        enPositionTech,
@@ -2264,17 +1839,7 @@ VOS_VOID NAS_LPP_InitRunningLocTech( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_ClearGnssInfo
- Description     : 清空GNSS的相关信息
- Input           : None
- Output          : None
- Return          : UINT32
 
- History         :
-    1.lifuxin 00253982      2015-10-21  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LPP_ClearGnssInfo(VOS_VOID)
 {
     NAS_LPP_GNSS_MEAS_RESLT_STRU       *pstGnssMeasRslt = NAS_LPP_NULL_PTR;
@@ -2438,46 +2003,19 @@ NAS_LPP_MEAS_RESULT_STRU*  NAS_LPP_GetMeasRsltAddr( VOS_VOID )
     return &(NAS_LPP_GetLppEntityCtx()->stMeasResult);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetEcidMeasRsltAddr
- Description    : 得到保存ECID测量rslt的地址
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_ECID_MEAS_RESULT_STRU*  NAS_LPP_GetEcidMeasRsltAddr( VOS_VOID )
 {
     return &(NAS_LPP_GetLppEntityCtx()->stMeasResult.stEcidMeasRslt);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetGnssMeasRsltAddr
- Description    : 得到保存GNSS测量rslt的地址
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-10-20  Draft Enact
-*****************************************************************************/
 NAS_LPP_GNSS_MEAS_RESLT_STRU*  NAS_LPP_GetGnssMeasRsltAddr( VOS_VOID )
 {
     return &(NAS_LPP_GetLppEntityCtx()->stMeasResult.stGnssMeasRslt);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetSessionIdBySessionIndx
- Description    : 通过sessionIndx，得到sessionId
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_UINT8
 
- History        :
-      1.lifuxin 00253982 2015-7-20  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_GetSessionIdBySessionIndx
 (
     VOS_UINT8                           ucSessionIndx
@@ -3108,17 +2646,7 @@ VOS_UINT8 NAS_LPP_MallocTransEntityIndx
     return ucIndex;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_MallocTransEntityIndx
- Description     : 从transaction entity pool里申请一个空闲的entity
- Input           : None
- Output          : None
- Return          : UINT32
 
- History         :
-    1.lifuxin 00253982      2015-7-24  Draft Enact
-
-*****************************************************************************/
 NAS_LPP_TRANSACTION_ELEMENT_ENTITY_STRU* NAS_LPP_MallocTransEntity
 (
     LPP_TRANSACTION_ID_STRU                 *pstUuTransactionId
@@ -3636,16 +3164,7 @@ VOS_UINT8 NAS_LPP_ApplyTransNum( VOS_VOID )
     return ucTransNum;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpLinkMsgIndetity
- Description    : 得到上行缓存buffer的消息的识别信息
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 NAS_LPP_MSG_IDENTITY_STRU* NAS_LPP_GetUpLinkMsgIndetity
 (
     VOS_UINT32          ulUpBufferIndex
@@ -3653,16 +3172,7 @@ NAS_LPP_MSG_IDENTITY_STRU* NAS_LPP_GetUpLinkMsgIndetity
 {
     return &(NAS_LPP_GetLppUpMsgBuffPool()->astLppUpMsg[ulUpBufferIndex].stLppMsgIdentity);
 }
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpLinkSessionId
- Description    : 得到上行缓存buffer的sessionID
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_UINT32 NAS_LPP_GetUpLinkSessionId
 (
     VOS_UINT32          ulUpBufferIndex
@@ -3671,16 +3181,7 @@ VOS_UINT32 NAS_LPP_GetUpLinkSessionId
     return NAS_LPP_GetUpLinkMsgIndetity(ulUpBufferIndex)->ulSessionId;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpLinkSequenceNumber
- Description    : 得到上行缓存中的sequenceNumber
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_UINT32 NAS_LPP_GetUpLinkTransactionNumber
 (
     VOS_UINT32          ulUpBufferIndex
@@ -3689,16 +3190,7 @@ VOS_UINT32 NAS_LPP_GetUpLinkTransactionNumber
     return NAS_LPP_GetUpLinkMsgIndetity(ulUpBufferIndex)->stTransId.ucTransactionNumber;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetUpLinkSequenceNumber
- Description    : 得到上行缓存中的sequenceNumber
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_UINT32 NAS_LPP_GetUpLinkSequenceNumber
 (
     VOS_UINT32          ulUpBufferIndex
@@ -3707,16 +3199,7 @@ VOS_UINT32 NAS_LPP_GetUpLinkSequenceNumber
     return NAS_LPP_GetUpLinkMsgIndetity(ulUpBufferIndex)->usSequnceNum;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetDownlinkMsgType
- Description    : 得到下行空口消息的类型
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_UINT32 NAS_LPP_GetDownlinkMsgType
 (
     LPP_MESSAGE_STRU                   *pstLppMsg
@@ -3725,16 +3208,7 @@ VOS_UINT32 NAS_LPP_GetDownlinkMsgType
     return  (pstLppMsg->stLppMessageBody.u.stC1.ulChoice);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_FindUpLinkBuffer
- Description    : 根据网络侧下发的ACK indicator以及sessionID找到对应的buffer实体
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 LPP_UPLINK_MSG_BUF_STRU* NAS_LPP_FindUpLinkBuffer
 (
     VOS_UINT8                           ucSequenceNum,
@@ -3901,17 +3375,7 @@ LPP_UPLINK_MSG_BUF_STRU  *NAS_LPP_MallocUpMsgBuffer(VOS_UINT8 *pucUplinkBuffIndx
     return pstLppUpMsgBuf;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_GetUpLinkMsgBuffSeqByIndex
- Description     : 通过上行缓存buffer的索引值或者存储索引值的结构实体
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lifuxin 00253982      2015-9-2  Draft Enact
-
-*****************************************************************************/
 NAS_LPP_UP_MSG_SEQUENCE_STRU* NAS_LPP_GetUpLinkMsgBuffSeqByIndex(VOS_UINT8 ucIndex, VOS_UINT8 *pucLoop)
 {
     VOS_UINT8                       ucLoop              = 0;
@@ -3932,17 +3396,7 @@ NAS_LPP_UP_MSG_SEQUENCE_STRU* NAS_LPP_GetUpLinkMsgBuffSeqByIndex(VOS_UINT8 ucInd
     return NAS_LPP_NULL_PTR;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_ClearUpLinkMsgIndex
- Description     : 清空上行indx的相关项，并且同时将后面存储的数据依次移动
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lifuxin 00253982      2015-9-2  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_LPP_ClearUpLinkMsgIndex(VOS_UINT8 ucUpLinkBuffIndex)
 {
     NAS_LPP_UP_MSG_SEQUENCE_STRU        *pstUpLinkSeq       = NAS_LPP_NULL_PTR;
@@ -4286,17 +3740,7 @@ VOS_BOOL  NAS_LPP_IsGnssAssistDataChng( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_SecuMemCpy
- Description     : 安全memcpy
- Input           : VOS_VOID* pDst, VOS_UINT32 ulMaxBuffer, const VOS_VOID* pSrc,
-                   VOS_UINT32  ulLength, VOS_UINT32 ulLineNO, VOS_UINT32 ulFileID
- Output          : None
- Return          : VOS_INT32
 
- History         :
-    1.z00297373    2015-12-28  Draft Enact
-*****************************************************************************/
 VOS_INT32 NAS_LPP_SecuMemCpy
 (
     VOS_VOID            * pDst,

@@ -1,0 +1,1 @@
+source "drivers/huawei_platform/antenna_board_gpio_match/antenna_boardid_detect/Kconfig"

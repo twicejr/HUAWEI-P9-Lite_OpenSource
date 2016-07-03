@@ -174,7 +174,6 @@ ULONG PTPV2_BC_MasterBuildAnnPkt(VOID* pThis, VOID** ppData)
 
     pstAnnMsg = MBUF_MTOD(pstSndBuf, PTPV2_ANNOUNCE_MSG_S*);
 
-    /*Add by heyijun 00218462 for DTS2014080807614, 目标清零, 2014-8-14*/
     (VOID)TCPIP_Mem_Set((CHAR *)pstAnnMsg, 0, sizeof(PTPV2_ANNOUNCE_MSG_S)); 
 
     ulRet = PTPV2_BuildAnnPktHeader(pstPtpPort, &(pstAnnMsg->stMsgHeader));
@@ -259,7 +258,6 @@ ULONG PTPV2_OC_MasterBuildAnnPkt(VOID* pThis, VOID** ppData)
 
     pstAnnMsg = MBUF_MTOD(pstSndBuf, PTPV2_ANNOUNCE_MSG_S*);
 
-    /*Add by heyijun 00218462 for DTS2014080807614, 目标清零, 2014-8-14*/
     (VOID)TCPIP_Mem_Set((CHAR *)pstAnnMsg, 0, sizeof(PTPV2_ANNOUNCE_MSG_S)); 
 
     ulRet = PTPV2_BuildAnnPktHeader(pstPtpPort, &(pstAnnMsg->stMsgHeader));

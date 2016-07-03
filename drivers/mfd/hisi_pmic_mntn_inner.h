@@ -60,6 +60,8 @@
 #define CLOSE_REGULATOR_CONTROL 0x00
 #define PMU_REG_WIDTH (8)
 
+#define PATH_BATTERY_CAPACITY "/sys/class/power_supply/Battery/capacity"
+
 typedef enum
 {
     PMIC_HEALTH_STATUS_NORMAL,
@@ -86,6 +88,11 @@ struct special_ocp_attr
     char *power_name;
     pmic_ocp_callback handler;
     struct special_ocp_attr *next;
+};
+
+struct battery_capacity_check_info {
+	unsigned int bat_cap_threshold;
+	unsigned int check_interval;
 };
 
 typedef struct
@@ -130,8 +137,10 @@ typedef struct
     struct special_ocp_attr *ocp_list_head;
     struct special_ocp_attr *ocp_list_tail;
 
-    /* uv_mntn Handle */
-    int uv_irq;
+	/* uv_mntn Handle */
+	int uv_irq;
+	struct delayed_work uv_mntn_delayed_work;
+	struct battery_capacity_check_info bat_cap_info;
 
     /*Event Record*/
     unsigned int record_reg_n;

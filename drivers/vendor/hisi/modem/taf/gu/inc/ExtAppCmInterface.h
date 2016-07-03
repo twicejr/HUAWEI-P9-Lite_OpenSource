@@ -1,20 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : ExtAppCmInterface.h
-  Author      : ---
-  Version     : V200R001
-  Date        : 2005-08-17
-  Description : 协议栈软件CM子层(CC/SS/SM)与APP接口头文件
-  History     :
-      1.  张志勇  2004-12-24   新规作成
-      2.  张志勇  2005-02-12   在CC接口中增加CCBS相关原语的ucChoice定义
-      3.  崔建海  2005-06-16   在CC接口中增加STATUS相关原语的ucChoice和结构定义
-      4.  蒋丽萍  2006-08-09   A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-      5.  zhoujun40661 2006-7-27 A32D04798
-      6. 日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 增加 #pragma pack(4)，问题单号:A32D07779
-************************************************************************/
+
 
 #ifndef _EXT_APP_CM_INTERFACE_H_
 #define _EXT_APP_CM_INTERFACE_H_
@@ -165,13 +149,7 @@ typedef struct {
                                                                                 /* ... */
 } ST_SSP_MSGS_FACILITY_IND;
 
-/*****************************************************************************
- 枚举名    : SSA_SS_REL_CAUSE_ENUM_UINT32
- 枚举说明  : mm给ss回复失败原因值，ss转给ssa，ssa根据原因值判断是否需要重发
- 1.日    期   : 2013年9月12日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum SSA_SS_REL_CAUSE_ENUM
 {
     /* cm service rej */
@@ -340,13 +318,7 @@ enum SSA_SS_REL_CAUSE_ENUM
 typedef VOS_UINT32 SSA_SS_REL_CAUSE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : SSA_SS_CS_CONN_STATE_ENUM
- 结构说明  : 链接状态
- 1.日    期   : 2013年9月11日
-   作    者   : z00161729
-   修改内容   : 新建
-*****************************************************************************/
+
 enum SSA_SS_CS_CONN_STATE_ENUM
 {
     SSA_SS_CS_CONN_STATE_ABSENT,                                                /* 连接不存在 */
@@ -364,13 +336,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 枚举名    : SSA_SS_STATUS_ENUM_UINT8
- 结构说明  : SS建立状态
- 1.日    期   : 2015年8月18日
-   作    者   : s00217060
-   修改内容   : 新建
-*****************************************************************************/
+
 enum SSA_SS_STATUS_ENUM
 {
     SSA_SS_STATUS_SETUP_SUCC,                                                   /* 连接建立成功 */
@@ -379,13 +345,7 @@ enum SSA_SS_STATUS_ENUM
 };
 typedef VOS_UINT8 SSA_SS_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 结构名    : SSA_SS_STATUS_NTY_STRU
- 结构说明  : 通知SS建立状态
-  1.日    期   : 2015年8月18日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     SSA_SS_STATUS_ENUM_UINT8            enSsStatus;

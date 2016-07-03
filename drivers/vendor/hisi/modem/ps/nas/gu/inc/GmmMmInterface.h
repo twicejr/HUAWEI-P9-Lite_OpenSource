@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : GmmMmInterface.h
-  版 本 号   : 初稿
-  作    者   : huwen /44270
-  生成日期   : 2011年07月01日
-  最近修改   :
-  功能描述   : GMM与MM间接口头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年07月01日
-    作    者   : huwen /40661
-    修改内容   : 创建文件
-  2.日    期   : 2012年01月12日
-    作    者   : w00176964
-    修改内容   : ASN解析统一调整头文件
-
-******************************************************************************/
 #ifndef _GMM_MM_INTERFACE_H_
 #define _GMM_MM_INTERFACE_H_
 
@@ -55,23 +35,7 @@ extern "C" {
 *****************************************************************************/
 /* GMM发送给MM的消息原语 */
 /* MNCC Primitives defination */
-/*****************************************************************************
- 枚举名    : GMM_MM_MSG_TYPE_ENUM
- 枚举说明  : GMM与MM相互间的消息原语定义
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-   
- 2.日    期   : 2011年8月17日                 
-   作    者   : w00167002                    
-   修改内容   : V7R1 PHASEII 重构: 给枚举赋值初始化，进行SDT打印显示
- 3.日    期   : 2012年1月12日
-   作    者   : w00176964
-   修改内容   : ASN解析统一调整头文件
- 4.日    期   : 2015年1月5日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
+
 enum GMM_MM_MSG_TYPE_ENUM
 {
     /* 消息名称 */                      /*消息ID*/  /* 备注 */
@@ -108,13 +72,7 @@ enum GMM_MM_MSG_TYPE_ENUM
 typedef VOS_UINT16  GMM_MM_MSG_TYPE_ENUM_UINT16;
 
 
-/*****************************************************************************
- 枚举名    : GMMMM_TIMER_FLG_ENUM
- 枚举说明  : GMM定时器超时的类型
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMMM_TIMER_FLG_ENUM
 {
     GMMMM_NO_TIMER_EXPIRED,                                                     /* 无定时器超时 */
@@ -128,13 +86,7 @@ enum GMMMM_TIMER_FLG_ENUM
 typedef VOS_UINT32  GMMMM_TIMER_FLG_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : GMMMM_ATTACH_RESLUT_ENUM
- 枚举说明  : GMM手机侧发起ATTACH的结果类型
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMMM_ATTACH_RESLUT_ENUM
 {
     GMMMM_ATTACH_RESLUT_PS_ONLY,                                                /* 只有PS域ATTACH成功 */
@@ -143,13 +95,7 @@ enum GMMMM_ATTACH_RESLUT_ENUM
 };
 typedef VOS_UINT32  GMMMM_ATTACH_RESLUT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : GMMMM_DETACH_RESLUT_ENUM
- 枚举说明  : GMM手机侧发起DETACH类型
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMMM_DETACH_TYPE_ENUM
 {
     GMMMM_COMBINED_DETACH_NORMAL,                                               /* 只有COMBINED ATTACH成功 */
@@ -159,13 +105,7 @@ enum GMMMM_DETACH_TYPE_ENUM
 typedef VOS_UINT32  GMMMM_DETACH_TYPE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : GMMMM_NET_DETACH_RESLUT_ENUM
- 枚举说明  : 网络侧发起DETACH的结果类型
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMMM_NET_DETACH_TYPE_ENUM
 {
     GMMMM_NET_DETACH_IMSI,                                                      /* 网络发起IMSI DETACH */
@@ -176,13 +116,7 @@ enum GMMMM_NET_DETACH_TYPE_ENUM
 typedef VOS_UINT32  GMMMM_NET_DETACH_TYPE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : GMMMM_ACTION_TYPE_ENUM
- 枚举说明  : GMM的ACTION类型
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMMM_ACTION_TYPE_ENUM
 {
     GMMMM_ACTION_RAU,                                                           /* 当前发起RAU */
@@ -192,13 +126,7 @@ enum GMMMM_ACTION_TYPE_ENUM
 };
 typedef VOS_UINT32  GMMMM_ACTION_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : GMMMM_ACTION_TYPE_ENUM
- 枚举说明  : GMM的ACTION结果
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMMM_ACTION_RESULT_ENUM
 {
     GMMMM_ACTION_SUCCESS,
@@ -208,13 +136,7 @@ enum GMMMM_ACTION_RESULT_ENUM
 typedef VOS_UINT32  GMMMM_ACTION_RESULT_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : GMMMM_REAL_FLAG_ENUM
- 枚举说明  : 用来标记是否为真实消息
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMMM_REAL_FLAG_ENUM
 {
     GMMMM_REAL_PROCEDURE,                                                       /* 表示真消息,MM需要更新TMSI */
@@ -223,13 +145,7 @@ enum GMMMM_REAL_FLAG_ENUM
 };
 typedef VOS_UINT32 GMMMM_REAL_FLAG_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : GMMMM_RAU_RESULT_ENUM
- 枚举说明  : GMM RAU的结果
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMMM_RAU_RESULT_ENUM
 {
     GMMMM_RAU_RESULT_PS_ONLY,                                                   /* 只有PS域RAU成功 */
@@ -239,13 +155,7 @@ enum GMMMM_RAU_RESULT_ENUM
 typedef VOS_UINT32 GMMMM_RAU_RESULT_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : GMMMM_MS_ID_TYPE_ENUM
- 枚举说明  : MS ID的类型
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum GMMMM_MS_ID_TYPE_ENUM
 {
     GMMMM_MS_ID_TYPE_NULL,
@@ -256,13 +166,7 @@ enum GMMMM_MS_ID_TYPE_ENUM
 typedef VOS_UINT32 GMMMM_MS_ID_TYPE_ENUM_UINT32;
 
 
-/*****************************************************************************
- 枚举名    : MMGMM_LU_RESULT_ENUM
- 枚举说明  : MM LU结果
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMGMM_LU_RESULT_ENUM
 {
     MMGMM_LU_SUCCESS,                                                           /* LU SUCCESS */
@@ -271,13 +175,7 @@ enum MMGMM_LU_RESULT_ENUM
 };
 typedef VOS_UINT32 MMGMM_LU_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : MMGMM_CS_CONNECT_STATUS_ENUM
- 枚举说明  : MM LU结果
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 enum MMGMM_CS_CONNECT_STATUS_ENUM
 {
     MMGMM_CS_CONNECT_NOT_EXIST,                                                 /* 没有CS域业务 */
@@ -304,13 +202,7 @@ typedef VOS_UINT32 MMGMM_CS_CONNECT_STATUS_ENUM_UINT32;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : GMMMM_LU_INITIATION_STRU
- 结构说明  : GMM通知MM LU发起
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -318,25 +210,13 @@ typedef struct
 }GMMMM_LU_INITIATION_STRU;
 
 
-/*****************************************************************************
- 结构名    : GMMMM_COMBINED_ATTACH_INITIATION_STRU
- 结构说明  : GMM通知MM COMBINED ATTACH开始
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
 }GMMMM_COMBINED_ATTACH_INITIATION_STRU;
 
-/*****************************************************************************
- 结构名    : GMMMM_MS_IDENTITY_STRU
- 结构说明  : MS ID的结构体类型
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     GMMMM_MS_ID_TYPE_ENUM_UINT32        enMsIdType;                             /* Ms类型 */
@@ -344,16 +224,7 @@ typedef struct
 }GMMMM_MS_IDENTITY_STRU;
 
 
-/*****************************************************************************
- 结构名    : GMMMM_COMBINED_ATTACH_ACCEPTED_STRU
- 结构说明  : GMM通知MM COMBINED ATTACH ACCEPT
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
- 2.日    期   : 2012年8月21日
-   作    者   : l00171473
-   修改内容   : DTS2012081705828, 4字节对齐
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -365,13 +236,7 @@ typedef struct
     VOS_UINT32                          ulAttachAttCounter;                     /* Attach attempt counter */
 }GMMMM_COMBINED_ATTACH_ACCEPTED_STRU;
 
-/*****************************************************************************
- 结构名    : GMMMM_COMBINED_ATTACH_REJECTED_STRU
- 结构说明  : GMM通知MM COMBINED ATTACH REJECTED
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -380,52 +245,28 @@ typedef struct
     VOS_UINT32                          ulAttachAttCounter;                     /* Attach attempt counter */
 }GMMMM_COMBINED_ATTACH_REJECTED_STRU;
 
-/*****************************************************************************
- 结构名    : GMMMM_IMSI_DETACH_INITIATION_STRU
- 结构说明  : GMM通知MM 发起IMSI DETACH
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
     VOS_UINT32                          ulReserved;                     /* 保留*/
 }GMMMM_IMSI_DETACH_INITIATION_STRU;
 
-/*****************************************************************************
- 结构名    : GMMMM_IMSI_DETACH_COMPLETED_STRU
- 结构说明  : GMM通知MM IMSI DETACH完成
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
     VOS_UINT32                          ulReserved;                     /* 保留*/
 }GMMMM_IMSI_DETACH_COMPLETED_STRU;
 
-/*****************************************************************************
- 结构名    : GMMMM_GPRS_DETACH_INITIATION_STRU
- 结构说明  : GMM通知MM GPRS DETACH发起
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
     GMMMM_DETACH_TYPE_ENUM_UINT32       enDetachType;                           /* DETACH的类型 */
 }GMMMM_GPRS_DETACH_INITIATION_STRU;
 
-/*****************************************************************************
- 结构名    : GMMMM_GPRS_DETACH_COMPLETED_STRU
- 结构说明  : GMM通知MM GPRS DETACH完成
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -433,13 +274,7 @@ typedef struct
 }GMMMM_GPRS_DETACH_COMPLETED_STRU;
 
 
-/*****************************************************************************
- 结构名    : GMMMM_NETWORK_DETACH_IND_STRU
- 结构说明  : GMM通知MM 网络发起DETACH
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -447,13 +282,7 @@ typedef struct
     VOS_UINT32                          ulDetachCause;                          /* Detach原因 */
 }GMMMM_NETWORK_DETACH_IND_STRU;
 
-/*****************************************************************************
- 结构名    : GMMMM_GMM_ACTION_RESULT_IND_STRU
- 结构说明  : GMM通知MM ACTION RESULT
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -464,13 +293,7 @@ typedef struct
     VOS_UINT8                           aucReserve[1];                          /* 保留位 */    
 }GMMMM_GMM_ACTION_RESULT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : GMMMM_COMBINED_RAU_INITIATION_STRU
- 结构说明  : GMM通知MM COMBINED RAU发起
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -478,13 +301,7 @@ typedef struct
 }GMMMM_COMBINED_RAU_INITIATION_STRU;
 
 
-/*****************************************************************************
- 结构名    : GMMMM_COMBINED_RAU_ACCEPTED_STRU
- 结构说明  : GMM通知MM COMBINED RAU完成
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                              /* 消息头 */ /*_H2ASN_Skip*/
@@ -497,13 +314,7 @@ typedef struct
 }GMMMM_COMBINED_RAU_ACCEPTED_STRU;
 
 
-/*****************************************************************************
- 结构名    : GMMMM_COMBINED_RAU_ACCEPTED_STRU
- 结构说明  : GMM通知MM COMBINED RAU被拒
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -514,13 +325,7 @@ typedef struct
 }GMMMM_COMBINED_RAU_REJECTED_STRU;
 
 
-/*****************************************************************************
- 结构名    : GMMMM_AUTHENTICATON_FAILURE_IND_STRU
- 结构说明  : GMM通知MM鉴权被拒
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
      MSG_HEADER_STRU                    stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -528,13 +333,7 @@ typedef struct
 }GMMMM_AUTHENTICATON_FAILURE_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMGMM_LU_RESULT_IND_STRU
- 结构说明  : MM通知GMM LU结果
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */ /*_H2ASN_Skip*/
@@ -544,13 +343,7 @@ typedef struct
     VOS_UINT8                           aucReserve[2];                          /* 保留位 */
 }MMGMM_LU_RESULT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMGMM_AUTHENTICATON_FAILURE_IND_STRU
- 结构说明  : MM通知GMM 鉴权失败
- 1.日    期   : 2011年7月11日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                              /* 消息头 */ /*_H2ASN_Skip*/
@@ -558,13 +351,7 @@ typedef struct
 }MMGMM_AUTHENTICATON_FAILURE_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMGMM_CS_CONNECT_IND_STRU
- 结构说明  : MM通知GMM 当前CS连接状态
- 1.日    期   : 2011年7月16日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
 
@@ -572,13 +359,7 @@ typedef struct
     MMGMM_CS_CONNECT_STATUS_ENUM_UINT32 enCsConnectStatus;                      /* CS域连接有无标志  */
 }MMGMM_CS_CONNECT_IND_STRU;
 
-/*****************************************************************************
- 结构名    : MMGMM_CM_SERVICE_REJECT_IND_STRU
- 结构说明  : MM通知GMM 当前CS域业务被拒绝
- 1.日    期   : 2011年7月16日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
 
@@ -587,13 +368,7 @@ typedef struct
 }MMGMM_CM_SERVICE_REJECT_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMGMM_REGISTER_INITIATION_STRU
- 结构说明  : MM通知GMM 当前CS域发起注册
- 1.日    期   : 2011年8月10日
-   作    者   : h44270
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
 
@@ -601,13 +376,7 @@ typedef struct
     VOS_UINT32              ulReserved;                     /* 保留*/
 } MMGMM_REGISTER_INITIATION_STRU;
 
-/*****************************************************************************
- 结构名    : MMGMM_CS_LOCAL_DETACH_IND_STRU
- 结构说明  : MM通知GMM 当前CS域本地去注册了
- 1.日    期   : 2013年6月12日
-   作    者   : w00167002
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
 
@@ -616,13 +385,7 @@ typedef struct
 } MMGMM_CS_LOCAL_DETACH_IND_STRU;
 
 
-/*****************************************************************************
- 结构名    : MMGMM_T3211_TIMER_EXPIRED_NOTIFY_STRU
- 结构说明  : MM通知GMM T3211定时器超时
- 1.日    期   : 2015年1月5日
-   作    者   : z00161729
-   修改内容   : AT&T 支持DAM特性修改
-*****************************************************************************/
+
 typedef struct
 {
 

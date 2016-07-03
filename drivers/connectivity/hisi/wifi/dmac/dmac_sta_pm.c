@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_sta_pm.c
-  版 本 号   : 初稿
-  作    者   : l00280485
-  生成日期   : 2014年11月25日
-  最近修改   :
-  功能描述   : STA侧节能状态机所在文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年11月25日
-    作    者   : l00280485
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -103,21 +86,7 @@ mac_fsm_state_info  g_sta_power_fsm_info[] = {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_pm_key_info_dump
- 功能描述  : 低功耗关键信息打印
- 输入参数  : dmac_vap
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月22日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_pm_key_info_dump(dmac_vap_stru  *pst_dmac_vap)
 {
     mac_sta_pm_handler_stru     *pst_mac_sta_pm_handle;
@@ -140,21 +109,7 @@ oal_void dmac_pm_key_info_dump(dmac_vap_stru  *pst_dmac_vap)
                             pst_mac_sta_pm_handle->aul_pmDebugCount[PM_MSG_DEEP_DOZE_CNT]);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_pm_enable_front_end
- 功能描述  : 低功耗唤醒前端操作
- 输入参数  : p_ctx:状态机上下文，对节能状态机来说为pm_handler
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年09月14日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_pm_enable_front_end(mac_device_stru *pst_mac_device, oal_uint8 uc_enable_paldo)
 {
     oal_uint32                  ulTimeOut;
@@ -271,21 +226,7 @@ oal_void dmac_pm_enable_front_end(mac_device_stru *pst_mac_device, oal_uint8 uc_
     }
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_pm_process_deassociate
- 功能描述  : 处理去关联事件的接口
- 输入参数  : p_ctx:状态机上下文，对节能状态机来说为pm_handler
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_pm_process_deassociate(mac_sta_pm_handler_stru* pst_sta_pm_handler)
 {
     dmac_vap_stru               *pst_dmac_vap;
@@ -302,6 +243,9 @@ oal_void dmac_pm_process_deassociate(mac_sta_pm_handler_stru* pst_sta_pm_handler
     st_ps_open.uc_pm_ctrl_type   = MAC_STA_PM_CTRL_TYPE_HOST;
 
     dmac_config_set_sta_pm_on(&(pst_dmac_vap->st_vap_base_info), OAL_SIZEOF(mac_cfg_ps_open_stru), (oal_uint8 *)&st_ps_open);
+
+    /* 去关联后低功耗关闭标志清0,防止DBAC,ROAM不对称的开关低功耗,导致无法再打开低功耗 */
+    pst_dmac_vap->uc_sta_pm_close_status = 0;
 
     /* 由于去关联删除定时器 */
     if(OAL_TRUE == pst_sta_pm_handler->st_inactive_timer.en_is_registerd)
@@ -325,21 +269,7 @@ oal_void dmac_pm_process_deassociate(mac_sta_pm_handler_stru* pst_sta_pm_handler
     hal_pm_wlan_servid_unregister(pst_dmac_vap->pst_hal_vap);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_ps_process_send_null_succ_event
- 功能描述  : null帧发送成功事件的处理
- 输入参数  : pst_pm_handler:对节能状态机结构体 pst_mac_hdr:mac头结构体
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_process_send_null_succ_event(mac_sta_pm_handler_stru  *pst_pm_handler, mac_ieee80211_frame_stru  *pst_mac_hdr)
 {
     dmac_vap_stru               *pst_dmac_vap;
@@ -398,64 +328,19 @@ oal_void dmac_process_send_null_succ_event(mac_sta_pm_handler_stru  *pst_pm_hand
     }
 
 }
-/*****************************************************************************
- 函 数 名  : sta_power_state_active_entry
- 功能描述  : active状态的entry接口
- 输入参数  : p_ctx:状态机上下文，对节能状态机来说为pm_handler
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : l00280485
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void sta_power_state_active_entry(oal_void *p_ctx)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : sta_power_state_active_exit
- 功能描述  : active状态的exit接口
- 输入参数  : p_ctx:状态机上下文，节能状态机为pm_handler
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void sta_power_state_active_exit(oal_void *p_ctx)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ap_power_state_work_event
- 功能描述  : active状态的event接口
- 输入参数  : p_ctx:状态机上下文，节能状态机为pm_handler
-             us_event:待处理事件
-             us_event_data_len:事件中携带的数据长度
-             p_event_data:事件中携带的事件对应的指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 sta_power_state_active_event(oal_void   *p_ctx,
                                                         oal_uint16    us_event,
                                                         oal_uint16    us_event_data_len,
@@ -553,21 +438,7 @@ OAL_STATIC oal_uint32 sta_power_state_active_event(oal_void   *p_ctx,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_is_sta_allow_to_sleep
- 功能描述  : 允许低功耗状态机的状态切到doze状态,但不允许投票深睡
- 输入参数  : pst_device:device pst_dmac_vap:dmac_vap pst_sta_pm_handler:节能状态机
- 输出参数  : OAL_TRUE:OAL_FALSE
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月12日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8  dmac_is_sta_allow_to_sleep(mac_device_stru *pst_device, dmac_vap_stru *pst_dmac_vap, mac_sta_pm_handler_stru* pst_sta_pm_handler)
 {
     /* 正在扫描不睡眠 */
@@ -603,21 +474,7 @@ oal_uint8  dmac_is_sta_allow_to_sleep(mac_device_stru *pst_device, dmac_vap_stru
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_power_state_process_doze
- 功能描述  : active状态的entry接口
- 输入参数  : p_ctx:状态机上下文，对节能状态机来说为pm_handler
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_power_state_process_doze(mac_sta_pm_handler_stru* pst_sta_pm_handler, oal_uint8 uc_ps_mode)
 {
 
@@ -667,21 +524,7 @@ oal_void dmac_power_state_process_doze(mac_sta_pm_handler_stru* pst_sta_pm_handl
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : sta_power_state_doze_entry
- 功能描述  : active状态的entry接口
- 输入参数  : p_ctx:状态机上下文，对节能状态机来说为pm_handler
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void sta_power_state_doze_entry(oal_void *p_ctx)
 {
     oal_uint8                   uc_ps_mode;
@@ -706,44 +549,13 @@ OAL_STATIC oal_void sta_power_state_doze_entry(oal_void *p_ctx)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : sta_power_state_active_exit
- 功能描述  : active状态的exit接口
- 输入参数  : p_ctx:状态机上下文，节能状态机为pm_handler
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void sta_power_state_doze_exit(oal_void *p_ctx)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ap_power_state_work_event
- 功能描述  : active状态的event接口
- 输入参数  : p_ctx:状态机上下文，节能状态机为pm_handler
-             us_event:待处理事件
-             us_event_data_len:事件中携带的数据长度
-             p_event_data:事件中携带的事件对应的指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 sta_power_state_doze_event(oal_void   *p_ctx,
                                                         oal_uint16    us_event,
                                                         oal_uint16    us_event_data_len,
@@ -820,21 +632,7 @@ OAL_STATIC oal_uint32 sta_power_state_doze_event(oal_void   *p_ctx,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : sta_power_state_active_entry
- 功能描述  : awake状态的entry接口
- 输入参数  : p_ctx:状态机上下文，对节能状态机来说为pm_handler
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void sta_power_state_awake_entry(oal_void *p_ctx)
 {
     mac_sta_pm_handler_stru*    pst_sta_pm_handler = (mac_sta_pm_handler_stru*)p_ctx;
@@ -870,44 +668,13 @@ OAL_STATIC oal_void sta_power_state_awake_entry(oal_void *p_ctx)
 
 	}
 }
-/*****************************************************************************
- 函 数 名  : sta_power_state_active_exit
- 功能描述  : active状态的exit接口
- 输入参数  : p_ctx:状态机上下文，节能状态机为pm_handler
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void sta_power_state_awake_exit(oal_void *p_ctx)
 {
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : ap_power_state_work_event
- 功能描述  : active状态的event接口
- 输入参数  : p_ctx:状态机上下文，节能状态机为pm_handler
-             us_event:待处理事件
-             us_event_data_len:事件中携带的数据长度
-             p_event_data:事件中携带的事件对应的指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 sta_power_state_awake_event(oal_void   *p_ctx,
                                                         oal_uint16    us_event,
                                                         oal_uint16    us_event_data_len,
@@ -1016,28 +783,12 @@ OAL_STATIC oal_uint32 sta_power_state_awake_event(oal_void   *p_ctx,
     }
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_pm_sta_doze_state_trans
- 功能描述  : PM节能状态机的状态切换到doze状态
- 输入参数  : pst_handler:pm handler指针
-             uc_state:切换状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_pm_sta_doze_state_trans(mac_sta_pm_handler_stru* pst_handler, oal_uint16 us_event)
 {
     mac_fsm_stru    *pst_fsm = pst_handler->p_mac_fsm;
     dmac_vap_stru    *pst_dmac_vap;
     oal_uint8         uc_doze_trans_flag;
-    oal_uint8         uc_beacon_timeout_count = DMAC_BEACON_TIMEOUT_MAX_NUM;
 
     pst_dmac_vap = (dmac_vap_stru *)(pst_fsm->p_oshandler);
     uc_doze_trans_flag = (pst_handler->en_beacon_frame_wait) | (pst_handler->st_null_wait.en_doze_null_wait << 1) | (pst_handler->en_more_data_expected << 2)
@@ -1074,19 +825,8 @@ oal_void dmac_pm_sta_doze_state_trans(mac_sta_pm_handler_stru* pst_handler, oal_
     }
     else
     {
-#ifdef _PRE_WLAN_FEATURE_BTCOEX
-        if(pst_dmac_vap->pst_hal_device->st_btcoex_btble_status.un_bt_status.st_bt_status.bit_bt_on)
-        {
-            uc_beacon_timeout_count = DMAC_BEACON_TIMEOUT_MAX_NUM_COEX;
-        }
-        else
-        {
-            uc_beacon_timeout_count = DMAC_BEACON_TIMEOUT_MAX_NUM;
-        }
-#endif
-
-        /* beacon连续收不到DMAC_BEACON_TIMEOUT_MAX_NUM次不睡眠低功耗状态停在awake状态 */
-        if (pst_dmac_vap->bit_beacon_timeout_times > uc_beacon_timeout_count)
+        /* beacon连续收不到uc_bcn_tout_max_cnt次不睡眠低功耗状态停在awake状态 or 正在发送数据,唤醒的null帧,有more data */
+        if ((pst_dmac_vap->bit_beacon_timeout_times > pst_dmac_vap->uc_bcn_tout_max_cnt) || (uc_doze_trans_flag & (BIT2 | BIT3 | BIT4)))
         {
             pst_handler->aul_pmDebugCount[PM_MSG_BCNTIMOUT_DIS_ALLOW_SLEEP]++;
             return;
@@ -1104,22 +844,7 @@ oal_void dmac_pm_sta_doze_state_trans(mac_sta_pm_handler_stru* pst_handler, oal_
         mac_fsm_trans_to_state(pst_fsm, STA_PWR_SAVE_STATE_DOZE);
     }
 }
-/*****************************************************************************
- 函 数 名  : dmac_pm_state_trans
- 功能描述  : PM节能状态机的状态切换接口
- 输入参数  : pst_handler:pm handler指针
-             uc_state:切换状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_pm_sta_state_trans(mac_sta_pm_handler_stru* pst_handler,oal_uint8 uc_state, oal_uint16 us_event)
 {
     mac_fsm_stru    *pst_fsm = pst_handler->p_mac_fsm;
@@ -1179,21 +904,7 @@ oal_void dmac_pm_sta_state_trans(mac_sta_pm_handler_stru* pst_handler,oal_uint8 
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : dmac_sta_pm_post_event
- 功能描述  : 节能状态机的事件处理接口,节能状态机的状态切换以事件来驱动，基于frw的事件分发机制来承载pm的内部事件
- 输入参数  : pst_event_mem: frw的事件结构指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年7月17日
-    作    者   : zourong
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 dmac_pm_sta_post_event(oal_void* pst_oshandler, oal_uint16 us_type, oal_uint16 us_datalen, oal_uint8* pst_data)
 {
     mac_sta_pm_handler_stru     *pst_handler;
@@ -1273,21 +984,7 @@ oal_uint32 dmac_pm_sta_post_event(oal_void* pst_oshandler, oal_uint16 us_type, o
     return ul_ret;
 
 }
-/*****************************************************************************
- 函 数 名  : dmac_pm_sta_attach
- 功能描述  : sta pm 变量初始化
- 输入参数  : p_fsm:状态机指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月4日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_sta_initialize_psm_globals(mac_sta_pm_handler_stru *p_handler)
 {
         p_handler->en_beacon_frame_wait             = OAL_FALSE;
@@ -1313,21 +1010,7 @@ oal_void dmac_sta_initialize_psm_globals(mac_sta_pm_handler_stru *p_handler)
 
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_pm_sta_attach
- 功能描述  : sta类型VAP创建pm handler
- 输入参数  : p_fsm:状态机指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 mac_sta_pm_handler_stru * dmac_pm_sta_attach(oal_void* pst_oshandler)
 {
     mac_sta_pm_handler_stru *p_handler  = OAL_PTR_NULL;
@@ -1391,21 +1074,7 @@ mac_sta_pm_handler_stru * dmac_pm_sta_attach(oal_void* pst_oshandler)
     return p_dmac_vap->pst_pm_handler;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_pm_sta_deattach
- 功能描述  : sta类型VAP销毁pm handler
- 输入参数  : p_fsm:状态机指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月27日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_pm_sta_detach(oal_void* pst_oshandler)
 {
     mac_sta_pm_handler_stru *pst_handler = OAL_PTR_NULL;

@@ -1,13 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : UsimmApi.c
-  Author       : zhuli 00100318
-  Version      : V100R002
-  Date         : 2008-5-15
-  Description  : 该C文件给出了---接口回复模块实现
-  Function List:
-  History      :
- ************************************************************************/
+
 
 #include "UsimmApi.h"
 #include "UsimPsInterface.h"
@@ -29,27 +20,7 @@ extern "C" {
 
 #if (FEATURE_ON == FEATURE_UE_UICC_MULTI_APP_SUPPORT)
 
-/*****************************************************************************
-函 数 名  :USIMM_MaxRecordNumCnf
-功能描述  :获取文件最大记录数回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           usEFId:文件ID
-           ucRecordNum:记录个数
-           ucRecordLen:记录长度
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2.日    期  : 2011年7月5日
-  作    者  : j00168360
-  修改内容  : [DTS2011070102597]，SIM卡FDN功能开启，ADN文件可读可更新时电话本无法操作
-*****************************************************************************/
+
 VOS_VOID USIMM_MaxRecordNumCnf(
     USIMM_QUERYFILE_REQ_STRU           *pstNewMsg,
     VOS_UINT32                          ulErrorCode,
@@ -94,25 +65,7 @@ VOS_VOID USIMM_MaxRecordNumCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PinHandleCnf
-功能描述  :PIN操作结果回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           enCmdType:PIN操作类型
-           enPINType:PIN类型
-           pstPINinfo:PIN信息
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_PinHandleCnf(
     USIMM_PINHANDLE_REQ_STRU           *pstReqMsg,
     VOS_UINT32                          ulResult,
@@ -147,23 +100,7 @@ VOS_VOID USIMM_PinHandleCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetFileCnf
-功能描述  :更新文件结果回复
-输入参数  :pstUpdateMsg   :回复模块ID
-           ulErrorCode :回复结果
-           pstCnfInfo  :回复内容
-输出参数  :无
-返 回 值  :无
-调用函数  :
 
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_SetFileCnf(
     USIMM_UPDATEFILE_REQ_STRU           *pstUpdateMsg,
     VOS_UINT32                          ulErrorCode,
@@ -206,28 +143,7 @@ VOS_VOID USIMM_SetFileCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetFileCnf
-功能描述  :读取文件结果回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           usEFId:文件ID
-           usEfLen:数据长度，二进制文件返回文件长度，记录文件返回记录长度
-           ucRecordNum:记录个数
-           ucTotalNum:总共读取记录个数
-           usDataLen:数据长度
-           pucEf:数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_GetFileCnf(
     USIMM_READFILE_REQ_STRU            *pstReadMsg,
     VOS_UINT32                          ulErrorCode,
@@ -287,22 +203,7 @@ VOS_VOID USIMM_GetFileCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshCnf
-功能描述  :重启卡结果回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ResetCnf(
     VOS_UINT32                          ulReceiverPid,
     USIMM_REFRESH_TYPE_ENUM_UINT32      enRefreshType,
@@ -333,21 +234,7 @@ VOS_VOID USIMM_ResetCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_TelecomAuthCnf
-功能描述  :电信鉴权结果回复
-输入参数  :pstMsg:      鉴权消息
-           pstCnfInfo:  鉴权回复内容
-输出参数  :无
-返 回 值  :无
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年7月24日
-    作    者   : g47350
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_TelecomAuthCnf(
     USIMM_AUTHENTICATION_REQ_STRU      *pstMsg,
     USIMM_TELECOM_AUTH_INFO_STRU       *pstCnfInfo)
@@ -428,21 +315,7 @@ VOS_VOID USIMM_TelecomAuthCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ImsAuthCnf
-功能描述  :IMS鉴权结果回复
-输入参数  :pstMsg:      鉴权消息
-           pstCnfInfo:  鉴权回复内容
-输出参数  :无
-返 回 值  :无
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年7月24日
-    作    者   : g47350
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ImsAuthCnf(
     USIMM_AUTHENTICATION_REQ_STRU       *pstMsg,
     USIMM_IMS_AUTH_INFO_STRU            *pstCnfInfo)
@@ -546,31 +419,7 @@ VOS_VOID USIMM_ImsAuthCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RAccessCnf
-功能描述  :受限制访问卡回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           ucSW1:命令结果1
-           ucSW2:命令结果2
-           ucLen:命令数据长度
-           pContent:命令数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期   : 2011年4月27日
-   作    者   : j00168360
-   修改内容   : [DTS2011042702232]新西兰外场，使用2Degrees的卡启用PIN码会发生掉卡
-3. 日    期  : 2011年8月18日
-   作    者  : j00168360
-   修改内容  : [DTS2011081805771]使用MOVISTAR后台打开单板，后台不可用，AT口不通
-*****************************************************************************/
+
 VOS_VOID USIMM_RestrictedAccessCnf(
     USIMM_RACCESS_REQ_STRU             *pstReqMsg,
     VOS_UINT32                          ulResult,
@@ -615,22 +464,7 @@ VOS_VOID USIMM_RestrictedAccessCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_TerminalResponseCnf
-功能描述  :主动命令操作结果下发回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_TerminalResponseCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulErrorCode,
@@ -670,22 +504,7 @@ VOS_VOID USIMM_TerminalResponseCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名      :USIMM_EnvelopeCnf
-功能描述  :Envelope命令下发回复
-输入参数  :enClientId:回复模块ID
-                         ulResult:回复结果
-输出参数  :无
-返 回 值      :无
-调用函数  :USIMM_ClientToPid
-                         VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_EnvelopeCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulSendPara,
@@ -739,22 +558,7 @@ VOS_VOID USIMM_EnvelopeCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SingleCmdCnf
-功能描述  :一般性卡操作回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SingleCmdCnf(
     VOS_UINT32                      ulReceiverPid,
     VOS_UINT32                      ulMsgName,
@@ -792,22 +596,7 @@ VOS_VOID USIMM_SingleCmdCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_FDNCnf
-功能描述  :FDN操作回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-输出参数  :无
-返 回 值      :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_FDNCnf(
     USIMM_CMDHEADER_REQ_STRU           *pstMsgHeader,
     VOS_UINT32                          ulResult
@@ -838,24 +627,7 @@ VOS_VOID USIMM_FDNCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetSPBFileCnf
-功能描述  :更新复合电话本操作回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           usLen:数据内容长度
-           pucConten:数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SetSPBFileCnf(
     USIMM_SETMUTILFILE_REQ_STRU         *pstReqMsg,
     VOS_UINT32                          ulErrorCode)
@@ -909,20 +681,7 @@ VOS_VOID USIMM_SetSPBFileCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SearchHandleCnf
-功能描述  :回复SEARCH的结果
-输入参数  :enClientId:回复模块ID
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2010年1月8日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_SearchHandleCnf(
     USIMM_SEARCHFILE_REQ_STRU           *pstMsg,
     VOS_UINT32                          ulErrorCode,
@@ -973,23 +732,7 @@ VOS_VOID USIMM_SearchHandleCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CardStatusPidInd
-功能描述  :卡状态上报
-输入参数  :enClientId:回复模块ID
-           enCardType:卡类型
-           enCardStatus:卡状态
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年12月16日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_CardStatusInd(
     VOS_UINT32                          ulReceiverPid)
 {
@@ -1028,18 +771,7 @@ VOS_VOID USIMM_CardStatusInd(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_CardTimeOutEventInd
-功能描述  : 卡超时事件的时处理卡状态上报
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_ERR
-           VOS_OK
-修订记录  :
-1. 日    期   : 2015年5月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_CardTimeOutEventInd(VOS_VOID)
 {
     USIMM_CARDTIMEOUT_IND_STRU          *pstUsimMsg;
@@ -1071,22 +803,7 @@ VOS_VOID USIMM_CardTimeOutEventInd(VOS_VOID)
 }
 
 /*2阶段开发使用*/
-/*****************************************************************************
-函 数 名  :USIMM_SatDataCnf
-功能描述  :主动命令内容上报
-输入参数  :enClientId:回复模块ID
-           usDataLen:数据长度
-           pucData:数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  : VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SatDataInd(
     VOS_UINT8                           ucCmdType,
     VOS_UINT16                          usDataLen,
@@ -1116,17 +833,7 @@ VOS_VOID USIMM_SatDataInd(
 }
 
 #if (FEATURE_VSIM == FEATURE_ON)
-/*****************************************************************************
-函 数 名  :USIMM_VsimReDhNegotiateInd
-功能描述  :DH重协商指示上报
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年8月28日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_VsimReDhNegotiateInd(VOS_VOID)
 {
     USIMM_VSIM_RDH_IND_STRU         *pstMsg;
@@ -1147,23 +854,7 @@ VOS_VOID USIMM_VsimReDhNegotiateInd(VOS_VOID)
     return;
 }
 #endif
-/*****************************************************************************
-函 数 名  :USIMM_EccNumberInd
-功能描述  :紧急呼叫号码上报
-输入参数  :ucEccType:号码类型
-           usEfLen:文件长度
-           ucRecordNum:记录个数
-           pucData数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  :VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_EccNumberInd(
     VOS_UINT8                           ucEccType,
     VOS_UINT16                          usEfLen,
@@ -1199,18 +890,7 @@ VOS_VOID USIMM_EccNumberInd(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_XeccNumberInd
-功能描述  :紧急呼叫号码上报
-输入参数  :usEfLen:文件长度
-           pucData数据内容
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2015年06月11日
-   作    者   : h00300778
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_XeccNumberInd(
     VOS_UINT16                          usEfLen,
     VOS_UINT8                          *pucData)
@@ -1242,21 +922,7 @@ VOS_VOID USIMM_XeccNumberInd(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_OpenChannelCnf
-功能描述  :打开通道消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           ucChannelId:逻辑通道号
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_OpenChannelCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulSendPara,
@@ -1300,20 +966,7 @@ VOS_VOID USIMM_OpenChannelCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CloseChannelCnf
-功能描述  :关闭通道消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_CloseChannelCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulSendPara,
@@ -1343,21 +996,7 @@ VOS_VOID USIMM_CloseChannelCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendTPDUCnf
-功能描述  :Send TPDU消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           pstDataCnf:Send TPDU消息回复内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_SendTPDUCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulSendPara,
@@ -1426,21 +1065,7 @@ VOS_VOID USIMM_SendTPDUCnf(
 
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendTPDUCnf
-功能描述  :Send TPDU消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           pstDataCnf:Send TPDU消息回复内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_CdmaAuthCnf(
     USIMM_AUTHENTICATION_REQ_STRU      *pstMsg,
     USIMM_CDMA_AUTH_INFO_STRU          *pstCnfInfo)
@@ -1538,21 +1163,7 @@ VOS_VOID USIMM_CdmaAuthCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendTPDUCnf
-功能描述  :Send TPDU消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           pstDataCnf:Send TPDU消息回复内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_BSChallengeCnf(
     USIMM_CMDHEADER_REQ_STRU           *pstReqMsg,
     VOS_UINT32                          ulResult,
@@ -1592,21 +1203,7 @@ VOS_VOID USIMM_BSChallengeCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GenerateKeyVpmCnf
-功能描述  :Send TPDU消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           pstDataCnf:Send TPDU消息回复内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_GenerateKeyVpmCnf(
     USIMM_GENERATE_KEYVPM_REQ_STRU     *pstReqMsg,
     VOS_UINT32                          ulResult,
@@ -1652,21 +1249,7 @@ VOS_VOID USIMM_GenerateKeyVpmCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CdmaSepcAuthCnf
-功能描述  :Spec Auth消息回复
-输入参数  :pstReqMsg:接收消息PID
-           enAuthType:鉴权类型
-           ulErrCode:错误码
-           uAuthCnf: 消息回复内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_CdmaSepcAuthCnf(
     USIMM_CMDHEADER_REQ_STRU           *pstReqMsg,
     VOS_UINT32                          ulErrCode,
@@ -1720,19 +1303,7 @@ VOS_VOID USIMM_CdmaSepcAuthCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_QueryEsnMeidRsltCnf
-功能描述  : CDMA Store ESN MEID查询结果回复
-输入参数  : pstReqMsg:接收消息PID
 
-输出参数  : 无
-返 回 值  : 无
-
-修订记录  :
-1. 日    期   : 2015年10月15日
-   作    者   : d00212987
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_QueryEsnMeidRsltCnf(
     USIMM_CMDHEADER_REQ_STRU           *pstReqMsg
 )
@@ -1766,27 +1337,7 @@ VOS_VOID USIMM_QueryEsnMeidRsltCnf(
 
 #else
 
-/*****************************************************************************
-函 数 名  :USIMM_MaxRecordNumCnf
-功能描述  :获取文件最大记录数回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           usEFId:文件ID
-           ucRecordNum:记录个数
-           ucRecordLen:记录长度
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2.日    期  : 2011年7月5日
-  作    者  : j00168360
-  修改内容  : [DTS2011070102597]，SIM卡FDN功能开启，ADN文件可读可更新时电话本无法操作
-*****************************************************************************/
+
 VOS_VOID USIMM_MaxRecordNumCnf(USIMM_QUERYFILE_REQ_STRU  *pstNewMsg,
                                             VOS_UINT32                  ulErrorCode,
                                            USIMM_FILECNF_INFO_STRU      *pstCnfInfo)
@@ -1829,25 +1380,7 @@ VOS_VOID USIMM_MaxRecordNumCnf(USIMM_QUERYFILE_REQ_STRU  *pstNewMsg,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_PinHandleCnf
-功能描述  :PIN操作结果回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           enCmdType:PIN操作类型
-           enPINType:PIN类型
-           pstPINinfo:PIN信息
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_PinHandleCnf(
     USIMM_PINHANDLE_REQ_STRU           *pstReqMsg,
     VOS_UINT32                          ulResult,
@@ -1882,23 +1415,7 @@ VOS_VOID USIMM_PinHandleCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetFileCnf
-功能描述  :更新文件结果回复
-输入参数  :pstNewMsg   :回复模块ID
-           ulErrorCode :回复结果
-           pstCnfInfo  :回复内容
-输出参数  :无
-返 回 值  :无
-调用函数  :
 
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-
-*****************************************************************************/
 VOS_VOID USIMM_SetFileCnf(USIMM_UPDATEFILE_REQ_STRU  *pstNewMsg,
                                 VOS_UINT32                   ulErrorCode,
                                 USIMM_SETCNF_INFO_STRU      *pstCnfInfo)
@@ -1940,28 +1457,7 @@ VOS_VOID USIMM_SetFileCnf(USIMM_UPDATEFILE_REQ_STRU  *pstNewMsg,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_GetFileCnf
-功能描述  :读取文件结果回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           usEFId:文件ID
-           usEfLen:数据长度，二进制文件返回文件长度，记录文件返回记录长度
-           ucRecordNum:记录个数
-           ucTotalNum:总共读取记录个数
-           usDataLen:数据长度
-           pucEf:数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_GetFileCnf(
     USIMM_READFILE_REQ_STRU            *pstNewMsg,
     VOS_UINT32                          ulErrorCode,
@@ -2022,22 +1518,7 @@ VOS_VOID USIMM_GetFileCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RefreshCnf
-功能描述  :重启卡结果回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ResetCnf(
     VOS_UINT32                          ulReceiverPid,
     USIMM_REFRESH_TYPE_ENUM_UINT32      enRefreshType,
@@ -2068,21 +1549,7 @@ VOS_VOID USIMM_ResetCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_TelecomAuthCnf
-功能描述  :电信鉴权结果回复
-输入参数  :pstMsg:      鉴权消息
-           pstCnfInfo:  鉴权回复内容
-输出参数  :无
-返 回 值  :无
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年7月24日
-    作    者   : g47350
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_TelecomAuthCnf(
     USIMM_AUTH_REQ_STRU                *pstMsg,
     USIMM_TELECOM_AUTH_INFO_STRU       *pstCnfInfo)
@@ -2163,21 +1630,7 @@ VOS_VOID USIMM_TelecomAuthCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_ImsAuthCnf
-功能描述  :IMS鉴权结果回复
-输入参数  :pstMsg:      鉴权消息
-           pstCnfInfo:  鉴权回复内容
-输出参数  :无
-返 回 值  :无
-调用函数  :
-被调函数  :
-修订记录  :
-1. 日    期   : 2013年7月24日
-    作    者   : g47350
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_ImsAuthCnf(USIMM_AUTH_REQ_STRU *pstMsg, USIMM_IMS_AUTH_INFO_STRU *pstCnfInfo)
 {
     USIMM_AUTHENTICATION_CNF_STRU      *pstCnfMsg;
@@ -2262,31 +1715,7 @@ VOS_VOID USIMM_ImsAuthCnf(USIMM_AUTH_REQ_STRU *pstMsg, USIMM_IMS_AUTH_INFO_STRU 
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_RAccessCnf
-功能描述  :受限制访问卡回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           ucSW1:命令结果1
-           ucSW2:命令结果2
-           ucLen:命令数据长度
-           pContent:命令数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
-2. 日    期   : 2011年4月27日
-   作    者   : j00168360
-   修改内容   : [DTS2011042702232]新西兰外场，使用2Degrees的卡启用PIN码会发生掉卡
-3. 日    期  : 2011年8月18日
-   作    者  : j00168360
-   修改内容  : [DTS2011081805771]使用MOVISTAR后台打开单板，后台不可用，AT口不通
-*****************************************************************************/
+
 VOS_VOID USIMM_RestrictedAccessCnf(
     USIMM_RACCESS_REQ_STRU             *pstReqMsg,
     VOS_UINT32                          ulResult,
@@ -2327,22 +1756,7 @@ VOS_VOID USIMM_RestrictedAccessCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_TerminalResponseCnf
-功能描述  :主动命令操作结果下发回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_TerminalResponseCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulErrorCode,
@@ -2382,22 +1796,7 @@ VOS_VOID USIMM_TerminalResponseCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名      :USIMM_EnvelopeCnf
-功能描述  :Envelope命令下发回复
-输入参数  :enClientId:回复模块ID
-                         ulResult:回复结果
-输出参数  :无
-返 回 值      :无
-调用函数  :USIMM_ClientToPid
-                         VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_EnvelopeCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulSendPara,
@@ -2451,22 +1850,7 @@ VOS_VOID USIMM_EnvelopeCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SingleCmdCnf
-功能描述  :一般性卡操作回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SingleCmdCnf(
     VOS_UINT32                      ulReceiverPid,
     VOS_UINT32                      ulMsgName,
@@ -2498,22 +1882,7 @@ VOS_VOID USIMM_SingleCmdCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_FDNCnf
-功能描述  :FDN操作回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-输出参数  :无
-返 回 值      :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_FDNCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulResult,
@@ -2547,24 +1916,7 @@ VOS_VOID USIMM_FDNCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SetSPBFileCnf
-功能描述  :更新复合电话本操作回复
-输入参数  :enClientId:回复模块ID
-           ulResult:回复结果
-           usLen:数据内容长度
-           pucConten:数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年06月08日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SetSPBFileCnf(USIMM_SETMUTILFILE_REQ_STRU    *pstReqMsg,
                                       VOS_UINT32                     ulErrorCode)
 {
@@ -2612,20 +1964,7 @@ VOS_VOID USIMM_SetSPBFileCnf(USIMM_SETMUTILFILE_REQ_STRU    *pstReqMsg,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SearchHandleCnf
-功能描述  :回复SEARCH的结果
-输入参数  :enClientId:回复模块ID
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2010年1月8日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_SearchHandleCnf(USIMM_SEARCHFILE_REQ_STRU   *pstMsg,
                                          VOS_UINT32                   ulErrorCode,
                                          USIMM_SEARCHCNF_INFO_STRU    *pstCnfInfo)
@@ -2663,9 +2002,7 @@ VOS_VOID USIMM_SearchHandleCnf(USIMM_SEARCHFILE_REQ_STRU   *pstMsg,
 
     if ((VOS_NULL_PTR != pstCnfInfo->pucData) && (pstCnfInfo->ulLen <= 255))
     {
-        /*lint -e669 -e534 修改人: j00174725; 检视人: xucheng */
         VOS_MemCpy(pUsimMsg->aucData, pstCnfInfo->pucData, pstCnfInfo->ulLen);
-        /*lint +e669 +e534 修改人: j00174725; 检视人: xucheng */
 
         pUsimMsg->usDataLen = (VOS_UINT8)pstCnfInfo->ulLen;
     }
@@ -2675,19 +2012,7 @@ VOS_VOID USIMM_SearchHandleCnf(USIMM_SEARCHFILE_REQ_STRU   *pstMsg,
     return;
 }
 
-/*****************************************************************************
-函 数 名  : USIMM_GetPhyCardType
-功能描述  : 判断卡的物理类型，ICC或UICC，
-输入参数  : 无
-输出参数  : 无
-返 回 值  : USIMM_PHYCARD_TYPE_ENUM_UINT32类型
-调用函数  :
-被调函数  :
-修订记录  :
-1.日    期  : 2015年02月07日
-  作    者  : H00300778
-  修改内容  : 新建函数
-*****************************************************************************/
+
 USIMM_PHYCARD_TYPE_ENUM_UINT32 USIMM_GetPhyCardType(VOS_VOID)
 {
     USIMM_PHYCARD_TYPE_ENUM_UINT32      enPhyCardType;
@@ -2727,23 +2052,7 @@ USIMM_PHYCARD_TYPE_ENUM_UINT32 USIMM_GetPhyCardType(VOS_VOID)
     return enPhyCardType;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CardStatusPidInd
-功能描述  :卡状态上报
-输入参数  :enClientId:回复模块ID
-           enCardType:卡类型
-           enCardStatus:卡状态
-输出参数  :无
-返 回 值  :无
-调用函数  :USIMM_ClientToPid
-           VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2009年12月16日
-    作    者   : m00128685
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_CardStatusInd(VOS_UINT32 ulReceiverPid)
 {
     USIMM_CARDSTATUS_IND_STRU          *pstUsimMsg;
@@ -2786,22 +2095,7 @@ VOS_VOID USIMM_CardStatusInd(VOS_UINT32 ulReceiverPid)
 }
 
 /*2阶段开发使用*/
-/*****************************************************************************
-函 数 名  :USIMM_SatDataCnf
-功能描述  :主动命令内容上报
-输入参数  :enClientId:回复模块ID
-           usDataLen:数据长度
-           pucData:数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  : VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_SatDataInd(VOS_UINT8   ucCmdType,
                                     VOS_UINT16 usDataLen,
                                     VOS_UINT8 *pucData)
@@ -2830,17 +2124,7 @@ VOS_VOID USIMM_SatDataInd(VOS_UINT8   ucCmdType,
 }
 
 #if (FEATURE_VSIM == FEATURE_ON)
-/*****************************************************************************
-函 数 名  :USIMM_VsimReDhNegotiateInd
-功能描述  :DH重协商指示上报
-输入参数  :无
-输出参数  :无
-返 回 值  :无
-修订记录  :
-1. 日    期   : 2013年8月28日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 VOS_VOID USIMM_VsimReDhNegotiateInd(VOS_VOID)
 {
     USIMM_VSIM_RDH_IND_STRU         *pstMsg;
@@ -2861,23 +2145,7 @@ VOS_VOID USIMM_VsimReDhNegotiateInd(VOS_VOID)
     return;
 }
 #endif
-/*****************************************************************************
-函 数 名  :USIMM_EccNumberInd
-功能描述  :紧急呼叫号码上报
-输入参数  :ucEccType:号码类型
-           usEfLen:文件长度
-           ucRecordNum:记录个数
-           pucData数据内容
-输出参数  :无
-返 回 值  :无
-调用函数  :VOS_AllocMsg
-被调函数  :
-修订记录  :
-1. 日    期   : 2007年7月10日
-    作    者   : z00100318
-    修改内容   : Creat
 
-*****************************************************************************/
 VOS_VOID USIMM_EccNumberInd(VOS_UINT8 ucEccType,
                                         VOS_UINT16 usEfLen,
                                         VOS_UINT8 ucRecordNum,
@@ -2912,21 +2180,7 @@ VOS_VOID USIMM_EccNumberInd(VOS_UINT8 ucEccType,
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_OpenChannelCnf
-功能描述  :打开通道消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           ucChannelId:逻辑通道号
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_OpenChannelCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulSendPara,
@@ -2960,20 +2214,7 @@ VOS_VOID USIMM_OpenChannelCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_CloseChannelCnf
-功能描述  :关闭通道消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2013年5月15日
-   作    者   : j00168360
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_CloseChannelCnf(
     VOS_UINT32                          ulReceiverPid,
     VOS_UINT32                          ulSendPara,
@@ -3003,21 +2244,7 @@ VOS_VOID USIMM_CloseChannelCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendTPDUCnf
-功能描述  :Send TPDU消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           pstDataCnf:Send TPDU消息回复内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_SendTPDUCnf(VOS_UINT32                       ulReceiverPid,
                                         VOS_UINT32                      ulSendPara,
                                         VOS_UINT32                      ulResult,
@@ -3075,21 +2302,7 @@ VOS_VOID USIMM_SendTPDUCnf(VOS_UINT32                       ulReceiverPid,
 }
 
 #if (FEATURE_UE_MODE_CDMA == FEATURE_ON)
-/*****************************************************************************
-函 数 名  :USIMM_SendTPDUCnf
-功能描述  :Send TPDU消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           pstDataCnf:Send TPDU消息回复内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_CdmaAuthCnf(
     USIMM_AUTH_REQ_STRU                *pstMsg,
     USIMM_CDMA_AUTH_INFO_STRU          *pstCnfInfo)
@@ -3186,21 +2399,7 @@ VOS_VOID USIMM_CdmaAuthCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendTPDUCnf
-功能描述  :Send TPDU消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           pstDataCnf:Send TPDU消息回复内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_BSChallengeCnf(
     USIMM_CMDHEADER_REQ_STRU           *pstReqMsg,
     VOS_UINT32                          ulResult,
@@ -3240,21 +2439,7 @@ VOS_VOID USIMM_BSChallengeCnf(
     return;
 }
 
-/*****************************************************************************
-函 数 名  :USIMM_SendTPDUCnf
-功能描述  :Send TPDU消息回复
-输入参数  :ulReceiverPid:接收消息PID
-           ulResult:操作结果
-           ulErrCode:错误码
-           pstDataCnf:Send TPDU消息回复内容
-输出参数  :无
-返 回 值  :无
 
-修订记录  :
-1. 日    期   : 2014年1月15日
-   作    者   : zhuli
-   修改内容   : Creat
-*****************************************************************************/
 VOS_VOID USIMM_GenerateKeyVpmCnf(
     USIMM_GENERATE_KEYVPM_REQ_STRU     *pstReqMsg,
     VOS_UINT32                          ulResult,

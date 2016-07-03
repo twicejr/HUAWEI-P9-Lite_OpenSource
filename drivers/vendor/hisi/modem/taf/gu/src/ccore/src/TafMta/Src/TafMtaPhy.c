@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaPhy.c
-  版 本 号   : 初稿
-  作    者   : 张鹏/00214637
-  生成日期   : 2013年03月11日
-  最近修改   :
-  功能描述   : 包含MTA模块射频相关函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年8月30日
-    作    者   : 张鹏/00214637
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -27,9 +10,7 @@
 #include "TafMtaMntn.h"
 #include "TafMtaMbms.h"
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #include "NasUtranCtrlInterface.h"
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 #include "TafSdcLib.h"
 
@@ -56,20 +37,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndPhyBodySarReqMsg
- 功能描述  : MTA向接入层发送ID_MTA_APM_BODY_SAR_SET_REQ消息
- 输入参数  : ulReceiverPid - 接收方pid
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2013年03月11日
-    作    者   : z00214637
-    修改内容   : 支持BODYSAR
 
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndPhyBodySarReqMsg(
     MTA_BODY_SAR_STATE_ENUM_UINT16      enState,
     MTA_BODY_SAR_PARA_STRU             *pstBodySarPara
@@ -122,21 +90,7 @@ VOS_UINT32 TAF_MTA_SndPhyBodySarReqMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtBodySarSetReq
- 功能描述  : mta收到ID_AT_MTA_BODY_SAR_SET_REQ消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月11日
-    作    者   : z00214637
-    修改内容   : 支持^BODYSARON新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtBodySarSetReq(VOS_VOID *pMsg)
 {
     AT_MTA_MSG_STRU                    *pstBodySarReqMsg    = VOS_NULL_PTR;
@@ -190,21 +144,7 @@ VOS_VOID TAF_MTA_RcvAtBodySarSetReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvPhyBodySarSetCnf
- 功能描述  : mta收到ID_APM_MTA_BODY_SAR_SET_CNF消息处理函数
- 输入参数  : VOS_VOID *pMsg  --消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年03月11日
-    作    者   : z00214637
-    修改内容   : 支持^BODYSARON新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvPhyBodySarSetCnf(VOS_VOID *pMsg)
 {
     APM_MTA_BODY_SAR_SET_CNF_STRU      *pstBodySarCnfMsg    = VOS_NULL_PTR;
@@ -251,20 +191,7 @@ VOS_VOID TAF_MTA_RcvPhyBodySarSetCnf(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitPhySetBodySarExpired
- 功能描述  : 等待phy BodySar设置回复保护定时器超时的处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2013年03月11日
-    作    者   : z00214637
-    修改内容   :支持^BODYSARON新增函数
 
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitPhySetBodySarExpired(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU            *pstCmdBuf   = VOS_NULL_PTR;
@@ -294,19 +221,7 @@ VOS_VOID TAF_MTA_RcvTiWaitPhySetBodySarExpired(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndPhyEmergencyCallStatus
- 功能描述  : MTA向接入层发送ID_MTA_APM_EMERGENCY_CALL_STATUS_NTF消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2013年03月11日
-    作    者   : z00214637
-    修改内容   : 支持温保项目
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_SndPhyEmergencyCallStatus(
     MTA_PHY_EMERGENCY_CALL_STATUS_ENUM_UINT16               enState
 )
@@ -345,21 +260,7 @@ VOS_VOID TAF_MTA_SndPhyEmergencyCallStatus(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtSetHandleDectReq
- 功能描述  : 处理at下发的设置手持位置消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtSetHandleDectReq(
     VOS_VOID                           *pMsg
 )
@@ -413,21 +314,7 @@ VOS_VOID TAF_MTA_RcvAtSetHandleDectReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtQryHandleDectReq
- 功能描述  : 处理at下发的查询cp侧手持位置消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtQryHandleDectReq(
     VOS_VOID                           *pMsg
 )
@@ -480,21 +367,7 @@ VOS_VOID TAF_MTA_RcvAtQryHandleDectReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndPhySetHandleDectReqMsg
- 功能描述  : MTA下发的查询cp侧手持位置消息给phy
- 输入参数  : VOS_UINT8 ucHandleType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndPhySetHandleDectReqMsg(
     VOS_UINT16                          usHandleType
 )
@@ -532,21 +405,7 @@ VOS_UINT32 TAF_MTA_SndPhySetHandleDectReqMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndPhyQryHandleDectReqMsg
- 功能描述  : MTA下发的查询cp侧手持位置消息给phy
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndPhyQryHandleDectReqMsg(VOS_VOID)
 {
     VOS_UINT32                          ulLength;
@@ -580,21 +439,7 @@ VOS_UINT32 TAF_MTA_SndPhyQryHandleDectReqMsg(VOS_VOID)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndPhyQryHandleDectReqMsg
- 功能描述  : MTA处理物理层配置cp侧手持位置结果
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvPhyHandleDectSetCnf(
     VOS_VOID                           *pMsg
 )
@@ -644,21 +489,7 @@ VOS_VOID TAF_MTA_RcvPhyHandleDectSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndPhyQryHandleDectReqMsg
- 功能描述  : MTA处理物理层查询cp侧手持位置结果
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvPhyHandleDectQryCnf(
     VOS_VOID                           *pMsg
 )
@@ -710,21 +541,7 @@ VOS_VOID TAF_MTA_RcvPhyHandleDectQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitPhySetHandleDectExpired
- 功能描述  : MTA处理TI_TAF_MTA_WAIT_PHY_HANDLEDECT_SET_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitPhySetHandleDectExpired(
     VOS_VOID                           *pMsg
 )
@@ -759,21 +576,7 @@ VOS_VOID TAF_MTA_RcvTiWaitPhySetHandleDectExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitPhyQryHandleDectExpired
- 功能描述  : MTA处理TI_TAF_MTA_WAIT_PHY_HANDLEDECT_QRY_CNF消息
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月8日
-    作    者   : M00217266
-    修改内容   : AP Sensor:
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiWaitPhyQryHandleDectExpired(
     VOS_VOID                           *pMsg
 )
@@ -808,33 +611,15 @@ VOS_VOID TAF_MTA_RcvTiWaitPhyQryHandleDectExpired(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_CheckRatModeTypeValid
- 功能描述  : 根据当前系统驻留的模式，对请求或回复消息中ratMode进行有效性判断
- 输入参数  : AT_MTA_CMD_RATMODE_ENUM_UINT8       enRatMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月4日
-    作    者   : g00261581
-    修改内容   : 新建
-  2.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_CheckRatModeTypeValid(
     AT_MTA_CMD_RATMODE_ENUM_UINT8       enRatMode
 )
 {
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSysCurrMode;
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enUtranctrlMode;
 
     enUtranctrlMode = NAS_UTRANCTRL_GetCurrUtranMode();
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
     enSysCurrMode   = TAF_SDC_GetSysMode();
 
     if ( (AT_MTA_CMD_RATMODE_GSM        == enRatMode)
@@ -843,7 +628,6 @@ VOS_UINT32 TAF_MTA_CheckRatModeTypeValid(
         return VOS_OK;
     }
 
-    /* Modify by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
     if ( (AT_MTA_CMD_RATMODE_WCDMA      == enRatMode)
      && (TAF_SDC_SYS_MODE_WCDMA         == enSysCurrMode)
      && (NAS_UTRANCTRL_UTRAN_MODE_FDD   == enUtranctrlMode) )
@@ -857,7 +641,6 @@ VOS_UINT32 TAF_MTA_CheckRatModeTypeValid(
     {
         return VOS_OK;
     }
-    /* Modify by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 
     if ((AT_MTA_CMD_RATMODE_LTE == enRatMode)
      && (TAF_SDC_SYS_MODE_LTE   == enSysCurrMode))
@@ -868,21 +651,7 @@ VOS_UINT32 TAF_MTA_CheckRatModeTypeValid(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndGuPhySetDpdtTestFlagNtfMsg
- 功能描述  : MTA发送Set DpdtTest Flag请求消息到GU PHY
- 输入参数  : AT_MTA_SET_DPDT_VALUE_REQ_STRU     *pstQryDpdtReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月4日
-    作    者   : g00261581
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndGuPhySetDpdtTestFlagNtfMsg(
     AT_MTA_SET_DPDTTEST_FLAG_REQ_STRU  *pstSetDpdtFlagReq
 )
@@ -937,21 +706,7 @@ VOS_UINT32 TAF_MTA_SndGuPhySetDpdtTestFlagNtfMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndGuPhySetDpdtValueNtfMsg
- 功能描述  : MTA发送Set Dpdt Value请求消息到GU PHY
- 输入参数  : AT_MTA_SET_DPDT_VALUE_REQ_STRU     *pstQryDpdtReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月4日
-    作    者   : g00261581
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndGuPhySetDpdtValueNtfMsg(
     AT_MTA_SET_DPDT_VALUE_REQ_STRU     *pstSetDpdtReq
 )
@@ -999,21 +754,7 @@ VOS_UINT32 TAF_MTA_SndGuPhySetDpdtValueNtfMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndGuPhyQryDpdtValueReqMsg
- 功能描述  : MTA发送Qry Dpdt Value请求消息到GU PHY
- 输入参数  : AT_MTA_QRY_DPDT_VALUE_REQ_STRU     *pstQryDpdtReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月4日
-    作    者   : g00261581
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndGuPhyQryDpdtValueReqMsg(
     AT_MTA_QRY_DPDT_VALUE_REQ_STRU     *pstQryDpdtReq
 )
@@ -1059,24 +800,7 @@ VOS_UINT32 TAF_MTA_SndGuPhyQryDpdtValueReqMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtSetDpdtTestFlagReq
- 功能描述  : 处理at下发的双天线特性开关打开、关闭命令
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月4日
-    作    者   : g00261581
-    修改内容   : 新建
-  2.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtSetDpdtTestFlagReq(
     VOS_VOID                           *pMsg
 )
@@ -1098,14 +822,12 @@ VOS_VOID TAF_MTA_RcvAtSetDpdtTestFlagReq(
     pstAtMtaQryReq  = (AT_MTA_SET_DPDTTEST_FLAG_REQ_STRU *)(pstQryReq->aucContent);
 
 
-    /* Modify by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
     /* 根据RatMode,将消息结构发送至GU phy或者LRRC */
     if ( (AT_MTA_CMD_RATMODE_GSM    == pstAtMtaQryReq->enRatMode)
      ||  (AT_MTA_CMD_RATMODE_WCDMA  == pstAtMtaQryReq->enRatMode) )
     {
         ulResult = TAF_MTA_SndGuPhySetDpdtTestFlagNtfMsg(pstAtMtaQryReq);
     }
-    /* Modify by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 
 #if (FEATURE_ON == FEATURE_LTE)
     if (AT_MTA_CMD_RATMODE_LTE      == pstAtMtaQryReq->enRatMode)
@@ -1114,14 +836,12 @@ VOS_VOID TAF_MTA_RcvAtSetDpdtTestFlagReq(
     }
 #endif
 
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
     if (AT_MTA_CMD_RATMODE_TD       == pstAtMtaQryReq->enRatMode)
     {
         ulResult = TAF_MTA_SndTLrrcSetDpdtTestFlagNtfMsg(pstAtMtaQryReq);
     }
 #endif
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
     if (AT_MTA_CMD_RATMODE_CDMA    == pstAtMtaQryReq->enRatMode)
@@ -1157,23 +877,7 @@ VOS_VOID TAF_MTA_RcvAtSetDpdtTestFlagReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtSetDpdtValueReq
- 功能描述  : 处理at下发的设置DPDT Value值的命令
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月4日
-    作    者   : g00261581
-    修改内容   : 新建
-  4.日    期   : 2014年06月16日
-    作    者   : j00174725
-    修改内容   : K3V3 多模多天线特性
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtSetDpdtValueReq(
     VOS_VOID                           *pMsg
 )
@@ -1196,14 +900,12 @@ VOS_VOID TAF_MTA_RcvAtSetDpdtValueReq(
     pstAtMtaQryReq  = (AT_MTA_SET_DPDT_VALUE_REQ_STRU *)(pstQryReq->aucContent);
 
 
-    /* Modify by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
     /* 根据RatMode,将消息结构发送至GU phy或者LRRC */
     if ( (AT_MTA_CMD_RATMODE_GSM        == pstAtMtaQryReq->enRatMode)
      ||  (AT_MTA_CMD_RATMODE_WCDMA      == pstAtMtaQryReq->enRatMode) )
     {
         ulResult = TAF_MTA_SndGuPhySetDpdtValueNtfMsg(pstAtMtaQryReq);
     }
-    /* Modify by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 #if (FEATURE_ON == FEATURE_LTE)
     if (AT_MTA_CMD_RATMODE_LTE          == pstAtMtaQryReq->enRatMode)
@@ -1212,14 +914,12 @@ VOS_VOID TAF_MTA_RcvAtSetDpdtValueReq(
     }
 #endif
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
     if (AT_MTA_CMD_RATMODE_TD           == pstAtMtaQryReq->enRatMode)
     {
         ulResult = TAF_MTA_SndTLrrcSetDpdtValueNtfMsg(pstAtMtaQryReq);
     }
 #endif
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
     if ((AT_MTA_CMD_RATMODE_CDMA        == pstAtMtaQryReq->enRatMode)
@@ -1243,21 +943,7 @@ VOS_VOID TAF_MTA_RcvAtSetDpdtValueReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtSetDpdtValueInd
- 功能描述  : 处理at下发的查询DPDT Value的请求
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月4日
-    作    者   : g00261581
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtQryDpdtValueReq(
     VOS_VOID                           *pMsg
 )
@@ -1290,14 +976,12 @@ VOS_VOID TAF_MTA_RcvAtQryDpdtValueReq(
     }
 
 
-    /* Modify by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
     /* 根据RatMode,将消息结构发送至GU phy或者LRRC */
     if ( (AT_MTA_CMD_RATMODE_GSM    == pstAtMtaQryReq->enRatMode)
       || (AT_MTA_CMD_RATMODE_WCDMA  == pstAtMtaQryReq->enRatMode) )
     {
         ulResult = TAF_MTA_SndGuPhyQryDpdtValueReqMsg(pstAtMtaQryReq);
     }
-    /* Modify by j00174725 for K3V3 多模多天线特性, 2014-06-16, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
     if (AT_MTA_CMD_RATMODE_LTE      == pstAtMtaQryReq->enRatMode)
@@ -1306,14 +990,12 @@ VOS_VOID TAF_MTA_RcvAtQryDpdtValueReq(
     }
 #endif
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
     if ( AT_MTA_CMD_RATMODE_TD      == pstAtMtaQryReq->enRatMode)
     {
         ulResult = TAF_MTA_SndTLrrcQryDpdtValueReqMsg(pstAtMtaQryReq);
     }
 #endif
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
     if ((AT_MTA_CMD_RATMODE_CDMA    == pstAtMtaQryReq->enRatMode)
@@ -1345,20 +1027,7 @@ VOS_VOID TAF_MTA_RcvAtQryDpdtValueReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvGuPhyQryDpdtValueCnf
- 功能描述  : MTA收到GU phy层DPDT Value查询回复消息处理函数
- 输入参数  : pMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月4日
-    作    者   : g00261581
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvGuPhyQryDpdtValueCnf(VOS_VOID *pMsg)
 {
     TAF_MTA_CMD_BUFFER_STRU            *pstCmdBuf         = VOS_NULL_PTR;
@@ -1403,21 +1072,7 @@ VOS_VOID TAF_MTA_RcvGuPhyQryDpdtValueCnf(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiReqDpdtValueQryExpired
- 功能描述  : DPDTQRY命令执行超时
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年4月4日
-    作    者   : g00261581
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTiReqDpdtValueQryExpired(
     VOS_VOID                           *pMsg
 )
@@ -1452,21 +1107,7 @@ VOS_VOID TAF_MTA_RcvTiReqDpdtValueQryExpired(
 /*lint +e958*/
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndCtasSetDpdtTestFlagNtfMsg
- 功能描述  : MTA发送Set DpdtTest Flag请求消息到CTAS
- 输入参数  : AT_MTA_SET_DPDT_VALUE_REQ_STRU     *pstQryDpdtReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : h00313353
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndCtasSetDpdtTestFlagNtfMsg(
     AT_MTA_SET_DPDTTEST_FLAG_REQ_STRU  *pstSetDpdtFlagReq
 )
@@ -1507,21 +1148,7 @@ VOS_UINT32 TAF_MTA_SndCtasSetDpdtTestFlagNtfMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndCtasSetDpdtValueNtfMsg
- 功能描述  : MTA发送Set Dpdt Value请求消息到CTAS
- 输入参数  : AT_MTA_SET_DPDT_VALUE_REQ_STRU     *pstQryDpdtReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : h00313353
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndCtasSetDpdtValueNtfMsg(
     AT_MTA_SET_DPDT_VALUE_REQ_STRU     *pstSetDpdtReq
 )
@@ -1562,21 +1189,7 @@ VOS_UINT32 TAF_MTA_SndCtasSetDpdtValueNtfMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndCtasQryDpdtValueReqMsg
- 功能描述  : MTA发送Qry Dpdt Value请求消息到CTAS
- 输入参数  : AT_MTA_QRY_DPDT_VALUE_REQ_STRU     *pstQryDpdtReq
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : h00313353
-    修改内容   : 新建
-
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_SndCtasQryDpdtValueReqMsg(
     AT_MTA_QRY_DPDT_VALUE_REQ_STRU     *pstQryDpdtReq
 )
@@ -1615,20 +1228,7 @@ VOS_UINT32 TAF_MTA_SndCtasQryDpdtValueReqMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvCtasQryDpdtValueCnf
- 功能描述  : MTA收到CTAS层DPDT Value查询回复消息处理函数
- 输入参数  : pMsg  -- 消息数据结构首地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月18日
-    作    者   : h00313353
-    修改内容   : 新建
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvCtasQryDpdtValueCnf(
     VOS_VOID                           *pMsg
 )
@@ -1679,21 +1279,7 @@ VOS_VOID TAF_MTA_RcvCtasQryDpdtValueCnf(
 
 #if(FEATURE_ON == FEATURE_LTE)
 #if 0
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndLphySetIsmCoexReqMsg
- 功能描述  : 给lphy发送设置命令^SIMCOEX
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndLphySetIsmCoexReqMsg(
     AT_MTA_LTE_WIFI_COEX_SET_REQ_STRU           *pstCoexPara
 )
@@ -1730,21 +1316,7 @@ VOS_VOID TAF_MTA_SndLphySetIsmCoexReqMsg(
     return;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtIsmCoexSetReq
- 功能描述  : MTA处理^ISMCOEX命令
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtIsmCoexSetReq(
     VOS_VOID                           *pMsg
 )
@@ -1799,21 +1371,7 @@ VOS_VOID TAF_MTA_RcvAtIsmCoexSetReq(
     return;
 }
 #if 0
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvLphyIsmCoexSetCnf
- 功能描述  : MTA收到LPHY ^ISMCOEX设置结果
- 输入参数  : pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvLphyIsmCoexSetCnf(
     VOS_VOID                           *pLphyCnfMsg
 )
@@ -1866,19 +1424,7 @@ VOS_VOID TAF_MTA_RcvLphyIsmCoexSetCnf(
     return;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTiWaitSetIsmCoexList
- 功能描述  : 设置命令^ISMCOEX超时的处理函数
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2015年5月22日
-    作    者   : w00316404
-    修改内容   : 新增函数
-*****************************************************************************/
+
 VOS_VOID TAF_MTA_RcvTiWaitSetIsmCoexList(
     VOS_VOID                           *pMsg
 )
@@ -1912,20 +1458,7 @@ VOS_VOID TAF_MTA_RcvTiWaitSetIsmCoexList(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvAtRficSsiRdQryReq
- 功能描述  : MTA模块收到AT发来的RFICSSIRD请求消息的处理函数
- 输入参数  : pMsg   -- AT发送的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : x00316382
-    修改内容   : 新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvAtRficSsiRdQryReq(VOS_VOID *pMsg)
 {
     VOS_UINT32                              ulLength;
@@ -1964,20 +1497,7 @@ VOS_VOID TAF_MTA_RcvAtRficSsiRdQryReq(VOS_VOID *pMsg)
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_RcvTlPhyRficSsiRdInd
- 功能描述  : taf模块收到mta发来的RFICSSIRD回复消息的处理函数
- 输入参数  : pMsg   -- AT发送的消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月29日
-    作    者   : x00316382
-    修改内容   : 新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_RcvTlPhyRficSsiRdInd(VOS_VOID *pMsg)
 {
     APM_MTA_RFICSSIRD_IND_STRU             *pstRficSsiRdInd = VOS_NULL_PTR;
@@ -2001,20 +1521,7 @@ VOS_VOID TAF_MTA_RcvTlPhyRficSsiRdInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MTA_SndRcmAfcClkAndXoCoEfReq
- 功能描述  : send rcm the afcclk and xocoef req
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月24日
-    作    者   : c00299064
-    修改内容   : 新增
-*****************************************************************************/
 VOS_VOID TAF_MTA_SndRcmAfcClkAndXoCoEfQryReq(
     VOS_VOID
 )

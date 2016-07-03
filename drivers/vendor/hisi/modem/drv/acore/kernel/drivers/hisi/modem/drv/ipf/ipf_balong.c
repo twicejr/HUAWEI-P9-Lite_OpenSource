@@ -553,7 +553,6 @@ int ipf_init(void)
     g_stIpfDl.pstIpfPhyADQ0 = (IPF_AD_DESC_S*)(SHD_DDR_V2P((void *)IPF_DLAD0_MEM_ADDR));
     g_stIpfDl.pstIpfPhyADQ1 = (IPF_AD_DESC_S*)(SHD_DDR_V2P((void *)IPF_DLAD1_MEM_ADDR));
 
-    /*s00219058 共享内存 下行CD读指针 初始化为0*/
     g_stIpfDl.u32IpfCdRptr = (unsigned int*) IPF_DLCDRPTR_MEM_ADDR;
     *(g_stIpfDl.u32IpfCdRptr) = 0;
 
@@ -2061,11 +2060,7 @@ int mdrv_ipf_config_ulbd(unsigned int u32Num, IPF_CONFIG_ULPARAM_S* pstUlPara)
         return BSP_ERR_IPF_CCORE_RESETTING;
     }
 
-    /*
-    chendongyue c00228781: DTS2013061501582
-    检测每个BD中数据的有效性，本来这里应该由上层保证，
-    但是出了BUG令BD长度为0，故在这里进行规避
-    */
+    
     for(i = 0; i < u32Num; i++)
     {
         if(0 == pstUlParam[i].u16Len)

@@ -38,18 +38,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ETC_EncodeActTestModeComplete
- Description     : 编码形成ACTIVATE TEST MODE COMPLETE消息
- Input           : None
- Output          : pSendMsg-----------发送消息存储区
-                   pulLength----------发送消息长度
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-14  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_EncodeActTestModeComplete
 (
     VOS_UINT8                          *pSendMsg,
@@ -72,18 +61,7 @@ VOS_VOID  NAS_ETC_EncodeActTestModeComplete
     *pulLength = ulSum;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_EncodeCloseUeTestLoopComplete
- Description     : 编码形成CLOSE UE TEST LOOP COMPLETE消息
- Input           : None
- Output          : pSendMsg-----------发送消息存储区
-                   pulLength----------发送消息长度
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_EncodeCloseUeTestLoopComplete
 (
     VOS_UINT8                          *pSendMsg,
@@ -106,18 +84,7 @@ VOS_VOID  NAS_ETC_EncodeCloseUeTestLoopComplete
     *pulLength = ulSum;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_EncodeOpenUeTestLoopComplete
- Description     : 编码形成OPEN UE TEST LOOP COMPLETE消息
- Input           : None
- Output          : pSendMsg-----------发送消息存储区
-                   pulLength----------发送消息长度
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_EncodeOpenUeTestLoopComplete
 (
     VOS_UINT8                          *pSendMsg,
@@ -140,18 +107,7 @@ VOS_VOID  NAS_ETC_EncodeOpenUeTestLoopComplete
     *pulLength = ulSum;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ETC_EncodeDeactTestModeComplete
- Description     : 编码形成DEACTIVATE TEST MODE COMPLETE消息
- Input           : None
- Output          : pSendMsg-----------发送消息存储区
-                   pulLength----------发送消息长度
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-10-15  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ETC_EncodeDeactTestModeComplete
 (
     VOS_UINT8                          *pSendMsg,

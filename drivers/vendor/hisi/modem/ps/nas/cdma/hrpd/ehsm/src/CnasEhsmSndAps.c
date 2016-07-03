@@ -166,22 +166,7 @@ VOS_VOID CNAS_EHSM_SndApsPdnActivateInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SndApsPdnAttachCnf
- 功能描述  : EHSM发送Pdn Attach Cnf至APS
- 输入参数  : VOS_UINT8                           ucPdnId
-             EHSM_APS_CAUSE_ENUM_UINT32          enCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndApsPdnAttachCnf(
     VOS_UINT8                           ucPdnId,
     EHSM_APS_CAUSE_ENUM_UINT32          enCause
@@ -516,21 +501,7 @@ VOS_VOID CNAS_EHSM_SndApsPdnDeactivateCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SndApsPdnDeactivateInd
- 功能描述  : pdn deactivate msg indecate to aps
- 输入参数  : ulPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndApsPdnDeactivateInd(
     VOS_UINT8                   ucPdnId,
     VOS_UINT8                   ucCid,
@@ -604,21 +575,7 @@ VOS_VOID CNAS_EHSM_SndApsReconnCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetCdataServiceStatus
- 功能描述  : tell aps the Cdate service status according the pdnid
- 输入参数  : ucPdnId
- 输出参数  : 无
- 返 回 值  : EHSM_APS_PDN_STATUS_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月30日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 EHSM_APS_PDN_STATUS_ENUM_UINT32 CNAS_EHSM_GetCdataServiceStatus(
     VOS_UINT8                           ucPdnId
 )
@@ -651,21 +608,7 @@ EHSM_APS_PDN_STATUS_ENUM_UINT32 CNAS_EHSM_GetCdataServiceStatus(
             return EHSM_APS_PDN_STATUS_INACTIVE;
     }
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SndApsPdnChgInd
- 功能描述  : pdn 信息发生变更上报给aps
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月7日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SndApsPdnChgInd(
     EHSM_APS_PDN_CHANGE_INFO_STRU      *pstPdnChgInfo,
     VOS_UINT8                           ucPdnId

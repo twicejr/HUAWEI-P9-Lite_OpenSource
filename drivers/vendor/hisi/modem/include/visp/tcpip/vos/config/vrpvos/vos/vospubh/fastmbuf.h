@@ -1,24 +1,4 @@
-/************************************************************************
- *                                                                      *
- *                          fastmbuf.h                                  *
- *                                                                      *
- *  Project Code:       VRP3.0                                          *
- *  Create Date:        2000/12/04                                      *
- *  Author:             David.Fan                                       *
- *  Modify Date:                                                        *
- *  Document:                                                           *
- *  Function:           快速MBUF主模块                                  *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- * Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
- *                     ALL RIGHTS RESERVED                              *
- *                                                                      *
- *----------------------------------------------------------------------*
- *                                                                      *
- *               本文件包括快速MBUF的定义	                            *
- *                                                                      *
- ************************************************************************/
+
 
 #ifdef __cplusplus
 extern "C"{
@@ -468,7 +448,6 @@ extern MBUF_S* gstFastMBufCache[FASTMBUF_MBUF_CACHE_NUM];
 
 extern ULONG FASTMBUF_Free( MBUF_S* pstMBuf );
 extern VOID VOS_ChangeMID(VOID *ptr , ULONG newMid);
-/*========guojianweu add 4K FAST MBUF 支持==2002-06-27 D12845===========**/
 #if (VRP_MODULE_VOS_FAST_MBUF_4096 == VRP_YES)
 
 #define FASTMBUF_PREALLOC_DATALEN2      4096    /* 预先申请的MBUF的大小 */

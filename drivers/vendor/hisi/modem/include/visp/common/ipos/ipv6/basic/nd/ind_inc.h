@@ -190,12 +190,10 @@ DECLARE_INTERFACE(IIF_IP6_ND_ComIntCFG)
                                             IN6ADDR_S *pstTgtAddr);
     METHOD_(ULONG, pfIP6_ND_SetNDSpecialProxyFlag)(ULONG ulIfIndex,
                                                    UCHAR ucFalg);
-    /* Modified by guojianjun178934, 接口状态变化或MAC地址变化主动发送通告NA报文, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
     METHOD_(ULONG, pfIP6_ND_SetNAAttempt) (ULONG ulIfNetIndex, ULONG ulValue, IP6_ND_SETFLAG_E enFlag);
     METHOD_(ULONG, pfIP6_ND_GetNAAttempt) (ULONG ulIfNetIndex, ULONG *pulRetVal);
     METHOD_(ULONG, pfIP6_ND_SetNAInterval) (ULONG ulIfNetIndex, ULONG ulValue, IP6_ND_SETFLAG_E enFlag);
     METHOD_(ULONG, pfIP6_ND_GetNAInterval) (ULONG ulIfNetIndex, ULONG *pulRetVal);
-    /*End of Modified by guojianjun178934, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 };
 
 #define IIF_IP6_ND_CFG              IIF_IP6_ND_ComIntCFG
@@ -354,12 +352,10 @@ DECLARE_INTERFACE(IIF_IP6_ND_HOST_CFG)
                                             IN6ADDR_S *pstTgtAddr);
     METHOD_(ULONG, pfIP6_ND_SetNDSpecialProxyFlag)(ULONG ulIfIndex,
                                                    UCHAR ucFalg);
-    /* Modified by guojianjun178934, 接口状态变化或MAC地址变化主动发送通告NA报文, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
     METHOD_(ULONG, pfIP6_ND_SetNAAttempt) (ULONG ulIfNetIndex, ULONG ulValue, IP6_ND_SETFLAG_E enFlag);
     METHOD_(ULONG, pfIP6_ND_GetNAAttempt) (ULONG ulIfNetIndex, ULONG *pulRetVal);
     METHOD_(ULONG, pfIP6_ND_SetNAInterval) (ULONG ulIfNetIndex, ULONG ulValue, IP6_ND_SETFLAG_E enFlag);
     METHOD_(ULONG, pfIP6_ND_GetNAInterval) (ULONG ulIfNetIndex, ULONG *pulRetVal);
-    /*End of Modified by guojianjun178934, 2014/1/27   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 
 };
 

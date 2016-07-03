@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmPreProcAct
-  版 本 号   : 初稿
-  作    者   : s00217060
-  生成日期   : 2013年12月14日
-  最近修改   :
-  功能描述   : TafSpmPreProcAct.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年12月14日
-    作    者   : s00217060
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_SPM_PREPROCACT_H_
 #define _TAF_SPM_PREPROCACT_H_
 
@@ -26,9 +9,7 @@
 #include "UsimPsInterface.h"
 #include "MnErrorCode.h"
 
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, begin */
 #include "siapppb.h"
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-5-4, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -276,12 +257,10 @@ VOS_UINT32 TAF_SPM_RcvMmaRatChangeNotify_PreProc(
     struct MsgCB                       *pstMsg
 );
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, begin */
 VOS_UINT32 TAF_SPM_RcvMmaImsVoiceCapInd_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-31, end */
 
 VOS_UINT32 TAF_SPM_RcvImsaCallMsgSyncInd_PreProc(
     VOS_UINT32                          ulEventType,
@@ -351,7 +330,6 @@ VOS_UINT32 TAF_SPM_RcvAppGetEconfInfoReq_PreProc(
 
 #endif
 
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, begin */
 VOS_UINT32 TAF_SPM_RcvCcSrvReqProtectTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -364,7 +342,6 @@ VOS_UINT32 TAF_SPM_RcvSsSrvReqProtectTimerExpired_PreProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
-/* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-23, end */
 
 VOS_UINT32 TAF_SPM_RcvMmaPowerOffInd_PreProc(
     VOS_UINT32                          ulEventType,
@@ -386,7 +363,6 @@ VOS_UINT32 TAF_SPM_IsSmsServiceReqAllowed_PreProc(
     VOS_UINT32                         *pulCause
 );
 
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
 VOS_UINT32 TAF_SPM_RcvMmaPhoneModeSetCnf_PreProc(
     VOS_UINT32                          ulEventType,
@@ -422,7 +398,6 @@ VOS_VOID TAF_SPM_ProcPbQrySdnECallNumCnf_PreProc(
 );
 
 #endif
-/* Added by s00261364 for V3R360_eCall项目, 2014-4-4, end */
 #if (VOS_OS_VER == VOS_WIN32)
 #pragma pack()
 #else

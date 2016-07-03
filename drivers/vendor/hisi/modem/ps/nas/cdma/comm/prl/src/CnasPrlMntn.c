@@ -1,19 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasPrlMntn.c
-  版 本 号   : 初稿
-  作    者   : y00245242
-  生成日期   : 2014年08月日
-  功能描述   : PRL可维可测处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年08月06日
-    作    者   : y00245242
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -42,21 +27,7 @@ extern "C"{
 *****************************************************************************/
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_MntnConvertAcqRecInfo
- 功能描述  : 转捕获记录信息到trace捕获记录信息数据结构
- 输入参数  : pstAcqRecord -- 捕获记录指针
- 输出参数  : pstMntnAcqRec -- 返回转换为MNTN数据结构
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_MntnConvertAcqRecInfo(
     CNAS_PRL_ACQ_RECORD_STRU           *pstAcqRecord,
     CNAS_PRL_MNTN_ACQ_RECORD_STRU      *pstMntnAcqRec
@@ -155,21 +126,7 @@ VOS_VOID CNAS_PRL_MntnConvertAcqRecInfo(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_LogHeaderInfo
- 功能描述  : LOG PRL捕获Record信息
- 输入参数  : pstAcqRecord -- 系统记录地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_LogHeaderInfo(CNAS_PRL_HEADER_INFO_STRU *pstPrlHeader)
 {
     CNAS_PRL_MNTN_HEADER_INFO_IND_STRU                     *pstHeaderInfo = VOS_NULL_PTR;
@@ -197,21 +154,7 @@ VOS_VOID CNAS_PRL_LogHeaderInfo(CNAS_PRL_HEADER_INFO_STRU *pstPrlHeader)
     PS_MEM_FREE(UEPS_PID_XSD, pstHeaderInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_LogAcqRecInfo
- 功能描述  : LOG PRL捕获Record信息
- 输入参数  : pstAcqRecord -- 系统记录地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_LogAcqRecInfo(
     CNAS_PRL_ACQ_RECORD_INFO_STRU      *pstAcqRecordInfo
 )
@@ -274,21 +217,7 @@ VOS_VOID CNAS_PRL_LogAcqRecInfo(
     PS_MEM_FREE(UEPS_PID_XSD, pstAcqRecInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_LogSysRecInfo
- 功能描述  : LOG PRL系统Record信息
- 输入参数  : pstSysRecordInfo -- 系统记录地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_LogSysRecInfo(
     CNAS_PRL_SYS_RECORD_INFO_STRU      *pstSysRecordInfo
 )
@@ -349,21 +278,7 @@ VOS_VOID CNAS_PRL_LogSysRecInfo(
     PS_MEM_FREE(UEPS_PID_XSD, pstSysRecInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_LogMultiMatchedGeoInfo
- 功能描述  : 勾取多匹配GEO信息
- 输入参数  : pstMultiMatchedGeoInfo -- 多匹配GEO信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_LogMultiMatchedGeoInfo(
     CNAS_PRL_MULTI_MATCHED_GEO_INFO_STRU                   *pstMultiMatchedGeoInfo
 )
@@ -393,21 +308,7 @@ VOS_VOID CNAS_PRL_LogMultiMatchedGeoInfo(
     PS_MEM_FREE(UEPS_PID_XSD, pstGeoInfo);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_PRL_LogMultiMatchedGeoListInfo
- 功能描述  : 勾取多匹配GEO列表信息
- 输入参数  : pstMultiMatchedGeoInfo -- 多匹配GEO列表信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月7日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_PRL_LogMultiMatchedGeoListInfo(
     CNAS_PRL_MULTI_MATCHED_GEO_LIST_INFO_STRU              *pstMultiMatchedGeoListInfo
 )

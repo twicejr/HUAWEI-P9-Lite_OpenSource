@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : Oam_statistics.c
-  版 本 号   : 初稿
-  作    者   : z00237171
-  生成日期   : 2013年12月25日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年12月25日
-    作    者   : z00237171
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -39,7 +22,7 @@ extern "C" {
 /*****************************************************************************
   2 全局变量定义
 *****************************************************************************/
-#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151) || (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
 /* 统计信息全局变量 */
 oam_stat_info_stru g_st_stat_info;
 #endif
@@ -47,21 +30,7 @@ oam_stat_info_stru g_st_stat_info;
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : oam_stats_report_irq_info_to_sdt
- 功能描述  : 中断统计信息上报SDT
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月21日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_stats_report_irq_info_to_sdt(
                                     oal_uint8 *puc_irq_info_addr,
                                     oal_uint16  us_irq_info_len)
@@ -123,22 +92,7 @@ oal_void  oam_stats_report_irq_info_to_sdt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : oam_stats_report_timer_info_to_sdt
- 功能描述  : 将软件定时器的信息上报SDT
- 输入参数  : puc_timer_addr:定时器结构的地址
-             uc_timer_len  :定时器结构的长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月21日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_stats_report_timer_info_to_sdt(
                                     oal_uint8 *puc_timer_addr,
                                     oal_uint8  uc_timer_len)
@@ -214,26 +168,7 @@ oal_uint32  oam_stats_report_timer_info_to_sdt(
     #endif
 }
 
-/*****************************************************************************
- 函 数 名  : oam_stats_report_mempool_info_to_sdt
- 功能描述  : 将内存池的某一个子池内存块的使用情况上报sdt
- 输入参数  : uc_pool_id            :内存池id
-             us_pool_total_cnt     :本内存池一共多少内存块
-             us_pool_used_cnt      :本内存池已用内存块
-             uc_subpool_id         :子池id
-             us_subpool_total_cnt  :本子池内存块总数
-             us_subpool_free_cnt   :本子池可用内存块个数
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月21日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 oam_stats_report_mempool_info_to_sdt(
                                         oal_uint8           uc_pool_id,
                                         oal_uint16          us_pool_total_cnt,
@@ -300,27 +235,7 @@ oal_uint32 oam_stats_report_mempool_info_to_sdt(
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_stats_report_memblock_info_to_sdt
- 功能描述  : 将标准内存块的信息上报SDT
- 输入参数  : puc_origin_data:内存块的起始地址
-             uc_user_cnt    :该内存块引用计数
-             uc_pool_id     :所属的内存池id
-             uc_subpool_id  :所属的子池id
-             us_len         :该内存块长度
-             ul_file_id     :申请该内存块的文件id
-             ul_alloc_line_num :申请该内存块的行号
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月21日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_stats_report_memblock_info_to_sdt(
                                      oal_uint8  *puc_origin_data,
                                      oal_uint8   uc_user_cnt,
@@ -409,22 +324,7 @@ oal_uint32  oam_stats_report_memblock_info_to_sdt(
 }
 
 
-/*****************************************************************************
- 函 数 名  : oam_stats_report_event_queue_info_to_sdt
- 功能描述  : 将事件队列中每个事件的事件头信息上报SDT
- 输入参数  : puc_event_queue_addr:事件队列信息地址
-             uc_event_queue_info_len:事件队列信息长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月21日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_stats_report_event_queue_info_to_sdt(
                                     oal_uint8   *puc_event_queue_addr,
                                     oal_uint16    us_event_queue_info_len)
@@ -481,22 +381,8 @@ oal_uint32  oam_stats_report_event_queue_info_to_sdt(
 
     return ul_ret;
 }
-#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
-/*****************************************************************************
- 函 数 名  : oam_report_vap_pkt_stat_to_sdt
- 功能描述  : 将某一个vap下的收发包统计信息上报sdt
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)|| (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
 
- 修改历史      :
-  1.日    期   : 2014年7月10日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_report_vap_pkt_stat_to_sdt(oal_uint8 uc_vap_id)
 {
     oal_uint32           ul_tick;
@@ -546,21 +432,7 @@ oal_uint32  oam_report_vap_pkt_stat_to_sdt(oal_uint8 uc_vap_id)
 }
 
 
-/*****************************************************************************
- 函 数 名  : oam_stats_report_stat_info_to_sdt
- 功能描述  : 将所有维测统计信息上报SDT工具
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月18日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_stats_report_info_to_sdt(oam_ota_type_enum_uint8 en_ota_type)
 {
     oal_uint32           ul_tick;
@@ -652,21 +524,7 @@ oal_uint32  oam_stats_report_info_to_sdt(oam_ota_type_enum_uint8 en_ota_type)
     return ul_ret;
 }
 
-/*****************************************************************************
- 函 数 名  : oam_stats_report_usr_info
- 功能描述  : 把某个用户的统计信息上报sdt
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月24日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_stats_report_usr_info(oal_uint16  us_usr_id)
 {
     oal_uint32           ul_tick;
@@ -724,41 +582,13 @@ oal_uint32  oam_stats_report_usr_info(oal_uint16  us_usr_id)
 }
 
 
-/*****************************************************************************
- 函 数 名  : oam_stats_clear_stat_info
- 功能描述  : 将所有统计信息清零
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月18日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  oam_stats_clear_stat_info(oal_void)
 {
     OAL_MEMZERO(&g_st_stat_info, OAL_SIZEOF(oam_stat_info_stru));
 }
 
-/*****************************************************************************
- 函 数 名  : oam_stats_clear_vap_stat_info
- 功能描述  : vap创建的时候，清除对应的统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月24日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_stats_clear_vap_stat_info(oal_uint8   uc_vap_id)
 {
     if (uc_vap_id >= WLAN_VAP_SUPPORT_MAX_NUM_LIMIT)
@@ -772,21 +602,7 @@ oal_uint32  oam_stats_clear_vap_stat_info(oal_uint8   uc_vap_id)
 }
 
 
-/*****************************************************************************
- 函 数 名  : oam_stats_clear_user_stat_info
- 功能描述  : 用户创建的时候，清除对应的统计信息，因为user_id是复用的
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年3月24日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_stats_clear_user_stat_info(oal_uint16   us_usr_id)
 {
     if (us_usr_id >= WLAN_DEVICE_SUPPORT_MAX_NUM_SPEC * WLAN_ACTIVE_USER_MAX_NUM)
@@ -800,27 +616,13 @@ oal_uint32  oam_stats_clear_user_stat_info(oal_uint16   us_usr_id)
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : oam_statistics_init
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  oam_statistics_init(oal_void)
 {
 #if ((_PRE_OS_VERSION_RAW != _PRE_OS_VERSION) && (_PRE_OS_VERSION_WIN32_RAW != _PRE_OS_VERSION))
     oal_mempool_info_to_sdt_register(oam_stats_report_mempool_info_to_sdt,
                                      oam_stats_report_memblock_info_to_sdt);
-#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)||(_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
     OAL_MEMZERO(&g_st_stat_info, OAL_SIZEOF(oam_stat_info_stru));
 #endif
 #endif
@@ -835,7 +637,7 @@ oal_module_symbol(oam_stats_report_mempool_info_to_sdt);
 oal_module_symbol(oam_statistics_init);
 oal_module_symbol(oam_stats_report_memblock_info_to_sdt);
 oal_module_symbol(oam_stats_report_event_queue_info_to_sdt);
-#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)
+#if (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1151)|| (_PRE_PRODUCT_ID == _PRE_PRODUCT_ID_HI1102_HOST)
 oal_module_symbol(g_st_stat_info);
 oal_module_symbol(oam_stats_report_info_to_sdt);
 oal_module_symbol(oam_stats_clear_stat_info);

@@ -2300,7 +2300,7 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 	pinfo->color_temperature_support = 1;
 	pinfo->comform_mode_support = 1;
 	pinfo->panel_effect_support = 1;
-	g_support_mode = COMFORM_MODE | LED_RG_COLOR_TEMP_MODE;
+	g_support_mode = COMFORM_MODE | LED_RG_COLOR_TEMP_MODE | GAMMA_MAP;
 	g_led_rg_para1 = 7;
 	g_led_rg_para2 = 30983;
 
@@ -2310,9 +2310,9 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 		HISI_FB_INFO("need to rectify RGB!\n");
 		pinfo->color_temp_rectify_support = 1;
 	}
-	pinfo->color_temp_rectify_R = 32408; /*0.989*/
+	pinfo->color_temp_rectify_R = 31980; /*0.976-0.989*/
 	pinfo->color_temp_rectify_G = 32768; /*1*/
-	pinfo->color_temp_rectify_B = 32244; /*0.984*/
+	pinfo->color_temp_rectify_B = 31625; /*0.965-0.984*/
 
 	//prefix ce & sharpness
 	pinfo->prefix_ce_support = 0;
@@ -2505,6 +2505,15 @@ static int mipi_sharp_probe(struct platform_device *pdev)
 		pinfo->panel_effect_support = 0;
 		pinfo->color_temp_rectify_support = 0;
 		g_support_mode = 0;
+		pinfo->color_temp_rectify_R = 32408; /*0.989*/
+		pinfo->color_temp_rectify_B = 32244; /*0.984*/
+		pinfo->gamma_lut_table_R = gamma_lut_table_R_default;
+		pinfo->gamma_lut_table_G = gamma_lut_table_G_default;
+		pinfo->gamma_lut_table_B = gamma_lut_table_B_default;
+		pinfo->igm_lut_table_R = igm_lut_table_R_default;
+		pinfo->igm_lut_table_G = igm_lut_table_G_default;
+		pinfo->igm_lut_table_B = igm_lut_table_B_default;
+		pinfo->gmp_lut_table_low32bit = &gmp_lut_table_low32bit_default[0][0][0];
 	}
 
 	if (pinfo->ifbc_type == IFBC_TYPE_VESA3X_SINGLE) {

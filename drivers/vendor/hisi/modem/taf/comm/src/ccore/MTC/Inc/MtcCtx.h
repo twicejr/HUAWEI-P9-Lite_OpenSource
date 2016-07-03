@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcCtx.h
-  版 本 号   : 初稿
-  作    者   : j00174725
-  生成日期   : 2013年8月13日
-  最近修改   :
-  功能描述   : MtcCtx.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年8月13日
-    作    者   : j00174725
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __MTCCTX_H__
 #define __MTCCTX_H__
@@ -32,13 +15,9 @@
 #include "MtaMtcInterface.h"
 #include "MtcNasInterface.h"
 #include "MtcRcmInterface.h"
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #include "TafMtcApi.h"
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
-/* Added by wx270776 for OM融合, 2015-6-27, begin */
 #include "TafLog.h"
 #include "TafNvInterface.h"
-/* Added by wx270776 for OM融合, 2015-6-27, end */
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -89,15 +68,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/* Modified by l00198894 for V9R1 Notch Bypass项目, 2013-12-21, begin */
-/*****************************************************************************
- 枚举名    : MTC_CFG_ENUM
- 结构说明  : MTC NV 配置信息
 
-  1.日    期   : 2013年08月13日
-    作    者   : j00174725
-    修改内容   : 定义MTC和RRC之间的消息
-*****************************************************************************/
 enum MTC_CFG_ENUM
 {
     MTC_CFG_DISABLE                     = 0x00,                                 /* 配置不使能 */
@@ -105,16 +76,8 @@ enum MTC_CFG_ENUM
     MTC_CFG_BUTT
 };
 typedef VOS_UINT8  MTC_CFG_ENUM_UINT8;
-/* Modified by l00198894 for V9R1 Notch Bypass项目, 2013-12-21, end */
 
-/*****************************************************************************
- 枚举名    : MTC_CS_SERVICE_STATE_ENUM
- 枚举说明  : CS域服务状态枚举
 
-  1.日    期   : 2013年08月12日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 enum MTC_CS_SERVICE_STATE_ENUM
 {
     MTC_CS_NO_SERVICE         = 0x00,                                           /* CS域无业务 */
@@ -124,14 +87,7 @@ enum MTC_CS_SERVICE_STATE_ENUM
 };
 typedef VOS_UINT8 MTC_CS_SERVICE_STATE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MTC_OPERATOR_CUST_SOLUTION_ENUM
- 枚举说明  : 运营商定制方案枚举
 
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 enum MTC_OPERATOR_CUST_SOLUTION_ENUM
 {
     MTC_OPERATOR_CUST_NONE          = 0x00,                                     /* 无运营商定制方案 */
@@ -142,16 +98,7 @@ enum MTC_OPERATOR_CUST_SOLUTION_ENUM
 };
 typedef VOS_UINT8 MTC_OPERATOR_CUST_SOLUTION_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : MTC_PS_TRANSFER_CAUSE_ENUM
- 结构说明  : MTC模块PS域切换原因值
- 1.日    期   : 2013年10月21日
-   作    者   : l00198894
-   修改内容   : 新增枚举
- 2.日    期   : 2013年11月22日
-   作    者   : z00161729
-   修改内容   : SVLTE优化G-TL ps切换性能修改
-*****************************************************************************/
+
 enum MTC_PS_TRANSFER_CAUSE_ENUM
 {
     MTC_PS_TRANSFER_CAUSE_AREA_LOST                 = 0,
@@ -162,14 +109,7 @@ enum MTC_PS_TRANSFER_CAUSE_ENUM
 };
 typedef VOS_UINT8 MTC_PS_TRANSFER_CAUSE_ENUM_UINT8;
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
-/*****************************************************************************
- 枚举名    : MTC_OUTSIDE_MODEM_ENUM
- 结构说明  : 外接MODEM ID定义
- 1.日    期   : 2014年06月16日
-   作    者   : j00174725
-   修改内容   : K3V3 多模多天线特性
-*****************************************************************************/
+
 enum MTC_OUTSIDE_MODEM_ENUM
 {
     MTC_OUTSIDE_MODEM_CDMA              = 0x0000,                              /* 外接CDMA */
@@ -177,9 +117,7 @@ enum MTC_OUTSIDE_MODEM_ENUM
     MTC_OUTSIDE_MODEM_BUTT
 };
 typedef VOS_UINT16 MTC_OUTSIDE_MODEM_ENUM_UINT16;
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义(由上官声长00266224提供) Begin */
 /*****************************************************************************
  枚举名    : MTC_BAND_INFO_ENUM
  协议表格  :
@@ -258,7 +196,6 @@ enum MTC_BAND_INFO_ENUM
 };
 typedef VOS_UINT16 MTC_BAND_INFO_ENUM_UINT16;
 
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义(由上官声长00266224提供) End */
 
 
 /*****************************************************************************
@@ -280,14 +217,7 @@ typedef VOS_UINT16 MTC_BAND_INFO_ENUM_UINT16;
   7 STRUCT定义
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : MTC_RF_INTRUSION_CFG_STRU
- 结构说明  : MTC模块干扰控制结构
 
-  1.日    期   : 2014年3月24日
-    作    者   : A00165503
-    修改内容   : 新增结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucIntrusionCfg      : 1;
@@ -300,14 +230,7 @@ typedef struct
 
 } MTC_RF_INTRUSION_CFG_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_INTRUSION_CTX_STRU
- 结构说明  : MTC模块干扰裁决相关的上下文结构
 
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 typedef struct
 {
     MTC_NV_RF_INTRUSION_CFG_STRU        stIntrusionCfg;                         /* 保存RF INTRUSION NV配置信息 */
@@ -320,14 +243,7 @@ typedef struct
     PS_BOOL_ENUM_UINT8                  enRseCfg;                               /* 记录已经下发过的RSE配置 */
 }MTC_INTRUSION_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_MODEM_SERVICE_INFO_STRU
- 结构说明  : MTC模块记录Modem当前服务信息结构体
 
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucCallSrvExistFlg;                      /* Modem是否存在呼叫服务 */
@@ -336,13 +252,7 @@ typedef struct
     VOS_UINT8                           aucReserved1[1];
 }MTC_MODEM_SERVICE_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_MODEM_PS_DOMAIN_INFO_STRU
- 结构说明  : Modem当前PS域信息
- 1.日    期   : 2014年01月17日
-   作    者   : l00198894
-   修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucPsSupportFlg;                         /* 当前PS域是否支持GPRS接入 */
@@ -351,13 +261,7 @@ typedef struct
     VOS_UINT8                           aucReserved1[2];
 }MTC_MODEM_PS_DOMAIN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_MODEM_NETWORK_INFO_STRU
- 结构说明  : Modem当前驻留网络信息
- 1.日    期   : 2014年01月17日
-   作    者   : l00198894
-   修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
+
 typedef struct
 {
     MTC_MMA_PLMN_ID_STRU                stPlmnId;                               /* Modem当前驻留网络 */
@@ -367,14 +271,7 @@ typedef struct
     VOS_UINT8                           aucReserved1[3];
 }MTC_MODEM_NETWORK_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_MODEM_MIPICLK_BITMAP_STRU
- 结构说明  : 当前服务小区的频率和存在的服务
 
- 1.日    期   : 2014年03月05日
-   作    者   : Y00213812
-   修改内容   : 新生成
-*******************************************************************************/
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                  enCsExistFlag;
@@ -385,21 +282,7 @@ typedef struct
     VOS_UINT16                          usNcellBitMap;
 }MTC_MODEM_MIPICLK_BITMAP_STRU;
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
-/*******************************************************************************
- 结构名    : MTC_MODEM_CONN_STATE_INFO_STRU
- 结构说明  : modem 连接状态信息
 
- 1.日    期   : 2014年06月16日
-   作    者   : j00174725
-   修改内容   : K3V3 多模多天线特性
- 2.日    期   : 2014年09月4日
-   作    者   : j00174725
-   修改内容   : DTS2015082406288
- 3.日    期   : 2014年09月19日
-   作    者   : j00174725
-   修改内容   : DTS2015091108014
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT32                          ulCsSessionInfo;
@@ -409,14 +292,7 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }MTC_MODEM_CONN_STATE_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_MODEM_RAT_CONFIG_STRU
- 结构说明  : modem 接入制式配置信息
 
-  1.日    期   : 2015年10月21日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*******************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucIsGuExist;                            /* Rat配置中是否包含GU */
@@ -425,14 +301,7 @@ typedef struct
     VOS_UINT8                           ucIsHrpdExist;                          /* Rat配置中是否包含HRPD */
 } MTC_MODEM_RAT_CONFIG_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_OUTSIDE_MODEM_CONN_STATE_INFO_STRU
- 结构说明  : 外挂modem 连接状态信息
 
- 1.日    期   : 2015年09月18日
-   作    者   : j00174725
-   修改内容   : K3V3 多模多天线特性
-*******************************************************************************/
 typedef struct
 {
     TAF_MTC_SRV_CONN_STATE_ENUM_UINT8   enCsSrvConnState;
@@ -441,17 +310,7 @@ typedef struct
 }MTC_OUTSIDE_MODEM_CONN_STATE_INFO_STRU;
 
 
-/*******************************************************************************
- 结构名    : MTC_OUTSIDE_MODEM_INFO_STRU
- 结构说明  : 外接modem信息
 
- 1.日    期   : 2014年06月16日
-   作    者   : j00174725
-   修改内容   : K3V3 多模多天线特性
- 2.日    期   : 2014年09月18日
-   作    者   : j00174725
-   修改内容   : DTS2015091108014
-*******************************************************************************/
 typedef struct
 {
     MTC_OUTSIDE_MODEM_CONN_STATE_INFO_STRU  stConnStateInfo;
@@ -461,14 +320,7 @@ typedef struct
     VOS_UINT8                               aucReserved2[2];
 } MTC_OUTSIDE_MODEM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_BAND_INFO_MSG_BUF_STRU
- 结构说明  : 用于缓存接入层发过来的BAND_INFO消息
 
-  1.日    期   : 2015年10月29日
-    作    者   : j00174725
-    修改内容   : DTS2015102706654
-*****************************************************************************/
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                              enExitBufMsgFlag;
@@ -476,14 +328,7 @@ typedef struct
     RRC_MTC_INTRUSION_BAND_INFO_IND_STRU            stIntrusionBandInfoMsg;
 }MTC_BAND_INFO_MSG_BUF_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_USING_FREQ_MSG_BUF_STRU
- 结构说明  : 用于缓存邻区消息
 
-  1.日    期   : 2015年10月29日
-    作    者   : j00174725
-    修改内容   : DTS2015102706654
-*****************************************************************************/
 typedef struct
 {
     PS_BOOL_ENUM_UINT8                              enExitBufMsgFlag;
@@ -491,45 +336,14 @@ typedef struct
     RRC_MTC_USING_FREQ_IND_STRU                     stUsingFreqInfoMsg;
 }MTC_USING_FREQ_MSG_BUF_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_MSG_BUF_STRU
- 结构说明  : 用于缓存BAND消息或者邻区消息
 
-  1.日    期   : 2015年10月29日
-    作    者   : j00174725
-    修改内容   : DTS2015102706654
-*****************************************************************************/
 typedef struct
 {
     MTC_BAND_INFO_MSG_BUF_STRU          stBufBandInfoMsg;
     MTC_USING_FREQ_MSG_BUF_STRU         stBufUsingFreqInfoMsg;
 }MTC_MSG_BUF_STRU;
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
-/*****************************************************************************
- 结构名    : MTC_MODEM_INFO_STRU
- 结构说明  : MTC模块保存Modem状态信息
 
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : C+L项目修改
-
-  3.日    期   : 2014年1月23日
-    作    者   : z00161729
-    修改内容   : DTS2014012305088:svlte特性开启卡无效场景mtc无需上报pstransfer:0
-
-  4.日    期   : 2014年3月24日
-    作    者   : A00165503
-    修改内容   : B39&B32 Intrusion
-
-  4.日    期   : 2015年5月15日
-    作    者   : wx270776
-    修改内容   : TAS环回测试: 增加环回状态
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                               ucRatCap;                           /* Modem的接入技术能力值 */
@@ -548,7 +362,6 @@ typedef struct
 
     MTC_MODEM_MIPICLK_BITMAP_STRU           stRfCellInfo;                       /* Modem当前的BITMAP状态 */
 
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
     MTC_MODEM_CONN_STATE_INFO_STRU          stConnStateInfo;                    /* Modem当前连接状态 */
 
     MTC_MODEM_RAT_CONFIG_STRU               stRatCfg;                           /* modem 接入制式配置信息 */
@@ -558,7 +371,6 @@ typedef struct
     MTC_MODEM_POWER_STATE_ENUM_UINT8        enImsaState;                        /* Modem的IMSA开关机状态 */
 
     MTC_MODEM_IMS_VOICE_CAP_ENUM_UINT8      enImsVoiceCap;
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 
     MTC_RCM_TC_STATUS_ENUM_UINT16           enTcStatus;                         /* 记录TAS环回测试状态 */
@@ -567,32 +379,17 @@ typedef struct
     MTC_MSG_BUF_STRU                        stBufMsg;
 }MTC_MODEM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_PS_TRANSFER_CTX_STRU
- 结构说明  : MTC模块PS域迁移相关的上下文结构
 
-  1.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 typedef struct
 {
     MTC_NV_PS_TRANSFER_CFG_STRU         stPsTransferCfg;                        /* 保存PS TRANSFER NV配置信息 */
 
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, begin */
     MTC_PS_TRANSFER_CAUSE_ENUM_UINT8    enRrcCause;
     MTC_PS_TRANSFER_CAUSE_ENUM_UINT8    enReportCause;
     VOS_UINT8                           aucRsve[2];
-    /* Added by Y00213812 for 主动离网重选, 2014-04-10, end */
 }MTC_PS_TRANSFER_CTX_STRU;
 
-/*******************************************************************************
- 结构名    : MTC_RF_LCD_MIPICLK_FREQ_STRU
- 结构说明  : 记录MIPICLK与其影响频率的结构体
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD INTRUSION项目
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulAvailNum;                             /* 有效频率个数 */
@@ -600,39 +397,19 @@ typedef struct
     VOS_UINT32                          aulFreq[MTC_RF_LCD_MIPICLK_FREQ_MAX_NUM];/* ulMipiClk值影响的频率表 */
 }MTC_RF_LCD_MIPICLK_FREQ_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_RF_LCD_INTRUSION_CTX_STRU
- 结构说明  : MTC模块RF&LCD干扰相关的上下文结构
 
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : RF&LCD 干扰规避项目
-*****************************************************************************/
 typedef struct
 {
-    /* Modified by Y00213812 for 主动离网重选, 2014-04-10, begin */
     VOS_UINT8                           ucAvailFreqListNum;                     /* 有效的astRfLcdFreqList个数 */
     VOS_UINT8                           aucReserved[1];
     VOS_UINT16                          usMipiClkBitMap;                        /* MIPICLK位图 */
-    /* Modified by Y00213812 for 主动离网重选, 2014-04-10, end */
     VOS_UINT32                          ulMipiClkReportModemId;                 /* 保存MipiClk主动上报到那个modem的MTA */
     VOS_UINT16                          usFreqWidth;                            /* 带宽 单位100KHZ */
     VOS_UINT16                          usEnableBitMap;
     MTC_RF_LCD_MIPICLK_FREQ_STRU        astRfLcdFreqList[MTC_RF_LCD_MIPICLK_MAX_NUM];
 }MTC_RF_LCD_INTRUSION_CTX_STRU;
 
-/*****************************************************************************
- 结构名    : MTC_CONTEXT_STRU
- 结构说明  : MTC模块的上下文结构
 
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容   : V9R1 干扰控制项目
-
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-*****************************************************************************/
 typedef struct
 {
     MTC_MODEM_INFO_STRU                 astModemInfo[MODEM_ID_BUTT];            /* MTC模块保存Modem状态信息 */
@@ -648,9 +425,7 @@ typedef struct
 
     MTC_RF_LCD_INTRUSION_CTX_STRU       stRfLcdIntrusionCtx;
 
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
     MTC_OUTSIDE_MODEM_INFO_STRU         astOutSideModemInfo[MTC_OUTSIDE_MODEM_BUTT];/* 外接modem 信息 */
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
     /* 后续可能会扩展其它功能 */
 
@@ -793,7 +568,6 @@ PS_BOOL_ENUM_UINT8 MTC_GetRseCfgValue(VOS_VOID);
 VOS_VOID MTC_SetRseCfgValue(PS_BOOL_ENUM_UINT8 enValue);
 
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 VOS_VOID MTC_SetCsTypeInfo(
     MODEM_ID_ENUM_UINT16                enModemId,
     VOS_UINT8                           ucCsTypeInfo,
@@ -890,7 +664,6 @@ TAF_MTC_USIMM_CARD_SERVIC_ENUM_UINT16 MTC_GetOutSideModemUsimmState(
     MTC_OUTSIDE_MODEM_ENUM_UINT16       enModemId
 );
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 MTC_GSM_CELLINFO_EX_STRU* MTC_GetModemGsmCellInfoEx(
     MODEM_ID_ENUM_UINT16                enModemId

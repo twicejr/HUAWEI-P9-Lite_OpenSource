@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcSndMscc.h
-  版 本 号   : 初稿
-  作    者   : L00171473
-  生成日期   : 2011年7月13日
-  最近修改   :
-  功能描述   : NasMmcSndMscc.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年7月13日
-    作    者   : L00171473
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __NASMMCSNDMSCC_H__
 #define __NASMMCSNDMSCC_H__
@@ -31,9 +14,7 @@
 #include "MmcLmmInterface.h"
 #endif
 #include  "NasCommDef.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 
 
@@ -99,7 +80,6 @@ VOS_VOID NAS_MMC_SndMsccUserCsgListSearchCnf(
 VOS_VOID NAS_MMC_SndMsccCsgListSearchRej(VOS_VOID);
 #endif
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_VOID NAS_MMC_SndMsccUserSpecPlmnSearchCnf(
     NAS_MSCC_PIF_USER_PLMN_SEARCH_RESULT_ENUM_UINT8         enResult
 )
@@ -111,7 +91,6 @@ VOS_VOID NAS_MMC_SndMsccPlmnSelectionRsltInd(
 );
 
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 VOS_VOID NAS_MMC_SndMsccPlmnSelectStartInd(VOS_VOID);
 
@@ -144,7 +123,6 @@ VOS_VOID NAS_MMC_SndMsccServiceStatusInd(
     VOS_UINT32                          ulServiceStatus
 );
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 VOS_VOID NAS_MMC_SndMsccRegStatusInd(
     VOS_UINT32                          ulCnDomainId,
     NAS_MSCC_PIF_REG_STATE_ENUM_UINT8        enRegStatus
@@ -153,14 +131,12 @@ VOS_VOID NAS_MMC_SndMsccPlmnReselCnf(
     NAS_MSCC_PIF_USER_PLMN_SEARCH_RESULT_ENUM_UINT8        enPlmnReselRslt
 );
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 VOS_VOID NAS_Mmc_SndMsccPowerOffCnf(VOS_VOID);
 
 VOS_VOID NAS_Mmc_SndMsccStartCnf(
     VOS_UINT32                          ulResult
 );
 
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_VOID NAS_MMC_SndMsccPlmnListAbortCnf(
     MMC_MSCC_PLMN_LIST_ABORT_CNF_STRU    *pstSndMsccMsg
 );
@@ -169,16 +145,13 @@ VOS_VOID NAS_MMC_SndMsccPlmnListAbortCnf(
 VOS_VOID NAS_MMC_SndMsccPlmnListInd(
     MMC_MSCC_PLMN_LIST_CNF_STRU          *pstSndMsccMsg
 );
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 VOS_VOID NAS_Mmc_SndMsccPlmnListRej(VOS_VOID);
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
 VOS_VOID NAS_MMC_SndCbaMsgNetModInd(
     VOS_UINT8                           ucNetWorkMode
 );
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 
 
 VOS_VOID  NAS_MMC_SndMsccMsgNoNetWorkInd( VOS_VOID );
@@ -200,11 +173,8 @@ VOS_VOID NAS_MMC_SndMsccDataTranAttri(
     NAS_MSCC_PIF_DATATRAN_ATTRI_ENUM_UINT8                  ucDataTranAttri
 );
 
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_VOID NAS_MMC_SndMsccSysInfo( VOS_VOID );
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
-/* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
 VOS_VOID NAS_MMC_SndMsccRegResultInd(
     NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32            enSrvDomain,
     VOS_UINT8                           ucResult,
@@ -217,7 +187,6 @@ VOS_VOID NAS_MMC_SndMsccServRejRsltInd(
 );
 
 
-/* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
 VOS_VOID NAS_MMC_SndMsccRssiInd(
     MSCC_MMC_SCELL_MEAS_REPORT_TYPE_UN  *punMeasReportType
@@ -235,9 +204,7 @@ VOS_VOID NAS_MMC_SndRrcPlmnQueryCnf(
     PS_BOOL_ENUM_UINT8                  enQueryWPlmn
 );
 
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_VOID NAS_MMC_SndMsccSysCfgCnf(NAS_MSCC_PIF_SYS_CFG_SET_RESULT_ENUM_UINT32 ulRst);
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 VOS_VOID NAS_MMC_SndMsccNetScanCnf(
     MMC_MSCC_NET_SCAN_CNF_STRU             *pstRcvRrmmMsg
@@ -249,11 +216,9 @@ VOS_VOID NAS_MMC_SndMsccAbortNetScanCnf(
 
 
 
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_VOID  NAS_MMC_GetCellInfoForMscc(
     NAS_MSCC_PIF_CAMP_CELL_INFO_STRU                    *pstCellInfo
 );
- /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 VOS_VOID  NAS_MMC_GetOperPlmnInfoForMscc(
     MMC_TAF_PLMN_LIST_INFO_ST           *pstRptMsccOperList
@@ -271,8 +236,6 @@ VOS_VOID  NAS_MMC_GetSelPlmnInfoForMscc(
     MMC_TAF_PLMN_LIST_INFO_ST           *pstRptMsccSelPlmnList
 );
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 
 
 NAS_MM_COM_SERVICE_STATUS_ENUM_UINT8  NAS_MMC_GetServiceStatusForMscc(
@@ -297,12 +260,10 @@ VOS_VOID NAS_MMC_SndMsccGCipherInfoInd(
 VOS_VOID NAS_MMC_SndMsccUserSpecPlmnSearchRej( VOS_VOID );
 
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
 VOS_VOID NAS_MMC_SndMsccAcInfoChangeInd(
     VOS_UINT32                          ulCnDomainId,
     NAS_MML_ACCESS_RESTRICTION_STRU    *pstAcInfo
 );
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 
 VOS_VOID NAS_MMC_SndMsccEOPlmnSetCnf(
     VOS_UINT32                          ulRst
@@ -325,36 +286,17 @@ VOS_VOID NAS_MMC_SndMsccCsServiceConnStatusInd(
     VOS_UINT8                           ucCsServiceConnStatusFlag
 );
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, begin */
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndMsccNetworkCapabilityInfoInd
- 功能描述  : 上报LTE 网络能力参数给MSCC module
- 输入参数  : pstRcvMsg -- 消息地址
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月14日
-   作    者   : y00245242
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_MMC_SndMsccNetworkCapabilityInfoInd(
     NAS_MSCC_PIF_NW_IMS_VOICE_CAP_ENUM_UINT8                     enNwImsVoCap,
     NAS_MSCC_PIF_NW_EMC_BS_CAP_ENUM_UINT8                        enNwEmcBsCap,
     NAS_MSCC_PIF_LTE_CS_CAPBILITY_ENUM_UINT8                     enLteCsCap
 );
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, end */
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, begin */
 VOS_VOID NAS_MMC_SndMsccCampOnInd(
     VOS_UINT8                           ucCampOnFlg
 );
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-10-12, end */
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-12, Begin */
 VOS_VOID NAS_MMC_SndMsccAcqCnf(
     NAS_MSCC_PIF_ACQ_RESULT_ENUM_UINT32      enAcqRslt,
     MSCC_MMC_PLMN_ID_STRU                   *pstPlmnId,
@@ -377,7 +319,6 @@ VOS_VOID NAS_MMC_SndMsccRegCnf(
 VOS_VOID NAS_MMC_SndMsccPowerSaveCnf(
     NAS_MSCC_PIF_POWER_SAVE_RESULT_ENUM_UINT8               enCause
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-12, End */
 
 #if (FEATURE_ON == FEATURE_DSDS)
 VOS_VOID NAS_MMC_SndMsccSrvAcqCnf(
@@ -389,12 +330,10 @@ VOS_VOID NAS_MMC_SndMsccRfAvailInd(
     VOS_UINT8                           ucRfAvail
 );
 
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, Begin */
 VOS_VOID NAS_MMC_SndMsccPsServiceConnStatusInd(
     VOS_UINT8                                       ucPsServiceConnStatusFlag,
     MSCC_MMC_PS_SIGNALING_TYPE_ENUM_UINT8           enPsSigType
 );
-/* Add by s00217060 for K3V3 多模多天线特性, 2014-06-27, End */
 
 
 VOS_VOID  NAS_MMC_SndMsccMsgLmmCellSignInfoInd(

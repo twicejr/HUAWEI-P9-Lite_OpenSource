@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcProcSuspend.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年8月03日
-  最近修改   :
-  功能描述   : MMC处理异系统挂起时的相关公共处理函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年08月03日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -26,9 +9,7 @@
 #include "NasMmcSndLmm.h"
 #include "NasMmlLib.h"
 #include "NasMmcProcSuspend.h"
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
 #include "NasMmcSndOm.h"
-/* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 #include "NasMmcSndInternalMsg.h"
 
 #ifdef __cplusplus
@@ -51,26 +32,7 @@ extern "C" {
 
 /*****************************此处为异系统挂起时公共调用的函数抽取********************************************/
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmSysChngTypeToMmcType
- 功能描述  : 将LMM上报的异系统重选类型转换为MMC内部的重选类型
- 输入参数  : MMC_LMM_SYS_CHNG_TYPE_ENUM_UINT32   enSysChngType,
- 输出参数  : MMC_SUSPEND_CAUSE_ENUM_UINT8       *penSuspendCause
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2011年07月13日
-    作    者   : w00176964
-    修改内容   : GUNAS V7R1 PhaseII 阶段调整
-  3.日    期   : 2012年04月24日
-    作    者   : w00166186
-    修改内容   : DTS2012042303735，从L CCO到G后再重选会L，第一次TAU失败
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertLmmSysChngTypeToMmcType(
     MMC_LMM_SYS_CHNG_TYPE_ENUM_UINT32   enSysChngType,
     MMC_SUSPEND_CAUSE_ENUM_UINT8       *penSuspendCause
@@ -107,27 +69,7 @@ VOS_VOID NAS_MMC_ConvertLmmSysChngTypeToMmcType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmSysChngDirToMmcType
- 功能描述  : 将LMM上报的异系统重选方向类型转换为MMC内部的重选方向搜类型
- 输入参数  : MMC_LMM_SYS_CHNG_DIR_ENUM_UINT32    ulSysChngDir,
- 输出参数  : penSuspendDestination:挂起目的方
-             penSuspendOrigen:挂起发起方
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月14日
-    作    者   : w00167002
-    修改内容   : 新生成函数
- 2. 日    期   : 2011年8月03日
-    作    者   : w00176964
-    修改内容   : V7R1 Phase II调整:增加挂起发起方
- 3. 日    期   : 2014年1月26日
-    作    者   : s00246516
-    修改内容   : L-C互操作项目增加到Lte到CDMA的重选或重定向
-*****************************************************************************/
 VOS_VOID NAS_MMC_ConvertLmmSysChngDirToMmcType(
     MMC_LMM_SYS_CHNG_DIR_ENUM_UINT32    ulSysChngDir,
     MMC_SUSPEND_DESTINATION_UINT8      *penSuspendDestination,
@@ -156,13 +98,11 @@ VOS_VOID NAS_MMC_ConvertLmmSysChngDirToMmcType(
             *penSuspendOrigen       = MMC_SUSPEND_ORIGEN_WCDMA;
             break;
 
-        /* Added by s00246516 for L-C互操作项目, 2014-01-26, Begin */
         /* 增加L2C case的处理，发起方为LTE，目的方为CDMA */
         case MMC_LMM_SYS_CHNG_DIR_L2C:
             *penSuspendDestination  = MMC_SUSPEND_DESTINATION_HRPD;
             *penSuspendOrigen       = MMC_SUSPEND_ORIGEN_LTE;
             break;
-        /* Added by s00246516 for L-C互操作项目, 2014-01-26, End */
 
         default:
             *penSuspendDestination  = MMC_SUSPEND_DESTINATION_BUTT;
@@ -174,21 +114,7 @@ VOS_VOID NAS_MMC_ConvertLmmSysChngDirToMmcType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertLmmSuspendMsgToGUtype
- 功能描述  : 将LMM上报的异系统重选方向类型转换为MMC内部的重选方向搜类型
- 输入参数  : pstLmmSuspendIndMsg:LTE的挂起消息
- 输出参数  : pstGuSuspendIndMsg:GU的挂起消息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月03日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID    NAS_MMC_ConvertLmmSuspendMsgToGUtype(
     LMM_MMC_SUSPEND_IND_STRU           *pstLmmSuspendIndMsg,
     RRMM_SUSPEND_IND_ST                *pstGuSuspendIndMsg
@@ -205,44 +131,9 @@ VOS_VOID    NAS_MMC_ConvertLmmSuspendMsgToGUtype(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndLmmEquPlmn_InterSysChangeLte
- 功能描述  : 异系统到L时，向LMM发送等效网络列表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年6月01日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月21日
-    作    者   : z00161729
-    修改内容   : DCM定制需求和遗留问题修改
-  3.日    期   : 2012年10月23日
-    作    者   : z00161729
-    修改内容   : DTS2012082401763:异系统到L通知L等效plmn时需要删除forbidden plmn
-  4.日    期   : 2013年12月18日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-
-  5.日    期   : 2014年1月9日
-    作    者   : w00167002
-    修改内容   : DTS2014010305488:在L下24005上注册成功，用户指定搜46009，用户发起紧急
-               呼叫，在W下ANYCELL驻留后发起紧急电话业务。后W异系统重选到L下得24005
-               网络上，LMM直接给MMC上报TAU成功。
-  6.日    期   : 2015年8月13日
-    作    者   : l00289540
-    修改内容   : User_Exp_Improve修改
-  7.日    期   : 2015年12月02日
-    作    者   : j00174725
-    修改内容   : DTS2015102004448
-*****************************************************************************/
 VOS_VOID NAS_MMC_SndLmmEquPlmn_InterSysChangeLte()
 {
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
     NAS_MML_EQUPLMN_INFO_STRU                              *pstEquPlmnInfo = VOS_NULL_PTR;
     NAS_MML_EQUPLMN_INFO_STRU                               stSndEquPlmnInfo;
     NAS_MML_PLMN_WITH_RAT_STRU                             *pstUserSpecPlmnId   = VOS_NULL_PTR;
@@ -253,7 +144,6 @@ VOS_VOID NAS_MMC_SndLmmEquPlmn_InterSysChangeLte()
 
     PS_MEM_SET(&stSndEquPlmnInfo, 0, sizeof(NAS_MML_EQUPLMN_INFO_STRU));
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, begin */
     pstEquPlmnInfo = NAS_MML_GetEquPlmnList();
     PS_MEM_CPY(&stSndEquPlmnInfo, pstEquPlmnInfo, sizeof(NAS_MML_EQUPLMN_INFO_STRU));
 
@@ -299,30 +189,13 @@ VOS_VOID NAS_MMC_SndLmmEquPlmn_InterSysChangeLte()
     NAS_MMC_BuildSndLmmEquPlmnInfo(&stSndEquPlmnInfo);
     NAS_MMC_SndLmmEquPlmnReq(&stSndEquPlmnInfo);
     NAS_MMC_SndOmEquPlmn();
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-21, end */
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
 
     return;
 }
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndAsSuspendRsp
- 功能描述  : 向接入层发送挂起回复
- 输入参数  : enRat:需要发送的接入技术
-             enSuspendRslt:挂起结果
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月03日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID    NAS_MMC_SndSuspendRsp(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat,
     RRC_NAS_SUSPEND_RESULT_ENUM_UINT8   enSuspendRslt
@@ -362,20 +235,7 @@ VOS_VOID    NAS_MMC_SndSuspendRsp(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_SndResumeRsp
- 功能描述  : 向接入层发送恢复回复
- 输入参数  : enRat:当前接入技术
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月03日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_VOID    NAS_MMC_SndResumeRsp(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat
@@ -425,21 +285,7 @@ VOS_VOID    NAS_MMC_SndResumeRsp(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_BulidResumeMsg
- 功能描述  : 构造恢复消息
- 输入参数  : enRat:需要那个接入技术进行恢复
- 输出参数  : pstMsg:构造后的消息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月03日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID    NAS_MMC_BulidResumeMsg(
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enRat,
     RRMM_RESUME_IND_ST                 *pstMsg
@@ -470,24 +316,7 @@ VOS_VOID    NAS_MMC_BulidResumeMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetSuspendOrigenRatType
- 功能描述  : 获取挂起前的网络类型
- 输入参数  : pstEntryMsg :状态机的入口消息
- 输出参数  :
- 返 回 值  : 挂起前的网络类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月03日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2015年6月6日
-    作    者   : l00324781
-    修改内容   : Iteration 12修改
-
-*****************************************************************************/
 NAS_MML_NET_RAT_TYPE_ENUM_UINT8    NAS_MMC_GetSuspendOrigenRatType(
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg
 )
@@ -542,21 +371,7 @@ NAS_MML_NET_RAT_TYPE_ENUM_UINT8    NAS_MMC_GetSuspendOrigenRatType(
     return enRat;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetSuspendDestinationRatType
- 功能描述  : 获取挂起目的方的网络类型
- 输入参数  : pstEntryMsg :状态机的入口消息
- 输出参数  :
- 返 回 值  : 挂起目的方的网络类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月13日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MML_NET_RAT_TYPE_ENUM_UINT8    NAS_MMC_GetSuspendDestinationRatType(
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg
 )
@@ -615,21 +430,7 @@ NAS_MML_NET_RAT_TYPE_ENUM_UINT8    NAS_MMC_GetSuspendDestinationRatType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetSuspendCause
- 功能描述  : 获取挂起类型
- 输入参数  : pstEntryMsg :状态机的入口消息
- 输出参数  :
- 返 回 值  : 挂起类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年8月13日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MMC_SUSPEND_CAUSE_ENUM_UINT8    NAS_MMC_GetSuspendCause(
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg
 )
@@ -670,21 +471,7 @@ MMC_SUSPEND_CAUSE_ENUM_UINT8    NAS_MMC_GetSuspendCause(
 
 #if ((FEATURE_ON == FEATURE_CL_INTERWORK) || ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_LTE)))
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_IsInterSysReselectToHrpd
- 功能描述  : 判断是否重选到HRPD
- 输入参数  : pstEntryMsg :状态机的入口消息
- 输出参数  :
- 返 回 值  : VOS_TRUE,是；VOS_FALSE，不是
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月19日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_IsInterSysReselectToHrpd(
     NAS_MMC_ENTRY_MSG_STRU             *pstEntryMsg
 )
@@ -725,21 +512,7 @@ VOS_UINT32 NAS_MMC_IsInterSysReselectToHrpd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertMsccInterSysCauseToMmcFormat
- 功能描述  : 将mscc格式的挂起原因值转换为mmc格式的挂起原因值
- 输入参数  : enMsccSuspendCause:mscc格式的挂起原因值
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_INTERSYS_CAUSE_ENUM_UINT32:mmc格式的挂起原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月27日
-    作    者   : y00346957
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MMC_LMM_SYS_CHNG_TYPE_ENUM_UINT32 NAS_MMC_ConvertMsccInterSysCauseToMmcFormat(
     NAS_MSCC_PIF_INTERSYS_CAUSE_ENUM_UINT32                 enMsccSuspendCause
 )
@@ -769,22 +542,7 @@ MMC_LMM_SYS_CHNG_TYPE_ENUM_UINT32 NAS_MMC_ConvertMsccInterSysCauseToMmcFormat(
 #endif
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_StartResumeTimer_InterSysCellResel
- 功能描述  : 拼片或CL模式下，异系统切换，从LTE重选或重定向到HRPD过程中，MME收到内部模块MM或GMM的SuspendRsp消息处理
-           : 根据不同切换类型，启动不同时长定时器
- 输入参数  : 无
- 输出参数  :
- 返 回 值  : VOS_TRUE,是LTE到HRPD的切换；VOS_FALSE，不是LTE到HRPD的切换
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_StartResumeTimer_InterSysCellResel(VOS_VOID)
 {
 #if ((FEATURE_ON == FEATURE_CL_INTERWORK) || ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_LTE)))
@@ -817,22 +575,7 @@ VOS_UINT32 NAS_MMC_StartResumeTimer_InterSysCellResel(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ProcResumeRspFromLteToHrpd_InterSysCellResel
- 功能描述  : 拼片或CL模式下，异系统切换，从LTE重选或重定向到HRPD过程中，MME收到内部模块MM或GMM的ResumeRsp消息处理
-           : 根据不同切换类型，发送不同类型的挂起完成消息
- 输入参数  : 无
- 输出参数  :
- 返 回 值  : VOS_TRUE,是LTE到HRPD的切换；VOS_FALSE，不是LTE到HRPD的切换
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : l00324781
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_ProcResumeRspFromLteToHrpd_InterSysCellResel(VOS_VOID)
 {
 #if ((FEATURE_ON == FEATURE_CL_INTERWORK) || ((FEATURE_ON == FEATURE_UE_MODE_CDMA) && (FEATURE_ON == FEATURE_LTE)))
@@ -871,21 +614,7 @@ VOS_UINT32 NAS_MMC_ProcResumeRspFromLteToHrpd_InterSysCellResel(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_ConvertMmcInterSysCauseToMsccFormat
- 功能描述  : 将MMC格式的挂起原因值转换为MSCC格式的挂起原因值
- 输入参数  : enMmcSuspendCause:MMC格式的挂起原因值
- 输出参数  : 无
- 返 回 值  : NAS_MSCC_PIF_INTERSYS_CAUSE_ENUM_UINT32:MSCC格式的挂起原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年11月05日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_MSCC_PIF_INTERSYS_CAUSE_ENUM_UINT32 NAS_MMC_ConvertMmcInterSysCauseToMsccFormat(
     MMC_SUSPEND_CAUSE_ENUM_UINT8        enMmcSuspendCause
 )

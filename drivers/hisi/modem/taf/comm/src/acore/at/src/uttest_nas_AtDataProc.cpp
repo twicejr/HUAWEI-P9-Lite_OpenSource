@@ -67,14 +67,7 @@ TAF_PS_EVT_STRU* TEST_Build_ApsAtMsg(
 #endif
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_AppSndCallConnectedResult
-功能描述 : AT_AppSndCallConnectedResult UT工程类
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppSndCallConnectedResult: public ::testing::Test
 {
 public:
@@ -112,15 +105,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppSndCallConnectedResult_001
-测试用例标题      : Android应用发起的IPV4拨号成功
-预期结果          : 输出^DCONN:1,"IPV4"
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallConnectedResult, Test_AT_AppSndCallConnectedResult_001)
 {
     //参数定义
@@ -157,15 +142,7 @@ TEST_F(Test_AT_AppSndCallConnectedResult, Test_AT_AppSndCallConnectedResult_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppSndCallConnectedResult_002
-测试用例标题      : 其它应用发起的IPV4拨号成功
-预期结果          : 输出^NDISCONN:1,"IPV4"
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallConnectedResult, Test_AT_AppSndCallConnectedResult_002)
 {
     //参数定义
@@ -190,15 +167,7 @@ TEST_F(Test_AT_AppSndCallConnectedResult, Test_AT_AppSndCallConnectedResult_002)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
-测试用例编号      : Test_AT_AppSndCallConnectedResult_003
-测试用例标题      : Android应用发起的IPV6拨号成功
-预期结果          : 输出^DCONN:1,"IPV6"
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallConnectedResult, Test_AT_AppSndCallConnectedResult_003)
 {
     //参数定义
@@ -243,15 +212,7 @@ TEST_F(Test_AT_AppSndCallConnectedResult, Test_AT_AppSndCallConnectedResult_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppSndCallConnectedResult_004
-测试用例标题      : 其它应用发起的IPV6拨号成功
-预期结果          : 输出^NDISCONN:1,"IPV6"
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallConnectedResult, Test_AT_AppSndCallConnectedResult_004)
 {
     //参数定义
@@ -288,14 +249,7 @@ TEST_F(Test_AT_AppSndCallConnectedResult, Test_AT_AppSndCallConnectedResult_004)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_AppSndCallEndedResult
-功能描述 : AT_AppSndCallEndedResult UT工程类
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppSndCallEndedResult: public ::testing::Test
 {
 public:
@@ -324,15 +278,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppSndCallEndedResult_001
-测试用例标题      : Android应用发起的IPV4拨号失败
-预期结果          : 输出^DEND:1,33,"IPV4"
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_001)
 {
     //参数定义
@@ -362,15 +308,7 @@ TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppSndCallEndedResult_002
-测试用例标题      : 其它应用发起的IPV4拨号失败
-预期结果          : 输出^DEND:1,"IPV4"
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_002)
 {
     //参数定义
@@ -401,15 +339,7 @@ TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_002)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
-测试用例编号      : Test_AT_AppSndCallEndedResult_003
-测试用例标题      : Android应用发起的IPV6拨号失败
-预期结果          : 输出^DEND:1,33,"IPV6"
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_003)
 {
     //参数定义
@@ -439,15 +369,7 @@ TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppSndCallEndedResult_004
-测试用例标题      : 其它应用发起的IPV6拨号失败
-预期结果          : 输出^DEND:1,"IPV6"
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_004)
 {
     //参数定义
@@ -477,15 +399,7 @@ TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppSndCallEndedResult_005
- 测试用例标题   : IPv4承载异常去激活, 原因值#33
- 预期结果       : 上报^DEND
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_005)
 {
     //参数定义
@@ -513,15 +427,7 @@ TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppSndCallEndedResult_006
- 测试用例标题   : IPv6承载异常去激活, 原因值#33
- 预期结果       : 上报^DEND
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_006)
 {
     //参数定义
@@ -552,14 +458,7 @@ TEST_F(Test_AT_AppSndCallEndedResult, Test_AT_AppSndCallEndedResult_006)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_AT_ProcAppPdpStateChange
-功能描述 : AT_ProcAppPdpStateChange UT工程类
-修改历史     :
-1.日   期  : 2012-09-11
-作   者  :   l60609
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcAppPdpStateChange: public ::testing::Test
 {
 public:
@@ -588,15 +487,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcAppPdpStateChange_001
-测试用例标题      : Android应用发起的IPV4去激活，未绑定过数据通道
-预期结果          : 输出^DEND:1,33,"IPV4"
-修改历史     :
-1.日   期  : 2012-09-03
-作   者  :   l60609
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcAppPdpStateChange, Test_AT_ProcAppPdpStateChange_001)
 {
     //参数定义
@@ -653,14 +544,7 @@ TEST_F(Test_AT_ProcAppPdpStateChange, Test_AT_ProcAppPdpStateChange_001)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_GetFcPriFromMap
-功能描述 : Test_AT_GetFcPriFromMap UT工程类
-修改历史     :
-1.日   期  : 2011-12-21
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_GetFcPriFromMap: public ::testing::Test
 {
 public:
@@ -674,15 +558,7 @@ public:
 
     }
 };
-/*******************************************************************
-*测试项: FCID无效时
-*被测函数功能描述: 获取指定FC ID的FC PRI
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2012年02月25日
-#    作    者: f00179208
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_GetFcPriFromMap, Test_AT_GetFcPriFromMap_001)
 {
     //参数定义
@@ -709,15 +585,7 @@ TEST(Test_AT_GetFcPriFromMap, Test_AT_GetFcPriFromMap_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项: FCID为MODEM时
-*被测函数功能描述: 获取指定FC ID的FC PRI
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2012年02月25日
-#    作    者: f00179208
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_GetFcPriFromMap, Test_AT_GetFcPriFromMap_002)
 {
     //参数定义
@@ -744,15 +612,7 @@ TEST(Test_AT_GetFcPriFromMap, Test_AT_GetFcPriFromMap_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项: FCID为USB时
-*被测函数功能描述: 获取指定FC ID的FC PRI
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2012年02月25日
-#    作    者: f00179208
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_GetFcPriFromMap, Test_AT_GetFcPriFromMap_003)
 {
     //参数定义
@@ -779,14 +639,7 @@ TEST(Test_AT_GetFcPriFromMap, Test_AT_GetFcPriFromMap_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_NotifyFcWhenPdpModify
-功能描述 : Test_AT_NotifyFcWhenPdpModify UT工程类
-修改历史     :
-1.日   期  : 2011-12-21
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_NotifyFcWhenPdpModify: public ::testing::Test
 {
 public:
@@ -800,15 +653,7 @@ public:
 
     }
 };
-/*******************************************************************
-*测试项: MODEM通道被使用时
-*被测函数功能描述: 当发生PDP MODIFY(UE发起或网侧发起)时，向FC指示修改流控点
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2012年02月25日
-#    作    者: f00179208
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_NotifyFcWhenPdpModify, Test_AT_NotifyFcWhenPdpModify_001)
 {
     //参数定义
@@ -842,14 +687,7 @@ TEST(Test_AT_NotifyFcWhenPdpModify, Test_AT_NotifyFcWhenPdpModify_001)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_ProcNdisRegFCPoint
-功能描述 : AT_ProcNdisRegFCPoint UT工程类
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcNdisRegFCPoint: public ::testing::Test
 {
 public:
@@ -864,16 +702,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcNdisRegFCPoint_001
-测试用例标题      : 如果FC ID未注册，那么注册该流控点
-预期结果          : 注册成功
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_ProcNdisRegFCPoint,Test_AT_ProcNdisRegFCPoint_001)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -893,16 +722,7 @@ TEST_F(Test_AT_ProcNdisRegFCPoint,Test_AT_ProcNdisRegFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcNdisRegFCPoint_002
-测试用例标题      : 如果当前FC优先级比之前承载的FC优先级高，那么调整优先级
-预期结果          : 注册成功
 
-修改历史     :
-1.日   期  : 2011-12-21
-作   者  : c00173809
-修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_ProcNdisRegFCPoint,Test_AT_ProcNdisRegFCPoint_002)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -930,16 +750,7 @@ TEST_F(Test_AT_ProcNdisRegFCPoint,Test_AT_ProcNdisRegFCPoint_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcNdisRegFCPoint_003
-测试用例标题      : 获取MODEM ID失败
-预期结果          : 打印错误信息
 
-修改历史     :
-1.日   期  : 2011-12-21
-作   者  : c00173809
-修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_ProcNdisRegFCPoint,Test_AT_ProcNdisRegFCPoint_003)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -966,16 +777,7 @@ TEST_F(Test_AT_ProcNdisRegFCPoint,Test_AT_ProcNdisRegFCPoint_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcNdisRegFCPoint_004
-测试用例标题      : 如果当前FC优先级比之前承载的FC优先级高，那么调整优先级
-预期结果          : 注册成功
 
-修改历史     :
-1.日   期  : 2011-12-21
-作   者  : c00173809
-修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_ProcNdisRegFCPoint,Test_AT_ProcNdisRegFCPoint_004)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -1002,14 +804,7 @@ TEST_F(Test_AT_ProcNdisRegFCPoint,Test_AT_ProcNdisRegFCPoint_004)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_ProcNdisDeRegFCPoint
-功能描述 : AT_ProcNdisDeRegFCPoint UT工程类
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcNdisDeRegFCPoint: public ::testing::Test
 {
 public:
@@ -1024,16 +819,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcNdisDeRegFCPoint_001
-测试用例标题      : 去注册NDIS端口的流控点
-预期结果          :
 
-修改历史     :
-1.日   期  : 2011-12-21
-作   者  : c00173809
-修改内容 : 新生成类
-*******************************************************************/
 TEST_F(Test_AT_ProcNdisDeRegFCPoint,Test_AT_ProcNdisDeRegFCPointe_001)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -1052,15 +838,7 @@ TEST_F(Test_AT_ProcNdisDeRegFCPoint,Test_AT_ProcNdisDeRegFCPointe_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcNdisDeRegFCPoint_002
-测试用例标题      : 获取ModemId失败，默认Modem0，PDP去激活，去注册流控点
-预期结果          : 打印错误信息
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcNdisDeRegFCPoint,Test_AT_ProcNdisDeRegFCPoint_002)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU       stEvent;
@@ -1079,14 +857,7 @@ TEST_F(Test_AT_ProcNdisDeRegFCPoint,Test_AT_ProcNdisDeRegFCPoint_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_ModemPsRspPdpDeactivatedEvtProc
-功能描述 : AT_ModemPsRspPdpDeactivatedEvtProc UT工程类
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ModemPsRspPdpDeactivatedEvtProc: public ::testing::Test
 {
 public:
@@ -1127,16 +898,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ModemPsRspPdpDeactivatedEvtProc_001
-测试用例标题      : modem口拨号成功，PPP数据类型
-预期结果          : PPP协商
 
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc,Test_AT_ModemPsRspPdpDeactivatedEvtProc_001)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -1159,16 +921,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc,Test_AT_ModemPsRspPdpDeactivatedE
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_ModemPsRspPdpDeactivatedEvtProc_002
-测试用例标题      : modem口拨号成功,IP数据类型
-预期结果          : PPP协商
 
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc,Test_AT_ModemPsRspPdpDeactivatedEvtProc_002)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU   stEvent;
@@ -1193,15 +946,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc,Test_AT_ModemPsRspPdpDeactivatedE
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactivatedEvtProc_003
-测试用例标题    : HSUART端口, ONLINE-COMMAND模式ATH挂断IP类型PPP拨号
-预期结果        : 上报OK
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivatedEvtProc_003)
 {
     // 变量声明
@@ -1252,15 +997,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivated
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactivatedEvtProc_004
-测试用例标题    : HSUART端口, ONLINE-COMMAND模式, 网侧断开IP类型PPP拨号
-预期结果        : 上报OK
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivatedEvtProc_004)
 {
     // 变量声明
@@ -1307,15 +1044,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivated
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactivatedEvtProc_005
-测试用例标题    : HSUART端口, ONLINE-COMMAND模式ATH挂断PPP类型PPP拨号
-预期结果        : 上报OK
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivatedEvtProc_005)
 {
     // 变量声明
@@ -1366,15 +1095,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivated
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactivatedEvtProc_006
-测试用例标题    : HSUART端口, ONLINE-COMMAND模式, 网侧断开PPP类型PPP拨号
-预期结果        : 上报OK
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivatedEvtProc_006)
 {
     // 变量声明
@@ -1417,15 +1138,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivated
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactivatedEvtProc_007
-测试用例标题    : HSUART端口, OMMAND模式, 网侧断开PDP
-预期结果        : 上报OK
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivatedEvtProc_007)
 {
     // 变量声明
@@ -1460,14 +1173,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactivatedEvtProc, Test_AT_ModemPsRspPdpDeactivated
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ModemPsRspPdpDeactEvtCnfProc
-功能描述 : AT_ModemPsRspPdpDeactEvtCnfProc UT工程类
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ModemPsRspPdpDeactEvtCnfProc: public ::testing::Test
 {
 public:
@@ -1500,15 +1206,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactEvtCnfProc_001
-测试用例标题    : PDP去激活成功，非MODEM或UART端口
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfProc_001)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -1543,16 +1241,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfPro
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ModemPsRspPdpDeactEvtCnfProc_002
-测试用例标题      : PDP去激活成功，Modem处理, PPP类型, LINUX系统
-预期结果          : 向PPP发送HDLC去使能操作
 
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc,Test_AT_ModemPsRspPdpDeactEvtCnfProc_002)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -1592,15 +1281,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc,Test_AT_ModemPsRspPdpDeactEvtCnfProc
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactEvtCnfProc_003
-测试用例标题    : PDP去激活成功，MODEM端口, PPP类型, 非LINUX系统
-预期结果        : 上报NO_CARRIER
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfProc_003)
 {
     // 变量声明
@@ -1647,15 +1328,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfPro
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactEvtCnfProc_004
-测试用例标题    : ATH去激活PDP成功，HSUART端口, PPP类型
-预期结果        : 上报OK
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfProc_004)
 {
     // 变量声明
@@ -1709,16 +1382,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfPro
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ModemPsRspPdpDeactEvtCnfProc_005
-测试用例标题      : pdp去激活成功，Modem处理,IP数据类型
-预期结果          : 向PPP发送HDLC去使能操作
 
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc,Test_AT_ModemPsRspPdpDeactEvtCnfProc_005)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -1764,15 +1428,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc,Test_AT_ModemPsRspPdpDeactEvtCnfProc
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactEvtCnfProc_006
-测试用例标题    : PDP去激活成功，Modem处理, PPP类型, 非LINUX系统
-预期结果        : 上报NO_CARRIER
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfProc_006)
 {
     // 变量声明
@@ -1820,15 +1476,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfPro
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_ModemPsRspPdpDeactEvtCnfProc_007
-测试用例标题    : PPP去激活PDP成功，HSUART端口, 非PPP/IP类型
-预期结果        : 上报NO_CARRIER
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfProc_007)
 {
     // 变量声明
@@ -1880,15 +1528,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc, Test_AT_ModemPsRspPdpDeactEvtCnfPro
 }
 
 #if 0
-/*******************************************************************
-测试用例编号      : Test_AT_ModemPsRspPdpDeactEvtCnfProc_008
-测试用例标题      : PPP拨号,收到网络侧PDP去激活消息处理
-预期结果          : 调用Share PDP特性相关的处理
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc,Test_AT_ModemPsRspPdpDeactEvtCnfProc_008)
 {
     /*变量定义*/
@@ -1909,14 +1549,7 @@ TEST_F(Test_AT_ModemPsRspPdpDeactEvtCnfProc,Test_AT_ModemPsRspPdpDeactEvtCnfProc
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_MODEM_ProcCallEndCnfEvent
-功能描述 : Test_AT_MODEM_ProcCallEndCnfEvent UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_MODEM_ProcCallEndCnfEvent: public ::testing::Test
 {
 public:
@@ -1949,15 +1582,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_MODEM_ProcCallEndCnfEvent_001
-测试用例标题    : 当前用户操作类型异常
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_001)
 {
     // 变量声明
@@ -1993,15 +1618,7 @@ TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_MODEM_ProcCallEndCnfEvent_002
-测试用例标题    : 错误码正常, 断开请求正在处理
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_002)
 {
     // 变量声明
@@ -2037,15 +1654,7 @@ TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_MODEM_ProcCallEndCnfEvent_003
-测试用例标题    : MODEM断开异常, LINUX系统
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_003)
 {
     // 变量声明
@@ -2096,15 +1705,7 @@ TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_MODEM_ProcCallEndCnfEvent_004
-测试用例标题    : HSUART端口, ATH断开PPP类型拨号连接异常, 非LINUX系统
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_004)
 {
     // 变量声明
@@ -2156,15 +1757,7 @@ TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_MODEM_ProcCallEndCnfEvent_005
-测试用例标题    : UART端口, PPP断开异常, 非LINUX系统
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_005)
 {
     // 变量声明
@@ -2218,14 +1811,7 @@ TEST_F(Test_AT_MODEM_ProcCallEndCnfEvent, Test_AT_MODEM_ProcCallEndCnfEvent_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_PppReleaseIndProc
-功能描述 : At_PppReleaseIndProc UT工程类
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PppReleaseIndProc: public ::testing::Test
 {
 public:
@@ -2248,16 +1834,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_PppReleaseIndProc_001
-测试用例标题      : AT接收PPP释放链路指示消息,PPP数据类型
-预期结果          : 将AT通道切换为命令模式
 
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_At_PppReleaseIndProc,Test_At_PppReleaseIndProc_001)
 {
     VOS_UINT8                           ucIndex;
@@ -2283,16 +1860,7 @@ TEST_F(Test_At_PppReleaseIndProc,Test_At_PppReleaseIndProc_001)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_PppReleaseIndProc_002
-测试用例标题      : AT接收PPP释放链路指示消息,PPP数据类型
-预期结果          : 发起断开拨号
 
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_At_PppReleaseIndProc,Test_At_PppReleaseIndProc_002)
 {
     VOS_UINT8                           ucIndex;
@@ -2316,14 +1884,7 @@ TEST_F(Test_At_PppReleaseIndProc,Test_At_PppReleaseIndProc_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_HsicPsRspEvtPdpDeactivatedProc
-功能描述 : AT_HsicPsRspEvtPdpDeactivatedProc UT工程类
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_HsicPsRspEvtPdpDeactivatedProc: public ::testing::Test
 {
 public:
@@ -2337,16 +1898,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpDeactivatedProc_001
-测试用例标题      : 去激活通道为UDI_ACM_HSIC_ACM1_ID
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivatedProc_001)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -2381,16 +1933,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivated
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpDeactivatedProc_002
-测试用例标题      : 去激活通道为UDI_ACM_HSIC_ACM3_ID
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivatedProc_002)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -2421,16 +1964,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivated
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpDeactivatedProc_003
-测试用例标题      : 去激活通道为UDI_ACM_HSIC_ACM2_ID,请求去激活流控点失败
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivatedProc_003)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -2462,16 +1996,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivated
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpDeactivatedProc_004
-测试用例标题      : 去激活通道为UDI_INVAL_DEV_ID无效时
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivatedProc_004)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -2504,16 +2029,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivated
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
- 测试用例编号      : Test_AT_HsicPsRspEvtPdpDeactivatedProc_005
- 测试用例标题      : PDP TYPE为IPv6
- 预期结果          :
 
- 修改历史     :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivatedProc_005)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -2546,16 +2062,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivated
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_HsicPsRspEvtPdpDeactivatedProc_006
- 测试用例标题      : PDP TYPE为IPv4v6
- 预期结果          :
 
- 修改历史     :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivatedProc_006)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -2590,14 +2097,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpDeactivatedProc,Test_AT_HsicPsRspEvtPdpDeactivated
 
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_HsicPsRspEvtPdpDeactCnfProc
-功能描述 : AT_HsicPsRspEvtPdpDeactCnfProc UT工程类
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_HsicPsRspEvtPdpDeactCnfProc: public ::testing::Test
 {
 public:
@@ -2611,16 +2111,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpDeactCnfProc_001
-测试用例标题      : pdp去激活响应，HSIC AT通道处理
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpDeactCnfProc,Test_AT_HsicPsRspEvtPdpDeactCnfProc_001)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -2646,14 +2137,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpDeactCnfProc,Test_AT_HsicPsRspEvtPdpDeactCnfProc_0
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_HsicPsRspEvtPdpActCnfProc
-功能描述 : AT_HsicPsRspEvtPdpActCnfProc UT工程类
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_HsicPsRspEvtPdpActCnfProc: public ::testing::Test
 {
 public:
@@ -2667,16 +2151,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpActCnfProc_001
-测试用例标题      : 激活通道为UDI_ACM_HSIC_ACM1_ID, 注册MEM流控点失败
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_001)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -2702,16 +2177,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpActCnfProc_002
-测试用例标题      : 激活通道为UDI_ACM_HSIC_ACM3_ID, 注册CPU流控点失败
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_002)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -2737,16 +2203,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpActCnfProc_003
-测试用例标题      : 激活通道为UDI_ACM_HSIC_ACM2_ID, 注册CDS流控点失败
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_003)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -2772,16 +2229,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpActCnfProc_004
-测试用例标题      : 激活通道为UDI_ACM_HSIC_ACM2_ID, 注册GPRS流控点失败
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_004)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -2807,16 +2255,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_004)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpActCnfProc_005
-测试用例标题      : 激活通道为UDI_ACM_HSIC_ACM2_ID, 注册流控点成功
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_005)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -2842,16 +2281,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_005)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpActCnfProc_006
-测试用例标题      : 激活通道为UDI_INVAL_DEV_ID, 为无效值时
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_006)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -2877,16 +2307,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_HsicPsRspEvtPdpActCnfProc_007
-测试用例标题      : 激活通道为UDI_ACM_HSIC_ACM2_ID
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_007)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -2912,14 +2333,7 @@ TEST_F(Test_AT_HsicPsRspEvtPdpActCnfProc,Test_AT_HsicPsRspEvtPdpActCnfProc_007)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_DisableHsicFlowCtl
-功能描述 : AT_DisableHsicFlowCtl UT工程类
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_DisableHsicFlowCtl: public ::testing::Test
 {
 public:
@@ -2933,16 +2347,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号      : Test_AT_DisableHsicFlowCtl_001
-测试用例标题      : 去使能HSIC流控失败
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_DisableHsicFlowCtl,Test_AT_DisableHsicFlowCtl_001)
 {
     VOS_UINT32                          ulUdiHdl;
@@ -2964,16 +2369,7 @@ TEST_F(Test_AT_DisableHsicFlowCtl,Test_AT_DisableHsicFlowCtl_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_DisableHsicFlowCtl_002
-测试用例标题      : 去使能HSIC流控成功
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_DisableHsicFlowCtl,Test_AT_DisableHsicFlowCtl_002)
 {
     VOS_UINT32                          ulUdiHdl;
@@ -2996,14 +2392,7 @@ TEST_F(Test_AT_DisableHsicFlowCtl,Test_AT_DisableHsicFlowCtl_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_EnableHsicFlowCtl
-功能描述 : AT_EnableHsicFlowCtl UT工程类
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_EnableHsicFlowCtl: public ::testing::Test
 {
 public:
@@ -3017,16 +2406,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号      : Test_AT_EnableHsicFlowCtl_001
-测试用例标题      : 去使能HSIC流控失败
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_EnableHsicFlowCtl,Test_AT_EnableHsicFlowCtl_001)
 {
     VOS_UINT32                          ulUdiHdl;
@@ -3048,16 +2428,7 @@ TEST_F(Test_AT_EnableHsicFlowCtl,Test_AT_EnableHsicFlowCtl_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_EnableHsicFlowCtl_002
-测试用例标题      : 去使能HSIC流控成功
-预期结果          :
 
-修改历史     :
-1.日   期  : 2012-02-25
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_EnableHsicFlowCtl,Test_AT_EnableHsicFlowCtl_002)
 {
     VOS_UINT32                          ulUdiHdl;
@@ -3080,14 +2451,7 @@ TEST_F(Test_AT_EnableHsicFlowCtl,Test_AT_EnableHsicFlowCtl_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_AppRegFCPoint
-功能描述 : Test_AT_AppRegFCPoint UT工程类
-修改历史     :
-1.日   期  : 2012-05-31
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppRegFCPoint: public ::testing::Test
 {
 public:
@@ -3102,15 +2466,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppRegFCPoint_001
-测试用例标题      : 停止流控
-预期结果          : 停止流控
-修改历史     :
-1.日   期  : 2012-05-31
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppRegFCPoint, Test_AT_AppRegFCPoint_001)
 {
     //参数定义
@@ -3139,15 +2495,7 @@ TEST_F(Test_AT_AppRegFCPoint, Test_AT_AppRegFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppRegFCPoint_002
-测试用例标题      : 获取ModemId失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppRegFCPoint, Test_AT_AppRegFCPoint_002)
 {
     //参数定义
@@ -3170,15 +2518,7 @@ TEST_F(Test_AT_AppRegFCPoint, Test_AT_AppRegFCPoint_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppRegFCPoint_003
-测试用例标题      : 获取ModemId成功，停止网卡1的流控
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppRegFCPoint, Test_AT_AppRegFCPoint_003)
 {
     //参数定义
@@ -3209,14 +2549,7 @@ TEST_F(Test_AT_AppRegFCPoint, Test_AT_AppRegFCPoint_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_AppDeRegFCPoint
-功能描述 : Test_AT_AppDeRegFCPoint UT工程类
-修改历史     :
-1.日   期  : 2012-05-31
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppDeRegFCPoint: public ::testing::Test
 {
 public:
@@ -3231,15 +2564,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppDeRegFCPoint_001
-测试用例标题      : 停止流控
-预期结果          : 停止流控
-修改历史     :
-1.日   期  : 2012-05-31
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppDeRegFCPoint, Test_AT_AppDeRegFCPoint_001)
 {
     //参数定义
@@ -3269,15 +2594,7 @@ TEST_F(Test_AT_AppDeRegFCPoint, Test_AT_AppDeRegFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppDeRegFCPoint_002
-测试用例标题      : 获取ModemId失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppDeRegFCPoint, Test_AT_AppDeRegFCPoint_002)
 {
     //参数定义
@@ -3305,14 +2622,7 @@ TEST_F(Test_AT_AppDeRegFCPoint, Test_AT_AppDeRegFCPoint_002)
 }
 
 #if (FEATURE_ON == FEATURE_AT_HSIC)
-/*****************************************************************************
-类名     : Test_AT_RegHsicFCPoint
-功能描述 : Test_AT_RegHsicFCPoint UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RegHsicFCPoint: public ::testing::Test
 {
 public:
@@ -3327,15 +2637,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegHsicFCPoint_001
-测试用例标题      : 获取ModemId失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegHsicFCPoint, Test_AT_RegHsicFCPoint_001)
 {
     //参数定义
@@ -3360,15 +2662,7 @@ TEST_F(Test_AT_RegHsicFCPoint, Test_AT_RegHsicFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegHsicFCPoint_002
-测试用例标题      : 注册HSIC端口流控点
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegHsicFCPoint, Test_AT_RegHsicFCPoint_002)
 {
     //参数定义
@@ -3410,15 +2704,7 @@ TEST_F(Test_AT_RegHsicFCPoint, Test_AT_RegHsicFCPoint_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegHsicFCPoint_003
-测试用例标题      : 注册HSIC端口流控点
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-5
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegHsicFCPoint, Test_AT_RegHsicFCPoint_003)
 {
     //参数定义
@@ -3462,14 +2748,7 @@ TEST_F(Test_AT_RegHsicFCPoint, Test_AT_RegHsicFCPoint_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_DeRegHsicFCPoint
-功能描述 : Test_AT_DeRegHsicFCPoint UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_DeRegHsicFCPoint: public ::testing::Test
 {
 public:
@@ -3484,15 +2763,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_DeRegHsicFCPoint_001
-测试用例标题      : 获取ModemId失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DeRegHsicFCPoint, Test_AT_DeRegHsicFCPoint_001)
 {
     //参数定义
@@ -3517,15 +2788,7 @@ TEST_F(Test_AT_DeRegHsicFCPoint, Test_AT_DeRegHsicFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_DeRegHsicFCPoint_002
-测试用例标题      : 去注册HSIC流控点
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DeRegHsicFCPoint, Test_AT_DeRegHsicFCPoint_002)
 {
     //参数定义
@@ -3567,14 +2830,7 @@ TEST_F(Test_AT_DeRegHsicFCPoint, Test_AT_DeRegHsicFCPoint_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_RegNdisFCPoint
-功能描述 : Test_AT_RegNdisFCPoint UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RegNdisFCPoint: public ::testing::Test
 {
 public:
@@ -3589,15 +2845,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegNdisFCPoint_001
-测试用例标题      : 注册NDIS端口流控点
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegNdisFCPoint, Test_AT_RegNdisFCPoint_001)
 {
     //参数定义
@@ -3635,15 +2883,7 @@ TEST_F(Test_AT_RegNdisFCPoint, Test_AT_RegNdisFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegNdisFCPoint_002
-测试用例标题      : 注册NDIS端口流控点
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-5
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegNdisFCPoint, Test_AT_RegNdisFCPoint_002)
 {
     //参数定义
@@ -3682,14 +2922,7 @@ TEST_F(Test_AT_RegNdisFCPoint, Test_AT_RegNdisFCPoint_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_DeRegNdisFCPoint
-功能描述 : Test_AT_DeRegNdisFCPoint UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_DeRegNdisFCPoint: public ::testing::Test
 {
 public:
@@ -3704,15 +2937,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_DeRegNdisFCPoint_001
-测试用例标题      : 去注册NDIS端口流控点
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DeRegNdisFCPoint, Test_AT_DeRegNdisFCPoint_001)
 {
     //参数定义
@@ -3749,14 +2974,7 @@ TEST_F(Test_AT_DeRegNdisFCPoint, Test_AT_DeRegNdisFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RegModemPsDataFCPoint
-功能描述 : Test_AT_RegModemPsDataFCPoint UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RegModemPsDataFCPoint: public ::testing::Test
 {
 public:
@@ -3771,15 +2989,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegModemPsDataFCPoint_001
-测试用例标题      : 获取ModemId失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegModemPsDataFCPoint, Test_AT_RegModemPsDataFCPoint_001)
 {
     //参数定义
@@ -3808,15 +3018,7 @@ TEST_F(Test_AT_RegModemPsDataFCPoint, Test_AT_RegModemPsDataFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegModemPsDataFCPoint_002
-测试用例标题      : 注册MODEM端口PsData流控点
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegModemPsDataFCPoint, Test_AT_RegModemPsDataFCPoint_002)
 {
     //参数定义
@@ -3856,14 +3058,7 @@ TEST_F(Test_AT_RegModemPsDataFCPoint, Test_AT_RegModemPsDataFCPoint_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_DeRegModemPsDataFCPoint
-功能描述 : Test_AT_DeRegModemPsDataFCPoint UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_DeRegModemPsDataFCPoint: public ::testing::Test
 {
 public:
@@ -3878,15 +3073,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_DeRegModemPsDataFCPoint_001
-测试用例标题      : 获取ModemId失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-1-9
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DeRegModemPsDataFCPoint, Test_AT_DeRegModemPsDataFCPoint_001)
 {
     //参数定义
@@ -3915,15 +3102,7 @@ TEST_F(Test_AT_DeRegModemPsDataFCPoint, Test_AT_DeRegModemPsDataFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_DeRegModemPsDataFCPoint_002
-测试用例标题      : 去注册MODEM端口PsData流控点
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-5
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DeRegModemPsDataFCPoint, Test_AT_DeRegModemPsDataFCPoint_002)
 {
     //参数定义
@@ -3960,15 +3139,7 @@ TEST_F(Test_AT_DeRegModemPsDataFCPoint, Test_AT_DeRegModemPsDataFCPoint_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_DeRegModemPsDataFCPoint_003
-测试用例标题      : 去注册流控点失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-1-9
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DeRegModemPsDataFCPoint, Test_AT_DeRegModemPsDataFCPoint_003)
 {
     //参数定义
@@ -4003,14 +3174,7 @@ TEST_F(Test_AT_DeRegModemPsDataFCPoint, Test_AT_DeRegModemPsDataFCPoint_003)
 }
 
 #if( FEATURE_ON == FEATURE_CSD )
-/*****************************************************************************
- 类名       : Test_AT_VpResetFlowCtl
- 功能描述   : AT_VpResetFlowCtl UT工程类
- 修改历史   :
- 1.日   期  : 2013-04-25
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_VpResetFlowCtl: public ::testing::Test
 {
 public:
@@ -4031,15 +3195,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_VpResetFlowCtl_001
- 测试用例标题   : 复位前去注册流控点失败
- 预期结果       : g_stFcIdMaptoFcPri对应的全局变量没有被清空
- 修改历史       :
- 1.日   期  : 2013-04-25
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_VpResetFlowCtl, Test_AT_VpResetFlowCtl_001)
 {
     //参数定义
@@ -4070,15 +3226,7 @@ TEST_F(Test_AT_VpResetFlowCtl, Test_AT_VpResetFlowCtl_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_VpResetFlowCtl_002
- 测试用例标题   : 复位前去注册流控点成功
- 预期结果       : g_stFcIdMaptoFcPri对应的全局变量被清空
- 修改历史       :
- 1.日   期  : 2013-04-25
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_VpResetFlowCtl, Test_AT_VpResetFlowCtl_002)
 {
     //参数定义
@@ -4109,14 +3257,7 @@ TEST_F(Test_AT_VpResetFlowCtl, Test_AT_VpResetFlowCtl_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RegModemVideoPhoneFCPoint
-功能描述 : Test_AT_RegModemVideoPhoneFCPoint UT工程类
-修改历史     :
-1.日   期  : 2013-1-9
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RegModemVideoPhoneFCPoint: public ::testing::Test
 {
 public:
@@ -4131,15 +3272,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RegModemVideoPhoneFCPoint_001
-测试用例标题      : 获取ModemId失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-1-9
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RegModemVideoPhoneFCPoint, Test_AT_RegModemVideoPhoneFCPoint_001)
 {
     //参数定义
@@ -4166,14 +3299,7 @@ TEST_F(Test_AT_RegModemVideoPhoneFCPoint, Test_AT_RegModemVideoPhoneFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_DeRegModemVideoPhoneFCPoint
-功能描述 : Test_AT_DeRegModemVideoPhoneFCPoint UT工程类
-修改历史     :
-1.日   期  : 2013-1-9
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_DeRegModemVideoPhoneFCPoint: public ::testing::Test
 {
 public:
@@ -4188,15 +3314,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_DeRegModemVideoPhoneFCPoint_001
-测试用例标题      : 获取ModemId失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-1-9
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_DeRegModemVideoPhoneFCPoint, Test_AT_DeRegModemVideoPhoneFCPoint_001)
 {
     //参数定义
@@ -4221,14 +3339,7 @@ TEST_F(Test_AT_DeRegModemVideoPhoneFCPoint, Test_AT_DeRegModemVideoPhoneFCPoint_
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_AT_ChangeFCPoint
-功能描述 : Test_AT_ChangeFCPoint UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ChangeFCPoint: public ::testing::Test
 {
 public:
@@ -4243,15 +3354,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ChangeFCPoint_001
-测试用例标题      : 获取ModemId失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ChangeFCPoint, Test_AT_ChangeFCPoint_001)
 {
     //参数定义
@@ -4280,15 +3383,7 @@ TEST_F(Test_AT_ChangeFCPoint, Test_AT_ChangeFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ChangeFCPoint_002
-测试用例标题      : 获取ModemId成功，修改流控点成功
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ChangeFCPoint, Test_AT_ChangeFCPoint_002)
 {
     //参数定义
@@ -4323,14 +3418,7 @@ TEST_F(Test_AT_ChangeFCPoint, Test_AT_ChangeFCPoint_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_AppIpv4PdpActRejProc
-功能描述 : Test_AT_AppIpv4PdpActRejProc UT工程类
-修改历史     :
-1.日   期  : 2012-06-16
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppIpv4PdpActRejProc: public ::testing::Test
 {
 public:
@@ -4345,15 +3433,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_AppIpv4PdpActRejProc_001
- 测试用例标题      : IPv6已经激活的场景下, IPv4类型的PDP激活被拒
- 预期结果          : 拨号流程终止
- 修改历史     :
- 1.日   期  : 2012-06-16
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppIpv4PdpActRejProc, Test_AT_AppIpv4PdpActRejProc_001)
 {
     //参数定义
@@ -4391,15 +3471,7 @@ TEST_F(Test_AT_AppIpv4PdpActRejProc, Test_AT_AppIpv4PdpActRejProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_AppIpv4PdpActRejProc_002
- 测试用例标题      : IPv4拨号被拒
- 预期结果          : 拨号流程终止
- 修改历史     :
- 1.日   期  : 2012-06-16
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppIpv4PdpActRejProc, Test_AT_AppIpv4PdpActRejProc_002)
 {
     //参数定义
@@ -4428,14 +3500,7 @@ TEST_F(Test_AT_AppIpv4PdpActRejProc, Test_AT_AppIpv4PdpActRejProc_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_NdisIpv4ActCnfProc
-功能描述 : AT_NdisIpv4ActCnfProc UT工程类
-修改历史     :
-1.日   期  : 2012-12-25
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_NdisIpv4ActCnfProc: public ::testing::Test
 {
 public:
@@ -4457,15 +3522,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_NdisIpv4ActCnfProc_001
- 测试用例标题      : IPV6宏打开，发起IPV4V6请求，当前为IPV4状态，发起IPV6 PDP激活成功
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-25
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisIpv4ActCnfProc, Test_AT_NdisIpv4ActCnfProc_001)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU        stEvent;
@@ -4501,15 +3558,7 @@ TEST_F(Test_AT_NdisIpv4ActCnfProc, Test_AT_NdisIpv4ActCnfProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_NdisIpv4ActCnfProc_002
- 测试用例标题      : IPV6宏打开，发起IPV4V6请求，当前为IPV4状态，发起IPV6 PDP激活成功
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-7-25
-   作   者  : Y00213812
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisIpv4ActCnfProc, Test_AT_NdisIpv4ActCnfProc_002)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU        stEvent;
@@ -4552,14 +3601,7 @@ TEST_F(Test_AT_NdisIpv4ActCnfProc, Test_AT_NdisIpv4ActCnfProc_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_AppIpv4PdpActCnfProc
-功能描述 : Test_AT_AppIpv4PdpActCnfProc UT工程类
-修改历史     :
-1.日   期  : 2012-12-25
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppIpv4PdpActCnfProc: public ::testing::Test
 {
 public:
@@ -4583,15 +3625,7 @@ public:
 };
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
- 测试用例编号      : Test_AT_AppIpv4PdpActCnfProc_001
- 测试用例标题      : IPV6宏打开，发起IPV4V6请求，当前为IPV4状态，发起IPV6 PDP激活成功
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-25
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppIpv4PdpActCnfProc, Test_AT_AppIpv4PdpActCnfProc_001)
 {
     AT_PDP_ENTITY_STRU                 *pstAppPdpEntity;
@@ -4621,14 +3655,7 @@ TEST_F(Test_AT_AppIpv4PdpActCnfProc, Test_AT_AppIpv4PdpActCnfProc_001)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_AT_PS_GetRmNetIdFromCid
-功能描述 : Test_AT_PS_GetRmNetIdFromCid UT工程类
-修改历史     :
-1.日   期  : 2012-12-27
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_GetRmNetIdFromCid: public ::testing::Test
 {
 public:
@@ -4643,15 +3670,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_PS_GetRmNetIdFromCid_001
- 测试用例标题      : pucRmNetId为空
- 预期结果          : 返回VOS_ERR
- 修改历史     :
- 1.日   期  : 2012-12-27
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_GetRmNetIdFromCid, Test_AT_PS_GetRmNetIdFromCid_001)
 {
     //参数定义
@@ -4675,15 +3694,7 @@ TEST_F(Test_AT_PS_GetRmNetIdFromCid, Test_AT_PS_GetRmNetIdFromCid_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_PS_GetRmNetIdFromCid_002
- 测试用例标题      : 获取ModemId失败
- 预期结果          : 返回VOS_ERR
- 修改历史     :
- 1.日   期  : 2012-12-27
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_GetRmNetIdFromCid, Test_AT_PS_GetRmNetIdFromCid_002)
 {
     //参数定义
@@ -4712,15 +3723,7 @@ TEST_F(Test_AT_PS_GetRmNetIdFromCid, Test_AT_PS_GetRmNetIdFromCid_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_AT_PS_GetRmNetIdFromCid_003
- 测试用例标题      : 获取ModemId成功，网卡ID在列表中未找到
- 预期结果          : 返回VOS_ERR
- 修改历史     :
- 1.日   期  : 2012-12-27
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_GetRmNetIdFromCid, Test_AT_PS_GetRmNetIdFromCid_003)
 {
     //参数定义
@@ -4752,15 +3755,7 @@ TEST_F(Test_AT_PS_GetRmNetIdFromCid, Test_AT_PS_GetRmNetIdFromCid_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_AT_PS_GetRmNetIdFromCid_004
- 测试用例标题      : 获取ModemId成功，获取网卡ID成功
- 预期结果          : 返回VOS_OK
- 修改历史     :
- 1.日   期  : 2012-12-27
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_GetRmNetIdFromCid, Test_AT_PS_GetRmNetIdFromCid_004)
 {
     //参数定义
@@ -4795,14 +3790,7 @@ TEST_F(Test_AT_PS_GetRmNetIdFromCid, Test_AT_PS_GetRmNetIdFromCid_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_NotifyFcWhenAppPdpModify
-功能描述 : AT_NotifyFcWhenAppPdpModify UT工程类
-修改历史     :
-1.日   期  : 2013-1-17
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_NotifyFcWhenAppPdpModify: public ::testing::Test
 {
 public:
@@ -4817,15 +3805,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_NotifyFcWhenAppPdpModify_001
- 测试用例标题      : 获取网卡ID失败
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-17
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NotifyFcWhenAppPdpModify, Test_AT_NotifyFcWhenAppPdpModify_001)
 {
     //参数定义
@@ -4851,15 +3831,7 @@ TEST_F(Test_AT_NotifyFcWhenAppPdpModify, Test_AT_NotifyFcWhenAppPdpModify_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_NotifyFcWhenAppPdpModify_002
- 测试用例标题      : 获取网卡ID成功，向FC指示修改流控点
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-17
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NotifyFcWhenAppPdpModify, Test_AT_NotifyFcWhenAppPdpModify_002)
 {
     //参数定义
@@ -4887,14 +3859,7 @@ TEST_F(Test_AT_NotifyFcWhenAppPdpModify, Test_AT_NotifyFcWhenAppPdpModify_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ProcAppPsRspEvtPdpActCnf
-功能描述 : Test_AT_ProcAppPsRspEvtPdpActCnf UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcAppPsRspEvtPdpActCnf: public ::testing::Test
 {
 public:
@@ -4909,15 +3874,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ProcAppPsRspEvtPdpActCnf_001
- 测试用例标题      : 获取网卡Id失败
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-5
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcAppPsRspEvtPdpActCnf, Test_AT_ProcAppPsRspEvtPdpActCnf_001)
 {
     //参数定义
@@ -4939,15 +3896,7 @@ TEST_F(Test_AT_ProcAppPsRspEvtPdpActCnf, Test_AT_ProcAppPsRspEvtPdpActCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ProcAppPsRspEvtPdpActCnf_002
- 测试用例标题      : 获取网卡Id成功，注册流控点，发起IPV4拨号
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-5
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcAppPsRspEvtPdpActCnf, Test_AT_ProcAppPsRspEvtPdpActCnf_002)
 {
     //参数定义
@@ -4986,14 +3935,7 @@ TEST_F(Test_AT_ProcAppPsRspEvtPdpActCnf, Test_AT_ProcAppPsRspEvtPdpActCnf_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ProcAppPsRspEvtPdpDeActCnf
-功能描述 : Test_AT_ProcAppPsRspEvtPdpDeActCnf UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcAppPsRspEvtPdpDeActCnf: public ::testing::Test
 {
 public:
@@ -5008,15 +3950,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ProcAppPsRspEvtPdpDeActCnf_001
- 测试用例标题      : 获取网卡Id失败
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-5
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcAppPsRspEvtPdpDeActCnf, Test_AT_ProcAppPsRspEvtPdpDeActCnf_001)
 {
     //参数定义
@@ -5039,15 +3973,7 @@ TEST_F(Test_AT_ProcAppPsRspEvtPdpDeActCnf, Test_AT_ProcAppPsRspEvtPdpDeActCnf_00
 
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ProcAppPsRspEvtPdpDeActCnf_002
- 测试用例标题      : 获取网卡Id成功，通知RNIC PDP去激活，去注册流控点
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-5
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcAppPsRspEvtPdpDeActCnf, Test_AT_ProcAppPsRspEvtPdpDeActCnf_002)
 {
     //参数定义
@@ -5081,14 +4007,7 @@ TEST_F(Test_AT_ProcAppPsRspEvtPdpDeActCnf, Test_AT_ProcAppPsRspEvtPdpDeActCnf_00
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ProcAppPsRspEvtPdpDeactivated
-功能描述 : Test_AT_ProcAppPsRspEvtPdpDeactivated UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcAppPsRspEvtPdpDeactivated: public ::testing::Test
 {
 public:
@@ -5103,15 +4022,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ProcAppPsRspEvtPdpDeactivated_001
- 测试用例标题      : APP通过AT+CGACT发起PDP激活，网侧发起PDP去激活,IPV4类型
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-5
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcAppPsRspEvtPdpDeactivated, Test_AT_ProcAppPsRspEvtPdpDeactivated_001)
 {
     //参数定义
@@ -5148,15 +4059,7 @@ TEST_F(Test_AT_ProcAppPsRspEvtPdpDeactivated, Test_AT_ProcAppPsRspEvtPdpDeactiva
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
- 测试用例编号      : Test_AT_ProcAppPsRspEvtPdpDeactivated_002
- 测试用例标题      : APP通过AT+CGACT发起PDP激活，网侧发起PDP去激活，IPV6类型
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-5
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcAppPsRspEvtPdpDeactivated, Test_AT_ProcAppPsRspEvtPdpDeactivated_002)
 {
     //参数定义
@@ -5193,15 +4096,7 @@ TEST_F(Test_AT_ProcAppPsRspEvtPdpDeactivated, Test_AT_ProcAppPsRspEvtPdpDeactiva
 
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ProcAppPsRspEvtPdpDeactivated_003
- 测试用例标题      : APP通过AT+CGACT发起PDP激活，网侧发起PDP去激活，IPV4V6类型
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-5
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcAppPsRspEvtPdpDeactivated, Test_AT_ProcAppPsRspEvtPdpDeactivated_003)
 {
     //参数定义
@@ -5238,15 +4133,7 @@ TEST_F(Test_AT_ProcAppPsRspEvtPdpDeactivated, Test_AT_ProcAppPsRspEvtPdpDeactiva
 
 #endif
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ProcAppPsRspEvtPdpDeactivated_004
- 测试用例标题      : PDP类型错误
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-9
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcAppPsRspEvtPdpDeactivated, Test_AT_ProcAppPsRspEvtPdpDeactivated_004)
 {
     //参数定义
@@ -5278,14 +4165,7 @@ TEST_F(Test_AT_ProcAppPsRspEvtPdpDeactivated, Test_AT_ProcAppPsRspEvtPdpDeactiva
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_SendRnicCgactIpv4ActInd
-功能描述 : Test_AT_SendRnicCgactIpv4ActInd UT工程类
-修改历史     :
-1.日   期  : 2013-1-5
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SendRnicCgactIpv4ActInd: public ::testing::Test
 {
 public:
@@ -5300,15 +4180,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_SendRnicCgactIpv4ActInd_001
- 测试用例标题      : 申请消息为空
- 预期结果          : 返回VOS_ERR
- 修改历史     :
- 1.日   期  : 2013-1-5
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SendRnicCgactIpv4ActInd, Test_AT_SendRnicCgactIpv4ActInd_001)
 {
     //参数定义
@@ -5323,11 +4195,9 @@ TEST_F(Test_AT_SendRnicCgactIpv4ActInd, Test_AT_SendRnicCgactIpv4ActInd_001)
     pstMsg = VOS_NULL_PTR;
 
     //MOCKER操作
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MOCKER(V_AllocMsg)
         .stubs()
         .will(returnValue((MsgBlock *)VOS_NULL_PTR));
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     //调用被测函数
     ulRslt = AT_SendRnicCgactIpv4ActInd(ucRabId, ucRmNetId);
@@ -5339,15 +4209,7 @@ TEST_F(Test_AT_SendRnicCgactIpv4ActInd, Test_AT_SendRnicCgactIpv4ActInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_SendRnicCgactIpv4ActInd_002
- 测试用例标题      : AT+CGACT拨号成功给RNIC发PDP激活消息
- 预期结果          : 返回VOS_OK
- 修改历史     :
- 1.日   期  : 2013-1-6
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SendRnicCgactIpv4ActInd, Test_AT_SendRnicCgactIpv4ActInd_002)
 {
     //参数定义
@@ -5373,14 +4235,7 @@ TEST_F(Test_AT_SendRnicCgactIpv4ActInd, Test_AT_SendRnicCgactIpv4ActInd_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_SendNdisRelReq
-功能描述 : AT_SendNdisRelReq UT工程类
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SendNdisRelReq: public ::testing::Test
 {
 public:
@@ -5395,15 +4250,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SendNdisRelReq_001
-测试用例标题      : 获取ModemId失败，默认modem0，发送消息成功
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SendNdisRelReq,Test_AT_SendNdisRelReq_001)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -5422,15 +4269,7 @@ TEST_F(Test_AT_SendNdisRelReq,Test_AT_SendNdisRelReq_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SendNdisRelReq_002
-测试用例标题      : 获取ModemId成功，发送消息成功
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SendNdisRelReq,Test_AT_SendNdisRelReq_002)
 {
     TAF_PS_CALL_PDP_DEACTIVATE_CNF_STRU stEvent;
@@ -5449,14 +4288,7 @@ TEST_F(Test_AT_SendNdisRelReq,Test_AT_SendNdisRelReq_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_SendNdisIPv6PdnInfoCfgReq
-功能描述 : AT_SendNdisIPv6PdnInfoCfgReq UT工程类
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SendNdisIPv6PdnInfoCfgReq: public ::testing::Test
 {
 public:
@@ -5471,15 +4303,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SendNdisIPv6PdnInfoCfgReq_001
-测试用例标题      : 发送IPV6的PDN信息成功
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SendNdisIPv6PdnInfoCfgReq,Test_AT_SendNdisIPv6PdnInfoCfgReq_001)
 {
     MODEM_ID_ENUM_UINT16                enModemId;
@@ -5504,14 +4328,7 @@ TEST_F(Test_AT_SendNdisIPv6PdnInfoCfgReq,Test_AT_SendNdisIPv6PdnInfoCfgReq_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_SendRnicIpv4v6ActInd
-功能描述 : AT_SendRnicIpv4v6ActInd UT工程类
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SendRnicIpv4v6ActInd: public ::testing::Test
 {
 public:
@@ -5526,15 +4343,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SendRnicIpv4v6ActInd_001
-测试用例标题      : APP拨号时通知虚拟网卡IPV4V6激活
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SendRnicIpv4v6ActInd,Test_AT_SendRnicIpv4v6ActInd_001)
 {
     MOCKER(Ps_SendMsg)
@@ -5547,15 +4356,7 @@ TEST_F(Test_AT_SendRnicIpv4v6ActInd,Test_AT_SendRnicIpv4v6ActInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SendRnicIpv4v6ActInd_002
-测试用例标题      : APP拨号时通知虚拟网卡IPV4V6激活, 申请内存失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_SendRnicIpv4v6ActInd,Test_AT_SendRnicIpv4v6ActInd_002)
 {
     MOCKER(V_AllocMsg)
@@ -5567,14 +4368,7 @@ TEST_F(Test_AT_SendRnicIpv4v6ActInd,Test_AT_SendRnicIpv4v6ActInd_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_AppSetFlowCtrl
-功能描述 : AT_AppSetFlowCtrl UT工程类
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppSetFlowCtrl: public ::testing::Test
 {
 public:
@@ -5589,15 +4383,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppSetFlowCtrl_001
-测试用例标题      : 启动路由设备流控
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppSetFlowCtrl,Test_AT_AppSetFlowCtrl_001)
 {
     VOS_UINT32                          ulParam1;
@@ -5619,14 +4405,7 @@ TEST_F(Test_AT_AppSetFlowCtrl,Test_AT_AppSetFlowCtrl_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_AppClearFlowCtrl
-功能描述 : AT_AppClearFlowCtrl UT工程类
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppClearFlowCtrl: public ::testing::Test
 {
 public:
@@ -5641,15 +4420,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppClearFlowCtrl_001
-测试用例标题      : 停止路由设备流控
-预期结果          : 返回VOS_OK
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppClearFlowCtrl,Test_AT_AppClearFlowCtrl_001)
 {
     VOS_UINT32                          ulParam1;
@@ -5670,14 +4441,7 @@ TEST_F(Test_AT_AppClearFlowCtrl,Test_AT_AppClearFlowCtrl_001)
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_NdisPsRspPdpDeactEvtCnfProc
-功能描述 : AT_NdisPsRspPdpDeactEvtCnfProc UT工程类
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_NdisPsRspPdpDeactEvtCnfProc: public ::testing::Test
 {
 public:
@@ -5692,15 +4456,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_NdisPsRspPdpDeactEvtCnfProc_001
-测试用例标题      : IPV4 PDP 去激活成功
-预期结果          : 返回
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisPsRspPdpDeactEvtCnfProc,Test_AT_NdisPsRspPdpDeactEvtCnfProc_001)
 {
     VOS_UINT8                           ucIndex;
@@ -5727,14 +4483,7 @@ TEST_F(Test_AT_NdisPsRspPdpDeactEvtCnfProc,Test_AT_NdisPsRspPdpDeactEvtCnfProc_0
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_NdisPsRspPdpDeactivatedEvtProc
-功能描述 : AT_NdisPsRspPdpDeactivatedEvtProc UT工程类
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_NdisPsRspPdpDeactivatedEvtProc: public ::testing::Test
 {
 public:
@@ -5749,15 +4498,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_NdisPsRspPdpDeactivatedEvtProc_001
-测试用例标题      : IPV4 PDP 去激活成功
-预期结果          : 返回
-修改历史     :
-1.日   期  : 2013-01-09
-作   者  :   l00227485
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisPsRspPdpDeactivatedEvtProc,Test_AT_NdisPsRspPdpDeactivatedEvtProc_001)
 {
     VOS_UINT8                           ucIndex;
@@ -5782,15 +4523,7 @@ TEST_F(Test_AT_NdisPsRspPdpDeactivatedEvtProc,Test_AT_NdisPsRspPdpDeactivatedEvt
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_NdisPsRspPdpDeactivatedEvtProc_002
-测试用例标题: IPV6 PDP 去激活成功
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_NdisPsRspPdpDeactivatedEvtProc,Test_AT_NdisPsRspPdpDeactivatedEvtProc_002)
 {
     VOS_UINT8                           ucIndex;
@@ -5816,15 +4549,7 @@ TEST_F(Test_AT_NdisPsRspPdpDeactivatedEvtProc,Test_AT_NdisPsRspPdpDeactivatedEvt
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_NdisPsRspPdpDeactivatedEvtProc_003
-测试用例标题: IPV4V6 PDP 去激活成功
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_NdisPsRspPdpDeactivatedEvtProc,Test_AT_NdisPsRspPdpDeactivatedEvtProc_003)
 {
     VOS_UINT8                           ucIndex;
@@ -5851,14 +4576,7 @@ TEST_F(Test_AT_NdisPsRspPdpDeactivatedEvtProc,Test_AT_NdisPsRspPdpDeactivatedEvt
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 类名       : Test_AT_AppIpv6PdpActRejProc
- 功能描述   : Test_AT_AppIpv6PdpActRejProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppIpv6PdpActRejProc: public ::testing::Test
 {
 public:
@@ -5873,15 +4591,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppIpv6PdpActRejProc_001
- 测试用例标题   : IPv6激活被拒, 原因值#33
- 预期结果       : 上报^DEND
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppIpv6PdpActRejProc, Test_AT_AppIpv6PdpActRejProc_001)
 {
     //参数定义
@@ -5908,14 +4618,7 @@ TEST_F(Test_AT_AppIpv6PdpActRejProc, Test_AT_AppIpv6PdpActRejProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_AppIpv4v6PdpActRejProc
- 功能描述   : Test_AT_AppIpv4v6PdpActRejProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppIpv4v6PdpActRejProc: public ::testing::Test
 {
 public:
@@ -5939,15 +4642,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppIpv6PdpActRejProc_001
- 测试用例标题   : IPv4v6激活被拒, 原因值#28
- 预期结果       : 发起IPv4激活请求
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppIpv4v6PdpActRejProc, Test_AT_AppIpv4v6PdpActRejProc_001)
 {
     //参数定义
@@ -5973,15 +4668,7 @@ TEST_F(Test_AT_AppIpv4v6PdpActRejProc, Test_AT_AppIpv4v6PdpActRejProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppIpv6PdpActRejProc_002
- 测试用例标题   : IPv4v6激活被拒, 非原因值#28
- 预期结果       : 发起IPv4激活请求
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppIpv4v6PdpActRejProc, Test_AT_AppIpv4v6PdpActRejProc_002)
 {
     //参数定义
@@ -6009,14 +4696,7 @@ TEST_F(Test_AT_AppIpv4v6PdpActRejProc, Test_AT_AppIpv4v6PdpActRejProc_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_AppActCnfBackProc
- 功能描述   : Test_AT_AppActCnfBackProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppActCnfBackProc: public ::testing::Test
 {
 public:
@@ -6040,15 +4720,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppActCnfBackProc_001
- 测试用例标题   : IPv4v6激活, IPv4激活成功, 原因值#52
- 预期结果       : 发起IPv6激活请求
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_001)
 {
     //参数定义
@@ -6078,15 +4750,7 @@ TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppActCnfBackProc_002
- 测试用例标题   : IPv4v6激活, IPv4激活成功, 原因值#50
- 预期结果       : 上报IPv6激活失败
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_002)
 {
     //参数定义
@@ -6114,15 +4778,7 @@ TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppActCnfBackProc_003
- 测试用例标题   : IPv4v6激活, IPv6激活成功, 原因值#51
- 预期结果       : 上报IPv4激活失败
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_003)
 {
     //参数定义
@@ -6150,15 +4806,7 @@ TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppActCnfBackProc_004
- 测试用例标题   : 其他原因值
- 预期结果       : 打印LOG
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_004)
 {
     //参数定义
@@ -6183,15 +4831,7 @@ TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_AppActCnfBackProc_005
- 测试用例标题      : 不带原因值，IPV4 PDP激活状态下，发起IPV6 PDP激活成功
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-25
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_005)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU     *pstEvent;
@@ -6217,15 +4857,7 @@ TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_AppActCnfBackProc_006
- 测试用例标题      : 不带原因值，IPV6 PDP激活状态下，发起IPV4 PDP激活成功
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-25
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_006)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU        *pstEvent;
@@ -6250,14 +4882,7 @@ TEST_F(Test_AT_AppActCnfBackProc, Test_AT_AppActCnfBackProc_006)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*****************************************************************************
-类名     : Test_AT_AppProcIpv6RaInfo
-功能描述 : Test_AT_AppProcIpv6RaInfo UT工程类
-修改历史     :
-1.日   期  : 2012-07-02
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppProcIpv6RaInfo: public ::testing::Test
 {
 public:
@@ -6272,15 +4897,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppProcIpv6RaInfo_001
-测试用例标题      : RA INFO中的前缀个数为0
-预期结果          : 直接返回, 不处理
-修改历史     :
-1.日   期  : 2012-07-02
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppProcIpv6RaInfo, Test_AT_AppProcIpv6RaInfo_001)
 {
     //参数定义
@@ -6306,15 +4923,7 @@ TEST_F(Test_AT_AppProcIpv6RaInfo, Test_AT_AppProcIpv6RaInfo_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppProcIpv6RaInfo_002
-测试用例标题      : RA INFO中的前缀个数为1
-预期结果          : 处理前缀, 上报全局地址等信息
-修改历史     :
-1.日   期  : 2012-07-02
-  作   者  : A00165503
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppProcIpv6RaInfo, Test_AT_AppProcIpv6RaInfo_002)
 {
     //参数定义
@@ -6362,14 +4971,7 @@ TEST_F(Test_AT_AppProcIpv6RaInfo, Test_AT_AppProcIpv6RaInfo_002)
 }
 #endif
 
-/*****************************************************************************
- 类名       : Test_AT_Get3gppSmCauseByPsCause
- 功能描述   : Test_AT_Get3gppSmCauseByPsCause UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_Get3gppSmCauseByPsCause: public ::testing::Test
 {
 public:
@@ -6385,15 +4987,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_Get3gppSmCauseByPsCause_001
- 测试用例标题   : 转换SM网络错误到3GPP协议规定的SM CAUSE
- 预期结果       : 3GPP协议规定的SM CAUSE
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_Get3gppSmCauseByPsCause, Test_AT_Get3gppSmCauseByPsCause_001)
 {
     //参数定义
@@ -6417,14 +5011,7 @@ TEST_F(Test_AT_Get3gppSmCauseByPsCause, Test_AT_Get3gppSmCauseByPsCause_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_NdisStateChangeProc
- 功能描述   : Test_AT_NdisStateChangeProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_NdisStateChangeProc: public ::testing::Test
 {
 public:
@@ -6439,15 +5026,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisStateChangeProc_001
- 测试用例标题   : 上报^NDISSTAT连接状态, IPv4拨号失败
- 预期结果       : 上报^NDISSTAT连接状态, IPv4拨号失败
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_001)
 {
     //参数定义
@@ -6475,15 +5054,7 @@ TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_001)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisStateChangeProc_002
- 测试用例标题   : 上报^NDISSTAT连接状态, IPv6拨号失败
- 预期结果       : 上报^NDISSTAT连接状态, IPv6拨号失败
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_002)
 {
     //参数定义
@@ -6510,15 +5081,7 @@ TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisStateChangeProc_003
- 测试用例标题   : 上报^NDISSTAT连接状态, IPv4v6拨号失败
- 预期结果       : 上报^NDISSTAT连接状态, IPv4v6拨号失败
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_003)
 {
     //参数定义
@@ -6552,15 +5115,7 @@ TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisStateChangeProc_005
- 测试用例标题   : IPv4v6拨号成功
- 预期结果       : 上报^NDISSTAT连接状态, IPv4v6拨号成功
- 修改历史       :
- 1.日   期  : 2013-4-17
-   作   者  : l00198894
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_005)
 {
     //参数定义
@@ -6596,15 +5151,7 @@ TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_005)
 
 #endif
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisStateChangeProc_004
- 测试用例标题   : 上报^NDISSTAT连接状态, PDP去激活
- 预期结果       : 上报^NDISSTAT连接状态, PDP去激活成功
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_004)
 {
     //参数定义
@@ -6631,14 +5178,7 @@ TEST_F(Test_AT_NdisStateChangeProc, Test_AT_NdisStateChangeProc_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_NdisPsRspPdpActEvtRejProc
- 功能描述   : Test_AT_NdisPsRspPdpActEvtRejProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_NdisPsRspPdpActEvtRejProc: public ::testing::Test
 {
 public:
@@ -6653,15 +5193,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisPsRspPdpActEvtRejProc_001
- 测试用例标题   : IPv4v6激活请求被拒, 原因值#28
- 预期结果       : 发起回退处理流程
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_001)
 {
     //参数定义
@@ -6692,15 +5224,7 @@ TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisPsRspPdpActEvtRejProc_002
- 测试用例标题   : IPv4v6激活请求被拒, 原因值#28
- 预期结果       : 发起回退处理流程
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_002)
 {
     //参数定义
@@ -6729,15 +5253,7 @@ TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_NdisPsRspPdpActEvtRejProc_003
-测试用例标题: IPv4v6激活请求被拒, 原因值#27
- 预期结果   : 不发起回退处理流程
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_003)
 {
     //参数定义
@@ -6768,16 +5284,7 @@ TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_NdisPsRspPdpActEvtRejProc_004
-测试用例标题: IPv6激活请求被拒, 原因值#27
-预期结果    : 不发起回退处理流程
 
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
 TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_004)
 {
     //参数定义
@@ -6808,15 +5315,7 @@ TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_NdisPsRspPdpActEvtRejProc_005
-测试用例标题: IPv4激活请求被拒, 原因值#27
-预期结果    : 不发起回退处理
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_005)
 {
     //参数定义
@@ -6847,14 +5346,7 @@ TEST_F(Test_AT_NdisPsRspPdpActEvtRejProc, Test_AT_NdisPsRspPdpActEvtRejProc_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_AppIpv4PdpDeactivatedProc
- 功能描述   : Test_AT_AppIpv4PdpDeactivatedProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppIpv4PdpDeactivatedProc: public ::testing::Test
 {
 public:
@@ -6869,15 +5361,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisPsRspPdpActEvtRejProc_001
- 测试用例标题   : IPv4承载异常去激活, 原因值#25
- 预期结果       : 上报^DEND
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppIpv4PdpDeactivatedProc, Test_AT_AppIpv4PdpDeactivatedProc_001)
 {
     //参数定义
@@ -6905,14 +5389,7 @@ TEST_F(Test_AT_AppIpv4PdpDeactivatedProc, Test_AT_AppIpv4PdpDeactivatedProc_001)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 类名       : Test_AT_AppIpv6PdpDeactivatedProc
- 功能描述   : Test_AT_AppIpv6PdpDeactivatedProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppIpv6PdpDeactivatedProc: public ::testing::Test
 {
 public:
@@ -6927,15 +5404,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppIpv6PdpDeactivatedProc_001
- 测试用例标题   : IPv6承载异常去激活, 原因值#25
- 预期结果       : 上报^DEND
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppIpv6PdpDeactivatedProc, Test_AT_AppIpv6PdpDeactivatedProc_001)
 {
     //参数定义
@@ -6962,14 +5431,7 @@ TEST_F(Test_AT_AppIpv6PdpDeactivatedProc, Test_AT_AppIpv6PdpDeactivatedProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_AppIpv4v6PdpDeactivatedProc
- 功能描述   : Test_AT_AppIpv4v6PdpDeactivatedProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppIpv4v6PdpDeactivatedProc: public ::testing::Test
 {
 public:
@@ -6984,15 +5446,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_AppIpv4v6PdpDeactivatedProc_001
- 测试用例标题   : IPv6承载异常去激活, 原因值#25
- 预期结果       : 上报^DEND
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppIpv4v6PdpDeactivatedProc, Test_AT_AppIpv4v6PdpDeactivatedProc_001)
 {
     //参数定义
@@ -7020,14 +5474,7 @@ TEST_F(Test_AT_AppIpv4v6PdpDeactivatedProc, Test_AT_AppIpv4v6PdpDeactivatedProc_
 }
 #endif
 
-/*****************************************************************************
- 类名       : Test_AT_NdisActCnfBackProc
- 功能描述   : Test_AT_NdisActCnfBackProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_NdisActCnfBackProc: public ::testing::Test
 {
 public:
@@ -7042,15 +5489,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisActCnfBackProc_001
- 测试用例标题   : IPv4承载异常去激活, 原因值#52
- 预期结果       : 发起IPv6拨号
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_001)
 {
     //参数定义
@@ -7082,15 +5521,7 @@ TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisActCnfBackProc_002
- 测试用例标题   : IPv4承载异常去激活, 原因值#52
- 预期结果       : 发起IPv6拨号
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_002)
 {
     //参数定义
@@ -7115,15 +5546,7 @@ TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_NdisActCnfBackProc_003
- 测试用例标题      : 不带原因值，IPV4 PDP激活状态下，发起IPV6 PDP激活成功
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-25
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_003)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU         stEvent;
@@ -7149,15 +5572,7 @@ TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_NdisActCnfBackProc_004
- 测试用例标题      : 不带原因值，IPV6 PDP激活状态下，发起IPV4 PDP激活成功
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-25
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_004)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU         stEvent;
@@ -7183,15 +5598,7 @@ TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisActCnfBackProc_005
- 测试用例标题   : IPv4承载异常去激活, 原因值#51
- 预期结果       : 不发起拨号
- 修改历史       :
- 1.日   期  : 2013-08-12
-   作   者  : Y00213812
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_005)
 {
     //参数定义
@@ -7216,15 +5623,7 @@ TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_NdisActCnfBackProc_006
- 测试用例标题   : IPv4承载异常去激活, 原因值TAF_PS_CAUSE_SM_NW_NETWORK_FAILURE
- 预期结果       : 不发起拨号
- 修改历史       :
- 1.日   期  : 2013-08-12
-   作   者  : Y00213812
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_006)
 {
     //参数定义
@@ -7249,14 +5648,7 @@ TEST_F(Test_AT_NdisActCnfBackProc, Test_AT_NdisActCnfBackProc_006)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_ResetFlowCtl
- 功能描述   : AT_ResetFlowCtl UT工程类
- 修改历史   :
- 1.日   期  : 2013-04-25
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ResetFlowCtl: public ::testing::Test
 {
 public:
@@ -7277,15 +5669,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_ResetFlowCtl_001
- 测试用例标题   : 复位前去注册流控点失败
- 预期结果       : g_stFcIdMaptoFcPri对应的全局变量没有被清空
- 修改历史       :
- 1.日   期  : 2013-04-25
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ResetFlowCtl, Test_AT_ResetFlowCtl_001)
 {
     //参数定义
@@ -7316,15 +5700,7 @@ TEST_F(Test_AT_ResetFlowCtl, Test_AT_ResetFlowCtl_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_ResetFlowCtl_002
- 测试用例标题   : 复位前去注册流控点成功
- 预期结果       : g_stFcIdMaptoFcPri对应的全局变量被清空
- 修改历史       :
- 1.日   期  : 2013-04-25
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ResetFlowCtl, Test_AT_ResetFlowCtl_002)
 {
     //参数定义
@@ -7355,14 +5731,7 @@ TEST_F(Test_AT_ResetFlowCtl, Test_AT_ResetFlowCtl_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ValidateDialParam
-功能描述 : AT_PS_ValidateDialParam UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ValidateDialParam: public ::testing::Test
 {
 public:
@@ -7434,15 +5803,7 @@ public:
 
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_001
-测试用例标题: 通过HSIC4通道下发,参数检查通过
-预期结果    : 返回AT_SUCCESS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_001)
 {
     // 变量声明
@@ -7465,15 +5826,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_002
-测试用例标题: 通过PCUI通道下发设置命令
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_002)
 {
     // 变量声明
@@ -7510,15 +5863,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_003
-测试用例标题: 通过HSIC4通道下发,参数类型错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_003)
 {
     // 变量声明
@@ -7541,15 +5886,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_004
-测试用例标题: 通过HSIC4通道下发,参数too many
-预期结果    : 返回AT_TOO_MANY_PARA
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_004)
 {
     // 变量声明
@@ -7569,15 +5906,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_005
-测试用例标题: 通过HSIC4通道下发,CID参数错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_005)
 {
     // 变量声明
@@ -7597,15 +5926,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_006
-测试用例标题: 通过HSIC4通道下发,CONN参数错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_006)
 {
     // 变量声明
@@ -7625,15 +5946,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_006)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_007
-测试用例标题: 通过HSIC4通道下发,APN参数错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_007)
 {
     // 变量声明
@@ -7656,15 +5969,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_007)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_011
-测试用例标题: 通过HSIC4通道下发,APN参数错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_011)
 {
     // 变量声明
@@ -7687,15 +5992,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_011)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_008
-测试用例标题: 通过HSIC4通道下发,Username参数错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_008)
 {
     // 变量声明
@@ -7718,15 +6015,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_008)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_009
-测试用例标题: 通过HSIC4通道下发,password参数错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_009)
 {
     // 变量声明
@@ -7749,15 +6038,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_009)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_010
-测试用例标题: 通过HSIC4通道下发,password参数错误
-预期结果    : 返回AT_CME_INCORRECT_PARAMETERS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_010)
 {
     // 变量声明
@@ -7780,15 +6061,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_010)
 }
 
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ValidateDialParam_012
-测试用例标题: 通过APP通道下发设置命令
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_012)
 {
     // 变量声明
@@ -7829,14 +6102,7 @@ TEST_F(Test_AT_PS_ValidateDialParam, Test_AT_PS_ValidateDialParam_012)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ProcDialUp
-功能描述 : AT_PS_ProcDialUp UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcDialUp: public ::testing::Test
 {
 public:
@@ -7902,15 +6168,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_001
-测试用例标题: 通过HSIC4通道下发,CID为1拨号成功
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_001)
 {
     // 变量声明
@@ -7930,15 +6188,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_IPV6)
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_002
-测试用例标题: 通过HSIC4通道下发,IPv6能力查询失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_002)
 {
     // 变量声明
@@ -7963,15 +6213,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_003
-测试用例标题: 通过HSIC4通道下发,鉴权参数不为0，当前正在发起IPV4V6拨号
-预期结果    : 返回AT_SUCCESS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_003)
 {
     // 变量声明
@@ -8001,15 +6243,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_004
-测试用例标题: 通过HSIC4通道下发,当前正在发起IPV4V6去激活
-预期结果    : 返回AT_SUCCESS
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_004)
 {
     // 变量声明
@@ -8047,15 +6281,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_010
-测试用例标题: 通过HSIC4通道下发,当前IPV4V6已经激活
-预期结果    : 上报IPV4V6已激活
-修改历史    :
- 1.日   期  : 2013-5-10
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_010)
 {
     // 变量声明
@@ -8097,15 +6323,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_010)
     GlobalMockObject::verify();
 }
 #endif
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_005
-测试用例标题: 通过HSIC4通道下发,分配CALLID失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_005)
 {
     // 变量声明
@@ -8139,15 +6357,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_006
-测试用例标题: 通过HSIC4通道下发,设置TAF_AGENT_SetPdpCidPara失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_006)
 {
     // 变量声明
@@ -8173,15 +6383,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_006)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_007
-测试用例标题: 通过HSIC4通道下发,发起拨号失败
-预期结果    : 返回AT_ERROR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_007)
 {
     // 变量声明
@@ -8210,15 +6412,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_007)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_008
-测试用例标题: 通过HSIC4通道下发,CID为1拨号成功,IPV4
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_008)
 {
     // 变量声明
@@ -8252,15 +6446,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_008)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDialUp_009
-测试用例标题: 通过HSIC4通道下发,CID为1拨号成功,
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_009)
 {
     // 变量声明
@@ -8292,14 +6478,7 @@ TEST_F(Test_AT_PS_ProcDialUp, Test_AT_PS_ProcDialUp_009)
     EXPECT_EQ(AT_ERROR, ulRslt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_AT_PS_SetCid2CurrCall
-功能描述 : AT_PS_SetCid2CurrCall UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_SetCid2CurrCall: public ::testing::Test
 {
 public:
@@ -8325,15 +6504,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SetCid2CurrCall_001
-测试用例标题: 设置IPv4呼叫CID
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SetCid2CurrCall, Test_AT_PS_SetCid2CurrCall_001)
 {
     // 变量声明
@@ -8351,15 +6522,7 @@ TEST_F(Test_AT_PS_SetCid2CurrCall, Test_AT_PS_SetCid2CurrCall_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SetCid2CurrCall_002
-测试用例标题: 设置IPv6呼叫CID
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SetCid2CurrCall, Test_AT_PS_SetCid2CurrCall_002)
 {
     // 变量声明
@@ -8377,15 +6540,7 @@ TEST_F(Test_AT_PS_SetCid2CurrCall, Test_AT_PS_SetCid2CurrCall_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SetCid2CurrCall_003
-测试用例标题: 设置IPv4V6呼叫CID
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SetCid2CurrCall, Test_AT_PS_SetCid2CurrCall_003)
 {
     // 变量声明
@@ -8403,15 +6558,7 @@ TEST_F(Test_AT_PS_SetCid2CurrCall, Test_AT_PS_SetCid2CurrCall_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SetCid2CurrCall_004
-测试用例标题: CID非法
-预期结果    : 失败
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SetCid2CurrCall, Test_AT_PS_SetCid2CurrCall_004)
 {
     // 变量声明
@@ -8429,14 +6576,7 @@ TEST_F(Test_AT_PS_SetCid2CurrCall, Test_AT_PS_SetCid2CurrCall_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_PdpAddrProc
-功能描述 : AT_PS_PdpAddrProc UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_PdpAddrProc: public ::testing::Test
 {
 public:
@@ -8490,15 +6630,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_PdpAddrProc_001
-测试用例标题: 单承载单栈，上报^DCONN
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_PdpAddrProc, Test_AT_PS_PdpAddrProc_001)
 {
     // 变量声明
@@ -8520,14 +6652,7 @@ TEST_F(Test_AT_PS_PdpAddrProc, Test_AT_PS_PdpAddrProc_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_IPV6)
-/******************************************************************************
-类名     : Test_AT_PS_ProcIpv4CallConnected
-功能描述 : AT_PS_ProcIpv4CallConnected UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcIpv4CallConnected: public ::testing::Test
 {
 public:
@@ -8599,15 +6724,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4ConnectedCnf_001
-测试用例标题: 单承载单栈，上报^DCONN
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_001)
 {
     // 变量声明
@@ -8637,15 +6754,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4ConnectedCnf_002
-测试用例标题: 单承载单栈，上报^DCONN,计算IP地址
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_002)
 {
     // 变量声明
@@ -8672,15 +6781,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4ConnectedCnf_003
-测试用例标题: 单承载单栈，上报^DCONN,IP地址为false
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_003)
 {
     // 变量声明
@@ -8705,15 +6806,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4ConnectedCnf_004
-测试用例标题: 双承载双栈，IPv4成功，IPV6拨号失败
-预期结果    : 上报^DCONN:1，"IPV4",^DEND:1，383,"IPV6"
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_004)
 {
     // 变量声明
@@ -8776,15 +6869,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4ConnectedCnf_005
-测试用例标题: 双承载双栈，IPV4/IPV6拨号成功
-预期结果    : 上报^DCONN:1，"IPV4"
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_005)
 {
     // 变量声明
@@ -8840,15 +6925,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4ConnectedCnf_006
-测试用例标题: 双承载双栈，IPV4拨号成功, #52
-预期结果    : 上报^DCONN:1，"IPV4"
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_006)
 {
     // 变量声明
@@ -8889,15 +6966,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_006)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4ConnectedCnf_007
-测试用例标题: 双承载双栈，IPV4拨号成功，#50号原因值
-预期结果    : 上报^DCONN:1，"IPV4"
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_007)
 {
     // 变量声明
@@ -8938,14 +7007,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallConnected, Test_AT_PS_ProcIpv4ConnectedCnf_007)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ProcIpv6CallConnected
-功能描述 : AT_PS_ProcIpv6CallConnected UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcIpv6CallConnected: public ::testing::Test
 {
 public:
@@ -9021,15 +7083,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6ConnectedCnf_001
-测试用例标题: 单承载单栈，上报^DCONN
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_001)
 {
     // 变量声明
@@ -9051,15 +7105,7 @@ TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6ConnectedCnf_002
-测试用例标题: 双承载双栈，IPv6成功，IPV4拨号失败
-预期结果    : 上报^DEND:1，127,"IPV4"
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_002)
 {
     // 变量声明
@@ -9119,15 +7165,7 @@ TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6ConnectedCnf_003
-测试用例标题: 双承载双栈，IPV4/IPV6拨号成功
-预期结果    :
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_003)
 {
     // 变量声明
@@ -9181,15 +7219,7 @@ TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6ConnectedCnf_004
-测试用例标题: 双承载双栈，IPV6拨号成功, #51
-预期结果    : 上报
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_004)
 {
     // 变量声明
@@ -9217,15 +7247,7 @@ TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6ConnectedCnf_005
-测试用例标题: 双承载双栈，IPV6拨号成功，#33号原因值
-预期结果    : 上报
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_005)
 {
     // 变量声明
@@ -9251,14 +7273,7 @@ TEST_F(Test_AT_PS_ProcIpv6CallConnected, Test_AT_PS_ProcIpv6ConnectedCnf_005)
     EXPECT_EQ(VOS_OK, ulRslt);
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_AT_PS_ProcIpv4v6CallConnected
-功能描述 : AT_PS_ProcIpv4v6CallConnected UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcIpv4v6CallConnected: public ::testing::Test
 {
 public:
@@ -9328,15 +7343,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4v6ConnectedCnf_001
-测试用例标题: 单承载双栈，激活成功
-预期结果    : 上报^DCONN:1，"IPV4"
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4v6CallConnected, Test_AT_PS_ProcIpv4v6ConnectedCnf_001)
 {
     // 变量声明
@@ -9363,15 +7370,7 @@ TEST_F(Test_AT_PS_ProcIpv4v6CallConnected, Test_AT_PS_ProcIpv4v6ConnectedCnf_001
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4v6ConnectedCnf_002
-测试用例标题: 双承载双栈，IPv6成功，IPV4拨号失败
-预期结果    : 上报^DCONN:1，"IPV6",^DEND:1，127,"IPV4"
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4v6CallConnected, Test_AT_PS_ProcIpv4v6ConnectedCnf_002)
 {
     // 变量声明
@@ -9397,14 +7396,7 @@ TEST_F(Test_AT_PS_ProcIpv4v6CallConnected, Test_AT_PS_ProcIpv4v6ConnectedCnf_002
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_GenIpv6LanAddrWithRadomIID
-功能描述 : AT_PS_GenIpv6LanAddrWithRadomIID UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_GenIpv6LanAddrWithRadomIID: public ::testing::Test
 {
 public:
@@ -9421,15 +7413,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_GenIpv6LanAddrWithRadomIID_001
-测试用例标题: 输入前缀长度错误
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_GenIpv6LanAddrWithRadomIID, Test_AT_PS_GenIpv6LanAddrWithRadomIID_001)
 {
     // 变量声明
@@ -9451,14 +7435,7 @@ TEST_F(Test_AT_PS_GenIpv6LanAddrWithRadomIID, Test_AT_PS_GenIpv6LanAddrWithRadom
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ProcIpv6RaInfo
-功能描述 : AT_PS_ProcIpv6RaInfo UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcIpv6RaInfo: public ::testing::Test
 {
 public:
@@ -9517,15 +7494,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6RaInfo_001
-测试用例标题: 上报IPV6全局地址
-预期结果    : 上报^DCONN:1,"IPV6"
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6RaInfo, Test_AT_PS_ProcIpv6RaInfo_001)
 {
     // 变量声明
@@ -9549,15 +7518,7 @@ TEST_F(Test_AT_PS_ProcIpv6RaInfo, Test_AT_PS_ProcIpv6RaInfo_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6RaInfo_002
-测试用例标题: callid无效
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6RaInfo, Test_AT_PS_ProcIpv6RaInfo_002)
 {
     // 变量声明
@@ -9577,15 +7538,7 @@ TEST_F(Test_AT_PS_ProcIpv6RaInfo, Test_AT_PS_ProcIpv6RaInfo_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6RaInfo_003
-测试用例标题: 上报的ipv6前缀为0
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6RaInfo, Test_AT_PS_ProcIpv6RaInfo_003)
 {
     // 变量声明
@@ -9604,15 +7557,7 @@ TEST_F(Test_AT_PS_ProcIpv6RaInfo, Test_AT_PS_ProcIpv6RaInfo_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6RaInfo_004
-测试用例标题: 当前用户类型不为HSIC_USER
-预期结果    : 不上报^DCONN:1,"IPV6"
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6RaInfo, Test_AT_PS_ProcIpv6RaInfo_004)
 {
     // 变量声明
@@ -9634,14 +7579,7 @@ TEST_F(Test_AT_PS_ProcIpv6RaInfo, Test_AT_PS_ProcIpv6RaInfo_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_SetupSingleStackConn
-功能描述 : AT_PS_SetupSingleStackConn UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_SetupSingleStackConn: public ::testing::Test
 {
 public:
@@ -9678,15 +7616,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SetupSingleStackConn_001
-测试用例标题: 双承载双栈
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SetupSingleStackConn, Test_AT_PS_SetupSingleStackConn_001)
 {
     // 变量声明
@@ -9707,15 +7637,7 @@ TEST_F(Test_AT_PS_SetupSingleStackConn, Test_AT_PS_SetupSingleStackConn_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SetupSingleStackConn_002
-测试用例标题: 双承载双栈
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SetupSingleStackConn, Test_AT_PS_SetupSingleStackConn_002)
 {
     // 变量声明
@@ -9736,14 +7658,7 @@ TEST_F(Test_AT_PS_SetupSingleStackConn, Test_AT_PS_SetupSingleStackConn_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ProcDualStackCallConn
-功能描述 : AT_PS_ProcDualStackCallConn UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcDualStackCallConn: public ::testing::Test
 {
 public:
@@ -9764,15 +7679,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcDualStackCallConn_001
-测试用例标题: PDP类型错误
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcDualStackCallConn, Test_AT_PS_ProcDualStackCallConn_001)
 {
     // 变量声明
@@ -9790,14 +7697,7 @@ TEST_F(Test_AT_PS_ProcDualStackCallConn, Test_AT_PS_ProcDualStackCallConn_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ProcIpv4ConnSuccFallback
-功能描述 : AT_PS_ProcIpv4ConnSuccFallback UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcIpv4ConnSuccFallback: public ::testing::Test
 {
 public:
@@ -9821,15 +7721,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv4ConnSuccFallback_001
-测试用例标题: ipv6
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4ConnSuccFallback, Test_AT_PS_ProcIpv4ConnSuccFallback_001)
 {
     // 变量声明
@@ -9847,14 +7739,7 @@ TEST_F(Test_AT_PS_ProcIpv4ConnSuccFallback, Test_AT_PS_ProcIpv4ConnSuccFallback_
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ProcIpv6ConnSuccFallback
-功能描述 : AT_PS_ProcIpv6ConnSuccFallback UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcIpv6ConnSuccFallback: public ::testing::Test
 {
 public:
@@ -9877,15 +7762,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6ConnSuccFallback_001
-测试用例标题: ipv6
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6ConnSuccFallback, Test_AT_PS_ProcIpv6ConnSuccFallback_001)
 {
     // 变量声明
@@ -9904,15 +7781,7 @@ TEST_F(Test_AT_PS_ProcIpv6ConnSuccFallback, Test_AT_PS_ProcIpv6ConnSuccFallback_
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcIpv6ConnSuccFallback_002
-测试用例标题: PDP类型错误IPV4
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6ConnSuccFallback, Test_AT_PS_ProcIpv6ConnSuccFallback_002)
 {
     // 变量声明
@@ -9931,14 +7800,7 @@ TEST_F(Test_AT_PS_ProcIpv6ConnSuccFallback, Test_AT_PS_ProcIpv6ConnSuccFallback_
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ProcCallConnectedEvent
-功能描述 : AT_PS_ProcCallConnectedEvent UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcCallConnectedEvent: public ::testing::Test
 {
 public:
@@ -9981,15 +7843,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcCallConnectedEvent_001
-测试用例标题: 收到ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_CNF消息，CALLID错误
-预期结果    : 打印日志
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallConnectedEvent, Test_AT_PS_ProcCallConnectedEvent_001)
 {
     // 变量声明
@@ -10007,15 +7861,7 @@ TEST_F(Test_AT_PS_ProcCallConnectedEvent, Test_AT_PS_ProcCallConnectedEvent_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcCallConnectedEvent_002
-测试用例标题: 收到ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_CNF消息， PDP类型错误
-预期结果    : 打印日志
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallConnectedEvent, Test_AT_PS_ProcCallConnectedEvent_002)
 {
     // 变量声明
@@ -10036,15 +7882,7 @@ TEST_F(Test_AT_PS_ProcCallConnectedEvent, Test_AT_PS_ProcCallConnectedEvent_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcCallConnectedEvent_003
-测试用例标题: PCUI口AT^NDISDUP拨号
-预期结果    : 找不到对应的网卡
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project新增类
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallConnectedEvent, Test_AT_PS_ProcCallConnectedEvent_003)
 {
     // 变量声明
@@ -10072,14 +7910,7 @@ TEST_F(Test_AT_PS_ProcCallConnectedEvent, Test_AT_PS_ProcCallConnectedEvent_003)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_AT_PS_ProcCallRejectEvent
-功能描述 : AT_PS_ProcCallRejectEvent UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcCallRejectEvent: public ::testing::Test
 {
 public:
@@ -10121,15 +7952,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcCallRejectEvent_001
-测试用例标题: 收到ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_REJ消息，CALLID错误
-预期结果    : 打印日志
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallRejectEvent, Test_AT_PS_ProcCallRejectEvent_001)
 {
     // 变量声明
@@ -10147,15 +7970,7 @@ TEST_F(Test_AT_PS_ProcCallRejectEvent, Test_AT_PS_ProcCallRejectEvent_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcCallRejectEvent_002
-测试用例标题: 收到ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_REJ消息， PDP类型错误
-预期结果    : 打印日志
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallRejectEvent, Test_AT_PS_ProcCallRejectEvent_002)
 {
     // 变量声明
@@ -10176,15 +7991,7 @@ TEST_F(Test_AT_PS_ProcCallRejectEvent, Test_AT_PS_ProcCallRejectEvent_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcCallRejectEvent_003
-测试用例标题: 收到ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_REJ消息， PDP类型错误
-预期结果    : 打印日志
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallRejectEvent, Test_AT_PS_ProcCallRejectEvent_003)
 {
     // 变量声明
@@ -10206,14 +8013,7 @@ TEST_F(Test_AT_PS_ProcCallRejectEvent, Test_AT_PS_ProcCallRejectEvent_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ProcCallEndedEvent
-功能描述 : AT_PS_ProcCallEndedEvent UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcCallEndedEvent: public ::testing::Test
 {
 public:
@@ -10257,15 +8057,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcCallEndedEvent_001
-测试用例标题: 收到ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_CNF消息，CALLID错误
-预期结果    : 打印日志
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallEndedEvent, Test_AT_PS_ProcCallEndedEvent_001)
 {
     // 变量声明
@@ -10283,15 +8075,7 @@ TEST_F(Test_AT_PS_ProcCallEndedEvent, Test_AT_PS_ProcCallEndedEvent_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcCallEndedEvent_002
-测试用例标题: 收到ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_CNF消息， PDP类型错误
-预期结果    : 打印日志
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallEndedEvent, Test_AT_PS_ProcCallEndedEvent_002)
 {
     // 变量声明
@@ -10312,15 +8096,7 @@ TEST_F(Test_AT_PS_ProcCallEndedEvent, Test_AT_PS_ProcCallEndedEvent_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcCallEndedEvent_003
-测试用例标题: PCUI口AT^NDISDUP拨号
-预期结果    : 找不到对应的网卡
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project新增类
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallEndedEvent, Test_AT_PS_ProcCallEndedEvent_003)
 {
     // 变量声明
@@ -10348,14 +8124,7 @@ TEST_F(Test_AT_PS_ProcCallEndedEvent, Test_AT_PS_ProcCallEndedEvent_003)
     // 执行检查
     GlobalMockObject::verify();
 }
-/*****************************************************************************
- 类名       : Test_AT_PS_ProcDialDown
- 功能描述   : Test_AT_PS_ProcDialDown UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcDialDown: public ::testing::Test
 {
 public:
@@ -10408,15 +8177,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcDialDown_001
- 测试用例标题   : 双承载双栈: 同时断开两个承载成功
- 预期结果       : 返回OK, IPv4和IPv6状态为正在断开
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_001)
 {
     //参数定义
@@ -10455,15 +8216,7 @@ TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcDialDown_002
- 测试用例标题   : 双承载双栈: 同时断开两个承载失败
- 预期结果       : 返回ERROR
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_002)
 {
     //参数定义
@@ -10507,15 +8260,7 @@ TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcDialDown_003
- 测试用例标题   : CID映射的CALLID为无效
- 预期结果       : 返回OK, 上报IPv4和IPv6连接断开指示
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_003)
 {
     //参数定义
@@ -10572,15 +8317,7 @@ TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcDialDown_004
- 测试用例标题   : IPv4连接状态为正在断开
- 预期结果       : 返回OK, 上报已断开连接
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_004)
 {
     //参数定义
@@ -10634,15 +8371,7 @@ TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcDialDown_005
- 测试用例标题   : IPv6连接状态为正在断开
- 预期结果       : 返回OK, 上报已断开连接
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_005)
 {
     //参数定义
@@ -10696,14 +8425,7 @@ TEST_F(Test_AT_PS_ProcDialDown, Test_AT_PS_ProcDialDown_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ReportAllCallEndState
- 功能描述   : Test_AT_PS_ReportAllCallEndState UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ReportAllCallEndState: public ::testing::Test
 {
 public:
@@ -10719,15 +8441,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ReportAllCallEndState_001
- 测试用例标题   : 找不到用户类型对应的连接断开上报函数
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ReportAllCallEndState, Test_AT_PS_ReportAllCallEndState_001)
 {
     //参数定义
@@ -10758,14 +8472,7 @@ TEST_F(Test_AT_PS_ReportAllCallEndState, Test_AT_PS_ReportAllCallEndState_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ReportCurrCallEndState
- 功能描述   : Test_AT_PS_ReportCurrCallEndState UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ReportCurrCallEndState: public ::testing::Test
 {
 public:
@@ -10802,15 +8509,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ReportCurrCallEndState_001
- 测试用例标题   : 找不到用户类型对应的连接断开上报函数
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ReportCurrCallEndState, Test_AT_PS_ReportCurrCallEndState_001)
 {
     //参数定义
@@ -10834,14 +8533,7 @@ TEST_F(Test_AT_PS_ReportCurrCallEndState, Test_AT_PS_ReportCurrCallEndState_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ReportCurrCallConnState
- 功能描述   : Test_AT_PS_ReportCurrCallConnState UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ReportCurrCallConnState: public ::testing::Test
 {
 public:
@@ -10858,15 +8550,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ReportCurrCallConnState_001
- 测试用例标题   : 找不到用户类型对应的上报函数
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ReportCurrCallConnState, Test_AT_PS_ReportCurrCallConnState_001)
 {
     //参数定义
@@ -10906,15 +8590,7 @@ TEST_F(Test_AT_PS_ReportCurrCallConnState, Test_AT_PS_ReportCurrCallConnState_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ReportCurrCallConnState_002
- 测试用例标题   : 找不到用户类型对应的上报函数
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ReportCurrCallConnState, Test_AT_PS_ReportCurrCallConnState_002)
 {
     //参数定义
@@ -10954,14 +8630,7 @@ TEST_F(Test_AT_PS_ReportCurrCallConnState, Test_AT_PS_ReportCurrCallConnState_00
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_ProcConflictDialUpWithCurrCall
-功能描述 : AT_PS_ProcConflictDialUpWithCurrCall UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ProcConflictDialUpWithCurrCall: public ::testing::Test
 {
 public:
@@ -10975,15 +8644,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ProcConflictDialUpWithCurrCall_001
-测试用例标题: 双承载双栈
-预期结果    : 成功
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ProcConflictDialUpWithCurrCall, Test_AT_PS_ProcConflictDialUpWithCurrCall_001)
 {
     // 变量声明
@@ -11009,14 +8670,7 @@ TEST_F(Test_AT_PS_ProcConflictDialUpWithCurrCall, Test_AT_PS_ProcConflictDialUpW
 
     GlobalMockObject::verify();
 }
-/*****************************************************************************
- 类名       : Test_AT_PS_HangupCall
- 功能描述   : Test_AT_PS_HangupCall UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_HangupCall: public ::testing::Test
 {
 public:
@@ -11047,15 +8701,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_HangupCall_001
- 测试用例标题   : IPv4断开失败
- 预期结果       : 返回ERROR
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_HangupCall, Test_AT_PS_HangupCall_001)
 {
     //参数定义
@@ -11094,15 +8740,7 @@ TEST_F(Test_AT_PS_HangupCall, Test_AT_PS_HangupCall_001)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_HangupCall_002
- 测试用例标题   : IPv6断开失败
- 预期结果       : 返回ERROR
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_HangupCall, Test_AT_PS_HangupCall_002)
 {
     //参数定义
@@ -11142,14 +8780,7 @@ TEST_F(Test_AT_PS_HangupCall, Test_AT_PS_HangupCall_002)
 #endif
 
 #if (FEATURE_ON == FEATURE_AT_HSIC)
-/*****************************************************************************
- 类名       : Test_AT_PS_ProcCallOrigCnfEvent
- 功能描述   : Test_AT_PS_ProcCallOrigCnfEvent UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcCallOrigCnfEvent: public ::testing::Test
 {
 public:
@@ -11190,15 +8821,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcCallOrigCnfEvent_001
- 测试用例标题   : CID映射的CALLID为无效
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallOrigCnfEvent, Test_AT_PS_ProcCallOrigCnfEvent_001)
 {
     //参数定义
@@ -11226,15 +8849,7 @@ TEST_F(Test_AT_PS_ProcCallOrigCnfEvent, Test_AT_PS_ProcCallOrigCnfEvent_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcCallOrigCnfEvent_002
- 测试用例标题   : 事件错误码为TAF_PS_CAUSE_SIM_INVALID
- 预期结果       : 呼叫建立失败
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallOrigCnfEvent, Test_AT_PS_ProcCallOrigCnfEvent_002)
 {
     //参数定义
@@ -11276,15 +8891,7 @@ TEST_F(Test_AT_PS_ProcCallOrigCnfEvent, Test_AT_PS_ProcCallOrigCnfEvent_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcCallOrigCnfEvent_003
- 测试用例标题   : 事件错误码为TAF_PS_CAUSE_SIM_INVALID ，当前不在Activing状态
- 预期结果       : 呼叫建立失败
- 修改历史       :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallOrigCnfEvent, Test_AT_PS_ProcCallOrigCnfEvent_003)
 {
     //参数定义
@@ -11325,14 +8932,7 @@ TEST_F(Test_AT_PS_ProcCallOrigCnfEvent, Test_AT_PS_ProcCallOrigCnfEvent_003)
 }
 #endif
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ProcCallEndCnfEvent
- 功能描述   : Test_AT_PS_ProcCallEndCnfEvent UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcCallEndCnfEvent: public ::testing::Test
 {
 public:
@@ -11373,15 +8973,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcCallEndCnfEvent_001
- 测试用例标题   : CID映射的CALLID为无效
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallEndCnfEvent, Test_AT_PS_ProcCallEndCnfEvent_001)
 {
     //参数定义
@@ -11407,15 +8999,7 @@ TEST_F(Test_AT_PS_ProcCallEndCnfEvent, Test_AT_PS_ProcCallEndCnfEvent_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcCallEndCnfEvent_002
- 测试用例标题   : 事件错误码为TAF_ERR_ERROR
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcCallEndCnfEvent, Test_AT_PS_ProcCallEndCnfEvent_002)
 {
     //参数定义
@@ -11443,14 +9027,7 @@ TEST_F(Test_AT_PS_ProcCallEndCnfEvent, Test_AT_PS_ProcCallEndCnfEvent_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ProcIpv4CallEnded
- 功能描述   : Test_AT_PS_ProcIpv4CallEnded UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcIpv4CallEnded: public ::testing::Test
 {
 public:
@@ -11508,15 +9085,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4CallEnded_001
- 测试用例标题   : IPv4 only连接断开
- 预期结果       : 呼叫实体释放
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallEnded, Test_AT_PS_ProcIpv4CallEnded_001)
 {
     //参数定义
@@ -11570,15 +9139,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallEnded, Test_AT_PS_ProcIpv4CallEnded_001)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4CallEnded_002
- 测试用例标题   : IPv4v6双承载双栈: IPv4连接断开
- 预期结果       : 主动断开IPv6连接
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallEnded, Test_AT_PS_ProcIpv4CallEnded_002)
 {
     //参数定义
@@ -11627,15 +9188,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallEnded, Test_AT_PS_ProcIpv4CallEnded_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4CallEnded_003
- 测试用例标题   : IPv4v6双承载双栈: IPv4连接断开
- 预期结果       : 主动断开IPv6连接失败
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallEnded, Test_AT_PS_ProcIpv4CallEnded_003)
 {
     //参数定义
@@ -11688,15 +9241,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallEnded, Test_AT_PS_ProcIpv4CallEnded_003)
 }
 
 #endif
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4CallEnded_004
- 测试用例标题   : IPv4 only连接断开
- 预期结果       : 呼叫实体释放
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallEnded, Test_AT_PS_ProcIpv4CallEnded_004)
 {
     //参数定义
@@ -11743,14 +9288,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallEnded, Test_AT_PS_ProcIpv4CallEnded_004)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 类名       : Test_AT_PS_ProcIpv6CallEnded
- 功能描述   : Test_AT_PS_ProcIpv6CallEnded UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcIpv6CallEnded: public ::testing::Test
 {
 public:
@@ -11804,15 +9342,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv6CallEnded_001
- 测试用例标题   : IPv6 only连接断开
- 预期结果       : 呼叫实体释放
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6CallEnded, Test_AT_PS_ProcIpv6CallEnded_001)
 {
     //参数定义
@@ -11862,15 +9392,7 @@ TEST_F(Test_AT_PS_ProcIpv6CallEnded, Test_AT_PS_ProcIpv6CallEnded_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv6CallEnded_002
- 测试用例标题   : IPv4v6双承载双栈: IPv6连接断开
- 预期结果       : 主动断开IPv4连接
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6CallEnded, Test_AT_PS_ProcIpv6CallEnded_002)
 {
     //参数定义
@@ -11918,14 +9440,7 @@ TEST_F(Test_AT_PS_ProcIpv6CallEnded, Test_AT_PS_ProcIpv6CallEnded_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ProcIpv4v6CallEnded
- 功能描述   : Test_AT_PS_ProcIpv4v6CallEnded UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcIpv4v6CallEnded: public ::testing::Test
 {
 public:
@@ -11977,15 +9492,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4v6CallEnded_001
- 测试用例标题   : IPv4v6拨号连接断开
- 预期结果       : 呼叫实体释放
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4v6CallEnded, Test_AT_PS_ProcIpv4v6CallEnded_001)
 {
     //参数定义
@@ -12038,14 +9545,7 @@ TEST_F(Test_AT_PS_ProcIpv4v6CallEnded, Test_AT_PS_ProcIpv4v6CallEnded_001)
 }
 #endif
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ProcIpv4CallReject
- 功能描述   : Test_AT_PS_ProcIpv4CallReject UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcIpv4CallReject: public ::testing::Test
 {
 public:
@@ -12110,15 +9610,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4CallReject_001
- 测试用例标题   : IPv4 only连接建立失败
- 预期结果       : 呼叫实体释放
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallReject, Test_AT_PS_ProcIpv4CallReject_001)
 {
     //参数定义
@@ -12167,15 +9659,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallReject, Test_AT_PS_ProcIpv4CallReject_001)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4CallReject_002
- 测试用例标题   : 双栈拨号: IPv4连接建立失败, 发起IPv6连接建立成功
- 预期结果       : 发起IPv6连接建立成功
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallReject, Test_AT_PS_ProcIpv4CallReject_002)
 {
     //参数定义
@@ -12232,15 +9716,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallReject, Test_AT_PS_ProcIpv4CallReject_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4CallReject_003
- 测试用例标题   : 双栈拨号: IPv4连接建立失败, 发起IPv6连接建立失败
- 预期结果       : 发起IPv6连接建立失败
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4CallReject, Test_AT_PS_ProcIpv4CallReject_003)
 {
     //参数定义
@@ -12299,14 +9775,7 @@ TEST_F(Test_AT_PS_ProcIpv4CallReject, Test_AT_PS_ProcIpv4CallReject_003)
 #endif
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 类名       : Test_AT_PS_ProcIpv6CallReject
- 功能描述   : Test_AT_PS_ProcIpv6CallReject UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcIpv6CallReject: public ::testing::Test
 {
 public:
@@ -12363,15 +9832,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv6CallReject_001
- 测试用例标题   : 双栈拨号: IPv6连接建立失败, IPv4连接未建立
- 预期结果       : 连接建立失败
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv6CallReject, Test_AT_PS_ProcIpv6CallReject_001)
 {
     //参数定义
@@ -12413,14 +9874,7 @@ TEST_F(Test_AT_PS_ProcIpv6CallReject, Test_AT_PS_ProcIpv6CallReject_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ProcIpv4v6CallReject
- 功能描述   : Test_AT_PS_ProcIpv4v6CallReject UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcIpv4v6CallReject: public ::testing::Test
 {
 public:
@@ -12482,15 +9936,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4v6CallReject_001
- 测试用例标题   : 双栈拨号: IPv4v6连接建立失败, 不发起回退处理流程
- 预期结果       : 连接建立失败
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4v6CallReject, Test_AT_PS_ProcIpv4v6CallReject_001)
 {
     //参数定义
@@ -12532,15 +9978,7 @@ TEST_F(Test_AT_PS_ProcIpv4v6CallReject, Test_AT_PS_ProcIpv4v6CallReject_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4v6CallReject_002
- 测试用例标题   : 双栈拨号: IPv4v6连接建立失败, 发起回退处理流程#28
- 预期结果       : 发起IPv4连接建立成功
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4v6CallReject, Test_AT_PS_ProcIpv4v6CallReject_002)
 {
     //参数定义
@@ -12585,15 +10023,7 @@ TEST_F(Test_AT_PS_ProcIpv4v6CallReject, Test_AT_PS_ProcIpv4v6CallReject_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ProcIpv4v6CallReject_003
- 测试用例标题   : 双栈拨号: IPv4v6连接建立失败, 发起回退处理失败
- 预期结果       : 发起IPv4连接建立失败
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcIpv4v6CallReject, Test_AT_PS_ProcIpv4v6CallReject_003)
 {
     //参数定义
@@ -12650,14 +10080,7 @@ TEST_F(Test_AT_PS_ProcIpv4v6CallReject, Test_AT_PS_ProcIpv4v6CallReject_003)
 }
 #endif
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ReportDCONN
- 功能描述   : Test_AT_PS_ReportDCONN UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ReportDCONN: public ::testing::Test
 {
 public:
@@ -12670,15 +10093,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ReportDCONN_001
- 测试用例标题   : PDP类型错误
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ReportDCONN, Test_AT_PS_ReportDCONN_001)
 {
     //参数定义
@@ -12704,15 +10119,7 @@ TEST_F(Test_AT_PS_ReportDCONN, Test_AT_PS_ReportDCONN_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ReportDCONN_002
- 测试用例标题   : PDP类型为IPv4v6
- 预期结果       : 上报^DCONN
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ReportDCONN, Test_AT_PS_ReportDCONN_002)
 {
     //参数定义
@@ -12740,14 +10147,7 @@ TEST_F(Test_AT_PS_ReportDCONN, Test_AT_PS_ReportDCONN_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_ReportDEND
- 功能描述   : Test_AT_PS_ReportDEND UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ReportDEND: public ::testing::Test
 {
 public:
@@ -12760,15 +10160,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_ReportDEND_001
- 测试用例标题   : PDP类型错误
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ReportDEND, Test_AT_PS_ReportDEND_001)
 {
     //参数定义
@@ -12796,14 +10188,7 @@ TEST_F(Test_AT_PS_ReportDEND, Test_AT_PS_ReportDEND_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_SndCallConnectedResult
- 功能描述   : Test_AT_PS_SndCallConnectedResult UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_SndCallConnectedResult: public ::testing::Test
 {
 public:
@@ -12821,15 +10206,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_SndCallConnectedResult_001
- 测试用例标题   : 找不到用户类型对应的上报函数
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SndCallConnectedResult, Test_AT_PS_SndCallConnectedResult_001)
 {
     //参数定义
@@ -12860,14 +10237,7 @@ TEST_F(Test_AT_PS_SndCallConnectedResult, Test_AT_PS_SndCallConnectedResult_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_SndCallEndedResult
- 功能描述   : Test_AT_PS_SndCallEndedResult UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_SndCallEndedResult: public ::testing::Test
 {
 public:
@@ -12886,15 +10256,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_SndCallEndedResult_001
- 测试用例标题   : 找不到用户类型对应的上报函数
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SndCallEndedResult, Test_AT_PS_SndCallEndedResult_001)
 {
     //参数定义
@@ -12927,14 +10289,7 @@ TEST_F(Test_AT_PS_SndCallEndedResult, Test_AT_PS_SndCallEndedResult_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_GetCidByCallType
- 功能描述   : Test_AT_PS_GetCidByCallType UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_GetCidByCallType: public ::testing::Test
 {
 public:
@@ -12952,15 +10307,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_GetCidByCallType_001
- 测试用例标题   : PDP类型错误
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_GetCidByCallType, Test_AT_PS_GetCidByCallType_001)
 {
     //参数定义
@@ -12999,14 +10346,7 @@ TEST_F(Test_AT_PS_GetCidByCallType, Test_AT_PS_GetCidByCallType_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_PS_SetCallState
- 功能描述   : Test_AT_PS_SetCallState UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_SetCallState: public ::testing::Test
 {
 public:
@@ -13024,15 +10364,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_PS_SetCallState_001
- 测试用例标题   : PDP类型错误
- 预期结果       : 直接返回
- 修改历史       :
- 1.日   期  : 2012-12-24
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SetCallState, Test_AT_PS_SetCallState_001)
 {
     //参数定义
@@ -13070,14 +10402,7 @@ TEST_F(Test_AT_PS_SetCallState, Test_AT_PS_SetCallState_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_RegFCPoint
-功能描述 : AT_PS_RegFCPoint UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_RegFCPoint: public ::testing::Test
 {
 public:
@@ -13109,15 +10434,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_RegFCPoint_001
-测试用例标题: 无对应的处理函数
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_RegFCPoint, Test_AT_PS_RegFCPoint_001)
 {
     // 变量声明
@@ -13137,14 +10454,7 @@ TEST_F(Test_AT_PS_RegFCPoint, Test_AT_PS_RegFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_RegHsicFCPoint
-功能描述 : AT_PS_RegHsicFCPoint UT工程类
-修改历史 :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_RegHsicFCPoint: public ::testing::Test
 {
 public:
@@ -13183,15 +10493,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_RegHsicFCPoint_001
-测试用例标题: 未注册通道
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_001)
 {
     // 变量声明
@@ -13209,15 +10511,7 @@ TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_RegHsicFCPoint_002
-测试用例标题: FC_RegPoint注册通道失败
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_002)
 {
     // 变量声明
@@ -13238,15 +10532,7 @@ TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_RegHsicFCPoint_003
-测试用例标题: FC_RegPoint注册通道失败
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_003)
 {
     // 变量声明
@@ -13267,15 +10553,7 @@ TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_RegHsicFCPoint_004
-测试用例标题: FC_RegPoint注册通道失败
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_004)
 {
     // 变量声明
@@ -13296,15 +10574,7 @@ TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_RegHsicFCPoint_005
-测试用例标题: FC_RegPoint注册通道失败
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_005)
 {
     // 变量声明
@@ -13325,15 +10595,7 @@ TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_RegHsicFCPoint_006
-测试用例标题: 通道错误
-预期结果    : 不注册
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_006)
 {
     // 变量声明
@@ -13355,15 +10617,7 @@ TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_006)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_RegHsicFCPoint_007
-测试用例标题: 流控点已注册
-预期结果    : 不注册
-修改历史    :
- 1.日   期  : 2012-12-21
-   作   者  : Y00213812
-   修改内容 : C50 IPv6 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_007)
 {
     // 变量声明
@@ -13392,14 +10646,7 @@ TEST_F(Test_AT_PS_RegHsicFCPoint, Test_AT_PS_RegHsicFCPoint_007)
 }
 #endif
 
-/******************************************************************************
-类名     : Test_AT_PS_DeRegHsicFCPoint
-功能描述 : AT_PS_DeRegHsicFCPoint UT工程类
-修改历史 :
-1.日   期  : 2013-5-9
-  作   者  : l60609
-  修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_DeRegHsicFCPoint: public ::testing::Test
 {
 public:
@@ -13415,15 +10662,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_DeRegHsicFCPoint_001
-测试用例标题: clientid无效
-预期结果    : 不去注册FC
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 TEST_F(Test_AT_PS_DeRegHsicFCPoint, Test_AT_PS_DeRegHsicFCPoint_001)
 {
     // 变量声明
@@ -13445,15 +10684,7 @@ TEST_F(Test_AT_PS_DeRegHsicFCPoint, Test_AT_PS_DeRegHsicFCPoint_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_DeRegHsicFCPoint_002
-测试用例标题: fc id无效
-预期结果    : 不去注册FC
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 TEST_F(Test_AT_PS_DeRegHsicFCPoint, Test_AT_PS_DeRegHsicFCPoint_002)
 {
     // 变量声明
@@ -13483,15 +10714,7 @@ TEST_F(Test_AT_PS_DeRegHsicFCPoint, Test_AT_PS_DeRegHsicFCPoint_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_DeRegHsicFCPoint_003
-测试用例标题: 去注册FC失败
-预期结果    : 不去注册FC
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 TEST_F(Test_AT_PS_DeRegHsicFCPoint, Test_AT_PS_DeRegHsicFCPoint_003)
 {
     // 变量声明
@@ -13521,14 +10744,7 @@ TEST_F(Test_AT_PS_DeRegHsicFCPoint, Test_AT_PS_DeRegHsicFCPoint_003)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_AT_PS_RegAppFCPoint
-功能描述 : AT_PS_RegAppFCPoint UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_RegAppFCPoint: public ::testing::Test
 {
 public:
@@ -13567,15 +10783,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_RegAppFCPoint_001
-测试用例标题: 流控点已注册
-预期结果    : 打印log
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 TEST_F(Test_AT_PS_RegAppFCPoint, Test_AT_PS_RegAppFCPoint_001)
 {
     // 变量声明
@@ -13597,14 +10805,7 @@ TEST_F(Test_AT_PS_RegAppFCPoint, Test_AT_PS_RegAppFCPoint_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_AT_PS_GetFcIdByUdiDeviceId
-功能描述 : AT_PS_GetFcIdByUdiDeviceId UT工程类
-修改历史 :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_GetFcIdByUdiDeviceId: public ::testing::Test
 {
 public:
@@ -13620,15 +10821,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_GetFcIdByUdiDeviceId_001
-测试用例标题: 获取FCID成功
-预期结果    : 返回对应的FCID
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_GetFcIdByUdiDeviceId, Test_AT_PS_GetFcIdByUdiDeviceId_001)
 {
     EXPECT_EQ(FC_ID_DIPC_1, AT_PS_GetFcIdByUdiDeviceId(UDI_ACM_HSIC_ACM1_ID));
@@ -13644,14 +10837,7 @@ TEST_F(Test_AT_PS_GetFcIdByUdiDeviceId, Test_AT_PS_GetFcIdByUdiDeviceId_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_GetFcIdFromRnicByRmNetId
-功能描述 : AT_PS_GetFcIdFromRnicByRmNetId UT工程类
-修改历史 :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_GetFcIdFromRnicByRmNetId: public ::testing::Test
 {
 public:
@@ -13667,18 +10853,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_GetFcIdFromRnicByRmNetId_001
-测试用例标题: 获取FCID成功
-预期结果    : 返回对应的FCID
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
- 2.日    期   : 2015年05月30日
-   作    者   : w00281933
-   修改内容   : Modified for The TSTS Project
-******************************************************************************/
+
 TEST_F(Test_AT_PS_GetFcIdFromRnicByRmNetId, Test_AT_PS_GetFcIdFromRnicByRmNetId_001)
 {
     EXPECT_EQ(FC_ID_NIC_1, AT_PS_GetFcIdFromRnicByRmNetId(RNIC_RM_NET_ID_0));
@@ -13698,14 +10873,7 @@ TEST_F(Test_AT_PS_GetFcIdFromRnicByRmNetId, Test_AT_PS_GetFcIdFromRnicByRmNetId_
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_GetRnicRmNetIdFromChDataValue
-功能描述 : AT_PS_GetRnicRmNetIdFromChDataValue UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_GetRnicRmNetIdFromChDataValue: public ::testing::Test
 {
 public:
@@ -13735,15 +10903,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_GetRnicRmNetIdFromChDataValue_001
-测试用例标题: 根据chdata获取对应的RMNET ID
-预期结果    : 返回对应的FCID
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_GetRnicRmNetIdFromChDataValue, Test_AT_PS_GetRnicRmNetIdFromChDataValue_001)
 {
     VOS_UINT8                           ucIndex;
@@ -13846,14 +11006,7 @@ TEST_F(Test_AT_PS_GetRnicRmNetIdFromChDataValue, Test_AT_PS_GetRnicRmNetIdFromCh
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_GetChDataValueFromRnicRmNetId
-功能描述 : AT_PS_GetChDataValueFromRnicRmNetId UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_GetChDataValueFromRnicRmNetId: public ::testing::Test
 {
 public:
@@ -13883,15 +11036,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_GetChDataValueFromRnicRmNetId_001
-测试用例标题: 根据RMNET ID获取对应的chdata
-预期结果    : 返回对应的FCID
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_GetChDataValueFromRnicRmNetId, AT_PS_GetChDataValueFromRnicRmNetId_001)
 {
     AT_CH_DATA_CHANNEL_ENUM_UINT32      enDataChannelId;
@@ -13923,14 +11068,7 @@ TEST_F(Test_AT_PS_GetChDataValueFromRnicRmNetId, AT_PS_GetChDataValueFromRnicRmN
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_NDIS_ParseUsrInfo
-功能描述 : AT_NDIS_ParseUsrInfo UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_NDIS_ParseUsrInfo: public ::testing::Test
 {
 public:
@@ -13960,15 +11098,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_NDIS_ParseUsrInfo_001
-测试用例标题: PCUI口模拟NDIS拨号
-预期结果    : 返回对应的FCID
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_NDIS_ParseUsrInfo, Test_AT_NDIS_ParseUsrInfo_001)
 {
     VOS_UINT8                           ucIndex;
@@ -13989,14 +11119,7 @@ TEST_F(Test_AT_NDIS_ParseUsrInfo, Test_AT_NDIS_ParseUsrInfo_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_APP_ParseUsrInfo
-功能描述 : AT_APP_ParseUsrInfo UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_APP_ParseUsrInfo: public ::testing::Test
 {
 public:
@@ -14026,15 +11149,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_APP_ParseUsrInfo_001
-测试用例标题: PCUI口模拟APP拨号
-预期结果    : 返回对应的FCID
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_APP_ParseUsrInfo, Test_AT_APP_ParseUsrInfo_001)
 {
     VOS_UINT8                           ucIndex;
@@ -14054,14 +11169,7 @@ TEST_F(Test_AT_APP_ParseUsrInfo, Test_AT_APP_ParseUsrInfo_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_AT_PS_ParseUsrInfo
-功能描述 : AT_PS_ParseUsrInfo UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_ParseUsrInfo: public ::testing::Test
 {
 public:
@@ -14091,15 +11199,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_ParseUsrInfo_001
-测试用例标题: PCUI口模拟APP通道拨号
-预期结果    : 返回对应的FCID
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_ParseUsrInfo, Test_AT_PS_ParseUsrInfo_001)
 {
     VOS_UINT8                           ucIndex;
@@ -14121,14 +11221,7 @@ TEST_F(Test_AT_PS_ParseUsrInfo, Test_AT_PS_ParseUsrInfo_001)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_AT_PS_SndDipcPdpActBearerTypeInd
-功能描述 : AT_PS_SndDipcPdpActBearerTypeInd UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_SndDipcPdpActBearerTypeInd: public ::testing::Test
 {
 public:
@@ -14158,15 +11251,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndDipcPdpActBearerTypeInd_001
-测试用例标题: 申请内存失败
-预期结果    : 不向DIPC发激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndDipcPdpActBearerTypeInd, Test_AT_PS_SndDipcPdpActBearerTypeInd_001)
 {
     VOS_UINT8                           ucCid;
@@ -14186,11 +11271,9 @@ TEST_F(Test_AT_PS_SndDipcPdpActBearerTypeInd, Test_AT_PS_SndDipcPdpActBearerType
     pstModemPsCtx->astChannelCfg[1].ulRmNetId = UDI_ACM_HSIC_ACM1_ID;
     pstModemPsCtx->astChannelCfg[1].ulRmNetActFlg = VOS_TRUE;
 
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MOCKER(V_MemAlloc)
         .stubs()
         .will(returnValue((void *)NULL));
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     MOCKER(Ps_SendMsg)
         .expects(exactly(1))
@@ -14202,15 +11285,7 @@ TEST_F(Test_AT_PS_SndDipcPdpActBearerTypeInd, Test_AT_PS_SndDipcPdpActBearerType
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndDipcPdpActBearerTypeInd_002
-测试用例标题: 发消息失败
-预期结果    : 不向DIPC发激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndDipcPdpActBearerTypeInd, Test_AT_PS_SndDipcPdpActBearerTypeInd_002)
 {
     VOS_UINT8                           ucCid;
@@ -14240,14 +11315,7 @@ TEST_F(Test_AT_PS_SndDipcPdpActBearerTypeInd, Test_AT_PS_SndDipcPdpActBearerType
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_SndDipcPdpDeactBearerTypeInd
-功能描述 : AT_PS_SndDipcPdpDeactBearerTypeInd UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_SndDipcPdpDeactBearerTypeInd: public ::testing::Test
 {
 public:
@@ -14277,15 +11345,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndDipcPdpDeactBearerTypeInd_001
-测试用例标题: 申请内存失败
-预期结果    : 不向DIPC发去激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndDipcPdpDeactBearerTypeInd, Test_AT_PS_SndDipcPdpDeactBearerTypeInd_001)
 {
     VOS_UINT8                           ucCid;
@@ -14305,11 +11365,9 @@ TEST_F(Test_AT_PS_SndDipcPdpDeactBearerTypeInd, Test_AT_PS_SndDipcPdpDeactBearer
     pstModemPsCtx->astChannelCfg[1].ulRmNetId = UDI_ACM_HSIC_ACM1_ID;
     pstModemPsCtx->astChannelCfg[1].ulRmNetActFlg = VOS_TRUE;
 
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MOCKER(V_MemAlloc)
         .stubs()
         .will(returnValue((void *)NULL));
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     MOCKER(Ps_SendMsg)
         .expects(exactly(1))
@@ -14321,15 +11379,7 @@ TEST_F(Test_AT_PS_SndDipcPdpDeactBearerTypeInd, Test_AT_PS_SndDipcPdpDeactBearer
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndDipcPdpDeactBearerTypeInd_002
-测试用例标题: 发消息失败
-预期结果    : 不向DIPC发去激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndDipcPdpDeactBearerTypeInd, Test_AT_PS_SndDipcPdpDeactBearerTypeInd_002)
 {
     VOS_UINT8                           ucCid;
@@ -14359,14 +11409,7 @@ TEST_F(Test_AT_PS_SndDipcPdpDeactBearerTypeInd, Test_AT_PS_SndDipcPdpDeactBearer
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_SndRnicIpv4PdpActInd
-功能描述 : AT_PS_SndRnicIpv4PdpActInd UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_SndRnicIpv4PdpActInd: public ::testing::Test
 {
 public:
@@ -14396,15 +11439,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndRnicIpv4PdpActInd_001
-测试用例标题: 申请内存失败
-预期结果    : 不向RNIC发激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndRnicIpv4PdpActInd, Test_AT_PS_SndRnicIpv4PdpActInd_001)
 {
     VOS_UINT8                           ucCid;
@@ -14422,11 +11457,9 @@ TEST_F(Test_AT_PS_SndRnicIpv4PdpActInd, Test_AT_PS_SndRnicIpv4PdpActInd_001)
     pstModemPsCtx->astChannelCfg[1].ulRmNetId = RNIC_RM_NET_ID_0;
     pstModemPsCtx->astChannelCfg[1].ulRmNetActFlg = VOS_TRUE;
 
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MOCKER(V_AllocMsg)
         .stubs()
         .will(returnValue((MsgBlock *)NULL));
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     MOCKER(Ps_SendMsg)
         .expects(never())
@@ -14438,15 +11471,7 @@ TEST_F(Test_AT_PS_SndRnicIpv4PdpActInd, Test_AT_PS_SndRnicIpv4PdpActInd_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndRnicIpv4PdpActInd_002
-测试用例标题: 发消息失败
-预期结果    : 不向RNIC发激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndRnicIpv4PdpActInd, Test_AT_PS_SndRnicIpv4PdpActInd_002)
 {
     VOS_UINT8                           ucCid;
@@ -14474,15 +11499,7 @@ TEST_F(Test_AT_PS_SndRnicIpv4PdpActInd, Test_AT_PS_SndRnicIpv4PdpActInd_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndRnicIpv4PdpActInd_003
-测试用例标题: 流程正确
-预期结果    : 向RNIC发激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndRnicIpv4PdpActInd, Test_AT_PS_SndRnicIpv4PdpActInd_003)
 {
     VOS_UINT8                           ucCid;
@@ -14510,14 +11527,7 @@ TEST_F(Test_AT_PS_SndRnicIpv4PdpActInd, Test_AT_PS_SndRnicIpv4PdpActInd_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_SndRnicIpv6PdpActInd
-功能描述 : AT_PS_SndRnicIpv6PdpActInd UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_SndRnicIpv6PdpActInd: public ::testing::Test
 {
 public:
@@ -14547,15 +11557,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndRnicIpv6PdpActInd_001
-测试用例标题: 申请内存失败
-预期结果    : 不向RNIC发激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndRnicIpv6PdpActInd, Test_AT_PS_SndRnicIpv6PdpActInd_001)
 {
     VOS_UINT8                           ucCid;
@@ -14573,11 +11575,9 @@ TEST_F(Test_AT_PS_SndRnicIpv6PdpActInd, Test_AT_PS_SndRnicIpv6PdpActInd_001)
     pstModemPsCtx->astChannelCfg[1].ulRmNetId = RNIC_RM_NET_ID_0;
     pstModemPsCtx->astChannelCfg[1].ulRmNetActFlg = VOS_TRUE;
 
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MOCKER(V_AllocMsg)
         .stubs()
         .will(returnValue((MsgBlock *)NULL));
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     MOCKER(Ps_SendMsg)
         .expects(never())
@@ -14589,15 +11589,7 @@ TEST_F(Test_AT_PS_SndRnicIpv6PdpActInd, Test_AT_PS_SndRnicIpv6PdpActInd_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndRnicIpv6PdpActInd_002
-测试用例标题: 发消息失败
-预期结果    : 不向RNIC发激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndRnicIpv6PdpActInd, Test_AT_PS_SndRnicIpv6PdpActInd_002)
 {
     VOS_UINT8                           ucCid;
@@ -14625,15 +11617,7 @@ TEST_F(Test_AT_PS_SndRnicIpv6PdpActInd, Test_AT_PS_SndRnicIpv6PdpActInd_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndRnicIpv6PdpActInd_003
-测试用例标题: IPV6类型
-预期结果    : 向RNIC发激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndRnicIpv6PdpActInd, Test_AT_PS_SndRnicIpv6PdpActInd_003)
 {
     VOS_UINT8                           ucCid;
@@ -14661,14 +11645,7 @@ TEST_F(Test_AT_PS_SndRnicIpv6PdpActInd, Test_AT_PS_SndRnicIpv6PdpActInd_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_SndRnicPdpDeactInds
-功能描述 : AT_PS_SndRnicPdpDeactInd UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_SndRnicPdpDeactInd: public ::testing::Test
 {
 public:
@@ -14698,15 +11675,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndDipcPdpDeactBearerTypeInd_001
-测试用例标题: 申请内存失败
-预期结果    : 不向DIPC发去激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndRnicPdpDeactInd, Test_AT_PS_SndRnicPdpDeactInd_001)
 {
     VOS_UINT8                           ucCid;
@@ -14726,11 +11695,9 @@ TEST_F(Test_AT_PS_SndRnicPdpDeactInd, Test_AT_PS_SndRnicPdpDeactInd_001)
     pstModemPsCtx->astChannelCfg[1].ulRmNetId = RNIC_RM_NET_ID_0;
     pstModemPsCtx->astChannelCfg[1].ulRmNetActFlg = VOS_TRUE;
 
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MOCKER(V_MemAlloc)
         .stubs()
         .will(returnValue((void *)NULL));
-/* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     MOCKER(Ps_SendMsg)
         .expects(exactly(1))
@@ -14742,15 +11709,7 @@ TEST_F(Test_AT_PS_SndRnicPdpDeactInd, Test_AT_PS_SndRnicPdpDeactInd_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_SndRnicPdpDeactInd_002
-测试用例标题: 发消息失败
-预期结果    : 不向RNIC发去激活消息
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_SndRnicPdpDeactInd, Test_AT_PS_SndRnicPdpDeactInd_002)
 {
     VOS_UINT8                           ucCid;
@@ -14780,14 +11739,7 @@ TEST_F(Test_AT_PS_SndRnicPdpDeactInd, Test_AT_PS_SndRnicPdpDeactInd_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_GetCallStateByCid
-功能描述 : AT_PS_GetCallStateByCid UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_GetCallStateByCid: public ::testing::Test
 {
 public:
@@ -14817,15 +11769,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_GetCallStateByCid_001
-测试用例标题: CID无对应的CALL ID
-预期结果    : 获取获取状态失败
-修改历史    :
- 1.日   期  : 2013-5-8
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_GetCallStateByCid, Test_AT_PS_GetCallStateByCid_001)
 {
     VOS_UINT16                          usClientId;
@@ -14847,14 +11791,7 @@ TEST_F(Test_AT_PS_GetCallStateByCid, Test_AT_PS_GetCallStateByCid_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_HangupSingleStackConn
-功能描述 : AT_PS_HangupSingleStackConn UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_HangupSingleStackConn: public ::testing::Test
 {
 public:
@@ -14884,15 +11821,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_HangupSingleStackConn_001
-测试用例标题: 当前没有呼叫，主动挂断
-预期结果    : 不发挂断请求
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_HangupSingleStackConn, Test_AT_PS_HangupSingleStackConn_001)
 {
     VOS_UINT16                          usClientId;
@@ -14920,15 +11849,7 @@ TEST_F(Test_AT_PS_HangupSingleStackConn, Test_AT_PS_HangupSingleStackConn_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_HangupSingleStackConn_002
-测试用例标题: 主动挂断失败
-预期结果    : 返回VOS_ERR
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_HangupSingleStackConn, Test_AT_PS_HangupSingleStackConn_002)
 {
     VOS_UINT16                          usClientId;
@@ -14960,15 +11881,7 @@ TEST_F(Test_AT_PS_HangupSingleStackConn, Test_AT_PS_HangupSingleStackConn_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_HangupSingleStackConn_004
-测试用例标题: 当前AT_PDP_STATE_BUTT状态，主动挂断
-预期结果    : 不发挂断请求
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_HangupSingleStackConn, Test_AT_PS_HangupSingleStackConn_004)
 {
     VOS_UINT16                          usClientId;
@@ -14995,14 +11908,7 @@ TEST_F(Test_AT_PS_HangupSingleStackConn, Test_AT_PS_HangupSingleStackConn_004)
     // 执行检查
     GlobalMockObject::verify();
 }
-/******************************************************************************
-类名     : Test_AT_PS_TransCidToCallId
-功能描述 : AT_PS_TransCidToCallId UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_TransCidToCallId: public ::testing::Test
 {
 public:
@@ -15032,15 +11938,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_TransCidToCallId_001
-测试用例标题: CID无效
-预期结果    : 不发挂断请求
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_TransCidToCallId, Test_AT_PS_TransCidToCallId_001)
 {
     EXPECT_EQ(AT_PS_CALL_INVALID_CALLID, AT_PS_TransCidToCallId(0, TAF_MAX_CID + 1));
@@ -15049,14 +11947,7 @@ TEST_F(Test_AT_PS_TransCidToCallId, Test_AT_PS_TransCidToCallId_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_PS_IsIpv6Support
-功能描述 : AT_PS_IsIpv6Support UT工程类
-修改历史 :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增类
-******************************************************************************/
+
 class Test_AT_PS_IsIpv6Support: public ::testing::Test
 {
 public:
@@ -15094,15 +11985,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PS_IsIpv6Support_001
-测试用例标题: 不支持IPV6
-预期结果    : 返回VOS_FALSE
-修改历史    :
- 1.日   期  : 2013-5-9
-   作   者  : l60609
-   修改内容 : IPv6&TAF/SM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_AT_PS_IsIpv6Support, Test_AT_PS_IsIpv6Support_001)
 {
     AT_GetCommPsCtxAddr()->ucIpv6Capability = AT_IPV6_CAPABILITY_IPV4_ONLY;
@@ -15113,14 +11996,7 @@ TEST_F(Test_AT_PS_IsIpv6Support, Test_AT_PS_IsIpv6Support_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_AppRcvIpv6LinkMtu
-功能描述 : AT_AppRcvIpv6LinkMtu UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_AppRcvIpv6LinkMtu: public ::testing::Test
 {
 public:
@@ -15136,15 +12012,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_AppRcvIpv6LinkMtu_001
-测试用例标题      : 接收到HOST模块的MTU数据的处理
-预期结果          :
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_AppRcvIpv6LinkMtu,Test_AT_AppRcvIpv6LinkMtu_001)
 {
     /*变量定义*/
@@ -15168,14 +12036,7 @@ TEST_F(Test_AT_AppRcvIpv6LinkMtu,Test_AT_AppRcvIpv6LinkMtu_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ModemPsRspPdpActEvtCnfProc
-功能描述 : AT_ModemPsRspPdpActEvtCnfProc UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ModemPsRspPdpActEvtCnfProc: public ::testing::Test
 {
 public:
@@ -15191,15 +12052,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ModemPsRspPdpActEvtCnfProc_001
-测试用例标题      : MODEM拨号,收到网络侧PDP激活消息处理
-预期结果          : 调用Share PDP特性相关的处理
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ModemPsRspPdpActEvtCnfProc,Test_AT_ModemPsRspPdpActEvtCnfProc_001)
 {
     /*变量定义*/
@@ -15226,16 +12079,7 @@ TEST_F(Test_AT_ModemPsRspPdpActEvtCnfProc,Test_AT_ModemPsRspPdpActEvtCnfProc_001
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ModemPsRspPdpActEvtCnfProc_002
-测试用例标题      : Modem发起的pdp激活成功
-预期结果          : PPP协商
 
-修改历史     :
-1.日   期  : 2013-05-30
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_AT_ModemPsRspPdpActEvtCnfProc,Test_AT_ModemPsRspPdpActEvtCnfProc_002)
 {
     TAF_PS_CALL_PDP_ACTIVATE_CNF_STRU   stEvent;
@@ -15288,14 +12132,7 @@ TEST_F(Test_AT_ModemPsRspPdpActEvtCnfProc,Test_AT_ModemPsRspPdpActEvtCnfProc_002
 //    GlobalMockObject::verify();
 //}
 
-/*****************************************************************************
-类名     : Test_AT_PS_ProcSharePdpStateChange
-功能描述 : AT_PS_ProcSharePdpStateChange UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcSharePdpStateChange: public ::testing::Test
 {
 public:
@@ -15312,15 +12149,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpStateChange_001
-测试用例标题      : SHARE-PDP特性NV关闭,收到网侧IPV4类型PDP激活消息
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_001)
 {
     /*变量定义*/
@@ -15353,15 +12182,7 @@ TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_001
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpStateChange_002
-测试用例标题      : SHARE-PDP特性NV打开，收到网侧IPV4类型PDP激活消息
-预期结果          : 保存DHCP信息，上报^DCONN
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_002)
 {
     /*变量定义*/
@@ -15415,15 +12236,7 @@ TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_002
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpStateChange_003
-测试用例标题      : SHARE-PDP特性NV打开,收到IPV4类型PDP激活消息,获取上报处理函数失败
-预期结果          : 打印 ERR_LOG
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_003)
 {
     /*变量定义*/
@@ -15464,15 +12277,7 @@ TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_003
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpStateChange_004
-测试用例标题      : SHARE-PDP特性NV打开,收到网侧IPV6类型PDP激活消息
-预期结果          : 保存DHCP信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_004)
 {
     /*变量定义*/
@@ -15508,15 +12313,7 @@ TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_004
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpStateChange_005
-测试用例标题      : SHARE-PDP特性NV打开,收到网侧IPV4V6类型PDP激活消息
-预期结果          : 保存DHCP信息，上报^DCONN
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_005)
 {
     /*变量定义*/
@@ -15573,15 +12370,7 @@ TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_005
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpStateChange_006
-测试用例标题      : SHARE-PDP特性NV打开,收到网侧IPV4V6类型PDP激活消息,获取上报处理函数失败
-预期结果          : 打印 ERR_LOG
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_006)
 {
     /*变量定义*/
@@ -15619,15 +12408,7 @@ TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_006
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpStateChange_007
-测试用例标题      : SHARE-PDP特性NV打开,收到网侧IPV4V6类型PDP去激活,获取上报处理函数失败
-预期结果          : 打印 ERR_LOG
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_007)
 {
     /*变量定义*/
@@ -15665,15 +12446,7 @@ TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_007
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpStateChange_008
-测试用例标题      : SHARE-PDP特性NV打开,收到网侧IPV4V6类型PDP去激活
-预期结果          : 上报^DEND
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_008)
 {
     /*变量定义*/
@@ -15724,14 +12497,7 @@ TEST_F(Test_AT_PS_ProcSharePdpStateChange,Test_AT_PS_ProcSharePdpStateChange_008
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_PS_ProcSharePdpIpv6RaInfo
-功能描述 : AT_PS_ProcSharePdpIpv6RaInfo UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ProcSharePdpIpv6RaInfo: public ::testing::Test
 {
 public:
@@ -15747,15 +12513,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpIpv6RaInfo_001
-测试用例标题      : SHARE-PDP特性NV关闭,收到网侧上报RAINFO消息
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_001)
 {
     /*变量定义*/
@@ -15785,15 +12543,7 @@ TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpIpv6RaInfo_002
-测试用例标题      : SHARE-PDP特性NV打开，收到网侧上报RAINFO消息，消息中地址前缀为空
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_002)
 {
     /*变量定义*/
@@ -15824,15 +12574,7 @@ TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpIpv6RaInfo_003
-测试用例标题      : SHARE-PDP特性NV打开，收到网侧上报RAINFO消息，地址前缀信息已存在
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_003)
 {
     /*变量定义*/
@@ -15864,15 +12606,7 @@ TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpIpv6RaInfo_004
-测试用例标题      : SHARE-PDP特性NV打开，收到网侧上报RAINFO消息，获取上报处理函数失败
-预期结果          : 直接返回
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_004)
 {
     /*变量定义*/
@@ -15908,15 +12642,7 @@ TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpIpv6RaInfo_005
-测试用例标题      : SHARE-PDP特性NV打开，收到网侧上报RAINFO消息
-预期结果          : 上报^DCONN
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_005)
 {
     /*变量定义*/
@@ -15961,15 +12687,7 @@ TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ProcSharePdpIpv6RaInfo_006
-测试用例标题      : SHARE-PDP特性NV打开，收到网侧上报RAINFO消息
-预期结果          : 上报^DCONN
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_006)
 {
     /*变量定义*/
@@ -16018,14 +12736,7 @@ TEST_F(Test_AT_PS_ProcSharePdpIpv6RaInfo,Test_AT_PS_ProcSharePdpIpv6RaInfo_006)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_PS_SaveRnicPdpDhcpPara
-功能描述 : AT_PS_SaveRnicPdpDhcpPara UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_SaveRnicPdpDhcpPara: public ::testing::Test
 {
 public:
@@ -16041,15 +12752,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SaveRnicPdpDhcpPara_001
-测试用例标题      : 收到网侧IPV4类型的PDP激活消息
-预期结果          : 保存IPV4类型的DHCP信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SaveRnicPdpDhcpPara,Test_AT_PS_SaveRnicPdpDhcpPara_001)
 {
     /*变量定义*/
@@ -16074,15 +12777,7 @@ TEST_F(Test_AT_PS_SaveRnicPdpDhcpPara,Test_AT_PS_SaveRnicPdpDhcpPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SaveRnicPdpDhcpPara_002
-测试用例标题      : 收到网侧IPV6类型的PDP激活消息
-预期结果          : IPV6类型的DHCP信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SaveRnicPdpDhcpPara,Test_AT_PS_SaveRnicPdpDhcpPara_002)
 {
     /*变量定义*/
@@ -16105,15 +12800,7 @@ TEST_F(Test_AT_PS_SaveRnicPdpDhcpPara,Test_AT_PS_SaveRnicPdpDhcpPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SaveRnicPdpDhcpPara_003
-测试用例标题      : 收到网侧IPV4V6类型的PDP激活消息
-预期结果          : IPV6类型的DHCP信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SaveRnicPdpDhcpPara,Test_AT_PS_SaveRnicPdpDhcpPara_003)
 {
     /*变量定义*/
@@ -16141,15 +12828,7 @@ TEST_F(Test_AT_PS_SaveRnicPdpDhcpPara,Test_AT_PS_SaveRnicPdpDhcpPara_003)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SaveRnicPdpDhcpPara_004
-测试用例标题      : 收到网侧无效类型的PDP激活消息
-预期结果          : 打印ERR_LOG
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SaveRnicPdpDhcpPara,Test_AT_PS_SaveRnicPdpDhcpPara_004)
 {
     /*变量定义*/
@@ -16172,14 +12851,7 @@ TEST_F(Test_AT_PS_SaveRnicPdpDhcpPara,Test_AT_PS_SaveRnicPdpDhcpPara_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_PS_ResetRnicPdpDhcpPara
-功能描述 : AT_PS_ResetRnicPdpDhcpPara UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_ResetRnicPdpDhcpPara: public ::testing::Test
 {
 public:
@@ -16195,15 +12867,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ResetRnicPdpDhcpPara_001
-测试用例标题      : 收到网侧IPV4类型的PDP去激活消息
-预期结果          : 清除IPV4类型的DHCP信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ResetRnicPdpDhcpPara,Test_AT_PS_ResetRnicPdpDhcpPara_001)
 {
     /*变量定义*/
@@ -16225,15 +12889,7 @@ TEST_F(Test_AT_PS_ResetRnicPdpDhcpPara,Test_AT_PS_ResetRnicPdpDhcpPara_001)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ResetRnicPdpDhcpPara_002
-测试用例标题      : 收到网侧IPV6类型的PDP去激活消息
-预期结果          : 清除IPV6类型的DHCP信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ResetRnicPdpDhcpPara,Test_AT_PS_ResetRnicPdpDhcpPara_002)
 {
     /*变量定义*/
@@ -16254,15 +12910,7 @@ TEST_F(Test_AT_PS_ResetRnicPdpDhcpPara,Test_AT_PS_ResetRnicPdpDhcpPara_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ResetRnicPdpDhcpPara_003
-测试用例标题      : 收到网侧IPV4V6类型的PDP去激活消息
-预期结果          : 清除IPV4\IPV6类型的DHCP信息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ResetRnicPdpDhcpPara,Test_AT_PS_ResetRnicPdpDhcpPara_003)
 {
     /*变量定义*/
@@ -16287,15 +12935,7 @@ TEST_F(Test_AT_PS_ResetRnicPdpDhcpPara,Test_AT_PS_ResetRnicPdpDhcpPara_003)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_ResetRnicPdpDhcpPara_004
-测试用例标题      : 收到网侧无效类型的PDP去激活消息
-预期结果          : 打印ERR_LOG
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_ResetRnicPdpDhcpPara,Test_AT_PS_ResetRnicPdpDhcpPara_004)
 {
     /*变量定义*/
@@ -16316,14 +12956,7 @@ TEST_F(Test_AT_PS_ResetRnicPdpDhcpPara,Test_AT_PS_ResetRnicPdpDhcpPara_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_PS_SendRnicPdnInfoCfgInd
-功能描述 : AT_PS_SendRnicPdnInfoCfgInd UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_SendRnicPdnInfoCfgInd: public ::testing::Test
 {
 public:
@@ -16339,15 +12972,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SendRnicPdnInfoCfgInd_001
-测试用例标题      : 申请消息内存失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_001)
 {
     /*变量定义*/
@@ -16375,15 +13000,7 @@ TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SendRnicPdnInfoCfgInd_002
-测试用例标题      : 发送RNIC IPv4类型的PDN消息
-预期结果          : 消息发送成功
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_002)
 {
     /*变量定义*/
@@ -16422,15 +13039,7 @@ TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SendRnicPdnInfoCfgInd_003
-测试用例标题      : 发送RNIC IPv6类型的PDN消息
-预期结果          : 消息发送成功
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_003)
 {
     /*变量定义*/
@@ -16469,15 +13078,7 @@ TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SendRnicPdnInfoCfgInd_004
-测试用例标题      : 发送RNIC PDN消息类型错误
-预期结果          : 释放消息
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_004)
 {
     /*变量定义*/
@@ -16515,15 +13116,7 @@ TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SendRnicPdnInfoCfgInd_005
-测试用例标题      : 发送RNIC PDN消息失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_005)
 {
     /*变量定义*/
@@ -16564,14 +13157,7 @@ TEST_F(Test_AT_PS_SendRnicPdnInfoCfgInd,Test_AT_PS_SendRnicPdnInfoCfgInd_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_PS_SendRnicPdnInfoRelInd
-功能描述 : AT_PS_SendRnicPdnInfoRelInd UT工程类
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PS_SendRnicPdnInfoRelInd: public ::testing::Test
 {
 public:
@@ -16587,15 +13173,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SendRnicPdnInfoRelInd_001
-测试用例标题      : 申请消息内存失败
-预期结果          : 返回VOS_ERR
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SendRnicPdnInfoRelInd,Test_AT_PS_SendRnicPdnInfoRelInd_001)
 {
     /*变量定义*/
@@ -16619,15 +13197,7 @@ TEST_F(Test_AT_PS_SendRnicPdnInfoRelInd,Test_AT_PS_SendRnicPdnInfoRelInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SendRnicPdnInfoRelInd_002
-测试用例标题      : 发送RNIC IPv4类型的PDN消息
-预期结果          : 消息发送成功
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SendRnicPdnInfoRelInd,Test_AT_PS_SendRnicPdnInfoRelInd_002)
 {
     /*变量定义*/
@@ -16661,15 +13231,7 @@ TEST_F(Test_AT_PS_SendRnicPdnInfoRelInd,Test_AT_PS_SendRnicPdnInfoRelInd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PS_SendRnicPdnInfoRelInd_003
-测试用例标题      : 发送RNIC IPv4类型的PDN消息
-预期结果          : 消息发送成功
-修改历史     :
-1.日   期  : 2013-06-19
-  作   者  : z00214637
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PS_SendRnicPdnInfoRelInd,Test_AT_PS_SendRnicPdnInfoRelInd_003)
 {
     /*变量定义*/
@@ -16705,14 +13267,7 @@ TEST_F(Test_AT_PS_SendRnicPdnInfoRelInd,Test_AT_PS_SendRnicPdnInfoRelInd_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_AT_NdisIpv6ActCnfProc
-功能描述 : AT_NdisIpv6ActCnfProc UT工程类
-修改历史 :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_NdisIpv6ActCnfProc: public ::testing::Test
 {
 public:
@@ -16735,15 +13290,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_NdisIpv6ActCnfProc_001
-测试用例标题: PDP激活携带#51原因值
-预期结果    : 上报IPV4激活被据
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_NdisIpv6ActCnfProc, Test_AT_NdisIpv6ActCnfProc_001)
 {
     // 变量声明
@@ -16773,15 +13320,7 @@ TEST_F(Test_AT_NdisIpv6ActCnfProc, Test_AT_NdisIpv6ActCnfProc_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_NdisIpv6ActCnfProc_002
-测试用例标题: PDP类型错误
-预期结果    : 打印错误信息
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_NdisIpv6ActCnfProc, Test_AT_NdisIpv6ActCnfProc_002)
 {
     // 变量声明
@@ -16809,14 +13348,7 @@ TEST_F(Test_AT_NdisIpv6ActCnfProc, Test_AT_NdisIpv6ActCnfProc_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_Ipv4AddrAtoi
-功能描述 : AT_Ipv4AddrAtoi UT工程类
-修改历史 :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*****************************************************************************/
+
 class Test_AT_Ipv4AddrAtoi: public ::testing::Test
 {
 public:
@@ -16834,15 +13366,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv4AddrAtoi_001
-测试用例标题      : 输入参数为空指针
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_001)
 {
     // 变量声明
@@ -16865,15 +13389,7 @@ TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv4AddrAtoi_002
-测试用例标题      : 输出参数为空指针
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_002)
 {
     // 变量声明
@@ -16897,15 +13413,7 @@ TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv4AddrAtoi_003
-测试用例标题      : 入参长度错误
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_003)
 {
     // 变量声明
@@ -16929,15 +13437,7 @@ TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv4AddrAtoi_004
-测试用例标题      : 单个数值长度错误
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_004)
 {
     // 变量声明
@@ -16961,15 +13461,7 @@ TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv4AddrAtoi_005
-测试用例标题      : 单个数值大于255
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_005)
 {
     // 变量声明
@@ -16993,15 +13485,7 @@ TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv4AddrAtoi_006
-测试用例标题      : 包含错误字符
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_006)
 {
     // 变量声明
@@ -17025,15 +13509,7 @@ TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv4AddrAtoi_007
-测试用例标题      : 最后一个数值大于255
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_007)
 {
     // 变量声明
@@ -17057,15 +13533,7 @@ TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv4AddrAtoi_008
-测试用例标题      : 输入正确的字符串
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_008)
 {
     // 变量声明
@@ -17093,14 +13561,7 @@ TEST_F(Test_AT_Ipv4AddrAtoi, Test_AT_Ipv4AddrAtoi_008)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_Ipv6AddrAtoi
-功能描述 : AT_Ipv6AddrAtoi UT工程类
-修改历史 :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*****************************************************************************/
+
 class Test_AT_Ipv6AddrAtoi: public ::testing::Test
 {
 public:
@@ -17118,15 +13579,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv6AddrAtoi_001
-测试用例标题      : 输入参数为空指针
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_001)
 {
     // 变量声明
@@ -17149,15 +13602,7 @@ TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv6AddrAtoi_002
-测试用例标题      : 输出参数为空指针
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_002)
 {
     // 变量声明
@@ -17181,15 +13626,7 @@ TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv6AddrAtoi_003
-测试用例标题      : 入参长度错误
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_003)
 {
     // 变量声明
@@ -17213,15 +13650,7 @@ TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv4AddrAtoi_004
-测试用例标题      : 单个数值长度错误
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv4AddrAtoi_004)
 {
     // 变量声明
@@ -17245,15 +13674,7 @@ TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv4AddrAtoi_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv6AddrAtoi_005
-测试用例标题      : 单个数值大于255
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_005)
 {
     // 变量声明
@@ -17277,15 +13698,7 @@ TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv6AddrAtoi_006
-测试用例标题      : 包含错误字符
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_006)
 {
     // 变量声明
@@ -17309,15 +13722,7 @@ TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv6AddrAtoi_007
-测试用例标题      : 最后一个数值大于255
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_007)
 {
     // 变量声明
@@ -17341,15 +13746,7 @@ TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_Ipv6AddrAtoi_008
-测试用例标题      : 输入正确的字符串
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年10月14日
-  作    者   : z00189113
-  修改内容   : 新增测试用例
-*******************************************************************/
+
 TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_008)
 {
     // 变量声明
@@ -17389,14 +13786,7 @@ TEST_F(Test_AT_Ipv6AddrAtoi, Test_AT_Ipv6AddrAtoi_008)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_EnableNdisFlowCtl
-功能描述 : Test_AT_EnableNdisFlowCtl UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_EnableNdisFlowCtl: public ::testing::Test
 {
 public:
@@ -17411,15 +13801,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_EnableNdisFlowCtl_001
-测试用例标题    : 启动NDIS流控
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-11-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_EnableNdisFlowCtl, Test_AT_EnableNdisFlowCtl_001)
 {
     // 变量声明
@@ -17438,14 +13820,7 @@ TEST_F(Test_AT_EnableNdisFlowCtl, Test_AT_EnableNdisFlowCtl_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_DisableNdisFlowCtl
-功能描述 : Test_AT_DisableNdisFlowCtl UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_DisableNdisFlowCtl: public ::testing::Test
 {
 public:
@@ -17460,15 +13835,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_AT_DisableNdisFlowCtl_001
-测试用例标题    : 停止NDIS流控
-预期结果        : 直接返回
-修改历史        :
-1.日   期  : 2013-11-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_DisableNdisFlowCtl, Test_AT_DisableNdisFlowCtl_001)
 {
     // 变量声明

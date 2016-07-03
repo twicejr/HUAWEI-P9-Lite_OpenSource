@@ -380,57 +380,10 @@ extern UINT32 SRE_MpuMasterCfg(UINT16 usGroupId, UINT16 usMpuId, UINT16 usRangeI
  */
 extern UINT32 SRE_MpuMasterQuery(UINT16 usGroupId, UINT16 usMpuId, UINT16 usRangeId, UINT16 *pusWrProt);
 
-/**
- * @ingroup  SRE_hw_mpu
- * @brief 禁止指定MPU单元的保护功能。
- *
- * @par 描述:
- * 禁止usMpuId指定的MPU单元的保护功能。
- *
- * @attention
- * <ul>
- * <li>该操作仅支持SD6182和SD6157平台。</li>
- * <li>该操作不支持ESL平台。</li>
- * <li>用户调用该接口时，需要保证对应的MPU资源可被正常使用(未被关断)，否则会导致核挂死。</li>
- * <li>若输入的usMpuId为#OS_MPU_ID_ALL，表示禁止所有MPU单元的保护功能。</li>
- * <li>去使能后，恢复使能前，不能进行mpu的配置操作，否则下次去使能不成功。</li>
- * </ul>
- * @param  usMpuId     [IN] 类型为#UINT16，MPU ID号，范围SD6182:[0,39],SD6157:[0,10]或者等于OS_MPU_ID_ALL。
- *
- * @retval #OS_ERRNO_MPU_ID_INVALID            0x02002102，输入的MPU Id非法。
- * @retval #SRE_OK                             0x00000000，成功。
- *
- * @par 依赖:
- * <ul><li>sre_hw_mpu.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R001C01
- * @see SRE_MpuRestore
- */
+
 extern UINT32 SRE_MpuDisable(UINT16 usMpuId);
 
-/**
- * @ingroup  SRE_hw_mpu
- * @brief 恢复指定MPU单元的保护功能。
- *
- * @par 描述:
- * 恢复usMpuId指定的MPU单元的保护功能。
- *
- * @attention
- * <ul>
- * <li>该操作仅支持SD6182和SD6157平台。</li>
- * <li>该操作不支持ESL平台。</li>
- * <li>用户调用该接口时，需要保证对应的MPU资源可被正常使用(未被关断)，否则会导致核挂死。</li>
- * <li>若输入的usMpuId为#OS_MPU_ID_ALL，表示恢复所有MPU单元的保护功能。</li>
- * </ul>
- * @param  usMpuId     [IN] 类型为#UINT16，MPU ID号，范围SD6182:[0,39],SD6157:[0,10]或者等于OS_MPU_ID_ALL。
- *
- * @retval #OS_ERRNO_MPU_ID_INVALID            0x02002102，输入的MPU Id非法。
- * @retval #SRE_OK                             0x00000000，成功。
- *
- * @par 依赖:
- * <ul><li>sre_hw_mpu.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R001C01
- * @see SRE_MpuDisable
- */
+
 extern UINT32 SRE_MpuRestore(UINT16 usMpuId);
 
 /**
@@ -488,31 +441,7 @@ extern UINT32 SRE_MpuIntQuery(UINT16 usMpuId);
  */
 extern UINT32 SRE_MpuExcHookReg(MPU_EXC_HOOK_FUNC pfnHook);
 
-/**
- * @ingroup  SRE_hw_mpu
- * @brief 初始化MPU Dfx功能。
- *
- * @par 描述:
- * 初始化MPU Dfx功能, 使能MPU错误中断。
- *
- * @attention
- * <ul>
- * <li>该操作仅支持SD6182和SD6157平台。</li>
- * <li>该操作不支持ESL平台。</li>
- * <li>用户调用该接口时，需要保证待初始化DFX功能的MPU资源可被正常使用(未被关断)，否则会导致核挂死。</li>
- * <li>若输入的usMpuId为#OS_MPU_ID_ALL，表示初始化所有MPU DFX功能。</li>
- * <li>如果多个核调用此接口，核间互斥由用户保证。</li>
- * </ul>
- * @param  usMpuId     [IN] 类型为#UINT16，MPU ID号，范围SD6182:[0,39],SD6157:[0,10]或者等于OS_MPU_ID_ALL。
- *
- * @retval #OS_ERRNO_MPU_ID_INVALID            0x02002102，输入的MPU Id非法。
- * @retval #SRE_OK                             0x00000000，成功。
- *
- * @par 依赖:
- * <ul><li>sre_hw_mpu.h：该接口声明所在的头文件。</li></ul>
- * @since RTOSck V100R002C00
- * @see None
- */
+
 extern UINT32 SRE_MpuDfxInit(UINT16 usMpuId);
 
 #endif

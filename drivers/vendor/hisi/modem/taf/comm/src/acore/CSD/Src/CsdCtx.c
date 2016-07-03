@@ -34,72 +34,24 @@ CSD_CTX_STRU                            g_stCsdCtx;
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : CSD_UL_GetAtClientIndex
- 功能描述  : 获取AT Client Index
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CSD_UL_GetAtClientIndex(VOS_VOID)
 {
     return g_stCsdCtx.ucAtClientIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_UL_SetAtClientIndex
- 功能描述  : 设置AT Client Index
- 输入参数  : VOS_UINT8 ucIndex
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CSD_UL_SetAtClientIndex(VOS_UINT8 ucIndex)
 {
     g_stCsdCtx.ucAtClientIndex = ucIndex;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_UL_InsertQueueTail
- 功能描述  : 数据入队操作，插入缓存队列尾部
- 输入参数  : A_CIRCULAR_QUEUE_STRU * pQueueHead
-            VOS_VOID               *pData
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月8日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：使用自旋锁
-
-*****************************************************************************/
 VOS_UINT32 CSD_UL_InsertQueueTail(
     IMM_ZC_HEAD_STRU                   *pstQueueHead,
     IMM_ZC_STRU                        *pstNode
 )
 {
-    /* Modified by l60609 for AP适配项目 ，2012-08-31 Begin */
     VOS_ULONG                           ulLockLevel;
 
     ulLockLevel = 0;
@@ -113,7 +65,6 @@ VOS_UINT32 CSD_UL_InsertQueueTail(
     /* 队列解锁 */
     VOS_SpinUnlockIntUnlock(&g_stCsdCtx.stSpinLock, ulLockLevel);
 
-    /* Modified by l60609 for AP适配项目 ，2012-08-31 End */
 
     CSD_NORMAL_LOG3(ACPU_PID_CSD,
                    "CSD_UL_InsertQueueTail:: Queue len is %d, Pre is 0x%x, Next is 0x%x",
@@ -124,28 +75,10 @@ VOS_UINT32 CSD_UL_InsertQueueTail(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_UL_GetQueueFrontNode
- 功能描述  : 获取上行队列头节点
- 输入参数  : IMM_ZC_HEAD_STRU *pstQueue
- 输出参数  : 无
- 返 回 值  : IMM_ZC_STRU  *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月31日
-    作    者   : l60609
-    修改内容   : AP适配项目：使用自旋锁
-*****************************************************************************/
 IMM_ZC_STRU  *CSD_UL_GetQueueFrontNode(IMM_ZC_HEAD_STRU *pstQueue)
 {
     IMM_ZC_STRU                        *pstNode;
-    /* Modified by l60609 for AP适配项目 ，2012-08-31 Begin */
     VOS_ULONG                           ulLockLevel;
 
     ulLockLevel = 0;
@@ -159,7 +92,6 @@ IMM_ZC_STRU  *CSD_UL_GetQueueFrontNode(IMM_ZC_HEAD_STRU *pstQueue)
     /* 队列解锁 */
     VOS_SpinUnlockIntUnlock(&g_stCsdCtx.stSpinLock, ulLockLevel);
 
-    /* Modified by l60609 for AP适配项目 ，2012-08-31 End */
 
     CSD_NORMAL_LOG3(ACPU_PID_CSD,
                    "CSD_UL_GetQueueFrontNode:: Queue len is %d, Pre is 0x%x, Next is 0x%x",
@@ -169,21 +101,7 @@ IMM_ZC_STRU  *CSD_UL_GetQueueFrontNode(IMM_ZC_HEAD_STRU *pstQueue)
 
     return pstNode;
 }
-/*****************************************************************************
- 函 数 名  : CSD_UL_FreeQueue
- 功能描述  : 清空队列释放数据,注意此接口不释放头结点内存，头结点内存需要自行释放
- 输入参数  : IMM_ZC_HEAD_STRU *stQueue
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月13日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CSD_UL_FreeQueue(IMM_ZC_HEAD_STRU *pstQueue)
 {
     IMM_ZC_STRU                        *pstNode;
@@ -220,178 +138,52 @@ VOS_UINT32 CSD_UL_FreeQueue(IMM_ZC_HEAD_STRU *pstQueue)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CSD_GetUlQueue
- 功能描述  : 获取上行队列指针
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : IMM_ZC_HEAD_STRU *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IMM_ZC_HEAD_STRU *CSD_UL_GetQueue(VOS_VOID)
 {
     return g_stCsdCtx.pstULQueue;
 }
-/*****************************************************************************
- 函 数 名  : CSD_UL_SetQueue
- 功能描述  : 设置上行队列指针
- 输入参数  : IMM_ZC_HEAD_STRU *pstULQueue
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月16日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CSD_UL_SetQueue(IMM_ZC_HEAD_STRU *pstULQueue)
 {
     g_stCsdCtx.pstULQueue = pstULQueue;
 }
-/*****************************************************************************
- 函 数 名  : CSD_GetLastTxSlice
- 功能描述  : 获取最近一次中断触发的slice若是第一次触发则为0
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CSD_GetLastTxSlice(VOS_VOID)
 {
     return g_stCsdCtx.ulLastDICCIsrSlice;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_SetCurrTxSlice
- 功能描述  : 设置SLICE，用来记录最近触发DICC中断的时间
- 输入参数  : VOS_UINT32 CurrSlice
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CSD_SetCurrTxSlice(VOS_UINT32 ulCurrSlice)
 {
     g_stCsdCtx.ulLastDICCIsrSlice       = ulCurrSlice;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_GetUpLinkDataSem
- 功能描述  : 上行数据信号量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_SEM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_SEM CSD_GetUpLinkDataSem(VOS_VOID)
 {
     return g_stCsdCtx.hULdataSem;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_GetDownLinkDataSem
- 功能描述  : 下行数据信号量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_SEM
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_SEM CSD_GetDownLinkDataSem(VOS_VOID)
 {
     return g_stCsdCtx.hDLdataSem;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_GetCallState
- 功能描述  : 获取当前通话状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : AT_CSD_CALL_TYPE_STATE_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 AT_CSD_CALL_TYPE_STATE_ENUM_UINT16 CSD_GetCallState(VOS_VOID)
 {
     return g_stCsdCtx.enCallState;
 }
 
-/*****************************************************************************
- 函 数 名  : CSD_SetCallState
- 功能描述  : 保存当前通话状态
- 输入参数  : AT_CSD_CALL_TYPE_STATE_ENUM_UINT16 enCallState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月12日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CSD_SetCallState(AT_CSD_CALL_TYPE_STATE_ENUM_UINT16 enCallState)
 {
     g_stCsdCtx.enCallState                  = enCallState;
 }
-/*****************************************************************************
- 函 数 名  : CSD_InitSem
- 功能描述  : 初始化上下行队列信号量,需要在FID初始化时调用
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月14日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CSD_InitSem(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -433,26 +225,7 @@ VOS_UINT32 CSD_InitSem(VOS_VOID)
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : CSD_CtxInit
- 功能描述  : 初始化CSD全局变量
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月7日
-    作    者   : w00199382
-    修改内容   : 新生成函数
-  2.日    期   : 2012年9月12日
-    作    者   : l60609
-    修改内容   : AP适配项目：修改锁处理
-  3.日    期   : 2013年05月28日
-    作    者   : f00179208
-    修改内容   : V3R3 PPP PROJECT
-*****************************************************************************/
 VOS_UINT32 CSD_InitCtx(VOS_VOID)
 {
 
@@ -465,10 +238,8 @@ VOS_UINT32 CSD_InitCtx(VOS_VOID)
     /*CSD默认通话状态设置*/
     CSD_SetCallState(AT_CSD_CALL_STATE_OFF);
 
-    /* Added by l60609 for AP适配项目 ，2012-09-10 Begin */
     /* 锁初始化 */
     VOS_SpinLockInit(&g_stCsdCtx.stSpinLock);
-    /* Added by l60609 for AP适配项目 ，2012-09-10 End */
 
     CSD_UL_SetAtClientIndex(0);
 

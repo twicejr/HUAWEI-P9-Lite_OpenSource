@@ -39,21 +39,7 @@ CNAS_EHSM_CTX_STRU* CNAS_EHSM_GetEhsmCtxAddr(VOS_VOID)
     return &(g_stCnasEhsmCtx);
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_InitCtx
-Description     :   THis function is used to init EHSM context
 
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   VOS_VOID
-Modify History:
-    1)  Date    :   2014-05-14
-        Author  :   m00270891
-        Modify content :    Create
-    2)  Date    :   2015-09-18
-        Author  :   w00176964
-        Modify content :CNAS内存裁剪
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_InitCtx(
     CNAS_EHSM_INIT_CTX_TYPE_ENUM_UINT8  enInitType
 )
@@ -69,9 +55,7 @@ VOS_VOID CNAS_EHSM_InitCtx(
     CNAS_EHSM_InitFsmStackCtx(&(pstEhsmCtx->stFsmStack));
 
     /* Init the Cache message queue */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_EHSM_InitCacheMsgQueue(enInitType, &(pstEhsmCtx->stCacheMsgQueue));
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* Init the internal message queue */
     CNAS_EHSM_InitInternalBuffer(&(pstEhsmCtx->stIntMsgQueue));
@@ -416,31 +400,15 @@ VOS_UINT32  CNAS_EHSM_SaveCacheMsg(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_GetNextCachedMsg
-Description     :   This function is used to get the next cache message.
-Input parameters:   None
-Output parameters:  pstEntryMsg - the next cache message.
-Return Value    :   VOS_TRUE - IF message size if ok.
-                    VOS_FALSE - IF message size if too long
-Modify History:
-    1)  Date    :   2014-05-14
-        Author  :   m00270891
-        Modify content :    Create
-    2)  Date    :   2015-09-09
-        Author  :   w00176964
-        Modify content :    CNAS内存裁剪
-*****************************************************************************/
+
 
 VOS_UINT32 CNAS_EHSM_GetNextCachedMsg(
     CNAS_EHSM_MSG_STRU                 *pstEntryMsg
 )
 {
-    /* Added by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     CNAS_EHSM_CACHE_MSG_QUEUE_STRU     *pstMsgQueue     = VOS_NULL_PTR;
     MSG_HEADER_STRU                    *pstCacheMsgHdr  = VOS_NULL_PTR;
     REL_TIMER_MSG                      *pstTimerMsg     = VOS_NULL_PTR;
-    /* Added by w00176964 for CNAS内存裁剪, 2015-9-9, end */
 
     pstMsgQueue = CNAS_EHSM_GetCacheMsgAddr();
 
@@ -452,7 +420,6 @@ VOS_UINT32 CNAS_EHSM_GetNextCachedMsg(
         return VOS_FALSE;
     }
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     pstCacheMsgHdr = (MSG_HEADER_STRU *)(pstMsgQueue->pastCacheMsg[0]);
 
     if (VOS_NULL_PTR == pstCacheMsgHdr)
@@ -476,7 +443,6 @@ VOS_UINT32 CNAS_EHSM_GetNextCachedMsg(
                   CNAS_EHSM_MAX_MSG_BUFFER_LEN,
                   pstCacheMsgHdr,
                   pstCacheMsgHdr->ulLength + VOS_MSG_HEAD_LENGTH);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
 
     return VOS_TRUE;
 
@@ -637,20 +603,7 @@ VOS_UINT8 CNAS_EHSM_GetIntMsgNum(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_ClearCacheMsg
-Description     :   This function is used to clear a specified index in the cache message queue.
-Input parameters:   ucIndex - The index to be cleared.
-Output parameters:  None
-Return Value    :   None.
-Modify History:
-    1)  Date    :   2014-05-14
-        Author  :   m00270891
-        Modify content :    Create
-    2)  Date    :   2015-09-09
-        Author  :   w00176964
-        Modify content :    CNAS内存裁剪
-*****************************************************************************/
+
 
 VOS_VOID CNAS_EHSM_ClearCacheMsg(
     VOS_UINT8                           ucIndex
@@ -671,7 +624,6 @@ VOS_VOID CNAS_EHSM_ClearCacheMsg(
     {
         pstMsgQueue->ucCacheMsgNum--;
 
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
         if (VOS_NULL_PTR != pstMsgQueue->pastCacheMsg[ucIndex])
         {
             PS_MEM_FREE(UEPS_PID_EHSM, pstMsgQueue->pastCacheMsg[ucIndex]);
@@ -690,27 +642,12 @@ VOS_VOID CNAS_EHSM_ClearCacheMsg(
 
         /* Clear the last member of the queue */
         pstMsgQueue->pastCacheMsg[pstMsgQueue->ucCacheMsgNum] = VOS_NULL_PTR;
-        /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
     }
 
     CNAS_EHSM_MNTN_LogBufferQueueMsg(VOS_FALSE);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ClearAllCacheMsg
- 功能描述  : 清除所有Cache的消息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_ClearAllCacheMsg(VOS_VOID)
 {
     CNAS_EHSM_CACHE_MSG_QUEUE_STRU     *pstMsgQueue = VOS_NULL_PTR;
@@ -735,21 +672,7 @@ VOS_VOID CNAS_EHSM_ClearAllCacheMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_SaveCacheMsgInMsgQueue
-Description     :   This function is used to Save a nessage in the cache message queue.
-Input parameters:   ulEventType - The event type of the message
-                    pstMsg      - Pointer to the message.
-Output parameters:  None
-Return Value    :   None.
-Modify History:
-    1)  Date    :   2014-05-14
-        Author  :   m00270891
-        Modify content :    Create
-    2)  Date    :   2015-09-09
-        Author  :   w00176964
-        Modify content :    CNAS内存裁剪
-*****************************************************************************/
+
 
 VOS_VOID CNAS_EHSM_SaveCacheMsgInMsgQueue(
     VOS_UINT32                          ulEventType,
@@ -772,7 +695,6 @@ VOS_VOID CNAS_EHSM_SaveCacheMsgInMsgQueue(
     }
 
     /* Save the message to the end of the cache message queue */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-7, begin */
     pstMsgQueue->pastCacheMsg[pstMsgQueue->ucCacheMsgNum]
             = (VOS_UINT8 *)PS_MEM_ALLOC(UEPS_PID_EHSM, pstMsgHeader->ulLength + VOS_MSG_HEAD_LENGTH);
 
@@ -787,7 +709,6 @@ VOS_VOID CNAS_EHSM_SaveCacheMsgInMsgQueue(
                   pstMsgHeader->ulLength + VOS_MSG_HEAD_LENGTH);
 
     pstMsgQueue->ucCacheMsgNum++;
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-7, end */
 
     /* Log the Buffer Queue */
     CNAS_EHSM_MNTN_LogBufferQueueMsg(VOS_FALSE);
@@ -796,27 +717,13 @@ VOS_VOID CNAS_EHSM_SaveCacheMsgInMsgQueue(
 }
 
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_InitCacheMsgQueue
-Description     :   This function is used to Init the cache message queue.
-Input parameters:   pstCacheMsgQueue - Pointer to the cache message queue.
-Output parameters:  None
-Return Value    :   None.
-Modify History:
-    1)  Date    :   2014-05-14
-        Author  :   m00270891
-        Modify content :    Create
-    2)  Date    :   2015-09-09
-        Author  :   w00176964
-        Modify content :    CNAS内存裁剪
-*****************************************************************************/
+
 
 VOS_VOID CNAS_EHSM_InitCacheMsgQueue(
     CNAS_EHSM_INIT_CTX_TYPE_ENUM_UINT8  enInitType,
     CNAS_EHSM_CACHE_MSG_QUEUE_STRU     *pstCacheMsgQueue
 )
 {
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, begin */
     VOS_UINT32                          i;
 
     if (CNAS_EHSM_INIT_CTX_STARTUP == enInitType)
@@ -841,7 +748,6 @@ VOS_VOID CNAS_EHSM_InitCacheMsgQueue(
 
         pstCacheMsgQueue->ucCacheMsgNum = 0;
     }
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-9, end */
 }
 
 
@@ -860,14 +766,12 @@ VOS_VOID CNAS_EHSM_SaveCurEntryMsg(
 
     ulLen                       = pstMsg->ulLength + VOS_MSG_HEAD_LENGTH;
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-16, begin */
     if (ulLen > CNAS_EHSM_MAX_MSG_BUFFER_LEN)
     {
         CNAS_WARNING_LOG(UEPS_PID_EHSM, "CNAS_EHSM_SaveCurEntryMsg:beyond the Size!");
 
         ulLen = CNAS_EHSM_MAX_MSG_BUFFER_LEN;
     }
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-16, end */
 
     /* Save the message received in the entry message address  */
     NAS_MEM_CPY_S(&pstEntryMsg->aucMsgBuffer[0], CNAS_EHSM_MAX_MSG_BUFFER_LEN, pstMsg, ulLen);
@@ -979,41 +883,13 @@ VOS_UINT32 CNAS_EHSM_GetAirLinkExistFlag(VOS_VOID)
     return CNAS_EHSM_GetEhsmCtxAddr()->ulAirLinkExist;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetEhrpdAutoAttachFlag
- 功能描述  : 获取EHRPD网络下是否自动发起Attach Req
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_GetEhrpdAutoAttachFlag(VOS_VOID)
 {
     return CNAS_EHSM_GetEhsmCtxAddr()->ulAutoAttachFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetEhrpdAutoAttachFlag
- 功能描述  : 设置EHRPD网络下是否自动发起Attach的标记
- 输入参数  : VOS_UINT32                          ulAutoAttachFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetEhrpdAutoAttachFlag(
     VOS_UINT32                          ulAutoAttachFlag
 )
@@ -1023,21 +899,7 @@ VOS_VOID CNAS_EHSM_SetEhrpdAutoAttachFlag(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_UpdateEhrpdLocalPdnInfoFromPdnConnCnf
- 功能描述  : save ehrpd pdn info to local
- 输入参数  : ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_UpdateEhrpdLocalPdnInfoFromPdnConnCnf(
     CNAS_EHSM_EHRPD_PDN_BEAR_INFO_STRU                     *pstPdnInfo,
     CTTF_CNAS_EHRPD_PDN_CONN_CNF_STRU                      *pStPdnSetUpCnf
@@ -1079,21 +941,7 @@ VOS_VOID CNAS_EHSM_UpdateEhrpdLocalPdnInfoFromPdnConnCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_UpdateEhrpdLocalPdnInfoFromAttachCnf
- 功能描述  : save ehrpd pdn info to local
- 输入参数  : ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_UpdateEhrpdLocalPdnInfoFromAttachCnf(
     CNAS_EHSM_EHRPD_PDN_BEAR_INFO_STRU                     *pstPdnInfo,
     CTTF_CNAS_EHRPD_ATTACH_CNF_STRU                        *pStAttachCnf
@@ -1140,21 +988,7 @@ VOS_VOID CNAS_EHSM_UpdateEhrpdLocalPdnInfoFromAttachCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ClearEhrpdLocalPdnInfo
- 功能描述  : clear ehrpd local pdn info
- 输入参数  : ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_ClearEhrpdLocalPdnInfo(
     VOS_UINT8                           ucPdnId
 )
@@ -1174,21 +1008,7 @@ VOS_VOID CNAS_EHSM_ClearEhrpdLocalPdnInfo(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ClearEhrpdLocalPdnInfo
- 功能描述  : clear ehrpd local pdn info
- 输入参数  : ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_ClearAllEhrpdLocalPdnInfo(VOS_VOID)
 {
     VOS_UINT32                          ulLoop;
@@ -1208,22 +1028,7 @@ VOS_VOID CNAS_EHSM_ClearAllEhrpdLocalPdnInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetApnFromLteInfo
- 功能描述  : 从LTE同步的承载信息中获取APN字符串
- 输入参数  : CNAS_EHSM_APN_STRU                 *pstEhrpdApn
-             CNAS_EHSM_APN_STRU                 *pstLteApn
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月16日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_GetApnFromLteInfo(
     CNAS_EHSM_APN_STRU                 *pstEhrpdApn,
     CNAS_EHSM_APN_STRU                 *pstLteApn
@@ -1268,22 +1073,7 @@ VOS_VOID CNAS_EHSM_GetApnFromLteInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SaveApnInfoWithEsmPdnInfo
- 功能描述  : save apn info to lte local pdn info
- 输入参数  : ucPdnId
-             VOS_UINT8                         ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SaveApnInfoWithEsmPdnInfo(
     CNAS_EHSM_APN_STRU                 *pstApn,
     ESM_EHSM_SYNC_PDN_INFO_IND_STRU    *pstSynPdnInfo
@@ -1298,22 +1088,7 @@ VOS_VOID CNAS_EHSM_SaveApnInfoWithEsmPdnInfo(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SavePdnAddressWithEsmPdnInfo
- 功能描述  : save pdn address info
- 输入参数  : ucPdnId
-             VOS_UINT8                         ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SavePdnAddressWithEsmPdnInfo(
     CNAS_EHSM_PDN_ADDR_STRU            *pstPdnAddr,
     ESM_EHSM_SYNC_PDN_INFO_IND_STRU    *pstSynPdnInfo
@@ -1330,22 +1105,7 @@ VOS_VOID CNAS_EHSM_SavePdnAddressWithEsmPdnInfo(
     pstPdnAddr->enPdnType = pstSynPdnInfo->stPdnAddr.enPdnType;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SavePcoIpv4ItemWithEsmPdnInfo
- 功能描述  : save PcoIpv4Item
- 输入参数  : ucPdnId
-             VOS_UINT8                         ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SavePcoIpv4ItemWithEsmPdnInfo(
     CNAS_EHSM_PCO_IPV4_ITEM_STRU       *pstPcoIpv4Item,
     ESM_EHSM_SYNC_PDN_INFO_IND_STRU    *pstSynPdnInfo
@@ -1364,22 +1124,7 @@ VOS_VOID CNAS_EHSM_SavePcoIpv4ItemWithEsmPdnInfo(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SavePcoIpv6ItemWithEsmPdnInfo
- 功能描述  : save PcoIpv6Item
- 输入参数  : ucPdnId
-             VOS_UINT8                         ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SavePcoIpv6ItemWithEsmPdnInfo(
     CNAS_EHSM_PCO_IPV6_ITEM_STRU       *pstPcoIpv6Item,
     ESM_EHSM_SYNC_PDN_INFO_IND_STRU    *pstSynPdnInfo
@@ -1395,22 +1140,7 @@ VOS_VOID CNAS_EHSM_SavePcoIpv6ItemWithEsmPdnInfo(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SaveApnAmbrWithEsmPdnInfo
- 功能描述  : save apn ambr
- 输入参数  : ucPdnId
-             VOS_UINT8                         ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月3日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SaveApnAmbrWithEsmPdnInfo(
     CNAS_EHSM_APN_AMBR_STRU            *pstApnAmbr,
     ESM_EHSM_SYNC_PDN_INFO_IND_STRU    *pstSynPdnInfo
@@ -1428,22 +1158,7 @@ VOS_VOID CNAS_EHSM_SaveApnAmbrWithEsmPdnInfo(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SaveLteLocalPdnInfo
- 功能描述  : save lte local pdn info
- 输入参数  : ucPdnId
-             VOS_UINT8                         ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SaveLteLocalPdnInfo(
     VOS_UINT8                           ucIndex,
     ESM_EHSM_SYNC_PDN_INFO_IND_STRU    *pstSynPdnInfo
@@ -1471,24 +1186,7 @@ VOS_VOID CNAS_EHSM_SaveLteLocalPdnInfo(
     /* save apn ambr info */
     CNAS_EHSM_SaveApnAmbrWithEsmPdnInfo(&(pstPdnInfo->stApnAmbr), pstSynPdnInfo);
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ClearLteLocalPdnInfo
- 功能描述  : clear lte pdn info
- 输入参数  : ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-  2. Date:  2015-06-05
-    Author: K00902809
-    Description:    Need to find cid value from EHSM Pdn info
-                    Find pdn info (with the above result) from LTE pdn info and clean.
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_ClearLteLocalPdnInfo(
     VOS_UINT8                           ucCid
 )
@@ -1516,21 +1214,7 @@ VOS_VOID CNAS_EHSM_ClearLteLocalPdnInfo(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ClearLteLocalPdnInfo
- 功能描述  : clear lte pdn info
- 输入参数  : ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月21日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_ClearAllLteLocalPdnInfo(VOS_VOID)
 {
     CNAS_EHSM_LTE_PDN_BEAR_INFO_STRU   *pstLtePdnBearInfo = VOS_NULL_PTR;
@@ -1640,21 +1324,7 @@ VOS_UINT32 CNAS_EHSM_GetLocalActivePdnConnNum(VOS_VOID)
     return ulPdnConnNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetLteActivePdnNum
- 功能描述  : 获取LTE激活的PDN NUM
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_GetLteActivePdnNum(VOS_VOID)
 {
     VOS_UINT32                          ulLteActivePdnNum;
@@ -1676,21 +1346,7 @@ VOS_UINT32 CNAS_EHSM_GetLteActivePdnNum(VOS_VOID)
     return ulLteActivePdnNum;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetLocalAllocatedPdnIdNum
- 功能描述  : 获取当前已经分配的PdnId
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月22日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_GetLocalAllocatedPdnIdNum(VOS_VOID)
 {
     VOS_UINT32                          ulPdnNum;
@@ -1781,21 +1437,7 @@ CNAS_EHSM_LTE_PDN_BEAR_INFO_STRU*  CNAS_EHSM_GetLtePdnInfoByEpsbId(
     return VOS_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_InitFsmCtx_Activating
- 功能描述  : Initialize the context for FSM ACTIVATING
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月26日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_InitFsmCtx_Activating(VOS_VOID)
 {
     CNAS_EHSM_CTX_STRU                 *pstEhsmCtx = VOS_NULL_PTR;
@@ -1819,21 +1461,7 @@ VOS_VOID CNAS_EHSM_InitFsmCtx_Activating(VOS_VOID)
     pstEhsmCtx->stCurFsm.unFsmCtx.stActivatingCtx.ucSendPdnActFlag  = VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_InitFsmCtx_Deactivating
- 功能描述  : Initialize the context for FSM DEACTIVATING
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年05月26日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_InitFsmCtx_Deactivating(VOS_VOID)
 {
     CNAS_EHSM_CTX_STRU                 *pstEhsmCtx = VOS_NULL_PTR;
@@ -1857,20 +1485,7 @@ VOS_VOID CNAS_EHSM_InitFsmCtx_Deactivating(VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetRetryInfo_Activating
- 功能描述  : Get Retry Info for Activating process
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : address for retry info
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年05月26日
-    作    者   : h00246512
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 CNAS_EHSM_ACTIVATING_RETRY_INFO_STRU* CNAS_EHSM_GetRetryInfo_Activating(VOS_VOID)
 {
     if (CNAS_EHSM_FSM_ACTIVATING!= CNAS_EHSM_GetCurrFsmId())
@@ -1882,20 +1497,7 @@ CNAS_EHSM_ACTIVATING_RETRY_INFO_STRU* CNAS_EHSM_GetRetryInfo_Activating(VOS_VOID
     return &g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stActivatingCtx.stRetryInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetRetryInfo_Deactivating
- 功能描述  : Get Retry Info for Deactivating process
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : address for retry info
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年05月26日
-    作    者   : h00246512
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 CNAS_EHSM_DEACTIVATING_RETRY_INFO_STRU* CNAS_EHSM_GetRetryInfo_Deactivating(VOS_VOID)
 {
     if (CNAS_EHSM_FSM_DEACTIVATING!= CNAS_EHSM_GetCurrFsmId())
@@ -1926,21 +1528,7 @@ VOS_UINT8 CNAS_EHSM_CheckLtePdnIsActive(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetPdnIdByCid
- 功能描述  : 根据CID获取PDN ID
- 输入参数  : ucCid: CID的值
- 输出参数  : 无
- 返 回 值  : PDN ID的值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月26日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8   CNAS_EHSM_GetPdnIdByCid(
     VOS_UINT8                           ucCid
 )
@@ -1962,21 +1550,7 @@ VOS_UINT8   CNAS_EHSM_GetPdnIdByCid(
     return CNAS_EHSM_INVALID_PDN_ID;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetCidByPdnId
- 功能描述  : 获取CID
- 输入参数  : VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月6日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_EHSM_GetCidByPdnId(
     VOS_UINT8                           ucPdnId
 )
@@ -1988,21 +1562,7 @@ VOS_UINT8 CNAS_EHSM_GetCidByPdnId(
 
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetEpsbIdByPdnId
- 功能描述  : 根据PdnId获取ulEpsbId
- 输入参数  : VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月2日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_GetEpsbIdByPdnId(
     VOS_UINT8                           ucPdnId
 )
@@ -2036,20 +1596,7 @@ VOS_UINT8   CNAS_EHSM_GetLtePdnInfoIndexByEpsbId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetPdnId_Activating
- 功能描述  : Get Pdn Id
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : Pdn Id
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年05月26日
-    作    者   : h00246512
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_UINT8 CNAS_EHSM_GetPdnId_Activating(VOS_VOID)
 {
     if (CNAS_EHSM_FSM_ACTIVATING!= CNAS_EHSM_GetCurrFsmId())
@@ -2061,22 +1608,7 @@ VOS_UINT8 CNAS_EHSM_GetPdnId_Activating(VOS_VOID)
     return CNAS_EHSM_GetCurFsmAddr()->unFsmCtx.stActivatingCtx.ucPdnId;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetPdnIdCid_Activating
- 功能描述  : 更新当前激活状态机的PDNID/CID信息
- 输入参数  : VOS_UINT8                           ucPdnId
-             VOS_UINT8                           ucCid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月3日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetPdnIdCid_Activating(
     VOS_UINT8                           ucPdnId,
     VOS_UINT8                           ucCid
@@ -2089,20 +1621,7 @@ VOS_VOID CNAS_EHSM_SetPdnIdCid_Activating(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetPdnId_Activating
- 功能描述  : Set Pdn Id
- 输入参数  : VOS_UINT8:PDN ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
- 修改历史      :
-  1.日    期   : 2015年05月26日
-    作    者   : h00246512
-    修改内容   : 新生成函数
 
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetPdnId_Activating(
     VOS_UINT8                           ucPdnId
 )
@@ -2268,21 +1787,7 @@ VOS_UINT8 CNAS_EHSM_GetCid_Activating(VOS_VOID)
     return CNAS_EHSM_GetCurFsmAddr()->unFsmCtx.stActivatingCtx.ucCid;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetAbortFlag_Activating
- 功能描述  : set the abort msg flag in Activating fsm ctx
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetAbortFlag_Activating(
     VOS_UINT8                 ucAbortFlag
 )
@@ -2295,21 +1800,7 @@ VOS_VOID CNAS_EHSM_SetAbortFlag_Activating(
 
     g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stActivatingCtx.ucAbortFlag = ucAbortFlag;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetInternalMsgAbortFlag_Activating
- 功能描述  : get the abort msg flag in Activating fsm ctx
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_EHSM_GetAbortFlag_Activating(VOS_VOID)
 {
     if (CNAS_EHSM_FSM_ACTIVATING != CNAS_EHSM_GetCurrFsmId())
@@ -2320,21 +1811,7 @@ VOS_UINT8 CNAS_EHSM_GetAbortFlag_Activating(VOS_VOID)
 
     return g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stActivatingCtx.ucAbortFlag;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetInternalMsgAbortFlag_Deactivating
- 功能描述  : set the abort msg flag in Deactivating fsm ctx
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetAbortFlag_Deactivating(
     VOS_UINT8                 ucAbortFlag
 )
@@ -2347,21 +1824,7 @@ VOS_VOID CNAS_EHSM_SetAbortFlag_Deactivating(
 
     g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stDeactivatingCtx.ucAbortFlag = ucAbortFlag;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetInternalMsgAbortFlag_Deactivating
- 功能描述  : get the abort msg flag in Deactivating fsm ctx
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_EHSM_GetAbortFlag_Deactivating(VOS_VOID)
 {
     if (CNAS_EHSM_FSM_ACTIVATING != CNAS_EHSM_GetCurrFsmId())
@@ -2373,21 +1836,7 @@ VOS_UINT8 CNAS_EHSM_GetAbortFlag_Deactivating(VOS_VOID)
     return g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stDeactivatingCtx.ucAbortFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetSendPdnActFlag_Activating
- 功能描述  : 记录是否发过Pdn激活请求
- 输入参数  : VOS_UINT8                           ucFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetSendPdnActFlag_Activating(
     VOS_UINT8                           ucFlag
 )
@@ -2397,41 +1846,13 @@ VOS_VOID CNAS_EHSM_SetSendPdnActFlag_Activating(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetSendPdnActFlag_Activating
- 功能描述  : 获取是否已经发送过Pdn激活请求
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_EHSM_GetSendPdnActFlag_Activating(VOS_VOID)
 {
     return g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stActivatingCtx.ucSendPdnActFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetSendPdnDeactFlag_Deactivating
- 功能描述  : 记录是否已经发送过Pdn去激活请求
- 输入参数  : VOS_UINT8                           ucFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetSendPdnDeactFlag_Deactivating(
     VOS_UINT8                           ucFlag
 )
@@ -2441,41 +1862,13 @@ VOS_VOID CNAS_EHSM_SetSendPdnDeactFlag_Deactivating(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetSendPdnDeactFlag_Deactivating
- 功能描述  : 获取Pdn去激活请求发送标记
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_EHSM_GetSendPdnDeactFlag_Deactivating(VOS_VOID)
 {
     return g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stDeactivatingCtx.ucSendPdnDeactFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetSendPdnDetachFlag_Deactivating
- 功能描述  : 设置Pdn Detach请求发送标记
- 输入参数  : VOS_UINT8                           ucFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetSendPdnDetachFlag_Deactivating(
     VOS_UINT8                           ucFlag
 )
@@ -2485,61 +1878,19 @@ VOS_VOID CNAS_EHSM_SetSendPdnDetachFlag_Deactivating(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetSendPdnDetachFlag_Deactivating
- 功能描述  : 获取Pdn Detach请求的发送标记
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月8日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_EHSM_GetSendPdnDetachFlag_Deactivating(VOS_VOID)
 {
     return g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stDeactivatingCtx.ucSendPdnDetachFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetEhrpdState
- 功能描述  : 获取EHRPD下承载的状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : CNAS_EHSM_EHRPD_STA_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_EHRPD_STA_ENUM_UINT32 CNAS_EHSM_GetEhrpdState(VOS_VOID)
 {
     return g_stCnasEhsmCtx.enEhrpdState;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetEhrpdState
- 功能描述  : 设置EHRPD下承载的状态
- 输入参数  : CNAS_EHSM_EHRPD_STA_ENUM_UINT32     enState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月1日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetEhrpdState(
     CNAS_EHSM_EHRPD_STA_ENUM_UINT32     enState
 )
@@ -2548,21 +1899,7 @@ VOS_VOID CNAS_EHSM_SetEhrpdState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetAbortEventType_Activating
- 功能描述  : set the abort msg event type in Activating fsm ctx
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetAbortEventType_Activating(
     VOS_UINT32                ulAbortEventType
 )
@@ -2575,21 +1912,7 @@ VOS_VOID CNAS_EHSM_SetAbortEventType_Activating(
 
     g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stActivatingCtx.ulAbortEventType = ulAbortEventType;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetAbortEventType_Activating
- 功能描述  : get the abort msg event type in Activating fsm ctx
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_GetAbortEventType_Activating(VOS_VOID)
 {
     if (CNAS_EHSM_FSM_ACTIVATING != CNAS_EHSM_GetCurrFsmId())
@@ -2600,21 +1923,7 @@ VOS_UINT32 CNAS_EHSM_GetAbortEventType_Activating(VOS_VOID)
 
     return g_stCnasEhsmCtx.stCurFsm.unFsmCtx.stActivatingCtx.ulAbortEventType;
 }
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetAbortEventType_Deactivating
- 功能描述  : set the abort msg event type in Deactivating fsm ctx
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月27日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SetAbortEventType_Deactivating(
     VOS_UINT32                ulAbortEventType
 )
@@ -2630,21 +1939,7 @@ VOS_VOID CNAS_EHSM_SetAbortEventType_Deactivating(
 
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SetFsmStackPopFlg
- 功能描述  : 设置状态机栈pop标志
- 输入参数  : ucStackPopFlg:栈pop标志
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  CNAS_EHSM_SetFsmStackPopFlg(
     VOS_UINT16                          ucStackPopFlg
 )
@@ -2656,21 +1951,7 @@ VOS_VOID  CNAS_EHSM_SetFsmStackPopFlg(
     pstFsmStack->usStackPopFlg  = ucStackPopFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetFsmStackPopFlg
- 功能描述  : 获取状态机栈pop标志
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月6日
-    作    者   : h00246512
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16  CNAS_EHSM_GetFsmStackPopFlg( VOS_VOID )
 {
     CNAS_EHSM_FSM_STACK_STRU           *pstFsmStack = VOS_NULL_PTR;
@@ -2794,25 +2075,7 @@ VOS_VOID CNAS_EHSM_SaveApnAmbrInfo(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_FillPcoInfoForSyncPndInfoInd
- 功能描述  : 设置ID_EHSM_ESM_SYNC_PDN_INFO_IND 对应结构体中的pco info
- 输入参数  :
-            EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pstMsg,
-            CNAS_EHSM_PCO_IPV4_ITEM_STRU       *pstPcoIpv4Item,
-            CNAS_EHSM_PCO_IPV6_ITEM_STRU       *pstPcoIpv6Item
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_FillPcoInfoForSyncPndInfoInd(
     EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pstMsg,
     CNAS_EHSM_PCO_IPV4_ITEM_STRU       *pstPcoIpv4Item,
@@ -2851,24 +2114,7 @@ VOS_VOID CNAS_EHSM_FillPcoInfoForSyncPndInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_FillPdnAddrInfoForSyncPndInfoInd
- 功能描述  : 设置ID_EHSM_ESM_SYNC_PDN_INFO_IND 对应结构体中的pdn address info
- 输入参数  :
-            EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pstMsg,
-            CNAS_EHSM_PDN_ADDR_STRU            *pstPdnAddr
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_FillPdnAddrInfoForSyncPndInfoInd(
     EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pstMsg,
     CNAS_EHSM_PDN_ADDR_STRU            *pstPdnAddr
@@ -2896,24 +2142,7 @@ VOS_VOID CNAS_EHSM_FillPdnAddrInfoForSyncPndInfoInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_FillApnAmbrInfoForSyncPndInfoInd
- 功能描述  : 设置ID_EHSM_ESM_SYNC_PDN_INFO_IND 对应结构体中的apn ambr info
- 输入参数  :
-            EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pstMsg,
-            CNAS_EHSM_PDN_ADDR_STRU            *pstPdnAddr
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2015年6月8日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_FillApnAmbrInfoForSyncPndInfoInd(
     EHSM_ESM_SYNC_PDN_INFO_IND_STRU    *pstMsg,
     CNAS_EHSM_APN_AMBR_STRU            *pstApnAmbr
@@ -2931,21 +2160,7 @@ VOS_VOID CNAS_EHSM_FillApnAmbrInfoForSyncPndInfoInd(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetLtePdnIndexWithMinEspbId
- 功能描述  : 查找LTE承载中承载号最小的作为HANDOVER承载使用
- 输入参数  : VOS_VOID
- 输出参数  : lte pdn info 的索引值
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年6月10日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 CNAS_EHSM_GetLtePdnIndexWithMinEspbId(VOS_VOID)
 {
     CNAS_EHSM_CTX_STRU                 *pstEhsmCtx = VOS_NULL_PTR;
@@ -3041,18 +2256,7 @@ VOS_VOID CNAS_EHSM_InitApnRetryInfo(VOS_VOID)
     }
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_IncreSpecialApnRetryCnt
-Description     :   update the Pdn  retry info，place the curr retry apn in front
-Input parameters:   None
-Output parameters:  None
-Return Value    :   None
 
-Modify History  :
-1)  Date           : 2015-06-1
-    Author         : f00279542
-    Modify content : Create
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_IncreSpecialApnRetryCnt
 (
     CNAS_EHSM_APN_STRU                                     *pstApn
@@ -3112,21 +2316,7 @@ VOS_VOID CNAS_EHSM_IncreSpecialApnRetryCnt
     pstRetryPdnInfo->ucCurrRetryCnt += 1;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_InitEhrpdAutoAttachFlag
- 功能描述  : 初始化EHRPD发起Auto Attach的标记
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_InitEhrpdAutoAttachFlag(VOS_VOID)
 {
     NAS_NVIM_EHRPD_AUTO_ATTACH_CTRL_CFG_STRU      stAutoAttachFlag;
@@ -3145,23 +2335,7 @@ VOS_VOID CNAS_EHSM_InitEhrpdAutoAttachFlag(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_EHSM_GetCidSdfParaInfoForEhsm
- 功能描述  : 获取CID对应的SDF参数, 由APS保证获取的SDF参数有效, 如果CID对应的
-             SDF参数无效, 返回VOS_ERR, 否则返回VOS_OK
- 输入参数  : ucCid                      - CID
- 输出参数  : pstSdfParaInfo             - CID对应的SDF参数
- 返 回 值  : VOS_OK                     - CID对应的SDF参数有效, 获取成功
-             VOS_ERR                    - CID对应的SDF参数无效, 获取失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月25日
-    作    者   : w00242748
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CNAS_EHSM_GetCidSdfParaInfoForEhsm(
     VOS_UINT8                           ucCid,
     APS_EHSM_SDF_PARA_INFO_STRU        *pstSdfParaInfo
@@ -3191,21 +2365,7 @@ VOS_UINT32 CNAS_EHSM_GetCidSdfParaInfoForEhsm(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_GetEhrpdLocPdnAddr
- 功能描述  : 获取本地pdn地址
- 输入参数  : VOS_UINT8
- 输出参数  : 无
- 返 回 值  : CNAS_EHSM_EHRPD_PDN_BEAR_INFO_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月7日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 CNAS_EHSM_EHRPD_PDN_BEAR_INFO_STRU* CNAS_EHSM_GetEhrpdLocPdnAddr(
     VOS_UINT8                           ucPdnId
 )
@@ -3213,21 +2373,7 @@ CNAS_EHSM_EHRPD_PDN_BEAR_INFO_STRU* CNAS_EHSM_GetEhrpdLocPdnAddr(
     return &(CNAS_EHSM_GetEhsmCtxAddr()->astLocalPdnBearInfo[ucPdnId]);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_SyncEhrpdIpv6PrfixWithLtePdnInfo
- 功能描述  : 同步当前LTE的IPV6前缀到Ehrp的信息中
- 输入参数  : VOS_UINT8                           ucPdnId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月28日
-    作    者   : y00314741
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_SyncEhrpdIpv6PrfixWithLtePdnInfo(
     VOS_UINT8                           ucPdnId
 )

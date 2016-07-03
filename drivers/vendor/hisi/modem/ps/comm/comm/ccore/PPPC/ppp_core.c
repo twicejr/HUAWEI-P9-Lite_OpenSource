@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             ppp_core.c                               *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/04/04                                      *
-*  Author:             Deng Yi Ou                                      *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PPP流程控制模块及内核与外壳的接口               *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
-*                      ALL RIGHTS RESERVED                             *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*  PPP流程控制模块及内核与外壳的接口                                   *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -54,23 +34,7 @@ S_CFG_DOMAINNODE g_pstApnByIndex[5];
   3 函数实现
 *****************************************************************************/
 /*lint -save -e958 */
-/*****************************************************************************
- 函 数 名  : PPP_GetUserTypeByIpv4cpReq
- 功能描述  : 根据Ipv4请求消息分析用户类型 SIPV4\CMIP
- 输入参数  : UCHAR* pPacket
-             VOS_UINT32 ulLen
-             VOS_UINT32* pulMsgType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 /*lint -e550*/
 VOS_UINT32 PPP_GetUserTypeByIpv4cpReq(PPPINFO_S *pstPppInfo, UCHAR* pPacket,VOS_UINT32 ulLen, VOS_UINT32* pulMsgType)
 {
@@ -137,24 +101,7 @@ VOS_UINT32 PPP_GetUserTypeByIpv4cpReq(PPPINFO_S *pstPppInfo, UCHAR* pPacket,VOS_
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_CopyIpv4cpMsg
- 功能描述  : 缓存用户发来的第一条Ipv4请求消息
- 输入参数  : PPPINFO_S *pstPppInfo
-             UCHAR *pHead
-             UCHAR *pPacket
-             VOS_UINT32 ulMsgLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_CopyIpv4cpMsg(PPPINFO_S *pstPppInfo, UCHAR *pHead, UCHAR *pPacket, VOS_UINT32 ulMsgLen)
 {
 
@@ -206,24 +153,7 @@ VOS_UINT32 PPP_CopyIpv4cpMsg(PPPINFO_S *pstPppInfo, UCHAR *pHead, UCHAR *pPacket
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_CopyIpv6cpMsg
- 功能描述  : 缓存用户发来的第一条Ipv6cp请求消息
- 输入参数  : PPPINFO_S *pstPppInfo
-             UCHAR *pHead
-             UCHAR *pPacket
-             VOS_UINT32 ulMsgLen
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_CopyIpv6cpMsg(PPPINFO_S *pstPppInfo, UCHAR *pHead, UCHAR *pPacket, VOS_UINT32 ulMsgLen)
 {
     UCHAR *pucCopyMsg = VOS_NULL;
@@ -275,25 +205,7 @@ VOS_UINT32 PPP_CopyIpv6cpMsg(PPPINFO_S *pstPppInfo, UCHAR *pHead, UCHAR *pPacket
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_CopyVsncpReqMsg
- 功能描述  : 缓存ehrpd切换过程中的vsncp请求消息
- 输入参数  : PPPINFO_S *pstPppInfo,
-             UCHAR *pHead,
-             UCHAR *pPacket,
-             VOS_UINT32 ulLen,
-             UCHAR ucCode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月25日
-    作    者   : wangyong 00138171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 PPP_CopyVsncpReqMsg(PPPINFO_S *pstPppInfo,
                           UCHAR *pHead,
                           UCHAR *pPacket,
@@ -341,21 +253,7 @@ VOS_UINT32 PPP_CopyVsncpReqMsg(PPPINFO_S *pstPppInfo,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_Core_IpcpV4FinProc
- 功能描述  : 单栈删除收到ipcp finished事件处理函数
- 输入参数  : PPPINFO_S *pstPppInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月13日
-    作    者   : T62595
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_Core_IpcpV4FinProc( PPPINFO_S *pstPppInfo )
 {
     PPPIPCPINFO_S *pstIpcpInfo = NULL ;
@@ -438,21 +336,7 @@ VOID PPP_Core_IpcpV4FinProc( PPPINFO_S *pstPppInfo )
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_Core_IpcpV6FinProc
- 功能描述  : 单栈删除收到ipv6cp finished事件处理函数
- 输入参数  : PPPINFO_S *pstPppInfo
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月13日
-    作    者   : T62595
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_Core_IpcpV6FinProc( PPPINFO_S *pstPppInfo )
 {
    PPPIPV6CPINFO_S *pstIpv6cpInfo = NULL ;
@@ -528,24 +412,7 @@ VOID PPP_Core_IpcpV6FinProc( PPPINFO_S *pstPppInfo )
 
 
 
-/*****************************************************************************
- 函 数 名  : PPP_Core_ReceivePacketFromShell
- 功能描述  : PPP内核收到外壳发来的协商报文
- 输入参数  : PPPINFO_S *pstPppInfo
-             UCHAR*     pHead
-             UCHAR*     pPacket
-             VOS_UINT32      ulLen
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
                                      UCHAR*     pHead,
                                      UCHAR*     pPacket,
@@ -579,7 +446,6 @@ VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
     {
         /* 提示:错误的报文 */
         PPP_DBG_ERR_CNT(PPP_PHERR_351);
-        /* 输出错误信息 added by gxf 20030528 */
         PPP_Debug_CoreEvent(pstPppInfo, PPP_LOG_ERROR, "Receive Bad Packet!!");
         return;
     }
@@ -663,14 +529,12 @@ VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
                                     (UCHAR)PPP_DEBUG_PACKET_IN);
             }
 
-            /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
             if (VOS_TRUE == pstPppInfo->bEhrpdUser)
             {
                 /* 输出debug信息 */
                 PPP_DBG_ERR_CNT(PPP_PHERR_352);
                 break;
             }
-            /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
             /* 判断是否为网络协商阶段*/
             if (pstPppInfo->usPhase != (VOS_UINT16)PPP_PHASE_NETWORK)
@@ -741,7 +605,6 @@ VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
             return ;
 
         case PPP_IPV6CP:
-            /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
             /* ehrpd用户直接break，到后面回protocol rej消息 */
             if (VOS_TRUE == pstPppInfo->bEhrpdUser)
             {
@@ -749,7 +612,6 @@ VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
                 PPP_DBG_ERR_CNT(PPP_PHERR_358);
                 break;
             }
-            /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
             /* 判断阶段状态是否正确 */
             if (pstPppInfo->usPhase != (VOS_UINT16)PPP_PHASE_NETWORK)
@@ -806,7 +668,6 @@ VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
             /*否则进入正常协商流程*/
             PPP_IPV6CP_Pactket_Proc(pstPppInfo, pHead, pPacket, ulLen);
             return;
-     /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
      case PPP_VSNCP:
 #if 0
             ulRet = USM_GetVsncpNegoFlag(pstPppInfo->ulRPIndex);
@@ -829,7 +690,6 @@ VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
             /*否则进入正常协商流程*/
             PPP_VSNCP_PactketProc(pstPppInfo, pHead, pPacket, ulLen, ucCode);
             return;
-     /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
  #if (VRP_MODULE_LINK_PPP_CCP == VRP_YES)
         case PPP_CCP:
 
@@ -842,14 +702,12 @@ VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
                                     usProtocol,
                                     (UCHAR)PPP_DEBUG_PACKET_IN);
             }
-            /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
             if (VOS_TRUE == pstPppInfo->bEhrpdUser)
             {
                 /* 输出debug信息 */
                 PPP_DBG_ERR_CNT(PPP_PHERR_365);
                 break;
             }
-            /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
             /* 如果是因为协议未到Network阶段pstCcpInfo才为0，
                  则抛弃报文，但不发protocol reject。
@@ -864,7 +722,7 @@ VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
             if (pstPppInfo->pstCcpInfo)
             {
                 PPP_DBG_OK_CNT(PPP_PHOK_971);
-                PPP_CCP_ReceivePacket(pstPppInfo->pstCcpInfo, pHead, pPacket, ulLen, pstPppInfo->ulRPIndex);/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+                PPP_CCP_ReceivePacket(pstPppInfo->pstCcpInfo, pHead, pPacket, ulLen, pstPppInfo->ulRPIndex);
                 return;
             }
 
@@ -1017,22 +875,7 @@ VOID PPP_Core_ReceivePacketFromShell_TestStub(PPPINFO_S *pstPppInfo,
 
 
 
-/*****************************************************************************
- 函 数 名  : PDN_PppStartSubNet
- 功能描述  : PPP收到第一条IPCP请求消息后，启动网络子状态机
- 输入参数  : VOS_UINT32 ulRpIndex
-             VOS_UINT32 ulFsmType
- 输出参数  :
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月22日
-    作    者   : h50774
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_TEST_TIMESTAMP(VOS_UINT32 ulStart, VOS_UINT32 ulEnd, VOS_UINT32 ulRpIndex)
 {
     VOS_UINT32 ulRet = VOS_OK;
@@ -1063,24 +906,7 @@ VOID PPP_TEST_TIMESTAMP(VOS_UINT32 ulStart, VOS_UINT32 ulEnd, VOS_UINT32 ulRpInd
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPP_Core_ReceivePacketFromShell
- 功能描述  : PPP内核收到外壳发来的协商报文
- 输入参数  : PPPINFO_S *pstPppInfo
-             UCHAR*     pHead
-             UCHAR*     pPacket
-             VOS_UINT32      ulLen
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
                                      VOS_UINT8*     pHead,
                                      VOS_UINT8*     pPacket,
@@ -1122,7 +948,6 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
     {
         /* 提示:错误的报文 */
         PPP_DBG_ERR_CNT(PPP_PHERR_375);
-        /* 输出错误信息 added by gxf 20030528 */
         PPP_Debug_CoreEvent(pstPppInfo, PPP_LOG_ERROR, "Receive Bad Packet!!");
         return;
     }
@@ -1192,7 +1017,6 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
                                     (UCHAR)PPP_DEBUG_PACKET_IN);
             }
 
-            /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
             if (VOS_TRUE == pstPppInfo->bEhrpdUser)
             {
                 /* 输出debug信息 */
@@ -1200,7 +1024,6 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
                 PPP_DBG_ERR_CNT(PPP_PHERR_377);
                 break;
             }
-            /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
             /* 判断是否为网络协商阶段*/
             if (pstPppInfo->usPhase != (VOS_UINT16)PPP_PHASE_NETWORK)
@@ -1281,7 +1104,6 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
 
         case PPP_IPV6CP:
 
-            /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
             /* ehrpd用户直接break，到后面回protocol rej消息 */
             if (VOS_TRUE == pstPppInfo->bEhrpdUser)
             {
@@ -1290,7 +1112,6 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
                 PPP_DBG_ERR_CNT(PPP_PHERR_383);
                 break;
             }
-            /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
             /* 判断阶段状态是否正确 */
             if (pstPppInfo->usPhase != (VOS_UINT16)PPP_PHASE_NETWORK)
@@ -1347,7 +1168,6 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
             /*否则进入正常协商流程*/
             PPP_IPV6CP_Pactket_Proc(pstPppInfo, pHead, pPacket, ulLen);
             return;
-     /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
      case PPP_VSNCP:
 
             if (pstPppInfo->bEhrpdUser != VOS_TRUE)
@@ -1372,7 +1192,6 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
             /*否则进入正常协商流程*/
             PPP_VSNCP_PactketProc(pstPppInfo, pHead, pPacket, ulLen, ucCode);
             return;
-     /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
  #if (VRP_MODULE_LINK_PPP_CCP == VRP_YES)
         case PPP_CCP:
 
@@ -1385,7 +1204,6 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
                                     usProtocol,
                                     (UCHAR)PPP_DEBUG_PACKET_IN);
             }
-            /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
             if (VOS_TRUE == pstPppInfo->bEhrpdUser)
             {
                 /* 输出debug信息 */
@@ -1393,7 +1211,6 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
                 PPP_DBG_ERR_CNT(PPP_PHERR_390);
                 break;
             }
-            /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
             /* 如果是因为协议未到Network阶段pstCcpInfo才为0，
                  则抛弃报文，但不发protocol reject。
@@ -1408,7 +1225,7 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
             if (pstPppInfo->pstCcpInfo)
             {
                 PPP_DBG_OK_CNT(PPP_PHOK_986);
-                PPP_CCP_ReceivePacket(pstPppInfo->pstCcpInfo, pHead, pPacket, ulLen, pstPppInfo->ulRPIndex);/* Modified by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+                PPP_CCP_ReceivePacket(pstPppInfo->pstCcpInfo, pHead, pPacket, ulLen, pstPppInfo->ulRPIndex);
                 return;
             }
 
@@ -1561,27 +1378,7 @@ VOID PPP_Core_ReceivePacketFromShell(PPPINFO_S *pstPppInfo,
 
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：从外壳接收事件的接口函数                                   *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030219                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                ulCmd:命令字,可以为如下值:                                 *
-*                      PPPISLDOWN:底层DOWN                                  *
-*                      PPPISLUP:底层UP                                      *
-*                      PPPISLRENEGO:底层发起重协商                          *
-*                      PPPCHGIPADDR:IP地址改变                              *
-*                      PPPCHGIPXADDR:IPX地址改变                            *
-*                       PPPL2TPDOWN: L2TP DOWN              zfz 00/07/05        *
-*                pPara:事件的参数,一般情况下为NULL                          *
-*                      L2TP的LNS端报ISLUP时: 预协商结果                     *
-*                      PPPCHGIPADDR时: 新的IP地址                           *
-*                      PPPCHGIPXADDR时: 新的IPX地址                         *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：PPP_Shell_ISLIoCtl / PPP_Shell_NiIoCtl                     *
-****************************************************************************/
+
 VOID PPP_Core_ReceiveEventFromShell_TestStub(PPPINFO_S *pstPppInfo,
                                     VOS_UINT32      ulCmd,
                                     CHAR *     pPara)
@@ -1711,27 +1508,7 @@ VOID PPP_Core_ReceiveEventFromShell_TestStub(PPPINFO_S *pstPppInfo,
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：从外壳接收事件的接口函数                                   *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030219                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                ulCmd:命令字,可以为如下值:                                 *
-*                      PPPISLDOWN:底层DOWN                                  *
-*                      PPPISLUP:底层UP                                      *
-*                      PPPISLRENEGO:底层发起重协商                          *
-*                      PPPCHGIPADDR:IP地址改变                              *
-*                      PPPCHGIPXADDR:IPX地址改变                            *
-*                       PPPL2TPDOWN: L2TP DOWN              zfz 00/07/05        *
-*                pPara:事件的参数,一般情况下为NULL                          *
-*                      L2TP的LNS端报ISLUP时: 预协商结果                     *
-*                      PPPCHGIPADDR时: 新的IP地址                           *
-*                      PPPCHGIPXADDR时: 新的IPX地址                         *
-* OUTPUT       ：                                                           *
-* RETURN       ：NULL                                                       *
-* CALLED BY    ：PPP_Shell_ISLIoCtl / PPP_Shell_NiIoCtl                     *
-****************************************************************************/
+
 VOID PPP_Core_ReceiveEventFromShell(PPPINFO_S *pstPppInfo,
                                     VOS_UINT32      ulCmd,
                                     CHAR *     pPara)
@@ -1878,18 +1655,7 @@ VOID PPP_Core_ReceiveEventFromShell(PPPINFO_S *pstPppInfo,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：从子协议接收事件的接口函数                                 *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030219                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                ulCmd:命令字,主要为代表各子协议UP/DOWN的值                 *
-*                pPara:事件的参数,一般情况下为NULL                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Shell_ISLIoCtl / PPP_Shell_NiIoCtl                     *
-****************************************************************************/
+
 VOID PPP_Core_ReceiveEventFromProtocol (PPPINFO_S *pstPppInfo,
                                         VOS_UINT32      ulCmd,
                                         CHAR *     pPara)
@@ -1912,8 +1678,7 @@ VOID PPP_Core_ReceiveEventFromProtocol (PPPINFO_S *pstPppInfo,
         {
             if (VOS_ERR == PPP_Shell_ReceiveEventFromCore(pstPppInfo, PPP_LCP_UP, NULL))
             {
-                /* 下发用户信息失败, 拆链   modified by gxf 20030430
-                   LCP open状态下发down、close事件到达initil状态, 需要向shell主动下发LCPDOWN事件(见PPP_Core_DeadPhase) */
+                
                 PPP_LCP_ReceiveEventFromCore(pstPppInfo->pstLcpInfo, PPP_EVENT_FSM_DOWN, NULL);
                 PPP_SET_REL_CODE(pstPppInfo, AM_RELCODE_PPP_LCP_NEGONAK);
                 PPP_LCP_ReceiveEventFromCore(pstPppInfo->pstLcpInfo, PPP_EVENT_FSM_CLOSE, NULL);
@@ -2026,8 +1791,7 @@ VOID PPP_Core_ReceiveEventFromProtocol (PPPINFO_S *pstPppInfo,
                 /* 向外壳发送IPCP UP事件 */
                 if (VOS_ERR == PPP_Shell_ReceiveEventFromCore(pstPppInfo, PPP_IPCP_UP, NULL))
                 {
-                    /* 下发用户信息失败, 拆链   modified by gxf 20030430
-                       LCP open状态下发down、close事件到达initil状态, 需要向shell主动下发LCPDOWN事件(见PPP_Core_DeadPhase) */
+                    
                     /* 上面函数中的所有的错误分支都已经开始了lcp down,这里不需要再进行了 */
                     PPP_DBG_OK_CNT(PPP_PHOK_1004);
                     return;
@@ -2107,7 +1871,6 @@ VOID PPP_Core_ReceiveEventFromProtocol (PPPINFO_S *pstPppInfo,
         case PPP_EVENT_IPV6CPSTARTING:
             break;
 
-        /* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
         case PPP_EVENT_VSNCPUP:
         {
             if (NULL != pstPppInfo->pstVsncpInfo)
@@ -2140,7 +1903,6 @@ VOID PPP_Core_ReceiveEventFromProtocol (PPPINFO_S *pstPppInfo,
         }
         case PPP_EVENT_VSNCPSTARTING:
             break;
-        /* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/19 */
 
         case PPP_EVENT_PAPSUCCESS:/*PAP验证成功 */
         {
@@ -2321,17 +2083,7 @@ VOID PPP_Core_ReceiveEventFromProtocol (PPPINFO_S *pstPppInfo,
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：对方拒绝协商一个协议,通知该协议:lower down                 *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pPppInfo:PPP控制块指针                                     *
-*                usRejectedProtocol:被拒绝的协议号                          *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveProtocolRej                                 *
-****************************************************************************/
+
 VOID PPP_Core_RejectProtocol(VOID *pPppInfo, VOS_UINT16 usRejectedProtocol)
 {
     PPPINFO_S *pstPppInfo = NULL;
@@ -2397,18 +2149,7 @@ VOID PPP_Core_RejectProtocol(VOID *pPppInfo, VOS_UINT16 usRejectedProtocol)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/05                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：按照协议号获得对应协议的状态机指针,没有状态机的            *
-*                (如PAP / CHAP,或协议状态机没有创建)则返回NULL              *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pPppInfo  : PPP控制块                                      *
-*                usProtocol: 协议号                                         *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_FSM_ReceiveProtocolRej                                 *
-****************************************************************************/
+
 PPPFSM_S *PPP_Core_GetFsmByProtocol(VOID *pPppInfo, VOS_UINT16 usProtocol)
 {
     PPPINFO_S *pstPppInfo = NULL;
@@ -2456,19 +2197,7 @@ PPPFSM_S *PPP_Core_GetFsmByProtocol(VOID *pPppInfo, VOS_UINT16 usProtocol)
     return pstFsm;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：获得报文的协议号                                           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                pPacket:报文头指针                                         *
-* OUTPUT       ：                                                           *
-*                pusProtocol:要返回的协议号                                 *
-* RETURN       ：PPP头长度                                                  *
-* CALLED BY    ：PPP_Core_ReceivePacketFromShell                            *
-*                PPP_Shell_ISLInput                                         *
-****************************************************************************/
+
 VOS_UINT32 PPP_Core_GetProtocol(PPPINFO_S *pstPppInfo,
                            UCHAR *    pPacket,
                            VOS_UINT16 *   pusProtocol)
@@ -2571,20 +2300,7 @@ VOS_UINT32 PPP_Core_GetProtocol(PPPINFO_S *pstPppInfo,
     return ulPointerShift;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：收到不能识别或不支持的协议的报文,发送protocol rej报文      *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                pHead:报文所在内存块的头指针                               *
-*                pPacket:报文头指针                                         *
-*                ulLen:报文长度                                             *
-*                usProtocol:报文的协议号                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceivePacketFromShell                            *
-****************************************************************************/
+
 VOID PPP_Core_ReceiveUnknownProtocol (PPPINFO_S *pstPppInfo,
                                       UCHAR *    pHead,
                                       UCHAR *    pPacket,
@@ -2669,16 +2385,7 @@ VOID PPP_Core_ReceiveUnknownProtocol (PPPINFO_S *pstPppInfo,
     }
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：PPP协商阶段转换到Dead阶段                                  *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030220                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceiveEventFromProtocol                                                         *
-****************************************************************************/
+
 VOID PPP_Core_DeadPhase(PPPINFO_S *pstPppInfo)
 {
     /* 缺省启动reset定时器 */
@@ -2719,16 +2426,7 @@ VOID PPP_Core_DeadPhase(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：PPP协商阶段转换到Establish阶段                             *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030220                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceiveEventFromShell                             *
-****************************************************************************/
+
 VOID PPP_Core_EstablishPhase(PPPINFO_S *pstPppInfo)
 {
 
@@ -2765,8 +2463,7 @@ VOID PPP_Core_EstablishPhase(PPPINFO_S *pstPppInfo)
 
     /* 修改配置信息指针  *(pstPppInfo->pstUsedConfigInfo) = *(pstTopPppInfo->pstConfigInfo) ;*/
 
-    /* deleted by gxf 20030220
-       在PPP_InitConfigInfo中完成配置信息初始化 */
+    
 
     /*(VOID)VOS_MemCpy((VOID*)(pstPppInfo->pstUsedConfigInfo),(VOID*)(pstTopPppInfo->pstConfigInfo),sizeof(PPPCONFIGINFO_S));*/
 
@@ -2780,16 +2477,7 @@ VOID PPP_Core_EstablishPhase(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：PPP协商阶段转换到Authenticate阶段                          *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceiveEventFromProtocol                          *
-****************************************************************************/
+
 VOID PPP_Core_AuthenticatePhase(PPPINFO_S *pstPppInfo)
 {
     PPPLCPINFO_S *pstLcpInfo = VOS_NULL_PTR;
@@ -2860,7 +2548,6 @@ VOID PPP_Core_AuthenticatePhase(PPPINFO_S *pstPppInfo)
             PPP_MemSet((void *)pstPppInfo->pstChapInfo, 0, sizeof(PPPCHAPINFO_S));
             PPP_CHAP_Init(pstPppInfo);        /* 初始化CHAP控制块 */
             /* 向CHAP发送消息,触发CHAP开始协商 */
-            /*changed by chenmin00265046，手机不会主动要求协商chap鉴权，由网络来决定是否进行chap鉴权,所以由stHisOptions来判断是否要鉴权*/
             if (pstLcpInfo->stHisOptions.neg_chap)
             {
                 if (0 == pstPppInfo->bPppClient)
@@ -2870,7 +2557,6 @@ VOID PPP_Core_AuthenticatePhase(PPPINFO_S *pstPppInfo)
                 }
                 else
                 {
-                    /* Client 端CHAP UP ,Add by chenmin 00265046*/
                     PPP_CHAP_ReceiveEventFromCore(pstPppInfo, CHAP_EVENT_CLIENTLOWERUP, NULL );
                 }
             }
@@ -2921,16 +2607,7 @@ VOID PPP_Core_AuthenticatePhase(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：CCP主动协商                                                *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030220                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_NetworkPhase                                      *
-****************************************************************************/
+
 VOID ppp_Core_CcpInitiativeNego(PPPINFO_S *pstPppInfo)
 {
     if (NULL == pstPppInfo)
@@ -2989,22 +2666,7 @@ VOID ppp_Core_CcpInitiativeNego(PPPINFO_S *pstPppInfo)
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_Core_NetworkPhase
- 功能描述  : PPP阶段Lcp和Auth完成后转入网络阶段，通知USM
- 输入参数  : PPPINFO_S *pstPppInfo
-             UCHAR* pMsg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_Core_NetworkPhase(PPPINFO_S *pstPppInfo,UCHAR* pMsg)
 {
     UCHAR ucIsRenego = 0;
@@ -3157,16 +2819,7 @@ VOS_UINT32 AAA_IPValidCheck(VOS_UINT32 ulAddr)
     return VOS_ERR;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：PPP协商阶段转换到Network阶段                               *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030220                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceiveEventFromProtocol                          *
-****************************************************************************/
+
 VOID _PPP_Core_NetworkPhase(PPPINFO_S *pstPppInfo)
 {
 
@@ -3286,16 +2939,7 @@ VOID _PPP_Core_NetworkPhase(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：PPP协商阶段转换到Terminate阶段                             *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030220                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_ReceiveEventFromProtocol                          *
-****************************************************************************/
+
 VOID PPP_Core_TerminatePhase(PPPINFO_S *pstPppInfo)
 {
 
@@ -3320,16 +2964,7 @@ VOID PPP_Core_TerminatePhase(PPPINFO_S *pstPppInfo)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：通知上层:LCP down                                          *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_Core_TerminatePhase、PPP_Core_EstablishPhase           *
-****************************************************************************/
+
 VOID PPP_Core_NotifyUperLcpDown(PPPINFO_S *pstPppInfo)
 {
     PPPC_INFO_LOG("\r\n---Into PPP_Core_NotifyUperLcpDown---\r\n");
@@ -3392,16 +3027,7 @@ VOID PPP_Core_NotifyUperLcpDown(PPPINFO_S *pstPppInfo)
 
 /*add by houzhipeng*/
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：通知 NCP down                                              *
-* MODIFY DATE  ：modified by gxf for GGSN80 20030220                        *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：                                                           *
-****************************************************************************/
+
 VOID PPP_Core_NotifyNcpDown(PPPINFO_S *pstPppInfo)
 {
     PPPC_INFO_LOG("\r\n---Into PPP_Core_NotifyNcpDown---\r\n");
@@ -3452,14 +3078,12 @@ VOID PPP_Core_NotifyNcpDown(PPPINFO_S *pstPppInfo)
             pstPppInfo->pstIpcpInfo = NULL;
         }
     }
-/* BEGIN: Added for PN:PDSN融合 by wangyong 00138171, 2013/1/21 */
     if (pstPppInfo->bEhrpdUser)
     {
         PPP_VSNCP_StopRetransmitTimer();
         PPPC_ExtractPdnInfoFromHeadNode();
         PPP_DBG_OK_CNT(PPP_PHOK_1060);
     }
-/* END:   Added for PN:PDSN融合 by wangyong 00138171, 2013/1/21 */
     if (pstPppInfo->pstIpV6cpInfo)
     {
         PPPIPV6CPINFO_S *pstIpv6cpInfo = VOS_NULL_PTR;
@@ -3506,7 +3130,6 @@ VOID PPP_Core_NotifyNcpDown(PPPINFO_S *pstPppInfo)
  #if (VRP_MODULE_LINK_PPP_CCP == VRP_YES)
     if (pstPppInfo->pstCcpInfo)
     {
-        /*add by huzhiyong 删除重传定时器2002/03/08*/
         PPP_CCP_INFO_S * pstCcpInfo;
         PPP_DBG_OK_CNT(PPP_PHOK_1063);
 
@@ -3528,16 +3151,7 @@ VOID PPP_Core_NotifyNcpDown(PPPINFO_S *pstPppInfo)
 }
 
 
-/****************************************************************************
-* CREATE DATE  ：2000/04/04                                                 *
-* CREATED BY   ：Deng Yi Ou                                                 *
-* FUNCTION     ：生成Magic Number                                           *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：                                                           *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_LCP_addci、PPP_LCP_nakci、PPP_LCP_reqci                *
-****************************************************************************/
+
 VOS_UINT32 PPP_GetMagicNumber()
 {
     VOS_UINT32                               ulRetVal = 0;
@@ -3546,7 +3160,7 @@ VOS_UINT32 PPP_GetMagicNumber()
 
 
 #ifdef PPPC_ST
-    static VOS_UINT32 ulMagicNumber = 0x78724c47;/*add by chenmin00265046, 为了用例, 魔数设为定值，需删除*/
+    static VOS_UINT32 ulMagicNumber = 0x78724c47;
 #endif
     while (ulRetVal == 0)
     {
@@ -3559,7 +3173,7 @@ VOS_UINT32 PPP_GetMagicNumber()
         ulRetVal    = ulRandVal + ulSeed;
 
 #ifdef PPPC_ST
-        ulRetVal = ++ulMagicNumber;/*add by chenmin00265046, 为了用例, 魔数设为定值，需删除*/
+        ulRetVal = ++ulMagicNumber;
 #endif
     }
 
@@ -3608,23 +3222,7 @@ VOS_CHAR*  VOS_StrCat( VOS_CHAR * pcdest, const VOS_CHAR * pcsrc )
     return strcat(pcdest, pcsrc);
 }
 
-/*****************************************************************************
- 函 数 名  : PPP_Core_AuthUp
- 功能描述  : LCP up和验证通过后调用此函数,判断是该进入Network阶段
-             还是该进入Authenticate阶段(或只是留在Authenticate阶段)
- 输入参数  : PPPINFO_S *pstPppInfo
-             AAA_AUTHRSP_S* pMsg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月30日
-    作    者   : luofang
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID PPP_Core_AuthUp(PPPINFO_S *pstPppInfo, UCHAR* pMsg)
 {
 

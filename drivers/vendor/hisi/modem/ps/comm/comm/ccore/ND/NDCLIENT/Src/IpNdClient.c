@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : IpNdClient.c
-  版 本 号   : 初稿
-  作    者   : WangGang 00145177
-  生成日期   : 2011年3月31日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-              IPv6_Checksum
-  修改历史   :
-  1.日    期   : 2011年3月31日
-    作    者   : WangGang 00145177
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifdef __cplusplus
 #if __cplusplus
     extern "C" {
@@ -119,21 +101,7 @@ VOS_VOID IP_StartFilterIpv6(VOS_UINT16 usModemId);
 VOS_VOID IP_StopFilterIpv6(VOS_UINT16   usModemId);
 
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_InitEntityNum
- 功能描述  : 重新初始化NDCLIENT实体计数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月10日
-    作    者   : y00151394
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_InitEntityNum(VOS_VOID)
 {
     IP_MEM_SET(g_aulNdClientEntityCnt,0,sizeof(g_aulNdClientEntityCnt));
@@ -141,21 +109,7 @@ VOS_VOID IP_NdClient_InitEntityNum(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_AddEntityNum
- 功能描述  : 增加对应ModemId的NDCLIENT实体计数
- 输入参数  : VOS_UINT16 usModemId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月10日
-    作    者   : y00151394
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_AddEntityNum(VOS_UINT16 usModemId)
 {
     if (usModemId >= MODEM_ID_BUTT)
@@ -175,21 +129,7 @@ VOS_VOID IP_NdClient_AddEntityNum(VOS_UINT16 usModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_SubEntityNum
- 功能描述  : 减小对应ModemId的NDCLIENT实体计数
- 输入参数  : VOS_UINT16 usModemId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月10日
-    作    者   : y00151394
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_SubEntityNum(VOS_UINT16 usModemId)
 {
     if (usModemId >= MODEM_ID_BUTT)
@@ -215,21 +155,7 @@ VOS_VOID IP_NdClient_SubEntityNum(VOS_UINT16 usModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_Init
- 功能描述  : NdClient启动时初始化处理
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_Init(VOS_VOID)
 {
     VOS_UINT32  i;
@@ -248,21 +174,7 @@ VOS_VOID IP_NdClient_Init(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_GetEntityIndex
- 功能描述  : 根据扩展EPSID查找对应的Index
- 输入参数  : VOS_UINT8 ucExEpsId
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年1月10日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  IP_NdClient_GetEntityIndex(VOS_UINT8 ucExEpsId)
 {
     VOS_UINT32      ulCnt;
@@ -279,21 +191,7 @@ VOS_UINT32  IP_NdClient_GetEntityIndex(VOS_UINT8 ucExEpsId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_GetEntity
- 功能描述  : 根据EpsbId查找NdClient实体
- 输入参数  : VOS_UINT8 ucEpsbId
- 输出参数  : 无
- 返 回 值  : IP_NDCLIENT_ENTITY_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IP_NDCLIENT_ENTITY_STRU* IP_NdClient_GetEntity
 (
     VOS_UINT8 ucEpsbId
@@ -314,21 +212,7 @@ IP_NDCLIENT_ENTITY_STRU* IP_NdClient_GetEntity
     return IP_NULL_PTR;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_AllocEntity
- 功能描述  : 分配实体，不做实体重复性判断
- 输入参数  : VOS_UINT8 ucEpsbId
- 输出参数  : 无
- 返 回 值  : IP_NDCLIENT_ENTITY_STRU*
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月6日
-    作    者   : w00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IP_NDCLIENT_ENTITY_STRU* IP_NdClient_AllocEntity(VOS_UINT8  ucExRabId)
 {
     VOS_UINT32 i = 0;
@@ -354,21 +238,7 @@ IP_NDCLIENT_ENTITY_STRU* IP_NdClient_AllocEntity(VOS_UINT8  ucExRabId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_RelEntity
- 功能描述  : 释放NDCLIENT实体
- 输入参数  : IP_NDCLIENT_ENTITY_STRU *pstNdClientEntity
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_RelEntity
 (
     IP_NDCLIENT_ENTITY_STRU *pstNdClientEntity
@@ -392,21 +262,7 @@ VOS_VOID IP_NdClient_RelEntity
 
 
 
-/*****************************************************************************
- 函 数 名  : IP_StartFilterIpv6
- 功能描述  : 触发开启下行ICMPv6包过滤
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_StartFilterIpv6(VOS_UINT16 usModemId)
 {
     NDCLIENT_CDS_START_FILTER_REQ_STRU      *pstStartFilterReq = VOS_NULL_PTR;
@@ -444,21 +300,7 @@ VOS_VOID IP_StartFilterIpv6(VOS_UINT16 usModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_StopFilterIpv6
- 功能描述  : 触发关闭下行ICMPv6包过滤
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_StopFilterIpv6(VOS_UINT16   usModemId)
 {
     NDCLIENT_CDS_STOP_FILTER_REQ_STRU      *pstStopFilterReq = VOS_NULL_PTR;
@@ -497,21 +339,7 @@ VOS_VOID IP_StopFilterIpv6(VOS_UINT16   usModemId)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_GetTimerLen
- 功能描述  : 获取定时器时长
- 输入参数  : NDCLIENT_TIMER_ENUM_UINT32     enTimerType
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  IP_NdClient_GetTimerLen
 (
     NDCLIENT_TIMER_ENUM_UINT32     enTimerType
@@ -533,21 +361,7 @@ VOS_UINT32  IP_NdClient_GetTimerLen
 }
 
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_StopTimer
- 功能描述  : stop Timer
- 输入参数  : IP_TIMER_STRU    *pstTimerInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_StopTimer
 (
     IP_TIMER_STRU    *pstTimerInfo
@@ -563,21 +377,7 @@ VOS_VOID IP_NdClient_StopTimer
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_ReleaseResendResourse
- 功能描述  : 释放重传相关信息
- 输入参数  : IP_NDCLIENT_ENTITY_STRU *pstNdClientEntity
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_ReleaseResendResourse
 (
     IP_NDCLIENT_ENTITY_STRU *pstNdClientEntity
@@ -599,23 +399,7 @@ VOS_VOID IP_NdClient_ReleaseResendResourse
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IP_IsValidPrefix
- 功能描述  : 检查Prefix合法性
-    -  If the prefix is the link-local prefix, silently ignore the Prefix Information option.
-    -  If the preferred lifetime is greater than the valid lifetime, silently ignore the Prefix Information option
- 输入参数  : IP_IPV6_PREFIX_STRU *pstPrefix
- 输出参数  : 无
- 返 回 值  : IP_BOOL_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IP_BOOL_ENUM_UINT8 IP_IsValidPrefix
 (
     const IP_IPV6_PREFIX_STRU *pstPrefix
@@ -639,22 +423,7 @@ IP_BOOL_ENUM_UINT8 IP_IsValidPrefix
     return IP_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_RaIsForMe
- 功能描述  : 判断是否是发给本机的RA
- 输入参数  : VOS_UINT32      ulEpsbId，DSDA后为扩展EpsbId
-             VOS_UINT8      *pucDstIp
- 输出参数  : 无
- 返 回 值  : IP_BOOL_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IP_BOOL_ENUM_UINT8 IP_NdClient_RaIsForMe
 (
     VOS_UINT8      ucEpsbId,
@@ -693,23 +462,7 @@ IP_BOOL_ENUM_UINT8 IP_NdClient_RaIsForMe
 }
 
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_DecompositeRA
- 功能描述  : RA解包
- 输入参数  : IP_ND_MSG_RA_STRU      *pstRa
-             const VOS_UINT8        *pucRaMsg
-             VOS_UINT32              ulTypeOffset
- 输出参数  : 无
- 返 回 值  : IP_ERR_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IP_ERR_ENUM_UINT32 IP_NdClient_DecompositeRA
 (
     IP_ND_MSG_RA_STRU      *pstRa,
@@ -863,23 +616,7 @@ IP_ERR_ENUM_UINT32 IP_NdClient_DecompositeRA
     return IP_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_UpdateWithRA
- 功能描述  : 保存RA，更新NdClient相关信息.
- 输入参数  : VOS_UINT32              ulEpsbId，DSDA后为扩展EpsbId
-             IP_ND_MSG_RA_STRU       *pstRa
-             VOS_UINT8               *pucSrcIp
- 输出参数  : 无
- 返 回 值  : IP_ERR_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IP_ERR_ENUM_UINT32 IP_NdClient_UpdateWithRA
 (
     VOS_UINT8                ucEpsbId,
@@ -915,26 +652,7 @@ IP_ERR_ENUM_UINT32 IP_NdClient_UpdateWithRA
 
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_NotifyApsWithRA
- 功能描述  : 基于RA构造ESM_IP_CONFIG_PARA_IND消息，并发送给ESM
- 输入参数  : VOS_UINT32              ulEpsId,DSDA后为扩展EPSBID
-             IP_ND_MSG_RA_STRU      *pstRa
- 输出参数  : 无
- 返 回 值  : IP_ERR_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-  2.日    期   : 2013年1月10日
-    作    者   : y00151394
-    修改内容   : DSDA修改。
-                 1、入参ucEpsbId含义变成扩展EpsbId，高2bit为ModemId，低6bit为EpsbId
-                 2、修改发送目的PID
-*****************************************************************************/
 IP_ERR_ENUM_UINT32 IP_NdClient_NotifyApsWithRA
 (
     VOS_UINT8              ucEpsId,
@@ -1002,22 +720,7 @@ IP_ERR_ENUM_UINT32 IP_NdClient_NotifyApsWithRA
 
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_ProcessRA
- 功能描述  : RA处理
- 输入参数  : IP_RABM_DATA_IND_STRU  *pstDataInd
-             VOS_UINT32             ulTypeOffset
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_ProcessRA
 (
     VOS_UINT8              ucExRabId,
@@ -1089,22 +792,7 @@ VOS_VOID IP_NdClient_ProcessRA
     IPND_INFO_LOG(NDCLIENT_TASK_PID,"NdClient Notify ESM with RA!");
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_ProcessEchoReq
- 功能描述  : ND CLIENT处理EchoReply报文
- 输入参数  : IP_RABM_DATA_IND_STRU  *pstDataInd
-             VOS_UINT32             ulTypeOffset
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : 00159435
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MEM_ST *IP_NdClient_BuildEchoReply(const VOS_UINT8 *paucLinkLocalAddr, const VOS_UINT8 *pucIpMsg, VOS_UINT32 ulDataLen)
 {
     TTF_MEM_ST                         *pstSdu = IP_NULL_PTR;
@@ -1172,24 +860,7 @@ TTF_MEM_ST *IP_NdClient_BuildEchoReply(const VOS_UINT8 *paucLinkLocalAddr, const
 }
 
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_ProcessEchoReq
- 功能描述  : ND CLIENT处理ECHO REQUEST报文.
- 输入参数  : VOS_UINT8 ucRabId: DSDA后入参ucEpsbId含义变成扩展EpsbId，高2bit为ModemId，低6bit为EpsbId
-             VOS_UINT8 *pucSrcData
-             VOS_UINT32 ulDataLen
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : 00159435
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_ProcessEchoReq(VOS_UINT8 ucRabId,VOS_UINT8 *pucSrcData, VOS_UINT32 ulDataLen)
 {
     VOS_UINT8                          *pucIpMsg = pucSrcData;
@@ -1264,21 +935,7 @@ VOS_VOID IP_NdClient_ProcessEchoReq(VOS_UINT8 ucRabId,VOS_UINT8 *pucSrcData, VOS
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_BuildTooBigICMPPkt
- 功能描述  : 组超长包对应的ICMP回复包
- 输入参数  : VOS_VOID  *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : 00159435
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 TTF_MEM_ST *IP_NdClient_BuildTooBigICMPPkt(const VOS_UINT8 *paucLinkLocalAddr, const VOS_UINT8 *pucIpMsg, VOS_UINT32 ulDataLen)
 {
 
@@ -1352,23 +1009,7 @@ TTF_MEM_ST *IP_NdClient_BuildTooBigICMPPkt(const VOS_UINT8 *paucLinkLocalAddr, c
 }
 
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_ProcTooBigPkt
- 功能描述  : 处理ADS返回C核的的ICMPv6 ERR package:超长包
-             入参ucRabId为扩展rabId,其中高2bit为ModemId，低6bit为EpsbId
 
- 输入参数  : VOS_VOID  *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : 00159435
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_ProcTooBigPkt(VOS_UINT8 ucRabId, VOS_UINT8 *pucSrcData, VOS_UINT32 ulDataLen)
 {
     VOS_UINT8                          *pucIpMsg = pucSrcData;
@@ -1438,21 +1079,7 @@ VOS_VOID IP_NdClient_ProcTooBigPkt(VOS_UINT8 ucRabId, VOS_UINT8 *pucSrcData, VOS
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_SendIpToNw
- 功能描述  : 发送缓存数据包
- 输入参数  : IP_NDCLIENT_ENTITY_STRU *pstNdClientEntity
- 输出参数  : 无
- 返 回 值  : IP_ERR_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 IP_ERR_ENUM_UINT32 IP_NdClient_SendIpToNw
 (
     IP_NDCLIENT_ENTITY_STRU *pstNdClientEntity
@@ -1554,21 +1181,7 @@ IP_ERR_ENUM_UINT32 IP_NdClient_SendIpToNw
     return IP_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_BuildRsHeader
- 功能描述  : 为RS设置初始ICMPv6头，checksum 置0
- 输入参数  : VOS_UINT8    *pucIcmpv6
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_BuildRsHeader
 (
     VOS_UINT8    *pucIcmpv6
@@ -1586,21 +1199,7 @@ VOS_VOID IP_BuildRsHeader
     IP_SetUint16Data(pucIcmpv6 + IP_ICMPV6_CHECKSUM_OFFSET, usInitChecksum);
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ProcNdDataInd
- 功能描述  : 处理CDS/ADS上报的ND数据包。根据将之前处理进行重构。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月02日
-    作    者   : y00151394
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ProcNdDataInd
 (
     VOS_UINT8       ucExRabId,
@@ -1653,21 +1252,7 @@ VOS_VOID IP_NDCLIENT_ProcNdDataInd
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NdClient_AddrRequest
- 功能描述  : 构造RS申请IPv6地址
- 输入参数  : IP_NDCLIENT_ENTITY_STRU *pstNdClientEntity
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NdClient_AddrRequest
 (
     IP_NDCLIENT_ENTITY_STRU *pstNdClientEntity
@@ -1719,21 +1304,7 @@ VOS_VOID IP_NdClient_AddrRequest
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ProcConfigReq
- 功能描述  : 创建实体信息，申请IPv6地址
- 输入参数  : VOS_VOID        *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ProcConfigReq
 (
     VOS_VOID      *pRcvMsg
@@ -1787,21 +1358,7 @@ VOS_VOID IP_NDCLIENT_ProcConfigReq
     IP_NdClient_AddrRequest(pstNdClientEntity);
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ProcStartFilterCnf
- 功能描述  : 处理ICMPv6过滤启动确认消息
- 输入参数  : VOS_VOID    *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ProcStartFilterCnf
 (
     VOS_VOID       *pRcvMsg
@@ -1830,21 +1387,7 @@ VOS_VOID IP_NDCLIENT_ProcStartFilterCnf
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ProcStopFilterCnf
- 功能描述  : 处理ICMPv6过滤关闭确认消息
- 输入参数  : VOS_VOID    *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ProcStopFilterCnf
 (
     VOS_VOID        *pRcvMsg
@@ -1871,21 +1414,7 @@ VOS_VOID IP_NDCLIENT_ProcStopFilterCnf
     }
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ProcCdsNdDataInd
- 功能描述  : 处理IMS ND Data Ind消息
- 输入参数  : VOS_VOID    *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月2日
-    作    者   : y00151394
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ProcCdsNdDataInd
 (
     VOS_VOID        *pRcvMsg
@@ -1908,21 +1437,7 @@ VOS_VOID IP_NDCLIENT_ProcCdsNdDataInd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ProcAdsErrInd
- 功能描述  : 处理ADS返回C核的的ICMPv6 ERR package
- 输入参数  : VOS_VOID  *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月9日
-    作    者   : 00159435
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ProcAdsErrInd
 (
     VOS_VOID      *pRcvMsg
@@ -1961,21 +1476,7 @@ VOS_VOID IP_NDCLIENT_ProcAdsErrInd
 }
 
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ProcAdsDataInd
- 功能描述  : 处理ADS返回C核的的ICMPv6 package
- 输入参数  : VOS_VOID  *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ProcAdsDataInd
 (
     VOS_VOID      *pRcvMsg
@@ -2000,21 +1501,7 @@ VOS_VOID IP_NDCLIENT_ProcAdsDataInd
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ProcEsmIpPdpReleaseInd
- 功能描述  : PDN连接释放处理
- 输入参数  : VOS_VOID         *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ProcEsmIpPdpReleaseInd
 (
     VOS_VOID             *pRcvMsg
@@ -2062,62 +1549,40 @@ VOS_VOID IP_NDCLIENT_ProcEsmIpPdpReleaseInd
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ProcEsmIpRelInd
- 功能描述  : ESM释放所有承载信息处理
- 输入参数  : VOS_VOID      *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ProcEsmIpRelInd
 (
     VOS_VOID     *pRcvMsg
 )
 {
-    VOS_UINT32              i = 0;
+    VOS_UINT32                 i = 0;
+    APS_NDCLIENT_REL_IND_STRU  *pstApsNdReleaseInd;
+    MODEM_ID_ENUM_UINT16                enModemId;
 
-    (VOS_VOID)pRcvMsg;
+    pstApsNdReleaseInd = (APS_NDCLIENT_REL_IND_STRU*)pRcvMsg;
 
+    enModemId = VOS_GetModemIDFromPid(pstApsNdReleaseInd->ulSenderPid);
+    if (enModemId >= MODEM_ID_BUTT)
+    {
+        return ;
+    }
+        
     IP_NDCLIENT_IncRevPackageNum();
     IPND_INFO_LOG(NDCLIENT_TASK_PID, "NdClient receive RELEASE ALL!");
 
     for(i = 0; i < IP_MAX_NDCLIENT_ENTITY_NUM; i++)
-    {
-        if(0 != g_stNdClientEntity[i].ucflag)
+    {        
+        if((0 != g_stNdClientEntity[i].ucflag) 
+                        && (enModemId == ND_GET_MODEMID_FROM_EXEPSID(g_stNdClientEntity[i].ucEpsbId)))
         {
             IP_NdClient_RelEntity(&g_stNdClientEntity[i]);
         }
     }
-
-    /*实体计数全部*/
-    IP_NdClient_InitEntityNum();
-
+    
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : APP_NdClient_Pid_InitFunc
- 功能描述  : APP_NdClient_Pid初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE ePhase
- 输出参数  : 无
- 返 回 值  : extern VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月15日
-    作    者   : h00133115
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  APP_NdClient_Pid_InitFunc( enum VOS_INIT_PHASE_DEFINE ePhase)
 {
     switch( ePhase )
@@ -2147,21 +1612,7 @@ VOS_UINT32  APP_NdClient_Pid_InitFunc( enum VOS_INIT_PHASE_DEFINE ePhase)
     return 0;
 }
 
-/*****************************************************************************
- 函 数 名  : NdClient_ApsMsgProc
- 功能描述  : ND CLIENT接收处理APS模块发送的消息
- 输入参数  : const MsgBlock *pMsgBlock
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月16日
-    作    者   : h00133115
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NdClient_ApsMsgProc( MsgBlock *pMsgBlock )
 {
     VOS_UINT32      ulMsgId;
@@ -2190,21 +1641,7 @@ VOS_VOID NdClient_ApsMsgProc( MsgBlock *pMsgBlock )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NdClient_CdsMsgProc
- 功能描述  : ND CLIENT接收处理CDS模块发送的消息
- 输入参数  : const MsgBlock *pMsgBlock
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月16日
-    作    者   : h00133115
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NdClient_CdsMsgProc( MsgBlock *pMsgBlock )
 {
     VOS_UINT32      ulMsgId;
@@ -2233,21 +1670,7 @@ VOS_VOID NdClient_CdsMsgProc( MsgBlock *pMsgBlock )
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NdClient_AdsMsgProc
- 功能描述  : ND CLIENT接收处理ADS模块发送的消息
- 输入参数  : const MsgBlock *pMsgBlock
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月16日
-    作    者   : h00133115
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NdClient_AdsMsgProc( MsgBlock *pMsgBlock )
 {
     VOS_UINT32      ulMsgId;
@@ -2274,20 +1697,7 @@ VOS_VOID NdClient_AdsMsgProc( MsgBlock *pMsgBlock )
 }
 extern VOS_UINT32 LPS_OM_IsTestMode(VOS_VOID);
 extern VOS_UINT32 g_ulPsIPV6PrefixSend;
-/*****************************************************************************
- 函 数 名  : NdClient_ProcTmrMsg
- 功能描述  : 处理TmerMsg
- 输入参数  : MsgBlock *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-  1.日    期   : 2012年12月9日
-    作    者   : h00159435
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID NdClient_ProcTmrMsg(const REL_TIMER_MSG *pRcvMsg)
 {
     VOS_UINT32                          ulTmrId;
@@ -2349,21 +1759,7 @@ VOS_VOID NdClient_ProcTmrMsg(const REL_TIMER_MSG *pRcvMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_TaskEntry
- 功能描述  : NdClient消息处理入口
- 输入参数  : VOS_VOID       *pRcvMsg
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月7日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID APP_NdClient_PidMsgProc( MsgBlock* pMsgBlock )
 {
     if (VOS_NULL_PTR == pMsgBlock)
@@ -2397,23 +1793,7 @@ VOS_VOID APP_NdClient_PidMsgProc( MsgBlock* pMsgBlock )
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : NDCLIENT_FidInit
- 功能描述  : ND CLIENT的FID初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE enPhase
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年9月17日
-    作    者   : d00130305
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月5日
-    作    者   : w00316385
-    修改内容   : 注册DHCP pid
-*****************************************************************************/
 VOS_UINT32 NDCLIENT_FidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
 {
     VOS_UINT32  ulResult = PS_FAIL;
@@ -2471,20 +1851,7 @@ VOS_UINT32 NDCLIENT_FidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_Stat
- 功能描述  : 统计信息输出
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_Stat(VOS_UINT32 ulEpsbId, VOS_UINT32 ulModemId)
 {
     VOS_UINT32 ulIndex;
@@ -2553,20 +1920,7 @@ VOS_VOID IP_NDCLIENT_Stat(VOS_UINT32 ulEpsbId, VOS_UINT32 ulModemId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_ShowEntityInfo
- 功能描述  : 显示NDCLIENT实体信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID IP_NDCLIENT_ShowEntityInfo(VOS_VOID)
 {
     VOS_UINT32  ulLoop;
@@ -2623,21 +1977,7 @@ VOS_VOID IP_NDCLIENT_ShowEntityInfo(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : IP_NDCLIENT_CmdHelp
- 功能描述  : 显示NDCLIENT软调命令
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月13日
-    作    者   : 00145177
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  IP_NDCLIENT_CmdHelp( VOS_VOID )
 {
     PS_PRINTF("\r\n");

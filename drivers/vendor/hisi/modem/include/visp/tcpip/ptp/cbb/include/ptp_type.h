@@ -209,9 +209,7 @@ typedef struct tagPTP_FOREIGN_MASTER_S
     UCHAR           ucTimeSource;               /* 时钟源,更新时间属性数据集的时候需要 */
     CHAR            cLogMAnnInterval;            /* Ann的发送间隔，由Ann报文学到，多播下使用，
                                                    单播下是通过单播协商获取，放在单播Master列表中*/
-    /*Add By t00110672 For BC3D02987,IEEE1588V2 支持UTC时间实现方案*/
     SHORT sCurrentUtcOffset; /* 当前UTC偏移 */
-    /*Add by dutianyi 2014-7-24 支持G8275.1标准选源*/
     USHORT usStepsRemoved;   
     /*End of adding by dutianyi*/
 
@@ -226,15 +224,12 @@ typedef struct tagPTP_FOREIGN_MASTER_S
     PTP_CLOCK_ID_SZ szGrandMasterId;            /*该字段对于目前的一级场景，就是Fore的Clock ID*/
     PTP_CLOCK_QA_S  stGrandmasterClockQuality;  /*时钟质量，包括时钟精度、时钟稳定度*/
     ULONG           ulIfIndex;                    /*Master所在的接口索引*//*qinyun&luogaowei 0地址方案 2011-12-12*/
-    /*Added by zhangliangzhi00187023, PTP 5路选源模式，协商成功后，duration到期重协商成功后，没有发生源切换的情况下，无ppi下发 , 2012/1/13   问题单号:DTS2012010902147 */
     /*存放老的ppi参数*/
     PTP_PPI_S stPtpPpi;
-    /* End of Added by zhangliangzhi00187023, 2012/1/13   问题单号:DTS2012010902147 */
 
     ULONG ulMulRcvAnnPackets;                      /* OverMac,多播统计 */
     ULONG ulMulAnnSequenceError;                   /* OverMac,多播统计 */
 
-    /*Added by heyijun 00218462 for AR-IP-PTP.001 支持PTSF配置参与选源 */
     ULONG  ulPtsfLossSync;      /* 组播链路Sync PTSF */
     
 }PTP_FOREIGN_MASTER_S;
@@ -310,8 +305,7 @@ typedef struct tagPTP_UNI_SLAVE_NODE_S
 
     PTP_PORT_ID_S   stSlaveId;         /* slave Id */
 
-    /*Begin 【同步VISPV1R7C03问题单BC3D01665】
-        BC3D01734【PTP】实现AP产品提出的1588穿透NAT对VISP的需求 l00147446 09-07-13*/
+    
     USHORT usExtUdpPort;
     /*End*/
 
@@ -325,11 +319,9 @@ typedef struct tagPTP_UNI_SLAVE_NODE_S
     ULONG ulDurationLow;
     ULONG ulDurationHigh;
 
-    /*Added by limin00188004, Master为新模式，向slave发起reqcancel ann时，漏发delay cancel报文, 2012/2/1   问题单号:DTS2012012000431 */
     /* slave侧用stPtpPort.ucDelayMechanism; master侧应使用PTP_UNI_SLAVE_NODE_S.ucDelayMechanism */
     UCHAR ucDelayMechanism;  /* slave节点的DELAY_MECHANISM */
     UCHAR ucReserved3[3];    /* 预留 */ 
-    /* End of Added by limin00188004, 2012/2/1   问题单号:DTS2012012000431 */
 }PTP_UNI_SLAVE_NODE_S;
 
 typedef struct tagPTP_UNI_SLAVE_TBL_S
@@ -895,16 +887,11 @@ typedef struct tagPTP_UNI_MASTER_NODE_S
     UCHAR          ucHasNpAddFlag;/*已经下发Add*/
     ULONG          ulVrfIndex;
 
-    /*Added by limin00188004/zhangliangzhi00187023/jijianhua00169178, PTP slave侧支持5路SYNC协商, 2011/12/29   问题单号:S.PTP.5SYNC.01 */
     ULONG ulUdpPort;  /* Master的UDP端口，主机序。 */
-    /* End of Added by limin00188004/zhangliangzhi00187023/jijianhua00169178, 2011/12/29   问题单号:S.PTP.5SYNC.01 */
 
-    /*Added by guo00178934, 统一调用链路Down告警, 2012/1/13   问题单号:20120112_1 */
     ULONG ulSyncWarning;    /*Sync Warning 类型(Up, Down)*/
     ULONG ulDelayWarning;   /*Delay Warning 类型(Up, Down)*/
-    /* End of Added by guo00178934, 2012/1/13   问题单号:20120112_1 */
 
-    /*Added by wuxiaowu00217009, 2012/8/9 Master中保存DSCP值，用于在Slave侧指定Master设置DSCP*/
     UCHAR ucPriority;
     UCHAR ucPad[3];
 }PTP_UNI_MASTER_NODE_S;
@@ -1032,11 +1019,9 @@ master  pstUniSlaveTbl      stUniSlaveTbl6      stLocalPortAddr
     /* Add for BC3D03003*/
     PTP_MIPINFO_S stMIpInfo;            /* 下发的多播地址信息 */
 
-    /*Added by guo00178934, Duration超时重协商时相对Duration百分比, 2012/1/7   问题单号:20120107_1 */
     ULONG ulAnnDurationPercent;                /*Annouce单播重协商超时百分比*/
     ULONG ulSyncDurationPercent;               /*Sync单播重协商超时百分比*/
     ULONG ulDelayRespDurationPercent;         /*Delay_Resp重协商超时百分比*/
-    /* End of Added by guo00178934, 2012/1/7   问题单号:20120107_1 */
 }PTP_PORT_S;
 
 
@@ -1106,11 +1091,9 @@ typedef struct tagPTP_CLOCK_S
     /*动态成员*/
     PTP_CLOCK_QA_S stClockQuality;
 
-    /*Added by wuxiaowu217009, 动态成员，只能用于Master侧，支持同时配置新、老模式ClockClass, 2012/9/18   
-     *问题单号:S.PTP.02.01 */
+    
     PTP_CLOCK_CLASS_S stMasterCfgClockClass;
     ULONG       ulMasterCfgClockClassFlag;    /*判断是否使能同时配置新、老模式ClockClass，1:使能、0:未使能*/
-    /* End of Added by wuxiaowu217009, 2012/9/18   问题单号:S.PTP.02.01 */
 
 
     /*父亲数据集，全部是动态成员*/
@@ -1138,7 +1121,6 @@ typedef struct tagPTP_CLOCK_S
     BOOL_T    bTimeTraceable;
     BOOL_T    bFrequencyTraceable;
     BOOL_T    bPtpTimescale;
-    /*Mod By t00110672 For BC3D02767,【TD产品需求】【PTP】实现1588无线选源方案优化*/
     BOOL_T    bClassIdentify;/*提供ClockClass识别功能的开关*/
     UCHAR      ucClass0;/*提供一组可优选的Class值，默认为6>13>7>14*/
     UCHAR      ucClass1;

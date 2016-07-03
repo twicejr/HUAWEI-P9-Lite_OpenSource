@@ -1,25 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MtcCalcFreq.c
-  版 本 号   : 初稿
-  作    者   : j00174725
-  生成日期   : 2014年03月04日
-  最近修改   :
-  功能描述   : 通过接入层传入的频点信息，计算对应的频率信息
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年03月04日
-    作    者   : j00174725
-    修改内容   : 新生成
-
-说明:
-1. GU侧的函数由物理层上官声长 00266224提供
-2. L侧的函数由
-3. TD侧的函数由
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -37,9 +16,7 @@ extern "C" {
 
 /*lint -e958*/
 
-/*lint -e767 修改人: j00174725; */
 #define    THIS_FILE_ID        PS_FILE_ID_MTC_CALC_FREQ_C
-/*lint +e767 修改人: j00174725; */
 
 /*****************************************************************************
   2 全局变量定义
@@ -88,22 +65,7 @@ static VOS_UINT16 g_ausNOffsetTdd[] =
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MTC_GSM_GetBandInfoByArfcn
- 功能描述  : 根据下行频点找到对应的Band信息
- 输入参数  : VOS_UINT16 usDlFreq 下行频点
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 返回Band NO.
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-  1.日    期   : 2014年03月10日
-    作    者   : y00213812
-    修改内容   : 新增函数
-    说明:从GAS移植函数
-
-*****************************************************************************/
 VOS_UINT16 MTC_GSM_GetBandInfoByArfcn( VOS_UINT16 usArfcn )
 {
     VOS_UINT16   usBandInfo = MTC_GAS_BAND_TYPE_UNKNOWN;
@@ -150,23 +112,7 @@ VOS_UINT16 MTC_GSM_GetBandInfoByArfcn( VOS_UINT16 usArfcn )
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_GSM_GetBandInfoByArfcnWithBandIndicator
- 功能描述  : 根据下行频点和Band指示找到对应的Band信息
- 输入参数  : VOS_UINT16 usDlFreq 下行频点
-             VOS_UINT8 ucBandIndicator --Band指示, 指示当前频点是 1800 系统 或 1900 系统
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 返回Band NO.
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-  1.日    期   : 2014年03月10日
-    作    者   : y00213812
-    修改内容   : 新增函数
-    说明:从GAS移植函数
-
-*****************************************************************************/
 
 VOS_UINT16 MTC_GSM_GetBandInfoByArfcnWithBandIndicator(
     VOS_UINT16                          usArfcn,
@@ -199,23 +145,7 @@ VOS_UINT16 MTC_GSM_GetBandInfoByArfcnWithBandIndicator(
     return usBandInfo;
 
 }
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义(由上官声长00266224提供) Begin */
-/*****************************************************************************
- 函 数 名  : MTC_CalcGsmDlFreq
- 功能描述  : 将频点号换算成实际频率值，扩大十倍（单位10×MHz）
- 输入参数  : VOS_UINT16  uhwBand
-             VOS_UINT16 uhwFreqIndex
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 MTC_CalcGsmDlFreq(
     VOS_UINT16                          ushwBand,
     VOS_UINT16                          ushwFreqIndex
@@ -266,22 +196,7 @@ VOS_UINT16 MTC_CalcGsmDlFreq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_WCDMA_GetBandInfoByDlArfcn
- 功能描述  : 根据下行频点找到对应的频段号
- 输入参数  : VOS_UINT16 usDlFreq 下行频点
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 返回Band NO.
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-  1.日    期   : 2014年03月10日
-    作    者   : j00174725
-    修改内容   : 新增函数
-    说明:移植WAS WAS_COMM_FindFreqBandNoByUlFreq 函数
-
-*****************************************************************************/
 VOS_UINT16 MTC_WCDMA_GetBandInfoByDlArfcn(VOS_UINT16 usDlFreq)
 {
     VOS_UINT32                          ulFreqBandLoop;
@@ -492,22 +407,7 @@ IX      8762 to 8912    9237 to 9387
 
 处理简单起见，不在正常频点号范围内的均认为是离散频点号，按照离散频点号的频率偏置来处理
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : MTC_CalcWcdmaDlFreq
- 功能描述  : 传入频段号和下行频点号，输出下行绝对频率，以100khz为单位
- 输入参数  : VOS_UINT16         uhwFreqBandId
-             VOS_UINT16         uhwFreqNum
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : j00174725
-    修改内容   : RF&LCD干扰规避项目新增
-
-*****************************************************************************/
 VOS_UINT16 MTC_CalcWcdmaDlFreq(
     VOS_UINT16                          ushwFreqBandId,
     VOS_UINT16                          ushwDlFreqNum
@@ -516,7 +416,6 @@ VOS_UINT16 MTC_CalcWcdmaDlFreq(
     MTC_RF_WCDMA_FREQ_BAND_INFO_STRU   *pstWcdmaBandInfo;
     VOS_UINT16                          ushwFreqOffset;
     VOS_UINT16                          ushwI;
-    /* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义(由上官声长00266224提供) Begin */
     MTC_RF_WCDMA_FREQ_BAND_INFO_STRU    astWFreqBandInfo[FREQ_BAND_NUM]
     = { {MTC_FREQ_BAND1, 1900, 10838, 10562,     0,     0, 9888, 9612,     0,     0, 60,21100},
         {MTC_FREQ_BAND2,  800,  9938,  9662,     0, 18501, 9538, 9262,     0, 18501, 60,19300},
@@ -528,7 +427,6 @@ VOS_UINT16 MTC_CalcWcdmaDlFreq(
         {MTC_FREQ_BAND9,  950,  9387,  9237,     0,     0, 8912, 8762,     0,     0, 35,18449},
         {MTC_FREQ_BAND11, 480,  3787,  3712,  7360,     0, 3562, 3487,  7330,     0, 20,14759},
         {MTC_FREQ_BAND19, 450,   763,   712,  7350,  7201,  363,  312,  7700,  7551, 15, 8751}};
-    /* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义(由上官声长00266224提供) End */
 
     /* 去除异频频点的偏移量*/
     ushwDlFreqNum                       &= DC_MIMO_REMOVEINTERFREQOFF;
@@ -560,26 +458,8 @@ VOS_UINT16 MTC_CalcWcdmaDlFreq(
 
 }
 
-/* Add by j00174725 for RF&LCD INTRUSION, 2014-03-04, GU 结构定义(由上官声长00266224提供) End */
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : MTC_LTE_GetBandInfoByDlArfcn
- 功能描述  : 根据下行频点找到对应的频段号
- 输入参数  : VOS_UINT16 usDlFreq 下行频点
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 返回Band NO.
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-  1.日    期   : 2014年03月10日
-    作    者   : j00174725
-    修改内容   : 新增函数
-    说明:移植LTE RRC_COMM_CalculateBandIndByDlEarfcn 函数
-  2.日    期   : 2015年7月20日
-    作    者   : w000316404
-    修改内容   : R11协议升级(LTE频点配置值扩展)
-*****************************************************************************/
 VOS_UINT16  MTC_LTE_GetBandInfoByDlArfcn( VOS_UINT32 ulDlEarfcn)
 {
     VOS_UINT8                           ucLoop = 0;
@@ -614,25 +494,7 @@ VOS_UINT16  MTC_LTE_GetBandInfoByDlArfcn( VOS_UINT32 ulDlEarfcn)
     return usFreqBand;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_CalcLteDlFreq
- 功能描述  : 传入频段号和下行频点号，输出下行绝对频率，以100khz为单位
- 输入参数  : VOS_UINT16         uhwFreqBandId
-             VOS_UINT16         uhwFreqNum
- 输出参数  : VOS_UINT16         *puhwDlAbsFreq
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-  2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-
-*****************************************************************************/
 VOS_UINT16  MTC_CalcLteDlFreq(
     VOS_UINT16                          ucFreqBandIndicator,
     VOS_UINT32                          ulDlEarfcn
@@ -665,40 +527,13 @@ VOS_UINT16  MTC_CalcLteDlFreq(
 #endif
 
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : MTC_CalcTdsDlFreq
- 功能描述  : 传入频段号和下行频点号，输出下行绝对频率，以100khz为单位
- 输入参数  : VOS_UINT16         uhwFreqNum
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-
-*****************************************************************************/
 VOS_UINT16  MTC_CalcTdsDlFreq(VOS_UINT16 usDlEarfcn)
 {
     return (VOS_UINT16)(usDlEarfcn * MTC_TDS_FRQ_UNIN);
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_TDS_GetBandInfoByDlArfcn
- 功能描述  : 根据下行频点找到对应的Band
- 输入参数  : VOS_UINT16 usDlFreq 下行频点
- 输出参数  : 无
- 返 回 值  : VOS_UINT16 返回Band NO.
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-  1.日    期   : 2014年03月10日
-    作    者   : j00174725
-    修改内容   : DTS2015102706654
-*****************************************************************************/
 VOS_UINT16  MTC_TDS_GetBandInfoByDlArfcn(VOS_UINT32 ulDlEarfcn)
 {
     VOS_UINT8                           ucLoop = 0;
@@ -736,21 +571,7 @@ VOS_UINT16  MTC_TDS_GetBandInfoByDlArfcn(VOS_UINT32 ulDlEarfcn)
 #endif
 
 #if 0
-/*****************************************************************************
- 函 数 名  : MTC_FillGsmNcellFreq
- 功能描述  : Gsm主模时计算邻区
- 输入参数  : pstRfUsingFreqList
- 输出参数  : pstRfFreqList
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-
-*****************************************************************************/
 VOS_VOID  MTC_FillGsmNcellFreq(
     MTC_RF_USING_FREQ_LIST_STRU        *pstRfUsingFreqList,
     MTC_RF_FREQ_LIST_STRU              *pstRfFreqList
@@ -792,21 +613,7 @@ VOS_VOID  MTC_FillGsmNcellFreq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_FillWcdmaNcellFreq
- 功能描述  : WCDMA主模时计算邻区
- 输入参数  : pstRfUsingFreqList
- 输出参数  : pstRfFreqList
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-
-*****************************************************************************/
 VOS_VOID  MTC_FillWcdmaNcellFreq(
     MTC_RF_USING_FREQ_LIST_STRU        *pstRfUsingFreqList,
     MTC_RF_FREQ_LIST_STRU              *pstRfFreqList
@@ -849,21 +656,7 @@ VOS_VOID  MTC_FillWcdmaNcellFreq(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : MTC_FillLteNcellFreq
- 功能描述  : LTE主模时计算邻区
- 输入参数  : pstRfUsingFreqList
- 输出参数  : pstRfFreqList
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-
-*****************************************************************************/
 VOS_VOID  MTC_FillLteNcellFreq(
     MTC_RF_USING_FREQ_LIST_STRU        *pstRfUsingFreqList,
     MTC_RF_FREQ_LIST_STRU              *pstRfFreqList
@@ -902,21 +695,7 @@ VOS_VOID  MTC_FillLteNcellFreq(
 #endif
 
 #if (FEATURE_ON == FEATURE_UE_MODE_TDS)
-/*****************************************************************************
- 函 数 名  : MTC_FillTdsNcellFreq
- 功能描述  : TDS主模时计算邻区
- 输入参数  : pstRfUsingFreqList
- 输出参数  : pstRfFreqList
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-
-*****************************************************************************/
 VOS_VOID  MTC_FillTdsNcellFreq(
     MTC_RF_USING_FREQ_LIST_STRU        *pstRfUsingFreqList,
     MTC_RF_FREQ_LIST_STRU              *pstRfFreqList
@@ -955,21 +734,7 @@ VOS_VOID  MTC_FillTdsNcellFreq(
 #endif
 #endif
 
-/*****************************************************************************
- 函 数 名  : MTC_FillNcellFreq
- 功能描述  : TDS主模时计算邻区
- 输入参数  : pstRfUsingFreqList
- 输出参数  : pstRfFreqList
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-
-*****************************************************************************/
 VOS_VOID  MTC_FillNcellFreq(
     MTC_RF_USING_FREQ_LIST_STRU        *pstRfUsingFreqList,
     MTC_RF_FREQ_LIST_STRU              *pstRfFreqList
@@ -1009,22 +774,7 @@ VOS_VOID  MTC_FillNcellFreq(
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_CalcWcdmaDlFreq
- 功能描述  : 传入频段号和下行频点号，输出下行绝对频率，以100khz为单位
- 输入参数  :
 
- 输出参数  : VOS_UINT16         *puhwDlAbsFreq
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-
-*****************************************************************************/
 VOS_VOID  MTC_CalcHoppingFreq(
     MTC_RF_FREQ_LIST_STRU              *pstGsmFreqInfo,
     MTC_RF_FREQ_LIST_STRU              *pstRfFreqList
@@ -1038,21 +788,7 @@ VOS_VOID  MTC_CalcHoppingFreq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_ChangeRfArfcnToFreq
- 功能描述  : 传入频段号和下行频点号，输出下行绝对频率，以100khz为单位
- 输入参数  : pstUsingFreq
- 输出参数  : *pstRfFreqList
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-
-*****************************************************************************/
 VOS_VOID  MTC_ChangeRfArfcnToFreq(
     RRC_MTC_USING_FREQ_IND_STRU        *pstUsingFreq,
     MTC_RF_USING_FREQ_LIST_STRU        *pstRfFreqList
@@ -1150,20 +886,7 @@ VOS_VOID  MTC_ChangeRfArfcnToFreq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MTC_CalcWcdmaDlFreq
- 功能描述  : 传入频段号和下行频点号，输出下行绝对频率，以100khz为单位
- 输入参数  : pstUsingFreq
- 输出参数  : pstRfFreqList
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月06日
-    作    者   : Y00213812
-    修改内容   : RF&LCD干扰规避项目新增
-*****************************************************************************/
 VOS_VOID MTC_CalcRfDlFreq(
     RRC_MTC_USING_FREQ_IND_STRU        *pstUsingFreq,
     MTC_MODEM_FREQ_LIST_STRU           *pstModemFreq
@@ -1228,20 +951,7 @@ VOS_VOID MTC_CalcRfDlFreq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MTC_GetTLBandInfoFromUsingFreq
- 功能描述  : 当modem0为GU模式时，根据接入层上报的邻区信息，计算TL的Band信息
- 输入参数  : pstUsingFreq
- 输出参数  :
- 返 回 值  : void
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月05日
-    作    者   : j00174725
-    修改内容   : DTS2015102706654
-*****************************************************************************/
 VOS_VOID MTC_GetTLBandInfoFromUsingFreq(
     RRC_MTC_USING_FREQ_IND_STRU        *pstUsingFreq
 )

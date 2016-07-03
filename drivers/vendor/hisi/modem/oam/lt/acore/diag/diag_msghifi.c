@@ -14,17 +14,7 @@ extern "C" {
 #define    THIS_FILE_ID        MSP_FILE_ID_DIAG_MSGHIFI_C
 
 
-/*****************************************************************************
- Function Name   : diag_HifiMsgProc
- Description     : HIFI命令直接透传消息给HIFI，并由MSP代替回复
- Input           : VOS_UINT8* pstReq
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00326366      2015-06-14  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 diag_HifiMsgProc(DIAG_FRAME_INFO_STRU* pstReq)
 {
     VOS_UINT32 ulRet                    = ERR_MSP_SUCCESS;

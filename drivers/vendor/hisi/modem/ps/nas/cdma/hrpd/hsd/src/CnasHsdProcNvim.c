@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdProcNvim.c
-  版 本 号   : 初稿
-  作    者   : h00300778
-  生成日期   : 2014年07月08日
-  功能描述   : HSD处理NV的读取
-  函数列表   :
-  修改历史   :
-
-  1.日    期   : 2014年12月12日
-    作    者   : h00300778
-    修改内容   : 新生成函数
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -44,20 +28,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 /*lint -save -e958*/
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ReadMruNvim
- 功能描述  : 从NV中获取MRU的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月12日
-   作    者   : h00300778
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ReadMruNvim(VOS_VOID)
 {
     CNAS_HSD_HRPD_MRU_LIST_STRU        *pstMruList;
@@ -95,20 +66,7 @@ VOS_VOID CNAS_HSD_ReadMruNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_WriteMruNvim
- 功能描述  : 将MRU的内容写入NV中
- 输入参数  : pstMruList - 写入MRU的列表
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年12月12日
-   作    者   : h00300778
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_WriteMruNvim(CNAS_HSD_HRPD_MRU_LIST_STRU *pstMruList)
 {
     CNAS_NVIM_HRPD_MRU_LIST_STRU        stNvMruList;
@@ -135,21 +93,7 @@ VOS_VOID CNAS_HSD_WriteMruNvim(CNAS_HSD_HRPD_MRU_LIST_STRU *pstMruList)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ReadSearchIntervalNvim
- 功能描述  : 从NV中获取扫描间隔相关的内容
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年1月13日
-   作    者   : Z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ReadSearchIntervalNvim(VOS_VOID)
 {
     CNAS_HSD_OOC_SCHEDULE_INFO_STRU                   *pstOocScheduleInfo = VOS_NULL_PTR;
@@ -199,20 +143,7 @@ VOS_VOID CNAS_HSD_ReadSearchIntervalNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ReadOperLockWhiteSidInfoNvim
- 功能描述  : 读取白名单中SID信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月1日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ReadOperLockSysWhiteListInfoNvim(VOS_VOID)
 {
     CNAS_NVIM_OPER_LOCK_SYS_WHITE_LIST_STRU                 stOperLockSysWhiteList;
@@ -244,20 +175,7 @@ VOS_VOID CNAS_HSD_ReadOperLockSysWhiteListInfoNvim(VOS_VOID)
     CNAS_HSD_LogOperLockSysWhiteList(pstOperLockSysWhiteList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ReadCTCCCustomizeFreqNvim
- 功能描述  : 读取中国电信自定义频点
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月1日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ReadCTCCCustomizeFreqNvim(VOS_VOID)
 {
     CNAS_NVIM_CTCC_CUSTOMIZE_FREQ_LIST_STRU                 stCustFreqList;
@@ -287,21 +205,7 @@ VOS_VOID CNAS_HSD_ReadCTCCCustomizeFreqNvim(VOS_VOID)
     CNAS_HSD_LogCTCCCustomizeFreqList(pstCustFreqList);
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ReadPrlNvim
- 功能描述  : 从NV中获取PRL的内容, 并解析PRL内容
 
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2015年08月18日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ReadPrlNvim(VOS_VOID)
 {
     CNAS_NVIM_1X_EVDO_PRL_LIST_STRU                        *pPrlData = VOS_NULL_PTR;
@@ -347,20 +251,7 @@ VOS_VOID CNAS_HSD_ReadPrlNvim(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ReadHrpdSupportBandClassMaskNvim
- 功能描述  : 从NV中获取do支持的Band Class
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年8月14日
-   作    者   : x00306642
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ReadHrpdSupportBandClassMaskNvim(VOS_VOID)
  {
     VOS_UINT32                                            *pulHrpdSupportBandClassMask = VOS_NULL_PTR;
@@ -384,20 +275,7 @@ VOS_VOID CNAS_HSD_ReadHrpdSupportBandClassMaskNvim(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_HSD_ReadTestConfigNvim
- 功能描述  : 从NV中获取TestConfig的内容
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年10月20日
-   作    者   : z00316370
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID CNAS_HSD_ReadTestConfigNvim(VOS_VOID)
 {
     CNAS_HSD_TEST_CONFIG_STRU          *pstTestConfig = VOS_NULL_PTR;

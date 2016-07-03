@@ -7354,13 +7354,11 @@ extern "C" {
 #define   LRRC_LRRC_Get_Tmode_ENUM                  (LRRC_FUNCTION_ENUM_BASE + 7258)
 #define   LRRC_CSEL_CheckIsL2GUInteroperability_ENUM      (LRRC_FUNCTION_ENUM_BASE + 7259)
 
-/*begin: add for 路测融合 */
 #define   LRRC_DT_ProcSyncReportReq_ENUM            (LRRC_FUNCTION_ENUM_BASE + 7260)
 #define   LRRC_DT_ProcLphySyncInd_Enum                   (LRRC_FUNCTION_ENUM_BASE + 7261)
 #define   LRRC_DT_ProcLphyOutOfSyncInd_Enum              (LRRC_FUNCTION_ENUM_BASE + 7262)
 #define   LRRC_DT_ProcMeasReportReq_Enum                 (LRRC_FUNCTION_ENUM_BASE + 7263)
 #define   LRRC_DT_SndDtLRrcMeasInfoInd_Enum              (LRRC_FUNCTION_ENUM_BASE + 7264)
-/*end: add for 路测融合 */
 #define   LRRC_LCMM_SetSpecB1MeasMin_ENUM           (LRRC_FUNCTION_ENUM_BASE + 7265)
 #define   RRC_CMM_StkMmrBuildGeranMeasRptMsg_ENUM    (LRRC_FUNCTION_ENUM_BASE + 7266)
 #define   LRRC_LRRC_CMM_CsfbB1NvInit_ENUM            (LRRC_FUNCTION_ENUM_BASE + 7267)
@@ -7393,13 +7391,10 @@ extern "C" {
 #define   LRRC_COMM_SetANRSupportFlag_ENUM                 (LRRC_FUNCTION_ENUM_BASE + 7293)
 #define   LRRC_LRRC_RecvUtranModeNtfWhenModeNullConnected_ENUM  (LRRC_FUNCTION_ENUM_BASE + 7294)
 #define   LRRC_LRRC_ExpCheckInterOptBetweenTwoInterRatCell_ENUM (LRRC_FUNCTION_ENUM_BASE + 7295)
-/*begin, l00195322, 服务小区重选RSRQ门限限制*/
 #define   RRC_CSEL_ReselScellRsrqCheck_ENUM          (LRRC_FUNCTION_ENUM_BASE + 7296)
 #define   RRC_CSEL_ReselScellRsrqDeltaValueCheck_ENUM          (LRRC_FUNCTION_ENUM_BASE + 7297)
 #define   RRC_CSEL_SetScellReselRsrqthres_ENUM          (LRRC_FUNCTION_ENUM_BASE + 7298)
 
-/*end, l00195322, 服务小区重选RSRQ门限限制*/
-/* begin: add for Austin 搜网优化phaseII,l00277963*/
 #define   LRRC_LRRC_ReadCloudStrategyNv_ENUM                (LRRC_FUNCTION_ENUM_BASE + 7299)
 #define   RRC_CSEL_ProcSpecPlmnSearchReqContinue_ENUM       (LRRC_FUNCTION_ENUM_BASE + 7300)
 #define   RRC_CSEL_ProcSuitCellSearchReqContinue_ENUM       (LRRC_FUNCTION_ENUM_BASE + 7301)
@@ -7415,7 +7410,6 @@ extern "C" {
 #define   LRRC_COMM_SetCloudPrefBand_ENUM                   (LRRC_FUNCTION_ENUM_BASE + 7311)
 #define   LRRC_COMM_ConvertSimPlmnToCssPlmn_ENUM            (LRRC_FUNCTION_ENUM_BASE + 7312)
 #define   LRRC_COMM_ConvertCssPlmnToCssMcc_ENUM             (LRRC_FUNCTION_ENUM_BASE + 7313)
-/* end: add for Austin 搜网优化phaseII,l00277963*/
 #define   LRRC_CHR_GetLteNCellInfo_ENUM                    (LRRC_FUNCTION_ENUM_BASE + 7314)
 #define   LRRC_CHR_PushMsgToTmpBuffer_ENUM                 (LRRC_FUNCTION_ENUM_BASE + 7315)
 /* mod for Malloc Memory Size optimize begin */
@@ -7615,6 +7609,9 @@ extern "C" {
 #define   LRRC_LRRC_ExpRssiIndInsertFrontBySpecIndex_ENUM   (LRRC_FUNCTION_ENUM_BASE + 7491)
 #define   LRRC_LRRC_ExpResortByPssRatioForPri_ENUM          (LRRC_FUNCTION_ENUM_BASE + 7492)
 #define   RRC_CSELPC_ProcUpdateSibStartDsdsUpdateTimer_ENUM          (LRRC_FUNCTION_ENUM_BASE + 7493)
+
+#define   LRRC_ITFPHY_SendFreqRssiScanStopReq_ENUM          (LRRC_FUNCTION_ENUM_BASE + 7494)
+
 /***********************LRRC FUNCTION END*********************/
 
 /***********************TRRC FUNCTION BEGIN*********************/
@@ -10419,6 +10416,7 @@ extern "C" {
 #define   TRRC_CHR_ProcSignalConnRel_ENUM                         (TRRC_FUNCTION_ENUM_BASE + 2779)
 #define   TRRC_CHR_ProcGuRelReq_ENUM                              (TRRC_FUNCTION_ENUM_BASE + 2780)
 #define   TRRC_CHR_ProcGuTransStatusNtfy_ENUM                     (TRRC_FUNCTION_ENUM_BASE + 2781)
+#define   TRRC_ProcConnSetupFchFreq_ENUM                          (TRRC_FUNCTION_ENUM_BASE + 2782)
 /***********************TRRC FUNCTION END*********************/
 
 /***********************LL2 FUNCTION BEGIN*********************/
@@ -13576,7 +13574,6 @@ extern "C" {
 #define   hl100_04HisrSendCmd_ENUM    (TL2_FUNCTION_ENUM_BASE + 915)
 #define   hl100_03handleRequest_ENUM    (TL2_FUNCTION_ENUM_BASE + 916)
 #define   hl100_01lisrFrameInt_ENUM    (TL2_FUNCTION_ENUM_BASE + 917)
-/*z00282933 TDS内存优化 - BEGIN*/
 #define   TDS_L2InitRlcPduQ_ENUM    (TL2_FUNCTION_ENUM_BASE + 918)
 #define   TDS_L2ClearRlcPduQ_ENUM    (TL2_FUNCTION_ENUM_BASE + 919)
 #define   TDS_L2FreeRlcPduQ_ENUM    (TL2_FUNCTION_ENUM_BASE + 920)
@@ -13590,7 +13587,6 @@ extern "C" {
 #define   TDS_L2FreeDlRlcSdu_ENUM    (TL2_FUNCTION_ENUM_BASE + 928)
 #define   TDS_L2TtfPoolForUlIsFull_ENUM    (TL2_FUNCTION_ENUM_BASE + 929)
 #define   TDS_L2TtfPoolForDlIsFull_ENUM    (TL2_FUNCTION_ENUM_BASE + 930)
-/*z00282933 TDS内存优化 - END*/
 #define   TMAC_CheckIdlMeasReqExisted_ENUM    (TL2_FUNCTION_ENUM_BASE + 931)
 #define   TMAC_CheckSameBarlistExisted_ENUM   (TL2_FUNCTION_ENUM_BASE + 932)
 
@@ -18246,6 +18242,7 @@ extern "C" {
 #define  CSS_FreeCloudPreferNode_ENUM                                (LNAS_FUNCTION_ENUM_BASE + 4593)
 #define  CSS_DeleteLocalMccNotUpdating_ENUM                          (LNAS_FUNCTION_ENUM_BASE + 4594)
 #define  CSS_UpdateStateAccordingToAtMccSetMsg_ENUM                  (LNAS_FUNCTION_ENUM_BASE + 4595)
+#define IMSA_RegProcPermForbCause_ENUM                              (LNAS_FUNCTION_ENUM_BASE + 4606)
 
 /***********************LNAS FUNCTION END*********************/
 /***********************LNAS FUNCTION END*********************/
@@ -18985,9 +18982,7 @@ extern "C" {
 #define    LRRC_STATE_SS_LCMM_WAIT_HRPD_MEAS_CNF                 (TLPS_PROCESS_SPECICAL_LRRC_SS_BEGIN + 184)
 #define    LRRC_STATE_SS_LCMM_WAIT_LPHY_OTDOA_CNF                (TLPS_PROCESS_SPECICAL_LRRC_SS_BEGIN + 185)
 #define    LRRC_STATE_SS_LRRC_WAIT_LCMM_OTDOA_CNF                (TLPS_PROCESS_SPECICAL_LRRC_SS_BEGIN + 186)
-/* begin: add for Austin 搜网优化phaseII,l00277963*/
 #define    LRRC_STATE_SS_CSEL_WAIT_CSS_CURR_GEO_RSP              (TLPS_PROCESS_SPECICAL_LRRC_SS_BEGIN + 187)
-/* end: add for Austin 搜网优化phaseII,l00277963*/
 
 /*Timer*/
 #define    LRRC_TIMER_MAIN_BOUNDARY_START    (TLPS_PROCESS_SPECICAL_LRRC_TIMER_BEGIN)       /* MAIN 定时器开始边界 */
@@ -23288,7 +23283,6 @@ extern "C" {
 #define    LRRC_InterOptType_CtlNodeCellId                                              (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4112)
 #define    LRRC_SCell_isNot_InterOptCtlCell                                             (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4113)
 #define    LRRC_Cmm_NeedDelLocalObjBmp                                                  (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4114)
-/*begin, l00195322, 服务小区重选RSRQ门限限制*/
 #define    LRRC_SCellReselRsrqSwitch                                                    (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4115)
 #define    LRRC_SCellReselRsrqTres                                                      (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4116)
 #define    LRRC_L2LResel_ScellRsrqLow                                                   (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4117)
@@ -23296,7 +23290,6 @@ extern "C" {
 #define    LRRC_TargetReselThresIsClosed                                                (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4119)
 #define    LRRC_ThresNotSatisfied                                                       (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4120)
 #define    LRRC_CallNum_NotBarNum                                                       (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4121)
-/*end, l00195322, 服务小区重选RSRQ门限限制*/
 #define    LRRC_LRRC_SndCselpcSysCfgReq_Fail                                            (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4122)
 #define    LRRC_LRRC_SndCmmSysCfgReq_Fail                                               (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4123)
 #define    LRRC_LREEST_SndWrrcCellSrchStopReq_Fail                                      (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4124)
@@ -23397,13 +23390,11 @@ extern "C" {
 #define    LRRC_lRsrp_inLowPlmnList                                                     (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4219)
 #define    LRRC_bitOpRat_bitOpBand                                                      (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4220)
 #define    LRRC_ulWcdmaBand_ulGsmBand                                                   (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4221)
-/* begin: add for Austin 搜网优化phaseII,l00277963*/
 #define    LRRC_LRRC_ReadCloudStrategyNv_FAIL                                           (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4222)
 #define    CSS_IsMccFreqExist_FAIL                                                      (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4223)
 #define    CSS_GetPreferFreqInfo_FAIL                                                   (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4224)
 #define    CSS_GetPreferBandInfo_FAIL                                                   (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4225)
 #define    LRRC_STATE_TIMER_CSEL_WAIT_CSS_CURR_GEO_RSP                                  (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4226)
-/* end:   add for Austin 搜网优化phaseII,l00277963*/
 #define    LRRC_ulCellBitmap                                                            (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4227)
 #define    LRRC_ucCellCnt                                                               (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4228)
 #define    LRRCSaveNasCsgListSrchReq                                                    (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4229)
@@ -23506,12 +23497,10 @@ extern "C" {
 #define   LRRC_LRRC_ReadOnlyDlBandCtlNv_FAIL                                            (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4322)
 #define   LRRC_Freq_is_Only_Dl_Band_Freq                                                (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4323)
 #define   LRRC_Band_is_Only_Dl_Band                                                     (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4324)
-/* begin: 小区搜索收系统消息Q值门限优化,j00291241 */
 #define    LRRC_sRsrq_HighRsrp                                                          (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4325)
 #define    LRRC_LowRsrpThres_HighRsrpThres                                              (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4326)
 #define    LRRC_RcvSibMinRsrq                                                           (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4327)
 #define    LRRC_RcvSibByRsrqFlg                                                         (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4328)
-/* end: 小区搜索收系统消息Q值门限优化,j00291241 */
 
 #define    LRRC_MeasRssi_ThresRssi                                                      (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4329)
 #define    LRRC_MeasRscp_ThresRscp                                                      (TLPS_PROCESS_SPECICAL_LRRC_PROTO_BEGIN + 4330)
@@ -23970,6 +23959,8 @@ extern "C" {
 #define    TRRC_Flag_BAND_A                    (TRRC_SPECICAL_FLAG_ENUM_BASE + 335)
 #define    TRRC_Flag_BAND_F                    (TRRC_SPECICAL_FLAG_ENUM_BASE + 336)
 #define    TRRC_g_sHistoryRssiThres            (TRRC_SPECICAL_FLAG_ENUM_BASE + 337)
+#define    TRRC_MCCofPlmn                      (TRRC_SPECICAL_FLAG_ENUM_BASE + 338)
+#define    TRRC_MNCofPlmn                      (TRRC_SPECICAL_FLAG_ENUM_BASE + 339)
 
 #define    TRRC_FrToLteArfcnNum                                                      (TRRC_SPECICAL_FLAG_ENUM_BASE + 338)
 #define    TRRC_FrFeatureSwitch                                                      (TRRC_SPECICAL_FLAG_ENUM_BASE + 339)
@@ -24605,7 +24596,6 @@ extern "C" {
 
 
 
-/*z00282933 TDS内存优化 - BEGIN*/
 #define    TMAC_PRINT_UL_RLC_PDU_LINK_IS_NOT_NULL           (TL2_MAC_SPECICAL_FLAG_ENUM_BASE + 1)
 #define    TMAC_PRINT_DL_RLC_PDU_LINK_IS_NOT_NULL           (TL2_MAC_SPECICAL_FLAG_ENUM_BASE + 2)
 #define    TMAC_PRINT_TTF_POOL_ID_ERROR                     (TL2_MAC_SPECICAL_FLAG_ENUM_BASE + 3)
@@ -24652,7 +24642,6 @@ extern "C" {
 #define    TMAC_PRINT_SYNC_MIDAMBLE                         (TL2_MAC_SPECICAL_FLAG_ENUM_BASE + 43)
 
 
-/*z00282933 TDS内存优化 - END*/
 
 #define    TRLC_PRINT_MINDATASIZE_INVALIDE                  (TL2_RLC_SPECICAL_FLAG_ENUM_BASE + 1)
 #define    TRLC_PRINT_STATE                                 (TL2_RLC_SPECICAL_FLAG_ENUM_BASE + 2)
@@ -25390,13 +25379,7 @@ extern "C" {
 /*****************************************************************************
  5 STRUCT
 *****************************************************************************/
-/*****************************************************************************
-结构名    : TLPS_PRINT_INFO_STRU
-结构说明  : 用于保存每次打印的内容
- 1.日    期   : 2015年4月27日
-   作    者   : l00285345
-   修改内容   : 创建
-*****************************************************************************/
+
 typedef struct
 {
   VOS_UINT32                                  ulStartTimeStampLow32;
@@ -25407,13 +25390,7 @@ typedef struct
   VOS_INT32                                   lPara2;/*入参2*/
 } TLPS_PRINT_INFO_STRU;
 
-/*****************************************************************************
-结构名    : TLPS_PRINT_INFO_LIST_STRU
-结构说明  : 用于保存每次打印的内容
- 1.日    期   : 2015年5月9日
-   作    者   : l00285345
-   修改内容   : 创建
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -25421,13 +25398,7 @@ typedef struct
   TLPS_PRINT_INFO_STRU                         astPrintInfo[TLPS_MAX_NUM_OF_PRINT_INFO];
 } TLPS_PRINT_INFO_LIST_STRU;
 
-/*****************************************************************************
-  结构名    : TLPS_SEND_PRINT_BUFFER_STRU
-  结构说明  : 配置打印接口
-   1.日    期   : 2015年5月16日
-     作    者   : l00285345
-     修改内容   : 创建
-*****************************************************************************/
+
 
 typedef struct
 {

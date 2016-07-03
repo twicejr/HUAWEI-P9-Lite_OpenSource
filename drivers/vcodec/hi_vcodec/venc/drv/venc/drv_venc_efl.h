@@ -20,7 +20,7 @@ extern "C" {
 #define VEDU_TR_STEP (1)
 /*************************************************************************************/
 #define MAX_VEDU_CHN (8)
-#define MAX_VEDU_QUEUE_NUM (32)  //l00214825 0326 多slice，修改大
+#define MAX_VEDU_QUEUE_NUM (32)
 #define MSG_QUEUE_NUM     (100)
 #define INVAILD_CHN_FLAG   (-1)
 #define VEDU_MAX_ENC_WIDTH   (4096)
@@ -28,9 +28,9 @@ extern "C" {
 #define VEDU_MAX_ENC_HEIGHT  (2160)
 #define VEDU_MIN_ENC_HEIGHT  (144)
 #if 0
-#define VEDU_REG_BASE_ADDR  (0xe8900000) //k3 寄存器地址 l00214825
+#define VEDU_REG_BASE_ADDR  (0xe8900000)
 #else
-#define VEDU_REG_BASE_ADDR  (0xe8800000) //k3 寄存器地址 l00214825
+#define VEDU_REG_BASE_ADDR  (0xe8800000)
 #endif
 #define VEDU_REG_LENGTH    (0x10000) //寄存器长度
 
@@ -2543,15 +2543,15 @@ typedef struct
 	HI_S32 bInitFlag;
 	HI_S32 bReEncode;
 
-	HI_U32 iSliceSplitNum; //每帧划分多少个slice ，后面根据上层进行配置 l00214825
-	HI_U32 iCurrentStreamCnt; //当前一帧编码前获取到第几个码流buffer   l00214825
+	HI_U32 iSliceSplitNum;
+	HI_U32 iCurrentStreamCnt;
 
 #ifdef OUTPUT_LOWDELAY_EN
 	HI_U32 iLastEncodedStreamCnt;
 #endif
 
     venc_user_buf  stStream_OMX[16];
-    venc_user_buf  stStreamHeader_OMX;// 用来存储码流头  l00214825
+    venc_user_buf  stStreamHeader_OMX;
 
 #ifdef SAO_LOWPOWER_EN
     HI_U32  aiRatioSaoLumaOff;

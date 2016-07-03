@@ -1,8 +1,6 @@
 
 #include "dhcp_inc.h"
-/*m00221573 全文件pclint 2012-10-22 start*/
 #include "dhcpc_def.h"
-/*m00221573 全文件pclint 2012-10-22 end*/
 #include "dhcpv6_def.h"
 #include "dhcpc.h"
 #include "dhcpc_dbg.h"
@@ -46,23 +44,7 @@ UCHAR *g_ucDhcpv6FsmEventStr[DHCPV6C_EV_BUTT] =
     DHCPC_GET_STR(DHCPV6C_EV_RELEASE_RESOURCE)
 };
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_TimerCallBack
- 功能描述  : DHCPV6C定时器超时处理函数
- 输入参数  : UCHAR ucIpType
-             ULONG ulTeidc
-             UCHAR ucEvent
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月23日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_TimerCallBack(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent)
 {
     //UCHAR ucLogicSlot = 0;
@@ -88,23 +70,7 @@ ULONG DHCPV6C_TimerCallBack(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPC_TimerCallBack
- 功能描述  : 定时器回调处理
- 输入参数  : ULONG ulIpType
-             ULONG ulTeidc
-             ULONG ulEvent
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月23日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPC_TimerCallBack(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent)
 {
     ULONG ulReturn = VOS_ERR;
@@ -123,22 +89,7 @@ ULONG DHCPC_TimerCallBack(UCHAR ucIpType, ULONG ulTeidc, UCHAR ucEvent)
 }
 
 #define ___DHCPV6C_SERVER_MSG_PRE_PROC___
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Solicit_Request_CheckStatusCode
- 功能描述  : Solicit态、Request态检查status code
- 输入参数  : USHORT usStautsCode
-             ULONG *pulEvent      输出参数.仅在返回值不为VOS_OK时,才可以使用
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Solicit_Request_CheckStatusCode(USHORT usStautsCode,
                                         ULONG *pulEvent, UCHAR *pucCause)
 {
@@ -167,22 +118,7 @@ ULONG DHCPV6C_FSM_Solicit_Request_CheckStatusCode(USHORT usStautsCode,
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Renew_CheckStatusCode
- 功能描述  : Renew态检查Status code
- 输入参数  : USHORT usStautsCode
-             ULONG *pulEvent      输出参数.仅在返回值不为VOS_OK时,才可以使用
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Renew_CheckStatusCode(USHORT usStautsCode, ULONG *pulEvent,
                                                         UCHAR *pucCause)
 {
@@ -207,22 +143,7 @@ ULONG DHCPV6C_FSM_Renew_CheckStatusCode(USHORT usStautsCode, ULONG *pulEvent,
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_StatusCodeCheck
- 功能描述  : 检查不同状态下的Status Code结果
- 输入参数  : DHCPV6C_STATE_E enState
-             DHCPV6C_STATUS_CODE_OPTION_S *pstStatusCode
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月23日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_StatusCodeCheck(DHCPV6C_STATE_E enState, DHCPV6C_STATUS_CODE_OPTION_S *pstStatusCode,
                                             ULONG *pulEvent, UCHAR *pucCuase)
 {
@@ -271,23 +192,7 @@ ULONG DHCPV6C_FSM_StatusCodeCheck(DHCPV6C_STATE_E enState, DHCPV6C_STATUS_CODE_O
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_CheckAllStatusCodeInOption
- 功能描述  : 检查Server发送的OPTION中所有的status code.
-             只要有一个错误就检查失败
- 输入参数  : DHCPV6C_STATE_E enState
-             DHCPV6C_OPTION_INFO_S *pstDhcpv6cOptionInfo
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月24日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_CheckAllStatusCodeInOption(DHCPV6C_STATE_E enState,
                                         DHCPV6C_OPTION_INFO_S *pstDhcpv6cOptionInfo,
                                         ULONG *pulEvent, UCHAR *pucCause)
@@ -324,21 +229,7 @@ ULONG DHCPV6C_FSM_CheckAllStatusCodeInOption(DHCPV6C_STATE_E enState,
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Slocit_PreProc_ServerMsg
- 功能描述  : Solicit态预处理dhcp server发送的消息
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Slocit_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     DHCPV6C_OPTION_INFO_S *pstDhcpv6cOptionInfo = (DHCPV6C_OPTION_INFO_S *)(pstPreResult->pMsg);
@@ -346,7 +237,6 @@ ULONG DHCPV6C_FSM_Slocit_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
     DHCPC_FUNC_ENTRY();
 
     pstPreResult->enEvent = DHCPV6C_EV_DHPCS_MSG_CHECK_ERR;
-    /* deleted by t00265288 start 参照的码流里面没有IaAddrOption */
 #if 0
     if (0 == pstDhcpv6cOptionInfo->pstIaAddrOption->ulValidTime)
     {
@@ -358,21 +248,7 @@ ULONG DHCPV6C_FSM_Slocit_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Request_PreProc_ServerMsg
- 功能描述  : Request态预处理Server 发送的消息
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Request_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     LONG lIpCmpRet = 0;
@@ -390,7 +266,6 @@ ULONG DHCPV6C_FSM_Request_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
         return DHCPC_RET_DROP_MSG;
     }
 
-    /* deleted by t00265288 start 参照的码流里面没有IaAddrOption和IaNaOption */
 #if 0
     lIpCmpRet = VOS_MemCmp(pstDhcpcContext->aulUserIpAddr, &(pstIaAddrOption->stIpv6Addr), sizeof(in6_addr));
     if (0 != lIpCmpRet)
@@ -426,21 +301,7 @@ ULONG DHCPV6C_FSM_Request_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Renew_PreProc_ServerMsg
- 功能描述  : Renew态预处理Server发送的消息
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Renew_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     LONG lIpCmpRet = 0;
@@ -481,21 +342,7 @@ ULONG DHCPV6C_FSM_Renew_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Release_Decline_PreProc_ServerMsg
- 功能描述  : Relase、Decline态预处理dhcp Server发送的消息
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Release_Decline_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_OK;
@@ -513,21 +360,7 @@ ULONG DHCPV6C_FSM_Release_Decline_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPre
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Com_PreProc_ServerMsg
- 功能描述  : 状态机Server消息预处理通用函数
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月14日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Com_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_OK;
@@ -548,7 +381,6 @@ ULONG DHCPV6C_FSM_Com_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
     pstDhcpcContext->ucCause = DHCPV6C_CAUSE_SERVER_MSG_EXCEPTION;
     pstPreResult->enEvent = DHCPV6C_EV_DHPCS_MSG_CHECK_ERR;
 
-    /* deleted by t00265288 start 参照的码流里面没有IaAddrOption */
 #if 0
     if (pstIaAddrOption->ulPreTime > pstIaAddrOption->ulValidTime)
     {
@@ -588,22 +420,7 @@ ULONG DHCPV6C_FSM_Com_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_PreProc_ServerMsg
- 功能描述  : dhcp server消息预处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             DHCPV6C_OPTION_INFO_S *pstDhcpv6cOptionInfo
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月24日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -668,22 +485,7 @@ ULONG DHCPV6C_FSM_PreProc_ServerMsg(DHCPV6C_PRE_RESULT_S *pstPreResult)
 
 #define ___DHCPV6C_COMOM_PROC___
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_SendPacketWithResend
- 功能描述  : 发送消息并启动重发定时器
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
-             ULONG ulDhpcv6MsgType
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_SendPacketWithResend(DHCPC_CTRLBLK *pstDhcpcContext, ULONG ulDhpcv6MsgType)
 {
     ULONG ulReturn = VOS_ERR;
@@ -712,21 +514,7 @@ ULONG DHCPV6C_SendPacketWithResend(DHCPC_CTRLBLK *pstDhcpcContext, ULONG ulDhpcv
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_GetT1
- 功能描述  : 获取T1 renew时长
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月27日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_GetT1(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     if (0 == pstDhcpcContext->ulT1)
@@ -737,21 +525,7 @@ ULONG DHCPV6C_GetT1(DHCPC_CTRLBLK *pstDhcpcContext)
     return pstDhcpcContext->ulT1;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_GetT1
- 功能描述  : 获取T2 renew时长
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月27日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_GetT2(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     if (0 == pstDhcpcContext->ulT2)
@@ -762,21 +536,7 @@ ULONG DHCPV6C_GetT2(DHCPC_CTRLBLK *pstDhcpcContext)
     return pstDhcpcContext->ulT2;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_StartT1Timer
- 功能描述  : DHCPV6C_LEASE_STATE_WAIT_T1阶段的定时器启动管理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月28日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_StartT1Timer(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -806,21 +566,7 @@ ULONG DHCPV6C_StartT1Timer(DHCPC_CTRLBLK *pstDhcpcContext)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_StartT2Timer
- 功能描述  : DHCPV6C_LEASE_STATE_WAIT_T2阶段定时器管理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月28日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_StartT2Timer(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -869,21 +615,7 @@ ULONG DHCPV6C_StartT2Timer(DHCPC_CTRLBLK *pstDhcpcContext)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_StartLeaseExpireTimer
- 功能描述  : DHCPV6C_LEASE_STATE_WAIT_LEASE阶段定时器管理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月28日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_StartLeaseExpireTimer(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -917,21 +649,7 @@ ULONG DHCPV6C_StartLeaseExpireTimer(DHCPC_CTRLBLK *pstDhcpcContext)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_StartLeaseTimer
- 功能描述  : 启动租约相关定时器
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月25日
-    作    者   : jixiaoimng 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_StartLeaseTimer(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -973,21 +691,7 @@ ULONG DHCPV6C_StartLeaseTimer(DHCPC_CTRLBLK *pstDhcpcContext)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_StopLeaseTimer
- 功能描述  : 停止租约定时器
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月27日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_StopLeaseTimer(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1014,23 +718,7 @@ ULONG DHCPV6C_StopLeaseTimer(DHCPC_CTRLBLK *pstDhcpcContext)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_ResendEventComProc
- 功能描述  : 重发事件共通处理
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
-             ULONG ulMsgType                     要重发的消息类型
- 输出参数  : 无
- 返 回 值  : VOS_OK  重发成功
-             VOS_ERR 达到重发最大次数,或者处理失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月17日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_ResendEventComProc(DHCPC_CTRLBLK *pstDhcpcContext, ULONG ulMsgType)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1050,22 +738,7 @@ ULONG DHCPV6C_FSM_ResendEventComProc(DHCPC_CTRLBLK *pstDhcpcContext, ULONG ulMsg
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_SendMsgComProc
- 功能描述  : 第一次发送消息通用处理
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
-             ULONG ulMsgType
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月24日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_SendMsgComProc(DHCPV6C_PRE_RESULT_S *pstPreResult, ULONG ulMsgType)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1106,21 +779,7 @@ ULONG DHCPV6C_FSM_SendMsgComProc(DHCPV6C_PRE_RESULT_S *pstPreResult, ULONG ulMsg
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_StopMsgSend
- 功能描述  : 停止消息发送通用处理
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月24日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV6C_FSM_StopMsgSend(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     (VOID)DHCPC_StopTimer(pstDhcpcContext->ucIpType, pstDhcpcContext->ulTEIDC, DHCPV6C_EV_TIMER_RESEND);
@@ -1131,21 +790,7 @@ VOID DHCPV6C_FSM_StopMsgSend(DHCPC_CTRLBLK *pstDhcpcContext)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_BoundIp
- 功能描述  :
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月17日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_BoundIp(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -1187,21 +832,7 @@ ULONG DHCPV6C_FSM_BoundIp(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_FirstBoundIp
- 功能描述  : 第一次申请地址成功绑定IP处理,要通知LAP地址分配成功
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_FirstBoundIp(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = 0;
@@ -1235,21 +866,7 @@ ULONG DHCPV6C_FSM_FirstBoundIp(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_FINISH;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_IpRelease
- 功能描述  : DHCPV6C_EV_INNER_IP_RELEASE,DHCPV6C_EV_IP_RELEASE处理
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月24日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_IpRelease(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1284,21 +901,7 @@ ULONG DHCPV6C_FSM_IpRelease(DHCPV6C_PRE_RESULT_S *pstPreResult)
 }
 
 #define ___DHCPV6C_EVENT_PROC___
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Init_Rcv_IpReq
- 功能描述  : 初始态收到lap的地址请求事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月10日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Init_Rcv_IpReq(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -1320,21 +923,7 @@ ULONG DHCPV6C_FSM_Init_Rcv_IpReq(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_FINISH;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Solicit_Rcv_Advertise
- 功能描述  : Solicit态收到Advertise事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月10日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Solicit_Rcv_Advertise(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -1386,21 +975,7 @@ ULONG DHCPV6C_FSM_Solicit_Rcv_Advertise(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Solicit_Rcv_Reply
- 功能描述  : Solicit态收到Reply success事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Solicit_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = 0;
@@ -1413,21 +988,7 @@ ULONG DHCPV6C_FSM_Solicit_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Solicit_Rcv_Resend
- 功能描述  : SOLICIT态收到消息重发事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Solicit_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1447,21 +1008,7 @@ ULONG DHCPV6C_FSM_Solicit_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return enRunResult;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Solicit_Rcv_MsgCheckErr
- 功能描述  : Solicit态受到msg check err事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Solicit_Rcv_MsgCheckErr(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     DHCPC_FUNC_ENTRY();
@@ -1474,21 +1021,7 @@ ULONG DHCPV6C_FSM_Solicit_Rcv_MsgCheckErr(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Request_Rcv_Reply
- 功能描述  : Request态收到Rely事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月10日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Request_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -1501,21 +1034,7 @@ ULONG DHCPV6C_FSM_Request_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Request_Rcv_Resend
- 功能描述  : REQUEST态收到消息重发事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Request_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1535,21 +1054,7 @@ ULONG DHCPV6C_FSM_Request_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return enRunResult;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Request_Rcv_MsgCheckErr
- 功能描述  : Request态收到Msg Check Error事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Request_Rcv_MsgCheckErr(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     DHCPC_CTRLBLK *pstDhcpcContext = pstPreResult->pstDhcpcContext;
@@ -1574,21 +1079,7 @@ ULONG DHCPV6C_FSM_Request_Rcv_MsgCheckErr(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Bound_Rcv_Renew
- 功能描述  : Bound态收到DHCPV6C_EV_TIMER_RENEW事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月16日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Bound_Rcv_Renew(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -1627,21 +1118,7 @@ ULONG DHCPV6C_FSM_Bound_Rcv_Renew(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_FINISH;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Bound_Rcv_IpRelease
- 功能描述  : BOUND态收到DHCPV6C_EV_IP_RELEASE事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月27日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Bound_Rcv_IpRelease(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1656,21 +1133,7 @@ ULONG DHCPV6C_FSM_Bound_Rcv_IpRelease(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Bound_Rcv_IpDecline
- 功能描述  : Bound态收到DHCPV6C_EV_LAP_IP_DECLINE事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月16日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Bound_Rcv_IpDecline(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1695,21 +1158,7 @@ ULONG DHCPV6C_FSM_Bound_Rcv_IpDecline(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_FINISH;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Bound_Rcv_LeaseExpire
- 功能描述  : 租约到期事件处理
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月24日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Bound_Rcv_LeaseExpire(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     DHCPC_FUNC_ENTRY();
@@ -1725,21 +1174,7 @@ ULONG DHCPV6C_FSM_Bound_Rcv_LeaseExpire(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Renew_Rcv_Reply
- 功能描述  : RENEW态收到DHCPV6C_EV_DHPCS_REPLY事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月16日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Renew_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1765,22 +1200,7 @@ ULONG DHCPV6C_FSM_Renew_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_FINISH;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_IsLeaseExpireInRenewResend
- 功能描述  : 用于判断在重发renew消息的过程中,租约是否到期
- 输入参数  : DHCPC_CTRLBLK *pstDhcpcContext
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   租约已经到期
-             VOS_FALSE  租约还未到期
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_IsLeaseExpireInRenewResend(DHCPC_CTRLBLK *pstDhcpcContext)
 {
     ULONG ulElapseTime = 0;
@@ -1815,21 +1235,7 @@ ULONG DHCPV6C_IsLeaseExpireInRenewResend(DHCPC_CTRLBLK *pstDhcpcContext)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Renew_Rcv_Resend
- 功能描述  : RENEW态收到DHCPV6C_EV_TIMER_RESEND事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月16日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Renew_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -1877,21 +1283,7 @@ ULONG DHCPV6C_FSM_Renew_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_FINISH;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Renew_Rcv_MsgCheckErr
- 功能描述  : RENEW态处理DHCPV6C_EV_DHPCS_MSG_CHECK_ERR事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月24日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Renew_Rcv_MsgCheckErr(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -1915,21 +1307,7 @@ ULONG DHCPV6C_FSM_Renew_Rcv_MsgCheckErr(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_FINISH;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Renew_Rcv_IpRelease
- 功能描述  : RENEW态收到DHCPV6C_EV_IP_RELEASE事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月16日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Renew_Rcv_IpRelease(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -1945,21 +1323,7 @@ ULONG DHCPV6C_FSM_Renew_Rcv_IpRelease(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return ulReturn;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Release_Rcv_Reply
- 功能描述  : Release态收到Reply success事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月10日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Release_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     DHCPC_FUNC_ENTRY();
@@ -1973,21 +1337,7 @@ ULONG DHCPV6C_FSM_Release_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Release_Rcv_Resend
- 功能描述  : Release态收到消息重发事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Release_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -2006,21 +1356,7 @@ ULONG DHCPV6C_FSM_Release_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return enRunResult;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Decline_Rcv_Reply
- 功能描述  : decline态收到DHCPV6C_EV_DHPCS_REPLY事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月16日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Decline_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     DHCPC_FUNC_ENTRY();
@@ -2034,21 +1370,7 @@ ULONG DHCPV6C_FSM_Decline_Rcv_Reply(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Decline_Rcv_Resend
- 功能描述  : Decline态收到DHCPV6C_EV_TIMER_RESEND事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月16日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_Decline_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG ulReturn = VOS_ERR;
@@ -2067,21 +1389,7 @@ ULONG DHCPV6C_FSM_Decline_Rcv_Resend(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return enRunResult;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_ReleaseResource
- 功能描述  : 处理部分状态下资源释放事件
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月10日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_ReleaseResource(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG   ulReturn = VOS_ERR;
@@ -2102,21 +1410,7 @@ ULONG DHCPV6C_FSM_ReleaseResource(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_FINISH;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_NotifyLapAllocFail
- 功能描述  : 通知LAP分配地址失败
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月11日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_FSM_NotifyLapAllocFail(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     DHCPC_FUNC_ENTRY();
@@ -2129,20 +1423,7 @@ ULONG DHCPV6C_FSM_NotifyLapAllocFail(DHCPV6C_PRE_RESULT_S *pstPreResult)
     return DHCPV6C_FSM_CONTINUE;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_FSM_Register
- 功能描述  : 状态机注册函数
- 输出参数  : 无
- 返 回 值  : VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月9日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV6C_FSM_Register()
 {
     DHCPV6C_STATE_E enState = 0;
@@ -2196,21 +1477,7 @@ VOID DHCPV6C_FSM_Register()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_DecideNextStep
- 功能描述  : 决策状态机是否继续运行下一步
- 输入参数  : DHCPV6C_FSM_RERULT_E enFsmRunResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月10日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 ULONG DHCPV6C_DecideNextStep(DHCPV6C_FSM_RERULT_E enFsmRunResult)
 {
     ULONG ulContinueRun = VOS_FALSE;
@@ -2236,21 +1503,7 @@ ULONG DHCPV6C_DecideNextStep(DHCPV6C_FSM_RERULT_E enFsmRunResult)
     return ulContinueRun;
 }
 
-/*****************************************************************************
- 函 数 名  : DHCPV6C_RunFsm
- 功能描述  : DHCPV6 Clinet状态机执行入口函数
- 输入参数  : DHCPV6C_PRE_RESULT_S *pstPreResult
- 输出参数  : 无
- 返 回 值  : ULONG
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月9日
-    作    者   : jixiaoming 00180244
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOID DHCPV6C_RunFsm(DHCPV6C_PRE_RESULT_S *pstPreResult)
 {
     ULONG   ulLoopNum = 0;

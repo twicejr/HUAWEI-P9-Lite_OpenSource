@@ -1,15 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
-******************************************************************************
-    File name   : ImsaProcAtMsg.h
-    Description : ImsaProcAtMsg.c头文件
-    History     :
-      1.leili 00132387    2013-10-14  Draft Enact
-
-******************************************************************************/
 
 #ifndef __IMSAPROCATMSG_H__
 #define __IMSAPROCATMSG_H__
@@ -62,15 +51,7 @@ extern "C" {
 /*****************************************************************************
   5 STRUCT
 *****************************************************************************/
- /*****************************************************************************
- 结构名  : IMSA_AT_MGMT_DATA_STRU
- 结构说明: 查询IMPU时，保存AT命令
-
- 修改历史      :
-  1.日    期   : 2013年12月24日
-    作    者   : w00209181
-    修改内容   : 新增结构
-*****************************************************************************/
+ 
 typedef struct
 {
     VOS_UINT32                          ulMsgId;
@@ -106,12 +87,6 @@ extern VOS_VOID IMSA_SndMsgAtQryVolteImpuCnf
     VOS_UINT32 ulResult,
     VOS_UINT32 ulImpuLen,
     VOS_CHAR *pucImpu
-);
-
-extern VOS_VOID IMSA_ProcMsgCcwaiSetReq(const AT_IMSA_CCWAI_SET_REQ_STRU *pstCcwaiSetReq);
-extern VOS_VOID IMSA_SndMsgAtCcwaiSetCnf
-(
-    VOS_UINT32 ulResult
 );
 extern VOS_VOID IMSA_SndMsgAtPdpActInd (const IMSA_PDP_CNTXT_INFO_STRU     *pstPdpInfo);
 extern VOS_VOID IMSA_SndMsgAtPdpDeactInd (TAF_PDP_TYPE_ENUM_UINT8             enPdpType);

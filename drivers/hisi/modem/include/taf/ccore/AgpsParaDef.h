@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
-******************************************************************************
-  文 件 名   : AgpsParaDef.h
-  版 本 号   : 初稿
-  作    者   : h44270
-  生成日期   : 2012年06月14日
-  最近修改   :
-  功能描述   : AGPS相关参数的定义头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年06月14日
-    作    者   : h44270
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef __AGPSPARADEF_H__
 #define __AGPSPARADEF_H__
 
@@ -42,13 +25,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : AGPS_POSITION_ACTION_TYPE_ENUM
- 结构说明  : 定位测量取消或者启动类型
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_POSITION_ACTION_TYPE_ENUM
 {
     AGPS_POSITION_ACTION_TYPE_RRLP_MEAS = 0,
@@ -59,13 +36,7 @@ enum AGPS_POSITION_ACTION_TYPE_ENUM
 };
 typedef VOS_UINT8 AGPS_POSITION_ACTION_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_RRLP_METHOD_TYPE_ENUM
- 结构说明  : RRLP定位方式
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_RRLP_METHOD_TYPE_ENUM
 {
     AGPS_RRLP_METHOD_TYPE_UE_ASSISTED                = 0,
@@ -78,13 +49,7 @@ enum AGPS_RRLP_METHOD_TYPE_ENUM
 };
 typedef VOS_UINT8 AGPS_RRLP_METHOD_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : AGPS_POSITION_RESULT_TYPE_ENUM
- 结构说明  : 定位测量结果类型
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 enum AGPS_POSITION_RESULT_TYPE_ENUM
 {
     AGPS_POSITION_RESULT_TYPE_LOCATION  = 0,
@@ -96,13 +61,7 @@ enum AGPS_POSITION_RESULT_TYPE_ENUM
 };
 typedef VOS_UINT8 AGPS_POSITION_RESULT_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_POSITION_ESTIMAT_ENUM
- 结构说明  : 定位结果位置估计类型
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_POSITION_ESTIMAT_ENUM
 {
     AGPS_POSITION_ESTIMAT_ELLIP_POINT                    = 0,                   /* ellipsoid_point */
@@ -116,13 +75,7 @@ enum AGPS_POSITION_ESTIMAT_ENUM
 };
 typedef VOS_UINT8 AGPS_POSITION_ESTIMAT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_ELLIP_POINT_LATITUDE_SIGN_ENUM
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_ELLIP_POINT_LATITUDE_SIGN_ENUM
 {
     AGPS_ELLIP_POINT_LATITUDE_SIGN_NORTH = 0,
@@ -131,13 +84,7 @@ enum AGPS_ELLIP_POINT_LATITUDE_SIGN_ENUM
 };
 typedef VOS_UINT8 AGPS_ELLIP_POINT_LATITUDE_SIGN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_ELLIP_POINT_UNCERT_CIRCLE_LATITUDE_SIGN_ENUM
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_ELLIP_POINT_UNCERT_CIRCLE_LATITUDE_SIGN_ENUM
 {
     AGPS_ELLIP_POINT_UNCERT_CIRCLE_LATITUDE_SIGN_NORTH = 0,
@@ -146,13 +93,7 @@ enum AGPS_ELLIP_POINT_UNCERT_CIRCLE_LATITUDE_SIGN_ENUM
 };
 typedef VOS_UINT8 AGPS_ELLIP_POINT_UNCERT_CIRCLE_LATITUDE_SIGN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_ELLIP_POINT_UNCERT_ELLIP_LATITUDE_SIGN_ENUM
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_ELLIP_POINT_UNCERT_ELLIP_LATITUDE_SIGN_ENUM
 {
     AGPS_ELLIP_POINT_UNCERT_ELLIP_LATITUDE_SIGN_NORTH = 0,
@@ -161,13 +102,7 @@ enum AGPS_ELLIP_POINT_UNCERT_ELLIP_LATITUDE_SIGN_ENUM
 };
 typedef VOS_UINT8 AGPS_ELLIP_POINT_UNCERT_ELLIP_LATITUDE_SIGN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_ELLIP_POINT_ALTI_LATITUDE_SIGN_ENUM
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_ELLIP_POINT_ALTI_LATITUDE_SIGN_ENUM
 {
     AGPS_ELLIP_POINT_ALTI_LATITUDE_SIGN_NORTH = 0,
@@ -176,13 +111,7 @@ enum AGPS_ELLIP_POINT_ALTI_LATITUDE_SIGN_ENUM
 };
 typedef VOS_UINT8 AGPS_ELLIP_POINT_ALTI_LATITUDE_SIGN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_ELLIP_POINT_ALTI_DIRECT_ENUM
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_ELLIP_POINT_ALTI_DIRECT_ENUM
 {
     AGPS_ELLIP_POINT_ALTI_DIRECT_HEIGHT = 0,
@@ -191,13 +120,7 @@ enum AGPS_ELLIP_POINT_ALTI_DIRECT_ENUM
 };
 typedef VOS_UINT8 AGPS_ELLIP_POINT_ALTI_DIRECT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_ELLIP_POINT_ALTI_ELLIP_LATITUDE_SIGN_ENUM
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_ELLIP_POINT_ALTI_ELLIP_LATITUDE_SIGN_ENUM
 {
     AGPS_ELLIP_POINT_ALTI_ELLIP_LATITUDE_SIGN_NORTH = 0,
@@ -206,13 +129,7 @@ enum AGPS_ELLIP_POINT_ALTI_ELLIP_LATITUDE_SIGN_ENUM
 };
 typedef VOS_UINT8 AGPS_ELLIP_POINT_ALTI_ELLIP_LATITUDE_SIGN_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_ELLIP_POINT_ALTI_ELLIP_ALTI_DIRECT_ENUM
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_ELLIP_POINT_ALTI_ELLIP_ALTI_DIRECT_ENUM
 {
     AGPS_ELLIP_POINT_ALTI_ELLIP_ALTI_DIRECT_HEIGHT = 0,
@@ -221,13 +138,7 @@ enum AGPS_ELLIP_POINT_ALTI_ELLIP_ALTI_DIRECT_ENUM
 };
 typedef VOS_UINT8 AGPS_ELLIP_POINT_ALTI_ELLIP_ALTI_DIRECT_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_MULTI_PATH_INDIC_ENUM
- 结构说明  : 定位结果多路径指示
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_MULTI_PATH_INDIC_ENUM
 {
     AGPS_MULTI_PATH_INDIC_NOT_MEAS  = 0,
@@ -239,13 +150,7 @@ enum AGPS_MULTI_PATH_INDIC_ENUM
 };
 typedef VOS_UINT8 AGPS_MULTI_PATH_INDIC_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : AGPS_POSITION_ERROR_REASON_ENUM
- 结构说明  : 定位结果错误原因
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*****************************************************************************/
+
 enum AGPS_POSITION_ERROR_REASON_ENUM
 {
     AGPS_POSITION_ERROR_REASON_UNDEFINED                 = 0,                   /* undefined_error */
@@ -256,13 +161,7 @@ enum AGPS_POSITION_ERROR_REASON_ENUM
 };
 typedef VOS_UINT8 AGPS_POSITION_ERROR_REASON_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : AGPS_POS_UDRE_ENUM
- 枚举说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 enum AGPS_POS_UDRE_ENUM
 {
     AGPS_POS_UDRE_LESS_THAN1         = 0,
@@ -274,13 +173,7 @@ enum AGPS_POS_UDRE_ENUM
 };
 typedef VOS_UINT8 AGPS_POS_UDRE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : AGPS_POS_SAT_STA_ENUM
- 枚举说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 enum AGPS_POS_SAT_STA_ENUM
 {
     AGPS_POS_SAT_STA_NS_NN_U         = 0,                                       /* New satellite, new Navigation Model */
@@ -521,13 +414,7 @@ enum AGPS_THRESHOLD_SFN_GPS_TOW_ENUM
 typedef VOS_UINT8  AGPS_THRESHOLD_SFN_GPS_TOW_ENUM_UINT8;
 
 
-/*******************************************************************************
- 枚举名    : AGPS_EPHEM_CLOCK_TYPE_ENUM
- 枚举说明  : 需要指示ELEMENT ephem_and_clock是哪个接入层提供的
- 1.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 enum AGPS_EPHEM_CLOCK_TYPE_ENUM
 {
    AGPS_EPHEM_CLOCK_TYPE_RRLP = 0,
@@ -536,13 +423,7 @@ enum AGPS_EPHEM_CLOCK_TYPE_ENUM
 };
 typedef VOS_UINT8  AGPS_EPHEM_CLOCK_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : AGPS_IONOSPHERIC_MODEL_TYPE_ENUM_UINT8
- 枚举说明  : 需要指示ELEMENT ionospheric_model是哪个接入层提供的
- 1.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 enum AGPS_IONOSPHERIC_MODEL_TYPE_ENUM
 {
    AGPS_IONOSPHERIC_MODEL_TYPE_RRLP = 0,
@@ -551,13 +432,7 @@ enum AGPS_IONOSPHERIC_MODEL_TYPE_ENUM
 };
 typedef VOS_UINT8  AGPS_IONOSPHERIC_MODEL_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : AGPS_UTC_MODEL_TYPE_ENUM_UINT8
- 枚举说明  : 需要指示ELEMENT UTC_model是哪个接入层提供的
- 1.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 enum AGPS_UTC_MODEL_TYPE_ENUM
 {
    AGPS_UTC_MODEL_TYPE_RRLP = 0,
@@ -566,13 +441,7 @@ enum AGPS_UTC_MODEL_TYPE_ENUM
 };
 typedef VOS_UINT8  AGPS_UTC_MODEL_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : AGPS_ALMANAC_SAT_INFO_TYPE_ENUM
- 枚举说明  : 需要指示ELEMENT almanac是哪个接入层提供的
- 1.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 enum AGPS_ALMANAC_SAT_INFO_TYPE_ENUM
 {
    AGPS_ALMANAC_SAT_INFO_TYPE_RRLP = 0,
@@ -581,13 +450,7 @@ enum AGPS_ALMANAC_SAT_INFO_TYPE_ENUM
 };
 typedef VOS_UINT8  AGPS_ALMANAC_SAT_INFO_TYPE_ENUM_UINT8;
 
-/*******************************************************************************
- 枚举名    : AGPS_MULT_SETS_ENUM
- 枚举说明  : mult set的取值
- 1.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 enum AGPS_MULT_SETS_ENUM
 {
    AGPS_MULT_SETS_MULTIPLE = 0,
@@ -614,13 +477,7 @@ typedef VOS_UINT8  AGPS_MULT_SETS_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*******************************************************************************
- 结构名    : AGPS_RRLP_METHOD_TYPE_STRU
- 结构说明  : GAS的定位测量请求指示的具体参数，通过MTA发送给GPS芯片
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_RRLP_METHOD_TYPE_ENUM_UINT8            enRrlpMethodType;               /*ELEMENT  RRLP_method_type,定位类型 */
@@ -628,13 +485,7 @@ typedef struct
     VOS_UINT8                                   aucReserved1[2];                /* 保留位 */
 }AGPS_RRLP_METHOD_TYPE_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_POSITION_INSTRUCT_STRU
- 结构说明  : GAS的定位测量请求指示的具体参数，通过MTA发送给GPS芯片
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_RRLP_METHOD_TYPE_STRU                  stRrlpMethodType;               /* ELEMENT RRLP_pos_instruct */
@@ -643,13 +494,7 @@ typedef struct
     VOS_UINT8                                   aucReserved1[2];                /* 保留位 */
 }AGPS_POSITION_INSTRUCT_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_REP_QUANT_STRU
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpHoriAccur         : 1;
@@ -665,13 +510,7 @@ typedef struct
     VOS_UINT8                                   aucRsv[2];                      /* 保留位 */
 }AGPS_REP_QUANT_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_UE_POS_EVT_SPEC_INFO_STRU
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_UE_POS_EVT_ENUM_UINT8                  enChoice;
@@ -686,13 +525,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[2];                 /* 保留位 */
 }AGPS_UE_POS_EVT_SPEC_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_UE_POS_EVT_PARAM_STRU
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpEvtSpecInfo       : 1;
@@ -706,13 +539,7 @@ typedef struct
     AGPS_UE_POS_EVT_SPEC_INFO_STRU              stEvtSpecInfo;                  /* event_specific_info */
 }AGPS_UE_POS_EVT_PARAM_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_UE_POS_EVT_PARAM_LIST_STRU
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulCnt;
@@ -720,13 +547,7 @@ typedef struct
 }AGPS_UE_POS_EVT_PARAM_LIST_STRU;
 
 
-/*******************************************************************************
- 结构名    : AGPS_PERIOD_RPTNG_CRTR_STRU
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_UE_POS_RPT_MOUNT_ENUM_UINT8         enRptngAmount;
@@ -734,13 +555,7 @@ typedef struct
     VOS_UINT8                                   aucRsv[2];                      /* 保留位 */
 }AGPS_PERIOD_RPTNG_CRTR_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_REP_CRIT_STRU
- 结构说明  :
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   aucRsv[3];                      /* 保留位 */
@@ -754,39 +569,21 @@ typedef struct
     } u;
 }AGPS_REP_CRIT_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRLP_MEAS_REQ_STRU
- 结构说明  : GAS的定位测量请求指示，通过MEA发送给GPS芯片
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_POSITION_INSTRUCT_STRU                 stPosInstruct;                  /* ELEMENT RRLP_pos_instruct,定位指示 */
     VOS_UINT8                                   aucReserved[108];               /* UNION结构RRC比RRLP多，增加填充为生成ASN */
 }AGPS_RRLP_MEAS_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRC_MEAS_REQ_STRU
- 结构说明  : WAS发给MMC的定位测量请求，通过MTA发送给GPS芯片
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_REP_QUANT_STRU                         stRepQuant;                     /* ELEMENT rep_quant */
     AGPS_REP_CRIT_STRU                          stRepCrit;                      /* ELEMENT rep_crit */
 }AGPS_RRC_MEAS_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_MEASURE_REQ_STRU
- 结构说明  : pos_meas,RR发给MMC的定位测量请求
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   aucRsv[3];                      /* 保留位 */
@@ -799,13 +596,7 @@ typedef struct
     }u;
 }AGPS_MEASURE_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_LATITUDE_STRU
- 结构说明  : 纬度
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_ELLIP_POINT_LATITUDE_SIGN_ENUM_UINT8    enNorth;                       /* ENUMERATED */
@@ -813,38 +604,20 @@ typedef struct
     VOS_UINT32                                   ulDegrees;                     /* INTEGER(0..8388607) */
 } AGPS_LATITUDE_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_COORDINATE_STRU
- 结构说明  : 坐标值:经度和纬度
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_LATITUDE_STRU                          stLatitude;
     VOS_INT32                                   lLongitude;                     /* INTEGER(-8388608..8388607) */
 } AGPS_COORDINATE_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ELLIP_POINT_STRU
- 结构说明  : 定位数据:ellipsoid_point
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_COORDINATE_STRU                        stCoordinate;
 } AGPS_ELLIP_POINT_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ELLIP_POINT_UNCERT_CIRCLE_STRU
- 结构说明  : 定位数据:ellipsoid_point_uncert_circle
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_COORDINATE_STRU                        stCoordinate;                   /* 坐标值*/
@@ -852,13 +625,7 @@ typedef struct
     VOS_UINT8                                   aucRsv[3];                     /* 保留位 */
 } AGPS_ELLIP_POINT_UNCERT_CIRCLE_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ELLIP_POINT_UNCERT_ELLIP_STRU
- 结构说明  : 定位数据:uncert_ellipse
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucUncertnSemiMajor;             /* INTEGER(0..127) */
@@ -867,13 +634,7 @@ typedef struct
     VOS_UINT8                                   ucConfidence;                   /* INTEGER(0..100) */
 } AGPS_UNCERT_ELLIPSE_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ELLIP_POINT_UNCERT_ELLIP_STRU
- 结构说明  : 定位数据:ellipsoid_point_uncert_ellipse
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_COORDINATE_STRU                        stCoordinate;                   /* 坐标值*/
@@ -887,26 +648,14 @@ typedef struct
     VOS_UINT16                                          usHeight;               /* INTEGER(0..32767)，绝对值 */
 } AGPS_ALTITUDE_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ELLIP_POINT_ALTI_STRU
- 结构说明  : 定位数据:ellipsoid_point_alt
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_COORDINATE_STRU                        stCoordinate;                   /* 坐标 */
     AGPS_ALTITUDE_STRU                          stAltitude;                     /* 海拔 */
 } AGPS_ELLIP_POINT_ALTI_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ELLIP_POINT_ALTI_ELLIP_STRU
- 结构说明  : 定位数据:ellipsoid_point_alt_uncertellipse
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_COORDINATE_STRU                        stCoordinate;                   /* 坐标 */
@@ -919,13 +668,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[3];
 } AGPS_ELLIP_POINT_ALTI_ELLIP_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ELLIP_ARC_STRU
- 结构说明  : 定位数据:ellips_arc
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_COORDINATE_STRU                        stCoordinate;                   /* coordinate,坐标 */
@@ -937,13 +680,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[2];
 } AGPS_ELLIP_ARC_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_SHAPE_DATA_STRU
- 结构说明  : 定位数据
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   aucRsv[3];                      /* 保留位 */
@@ -960,13 +697,7 @@ typedef struct
     } u;
 } AGPS_SHAPE_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_LOCATION_PARA_STRU
- 结构说明  : 定位位置参数
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpTime              : 1;
@@ -979,13 +710,7 @@ typedef struct
     AGPS_SHAPE_DATA_STRU                        stShapeData;                    /* shape_data */
 } AGPS_LOCATION_PARA_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_LOCATION_INFO_STRU
- 结构说明  : 定位位置信息
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpTimeOfFix         : 1;
@@ -995,13 +720,7 @@ typedef struct
     VOS_UINT32                                  ulTimeOfFix;                    /* time_of_fix, 当前接入层不使用 */
 } AGPS_LOCATION_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_GPS_MEASURE_ELEMENT_STRU
- 结构说明  : 定位GPS测量信息成员
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucSatId;                        /* INTEGER(0..63) */
@@ -1016,25 +735,13 @@ typedef struct
 } AGPS_GPS_MEASURE_PARA_STRU;
 
 
-/*******************************************************************************
- 结构名    : AGPS_REF_TIME_ONLY_STRU
- 结构说明  : 参考时间信息
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulTow;                          /* ELEMENT GPS TOW, INTEGER(0..14399999) */
 } AGPS_REF_TIME_ONLY_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_GPS_MEASURE_INFO_STRU
- 结构说明  : 定位测量信息
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     AGPS_REF_TIME_ONLY_STRU                     stRefTimeOnly;                  /* ELEMENT ref_time_only */
@@ -1043,13 +750,7 @@ typedef struct
     AGPS_GPS_MEASURE_PARA_STRU                  astGpsMeasParaList[AGPS_MSR_ELEMENT_MAX_NUM];
 } AGPS_GPS_MEASURE_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ADDITION_REQ_SAT_STRU
- 结构说明  : 需要向网络侧请求的辅助数据信息
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucSatId;
@@ -1057,13 +758,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[2];
 }AGPS_ADDITION_REQ_SAT_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_NAV_ADD_DATA_STRU
- 结构说明  : 需要向网络侧请求的辅助数据信息
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                  usGpsWeek;                      /* ELEMENT GPS_week */
@@ -1074,13 +769,7 @@ typedef struct
     AGPS_ADDITION_REQ_SAT_STRU                  astAddlReqSat[AGPS_MAX_SAT_NUM];/* ELEMENT addl_req_sat */
 }AGPS_NAV_ADD_DATA_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_POSITION_GPS_ADDITION_ASSIST_REQ_STRU
- 结构说明  : 需要向网络侧请求的辅助数据信息
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpNavAddData        : 1;
@@ -1099,13 +788,7 @@ typedef struct
     AGPS_NAV_ADD_DATA_STRU                      stNavAddData;                   /* ELEMENT nav_addl_data */
 }AGPS_POSITION_GPS_ADDITION_ASSIST_REQ_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_POSITION_LOCATION_ERR_STRU
- 结构说明  : 定位测量错误回复
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpAssistDataReq     : 1;
@@ -1117,13 +800,7 @@ typedef struct
     AGPS_POSITION_GPS_ADDITION_ASSIST_REQ_STRU  stAssistDataReq;                /* ELEMENT GPS_assist_req,辅助数据请求 */
 } AGPS_POSITION_ERR_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_GPS_TIME_STRU
- 结构说明  : UE positioning GPS reference time中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulGpsTowMsec;                   /* ELEMENT GPS_TOW_msec */
@@ -1131,13 +808,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[2];                 /* 保留  */
 }AGPS_GPS_TIME_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_GSM_TIME_STRU
- 结构说明  : ReferenceTime中的GSMTime
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpBcchCarrier    : 1;
@@ -1152,13 +823,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[3];                 /* 保留位 */
 } AGPS_GSM_TIME_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_GPS_TOW_ASSIST_STRU
- 结构说明  : UE positioning GPS reference time中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucSatId;                        /* ELEMENT sat_id */
@@ -1170,26 +835,14 @@ typedef struct
     VOS_UINT8                                   aucReserved2[1];
 }AGPS_GPS_TOW_ASSIST_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_GPS_TOW_ASSIST_LIST_STRU
- 结构说明  : UE positioning GPS reference time中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulGpsTowAssistNum;
     AGPS_GPS_TOW_ASSIST_STRU                    astGpsTowAssist[AGPS_MAX_SAT_NUM];
 }AGPS_GPS_TOW_ASSIST_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_REFERENCE_TIME_STRU
- 结构说明  : UE positioning GPS reference time
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpGsmTime            : 1;
@@ -1201,13 +854,7 @@ typedef struct
     AGPS_GPS_TOW_ASSIST_LIST_STRU               stGpsTowAssistList;             /* ELEMENT GPS_TOW_assist */
 }AGPS_REFERENCE_TIME_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_UP_DGPS_CORRECTION_STRU
- 结构说明  : UE positioning GPS DGPS corrections
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpDeltaPrc2:1;
@@ -1226,29 +873,14 @@ typedef struct
 
 }AGPS_UP_DGPS_CORRECTION_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_DGPS_CORRECTION_STRU
- 结构说明  : UE positioning GPS DGPS corrections
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulDgpsCorrectionNum;
     AGPS_UP_DGPS_CORRECTION_STRU                astUpDgpsCorrection[AGPS_MAX_SAT_NUM];
 }AGPS_DGPS_CORRECTION_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRLP_EPHEM_CLOCK_PARAM_STRU
- 结构说明  : UE positioning GPS Ephemeris and Clock Correction parameters
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体命名，该结构体部分参数为有符号类型，目前GAS专用
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucCodeOnL2;                     /* ELEMENT l2_code, INTEGER (0..3),BIT STRING(SIZE(2)) */
@@ -1296,16 +928,7 @@ typedef struct
     VOS_UINT8                                   aucReserved11[2];
 }AGPS_RRLP_EPHEM_CLOCK_PARAM_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRC_EPHEM_CLOCK_PARAM_STRU
- 结构说明  : UE positioning GPS Ephemeris and Clock Correction parameters
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体命名，该结构体参数为无符号类型，目前WAS专用
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucCodeOnL2;                     /* ELEMENT l2_code, BIT STRING(SIZE(2)) */
@@ -1354,16 +977,7 @@ typedef struct
 }AGPS_RRC_EPHEM_CLOCK_PARAM_STRU;
 
 
-/*******************************************************************************
- 结构名    : AGPS_NAV_MODEL_ELEM_STRU
- 结构说明  : UE positioning GPS navigation model
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，需要区分哪个接入层给的数据
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitEphemClock:1;
@@ -1382,29 +996,14 @@ typedef struct
     } u;
 }AGPS_NAV_MODEL_ELEM_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_NAV_MODEL_ELEM_LIST_STRU
- 结构说明  : UE positioning GPS navigation model
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulNavModelElemNum;
     AGPS_NAV_MODEL_ELEM_STRU                    astNavModelElem[AGPS_MAX_SAT_NUM];
 }AGPS_NAV_MODEL_ELEM_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRLP_IONOSPHERIC_MODEL_STRU
- 结构说明  : UE positioning GPS ionospheric model中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，GAS提供的数据是有符号数
-*******************************************************************************/
+
 typedef struct
 {
     VOS_INT8                                    cAlpha0;                        /* ELEMENT alfa0, INTEGER (-128..127),BIT STRING(SIZE(8)) */
@@ -1417,16 +1016,7 @@ typedef struct
     VOS_INT8                                    cBeta3;                         /* ELEMENT beta3, INTEGER (-128..127),BIT STRING(SIZE(8)) */
 }AGPS_RRLP_IONOSPHERIC_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRC_IONOSPHERIC_MODEL_STRU
- 结构说明  : UE positioning GPS ionospheric model中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，WAS提供的数据是无符号数
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucAlpha0;                       /* ELEMENT alfa0, BIT STRING(SIZE(8)) */
@@ -1439,16 +1029,7 @@ typedef struct
     VOS_UINT8                                   ucBeta3;                        /* ELEMENT beta3, BIT STRING(SIZE(8)) */
 }AGPS_RRC_IONOSPHERIC_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRLP_UTC_MODEL_STRU
- 结构说明  : UE positioning GPS UTC model中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，GAS提供的数据是有符号数
-*******************************************************************************/
+
 typedef struct
 {
     VOS_INT32                                   lA1;                            /* ELEMENT a1, INTEGER (-8388608..8388607),BIT STRING(SIZE(24)) */
@@ -1462,16 +1043,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[2];                 /* 保留位 */
 }AGPS_RRLP_UTC_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRC_UTC_MODEL_STRU
- 结构说明  : UE positioning GPS UTC model中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，WAS提供的数据是无符号数
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulA1;                           /* ELEMENT a1, BIT STRING(SIZE(24)) */
@@ -1485,16 +1057,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[2];                 /* 保留位 */
 }AGPS_RRC_UTC_MODEL_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRLP_ALMANAC_SAT_INFO_STRU
- 结构说明  : UE positioning GPS almanac中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，GAS提供的数据是有符号数
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpDataId  :1;
@@ -1517,16 +1080,7 @@ typedef struct
     VOS_INT16                                   sAlmAf1;                        /* ELEMENT alm_af1, INTEGER (-1024..1023),BIT STRING(SIZE(11)) */
 }AGPS_RRLP_ALMANAC_SAT_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_RRC_ALMANAC_SAT_INFO_STRU
- 结构说明  : UE positioning GPS almanac中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，WAS提供的数据是无符号数
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpDataId  :1;
@@ -1549,16 +1103,7 @@ typedef struct
     VOS_UINT16                                  usAlmAf1;                       /* ELEMENT alm_af1, BIT STRING(SIZE(11)) */
 }AGPS_RRC_ALMANAC_SAT_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ALMANAC_SAT_INFO_LIST_STRU
- 结构说明  : UE positioning GPS almanac中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，需要区分哪个接入层给的数据
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulAlmancSatNum;
@@ -1573,16 +1118,7 @@ typedef struct
 
 }AGPS_ALMANAC_SAT_INFO_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ALMANAC_STRU
- 结构说明  : UE positioning GPS almanac中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，命名修正
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucWnA;                          /* ELEMENT wna, INTEGER (0..255),BIT STRING(SIZE(8)) */
@@ -1590,13 +1126,7 @@ typedef struct
     AGPS_ALMANAC_SAT_INFO_LIST_STRU             stAlmanacSatInfoList;
 }AGPS_ALMANAC_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_EXTRA_DOPPLER_INFO_STRU
- 结构说明  : UE positioning GPS acquisition assistance中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucDoppler1stOrder;              /* INTEGER(0..63) */
@@ -1604,13 +1134,7 @@ typedef struct
     AGPS_DOPPLER_UNCERTN_ENUM_UINT8             enDopplerUncertn;
 }AGPS_EXTRA_DOPPLER_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_AZIMUTH_AND_ELEVA_STRU
- 结构说明  : UE positioning GPS acquisition assistance中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                                   ucAzimuth;                      /* ELEMENT az, INTEGER(0..31) */
@@ -1618,13 +1142,7 @@ typedef struct
     VOS_UINT8                                   aucReserved[2];
 }AGPS_AZIMUTH_AND_ELEVA_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ACQU_SAT_INFO_STRU
- 结构说明  : UE positioning GPS acquisition assistance中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  bitOpExtraDopplerInfo  :1;
@@ -1643,55 +1161,28 @@ typedef struct
     AGPS_AZIMUTH_AND_ELEVA_STRU                 stAzimuthAndEleva;              /* OPTIONAL */
 }AGPS_ACQU_SAT_INFO_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ACQU_SAT_INFO_LIST_STRU
- 结构说明  : UE positioning GPS acquisition assistance中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulSatInfoNum;
     AGPS_ACQU_SAT_INFO_STRU                     astSatInfo[AGPS_MAX_SAT_NUM];
 }AGPS_ACQU_SAT_INFO_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_ACQU_ASSIST_STRU
- 结构说明  : UE positioning GPS acquisition assistance中的信元
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulTowMsec;                      /* ELEMENT tow_msec?, ulGpsRefTime, INTEGER(0..604799999) */
     AGPS_ACQU_SAT_INFO_LIST_STRU                stSatInfoList;
 }AGPS_ACQU_ASSIST_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_BAD_SAT_LIST_STRU
- 结构说明  : describe the real-time status of the GPS constellation
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                                  ulBadSatListBadSatListNum;
     VOS_UINT8                                   ausBadSatListBadSatList[AGPS_MAX_SAT_NUM];
 }AGPS_BAD_SAT_LIST_STRU;
 
-/*******************************************************************************
- 结构名    : AGPS_GPS_ASSIST_STRU
- 结构说明  : GPS辅助数据的内容
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
- 2.日    期   : 2012年07月07日
-   作    者   : h44270
-   修改内容   : 修改结构体，需要区分哪个接入层给的数据
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                               bitOpStatusHealth         : 1;
@@ -1737,13 +1228,7 @@ typedef struct
 }AGPS_GPS_ASSIST_STRU;
 
 
-/*******************************************************************************
- 结构名    : AGPS_ASSIST_DATA_STRU
- 结构说明  : 辅助数据的内容
- 1.日    期   : 2012年06月01日
-   作    者   : y00142674,l00128652,h44270
-   修改内容   : Added for AGPS
-*******************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          bitOpGpsAssist      : 1;

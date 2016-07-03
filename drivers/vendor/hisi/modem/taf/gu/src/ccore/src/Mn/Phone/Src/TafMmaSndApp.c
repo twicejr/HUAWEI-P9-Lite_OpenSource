@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2013-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaSndApp.h
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2014年2月14日
-  最近修改   :
-  功能描述   : TafMmaSndApp.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年2月14日
-    作    者   : w00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -54,22 +37,7 @@
 /*****************************************************************************
    3 函数实现
 *****************************************************************************/
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndSysCfgSetCnf
- 功能描述  : 给MSG发送模式变更通知
- 输入参数  : pstCtrl                    - 接收模块信息
-             usErrorCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月14日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndSysCfgSetCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
@@ -113,23 +81,7 @@ VOS_VOID TAF_MMA_SndSysCfgSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndEonsUcs2Rsp
- 功能描述  : 发消息回复EONSUCS2查询结果
- 输入参数  : pstCtrl                    - 接收模块信息
-             enRslt                     - 查询结果
-             usErrorCause               - 错误码
-             pstEonsUcs2PlmnName        - 查询结果的结构体
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月12日
-    作    者   : c00318887
-    修改内容   : 新生成函数
-*****************************************************************************/
 
 VOS_VOID TAF_MMA_SndEonsUcs2Rsp(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
@@ -183,22 +135,7 @@ VOS_VOID TAF_MMA_SndEonsUcs2Rsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPhoneModeSetCnf
- 功能描述  : 给MSG发送模式变更通知
- 输入参数  : pstCtrl                    - 接收模块信息
-             enRslt
-             pstPdpDnsInfo              - PDP DNS信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月14日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPhoneModeSetCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_PH_MODE                         ucPhMode,
@@ -246,25 +183,8 @@ VOS_VOID TAF_MMA_SndPhoneModeSetCnf(
 
 }
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-14, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAcqBestNetworkCnf
- 功能描述  : 给MSG发送模式变更通知
- 输入参数  : pstCtrl                    - 接收模块信息
-             enRslt
-             pstAcqCnfMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月14日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAcqBestNetworkCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt,
@@ -313,26 +233,7 @@ VOS_VOID TAF_MMA_SndAcqBestNetworkCnf(
 
 }
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-14, begin */
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndRegCnf
- 功能描述  : 给MSG发送模式变更通知
- 输入参数  : pstCtrl                    - 接收模块信息
-             enRslt
-             pstRegCnfMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月14日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-  2.日    期   : 2015年4月22日
-    作    者   : wx270776
-    修改内容   : DTS2015031602665:将LMM ATTACH注册状态带给CMMCA
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndRegCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt,
@@ -382,21 +283,7 @@ VOS_VOID TAF_MMA_SndRegCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPowerSaveCnf
- 功能描述  : 给MSG发送模式变更通知
- 输入参数  : pstCtrl                     - 接收模块信息
-             enRslt
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月14日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPowerSaveCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt
@@ -438,24 +325,7 @@ VOS_VOID TAF_MMA_SndPowerSaveCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndDetachCnf
- 功能描述  : Detach结果回复
- 输入参数  : ulRcvPid        ---  接收模块PID
-            : usCliendId     ---  外部模块CliendId
-            ucOpId           ---  外部模块OpId
-            enDetachRslt     ---  Detach结果
- 输出参数  : 无
- 返 回 值  : VOS_TRUE:成功,VOS_FALSE:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月27日
-    作    者   : s00246516
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndDetachCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enDetachRslt,
@@ -500,21 +370,7 @@ VOS_VOID TAF_MMA_SndDetachCnf(
 
 #if (FEATURE_ON == FEATURE_CL_INTERWORK)
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCmmcaServiceInd
- 功能描述  : 发送服务状态消息给CMMCA
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2014年2月14日
-   作    者   : s00246516
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCmmcaServiceInd(VOS_VOID)
 {
     TAF_MMA_SERVICE_STATUS_IND_STRU    *pstSndMsg    = VOS_NULL_PTR;
@@ -564,21 +420,7 @@ VOS_VOID TAF_MMA_SndCmmcaServiceInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAcqInd
- 功能描述  : 给MSG发送模式变更通知
- 输入参数  : enRslt
-             pstAcqIndMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年2月14日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAcqInd(
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt,
     MSCC_MMA_ACQ_IND_STRU               *pstAcqIndMsg
@@ -627,26 +469,7 @@ VOS_VOID TAF_MMA_SndAcqInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCmmcaSysInfoInd
- 功能描述  : 给MSG发送模式变更通知
- 输入参数  : ulMcc
-             ulMnc
-             usArfcn
-             enPrioClass
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月14日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-  2.日    期   : 2015年7月20日
-   作    者   : w000316404
-   修改内容   : R11协议升级(LTE频点配置值扩展)
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCmmcaSysInfoInd(
     VOS_UINT32                                              ulMcc,
     VOS_UINT32                                              ulMnc,
@@ -697,26 +520,7 @@ VOS_VOID TAF_MMA_SndCmmcaSysInfoInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndSysInfoInd
- 功能描述  : 给MSG发送模式变更通知
- 输入参数  : ulMcc
-             ulMnc
-             usArfcn
-             enPrioClass
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月20日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-  2.日    期   : 2015年2月6日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndSimStatusInd(
     TAF_MMA_USIMM_CARD_TYPE_ENUM_UINT32           enCardType,                    /* 卡类型:SIM、USIM、ROM-SIM  */
     TAF_MMA_CARD_STATUS_ENUM_UINT8                enCardStatus
@@ -760,26 +564,12 @@ VOS_VOID TAF_MMA_SndSimStatusInd(
 
 #endif
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-14, end */
 
 /* 移该函数实现到TafMmaSndTaf.c */
 
 /*lint -restore */
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCdmaCsqSetCnf
- 功能描述  : 给AT发送ID_TAF_MMA_CDMACSQ_SET_CNF
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCdmaCsqSetCnf(
     TAF_MMA_CTRL_STRU                                      *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32                     enRslt
@@ -820,25 +610,7 @@ VOS_VOID TAF_MMA_SndCdmaCsqSetCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCdmaCsqInd
- 功能描述  : 给AT发送ID_TAF_MMA_CDMACSQ_IND
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2014年12月25日
-    作    者   : m00312079
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年10月16日
-    作    者   : m00312079
-    修改内容   : DTS2015101505057:添加ec/Io的上报门限
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCdmaCsqInd(VOS_INT16 sCdmaRssi,VOS_INT16 sCdmaEcIo)
 {
     TAF_MMA_CDMACSQ_IND_STRU           *pstCdmaCsqInd = VOS_NULL_PTR;
@@ -876,21 +648,7 @@ VOS_VOID TAF_MMA_SndCdmaCsqInd(VOS_INT16 sCdmaRssi,VOS_INT16 sCdmaEcIo)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCFreqLockSetCnf
- 功能描述  : MMA向AT发送锁频设置的结果
- 输入参数  : TAF_MMA_CFREQ_LOCK_SET_REQ_STRU *pstCFreqLockSetReq
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月29日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndCFreqLockSetCnf(
     TAF_MMA_CFREQ_LOCK_SET_REQ_STRU    *pstCFreqLockSetReq,
     VOS_UINT32                          ulRslt
@@ -924,21 +682,7 @@ VOS_UINT32 TAF_MMA_SndCFreqLockSetCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCTimeInd
- 功能描述  : send ctime ind
- 输入参数  :
-            pstTimezoneCTime  -- 时区时间信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : x00314862
-    修改内容   :
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_SndCTimeInd(
     TAF_MMA_TIME_ZONE_CTIME_STRU       *pstTimezoneCTime
 )
@@ -974,26 +718,7 @@ VOS_UINT32 TAF_MMA_SndCTimeInd(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_FillCTimeIndStru
- 功能描述  : fill ctime ind structure
- 输入参数  :
-            XSD_MMA_1X_SYS_TIME_STRU           *pstSysTime,
-            TAF_MMA_TIME_ZONE_CTIME_STRU       *pstTimezoneCTime
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : x00314862
-    修改内容   :
-  2.日    期   : 2015年3月4日
-    作    者   : f00279542
-    修改内容   : 系统时间的秒数只需要减去lp sec，上报的时间是UTC时间
-*****************************************************************************/
 VOS_UINT32 TAF_MMA_FillCTimeIndStru(
     NAS_MSCC_PIF_1X_SYS_TIME_STRU      *pstSysTime,
     TAF_MMA_TIME_ZONE_CTIME_STRU       *pstTimezoneCTime
@@ -1098,21 +823,7 @@ VOS_UINT32 TAF_MMA_FillCTimeIndStru(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcessCSystemTime
- 功能描述  : Process system time
- 输入参数  : XSD_MMA_1X_SYS_TIME_STRU *pstSysTime
 
- 输出参数  : 无ta
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : x00314862
-    修改内容   :
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcessCSystemTime(NAS_MSCC_PIF_1X_SYS_TIME_STRU *pstSysTime)
 {
     TAF_MMA_TIME_ZONE_CTIME_STRU        stTimezoneCTime;
@@ -1157,21 +868,7 @@ VOS_VOID TAF_MMA_ProcessCSystemTime(NAS_MSCC_PIF_1X_SYS_TIME_STRU *pstSysTime)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_Snd1xChanSetCnf
- 功能描述  : MMA向AT发送channel设置的结果
- 输入参数  : TAF_MMA_1XCHAN_SET_REQ_STRU *pstCFreqLockSetReq
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月18日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_Snd1xChanSetCnf(
     TAF_MMA_CFREQ_LOCK_SET_REQ_STRU    *pstCFreqLockSetReq,
     VOS_UINT32                          ulRslt
@@ -1206,20 +903,7 @@ VOS_VOID TAF_MMA_Snd1xChanSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndGetStaQryCnf
- 功能描述  : 给AT发送ID_TAF_MMA_CDMACSQ_SET_CNF
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndGetStaQryCnf(
     TAF_MMA_CTRL_STRU                                      *pstCtrl,
     TAF_MMA_HANDSET_STATE_STRU                             *pstHandsetSta,
@@ -1265,20 +949,7 @@ VOS_VOID TAF_MMA_SndGetStaQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCHVerQryCnf
- 功能描述  : 给AT发送ID_TAF_MMA_CDMACSQ_SET_CNF
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年05月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCHVerQryCnf(
     TAF_MMA_CTRL_STRU                                      *pstCtrl,
     TAF_MMA_1X_CAS_P_REV_ENUM_UINT8                         enHighRev,
@@ -1319,21 +990,7 @@ VOS_VOID TAF_MMA_SndCHVerQryCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndQuitCallBackCnf
- 功能描述  : 通知app退出callback模式的结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月10日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndQuitCallBackCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
@@ -1369,21 +1026,7 @@ VOS_VOID TAF_MMA_SndQuitCallBackCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndSetCSidListCnf
- 功能描述  : set csidlist 消息 发给mma的发送函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月13日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndSetCSidListCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
@@ -1418,20 +1061,7 @@ VOS_VOID TAF_MMA_SndSetCSidListCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCdmaCsqSetCnf
- 功能描述  : 给AT发送ID_TAF_MMA_CDMACSQ_SET_CNF
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndHdrCsqSetCnf(
     TAF_MMA_CTRL_STRU                                      *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32                     enRslt
@@ -1468,20 +1098,7 @@ VOS_VOID TAF_MMA_SndHdrCsqSetCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndHdrCsqInd
- 功能描述  : 给AT发送ID_TAF_MMA_HDR_CSQ_IND
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndHdrCsqInd(
     VOS_INT16                           sHdrRssi,
     VOS_INT16                           sHdrSnr,
@@ -1524,21 +1141,7 @@ VOS_VOID TAF_MMA_SndHdrCsqInd(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCLModeInd
- 功能描述  : 给AT发送ID_TAF_MMA_CLMODE_IND
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年10月22日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCLModeInd(VOS_VOID)
 {
     TAF_MMA_CLMODE_IND_STRU            *pstCLModeInd = VOS_NULL_PTR;
@@ -1579,27 +1182,7 @@ VOS_VOID TAF_MMA_SndCLModeInd(VOS_VOID)
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : TAF_MMA_BuildRssiInd
- 功能描述  : 构造RSSIIND消息上报给AT
- 输入参数  : TAF_PHONE_EVENT_INFO_STRU  上报给AT的事件
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : s00217060
-    修改内容   : 新增函数
-
-  2.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 消息结构重构
-  3.日    期   : 2015年10月8日
-    作    者   : l00324781
-    修改内容   : Iteration 18 ,CL模服务状态显示优化
-*****************************************************************************/
 VOS_VOID TAF_MMA_BuildRssiInd(
     TAF_MMA_RSSI_INFO_IND_STRU         *pstRssiInd
 )
@@ -1672,21 +1255,7 @@ VOS_VOID TAF_MMA_BuildRssiInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAtRssiInd
- 功能描述  : 上报RSSIIND消息上报给AT
- 输入参数  : TAF_PHONE_EVENT_INFO_STRU  上报给AT的事件
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月16日
-    作    者   : s00217060
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAtRssiInd(VOS_VOID)
 {
     TAF_MMA_RSSI_INFO_IND_STRU          *pstRssiInd;
@@ -1727,22 +1296,7 @@ VOS_VOID TAF_MMA_SndAtRssiInd(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndImsSwitchSetCnf
- 功能描述  : 发送IMS开关设置结果通知APP
- 输入参数  : pstCtrl       ---  控制结构
-             enResult      ---  设置结果
-             usErrorCause  ---  失败原因
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndImsSwitchSetCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enResult,
@@ -1785,21 +1339,7 @@ VOS_VOID TAF_MMA_SndImsSwitchSetCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndImsSwitchQryCnf
- 功能描述  : 发送IMS开关状态查询结果通知APP
- 输入参数  : pstCtrl
-             ucImsSwitch
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndImsSwitchQryCnf(
     TAF_MMA_CTRL_STRU                          *pstCtrl,
     VOS_UINT8                                   ucImsSwitch
@@ -1842,22 +1382,7 @@ VOS_VOID TAF_MMA_SndImsSwitchQryCnf(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndVoiceDomainSetCnf
- 功能描述  : 发送语音优选域设置结果通知APP
- 输入参数  : pstCtrl       ---  控制结构
-             enResult      ---  设置结果
-             usErrorCause  ---  失败原因
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndVoiceDomainSetCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enResult,
@@ -1901,21 +1426,7 @@ VOS_VOID TAF_MMA_SndVoiceDomainSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndVoiceDomainQryCnf
- 功能描述  : 发送语音优选域查询结果通知APP
- 输入参数  : pstCtrl
-             enVoiceDomain
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月04日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndVoiceDomainQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_VOICE_DOMAIN_ENUM_UINT32    enVoiceDomain
@@ -1958,22 +1469,7 @@ VOS_VOID TAF_MMA_SndVoiceDomainQryCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCFPlmnSetCnf
- 功能描述  : 给AT发送ID_TAF_MMA_CFPLMN_CNF
- 输入参数  : pstCtrl         :
-             enRslt          : 返回的结果
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCFPlmnSetCnf(
     TAF_MMA_CTRL_STRU                                      *pstCtrl,
     TAF_MMA_APP_CFPLMN_OPER_RESULT_ENUM_UINT32              enRslt
@@ -2007,23 +1503,7 @@ VOS_VOID TAF_MMA_SndCFPlmnSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCFPlmnQueryCnf
- 功能描述  : 给AT发送ID_TAF_MMA_CFPLMN_query CNF
- 输入参数  : pstCtrl         :
-             enRslt          : 返回的结果
-             pstCFPlmnCnfMsg : 回复的消息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCFPlmnQueryCnf(
     TAF_MMA_CTRL_STRU                                      *pstCtrl,
     TAF_MMA_APP_CFPLMN_OPER_RESULT_ENUM_UINT32              enRslt,
@@ -2077,22 +1557,7 @@ VOS_VOID TAF_MMA_SndCFPlmnQueryCnf(
     PS_SEND_MSG(WUEPS_PID_MMA, pstSndMsg);
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPlmnAutoReselCnf
- 功能描述  : 给AT发送ID_TAF_MMA_PLMN_AUTO_RESEL_CNF
- 输入参数  : enRslt          : 返回的结果
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
-
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcPlmnAutoReselCnf(
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
 )
@@ -2113,22 +1578,7 @@ VOS_VOID TAF_MMA_ProcPlmnAutoReselCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPlmnAutoReselCnf
- 功能描述  : 给AT发送ID_TAF_MMA_PLMN_AUTO_RESEL_CNF
- 输入参数  : enRslt          : 返回的结果
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
-
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPlmnAutoReselCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
@@ -2157,22 +1607,7 @@ VOS_VOID TAF_MMA_SndPlmnAutoReselCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPlmnSpecialSelCnf
- 功能描述  : 给AT发送ID_TAF_MMA_PLMN_SPECIAL_SEL_CNF
- 输入参数  : enRslt          : 返回的结果
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
-
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcPlmnSpecialSelCnf(
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
 )
@@ -2193,22 +1628,7 @@ VOS_VOID TAF_MMA_ProcPlmnSpecialSelCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPlmnSpecialSelCnf
- 功能描述  : 给AT发送ID_TAF_MMA_PLMN_SPECIAL_SEL_CNF
- 输入参数  : pstCtrl         :
-             enRslt          : 返回的结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPlmnSpecialSelCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
@@ -2237,22 +1657,7 @@ VOS_VOID TAF_MMA_SndPlmnSpecialSelCnf(
     return;
 }
 #if (FEATURE_ON == FEATURE_CSG)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCsgListAbortCnf
- 功能描述  : 给AT发送csg list Abort cnf
- 输入参数  : pstCtrl         : 控制信息
-             enRslt          : 返回的结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年9月21日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCsgListAbortCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
@@ -2288,22 +1693,7 @@ VOS_VOID TAF_MMA_SndCsgListAbortCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCsgListSearchCnf
- 功能描述  : 给AT发送列表搜结果
- 输入参数  : pstCtrl            - 接收模块信息
-             pstPlmnListCnfPara - csg list搜网结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月28日
-    作    者   : z00161729
-    修改内容   : 支持LTE CSG功能新增
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCsgListSearchCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_CSG_LIST_CNF_PARA_STRU     *pstPlmnListCnfPara
@@ -2348,22 +1738,7 @@ VOS_VOID TAF_MMA_SndCsgListSearchCnf(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPlmnListAbortCnf
- 功能描述  : 给AT发送ID_TAF_MMA_PLMN_LIST_ABORT_CNF
- 输入参数  : pstCtrl         :
-             enRslt          : 返回的结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPlmnListAbortCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
@@ -2391,22 +1766,7 @@ VOS_VOID TAF_MMA_SndPlmnListAbortCnf(
     PS_SEND_MSG(WUEPS_PID_MMA, pstSndMsg);
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ProcPlmnListAbortCnf
- 功能描述  : 给AT发送ID_TAF_MMA_PLMN_LIST_ABORT_CNF
- 输入参数  : pstCtrl         :
-             enRslt          : 返回的结果
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_ProcPlmnListAbortCnf(
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
 )
@@ -2434,23 +1794,7 @@ VOS_VOID TAF_MMA_ProcPlmnListAbortCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCFPlmnQueryCnf
- 功能描述  : 给AT发送ID_TAF_MMA_LOCINFO_QRY_CNF CNF
- 输入参数  : pstCtrl         :
-             enRslt          : 返回的结果
-             pstCFPlmnCnfMsg : 回复的消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndLocInfoQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_LOCATION_INFO_QRY_CNF_STRU *pstLocInfoQryCnfMsg
@@ -2485,23 +1829,7 @@ VOS_VOID TAF_MMA_SndLocInfoQryCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPrefPlmnSetCnf
- 功能描述  : 给AT发送ID_TAF_MMA_CPLS_SET_CNF CNF
- 输入参数  : pstCtrl         :
-             enRslt          : 返回的结果
-             pstCFPlmnCnfMsg : 回复的消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPrefPlmnTypeSetCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause,
@@ -2534,23 +1862,7 @@ VOS_VOID TAF_MMA_SndPrefPlmnTypeSetCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtPowrDownCnf
- 功能描述  : 给AT发送ID_TAF_MMA_CPLS_SET_CNF CNF
- 输入参数  : pstCtrl         :
-             enRslt          : 返回的结果
-             pstCFPlmnCnfMsg : 回复的消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
-
- 修改历史      :
-  1.日    期   : 2015年3月26日
-    作    者   : f00279542
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtPowrDownCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
@@ -2580,22 +1892,7 @@ VOS_VOID TAF_MMA_SndMtPowrDownCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPrefPlmnQueryCnf
- 功能描述  : 发送prefplmn query cnf消息到taf
- 输入参数  : TAF_MMA_CTRL_STRU                                          *pstCtrl,
-             TAF_MMA_APP_PREF_PLMN_OPER_RESULT_ENUM_UINT32               enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPrefPlmnSetCnf(
     TAF_MMA_CTRL_STRU                                      *pstCtrl,
     TAF_MMA_APP_PREF_PLMN_OPER_RESULT_ENUM_UINT32           enRslt
@@ -2634,23 +1931,7 @@ VOS_VOID TAF_MMA_SndPrefPlmnSetCnf(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPrefPlmnQueryCnf
- 功能描述  : 发送prefplmn query cnf消息到taf
- 输入参数  : TAF_MMA_CTRL_STRU                                      *pstCtrl,
-             TAF_MMA_APP_PREF_PLMN_OPER_RESULT_ENUM_UINT32           enRslt,
-             MSCC_MMA_PREF_PLMN_QUERY_CNF_STRU                      *pstRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPrefPlmnQueryCnf(
     TAF_MMA_CTRL_STRU                                      *pstCtrl,
     TAF_MMA_APP_PREF_PLMN_OPER_RESULT_ENUM_UINT32           enRslt,
@@ -2730,23 +2011,7 @@ VOS_VOID TAF_MMA_SndPrefPlmnQueryCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPrefPlmnTestCnf
- 功能描述  : 发送prefplmn test cnf消息到taf
- 输入参数  : TAF_MMA_CTRL_STRU                                      *pstCtrl,
-             TAF_MMA_APP_PREF_PLMN_OPER_RESULT_ENUM_UINT32           enRslt,
-             MSCC_MMA_PREF_PLMN_QUERY_CNF_STRU                      *pstRcvMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月05日
-    作    者   : y00307564
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPrefPlmnTestCnf(
     TAF_MMA_CTRL_STRU                                      *pstCtrl,
     TAF_MMA_APP_PREF_PLMN_OPER_RESULT_ENUM_UINT32           enRslt,
@@ -2793,22 +2058,7 @@ VOS_VOID TAF_MMA_SndPrefPlmnTestCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAtRegStatus
- 功能描述  : 上报注册状态给AT
- 输入参数  : enCnDomainId:服务域
-             enRegState:注册状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年02月15日
-    作    者   : s00217060
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAtRegStatus(
     NAS_MSCC_PIF_SRVDOMAIN_ENUM_UINT32  enCnDomainId,
     NAS_MSCC_PIF_REG_STATE_ENUM_UINT8   enRegState
@@ -2889,22 +2139,7 @@ VOS_VOID TAF_MMA_SndAtRegStatus(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetCardInfo
- 功能描述  : 根据消息中Usim和Csim卡状态和卡类型选择上报给AT的数据
- 输入参数  : USIMM_CARDSTATUS_IND_STRU *pStPsUsimStatusInd: 消息结构体
- 输出参数  : USIMM_CARD_TYPE_ENUM_UINT32 enCardType: 卡类型
-             USIMM_CARD_SERVIC_ENUM_UINT32 enCardStatus: 卡状态
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : h00313353
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_GetCardInfo(
     USIMM_CARDSTATUS_IND_STRU          *pStPsUsimStatusInd,
     USIMM_CARD_TYPE_ENUM_UINT32        *enCardType,
@@ -2946,21 +2181,7 @@ VOS_VOID TAF_MMA_GetCardInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndATUsimmStatusInd
- 功能描述  : 向AT发送卡状态消息
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月7日
-    作    者   : h00313353
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndATUsimmStatusInd(
     USIMM_CARDSTATUS_IND_STRU          *pStPsUsimStatusInd,
     VOS_UINT8                          *pucIMSI
@@ -3008,22 +2229,7 @@ VOS_VOID TAF_MMA_SndATUsimmStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPlmnListCnf
- 功能描述  : 给MSG发送列表搜结果
- 输入参数  : pstCtrl                    - 接收模块信息
-             enRslt
-             usErrorCause
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月12日
-    作    者   : b00269685
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPlmnListCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_PLMN_LIST_CNF_PARA_STRU    *pstPlmnListCnfPara
@@ -3065,22 +2271,7 @@ VOS_VOID TAF_MMA_SndPlmnListCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCerssiSetCnf
- 功能描述  : Mma Snd Cerssi Set Cnf
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl
-             TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月23日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCerssiSetCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
@@ -3120,23 +2311,7 @@ VOS_VOID TAF_MMA_SndCerssiSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAccessModeQryCnf
- 功能描述  : MMA Snd Access Mode Qry Cnf
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl
-             MN_MMA_CPAM_RAT_TYPE_ENUM_UINT8     enAccessMode
-             TAF_PH_PLMN_PRIO                    ucPlmnPrio
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAccessModeQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     MN_MMA_CPAM_RAT_TYPE_ENUM_UINT8     enAccessMode,
@@ -3174,22 +2349,7 @@ VOS_VOID TAF_MMA_SndAccessModeQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCopsQryCnf
- 功能描述  : Mma Snd Cops Qry Cnf
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl
-             TAF_PH_NETWORKNAME_STRU            *pstCopsInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCopsQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_PH_NETWORKNAME_STRU            *pstCopsInfo
@@ -3225,22 +2385,7 @@ VOS_VOID TAF_MMA_SndCopsQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndRegStateQryCnf
- 功能描述  : Mma Snd Creg Cnf
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl
-             TAF_PH_REG_STATE_STRU              *pstRegInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月27日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndRegStateQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_PH_REG_STATE_STRU              *pstRegInfo
@@ -3276,22 +2421,7 @@ VOS_VOID TAF_MMA_SndRegStateQryCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndSystemInfoQryCnf
- 功能描述  : Mma Snd System Info Qry Cnf
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl
-             TAF_PH_SYSINFO_STRU                *pstSysInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndSystemInfoQryCnf(
     TAF_MMA_SYSINFO_QRY_REQ_STRU       *pstSysInfoQryReq,
     TAF_PH_SYSINFO_STRU                *pstSysInfo
@@ -3354,23 +2484,7 @@ VOS_VOID TAF_MMA_SndSystemInfoQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAntennaInfoQryCnf
- 功能描述  : Mma Snd Antenna Info Qry Cnf
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl
-             TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
-             MN_MMA_ANQUERY_PARA_STRU           *pstAnqueryInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAntennaInfoQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause,
@@ -3408,24 +2522,7 @@ VOS_VOID TAF_MMA_SndAntennaInfoQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndApHplmnCnf
- 功能描述  : Mma Snd Aphplmn Qry Cnf
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
-             TAF_ERROR_CODE_ENUM_UINT32          enErrorCause,
-             TAF_MMA_HPLMN_WITH_MNC_LEN_STRU    *pstHplmnWithMnc
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndApHplmnCnf(
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause,
     TAF_MMA_CTRL_STRU                  *pstCtrl,
@@ -3471,21 +2568,7 @@ VOS_VOID TAF_MMA_SndApHplmnCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCsqQryCnf
- 功能描述  : csq查询消息上报接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCsqQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_PH_RSSI_STRU                   *pstCsqPara
@@ -3524,21 +2607,7 @@ VOS_VOID TAF_MMA_SndCsqQryCnf(
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCsqLvlQryCnf
- 功能描述  : CSQLVL查询消息上报接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCsqLvlQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_CSQLVL_PARA_STRU           *pstCsqlvlPara,
@@ -3584,21 +2653,7 @@ VOS_VOID TAF_MMA_SndCsqLvlQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAutoAttachSetCnf
- 功能描述  : auto attach set 结果返回接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAutoAttachSetCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_PARA_SET_RESULT                 ucRslt
@@ -3628,21 +2683,7 @@ VOS_VOID TAF_MMA_SndAutoAttachSetCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCrpnQryCnf
- 功能描述  : crpn qry 返回结果发送接口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月30日
-    作    者   : y00322978
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCrpnQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_CRPN_QRY_INFO_STRU         *pstMnMmaCrpnQryCnf,
@@ -3752,21 +2793,7 @@ VOS_VOID TAF_MMA_SndHandShakeQryCnf(
     PS_SEND_MSG(WUEPS_PID_MMA, pstHsQryCnf);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndSrvStatusInd
- 功能描述  : Mma Snd Service Status
- 输入参数  : TAF_PHONE_CHANGED_SERVICE_STATUS    ucSrvStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndSrvStatusInd(
     TAF_PHONE_CHANGED_SERVICE_STATUS    ucSrvStatus
 )
@@ -3798,21 +2825,7 @@ VOS_VOID TAF_MMA_SndSrvStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndRegStatusInd
- 功能描述  : Mma Snd Reg Status Ind
- 输入参数  : TAF_PH_REG_STATE_STRU              *pstRegState
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndRegStatusInd(
     TAF_PH_REG_STATE_STRU              *pstRegState
 )
@@ -3845,21 +2858,7 @@ VOS_VOID TAF_MMA_SndRegStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndRegRejInfoInd
- 功能描述  : Mma Snd Reg Rej Info IND
- 输入参数  : TAF_PH_REG_REJ_INFO_STRU           *pstRejInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndRegRejInd(
     TAF_PH_REG_REJ_INFO_STRU           *pstRejInfo
 )
@@ -3892,21 +2891,7 @@ VOS_VOID TAF_MMA_SndRegRejInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPlmnSelectionInd
- 功能描述  : Mma snd plmn Select ind
- 输入参数  : TAF_MMA_PLMN_SELECTION_INFO_STRU                        *pstPlmnSelectInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月31日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPlmnSelectionInd(
     TAF_MMA_PLMN_SELECTION_INFO_STRU    *pstPlmnSelectInfo
 )
@@ -3939,24 +2924,7 @@ VOS_VOID TAF_MMA_SndPlmnSelectionInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndCipherQryCnf
- 功能描述  : Mma Snd Cipher Qry Cnf
- 输入参数  : VOS_UINT16                          usClientId
-             VOS_UINT8                           ucOpId
-             VOS_UINT32                          ulResult
-             VOS_UINT8                           ucCipherInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月16日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndCipherQryCnf(
     VOS_UINT16                          usClientId,
     VOS_UINT8                           ucOpId,
@@ -4027,23 +2995,7 @@ VOS_VOID TAF_MMA_SndNetScanCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAutoAttachQryCnf
- 功能描述  : Mma Snd Auto Attach Qry Cnf
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl
-             TAF_ERROR_CODE_ENUM_UINT32          enErrCause
-             VOS_UINT8                           ucAutoAttachFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年3月28日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAutoAttachQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause,
@@ -4080,23 +3032,7 @@ VOS_VOID TAF_MMA_SndAutoAttachQryCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAttachCnf
- 功能描述  : 发送ID_TAF_MMA_ATTACH_CNF消息
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl
-             TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt
-             TAF_PHONE_ERROR                     usErrorCause
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月11日
-    作    者   : l00301449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAttachCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt,
@@ -4134,25 +3070,7 @@ VOS_VOID TAF_MMA_SndAttachCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAttachStatusQryCnf
- 功能描述  : 发送ID_TAF_MMA_ATTACH_CNF消息
- 输入参数  : TAF_MMA_ATTACH_STATUS_QRY_REQ_STRU *pstRcvMsg,
-             TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt,
-             TAF_PHONE_ERROR                     usErrorCause,
-             TAF_MMA_ATTACH_STATUS_ENUM_UINT8    enCsStatus,
-             TAF_MMA_ATTACH_STATUS_ENUM_UINT8    enPsStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月11日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAttachStatusQryCnf(
     TAF_MMA_ATTACH_STATUS_QRY_REQ_STRU *pstRcvMsg,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt,
@@ -4193,20 +3111,7 @@ VOS_VOID TAF_MMA_SndAttachStatusQryCnf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_ConvertMmlRatTypeToTafRatType
- 功能描述  : 进行RAT类型转换:NAS_MML_NET_RAT_TYPE_ENUM_UINT8->TAF_PH_RAT_TYPE_ENUM_UINT8
- 输入参数  : NAS_MML_NET_RAT_TYPE_ENUM_UINT8 enMmRatType MM层的RAT TYPE
- 输出参数  : 无
- 返 回 值  : TAF_PH_RAT_TYPE_ENUM_UINT8上报给TAF的RAT TYPE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月15日
-    作    者   : h00285180
-    修改内容   : 新增函数
-*****************************************************************************/
 TAF_MMA_RAT_TYPE_ENUM_UINT8 TAF_MMA_ConvertMmlRatTypeToTafRatType(
     NAS_MSCC_PIF_NET_RAT_TYPE_ENUM_UINT8                    enMmlRatType
 )
@@ -4234,20 +3139,7 @@ TAF_MMA_RAT_TYPE_ENUM_UINT8 TAF_MMA_ConvertMmlRatTypeToTafRatType(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndDplmnQryCnf
- 功能描述  : MMA给AT发送ID_TAF_MMA_DPLMN_QRY_CNF消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月16日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndDplmnQryCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     VOS_UINT8                          *pucVersion
@@ -4295,21 +3187,7 @@ VOS_VOID TAF_MMA_SndDplmnQryCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndDplmnSetCnf
- 功能描述  : MMA给AT发送ID_TAF_MMA_DPLMN_SET_CNF 消息
- 输入参数  : TAF_MMA_CTRL_STRU                  *pstCtrl
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月12日
-    作    者   : n00355355
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndDplmnSetCnf(
     VOS_UINT32                          ulRslt,
     TAF_MMA_CTRL_STRU                   stCtrl
@@ -4356,20 +3234,7 @@ VOS_VOID TAF_MMA_SndDplmnSetCnf(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndSrchedPlmnInfoInd
- 功能描述  : 向AT发送 searched plmn info
- 输入参数  : MSCC_MMA_SRCHED_PLMN_INFO_IND_STRU  *pstSrchedPlmnInfoInd
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年1月15日
-    作    者   : h00285180
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndSrchedPlmnInfoInd(
     MSCC_MMA_SRCHED_PLMN_INFO_IND_STRU *pstSrchedPlmnInfoInd
 )
@@ -4429,21 +3294,7 @@ VOS_VOID TAF_MMA_SndSrchedPlmnInfoInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndAtInitLocInfoInd
- 功能描述  : 向AT发送TAF_MMA_INIT_LOC_INFO_IND信息，上报初搜的lte的国家码和x模的sid信息，帮助AP侧确定是否是漫游
- 输入参数  : VOS_UINT32       ulMcc
-             VOS_INT32        lSid
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年12月10日
-    作    者   : l00324781
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndAtInitLocInfoInd(
     VOS_UINT32                          ulMcc,
     VOS_INT32                           lSid

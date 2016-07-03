@@ -1,48 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasCcMnccProc.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年8月31日
-  最近修改   : 2008年2月14日
-  功能描述   : 接收和处理来自上层的MNCC原语
-  函数列表   :
-              NAS_CC_ProcMnccAlertReq
-              NAS_CC_ProcMnccCallConfReq
-              NAS_CC_ProcMnccDiscReq
-              NAS_CC_ProcMnccEmergSetupReq
-              NAS_CC_ProcMnccFacilityReq
-              NAS_CC_ProcMnccHoldReq
-              NAS_CC_ProcMnccModifyRej
-              NAS_CC_ProcMnccModifyReq
-              NAS_CC_ProcMnccModifyRes
-              NAS_CC_ProcMnccRejReq
-              NAS_CC_ProcMnccRelReq
-              NAS_CC_ProcMnccRetrieveReq
-              NAS_CC_ProcMnccSetupReq
-              NAS_CC_ProcMnccSetupRsp
-              NAS_CC_ProcMnccStartDtmfReq
-              NAS_CC_ProcMnccStopDtmfReq
-              NAS_CC_ProcMnccPrimitive
-  修改历史   :
-  1.日    期   : 2007年8月31日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年10月25日
-    作    者   : s62952
-    修改内容   : 问题单号:A32D14142,在通话117时，拨打1，2等DTMF字符时，会中断117通话
-
-  3.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  4.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 支持UUS1
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -78,37 +34,7 @@ NAS_CC_UUS1_INFO_STRU    f_astUus1MsgBuf[NAS_CC_MAX_UUIE_MSG_NUM];
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccEmergSetupReq
- 功能描述  : 处理MNCC_EMERG_SETUP_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 发送Est Req到MM时，增加呼叫模式，表明是语音呼叫还是可视电话
-
-  3.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 增加ALS多线路支持
-  4.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-  5.日    期   : 2015年8月25日
-    作    者   : s00217060
-    修改内容   : User_Exp_Improve:新增是否重拨标志
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccEmergSetupReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -142,24 +68,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccEmergSetupReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccCallConfReq
- 功能描述  : 处理MNCC_CALL_CONF_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccCallConfReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -213,24 +122,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccCallConfReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccCcEstCnfReq
- 功能描述  : 处理MNCC_CC_EST_CNF_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-             entityId    - 处理该原语的CC实体的ID
-             ucTi        - CC实体对应的transaction ID
-             enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :  2009-12-25
-    作    者   :  z00161729
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccCcEstCnfReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -267,23 +159,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccCcEstCnfReq(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccSetupReq
- 功能描述  : 处理MNCC_SETUP_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-             entityId    - 处理该原语的CC实体的ID
-             ucTi        - CC实体对应的transaction ID
-             enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccCcbsSetupReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -325,23 +201,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccCcbsSetupReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_IsNeedCreateEntity
- 功能描述  : 当收到MNCC_SETUP_REQ消息后判断是否需要新建实体
- 输入参数  : enPrimName  - MNCC原语名
-             ucTi        - transaction ID
-             pentityId   - 处理该原语的CC实体的ID
- 输出参数  : VOS_TRUE: 需要新建实体
-             VOS_FALSE:不需要新建实体
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年2月14日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL NAS_CC_IsNeedCreateEntity(
     MNCC_PRIM_NAME_ENUM_U16             enPrimName,
     VOS_UINT8                           ucTi,
@@ -364,21 +224,7 @@ VOS_BOOL NAS_CC_IsNeedCreateEntity(
     return bIsCreateEntity;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetCallMode
- 功能描述  : 获取当前呼叫模式
- 输入参数  : pstSetup - 呼叫参数
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月21日
-    作    者   : zhoujun /z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_CC_GetCallMode(
     NAS_CC_MSG_SETUP_MO_STRU            *pstSetup
 )
@@ -400,36 +246,7 @@ VOS_UINT32 NAS_CC_GetCallMode(
     return MMCC_CALL_MODE_OTHER;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccSetupReq
- 功能描述  : 处理MNCC_SETUP_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年2月23日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  4.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-  5.日    期   : 2015年8月25日
-    作    者   : s00217060
-    修改内容   : User_Exp_Improve:增加是否重拨标志
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccSetupReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -439,7 +256,6 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccSetupReq(
 {
     NAS_CC_BC_PARAMS_STRU               stBcParams;
     VOS_UINT32                          ulCallMode;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     NAS_CC_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
@@ -452,7 +268,6 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccSetupReq(
         NAS_CC_ProcMnccCcbsSetupReq(pstMsg,entityId,ucTi,enCurrState);
         return;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     NAS_CC_FillAirMsgHeader(ucTi, NAS_CC_MSG_SETUP, &pstMsg->unParam.stSetup.stHeader);
@@ -502,24 +317,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccSetupReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccAlertReq
- 功能描述  : 处理MNCC_ALERT_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccAlertReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -564,24 +362,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccAlertReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccSetupRsp
- 功能描述  : 处理MNCC_SETUP_RES原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccSetupRsp(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -632,30 +413,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccSetupRsp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccDiscReq
- 功能描述  : 处理MNCC_DISC_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年2月23日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccDiscReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -663,12 +421,10 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccDiscReq(
     NAS_CC_CALL_STATE_ENUM_U8           enCurrState
 )
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     NAS_CC_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = NAS_CC_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     if ((NAS_CC_CALL_STATE_U0 == enCurrState)
       ||(NAS_CC_CALL_STATE_U11 == enCurrState)
@@ -698,7 +454,6 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccDiscReq(
             NAS_CC_ChangeCallState(entityId, NAS_CC_CALL_STATE_U19);
             break;
 
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         case NAS_CC_CALL_STATE_U0_6:
             if (NAS_CC_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg)
             {
@@ -711,7 +466,6 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccDiscReq(
             }
 
             break;
-       /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
         default:
             /* 断开用户连接(TBD) */
@@ -747,23 +501,7 @@ a DISCONNECT message shall be sent with cause #21 "call rejected".
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccRelReq
- 功能描述  : 处理MNCC_REL_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccRelReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -800,23 +538,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccRelReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccRejReq
- 功能描述  : 处理MNCC_REJ_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccRejReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -854,32 +576,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccRejReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccFacilityReq
- 功能描述  : 处理MNCC_FACILITY_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-             entityId    - 处理该原语的CC实体的ID
-             ucTi        - CC实体对应的transaction ID
-             enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  4.日    期   : 2014年5月31日
-    作    者   : z00161729
-    修改内容   : DTS2014060402388:一路active呼叫，一路hold的mpty呼叫，at+chld=1过程中丢网所有呼叫都被释放后call状态异常挂死，hold mpty呼叫无法恢复
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccFacilityReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -921,7 +618,6 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccFacilityReq(
     case NAS_SS_OPERATION_HOLD_MPTY:
     case NAS_SS_OPERATION_RETRIEVE_MPTY:
     case NAS_SS_OPERATION_SPLIT_MPTY:
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         if (NAS_SS_OPERATION_HOLD_MPTY == enOperation)
         {
             ulResult = NAS_CC_CheckSsSwitchHoldAllowed();
@@ -953,7 +649,6 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccFacilityReq(
                                sizeof(stFacInfo.ucInvokeID));
             return;
         }
-        /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
         break;
 
     case NAS_SS_OPERATION_EXPLICIT_CT:
@@ -978,29 +673,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccFacilityReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccHoldReq
- 功能描述  : 处理MNCC_HOLD_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  3.日    期   : 2015年08月17日
-    作    者   : f00179208
-    修改内容   : DTS2015080300502:在电话挂断过程中，保持该路电话，需要明确该场景下的原因值
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccHoldReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -1008,7 +681,6 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccHoldReq(
     NAS_CC_CALL_STATE_ENUM_U8           enCurrState
 )
 {
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     NAS_CC_HOLD_AUX_STATE_ENUM_U8       enHoldState = NAS_CC_GetHoldAuxState(entityId);
     NAS_CC_CAUSE_VALUE_ENUM_U32          enCause;
     VOS_UINT32                          ulResult;
@@ -1069,30 +741,10 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccHoldReq(
                        sizeof(enCause));
 
     return;
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccRetrieveReq
- 功能描述  : 处理MNCC_RETRIEVE_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccRetrieveReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -1100,7 +752,6 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccRetrieveReq(
     NAS_CC_CALL_STATE_ENUM_U8           enCurrState
 )
 {
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, begin */
     NAS_CC_HOLD_AUX_STATE_ENUM_U8       enHoldState = NAS_CC_GetHoldAuxState(entityId);
     NAS_AIR_MSG_HDR_STRU                stHeader;
     VOS_UINT32                          ulResult;
@@ -1139,42 +790,20 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccRetrieveReq(
             NAS_CC_ERR_LOG1("NAS_CC_ProcMnccRetrieveReq: bad hold state.", enHoldState);
         }
     }
-    /* Modified by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
     NAS_CC_ERR_LOG1("NAS_CC_ProcMnccRetrieveReq: bad state.", enCurrState);
     enCause = NAS_CC_CAUSE_111;
     NAS_CC_SendMnccMsg(entityId,
                        MNCC_RETRIEVE_REJ,
                        &enCause,
                        sizeof(enCause));
-    /* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     return;
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccStartDtmfReq
- 功能描述  : 处理MNCC_START_DTMF_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月18日
-    作    者   : z00161729
-    修改内容   : DTS2013021803962:start dtmf rej后如果收到stop dtmf请求无需跟网络交互直接回复stop dtmf
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccStartDtmfReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -1231,26 +860,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccStartDtmfReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccStopDtmfReq
- 功能描述  : 处理MNCC_STOP_DTMF_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年2月18日
-    作    者   : z00161729
-    修改内容   : DTS2013021803962:start dtmf rej后如果收到stop dtmf请求无需跟网络交互直接回复stop dtmf cnf
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccStopDtmfReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -1306,24 +916,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccStopDtmfReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccModifyReq
- 功能描述  : 处理MNCC_MODIFY_REQ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccModifyReq(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -1355,24 +948,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccModifyReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccModifyRes
- 功能描述  : 处理MNCC_MODIFY_RES原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccModifyRes(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -1403,24 +979,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccModifyRes(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccModifyRej
- 功能描述  : 处理MNCC_MODIFY_REJ原语
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
-              entityId    - 处理该原语的CC实体的ID
-              ucTi        - CC实体对应的transaction ID
-              enCurrState - CC实体当前的呼叫状态
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccModifyRej(
     MNCC_REQ_PRIM_MSG_STRU              *pstMsg,
     NAS_CC_ENTITY_ID_T                  entityId,
@@ -1450,31 +1009,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccModifyRej(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetEntityId
- 功能描述  : 处理MNCC原语时获取CC实体ID和TI
- 输入参数  : pstMsg      - 来自上层的MNCC原语消息
- 输出参数  : pulEntityId - CC实体标识
-             pucTi       - TI值
- 返 回 值  : VOS_OK -  成功,创建CC实体失败
-             VOS_ERR - 失败,创建CC实体失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月29日
-    作    者   : z00161729
-    修改内容   : 降NAS_CC_ProcMnccPrimitive圈复杂度新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  3.日    期   : 2013年04月08日
-    作    者   : Y00213812
-    修改内容   : DTS2013040702274, 解决网络未分配TI时，主动挂断错误的问题
-  4.日    期   : 2014年6月13日
-    作    者   : w00242748
-    修改内容   : DSDS 新特性
-*****************************************************************************/
 VOS_UINT32  NAS_CC_GetEntityId(
     MNCC_REQ_PRIM_MSG_STRU             *pstMsg,
     NAS_CC_ENTITY_ID_T                 *pulEntityId,
@@ -1483,13 +1018,11 @@ VOS_UINT32  NAS_CC_GetEntityId(
 {
     NAS_CC_CALL_STATE_ENUM_U8           enCurrState;
     VOS_BOOL                            bIsCreateEntity;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     NAS_CC_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
     NAS_CC_CALL_TYPE_ENUM_U8            enCallType;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = NAS_CC_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     /* 对于SETUP和EMERGENCY SETUP请求，需要先建立CC实体 */
@@ -1518,7 +1051,6 @@ VOS_UINT32  NAS_CC_GetEntityId(
             enCallType = NAS_CC_CALL_TYPE_EMERGENCY_CALL;
         }
 
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         if (NAS_CC_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg)
         {
             bIsCreateEntity = VOS_TRUE;
@@ -1559,36 +1091,14 @@ VOS_UINT32  NAS_CC_GetEntityId(
 
             *pucTi = NAS_CC_GetEntityTi(*pulEntityId);
         }
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
     }
 
     return VOS_OK;
 }
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccSrvccCallInfoNtf
- 功能描述  : 处理CALL模块的SRVCC同步过来的呼叫信息的通知消息
- 输入参数  : pstSrvccCallInfoNtf---SRVCC同步过来的呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   :  2013-9-25
-    作    者   :  w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年5月28日
-    作    者   : z00234330
-    修改内容   : covertity修改
-  3.日    期   : 2014年12月23日
-    作    者   : b00269685
-    修改内容   : ultra flash新增缓存机制
-
-*****************************************************************************/
 LOCAL VOS_VOID  NAS_CC_ProcMnccSrvccCallInfoNtf(
     MNCC_SRVCC_CALL_INFO_NOTIFY_STRU   *pstSrvccCallInfoNtf
 )
@@ -1596,9 +1106,7 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccSrvccCallInfoNtf(
     VOS_UINT8                           aucTi[MNCC_MAX_ENTITY_NUM];
     VOS_UINT8                           ucTiNum;
 
-    /* modified by z00234330 for coverity修改 2014-05-28 begin */
     PS_MEM_SET(aucTi, 0x00, sizeof(aucTi));
-    /* modified by z00234330 for coverity修改 2014-05-28 begin */
 
     /* 如果SRVCC带过来的CALL NUM为0也需要通知MM模块 */
     /* 构造CC实体信息 */
@@ -1611,27 +1119,21 @@ LOCAL VOS_VOID  NAS_CC_ProcMnccSrvccCallInfoNtf(
     NAS_CC_SendMmccSrvccCallInfoNtf(ucTiNum, aucTi);
 
 
+    /* 如果CALL NUM为0, 则不处理缓存并清除缓存 */
+    if (0 == pstSrvccCallInfoNtf->ucCallNum)
+    {
+        NAS_CC_ClearAllCacheMsg();
+        return;
+    }
+
+    NAS_CC_ProcessSpecTypeBufferMsg(NAS_BuildEventType(WUEPS_PID_MM, MMCC_SYNC_IND));
+
     return;
 }
 #endif
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, end */
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccCallStatusNtf
- 功能描述  : 处理MNCC_CALL_STATUS_NTY
- 输入参数  : MNCC_CALL_STATUS_NTY_STRU           enCallStatus
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月15日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_CC_ProcMnccCallStatusNtf(
     MNCC_CALL_STATUS_NTY_STRU          *pstCallStatusNty
 )
@@ -1643,48 +1145,17 @@ VOS_VOID NAS_CC_ProcMnccCallStatusNtf(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ProcMnccPrimitive
- 功能描述  : 处理MNCC原语。该函数将MNCC原语分发到各自的处理函数去处理。
- 输入参数  : pMsg - 来自上层的MNCC原语消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年2月23日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-  3.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  4.日    期   : 2012年12月11日
-    作    者   : l00167671
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2013年03月13日
-    作    者   : z00214637
-    修改内容   : Delete M2
-  6.日    期   : 2013年09月25日
-    作    者   : w00176964
-    修改内容   : VoLTE_PhaseII 项目:增加CALL模块的SRVCC状态通知消息的处理
-*****************************************************************************/
 VOS_VOID  NAS_CC_ProcMnccPrimitive(VOS_VOID *pMsg)
 {
     NAS_CC_ENTITY_ID_T                  ulEntityId;
     VOS_UINT8                           ucTi;
     NAS_CC_CALL_STATE_ENUM_U8           enCurrState;
     MNCC_REQ_PRIM_MSG_STRU             *pstMsg;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     NAS_CC_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = NAS_CC_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     pstMsg = (MNCC_REQ_PRIM_MSG_STRU *)pMsg;
@@ -1782,22 +1253,18 @@ VOS_VOID  NAS_CC_ProcMnccPrimitive(VOS_VOID *pMsg)
             NAS_CC_ProcMnccModifyRej(pstMsg, ulEntityId, ucTi, enCurrState);
             break;
 
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         case MNCC_EST_CNF_REQ:
              if (NAS_CC_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg)
              {
                  NAS_CC_ProcMnccCcEstCnfReq(pstMsg, ulEntityId, ucTi, enCurrState);
              }
              break;
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, begin */
 #if (FEATURE_ON == FEATURE_IMS)
         case MNCC_SRVCC_CALL_INFO_NOTIFY:
             NAS_CC_ProcMnccSrvccCallInfoNtf((MNCC_SRVCC_CALL_INFO_NOTIFY_STRU *)(&pstMsg->unParam.stSrvccCallInfoNtf));
             break;
 #endif
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, end */
 
         case MNCC_CALL_STATUS_NTY:
             NAS_CC_ProcMnccCallStatusNtf((MNCC_CALL_STATUS_NTY_STRU *)(&pstMsg->unParam.stCallStatusNtf));
@@ -1812,22 +1279,7 @@ VOS_VOID  NAS_CC_ProcMnccPrimitive(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_ActUus1Info
- 功能描述  : 激活UUS1相关信息保存的UUS1信息
- 输入参数  : enMsgType   :需激活的消息类型
-             pstUuieInfo :激活UUIE的信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_CC_ActUus1Info(
     NAS_CC_MSG_TYPE_ENUM_U8             enMsgType,
     NAS_CC_IE_USER_USER_STRU            *pstUuieInfo
@@ -1878,21 +1330,7 @@ VOS_UINT32 NAS_CC_ActUus1Info(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_DeactUus1Info
- 功能描述  : 去激活UUS1信息
- 输入参数  : enMsgType   :需激活的消息类型
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_CC_DeactUus1Info(
     NAS_CC_MSG_TYPE_ENUM_U8             enMsgType
 )
@@ -1918,25 +1356,7 @@ VOS_UINT32 NAS_CC_DeactUus1Info(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetMsgUus1Info
- 功能描述  : 判断该条消息是否激活UUS1信息
- 输入参数  : entityId       :处理该原语的CC实体的ID
-             enMsgType      :   消息类型
- 输出参数  : pstUuieInfo    :   该消息的UUIE内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年4月10日
-    作    者   : h00313353
-    修改内容   : SysCfg重构
-*****************************************************************************/
 VOS_VOID  NAS_CC_GetMsgUus1Info(
     NAS_CC_ENTITY_ID_T                  entityId,
     NAS_CC_MSG_TYPE_ENUM_U8             enMsgType,
@@ -1988,22 +1408,7 @@ VOS_VOID  NAS_CC_GetMsgUus1Info(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetAllUus1Info
- 功能描述  : 获取所有激活UUS1信息
- 输入参数  : 无
- 输出参数  : pulActNum      :已激活UUS1个数
-             pstUus1Info    :已激活UUS1相关信息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_CC_GetAllUus1Info(
     VOS_UINT32                          *pulActNum,
     NAS_CC_UUS1_INFO_STRU               *pstUus1Info
@@ -2029,22 +1434,7 @@ VOS_VOID NAS_CC_GetAllUus1Info(
 }
 
 
-/* Modified by z40661 for DMT工程修改, 2013-2-01, begin */
-/*****************************************************************************
- 函 数 名  : NAS_CC_InitUus1Info
- 功能描述  : 初始化UUS1信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月16日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_CC_InitUus1Info( VOS_VOID )
 {
     VOS_UINT32                          i;
@@ -2060,7 +1450,28 @@ VOS_VOID NAS_CC_InitUus1Info( VOS_VOID )
     /* 如果缓存中不存在该消息,则直接返回成功*/
     return;
 }
-/* Modified by z40661 for DMT工程修改, 2013-2-01, end */
+
+
+VOS_UINT32  NAS_CC_IsNeedProcDisProInd(
+    NAS_CC_ENTITY_ID_T                  entityId
+)
+{
+    NAS_CC_CALL_TYPE_ENUM_U8            enCallType;
+    NAS_CC_CALL_STATE_ENUM_U8           enCallState;
+
+    enCallState = NAS_CC_GetCallState(entityId);
+    enCallType  = NAS_CC_GetCallType(entityId);
+
+    if ( (NAS_CC_CALL_TYPE_MT_NORMAL_CALL == enCallType)
+      && (enCallState != NAS_CC_CALL_STATE_U10) )
+    {
+        return VOS_FALSE;
+    }
+
+    return VOS_TRUE;
+}
+
+
 
 /*lint -restore */
 

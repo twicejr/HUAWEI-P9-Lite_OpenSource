@@ -30,9 +30,7 @@ extern "C" {
 
 extern UCHAR g_ucDscpPriority;
  
-/* Added by dutianyi00217007, MANAGEMENT MESSAGE回调处理函数 */
 extern PTP_GetInManagePkt_Func g_pfPtpManagePkt;
-/* End of adding by dutianyi00217007, MANAGEMENT MESSAGE回调处理函数 */
 
 ULONG PTP_Socket_Init (ULONG ulEventFlag);
 
@@ -67,7 +65,6 @@ VOID PTP_AddrToStr(PTP_PORT_ADDR_S *pstPortAddr,CHAR *pszBuf);
 VOID PTP_Que_Free(ULONG ulQueId);
 
 
-/*Mod By t00110672 For BC3D02747,2010-2-27,增加接收Over Mac报文的接口合法性检查 */
 ULONG PTP_Shell_RcvGeneralMsgWithMAC(UCHAR *pBuffer, ULONG ulPacketLen,ULONG ulIfIndex);
 /*Mod End*/
 
@@ -77,7 +74,6 @@ ULONG PTP_Shell_SndMsgWithMAC(UCHAR *pucBuffer, ULONG ulPacketLength);
 /*层三多播零地址*/
 ULONG PTP_GetAllInterfaceIndex();
 LONG PTP_SetSocketOption(ULONG ifindex,ULONG ulSrcAddr);
-/*Added by zhangbo146309, 层二多播零地址, 2010/9/8 */
 /*qinyun&luogaowei 0地址方案 2011-12-12 start*/
 /*qinyun&luogaowei 0地址方案 2011-12-12 end*/
 
@@ -89,7 +85,6 @@ ULONG PTP_GetEtharpMac(ULONG ulIfIndex, UCHAR *pucMac);
 extern VOID PTP_InfoOutput(CHAR *pInfo);
 extern ULONG PTP_GetPortInfo(ULONG ulIfIndex, ULONG *pulPortType, ULONG *pulPortNo);
 
-/* Added by y00176567, at 2011-05-26. 修改原因: 消除VC三级告警 */
 extern ULONG IF_OpenIfConfigEntry(UINTPTR *pulWaitListHandle);
 extern ULONG IF_GetIfConfigEntry(UINTPTR ulEntryWaitList, IFNET_S * pstIfConfig);
 extern ULONG IF_CloseIfConfigEntry(UINTPTR ulWaitListHandle);

@@ -480,17 +480,7 @@ typedef struct
     VOS_UINT8                           aucReserve2[3];
 } NAS_MNTN_ASCII_ADDR_STRU;/*MN_MSG_ASCII_ADDR_STRU*/
 
-/*******************************************************************************
- 结构名    : NAS_MNTN_SMS_MO_INFO_STRU
- 协议表格  :
- ASN.1描述 :
- 结构说明  : 短信发送功能信息数据结构，包括如下内容
-             短信功能相关的UST文件信息，短信功能初始化信息，短信中心号码，
-             短信发送目的号码，RP-ERROR消息中的RP-Cause
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级 ucRpCause-> ulMoFailCause
-*******************************************************************************/
+
 typedef struct
 {
     NAS_MNTN_MO_SERVICE_INFO_STRU       stUstInfo;

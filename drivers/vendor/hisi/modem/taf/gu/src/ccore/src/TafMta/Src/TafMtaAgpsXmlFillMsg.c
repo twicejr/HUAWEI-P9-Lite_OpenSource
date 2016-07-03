@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaAgpsXmlFillMsg.c
-  版 本 号   : 初稿
-  作    者   : 罗小烽 L47619
-  生成日期   : 2012年7月11日
-  最近修改   :
-  功能描述   : 提供将XML树结构转换为AGPS消息结构的功能
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年7月11日
-    作    者   : 李紫剑 l00198894
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -43,20 +26,7 @@
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_AGPS)
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillLatitude
-功能描述  : 填充AGPS_LATITUDE_STRU子节点
-输入参数  : pstXmlLatitude
-输出参数  : pstLatitude
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : d00212987/L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillLatitude(
     XML_COMM_NODE_STRU                 *pstXmlLatitude,
     AGPS_LATITUDE_STRU                 *pstLatitude
@@ -107,20 +77,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillLatitude(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillCoordinate
-功能描述  : 填充AGPS_COORDINATE_STRU子节点
-输入参数  : pstXmlCoordinate
-输出参数  : pstCoordinate
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : d00212987/L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillCoordinate(
     XML_COMM_NODE_STRU                 *pstXmlCoordinate,
     AGPS_COORDINATE_STRU               *pstCoordinate
@@ -171,20 +128,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillCoordinate(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillUncertEllipse
-功能描述  : 填充AGPS_UNCERT_ELLIPSE_STRU子节点
-输入参数  : pstXmlUncertEllipse
-输出参数  : pstUncertEllipse
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillUncertEllipse(
     XML_COMM_NODE_STRU                 *pstXmlUncertEllipse,
     AGPS_UNCERT_ELLIPSE_STRU           *pstUncertEllipse
@@ -271,20 +215,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillUncertEllipse(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillAltitude
-功能描述  : 填充AGPS_ALTITUDE_STRU子节点
-输入参数  : pstXmlpstAltitude
-输出参数  : pstAltitude
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillAltitude(
     XML_COMM_NODE_STRU                 *pstXmlpstAltitude,
     AGPS_ALTITUDE_STRU                 *pstAltitude
@@ -335,20 +266,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillAltitude(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillEllipPoint
-功能描述  : 填充AGPS_ELLIP_POINT_STRU子节点
-输入参数  : pstXmlElliPoint
-输出参数  : pstElliPoint
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : d00212987/L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillEllipPoint(
     XML_COMM_NODE_STRU                 *pstXmlElliPoint,
     AGPS_ELLIP_POINT_STRU              *pstElliPoint
@@ -383,20 +301,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillEllipPoint(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillEllipPointUncertCircle
-功能描述  : 填充AGPS_ELLIP_POINT_UNCERT_CIRCLE_STRU子节点
-输入参数  : pstXmlElliPointUncertCircle
-输出参数  : pstElliPointUncertCircle
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : d00212987/L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillEllipPointUncertCircle(
     XML_COMM_NODE_STRU                                    *pstXmlElliPointUncertCircle,
     AGPS_ELLIP_POINT_UNCERT_CIRCLE_STRU                   *pstElliPointUncertCircle
@@ -444,20 +349,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillEllipPointUncertCircle(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillEllipPointUncertEllipse
-功能描述  : 填充AGPS_ELLIP_POINT_UNCERT_ELLIP_STRU子节点
-输入参数  : pstXmlElliPointUncertEllip
-输出参数  : pstElliPointUncertEllip
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillEllipPointUncertEllipse(
     XML_COMM_NODE_STRU                 *pstXmlElliPointUncertEllip,
     AGPS_ELLIP_POINT_UNCERT_ELLIP_STRU *pstElliPointUncertEllip
@@ -507,20 +399,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillEllipPointUncertEllipse(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillEllipPointAlt
-功能描述  : 填充AGPS_ELLIP_POINT_ALTI_STRU子节点
-输入参数  : pstXmlElliPointAlti
-输出参数  : pstElliPointAlti
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillEllipPointAlt(
     XML_COMM_NODE_STRU                 *pstXmlElliPointAlti,
     AGPS_ELLIP_POINT_ALTI_STRU         *pstElliPointAlti
@@ -568,20 +447,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillEllipPointAlt(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillEllipPointAltUncertellipse
-功能描述  : 填充AGPS_ELLIP_POINT_ALTI_ELLIP_STRU子节点
-输入参数  : pstXmlElliPArc
-输出参数  : pstElliPArc
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : d00212987/L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillEllipPointAltUncertellipse(
     XML_COMM_NODE_STRU                 *pstXmlElliPointAltiEllip,
     AGPS_ELLIP_POINT_ALTI_ELLIP_STRU   *pstElliPointAltiEllip
@@ -712,20 +578,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillEllipPointAltUncertellipse(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillEllipsArc
-功能描述  : 填充AGPS_ELLIP_ARC_STRU子节点
-输入参数  : pstXmlElliPArc
-输出参数  : pstElliPArc
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : d00212987/L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillEllipsArc(
     XML_COMM_NODE_STRU                 *pstXmlElliPArc,
     AGPS_ELLIP_ARC_STRU                *pstElliPArc
@@ -844,20 +697,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillEllipsArc(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillLocationPara
-功能描述  : 填充AGPS_SHAPE_DATA_STRU子节点
-输入参数  : pstXmlShapeData
-输出参数  : pstShapeData
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : d00212987/L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillShapData(
     XML_COMM_NODE_STRU                 *pstXmlShapeData,
     AGPS_SHAPE_DATA_STRU               *pstShapeData
@@ -945,20 +785,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillShapData(
     return ulResult;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillLocationPara
-功能描述  : 填充AGPS_LOCATION_PARA_STRU子节点
-输入参数  : pstXmlLocationPara
-输出参数  : pstLocationPara
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : d00212987/L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillLocationPara(
     XML_COMM_NODE_STRU                 *pstXmlLocationPara,
     AGPS_LOCATION_PARA_STRU            *pstLocationPara
@@ -1066,20 +893,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillLocationPara(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillLocationInfo
-功能描述  : 填充AGPS_LOCATION_INFO_STRU子节点
-输入参数  : pstXmlLocationInfo
-输出参数  : pstLocationInfo
-返 回 值  :
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月28日
-  作    者  : d00212987/L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillLocationInfo(
     XML_COMM_NODE_STRU                 *pstXmlLocationInfo,
     AGPS_LOCATION_INFO_STRU            *pstLocationInfo
@@ -1131,21 +945,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillLocationInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillRefTimeOnly
-功能描述  : 填充AGPS_REF_TIME_ONLY_STRU结构体
-输入参数  : pstXmlRefTimeOnly
-输出参数  : pstAgpsRefTimeOnly
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillRefTimeOnly(
     XML_COMM_NODE_STRU                 *pstXmlRefTimeOnly,
     AGPS_REF_TIME_ONLY_STRU            *pstRefTimeOnly
@@ -1178,21 +978,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillRefTimeOnly(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillMultiPathOfMeasParams
-功能描述  : 填充AGPS_GPS_MEASURE_PARA_STRU结构体中的enMultipathIndic元素
-输入参数  : pstXmlGpsMeasurePara
-输出参数  : penMultipathIndic
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillMultiPathOfMeasParams(
     XML_COMM_NODE_STRU                 *pstXmlGpsMeasurePara,
     AGPS_MULTI_PATH_INDIC_ENUM_UINT8   *penMultipathIndic
@@ -1243,21 +1029,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillMultiPathOfMeasParams(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillMeasParams
-功能描述  : 填充AGPS_GPS_MEASURE_PARA_STRU结构体
-输入参数  : pstXmlGpsMeasurePara
-输出参数  : pstAgpsGpsMeasureInfo
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillMeasParams(
     XML_COMM_NODE_STRU                 *pstXmlGpsMeasurePara,
     AGPS_GPS_MEASURE_PARA_STRU         *pstGpsMeasurePara
@@ -1389,21 +1161,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillMeasParams(
 }
 
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillGpsMeas
-功能描述  : 填充AGPS_GPS_MEASURE_INFO_STRU结构体
-输入参数  : pstXmlGpsMeasureInfo
-输出参数  : pstAgpsMeasureInfo
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillGpsMeas(
     XML_COMM_NODE_STRU                 *pstXmlGpsMeasureInfo,
     AGPS_GPS_MEASURE_INFO_STRU         *pstGpsMeasureInfo
@@ -1487,21 +1245,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillGpsMeas(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillAttributeTrueOrFalse
-功能描述  : 填充属性值为"true"或"false"的元素属性
-输入参数  : pstXmlAttrib
-输出参数  : pucElement
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillAttributeTrueOrFalse(
     XML_COMM_NODE_ATTRIBUTE_STRU        *pstXmlAttrib,
     VOS_UINT8                           *pucElement
@@ -1524,21 +1268,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillAttributeTrueOrFalse(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillAlmReqOfGpsAssistReq
-功能描述  : 填充alm_req
-输入参数  : pstXmlAssistReq
-输出参数  : pucAlmReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillAlmReqOfGpsAssistReq(
     XML_COMM_NODE_STRU                 *pstXmlAssistReq,
     VOS_UINT8                          *pucAlmReq
@@ -1560,21 +1290,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillAlmReqOfGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillUtcModelReqOfGpsAssistReq
-功能描述  : 填充UTC_model_req
-输入参数  : pstXmlAssistReq
-输出参数  : pucUtcModelReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillUtcModelReqOfGpsAssistReq(
     XML_COMM_NODE_STRU                 *pstXmlAssistReq,
     VOS_UINT8                          *pucUtcModelReq
@@ -1596,21 +1312,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillUtcModelReqOfGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillIonReqOfGpsAssistReq
-功能描述  : 填充ion_req
-输入参数  : pstXmlAssistReq
-输出参数  : pucIonReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillIonReqOfGpsAssistReq(
     XML_COMM_NODE_STRU                 *pstXmlAssistReq,
     VOS_UINT8                          *pucIonReq
@@ -1632,21 +1334,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillIonReqOfGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillNavModelReqOfGpsAssistReq
-功能描述  : 填充nav_model_req
-输入参数  : pstXmlAssistReq
-输出参数  : pucNavModelReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillNavModelReqOfGpsAssistReq(
     XML_COMM_NODE_STRU                 *pstXmlAssistReq,
     VOS_UINT8                          *pucNavModelReq
@@ -1668,21 +1356,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillNavModelReqOfGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillDgpsCorrReqOfGpsAssistReq
-功能描述  : 填充DGPS_corr_req
-输入参数  : pstXmlAssistReq
-输出参数  : pucDgpsCorrReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillDgpsCorrReqOfGpsAssistReq(
     XML_COMM_NODE_STRU                 *pstXmlAssistReq,
     VOS_UINT8                          *pucDgpsCorrReq
@@ -1704,21 +1378,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillDgpsCorrReqOfGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillRefLocReqOfGpsAssistReq
-功能描述  : 填充ref_loc_req
-输入参数  : pstXmlAssistReq
-输出参数  : pucRefLocReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillRefLocReqOfGpsAssistReq(
     XML_COMM_NODE_STRU                 *pstXmlAssistReq,
     VOS_UINT8                          *pucRefLocReq
@@ -1740,21 +1400,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillRefLocReqOfGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillRefTimeReqOfGpsAssistReq
-功能描述  : 填充ref_time_req
-输入参数  : pstXmlAssistReq
-输出参数  : pucRefTimeReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillRefTimeReqOfGpsAssistReq(
     XML_COMM_NODE_STRU                 *pstXmlAssistReq,
     VOS_UINT8                          *pucRefTimeReq
@@ -1776,21 +1422,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillRefTimeReqOfGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillAquAssistReqOfGpsAssistReq
-功能描述  : 填充aqu_assist_req
-输入参数  : pstXmlAssistReq
-输出参数  : pucAquAssistReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillAquAssistReqOfGpsAssistReq(
     XML_COMM_NODE_STRU                 *pstXmlAssistReq,
     VOS_UINT8                          *pucAquAssistReq
@@ -1812,21 +1444,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillAquAssistReqOfGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillRtIntegrReqOfGpsAssistReq
-功能描述  : 填充rt_integr_req
-输入参数  : pstXmlAssistReq
-输出参数  : pucRtIntegrReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillRtIntegrReqOfGpsAssistReq(
     XML_COMM_NODE_STRU                 *pstXmlAssistReq,
     VOS_UINT8                          *pucRtIntegrReq
@@ -1848,21 +1466,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillRtIntegrReqOfGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillGpsAssistReq
-功能描述  : 填充AGPS_POSITION_GPS_ADDITION_ASSIST_REQ_STRU结构体
-输入参数  : pstXmlAssistReq
-输出参数  : pstAgpsAssistReq
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillGpsAssistReq(
     XML_COMM_NODE_STRU                                     *pstXmlAssistReq,
     AGPS_POSITION_GPS_ADDITION_ASSIST_REQ_STRU             *pstAgpsAssistReq
@@ -1979,21 +1583,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillGpsAssistReq(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillAddlReqSat
-功能描述  : 填充AGPS_ADDITION_REQ_SAT_STRU结构体
-输入参数  : pstXmlLocationPara
-输出参数  : pstAgpsAdditionReqSat
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillAddlReqSat(
     XML_COMM_NODE_STRU                 *pstXmlAdditionReqSat,
     AGPS_ADDITION_REQ_SAT_STRU         *pstAdditionReqSat
@@ -2044,21 +1634,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillAddlReqSat(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillNavAddlData
-功能描述  : 填充AGPS_NAV_ADD_DATA_STRU结构体
-输入参数  : pstXmlLocationPara
-输出参数  : pstAgpsNavAddData
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillNavAddlData(
     XML_COMM_NODE_STRU                 *pstXmlNavAddData,
     AGPS_NAV_ADD_DATA_STRU             *pstNavAddData
@@ -2169,21 +1745,7 @@ VOS_UINT32 TAF_MTA_AGPS_FillNavAddlData(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : TAF_MTA_AGPS_FillPosErr
-功能描述  : 填充AGPS_POSITION_ERR_STRU结构体
-输入参数  : pstXmlPositionErr
-输出参数  : pstAgpsPosErr
-返 回 值  : VOS_ERR - 执行失败
-            VOS_OK  - 执行成功
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年6月29日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_MTA_AGPS_FillPosErr(
     XML_COMM_NODE_STRU                 *pstXmlPositionErr,
     AGPS_POSITION_ERR_STRU             *pstPositionErr

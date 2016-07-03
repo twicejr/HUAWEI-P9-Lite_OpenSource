@@ -1,27 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GasInternal.h
-  Author      : 张燕忠(47368)
-  Version     : V200R001
-  Date        : 2005-09-09
-  Description : 该头文件定义了GAS 内部模块之间的消息数据结构
-  History     :
-  1. Date:2005-09-09
-     Author: 张燕忠(47368)
-     Modification:Create
-  2. Date:2005-09-28
-     Author: 赵见磊(41416)
-     Modification:增加WRRC与RR之间的接口
-  3. Date:2005-09-28
-     Author: 张红军(49106)
-     Modification: 将PACK1调整为PACK4
-  4. Date:2006-08-09
-     Author: j60010247
-     Modification:根据问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  5. Date:2010-04-29
-    Author: d00132956
-    Modification:根据问题单AT2D18757，添加疑系统重选时的重选类型,决定是否判断等效PLMN
-************************************************************************/
+
 
 #ifndef _GAS_RR_WRR_H_
 #define _GAS_RR_WRR_H_
@@ -146,14 +123,7 @@ typedef VOS_UINT16 RR_WRRC_MSG_TYPE_ENUM_UINT16;
 
 /*================== RR 模块与WRR模块之间的消息结构 ==========================*/
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_CHANGE_REQ
- 功能描述  : RR接收到网络发送的小区变更命令消息，通过此原语指示WRRC进行小区变更
- 修改历史  :
-  1.日    期   : 2005年09月09日
-    作    者   : Zhangyanzhong(47368)
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 #define BANDWIDTH_EXIST       1
 #define BANDWIDTH_NOEXIST     0
 /* GERAN SI的最大个数 */
@@ -202,17 +172,7 @@ typedef struct
     GURRC_DEDICATED_PRI_INFO_STRU                           stDPriInfo;
 }RRWRRC_CELL_CHANGE_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_CHANGE_CNF
- 功能描述  : 对消息的RRWRRC_CELL_CHANGE_CNF 的回复
- 修改历史  :
-  1.日    期   : 2005年09月09日
-    作    者   : Zhangyanzhong(47368)
-    修改内容   : 新生成结构
-  2.日    期   : 2010年09月11日
-    作    者   : Yaoqinbo(00142674)
-    修改内容   : 问题单DTS2010090602491，增加小区重选不允许接入枚举和定时器长度
-*****************************************************************************/
+
 #define WRRC_RR_CELL_RESEL_ACCESS_NOT_PERMIT_TIMER_LEN          100  /*100s*/
 
 typedef enum
@@ -322,14 +282,7 @@ typedef struct
 }RRWRRC_CELL_CHANGE_CNF_ST;
 
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_CHANGE_REQ
- 功能描述  : WRRC接收到网络发送的小区变更命令消息，通过此原语指示RR进行小区变更
- 修改历史  :
-  1.日    期   : 2005年09月28日
-    作    者   : z41416
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucNCC;
@@ -381,28 +334,14 @@ typedef struct
     GURRC_DEDICATED_PRI_INFO_STRU                           stDPriInfo;
 }WRRCRR_CELL_CHANGE_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_CHANGE_CNF
- 功能描述  : WRRC用此原语应答RR发送的WRRCRR_CELL_CHANGE_REQ
- 修改历史  :
-  1.日    期   : 2005年09月28日
-    作    者   : z41416
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
     RRC_RR_CNF_ENUM_UINT32              enResult;      /* CELL CHANGE切换结果 */
 }WRRCRR_CELL_CHANGE_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_HANDOVER_REQ
- 功能描述  : RR发送此原语指示WRRC进行系统间切换流程
- 修改历史  :
-  1.日    期   : 2005年09月09日
-    作    者   : Zhangyanzhong(47368)
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 enum RRC_RAT_TYPE_ENUM
 {
     RRC_RAT_WCDMA_FDD               = 0,                /* only WCDMA    */
@@ -444,14 +383,7 @@ typedef struct
 }RRWRRC_HANDOVER_REQ_ST;
 
 
-/*****************************************************************************
- 消息名称  : RRWRRC_HANDOVER_CNF
- 功能描述  : WRRC用此消息应答RR发送的RRWRRC_HANDOVER_REQ消息
- 修改历史  :
-  1.日    期   : 2005年09月09日
-    作    者   : Zhangyanzhong(47368)
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -465,70 +397,35 @@ typedef struct
     ******************************************************************************************************/
 }RRWRRC_HANDOVER_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_HANDOVER_STOP_REQ
- 功能描述  : RR发送的RRWRRC_HANDOVER_STOP_REQ消息
- 修改历史  :
-  1.日    期   : 2014-5-13
-    作    者   : t00106267
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve[4];      /* 保留位 */
 }RRWRRC_HANDOVER_STOP_REQ_STRU;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_HANDOVER_STOP_CNF
- 功能描述  : WRRC用此消息应答RR发送的RRWRRC_HANDOVER_STOP_REQ消息
- 修改历史  :
-  1.日    期   : 2014-5-13
-    作    者   : t00106267
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve[4];      /* 保留位 */
 }RRWRRC_HANDOVER_STOP_CNF_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_HANDOVER_STOP_REQ
- 功能描述  : WRR发送的WRRCRR_HANDOVER_STOP_REQ消息
- 修改历史  :
-  1.日    期   : 2014-5-13
-    作    者   : t00106267
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve[4];      /* 保留位 */
 }WRRCRR_HANDOVER_STOP_REQ_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_HANDOVER_STOP_CNF
- 功能描述  : RR用此消息应答WRR发送的WRRCRR_HANDOVER_STOP_REQ消息
- 修改历史  :
-  1.日    期   : 2014-5-13
-    作    者   : t00106267
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve[4];      /* 保留位 */
 }WRRCRR_HANDOVER_STOP_CNF_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_HANDOVER_REQ
- 功能描述  : WRRC发送此原语指示RR进行系统间切换流程
- 修改历史  :
-  1.日    期   : 2005年09月09日
-    作    者   : Zhangyanzhong(47368)
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -540,14 +437,7 @@ typedef struct
     VOS_UINT8                           aucRsv[3];
 }WRRCRR_HANDOVER_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_HANDOVER_CNF
- 功能描述  : RR用此原语应答WRRC发送的WRRCRR_HANDOVER_REQ消息
- 修改历史  :
-  1.日    期   : 2005年09月09日
-    作    者   : Zhangyanzhong(47368)
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -561,14 +451,7 @@ typedef struct
     ******************************************************************************************************/
 }WRRCRR_HANDOVER_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_PLMN_ID_STRU
- 功能描述  : PLMN ID
- 修改历史  :
-  1.日    期   : 2009年2月26日
-    作    者   : c59720
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulMcc;              /* MCC,3 bytes      */
@@ -581,16 +464,7 @@ typedef struct
 #define     WRRCRR_MAX_EQUAL_PLMN_NUM          (16)                  /*重定向时,was带给GAS最大EPLMN个数*/
 
 
-/*****************************************************************************
- 消息名称  : WRRCRR_PLMN_SEARCH_REQ_ST
- 功能描述  : 出服务区流程新增，WAS通知GAS进行PLMN LIST搜索，
-             ulGsmCellCnt =0表示全频搜索，
-             如果ulGsmCellCnt>0，表示是W小区的邻区，G只作搜索这些邻区的PLMN
- 修改历史  :
-  1.日    期   : 2009年2月26日
-    作    者   : c59720
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -602,14 +476,7 @@ typedef struct
     WRRCRR_PLMN_ID_STRU                 astAvailPlmnIdList[WRRCRR_MAX_AVAIL_PLMN_NUM];       /* PlMN标识 */
 }WRRCRR_PLMN_SEARCH_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_LOW_PLMN_INFO_STRU
- 功能描述  : 低质量的PLMN ID
- 修改历史  :
-  1.日    期   : 2009年2月26日
-    作    者   : c59720
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     WRRCRR_PLMN_ID_STRU                 stPlmnId;             /* PLMN ID    */
@@ -622,14 +489,7 @@ typedef struct
     VOS_INT32                           lRscp;              /* RSCP测量值 */
 }WRRCRR_LOW_PLMN_INFO_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_PLMN_ID_LIST_STRU
- 功能描述  : PLMN LIST
- 修改历史  :
-  1.日    期   : 2009年2月26日
-    作    者   : c59720
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulHighPlmnNum;                          /* 高质量PLMN的个数 */
@@ -638,14 +498,7 @@ typedef struct
     WRRCRR_LOW_PLMN_INFO_STRU           astLowPlmnList[WRRCRR_MAX_LOW_PLMN_NUM];     /* 低质量PLMN列表   */
 }WRRCRR_PLMN_ID_LIST_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_PLMN_SEARCH_CNF_ST
- 功能描述  : 出服务区特性新增接口:GAS通知WAS搜索到的PLMN LIST
- 修改历史  :
-  1.日    期   : 2009年2月26日
-    作    者   : c59720
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -656,14 +509,7 @@ typedef struct
     WRRCRR_PLMN_ID_LIST_STRU            PlmnIdList;         /* 上报的PLMN ID列表 */
 }WRRCRR_PLMN_SEARCH_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_PLMN_SEARCH_STOP_REQ_ST
- 功能描述  : 出服务区特性新增接口:WAS通知GAS停止此次PLMN搜索
- 修改历史  :
-  1.日    期   : 2009年2月26日
-    作    者   : c59720
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -671,14 +517,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }WRRCRR_PLMN_SEARCH_STOP_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_PLMN_SEARCH_STOP_CNF_ST
- 功能描述  : 出服务区特性新增接口:GAS在停止PLMN 搜索后，给WAS的响应
- 修改历史  :
-  1.日    期   : 2009年2月26日
-    作    者   : c59720
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -686,14 +525,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }WRRCRR_PLMN_SEARCH_STOP_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : RR_RRC_RESEL_TYPE_ENUM
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2010年9月7日
-    作    者   : Chenwenfeng 59720
-    修改内容   : 新生成枚举
-*****************************************************************************/
+
 typedef enum
 {
     EN_RR_RRC_RESEL_NORMAL        = 0,                                          /* G2W正常重选，需要WAS判断等效plmn列表以及forbid la信息*/
@@ -702,14 +534,7 @@ typedef enum
 }RR_RRC_RESEL_TYPE_ENUM;
 typedef VOS_UINT32 RR_RRC_RESEL_TYPE_ENUM_UINT32;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_RESEL_REQ
- 功能描述  : RR接收到网络发送的小区重选命令消息，通过此原语指示WRRC进行小区重选
- 修改历史  :
-  1.日    期   : 2005年09月28日
-    作    者   : z41416
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -726,14 +551,7 @@ typedef struct
     GURRC_DEDICATED_PRI_INFO_STRU                           stDPriInfo;
 }RRWRRC_CELL_RESEL_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_RESEL_CNF
- 功能描述  : WRRC用此原语应答RR发送的RRWRRC_CELL_RESEL_REQ
- 修改历史  :
-  1.日    期   : 2005年09月28日
-    作    者   : z41416
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -747,14 +565,7 @@ typedef struct
     VOS_INT16                           sQqualMin;    /* Ec/No最低接入门限，单位1/8dB*/
 }RRWRRC_CELL_RESEL_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_RESEL_REQ
- 功能描述  : WRRC接收到网络发送的小区重选命令消息，通过此原语指示RR进行小区重选
- 修改历史  :
-  1.日    期   : 2005年09月28日
-    作    者   : z41416
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -768,17 +579,7 @@ typedef struct
     GURRC_DEDICATED_PRI_INFO_STRU                           stDPriInfo;
 }WRRCRR_CELL_RESEL_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_RESEL_CNF
- 功能描述  : RR用此原语应答WRRC发送的WRRCRR_CELL_RESEL_REQ
- 修改历史  :
-  1.日    期   : 2005年09月28日
-    作    者   : z41416
-    修改内容   : 新生成结构
-  2.日    期   : 2015年11月11日
-    作    者   : w00146666
-    修改内容   : for DTS2015112600361, 增加惩罚时间    
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -792,28 +593,14 @@ typedef struct
     VOS_UINT8                                               aucReserved[2];       
 }WRRCRR_CELL_RESEL_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_CHANGE_TIMER_EXPIRED_REQ
- 功能描述  : RR用此原语通知WRRC定时器超时
- 修改历史  :
-  1.日    期   : 2005年10月12日
-    作    者   : z41416
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve1[4];     /* 4字节对齐，保留 */
 }RRWRRC_CELL_CHANGE_TIMER_EXPIRED_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_CHANGE_TIMER_EXPIRED_CNF
- 功能描述  : WRRC用此原语应答RR发送的RRWRRC_CELL_CHANGE_TIMER_EXPIRED_REQ
- 修改历史  :
-  1.日    期   : 2005年10月12日
-    作    者   : z41416
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -821,56 +608,28 @@ typedef struct
 }RRWRRC_CELL_CHANGE_TIMER_EXPIRED_CNF_ST;
 
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_CHANGE_TIMER_EXPIRED_REQ
- 功能描述  : WRRC用此原语通知RR定时器超时
- 修改历史  :
-  1.日    期   : 2005年10月12日
-    作    者   : z41416
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve1[4];     /* 4字节对齐，保留 */
 }WRRCRR_CELL_CHANGE_TIMER_EXPIRED_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_CHANGE_TIMER_EXPIRED_CNF
- 功能描述  : RR用此原语应答WRRC发送的WRRCRR_CELL_CHANGE_TIMER_EXPIRED_REQ
- 修改历史  :
-  1.日    期   : 2005年10月12日
-    作    者   : z41416
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve1[4];     /* 4字节对齐，保留 */
 }WRRCRR_CELL_CHANGE_TIMER_EXPIRED_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_RESEL_TIMER_EXPIRED_REQ
- 功能描述  : WRR用此原语通知重选超时
- 修改历史  :
-  1.日    期   : 2006年12月25日
-    作    者   : Jinying
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve1[4];     /* 4字节对齐，保留 */
 }WRRCRR_CELL_RESEL_TIMER_EXPIRED_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_RESEL_TIMER_EXPIRED_CNF
- 功能描述  : RR用此原语应答WRRCRR_CELL_RESEL_TIMER_EXPIRED_REQ_ST
- 修改历史  :
-  1.日    期   : 2006年12月25日
-    作    者   : Jinying
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -941,14 +700,7 @@ typedef struct
 
 #define RR_WRRC_MAX_3GNCELL_NUM          96                              /* channel release GAS最多携带96个小区 */
 
-/*****************************************************************************
- 消息名称  : RRC_CELL_SEL_3GNCELL_ST
- 功能描述  : channel release携带的3G小区列表
- 修改历史  :
-  1.日    期   : 2010年03月08日
-    作    者   :
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                  usFreq;                             /* 频点 */
@@ -959,14 +711,7 @@ typedef struct
 
 }RRC_CELL_SEL_3GNCELL_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_REQ_ST
- 功能描述  : G channel release后，给W发的消息
- 修改历史  :
-  1.日    期   : 2010年03月08日
-    作    者   :
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -982,14 +727,7 @@ typedef struct
     GURRC_DEDICATED_PRI_INFO_STRU                           stDPriInfo;
 }RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_CNF_ST
- 功能描述  : 对RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_REQ的回复
- 修改历史  :
-  1.日    期   : 2010年03月08日
-    作    者   :
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -998,14 +736,7 @@ typedef struct
     RRC_RR_CNF_ENUM_UINT32              enResult;                               /* 重选结果 */
 }RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_TIMER_EXPIRED_REQ_ST
- 功能描述  : 对RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_REQ超时的消息
- 修改历史  :
-  1.日    期   : 2010年03月08日
-    作    者   :
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -1015,15 +746,7 @@ typedef struct
 }RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_TIMER_EXPIRED_REQ_ST;
 
 
-/*****************************************************************************
- 消息名称  : RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_TIMER_EXPIRED_CNF_ST
- 功能描述  : 对RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_TIMER_EXPIRED_REQ_ST消息的回复
-              该消息不需要原因值，不管成功失败,Gas处理都一样
- 修改历史  :
-  1.日    期   : 2010年03月08日
-    作    者   :
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -1033,16 +756,7 @@ typedef struct
 }RRWRRC_CELL_SEL_AFTER_CHANNEL_REL_TIMER_EXPIRED_CNF_ST;
 
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_SEL_REDIRECTION_REQ_ST
- 功能描述  : ulGsmCellCnt =0表示全频搜索，否则先搜这些小区，搜不到再全频搜
-             ulAvailPlmnIdNum = 0; 不存在SIM卡时，驻留任意受限小区，标识不限定PLMN范围，
-             否则搜到的小区要限定PLMN范围
- 修改历史  :
-  1.日    期   : 2010年8月31日
-    作    者   : s58750
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;          /* 消息头 */        /* _H2ASN_Skip */
@@ -1059,14 +773,7 @@ typedef struct
     GURRC_DEDICATED_PRI_INFO_STRU                           stDPriInfo;
 }WRRCRR_CELL_SEL_REDIRECTION_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_SEL_REDIRECTION_CNF_ST
- 功能描述  : 对WRRCRR_CELL_SEL_REDIRECTION_REQ_ST的回复
- 修改历史  :
-  1.日    期   : 2010年8月31日
-    作    者   : s58750
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1074,14 +781,7 @@ typedef struct
     RRC_RR_CNF_ENUM_UINT32              enResult;                               /* 搜索小区结果 */
 }WRRCRR_CELL_SEL_REDIRECTION_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_SEL_REDIRECTION_ABORT_REQ_ST
- 功能描述  : 对WRRCRR_CELL_SEL_REDIRECTION_REQ_ST超时的消息
- 修改历史  :
-  1.日    期   : 2010年8月31日
-    作    者   : s58750
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -1091,15 +791,7 @@ typedef struct
 }WRRCRR_CELL_SEL_REDIRECTION_ABORT_REQ_ST;
 
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_SEL_REDIRECTION_ABORT_CNF_ST
- 功能描述  : 对WRRCRR_CELL_SEL_REDIRECTION_ABORT_REQ_ST消息的回复
-              该消息不需要原因值，
- 修改历史  :
-  1.日    期   : 2010年8月31日
-    作    者   : s58750
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -1122,18 +814,7 @@ typedef struct
 
 }RRWRRC_CLASSMARK_CHANGE_IND_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_REQ
- 功能描述  : WRRC通过此消息通知GAS在DEACTIVE状态下进行搜网
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-  2.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 增加NET SCAN类型
 
-*****************************************************************************/
 typedef enum
 {
     EN_RRC_RR_SEARCH_BG                 = 0,                                    /* WAS/GAS通知GAS/WAS做背景搜 */
@@ -1151,14 +832,7 @@ typedef struct
     VOS_UINT32                          ulForbLac;          /* 禁止注册区信息 */
 }WRRCRR_FORB_LA_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_NET_SCAN_REQ_INFO_STRU
- 功能描述  : 此消息结构通知做NET_SCAN搜网
- 修改历史  :
-  1.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usCellInfoNum;                          /* 要求上报的小区个数，范围1~20 */
@@ -1166,17 +840,7 @@ typedef struct
     VOS_UINT32                          ulBand;                                 /* 要搜索的BAND信息，如果需要搜索所有支持频段设置为0xFFFFFFFF */
 }WRRCRR_NET_SCAN_REQ_INFO_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_CELL_INFO_STRU
- 功能描述  : NET SCAN过程搜到的小区信息
- 修改历史  :
-  1.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-  2.日    期   : 2014年11月04日
-    作    者   : j00204253
-    修改内容   : 新增PSC数据，修改Cell Id定义 
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                  usArfcn;                        /* 绝对频率 */
@@ -1193,14 +857,7 @@ typedef struct
     VOS_UINT32                                  ulBand;                         /* 小区BAND信息 */
 }WRRCRR_CELL_INFO_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_NET_SCAN_INFO_STRU
- 功能描述  : 此消息回复NET_SCAN搜网结果
- 修改历史  :
-  1.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usCellInfoNum;                          /* 实际上报的小区个数 */
@@ -1209,18 +866,7 @@ typedef struct
     WRRCRR_CELL_INFO_STRU               astCellInfoList[WRRC_RR_MAX_NET_SCAN_CELL_NUM];    /* 上报的满足条件的小区信息 */
 }WRRCRR_NET_SCAN_INFO_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_REQ_ST
- 功能描述  : WAS通过此消息通知GAS在DEACTIVE状态下进行搜网
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-  2.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 增加NET SCAN结构
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1231,33 +877,14 @@ typedef struct
     WRRCRR_NET_SCAN_REQ_INFO_STRU       stNetScanReqInfo;                       /* NET SCAN请求信息 */
 }WRRCRR_INTERRAT_PLMN_SEARCH_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_CNF_ST
- 功能描述  : GAS通过此消息通知WAS在DEACTIVE状态下的搜网配置的确认
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-  2.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 增加NET SCAN结构
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
     RRC_RR_SEARCH_RESULT_ENUM_UINT32    enResult;                               /* 背景搜成功或失败，NET SCAN搜GAS可以携带成功，失败，参数检查失败 */
 }WRRCRR_INTERRAT_PLMN_SEARCH_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_IND_ST
- 功能描述  : GAS通过此消息通知WAS在DEACTIVE状态下的搜网结果
- 修改历史  :
-  1.日    期   : 2014年4月23日
-    作    者   : L00128652
-    修改内容   : 新生成结构
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1268,14 +895,7 @@ typedef struct
 
 }WRRCRR_INTERRAT_PLMN_SEARCH_IND_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_STOP_REQ_ST
- 功能描述  : WAS通知GAS停止搜网
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1283,18 +903,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }WRRCRR_INTERRAT_PLMN_SEARCH_STOP_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_STOP_CNF_ST
- 功能描述  : GAS收到WAS停止搜网消息后的响应
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-  2.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 增加NET SCAN结构
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1302,14 +911,7 @@ typedef struct
     WRRCRR_NET_SCAN_INFO_STRU           stNetScanInfo;                          /* 上报的NET SCAN的结果 */
 }WRRCRR_INTERRAT_PLMN_SEARCH_STOP_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_SUSPEND_REQ_ST
- 功能描述  : WAS通知GAS暂停搜网
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1317,14 +919,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }WRRCRR_INTERRAT_PLMN_SEARCH_SUSPEND_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_SUSPEND_CNF_ST
- 功能描述  : GAS收到WAS暂停搜网消息后的响应
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1332,14 +927,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }WRRCRR_INTERRAT_PLMN_SEARCH_SUSPEND_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_RESUME_REQ_ST
- 功能描述  : WAS通知GAS重启搜网
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1347,14 +935,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }WRRCRR_INTERRAT_PLMN_SEARCH_RESUME_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_INTERRAT_PLMN_SEARCH_RESUME_CNF_ST
- 功能描述  : GAS收到WAS重启搜网消息后的响应
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1362,18 +943,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }WRRCRR_INTERRAT_PLMN_SEARCH_RESUME_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_INTERRAT_PLMN_SEARCH_REQ_ST
- 功能描述  : GAS通过此消息通知WAS在DEACTIVE状态下做全频段搜网
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-  2.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 增加NET SCAN结构
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1384,18 +954,7 @@ typedef struct
     WRRCRR_NET_SCAN_REQ_INFO_STRU       stNetScanReqInfo;                       /* 请求的NET SCAN的信息 */
 }RRWRRC_INTERRAT_PLMN_SEARCH_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_INTERRAT_PLMN_SEARCH_CNF_ST
- 功能描述  : WAS通过此消息通知GAS在DEACTIVE状态下的搜网配置的确认
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-  2.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 增加NET SCAN结构
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1403,14 +962,7 @@ typedef struct
 }RRWRRC_INTERRAT_PLMN_SEARCH_CNF_ST;
 
 
-/*****************************************************************************
- 消息名称  : RRWRRC_INTERRAT_PLMN_SEARCH_IND_ST
- 功能描述  : WAS通过此消息通知GAS在DEACTIVE状态下的搜网结果
- 修改历史  :
-  1.日    期   : 2014年3月11日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1420,14 +972,7 @@ typedef struct
     WRRCRR_NET_SCAN_INFO_STRU           stNetScanInfo;                          /* 上报的NET SCAN的结果 */
 }RRWRRC_INTERRAT_PLMN_SEARCH_IND_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_INTERRAT_PLMN_SEARCH_STOP_REQ_ST
- 功能描述  : GAS通知WAS停止搜网
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : f48555
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1435,18 +980,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }RRWRRC_INTERRAT_PLMN_SEARCH_STOP_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_INTERRAT_PLMN_SEARCH_STOP_CNF_ST
- 功能描述  : WAS收到GAS停止搜网消息后的响应
- 修改历史  :
-  1.日    期   : 2010年10月19日
-    作    者   : f48555
-    修改内容   : 新生成结构
-  2.日    期   : 2013年8月23日
-    作    者   : L00128652
-    修改内容   : 增加NET SCAN结构
 
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1454,14 +988,7 @@ typedef struct
     WRRCRR_NET_SCAN_INFO_STRU           stNetScanInfo;                          /* 上报的NET SCAN的结果 */
 }RRWRRC_INTERRAT_PLMN_SEARCH_STOP_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_PLMN_SEARCH_SUSPEND_REQ_ST
- 功能描述  : GAS通知WAS暂停搜网
- 修改历史  :
-  1.日    期   : 2010年10月21日
-    作    者   : f48555
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1469,14 +996,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }RRWRRC_INTERRAT_PLMN_SEARCH_SUSPEND_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_PLMN_SEARCH_SUSPEND_CNF_ST
- 功能描述  : WAS收到GAS暂停搜网消息后的响应
- 修改历史  :
-  1.日    期   : 2010年10月21日
-    作    者   : f48555
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1484,14 +1004,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }RRWRRC_INTERRAT_PLMN_SEARCH_SUSPEND_CNF_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_PLMN_SEARCH_RESUME_REQ_ST
- 功能描述  : GAS通知WAS重启搜网
- 修改历史  :
-  1.日    期   : 2010年10月21日
-    作    者   : f48555
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1499,14 +1012,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }RRWRRC_INTERRAT_PLMN_SEARCH_RESUME_REQ_ST;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_PLMN_SEARCH_RESUME_CNF_ST
- 功能描述  : WAS收到GAS重启搜网消息后的响应
- 修改历史  :
-  1.日    期   : 2010年10月21日
-    作    者   : f48555
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1514,42 +1020,21 @@ typedef struct
     VOS_UINT8                           aucReserve1[4];
 }RRWRRC_INTERRAT_PLMN_SEARCH_RESUME_CNF_ST;
 
-/*****************************************************************************
- 结 构 名  : RRWRRC_CELL_RESEL_STOP_REQ_ST
- 结构说明  :
- 修改历史  :
-  1.日  期   : 2013年7月31日
-    作  者   : s00184266
-    修改内容 : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve1[4];
 }RRWRRC_CELL_RESEL_STOP_REQ_ST;
 
-/*****************************************************************************
- 结 构 名  : RRWRRC_CELL_RESEL_STOP_CNF_ST
- 结构说明  :
- 修改历史  :
-  1.日  期   : 2013年7月31日
-    作  者   : s00184266
-    修改内容 : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
     VOS_UINT8                           aucReserve1[4];
 }RRWRRC_CELL_RESEL_STOP_CNF_ST;
 
-/*****************************************************************************
- 结 构 名  : RRWRRC_WCELL_INFO_LIST_STRU
- 结构说明  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                              usArfcn;                            /* 频点信息 [0，16383] */
@@ -1573,14 +1058,7 @@ typedef struct
 }RRWRRC_UTRAN_CELL_INFO_LIST_STRU;
 
 
-/*****************************************************************************
- 消息名称  : RRWRRC_SLAVE_MEAS_REQ_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1604,14 +1082,7 @@ enum RR_WRRC_MEAS_RESULT_ENUM
 };
 typedef VOS_UINT32  RR_WRRC_MEAS_RESULT_ENUM_UINT32;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_SLAVE_MEAS_CNF_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1620,14 +1091,7 @@ typedef struct
     RR_WRRC_MEAS_RESULT_ENUM_UINT32     enResult;
 }RRWRRC_SLAVE_MEAS_CNF_STRU;
 
-/*****************************************************************************
- 结 构 名  : RRWRRC_WCELL_MEAS_RESULT_STRU
- 结构说明  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usPrimaryCode;
@@ -1636,14 +1100,7 @@ typedef struct
     VOS_INT16                                               sEcN0;              /* 精度1/8 */
 }RRWRRC_WCELL_MEAS_RESULT_STRU;
 
-/*****************************************************************************
- 结 构 名  : RRWRRC_WCELL_MEAS_RESULT_STRU
- 结构说明  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                                              usArfcn;
@@ -1653,28 +1110,14 @@ typedef struct
     RRWRRC_WCELL_MEAS_RESULT_STRU                           astUtranCellInfo[WRRC_RR_MAX_UTRAN_CELL_PER_FREQ_NUM];
 } RRWRRC_WCELL_FREQ_MEAS_RESULT_STRU;
 
-/*****************************************************************************
- 结 构 名  : RRWRRC_SLAVE_MEAS_RESULT_STRU
- 结构说明  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usFreqNum;
     RRWRRC_WCELL_FREQ_MEAS_RESULT_STRU  astFreqMeasResult[WRRC_RR_MAX_UTRAN_PHY_MAX_SUPPORT_CARRIER_NUM];
 } RRWRRC_SLAVE_MEAS_RESULT_STRU;
 
-/*****************************************************************************
- 消息名称  : RRWRRC_SLAVE_MEAS_IND_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1709,14 +1152,7 @@ typedef struct
     WRRCRR_GCELL_INFO_LIST_STRU         astGSMCellInfo[WRRC_RR_MAX_SLAVE_GSM_CELL_NUM];
 }WRRCRR_GSM_CELL_INFO_LIST_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_SLAVE_MEAS_REQ_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1726,14 +1162,7 @@ typedef struct
     WRRCRR_GSM_CELL_INFO_LIST_STRU      stGsmCellInfoLst;
 }WRRCRR_SLAVE_MEAS_REQ_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_SLAVE_MEAS_CNF_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1757,14 +1186,7 @@ typedef struct
     RRC_GSM_BAND_INDICATOR_ENUM_UINT32  enFreqBandInd;                          /* GSM的频带指示 */
 } WRRCRR_SLAVE_GCELL_MEAS_RESULT_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_SLAVE_GCELL_MEAS_RESULT_LIST_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                            usGsmCellNum;      /*物理层测量得到GSM载波的数量*/
@@ -1772,14 +1194,7 @@ typedef struct
     WRRCRR_SLAVE_GCELL_MEAS_RESULT_STRU   astGsmCellResult[WRRC_RR_MAX_SLAVE_GSM_CELL_NUM];   /*GSM小区的测量结果*/
 }WRRCRR_SLAVE_GCELL_MEAS_RESULT_LIST_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_SLAVE_MEAS_IND_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                            MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1857,14 +1272,7 @@ typedef struct
     RRC_RR_DCH_BSIC_PARA_STRU          stReConfirmBsicTimerPara;                /* D态重确认GPHY计算BSIC验证最长时间的参数 */ 
 }RRC_RR_DCH_BSIC_TIMER_PARA_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_BSIC_VERIFIED_REQ_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                         MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1884,14 +1292,7 @@ typedef struct
     } u;                                                                        /*_H2ASN_Skip*/
 }WRRCRR_BSIC_VERIFIED_REQ_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_BSIC_VERIFIED_CNF_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1917,14 +1318,7 @@ typedef struct
     VOS_INT32                           lFNOffset;
 } WRRCRR_BSIC_VERIFIED_RESULT_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_BSIC_VERIFIED_IND_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1933,14 +1327,7 @@ typedef struct
     WRRCRR_BSIC_VERIFIED_RESULT_STRU    astGSMCarrierResult[WRRC_RR_MAX_SLAVE_GSM_BSIC_RPT_CELL_NUM];
 }WRRCRR_BSIC_VERIFIED_IND_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_RELEASE_ALL_REQ_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */
@@ -1948,14 +1335,7 @@ typedef struct
     VOS_UINT8                           aucReserve1[3];
 }WRRCRR_RELEASE_ALL_REQ_STRU;
 
-/*****************************************************************************
- 消息名称  : WRRCRR_RELEASE_ALL_CNF_STRU
- 功能描述  :
- 修改历史  :
-  1.日    期   : 2014年1月27日
-    作    者   : L00128652
-    修改内容   : 新生成结构
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     MsgHeader;                              /* 消息头 */        /* _H2ASN_Skip */

@@ -40,7 +40,6 @@ typedef struct tagETHARP_HEALTH_ARPUPDATE
     UCHAR   ucMacAddr[MACADDRLEN];  
     UCHAR   ucResevred[2];
     
-    /* 2010-5-25,zKF23859,BC3D03074,Ôö¼Óvrfindex×Ö¶Î  */
     ULONG   ulVrfIndex;
     
 }ETHARP_HEALTH_ARPUPDATE_S;

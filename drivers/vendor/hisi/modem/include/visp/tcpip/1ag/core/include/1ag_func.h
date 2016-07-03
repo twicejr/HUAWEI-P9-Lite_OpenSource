@@ -212,13 +212,10 @@ extern ULONG OAM_1AG_SetLossDetectInterval(UCHAR * pszMdName, UCHAR * pszMaName,
 extern ULONG OAM_1AG_GetLossDetectInterval(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usMepId, USHORT *pulInterval);
 extern ULONG OAM_1AG_GetRmepWarnState(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usRmepId, OAM1AG_WARN_STATE_S* pst1agWarnState);
 extern ULONG OAM_1AG_IfStatus(ULONG ulIfIndex,ULONG ulCmd);
-/* Add for V2R3C06, by shuxieliu00176784, at 2011-10-04. 修改原因: 支持EOAM协议版本全局设置 */
 extern ULONG OAM_1AG_SetGlobalVersion(ULONG ulVersion);
 extern ULONG OAM_1AG_GetGlobalVersion(ULONG *pulVersion);
-/* Add for V2R3C06, by z00171897/p00193127, at 2011-10-06. 修改原因: 扩展告警类型 */
 extern ULONG OAM_1AG_NpNotify_CC(OAM_1AG_NPNOTIFYPARA_S *pstNpNotifyPara);
 extern ULONG OAM_Y1731_NpNotify(OAM_1AG_NPNOTIFYPARA_S *pstNpNotifyPara);
-/* Add for V2R3C06, by z00187940, at 2011-10-13. 修改原因: 支持AIS 功能 */
 extern ULONG OAM_Y1731_EnableAIS(UCHAR *pucMdName,UCHAR *pucMaName,UCHAR ucEnable);
 extern ULONG  OAM_1AG_RcvAis(MBUF_S  *pstMbuf);
 extern ULONG  OAM_Y1731_AIS_Check( MBUF_S *pstMbuf,CHAR   **ppcErrReason);
@@ -229,7 +226,6 @@ extern LONG  OAM_Y1731_fnAISMA(VOID * val, DLL_NODE_S * pNode);
 extern ULONG OAM_Y1731_AISChangeList(UCHAR ucOldInterval,UCHAR ucNewInterval,DLL_NODE_S * pstNode);
 extern VOID  OAM_Y1731_AIS_Init(VOID);
 extern VOID OAM_Y1731_AISWarningProc(UCHAR ucWarnState,  UCHAR ucMdLevel, UCHAR *szMdName , UCHAR *szMaName);
-/* Add for V2R3C06, by z00171897/p00193127, at 2011-10-17. 修改原因: 支持Y1731使能/去使性能检测 */
 extern ULONG OAM_Y1731_EnablePMCheck(UCHAR *pszMdName, UCHAR *pszMaName, USHORT usMepId, USHORT usRmepId, 
                             UCHAR ucPMType, UCHAR ucCheckFlag, ULONG ulSendInterval, ULONG ulTimeOut);
 extern ULONG OAM_Y1731_PMCheck_ProEnable(MEP_PM_INFO_S *pstPMCheck, RMEP_PM_INFO_S *pstRmepPMCheck, USHORT usMepId, USHORT usRmepId, 
@@ -240,14 +236,10 @@ extern ULONG OAM_Y1731_PMCheck_Pro(OAM_1AG_MEP_S *pstMepNode, MEP_PM_INFO_S *pst
 extern ULONG OAM_Y1731_GetRmepForPMCheck(ULONG ulIfIndex, ULONG ulMaIndex, USHORT usRmepId, ULONG *pulRmepIndex);
 extern ULONG OAM_1AG_DeleteShortMepOnIf(IFNET_S *pstIf, ULONG ulMepIndex);
 extern ULONG OAM_1AG_MepVlanCheckOnIf(IFNET_S* pstIfNet, ULONG ulMdLevel, USHORT usVlanId);
-/* Modified by likaikun213099, 支持基于RMEP的CCM统计, 2014/10/15   问题单号:DTS2014101504612  */
 extern ULONG  OAM_1AG_GetRMepStat(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usRMepId, OAM_1AG_RMEP_STAT_S * pstRMepPkt);
 extern ULONG  OAM_1AG_ClearRMepStat(UCHAR * pszMdName, UCHAR * pszMaName, USHORT usRMepId);
-/*End of Modified by likaikun213099, 2014/10/15   问题单号:DTS2014101504612  */
-/* Modified by likaikun213099, 迭代4检视意见修改, 2014/12/3   问题单号:DTS2014120209605  */
 extern ULONG OAM_1AG_GetRmepIndexByComInfo(UCHAR * pszMdName, UCHAR * pszMaName, 
                                                         USHORT usRMepId, ULONG *pulRMepIndex);
-/*End of Modified by likaikun213099, 2014/12/3   问题单号:DTS2014120209605  */
 /* ------------------------------------------func 结束-------------------------------------- */
 #ifdef  __cplusplus
 }

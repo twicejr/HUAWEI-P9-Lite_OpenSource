@@ -185,6 +185,10 @@ void* bsp_get_stamp_addr_phy(void)
 		return NULL;
 }
 
+u32 bsp_get_slice_freq(void)
+{
+	return timeslice_ctrl.slice_clock_freq;
+}
 
 int slice_init(void){
 	struct device_node *node = NULL;

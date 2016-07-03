@@ -409,9 +409,12 @@ struct ps_core_s {
     /* wait for wifi closed */
     struct completion wait_wifi_closed;
 
+#ifdef PLATFORM_DEBUG_ENABLE
     struct file * rx_data_fp;
     uint64 pre_time;
     uint64 curr_time;
+#endif
+
     spinlock_t rx_lock;
     /* define gnss read data lock */
     spinlock_t gnss_rx_lock;

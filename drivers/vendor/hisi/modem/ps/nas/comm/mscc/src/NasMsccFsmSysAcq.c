@@ -273,23 +273,7 @@ VOS_UINT32 NAS_MSCC_RcvTiWaitHsdPowerSaveCnfExpired_SysAcq_WaitHsdPowerSaveCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMmcPlmnSrchCnf_SysAcq_WaitMmcPlmnSrchCnf
-Description     :   MSCC receives plmn search cnf from mmc,
-                    this function is called to process the confirm
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2015-04-03
-        Author  :   m00312079
-        Modify content :    Create
-    2)  Date    :   2015-08-25
-        Author  :   m00312079
-        Modify content :    DTS2015082004682:L2C过程需退出搜网状态机
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMmcPlmnSrchCnf_SysAcq_WaitMmcPlmnSrchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -362,19 +346,7 @@ VOS_UINT32 NAS_MSCC_RcvMsccAbortFsmReq_SysAcq_WaitMmcPlmnSrchCnf(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMmcInterSysStartInd_Main_WaitMmcPlmnSrchCnf
-Description     :   等待MMC的搜网回复状态收到MMC的异系统开始指示的处理
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2015-11-05
-        Author  :   w00176964
-        Modify content :    Create
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMmcInterSysStartInd_SysAcq_WaitMmcPlmnSrchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -412,19 +384,7 @@ VOS_UINT32 NAS_MSCC_RcvMmcInterSysStartInd_SysAcq_WaitMmcPlmnSrchCnf(
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_RcvMsccCLInterSysRsltCnf_Main_WaitMmcPlmnSrchCnf
-Description     :   等待MMC的搜网回复状态收到内部异系统结果回复的处理
 
-Input parameters:   ulEventType, *pstMsg
-Output parameters:  None
-Return Value    :   VOS_UINT32
-
-Modify History:
-    1)  Date    :   2015-11-05
-        Author  :   w00176964
-        Modify content :    Create
-*****************************************************************************/
 VOS_UINT32 NAS_MSCC_RcvMsccCLInterSysRsltCnf_SysAcq_WaitMmcPlmnSrchCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -829,25 +789,7 @@ VOS_VOID NAS_MSCC_SndHsdSysAcqReq_SysAcq(VOS_VOID)
                         TI_NAS_MSCC_WAIT_HSD_ACQUIRE_CNF_LEN);
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SrchNetwork_SysAcq
-Description     :   The function is search network in sysAcq Fsm
-Input parameters:   None
-Output parameters:  None
-Return Value    :   None
 
-Modify History:
-    1)  Date    :   2015-4-14
-        Author  :   m00312079
-        Modify content :    Create
-    2)  Date    :   2015-05-30
-        Author  :   w00176964
-        Modify content :DTS2015052903319:add lte or hrpd active,continue srch lte or hrpd scene
-    3)  Date    :   2015-09-22
-        Author  :   w00176964
-        Modify content :DTS2015091604188:驻留LTE或HRPD时,如果搜网触发优先搜LTE或HRPD,
-                        进行保护,成功退出sys acq状态机
-*****************************************************************************/
 
 VOS_VOID NAS_MSCC_SrchNetwork_SysAcq(
     VOS_RATMODE_ENUM_UINT32             ulRatMode
@@ -913,22 +855,7 @@ VOS_VOID NAS_MSCC_SrchNetwork_SysAcq(
     return;
 }
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SrchInitLoc_SysAcq
-Description     :   The function is search initial location in sysAcq Fsm
-Input parameters:   None
-Output parameters:  None
-Return Value    :   None
 
-Modify History:
-    1)  Date    :   2015-4-14
-        Author  :   m00312079
-        Modify content :    Create
-    2)  Date    :   2015-09-22
-        Author  :   w00176964
-        Modify content :DTS2015091604188:驻留LTE或HRPD时,如果搜网触发优先搜LTE或HRPD,
-                        进行保护,成功退出sys acq状态机
-*****************************************************************************/
 
 VOS_VOID NAS_MSCC_SrchInitLoc_SysAcq(
     VOS_RATMODE_ENUM_UINT32             ulRatMode
@@ -1412,18 +1339,7 @@ VOS_UINT32 NAS_MSCC_IsNeedUseLteInitAcqLocInfo_SysAcq(VOS_VOID)
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_GetSysAcqLteSrchType_SysAcq
-Description     :   获取系统捕获LTE的搜索类型
-Input parameters:   none
-Output parameters:  None
-Return Value    :   NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM_UINT32
 
-Modify History:
-    1)  Date    :   2015-12-30
-        Author  :   w00176964
-        Modify content :    Create
-*****************************************************************************/
 
 NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM_UINT32 NAS_MSCC_GetSysAcqLteSrchType_SysAcq(VOS_VOID)
 {
@@ -1444,18 +1360,7 @@ NAS_MSCC_PIF_PLMN_SEARCH_TYPE_ENUM_UINT32 NAS_MSCC_GetSysAcqLteSrchType_SysAcq(V
 }
 
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_UpdateClInterSysSearchFlagWithSysAcqScence
-Description     :   根据搜网场景设置异系统已经搜索过的标识
-Input parameters:   enBuildSysAcqListScene
-Output parameters:  VOS_VOID
-Return Value    :   VOS_VOID
 
-Modify History:
-    1)  Date    :   2016-01-15
-        Author  :   j00354216
-        Modify content :    Create
-*****************************************************************************/
 VOS_VOID NAS_MSCC_UpdateClInterSysSearchFlagWithSysAcqScence(
     NAS_MSCC_BUILD_SYS_ACQ_LIST_SCENE_ENUM_UINT32           enBuildSysAcqListScene
 )

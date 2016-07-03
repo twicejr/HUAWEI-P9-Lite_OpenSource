@@ -19,9 +19,7 @@ extern "C" {
 /*****************************************************************************
   2 常量定义
 *****************************************************************************/
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
 #define APP_VC_MSD_DATA_LEN             (140)                                   /* 单位:btye */
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, End */
 
 
 
@@ -40,7 +38,7 @@ enum VC_PHY_DEVICE_MODE_ENUM
     VC_PHY_DEVICE_MODE_HEADPHONE,                                               /* 不带耳机MIC的耳机通话 */
     VC_PHY_DEVICE_MODE_SUPER_HANDFREE,                                              /* 超级免提 */
     VC_PHY_DEVICE_MODE_SMART_TALK,                                              /* 智音通话 */
-
+    VC_PHY_DEVICE_MODEM_USBVOICE,                                               /* USB设备 */
     VC_PHY_DEVICE_MODE_BUTT                                                     /* invalid value */
 };
 typedef VOS_UINT16  VC_PHY_DEVICE_MODE_ENUM_U16;
@@ -83,10 +81,8 @@ enum APP_VC_EVENT_ENUM
     APP_VC_EVT_SET_MUTE_STATUS,
     APP_VC_EVT_GET_MUTE_STATUS,
 
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
     APP_VC_EVT_SET_ECALL_CFG,
     APP_VC_EVT_ECALL_TRANS_STATUS,
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
     APP_VC_EVT_BUTT
 };
 typedef VOS_UINT32 APP_VC_EVENT_ENUM_U32;
@@ -100,14 +96,7 @@ enum APP_VC_MUTE_STATUS_ENUM
 typedef VOS_UINT8 APP_VC_MUTE_STATUS_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名    : APP_VC_MSG_REQ_ENUM
- 枚举说明  : AT与VC模块间发送消息的消息名
 
-1.日    期   : 2011年10月15日
-  作    者   : f00179209
-  修改内容   : AT移植项目
-*****************************************************************************/
 enum APP_VC_MSG_ENUM
 {
     APP_VC_MSG_REQ_SET_VOLUME   = 0,                                            /* _H2ASN_MsgChoice APP_VC_REQ_MSG_ASN_STRU *//* 设置音量请求消息 */
@@ -139,7 +128,6 @@ enum APP_VC_MSG_ENUM
 
     APP_VC_MSG_SET_MODEMLOOP_REQ,                                               /* _H2ASN_MsgChoice APP_VC_REQ_MSG_ASN_STRU *//* 设置语音环回模式消息 */
 
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
     APP_VC_MSG_SET_MSD_REQ,                                                     /* _H2ASN_MsgChoice APP_VC_MSG_SET_MSD_REQ_STRU *//* 设置MSD数据请求 */
     APP_VC_MSG_SET_MSD_CNF,                                                     /* _H2ASN_MsgChoice APP_VC_MSG_CNF_ASN_STRU *//* 设置MSD数据回复 */
 
@@ -150,7 +138,6 @@ enum APP_VC_MSG_ENUM
 
     APP_VC_MSG_QRY_ECALL_CFG_REQ,                                               /* _H2ASN_MsgChoice APP_VC_REQ_MSG_ASN_STRU *//* 查询ecall配置信息请求 */
     APP_VC_MSG_QRY_ECALL_CFG_CNF,                                               /* _H2ASN_MsgChoice APP_VC_MSG_QRY_ECALL_CFG_CNF_STRU *//* 查询ecall配置信息回复 */
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
     APP_VC_MSG_DTMF_DECODER_IND,                                                /* _H2ASN_MsgChoice APP_VC_DTMF_DECODER_IND_STRU *//* DTMF Decoder Ind上报消息 */
 
@@ -163,13 +150,7 @@ enum APP_VC_MSG_ENUM
 };
 typedef VOS_UINT16  APP_VC_MSG_ENUM_U16;
 
-/*****************************************************************************
- 枚举名    : APP_VC_QRY_GROUND_ENUM
- 结构说明  : VC语音状态枚举
-  1.日    期   : 2013年01月18日
-    作    者   : z00214637
-    修改内容   : 新建
-*****************************************************************************/
+
 enum APP_VC_QRY_GROUND_ENUM
 {
     APP_VC_FOREGROUND                   = 0,
@@ -179,14 +160,7 @@ enum APP_VC_QRY_GROUND_ENUM
 };
 typedef VOS_UINT16 APP_VC_QRY_GROUND_ENUM_U16;
 
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, begin */
-/*****************************************************************************
- 枚举名    : APP_VC_START_HIFI_ORIG_ENUM_UINT8
- 结构说明  : 区分是IMSA还是CALL要启动HIFI
-  1.日    期   : 2013年07月11日
-    作    者   : s00217060
-    修改内容   : 新建
-*****************************************************************************/
+
 enum APP_VC_START_HIFI_ORIG_ENUM
 {
     APP_VC_START_HIFI_ORIG_CALL                   = 0,
@@ -194,16 +168,8 @@ enum APP_VC_START_HIFI_ORIG_ENUM
     APP_VC_START_HIFI_ORIG_BUTT
 };
 typedef VOS_UINT8 APP_VC_START_HIFI_ORIG_ENUM_UINT8;
-/* Added by s00217060 for VoLTE_PhaseI  项目, 2013-07-11, end */
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
-/*****************************************************************************
- 枚举名    : APP_VC_ECALL_TRANS_STATUS_ENUM
- 枚举说明  : ECALL当前的传输状态
-1.日    期   : 2014年3月27日
-  作    者   : h00246512
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 enum APP_VC_ECALL_TRANS_STATUS_ENUM
 {
     APP_VC_ECALL_MSD_TRANSMITTING_START     = 0,                                /* 当前MSD数据已经开始发送 */
@@ -214,13 +180,7 @@ enum APP_VC_ECALL_TRANS_STATUS_ENUM
 };
 typedef VOS_UINT8  APP_VC_ECALL_TRANS_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : APP_VC_ECALL_TRANS_FAIL_CAUSE_ENUM
- 枚举说明  : ECALL的传输失败原因
-1.日    期   : 2014年3月27日
-  作    者   : h00246512
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 enum APP_VC_ECALL_TRANS_FAIL_CAUSE_ENUM
 {
     APP_VC_ECALL_CAUSE_WAIT_PSAP_TIME_OUT   = 0,                                /* 等待PSAP的传输指示超时 */
@@ -231,13 +191,7 @@ enum APP_VC_ECALL_TRANS_FAIL_CAUSE_ENUM
 };
 typedef VOS_UINT8  APP_VC_ECALL_TRANS_FAIL_CAUSE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : APP_VC_ECALL_MSD_MODE_ENUM
- 枚举说明  : 用于配置单板获取MSD数据的模式
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 enum APP_VC_ECALL_MSD_MODE_ENUM
 {
     APP_VC_ECALL_MSD_MODE_TRANSPARENT   = 0,                                    /* 透传模式 */
@@ -245,13 +199,7 @@ enum APP_VC_ECALL_MSD_MODE_ENUM
 };
 typedef VOS_UINT16  APP_VC_ECALL_MSD_MODE_ENUM_UINT16;
 
-/*****************************************************************************
- 枚举名    : APP_VC_ECALL_VOC_CONFIG_ENUM
- 枚举说明  : 在MSD传输过程中是否禁止语音数据的传输
-1.日    期   : 2014年3月27日
-  作    者   : j00174725
-  修改内容   : V3R3C60_eCall项目
-*****************************************************************************/
+
 enum APP_VC_ECALL_VOC_CONFIG_ENUM
 {
     APP_VC_ECALL_VOC_CONFIG_NOT_ABANDON = 0,                                    /* MSD数据传输过程带语音*/
@@ -260,16 +208,8 @@ enum APP_VC_ECALL_VOC_CONFIG_ENUM
 };
 typedef VOS_UINT16  APP_VC_ECALL_VOC_CONFIG_ENUM_UINT16;
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
-/*****************************************************************************
- 结构名    : APP_VC_CNF_MSG_STRU
- 结构说明  : AT与VC的消息结构, AT给VC发的REQ消息
 
-  1.日    期   : 2011年10月15日
-    作    者   : f00179209
-    修改内容   : 创建
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* _H2ASN_Skip */
@@ -282,18 +222,7 @@ typedef struct
 } APP_VC_REQ_MSG_STRU;
 
 
-/*****************************************************************************
- 结构名    : APP_VC_EVENT_INFO_STRU
- 结构说明  : AT与VC模块间的消息结构
 
-  1.日    期   : 2011年10月15日
-    作    者   : f00179209
-    修改内容   : AT移植项目
-
-  2.日    期   : 2012年9月13日
-    作    者   : A00165503
-    修改内容   : DTS2012091405101: ^CMUT命令实现
-*****************************************************************************/
 typedef struct
 {
     VOS_BOOL                            bSuccess;                               /*set(get) success or failure */
@@ -306,20 +235,11 @@ typedef struct
     APP_VC_MUTE_STATUS_ENUM_UINT8       enMuteStatus;
     VOS_UINT8                           aucRsv[2];
 
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
     APP_VC_ECALL_TRANS_STATUS_ENUM_UINT8 enEcallState;
     VOS_UINT32                          ulEcallDescription;
-    /* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, End */
 }APP_VC_EVENT_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : APP_VC_QRY_GROUNG_RSP_STRU
- 结构说明  : en_APP_VC_QRY_GROUNG_RSP_STRU的结构
 
-  1.日    期   : 2013年01月06日
-    作    者   : z00214637
-    修改内容   : 定义en_APP_VC_QRY_GROUNG_RSP_STRU的结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucQryRslt;                              /* 查询 success or failure */
@@ -327,28 +247,13 @@ typedef struct
     APP_VC_QRY_GROUND_ENUM_U16          enGround;                               /* 查询结果 */
 }APP_VC_QRY_GROUNG_RSP_STRU;
 
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, begin */
-/*****************************************************************************
- 结构名    : APP_VC_MSG_SET_MSD_REQ_STRU
- 结构说明  : APP_VC_MSG_SET_MSD_REQ的结构
 
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   : 定义APP_VC_MSG_SET_MSD_REQ的结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucMsdData[APP_VC_MSD_DATA_LEN];        /* MSD数据内容 */
 }APP_VC_MSG_SET_MSD_REQ_STRU;
 
-/*****************************************************************************
- 结构名    : APP_VC_MSG_QRY_MSD_CNF_STRU
- 结构说明  : APP_VC_MSG_QRY_MSD_CNF的结构
 
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   : 定义APP_VC_MSG_QRY_MSD_CNF的结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucQryRslt;                              /* 查询结果 */
@@ -356,14 +261,7 @@ typedef struct
     VOS_UINT8                           aucMsdData[APP_VC_MSD_DATA_LEN];        /* MSD数据内容 */
 }APP_VC_MSG_QRY_MSD_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : APP_VC_MSG_SET_ECALL_CFG_REQ_STRU
- 结构说明  : APP_VC_MSG_SET_ECALL_CFG_REQ的结构
 
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   : 定义APP_VC_MSG_SET_ECALL_CFG_REQ的结构
-*****************************************************************************/
 typedef struct
 {
     APP_VC_ECALL_MSD_MODE_ENUM_UINT16   enMode;                                 /* 数据传送模式 */
@@ -371,14 +269,7 @@ typedef struct
 }APP_VC_MSG_SET_ECALL_CFG_REQ_STRU;
 
 
-/*****************************************************************************
- 结构名    : APP_VC_MSG_QRY_ECALL_CFG_CNF_STRU
- 结构说明  : APP_VC_MSG_QRY_ECALL_CFG_CNF的结构
 
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   : 定义APP_VC_MSG_QRY_ECALL_CFG_CNF的结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucQryRslt;                              /* 查询结果 */
@@ -387,29 +278,14 @@ typedef struct
     APP_VC_ECALL_VOC_CONFIG_ENUM_UINT16 enVocConfig;                            /* 传送数据时是否打开声码器 */
 }APP_VC_MSG_QRY_ECALL_CFG_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : APP_VC_SET_MSD_CNF_STRU
- 结构说明  : 设置MSD消息回复
 
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   :
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucRslt;                                  /* 结果 */
     VOS_UINT8                           aucReserved[3];
 }APP_VC_SET_MSD_CNF_STRU;
-/* Added by j00174725 for V3R3C60_eCall项目, 2014-3-29, end */
 
-/*****************************************************************************
- 结构名    : APP_VC_QRY_TTYMODE_CNF_STRU
- 结构说明  : APP_VC_MSG_QRY_TTYMODE_CNF的结构
 
-  1.日    期   : 2015年02月07日
-    作    者   : w00316404
-    修改内容   : 定义en_APP_VC_QRY_TTYMODE_STRU的结构
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucQryRslt;                              /* 查询 success or failure */
@@ -417,48 +293,25 @@ typedef struct
     VOS_UINT8                           aucReserved[2];
 }APP_VC_QRY_TTYMODE_CNF_STRU;
 
-/*****************************************************************************
- 结构名    : APP_VC_SET_TTYMODE_REQ_STRU
- 结构说明  : APP_VC_MSG_SET_TTYMODE_REQ的结构
 
-  1.日    期   : 2015年02月07日
-    作    者   : w00316404
-    修改内容   : 定义APP_VC_Set_TTYMODE_STRU的结构
-*****************************************************************************/
 typedef struct
 {
     TAF_VC_TTYMODE_ENUM_UINT8           enTTYMode;                              /* 设置TTY MODE*/
     VOS_UINT8                           aucReserved[3];
 }APP_VC_SET_TTYMODE_REQ_STRU;
 
-/* 以下结构只为转ASN定义 j00174725 2014-05-08 begin */
-/*****************************************************************************
- 结构名    : APP_VC_MSG_CNF_ASN_STRU
- 结构说明  : VC对AT消息回复
 
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   :
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucRslt;
     VOS_UINT8                           aucReserved[3];
 }APP_VC_MSG_CNF_ASN_STRU;
 
-/*****************************************************************************
- 结构名    : APP_VC_MSG_REQ_STRU
- 结构说明  : AT对VC消息
 
-  1.日    期   : 2014年03月27日
-    作    者   : j00174725
-    修改内容   :
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           aucContent[4];
 }APP_VC_REQ_MSG_ASN_STRU;
-/* 以下结构只为转ASN定义 j00174725 2014-05-08 end */
 
 
 /*****************************************************************************
@@ -475,129 +328,45 @@ typedef struct
   6 接口函数声明
 *****************************************************************************/
 
-/*****************************************************************************
-函 数 名  : VCI_SetVoiceVolume
-功能描述  : 设置输出音量
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : SI_InitGlobeVariable
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32  APP_VC_SetVoiceVolume(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
     VOS_UINT8                           ucVoiceVolume
 );
 
-/*****************************************************************************
-函 数 名  : APP_VC_SetVoiceMode
-功能描述  : 设置输出音量
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_OK
-调用函数  : SI_InitGlobeVariable
-被调函数  :
-修订记录  :
-1.  日    期   : 2009年07月05日
-    作    者   : h44270
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32  APP_VC_SetVoiceMode(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
     VOS_UINT8                           ucVoiceMode
 );
 
-/*****************************************************************************
-函 数 名  : APP_VC_SetVoicePort
-功能描述  : 设置语音端口
-输入参数  : APP_VC_VOICE_PORT_ENUM_U8   ucVoicePort - 设置的语音端口
-输出参数  : 无
-返 回 值  : 当前的语音端口
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年04月16日
-    作    者   : o00132663
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_SetVoicePort(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
     APP_VC_VOICE_PORT_ENUM_U8           ucVoicePort
 );
 
-/*****************************************************************************
-函 数 名  : APP_VC_GetVoicePort
-功能描述  : 获取当前的语音端口
-输入参数  : 无
-输出参数  : 无
-返 回 值  : APP_VC_VOICE_PORT_ENUM_U8 - 当前的语音端口
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2010年04月16日
-    作    者   : o00132663
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_GetVoicePort(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId
 );
 
-/*****************************************************************************
-函 数 名  : APP_VC_GetVoiceMode
-功能描述  : 获取当前的语音端口
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VC_PHY_DEVICE_MODE_ENUM_U16 - 当前的语音模式
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2011年10月05日
-    作    者   : f00179208
-    修改内容   : Creat
-*****************************************************************************/
+
 VOS_UINT32 APP_VC_GetVoiceMode(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId
 );
 
-/*****************************************************************************
-函 数 名  : APP_VC_AppVcVoiceMode2VcPhyVoiceMode
-功能描述  : 应用与VC模块语音模式定义转换为VC模块与物理层语音模式接口定义
-输入参数  : APP_VC_VOICE_MODE_ENUM_U16  usVoiceMode - 应用与VC接口语音模式定义
-输出参数  : 无
-返 回 值  : VC_PHY_DEVICE_MODE_ENUM_U16 - VC与物理层语音模式定义
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2021年04月17日
-    作    者   : o00132663
-    修改内容   : Creat
-*****************************************************************************/
+
 extern  VC_PHY_DEVICE_MODE_ENUM_U16  APP_VC_AppVcVoiceMode2VcPhyVoiceMode(
     APP_VC_VOICE_MODE_ENUM_U16          usVoiceMode
 );
 
-/*****************************************************************************
-函 数 名  : APP_VC_VcPhyVoiceMode2AppVcVoiceMode
-功能描述  : VC模块与物理层语音模式接口定义转换为应用与VC模块语音模式定义
-输入参数  : VC_PHY_DEVICE_MODE_ENUM_U16  usVoiceMode - VC与物理层语音模式定义
-输出参数  : 无
-返 回 值  : APP_VC_VOICE_MODE_ENUM_U16 - 应用与VC接口语音模式定义
-调用函数  :
-被调函数  :
-修订记录  :
-1.  日    期   : 2021年04月17日
-    作    者   : o00132663
-    修改内容   : Creat
-*****************************************************************************/
+
 extern  APP_VC_VOICE_MODE_ENUM_U16  APP_VC_VcPhyVoiceMode2AppVcVoiceMode(
     VC_PHY_DEVICE_MODE_ENUM_U16         usVoiceMode
 );
@@ -660,14 +429,7 @@ VOS_UINT32 APP_VC_SetModemLoop(
     VOS_UINT8                           ucModemLoop
 );
 
-/*****************************************************************************
- 结构名    : APP_VC_DTMF_DECODER_IND_STRU
- 结构说明  : APP_VC_DTMF_DECODER_IND_STRU的结构
 
-  1.日    期   : 2014年05月09日
-    作    者   : g00261581
-    修改内容   : 新增
-*****************************************************************************/
 typedef struct
 {
     VOS_CHAR                            ucDtmfCode;

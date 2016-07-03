@@ -1332,6 +1332,128 @@ static void mmi_rawcapacitance_test(void)
 	return;
 }
 
+static void save_capacitance_data_to_rawdatabuf(void)
+{
+	int i , j;
+	short temp;
+	int index = 0;
+
+	f54->rawdatabuf[0] = f54->rmi4_data->num_of_rx;
+	f54->rawdatabuf[1] = f54->rmi4_data->num_of_tx;
+	for(i = 0, j = index + 2; i < mmi_buf_size; i+=2, j++) {
+		temp = (f54->mmi_buf[i]) | (f54->mmi_buf[i+1] << 8);
+		f54->rawdatabuf[j] = temp;
+	}
+}
+
+static int get_int_average(int *p, size_t len)
+{
+	int sum = 0;
+	size_t i;
+
+	for (i = 0; i < len; i++) {
+		sum += p[i];
+	}
+	if (len != 0) {
+		return (sum / len);
+	} else {
+		return 0;
+	}
+}
+
+static int get_int_min(int *p, size_t len)
+{
+	int s_min = SHRT_MAX;
+	size_t i;
+
+	for (i = 0; i < len; i++) {
+		s_min = s_min > p[i] ? p[i] : s_min;
+	}
+
+	return s_min;
+}
+
+static int get_int_max(int *p, size_t len)
+{
+	int s_max = SHRT_MIN;
+	size_t i;
+
+	for (i = 0; i < len; i++) {
+		s_max = s_max < p[i] ? p[i] : s_max;
+	}
+
+	return s_max;
+}
+
+static void get_capacitance_stats(void)
+{
+	size_t num_elements = f54->rawdatabuf[0] * f54->rawdatabuf[1];
+
+	f54->raw_statics_data.RawimageAverage =
+		get_int_average(&f54->rawdatabuf[2], num_elements);
+	f54->raw_statics_data.RawimageMaxNum =
+		get_int_max(&f54->rawdatabuf[2], num_elements);
+	f54->raw_statics_data.RawimageMinNum =
+		get_int_min(&f54->rawdatabuf[2], num_elements);
+}
+
+static int check_enhance_raw_capacitance(short *upper, short *lower)
+{
+	int i;
+	int count = f54->rmi4_data->num_of_rx * f54->rmi4_data->num_of_tx;
+
+	save_capacitance_data_to_rawdatabuf();
+	get_capacitance_stats();
+
+	for (i = 0; i < count; i++) {
+		/* rawdatabuf[0] rawdatabuf[1] are num_of_rx and num_of_tx */
+		if ((f54->rawdatabuf[i+2] > upper[i]) || (f54->rawdatabuf[i+2] < lower[i])) {
+			TS_LOG_ERR("rawdata is out of range, failed at %d: upper: %d, lower: %d, raw: %d\n", i, upper[i], lower[i], f54->rawdatabuf[i+2]);
+#if defined (CONFIG_HUAWEI_DSM)
+			if (!dsm_client_ocuppy(tp_dclient)) {
+				TS_LOG_INFO("try to client record 20002 for rawdata \n");
+				dsm_client_record(tp_dclient, "device status for 20002 is :%d\n", i);
+				dsm_client_notify(tp_dclient, DSM_TP_RAWDATA_ERROR_NO);
+			}
+#endif
+			return 0;
+		}
+	}
+
+	return 1;
+}
+
+static void mmi_enhance_raw_capacitance_test(void)
+{
+	unsigned char command;
+	int result = 0;
+
+	if (20 == f54->rmi4_data->synaptics_chip_data->rawdata_report_type)
+		command = (unsigned char)F54_FULL_RAW_CAP_RX_COUPLING_COMP;
+	else
+		command = (unsigned char)F54_RAW_16BIT_IMAGE;
+
+	TS_LOG_INFO("mmi_rawcapacitance_test called, command is %d\n", command);
+
+	write_to_f54_register(command);
+	f54->report_type = command;
+	result = synaptics_rmi4_f54_attention();
+	if (result < 0) {
+		TS_LOG_ERR("Failed to get data\n");
+		strncat(buf_f54test_result, "1F", MAX_STR_LEN);
+		return;
+	}
+	result = check_enhance_raw_capacitance(RawCapUpperLimit_jdi_frd, RawCapLowerLimit_jdi_frd);
+	if (1 == result) {
+		strncat(buf_f54test_result, "1P-2P", MAX_STR_LEN);
+	} else {
+		TS_LOG_ERR("raw data is out of range, , test result is 1F-2P\n");
+		strncat(buf_f54test_result, "1F-2P", MAX_STR_LEN);
+		strncpy(tp_test_failed_reason, "-panel_reason",
+			TP_TEST_FAILED_REASON_LEN);
+	}
+}
+
 static int synaptics_f54_malloc(void)
 {
 	f54 = kzalloc(sizeof(struct synaptics_rmi4_f54_handle), GFP_KERNEL);
@@ -1470,7 +1592,12 @@ int synaptics_get_cap_data(struct ts_rawdata_info *info)
 		memcpy(buf_f54test_result, "0F-1F-2F", (strlen("0F-1F-2F")+1));
 	} else {
 		memcpy(buf_f54test_result, "0P-", (strlen("0P-")+1));
-		mmi_rawcapacitance_test();		/*report type == 3*/
+
+		if (f54->rmi4_data->synaptics_chip_data->test_enhance_raw_data_capacitance) {
+			mmi_enhance_raw_capacitance_test();	/*report type == 3 */
+		} else {
+			mmi_rawcapacitance_test();	/*report type == 3 */
+		}
 		put_capacitance_data(0);
 		mmi_deltacapacitance_test();		/*report type == 2*/
 		synaptics_change_report_rate();

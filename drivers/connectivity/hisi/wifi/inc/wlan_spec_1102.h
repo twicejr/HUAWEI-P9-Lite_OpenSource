@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : wlan_spec.h
-  版 本 号   : 初稿
-  作    者   : 张志明
-  生成日期   : 2014年10月10日
-  最近修改   :
-  功能描述   : 1102 wlan产品规格宏定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月10日
-    作    者   : 张志明
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __WLAN_SPEC_1102_H__
 #define __WLAN_SPEC_1102_H__
@@ -213,8 +196,8 @@ extern oal_uint32   g_ul_wlan_vap_max_num_per_device;
 #define WLAN_ASSOC_TIMEOUT                      500
 #else
 #define WLAN_JOIN_START_TIMEOUT                 10000
-#define WLAN_AUTH_TIMEOUT                       512
-#define WLAN_ASSOC_TIMEOUT                      512
+#define WLAN_AUTH_TIMEOUT                       300
+#define WLAN_ASSOC_TIMEOUT                      300
 #endif
 
 /*****************************************************************************
@@ -697,10 +680,11 @@ extern oal_uint32   g_ul_wlan_vap_max_num_per_device;
 *****************************************************************************/
 #define WLAN_NEAR_DISTANCE_RSSI        (-35)             /*默认近距离信号门限-35dBm*/
 #define WLAN_CLOSE_DISTANCE_RSSI       (-25)             /*关联前距离判断门限-25dBm*/
-#define WLAN_FAR_DISTANCE_RSSI         (-83)             /*默认远距离信号门限-83dBm*/
+#define WLAN_FAR_DISTANCE_RSSI         (-73)             /*默认远距离信号门限-73dBm*/
 #define WLAN_NORMAL_DISTANCE_RSSI_UP   (-42)             /*信号强度小于-42dBm时，才认为非超近距离*/
-#define WLAN_NORMAL_DISTANCE_RSSI_DOWN (-76)             /*信号强度大于-76dBm时，才认为是非超远距离*/
-#define WLAN_NEAR_DISTANCE_IMPROVE_RSSI (-45)            /*improve 1*1问题规避,要求近距离判断门限为-50dBm*/
+#define WLAN_NORMAL_DISTANCE_RSSI_DOWN (-66)             /*信号强度大于-66dBm时，才认为是非超远距离*/
+#define WLAN_NEAR_DISTANCE_IMPROVE_RSSI_UP      (-40)    /*improve 1*1问题规避,要求近距离判断上门限为-44dBm*/
+#define WLAN_NEAR_DISTANCE_IMPROVE_RSSI_DOWN    (-48)    /*improve 1*1问题规避,要求近距离判断下门限为-50dBm*/
 
 
 /*****************************************************************************

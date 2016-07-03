@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmInterSysOosTbl.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2011年07月27日
-  最近修改   :
-  功能描述   : NAS 层InterSysOos状态机状态描述表
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年07月27日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -25,9 +8,7 @@
 #include "NasFsm.h"
 #include "NasMmcTimerMgmt.h"
 
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #include "Nasrrcinterface.h"
 #include "MmcGmmInterface.h"
@@ -173,21 +154,7 @@ NAS_STA_STRU g_astNasMmcInterSysOosStaTbl[] =
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetInterSysOosStaTblSize
- 功能描述  : 获取inter sys oos状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:inter sys oos状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月27日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetInterSysOosStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astNasMmcInterSysOosStaTbl)/sizeof(NAS_STA_STRU));
@@ -195,21 +162,7 @@ VOS_UINT32 NAS_MMC_GetInterSysOosStaTblSize( VOS_VOID  )
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetInterSysOosFsmDescAddr
- 功能描述  : 获取挂起状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向挂起状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年7月27日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_MMC_GetInterSysOosFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasMmcInterSysOosFsmDesc);

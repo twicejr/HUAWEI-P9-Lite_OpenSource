@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : chr_errno.h
-  版 本 号   : 初稿
-  作    者   :
-  生成日期   : 2016年1月19日
-  最近修改   :
-  功能描述   : CHR异常类型定义
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2016年1月19日
-    作    者   : k00355907
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CHR_ERRNO_H__
 #define __CHR_ERRNO_H__
@@ -151,11 +134,14 @@ typedef enum
     /* CHR_WIFI_DRV_EVENT_SCAN */
     CHR_WIFI_DRV_ERROR_SCAN_REFUSED            = 0x01,
     CHR_WIFI_DRV_ERROR_SCAN_TIMEOUT            = 0x02,
+    CHR_WIFI_DRV_ERROR_SCAN_ZERO               = 0x03,
 
     /* CHR_WIFI_DRV_EVENT_CONNECT */
     CHR_WIFI_DRV_ERROR_CONNECT_CMD             = 0x01,
     CHR_WIFI_DRV_ERROR_AUTH_TIMEOUT            = 0x02,
     CHR_WIFI_DRV_ERROR_ASSOC_TIMEOUT           = 0x03,
+    CHR_WIFI_DRV_ERROR_AUTH_REJECTED           = 0x04,
+    CHR_WIFI_DRV_ERROR_ASSOC_REJECTED          = 0x05,
 
     /* CHR_WIFI_DRV_EVENT_DISCONNECT */
     CHR_WIFI_DRV_ERROR_LINKLOSS                = 0x01,

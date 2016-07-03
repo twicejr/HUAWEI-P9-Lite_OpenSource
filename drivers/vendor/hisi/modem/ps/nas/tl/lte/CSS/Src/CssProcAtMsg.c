@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : CssProcAtMsg.c
-  Description     : 该C文件给出了CSS接收到AT消息的实现
-  History         :
-     1.chengmin 00285307    2015-10-12  Draft Enact
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -34,16 +24,7 @@
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name  : CSS_UpdateStateAccordingToAtMccSetMsg
- Description    : 根据下发的消息来更新状态表
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2016-01-29  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_UpdateStateAccordingToAtMccSetMsg
 (
     const AT_CSS_MCC_INFO_SET_REQ_STRU           *pRcvMsg,
@@ -134,16 +115,7 @@ VOS_VOID CSS_UpdateStateAccordingToAtMccSetMsg
     }
 }
 
-/*****************************************************************************
- Function Name  : CSS_SendAtMccSetCnf
- Description    : 向AT回复MCC_INFO_SET_CNF消息
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_SendAtMccSetCnf(const AT_CSS_MCC_INFO_SET_REQ_STRU  *pRcvMsg, VOS_UINT32 ulResult)
 {
     CSS_AT_MCC_INFO_SET_CNF_STRU       *pstMccSetCnf;
@@ -227,16 +199,7 @@ VOS_VOID CSS_SendAtQueryMccNotifyByMccList(CSS_MCC_ID_STRU astMccID[CSS_MAX_PLMN
 
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcAtMsgDeleteOneMccReq
- Description    : ID_AT_CSS_MCC_INFO_SET_REQ消息的删除处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcAtMsgDeleteOneMccReq
 (
     const AT_CSS_MCC_INFO_SET_REQ_STRU  *pRcvMsg
@@ -299,16 +262,7 @@ VOS_VOID CSS_ProcAtMsgDeleteOneMccReq
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcAtMsgDeleteAllMccReq
- Description    : ID_AT_CSS_MCC_INFO_SET_REQ消息的删除处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcAtMsgDeleteAllMccReq
 (
     const AT_CSS_MCC_INFO_SET_REQ_STRU  *pRcvMsg
@@ -360,16 +314,7 @@ VOS_VOID CSS_ProcAtMsgDeleteAllMccReq
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcAtMsgAddMccReq
- Description    : ID_AT_CSS_MCC_INFO_SET_REQ消息的添加处理
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcAtMsgAddMccReq
 (
     const AT_CSS_MCC_INFO_SET_REQ_STRU  *pRcvMsg
@@ -456,16 +401,7 @@ VOS_VOID CSS_ProcAtMsgAddMccReq
 
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcAtMsgMccSetReq
- Description    : ID_AT_CSS_MCC_INFO_SET_REQ消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcAtMsgMccSetReq
 (
     const AT_CSS_MCC_INFO_SET_REQ_STRU  *pRcvMsg
@@ -527,16 +463,7 @@ VOS_VOID CSS_ProcAtMsgMccSetReq
     CSS_SndOmPubCloudCtrlInd();
 }
 
-/*****************************************************************************
- Function Name  : CSS_ProcAtMsgMccVersionReq
- Description    : ID_AT_CSS_MCC_VERSION_INFO_REQ消息处理函数
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcAtMsgMccVersionReq
 (
     const AT_CSS_MCC_VERSION_INFO_REQ_STRU  *pRcvMsg
@@ -577,16 +504,7 @@ VOS_VOID CSS_ProcAtMsgMccVersionReq
 }
 
 
-/*****************************************************************************
- Function Name  : CSS_ProcAtMsg
- Description    : AT消息处理函数
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.chengmin 00285307   2015-10-12  Draft Enact
-*****************************************************************************/
 VOS_VOID CSS_ProcAtMsg(const VOS_VOID *pRcvMsg)
 {
 

@@ -1,28 +1,4 @@
-/****************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              ospf_apiadp.h
-*
-*  Project Code: VISPV1R7C02
-*   Module Name: OSPF  
-*   Description: ospf API适配
-*   01  定义引用的外部头文件(为了相关模块可以直接引用)
-*   02  声明本本模块库全局变量
-*   03  声明本本模块库函数
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008-11-25   liangjicheng             Create
-*  2009-01-20   l00147446               BC3D01126【OSPF】查询函数写越界
-*
-*******************************************************************************/
+
 
 #ifndef OSPF_APIADP_H
 #define OSPF_APIADP_H
@@ -63,16 +39,13 @@ NBB_ULONG ospf_show_ospf_process();
 NBB_ULONG ospf_del_ospf_process(NBB_ULONG ospf_process_id);
 NBB_ULONG ospf_add_area(NBB_ULONG ospf_process_id, NBB_ULONG area_id);
 
-/*Added by guo00178934, OSPF可维可测增强, 2011/9/6   问题单号:DTS2011091303512 */
 NBB_ULONG ospf_area_find(NBB_ULONG ospf_process_id, NBB_ULONG area_id, 
   OSPF_CFG_LIST_ENTRY **ospf_cfg_entry, AREA_CFG_LIST_ENTRY **area_cfg_entry);
-/* End of Added by guo00178934, 2011/9/13   问题单号:DTS2011091303512 */
 
 NBB_ULONG ospf_show_area();
 NBB_ULONG ospf_del_area(NBB_ULONG ospf_process_id, NBB_ULONG area_id);
 NBB_ULONG ospf_set_area_auth(OSPF_CFGAUTHENMODE_S *pstAreaAuthIn);
 
-/*Begin for BC3D02736 接口认证（或区域认证）Keyid值用户可配 l00147446 10-02-27*/
 NBB_ULONG ospf_get_area_auth(NBB_ULONG ospf_process_id, 
                              NBB_ULONG area_id,
                              NBB_LONG *auth_type,
@@ -134,7 +107,6 @@ NBB_ULONG ospf_if_add_to_network(IF_CFG_LIST_ENTRY *if_entry_cb);
 NBB_ULONG ospf_if_del_from_network(IF_CFG_LIST_ENTRY *walk_if_entry_cb);
 
 NBB_ULONG ospf_if_matchaclip(NBB_ULONG if_index, NBB_ULONG acl_groupnum, NBB_ULONG ipaddr);
-/*End of Modified by lKF35457, 2010/11/16   问题单号:DTS2010110104272  */
 
 OSPF_ERROR_E ospf_cfg_if_cost_mib(USHORT usProcessId,
                                IF_CFG_LIST_ENTRY *if_cfg_list_entry,
@@ -157,7 +129,6 @@ NBB_VOID OSPF_Fill_ClearOspfProc_Mib(AMB_GEN_IPS *mib_msg,
                           NBB_ULONG gr_reason,
                           NBB_ULONG row_status);
 
-/*Begin for BC3D02736 接口认证（或区域认证）Keyid值用户可配 l00147446 10-02-27*/
 NBB_VOID OSPF_Fill_IfAuthKeyProc_Mib(AMB_GEN_IPS *mib_msg,
                           AMB_OSPF_PM_IF *v_amb_pm_if,
                           NBB_ULONG auth_type,
@@ -238,10 +209,8 @@ NBB_LONG  ospf_t_cmp_network(NBB_ULONG snet,
                                     NBB_ULONG dnet,
                                     NBB_ULONG dmasklen);
 
-/*Modified by lKF35457, prevent implicit declaration of function warning, 2010/11/22   问题单号:DTS2010112203622  */
 CFG_AUTH_DATA *ospf_cfg_get_if_auth(IF_CFG_LIST_ENTRY *if_cfg_list_entry,
                                 NBB_ULONG *pulAuthType);
-/*End of Modified by lKF35457, 2010/11/22   问题单号:DTS2010112203622  */
 
 OSPF_ERROR_E ospf_cfg_if_auth_mib(USHORT usProcessId, 
                                         NBB_ULONG ulAuthType,
@@ -252,7 +221,7 @@ OSPF_ERROR_E ospf_cfg_if(NBB_ULONG ulCfgType,
                                             NBB_CHAR *pszIfName, 
                                             VOID *pstCfgPara);
 OSPF_ERROR_E ospf_cfg_if_default_mib(IF_CFG_LIST_ENTRY *if_cfg_list_entry);
-NBB_VOID ospf_bfd_rule_refresh(NBB_VOID);/*Added by qinyun62011, for DTS2011022401691, 2011/2/24   问题单号:V2R3C03-ROTUE-MERGE */
+NBB_VOID ospf_bfd_rule_refresh(NBB_VOID);
 NBB_VOID ospf_cmm_if_show_one(ULONG,OSPF_SHOWIF_OUT_S *);
 NBB_VOID ospf_cmm_nbr_show_one(ULONG,OSPF_SHOWNBR_OUT_S *);
 NBB_VOID ospf_cmm_peer_show_one(ULONG,OSPF_SHOWPEERCFG_OUT_S *);
@@ -277,7 +246,6 @@ NBB_ULONG ospf_cmm_cumul_get_one_area(ULONG ulHandle, VOID * pstCumulOut);
 OSPF_ERROR_E ospf_cmm_cumul_get_one_entity(ULONG ulHandle, OSPF_SHOWCUMLTVE_OUT_S * pstCumulOut);
 
 NBB_VOID ospf_cmm_cumul_show_one(NBB_ULONG ulPrintIndex, OSPF_SHOWCUMLTVE_OUT_S * psIn);
-/*Begin BC3D03300 新增 API 申明： OSPF_CMM_Error_Clear L00147446 10-06-23*/
 NBB_VOID ospf_cmm_error_clear_one(NBB_ULONG ulProcessId);
 /*End for BC3D03300*/
 NBB_ULONG ospf_cmm_error_get_one(NBB_ULONG ulSessionId, OSPF_SHOWERROR_OUT_S * pstErrorOut);
@@ -308,9 +276,7 @@ NBB_VOID ospf_cmm_show_total(ULONG ulCount);
 VOID ospf_cmm_import_show_one(OSPF_SHOWIMPORT_OUT_S  *pstConfigInfo);
 VOID ospf_cmm_filter_show_one(OSPF_SHOWPLCYDIST_OUT_S  *pstConfigInfo);
 
-/* Modified by guo00178934, OSPF Fortify分析：ospf_10_01, 2012/4/9   问题单号:fortify_ospf */
 /* 快速down标记 for CGP BC3D02904*/
-/*End of Modified by guo00178934, 2012/4/9   问题单号:fortify_ospf */
 
 #endif
 
@@ -324,42 +290,29 @@ NBB_ULONG ospf_add_ospf_process_grhelper(NBB_ULONG ospf_process_id,
                                                      NBB_ULONG ulAccNum);
 OSPF_ERROR_E ospf_cmm_area_get_one(OSPF_AREA_KEY_S **ppstIndex,
                                           OSPF_SHOW_AREA_S *pstShow);
-/*add by lkf35460 问题单号：DTS2011040603509*/
 NBB_ULONG  ospf_get_default_if_priority(NBB_BYTE *pucDftPrity);
 NBB_ULONG  ospf_get_default_if_cost(NBB_ULONG *pulDftCost);
 ULONG ospf_get_processid_by_intf(ULONG ulIfIndex, ULONG *pulProcId);
-/*end add by lkf35460 问题单号：DTS2011040603509*/
 
 
-/*Added by qinyun62011, ospf for vrf, 2011/6/22   问题单号:OSPF_20110622_01 */
 /*NBB_ULONG ospf_add_nm_process_mib(NBB_USHORT usProcessId);*/
 NBB_ULONG ospf_add_nm_process_mib(NBB_USHORT usProcessId,NBB_ULONG sck_index);
-/* End of Added by qinyun62011, 2011/6/22   问题单号:OSPF_20110622_01 */
 NBB_ULONG ospf_del_nm_process_mib(NBB_USHORT usProcessId);
 NBB_ULONG ospf_get_join_proc_by_vrfindex(NBB_ULONG vrf_index,
                                     NBB_ULONG *rtm_index,
                                     NBB_ULONG *i3_index,
                                     NBB_ULONG *sck_index);
-/*Modified by liangjicheng 00103192, NBR, 2011/6/23   问题单号:OSPF_20110620_01 */
 OSPF_ERROR_E ospf_cmm_nbr_get_exact(NBB_ULONG ulProcessId, NBB_ULONG ulNbrIP);
-/*End of Modified by liangjicheng 00103192, 2011/6/23   问题单号:OSPF_20110620_01 */
 
-/*Modified by liangjicheng 00103192, 增加动态邻居删除广播接口和P2P接口的处理, 2011/7/2   问题单号:DTS2011062804135  */
 OSPF_ERROR_E ospf_cmm_nbr_del_dynamic(NBB_ULONG ulProcessId, NBB_ULONG ulNbrIP);
-/*End of Modified by liangjicheng 00103192, 2011/7/2   问题单号:DTS2011062804135  */
 
-/*Added by guo00178934, 全系统邻居、LSA个数统计, 2011/7/19   问题单号:DTS2011071901386 */
 ULONG OSPF_CMM_NbrCount(USHORT usProcId, ULONG *pulNbrCount);
-/* End of Added by guo00178934, 2011/7/19   问题单号:DTS2011071901386 */
 
-/*Added by guo00178934, OSPF可维可测增强, 2011/9/6   问题单号:DTS2011091303512 */
 #define OSPF_API_LOG_COUNT  50
 #define OSPF_API_NAME_LENGTH  50
 #define OSPF_API_LOG_MEMBERS 4
 #define OSPF_API_LOG_RECORDS 256
-/*Added by guo00178934, 防止输出越界, 2011/12/27   问题单号:DTS2011122703877 */
 #define OSPF_API_LOG_PRINT 5
-/* End of Added by guo00178934, 2011/12/27   问题单号:DTS2011122703877 */
 
 #define OSPF_API_LOG_LOCATE(idx)  \
     (idx) * OSPF_API_LOG_MEMBERS
@@ -546,9 +499,7 @@ NBB_VOID ospf_debug_helper(NBB_USHORT type, NBB_USHORT p1, NBB_LONG p2, NBB_ULON
 #define OSPF_SHOWENTITYINFO     3
 #define OSPF_SHOWAREA_INFO      4
 #define OSPF_SHOWERR_INFO       5
-/* End of Added by guo00178934, 2011/9/6   问题单号:DTS2011091303512 */
 
-/*Added by guo00178934, 在OSPF上下文中查找Area, 2011/11/25   问题单号:DTS2011092904809  */
 ULONG ospf_get_mib_area_ststus(USHORT usProcessId, ULONG ulAreaId);
 
 #define OSPF_MIB_AREA_ROW_STATUS(ulMibAreaStatus) \
@@ -563,7 +514,6 @@ ULONG ospf_get_mib_area_ststus(USHORT usProcessId, ULONG ulAreaId);
 #define OSPF_MIB_AREA_AMBL_STATUS(ulMibAreaStatus) \
   ((ulMibAreaStatus) & 0xFF)
 
-/* End of Added by guo00178934, 2011/11/25   问题单号:DTS2011092904809  */
 
 #ifdef __cplusplus
 }

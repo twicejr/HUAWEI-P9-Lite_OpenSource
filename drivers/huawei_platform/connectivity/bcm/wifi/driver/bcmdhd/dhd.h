@@ -119,7 +119,11 @@ enum dhd_op_flags {
 #define MAX_CNTL_TX_TIMEOUT 2
 #endif /* MAX_CNTL_TX_TIMEOUT */
 #ifndef MAX_CNTL_RX_TIMEOUT
+#ifdef BCM_PATCH_MAX_CNTL_RX_TIMEOUT
+#define MAX_CNTL_RX_TIMEOUT 2
+#else
 #define MAX_CNTL_RX_TIMEOUT 1
+#endif
 #endif /* MAX_CNTL_RX_TIMEOUT */
 
 #ifndef HW_SCAN_DEFAULT_TIME

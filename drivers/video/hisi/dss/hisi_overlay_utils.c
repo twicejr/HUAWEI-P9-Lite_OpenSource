@@ -2,7 +2,7 @@
 
 #include "hisi_overlay_utils.h"
 #include "hisi_display_effect.h"
-
+#include "hisi_dpe_utils.h"
 // 128 bytes
 #define SMMU_RW_ERR_ADDR_SIZE	(128)
 
@@ -4014,52 +4014,68 @@ void hisi_rch4_ce_end_handle_func(struct work_struct *work)
 }
 
 #ifndef CONFIG_HISI_FB_3660
-static void hisi_dss_dpp_gm_set_reg(struct hisi_fb_data_type *hisifd,
-	char __iomem *gamma_base)
+static void hisi_dss_dpp_acm_gm_set_reg(struct hisi_fb_data_type *hisifd)
 {
 	struct hisi_panel_info *pinfo = NULL;
 	char __iomem *dpp_base = NULL;
 	char __iomem *lcp_base = NULL;
+	char __iomem *acm_base = NULL;
+	char __iomem *ce_base = NULL;
+	char __iomem *gamma_base = NULL;
+	dss_ce_info_t *ce_info = NULL;
 	static uint8_t last_gamma_type=0;
 	static uint32_t gamma_config_flag = 0;
 	uint32_t i = 0;
 
-	if (hisifd == NULL || gamma_base == NULL) {
+	if (hisifd == NULL) {
 		return;
 	}
 	pinfo = &(hisifd->panel_info);
 
-	if (pinfo->gamma_support == 0)
+	if (pinfo->gamma_support == 0 || pinfo->acm_support == 0) {
 		return;
+	}
 
-	if (!HISI_DSS_SUPPORT_DPP_MODULE_BIT(DPP_MODULE_GAMA))
+	if (!HISI_DSS_SUPPORT_DPP_MODULE_BIT(DPP_MODULE_GAMA)) {
 		return;
+	}
 
 	if (PRIMARY_PANEL_IDX == hisifd->index) {
+		ce_info = &(hisifd->acm_ce_info);
 		dpp_base = hisifd->dss_base + DSS_DPP_OFFSET;
 		lcp_base = hisifd->dss_base + DSS_DPP_LCP_OFFSET;
+		acm_base = hisifd->dss_base + DSS_DPP_ACM_OFFSET;
+		ce_base = hisifd->dss_base + DSS_DPP_ACM_CE_OFFSET;
+		gamma_base = hisifd->dss_base + DSS_DPP_GAMMA_OFFSET;
 	} else {
 		HISI_FB_ERR("fb%d, not support!\n", hisifd->index);
 		return;
 	}
 
-	if (last_gamma_type == hisifd->panel_info.gamma_type)
-		return;
-
 	if (gamma_config_flag == 0) {
-		//disable gamma
-		set_reg(gamma_base + GAMA_BYPASS_EN, 0x1, 1, 0);
-		//disable gmp
-		set_reg(dpp_base + LCP_GMP_BYPASS_EN, 0x1, 1, 0);
-		//disable xcc
-		set_reg(lcp_base + LCP_XCC_BYPASS_EN, 0x1, 1, 0);
-		gamma_config_flag = 1;
+		if (last_gamma_type != hisifd->panel_info.gamma_type) {
+			/*disable acm_ce*/
+			set_reg(ce_base + ACM_CE_HIST_CTL, 0x2, 3, 0);
+			set_reg(ce_base + ACM_CE_LUT_ENABLE, 0x0, 2, 0);
+			/*disable acm*/
+			set_reg(acm_base + ACM_EN, 0x0, 1, 0);
+			/*disable gamma*/
+			set_reg(gamma_base + GAMA_BYPASS_EN, 0x1, 1, 0);
+			/*disable gmp*/
+			set_reg(dpp_base + LCP_GMP_BYPASS_EN, 0x1, 1, 0);
+			/*disable xcc*/
+			set_reg(lcp_base + LCP_XCC_BYPASS_EN, 0x1, 1, 0);
+			gamma_config_flag = 1;
+			ce_info->first_lut_set = false;
+			last_gamma_type = hisifd->panel_info.gamma_type;
+			g_dss_effect_acm_ce_en = 0;
+		}
 		return;
 	}
 
 	if (gamma_config_flag == 1) {
-		if(hisifd->panel_info.gamma_type == 1) {
-			//cinema gamma
+		if(last_gamma_type == 1) {
+			/*cinema gamma*/
 			if (pinfo->cinema_gamma_lut_table_len > 0
 				&& pinfo->cinema_gamma_lut_table_R
 				&& pinfo->cinema_gamma_lut_table_G
@@ -4070,8 +4086,30 @@ static void hisi_dss_dpp_gm_set_reg(struct hisi_fb_data_type *hisifd,
 					outp32(dpp_base + (LUT_GAMA_B_COEF_OFFSET + i * 4), pinfo->cinema_gamma_lut_table_B[i]);
 				}
 			}
+
+			/*set ACM_LUT_HUE. */
+			if (pinfo->cinema_acm_lut_hue_table && pinfo->cinema_acm_lut_hue_table_len > 0) {
+				acm_set_lut_hue(dpp_base + ACM_LUT_HUE, pinfo->cinema_acm_lut_hue_table, pinfo->cinema_acm_lut_hue_table_len);
+			} else {
+				HISI_FB_ERR("fb%d, acm_lut_hue_table is NULL or acm_lut_hue_table_len less than 0!\n", hisifd->index);
+				return;
+			}
+			/*set ACM_LUT_SATA. */
+			if (pinfo->cinema_acm_lut_sata_table && pinfo->cinema_acm_lut_sata_table_len > 0) {
+				acm_set_lut(dpp_base + ACM_LUT_SATA, pinfo->cinema_acm_lut_sata_table, pinfo->cinema_acm_lut_sata_table_len);
+			} else {
+				HISI_FB_ERR("fb%d, acm_lut_sata_table is NULL or acm_lut_sata_table_len less than 0!\n", hisifd->index);
+				return;
+			}
+			/*set ACM_LUT_SATR. */
+			if (pinfo->cinema_acm_lut_satr_table && pinfo->cinema_acm_lut_satr_table_len > 0) {
+				acm_set_lut(dpp_base + ACM_LUT_SATR, pinfo->cinema_acm_lut_satr_table, pinfo->cinema_acm_lut_satr_table_len);
+			} else {
+				HISI_FB_ERR("fb%d, acm_lut_satr_table is NULL or acm_lut_satr_table_len less than 0!\n", hisifd->index);
+				return;
+			}
 		} else {
-			//normal gamma
+			/*normal gamma*/
 			if (pinfo->gamma_lut_table_len > 0
 				&& pinfo->gamma_lut_table_R
 				&& pinfo->gamma_lut_table_G
@@ -4082,17 +4120,41 @@ static void hisi_dss_dpp_gm_set_reg(struct hisi_fb_data_type *hisifd,
 					outp32(dpp_base + (LUT_GAMA_B_COEF_OFFSET + i * 4), pinfo->gamma_lut_table_B[i]);
 				}
 			}
+
+			/*set ACM_LUT_HUE. */
+			if (pinfo->acm_lut_hue_table && pinfo->acm_lut_hue_table_len > 0) {
+				acm_set_lut_hue(dpp_base + ACM_LUT_HUE, pinfo->acm_lut_hue_table, pinfo->acm_lut_hue_table_len);
+			} else {
+				HISI_FB_ERR("fb%d, acm_lut_hue_table is NULL or acm_lut_hue_table_len less than 0!\n", hisifd->index);
+				return;
+			}
+			/*set ACM_LUT_SATA. */
+			if (pinfo->acm_lut_sata_table && pinfo->acm_lut_sata_table_len > 0) {
+				acm_set_lut(dpp_base + ACM_LUT_SATA, pinfo->acm_lut_sata_table, pinfo->acm_lut_sata_table_len);
+			} else {
+				HISI_FB_ERR("fb%d, acm_lut_sata_table is NULL or acm_lut_sata_table_len less than 0!\n", hisifd->index);
+				return;
+			}
+			/*set ACM_LUT_SATR. */
+			if (pinfo->acm_lut_satr_table && pinfo->acm_lut_satr_table_len > 0) {
+				acm_set_lut(dpp_base + ACM_LUT_SATR, pinfo->acm_lut_satr_table, pinfo->acm_lut_satr_table_len);
+			} else {
+				HISI_FB_ERR("fb%d, acm_lut_satr_table is NULL or acm_lut_satr_table_len less than 0!\n", hisifd->index);
+				return;
+			}
 		}
 
-		//enable gamma
+		/*enable gamma*/
 		set_reg(gamma_base + GAMA_BYPASS_EN, 0x0, 1, 0);
-		//enable gmp
+		/*enable gmp*/
 		set_reg(dpp_base + LCP_GMP_BYPASS_EN, 0x0, 1, 0);
-		//enable xcc
+		/*enable xcc*/
 		set_reg(lcp_base + LCP_XCC_BYPASS_EN, 0x0, 1, 0);
 
-		last_gamma_type = hisifd->panel_info.gamma_type;
+		/*enable acm*/
+		set_reg(acm_base + ACM_EN, (pinfo->cinema_acm_valid_num << 4) + 0x1, 32, 0);
 		gamma_config_flag = 0;
+		g_dss_effect_acm_ce_en = 1;
 	}
 
 	return;
@@ -6220,13 +6282,12 @@ int hisi_dss_ov_module_set_regs(struct hisi_fb_data_type *hisifd, int ovl_idx,
 		hisi_dss_mctl_sys_set_reg(hisifd, dss_module->mctl_sys_base, &(dss_module->mctl_sys), ovl_idx);
 	}
 
-	hisi_dss_dpp_ace_set_reg(hisifd);
-
-#ifndef CONFIG_HISI_FB_3660
 	if (is_first_ov_block) {
-	hisi_dss_dpp_gm_set_reg(hisifd, hisifd->dss_base + DSS_DPP_GAMMA_OFFSET);
-	}
+#ifndef CONFIG_HISI_FB_3660
+		hisi_dss_dpp_acm_gm_set_reg(hisifd);
 #endif
+		hisi_dss_dpp_ace_set_reg(hisifd);
+	}
 
 #ifdef CONFIG_HISI_FB_3660
 	//hisi_dss_dpp_hiace_set_reg(hisifd);
@@ -7299,7 +7360,6 @@ int hisi_overlay_on(struct hisi_fb_data_type *hisifd, bool fastboot_enable)
 	hisifd->dirty_region_updt.y = 0;
 	hisifd->dirty_region_updt.w = hisifd->panel_info.xres;
 	hisifd->dirty_region_updt.h = hisifd->panel_info.yres;
-	hisifd->dirty_region_updt_enable = 0;
 
 	hisifd->resolution_rect.x = 0;
 	hisifd->resolution_rect.y = 0;
@@ -7841,7 +7901,6 @@ int hisi_overlay_init(struct hisi_fb_data_type *hisifd)
 	hisifd->dirty_region_updt.y = 0;
 	hisifd->dirty_region_updt.w = hisifd->panel_info.xres;
 	hisifd->dirty_region_updt.h = hisifd->panel_info.yres;
-	hisifd->dirty_region_updt_enable = 0;
 
 	hisifd->resolution_rect.x = 0;
 	hisifd->resolution_rect.y = 0;

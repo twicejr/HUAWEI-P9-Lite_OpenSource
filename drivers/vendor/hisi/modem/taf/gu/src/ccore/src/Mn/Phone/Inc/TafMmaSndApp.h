@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaSndApp.h
-  版 本 号   : 初稿
-  作    者   : w00167002
-  生成日期   : 2014年2月14日
-  最近修改   :
-  功能描述   : TafMmaSndApp.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年2月14日
-    作    者   : w00167002
-    修改内容   : 创建文件
-
-******************************************************************************/
 #ifndef _TAF_MMA_SND_APP_H_
 #define _TAF_MMA_SND_APP_H_
 /*****************************************************************************
@@ -25,9 +8,7 @@
 #include "NasStkInterface.h"
 #include "MmaMsccInterface.h"
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 #include "TafAppMma.h"
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
 
 #ifdef __cplusplus
@@ -92,7 +73,6 @@ extern "C" {
   10 函数声明
 *****************************************************************************/
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, begin */
 VOS_VOID TAF_MMA_SndSysCfgSetCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
@@ -104,7 +84,6 @@ VOS_VOID TAF_MMA_SndPhoneModeSetCnf(
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-14, end */
 
 VOS_VOID TAF_MMA_SndEonsUcs2Rsp(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
@@ -113,7 +92,6 @@ VOS_VOID TAF_MMA_SndEonsUcs2Rsp(
     TAF_MMA_EONS_UCS2_PLMN_NAME_STRU   *pstEonsUcs2PlmnName
 );
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-14, begin */
 VOS_VOID TAF_MMA_SndAcqBestNetworkCnf(
     TAF_MMA_CTRL_STRU                  *pstCtrl,
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enRslt,
@@ -136,7 +114,6 @@ VOS_VOID TAF_MMA_SndDetachCnf(
     TAF_MMA_APP_OPER_RESULT_ENUM_UINT32 enDetachRslt,
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCause
 );
-/* Added by b00269685 for L-C互操作项目, 2014-2-14, end */
 
 /* 移当前函数到TafMmaSndTaf.h文件 */
 

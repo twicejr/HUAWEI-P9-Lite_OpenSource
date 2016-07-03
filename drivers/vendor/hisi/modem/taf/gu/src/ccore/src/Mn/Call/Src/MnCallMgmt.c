@@ -1,31 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MNCallMgmt.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年9月20日
-  最近修改   : 2007年9月20日
-  功能描述   : 实现呼叫的管理, 包括呼叫信息管理, 补充业务操作管理和DTMF过程管理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年7月12日
-    作    者   : 胡文 44270
-    修改内容   : 问题单号:AT2D04057
-
-  3.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  4.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 支持UUS1
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -45,37 +18,27 @@
 
 #include "MnErrorCode.h"
 #include "MnCall.h"
-/* Added by w00199382 for PS Project，2011-12-06,  Begin*/
 #include "AtTafAgentInterface.h"
-/* Added by w00199382 for PS Project，2011-12-06,  End*/
 #include "MnCallProcNvim.h"
 #include "MnCallMgmt.h"
 #include "MnComm.h"
 
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-24, begin */
 #include "NasStkInterface.h"
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-24, end */
 
 #include "NasIeUtil.h"
 
 #include "MnCallTimer.h"
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 #include "TafSdcLib.h"
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 #include "NasUsimmApi.h"
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, begin */
 #if (FEATURE_ON == FEATURE_IMS)
 #include "SpmImsaInterface.h"
 #include "CallImsaInterface.h"
 #endif
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, end */
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 #include "MnCallSendApp.h"
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
 #include "RabmTafInterface.h"
 
@@ -97,13 +60,10 @@ extern "C" {
    3 全局变量和静态变量定义
 *****************************************************************************/
 /* 呼叫管理实体 */
-/* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 LOCAL MN_CALL_MGMT_STRU                     f_astCallMgmtEntities[MN_CALL_MAX_NUM];
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
 /* CALL模块DTMF状态及缓存信息 */
 LOCAL TAF_CALL_DTMF_CTX_STRU                f_stCallDtmfCtx;
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
 LOCAL VOS_BOOL                              f_abCallReleaseFlag[MN_CALL_MAX_NUM];
 
@@ -144,30 +104,7 @@ extern    VOS_VOID MN_CALL_SetTchStatus(
    3 函数实现
 *****************************************************************************/
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_DeRegRelCallSsKeyEvent
- 功能描述  : 删除补充业务操作的关注事件
- 输入参数  : callId     - 标识发生事件的呼叫
-             enEvt      - 不需要关注的事件类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  2.日    期   : 2014年5月8日
-    作    者   : z00161729
-    修改内容   : DTS2014051404686:一路active通话一路hold通话，at+chld=2,向网络发了hold req
-	           和retrieve req后，挂断active电话，网络恢复retrieve rej，call状态异常后续
-			   不响应at+chld=2,呼叫无法恢复
-  3.日    期   : 2014年6月17日
-    作    者   : z00234330
-    修改内容   : TQE清理
-*****************************************************************************/
 VOS_VOID  TAF_CALL_DeRegRelCallSsKeyEvent(
     MN_CALL_ID_T                        callId
 )
@@ -177,9 +114,7 @@ VOS_VOID  TAF_CALL_DeRegRelCallSsKeyEvent(
     VOS_UINT16                          ulLoop;
 
     /* 删除对应关注的事件 */
-    /* Modified by z00234330 for coverity清理, 2014-06-16, begin */
     ucNumOfKeyEvt = TAF_SDC_MIN(f_stCallSupsCmdMgmt.ucNumOfKeyEvt, (MN_CALL_MAX_SS_CMD_KEY_EVT_NUM-1));
-    /* Modified by z00234330 for coverity清理, 2014-06-16, end */
 
     for (ulLoop = 0; ulLoop < ucNumOfKeyEvt;)
     {
@@ -201,23 +136,7 @@ VOS_VOID  TAF_CALL_DeRegRelCallSsKeyEvent(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_CountMptyCallNum
- 功能描述  : 计算多方通话关联的CALL ID个数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 多方通话关联的CALL ID个数
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  2.日    期   : 2013年8月19日
-    作    者   : f62575
-    修改内容   : DTS2013071808373，coverity问题解决
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_CountMptyCallNum(VOS_VOID)
 {
     VOS_UINT32                          ulLoop;
@@ -241,20 +160,7 @@ VOS_UINT32 TAF_CALL_CountMptyCallNum(VOS_VOID)
     return ulMptyCallNum;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetFirstMptyCallID
- 功能描述  : 获取除了当前call id以外第一个多方通话的call id
- 输入参数  : callId - 当前呼叫id
- 输出参数  : 无
- 返 回 值  : 第一个多方通话的call id
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : z00161729
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_GetFirstMptyCallID(MN_CALL_ID_T  callId)
 {
     VOS_UINT8                           ucLoop;
@@ -282,21 +188,7 @@ VOS_UINT8 TAF_CALL_GetFirstMptyCallID(MN_CALL_ID_T  callId)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SetCsCallExistFlg
- 功能描述  : 设置当前是否处于CS CALL 和紧急呼标记
- 输入参数  : ucCallExitFlg - 是否有call
-             enCallType    - call type
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2015年10月9日
-   作    者   : c00318887
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID    TAF_CALL_SetCsCallExistFlg(
     VOS_UINT8                           ucCallExitFlg,
     MN_CALL_TYPE_ENUM_U8                enCallType
@@ -326,29 +218,7 @@ VOS_VOID    TAF_CALL_SetCsCallExistFlg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcRelCallHoldRetrieveSsKeyEvent
- 功能描述  : 删除释放呼叫的补充业务操作的关注事件
- 输入参数  : callId     - 标识发生事件的呼叫
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  2.日    期   : 2013年8月19日
-    作    者   : f62575
-    修改内容   : DTS2013071808373，coverity问题解决
-  3.日    期   : 2013年11月04日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目
-  4.日    期   : 2014年5月31日
-    作    者   : z00161729
-    修改内容   : DTS2014060402388:一路active呼叫，一路hold的mpty呼叫，at+chld=1过程中丢网所有呼叫都被释放后call状态异常挂死，hold mpty呼叫无法恢复
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcRelCallHoldRetrieveSsKeyEvent(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_PROGRESS_EVT_ENUM        enEvt
@@ -402,9 +272,7 @@ VOS_VOID TAF_CALL_ProcRelCallHoldRetrieveSsKeyEvent(
     {
         f_stCallSupsCmdMgmt.bInProgress = VOS_FALSE;
         f_astCallMgmtEntities[callId - 1].stCallInfo.enSsResult = MN_CALL_SS_RES_SUCCESS;
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
         MN_CALL_ReportEvent(callId, MN_CALL_EVT_SS_CMD_RSLT);
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
         MN_CALL_ClearSsKeyEvent();
     }
@@ -412,55 +280,16 @@ VOS_VOID TAF_CALL_ProcRelCallHoldRetrieveSsKeyEvent(
     return;
 }
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 /* 将下面3个函数从MnCallMnccProc.c中移植到此处 */
-/*****************************************************************************
- 函 数 名  : MN_CALL_CleanStartLinkTime
- 功能描述  : 将指定CALL ID所对应的统计时间结构体的开始连接时间字段清零
- 输入参数  : VOS_UINT8 ucCallId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-09-01
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月05日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-  3.日    期   : 2013年11月21日
-    作    者   : j00174725
-    修改内容   : ROTS 修改
-*****************************************************************************/
 VOS_VOID MN_CALL_CleanStartLinkTime( VOS_UINT8 ucCallId)
 {
     /*进行清零操作:*/
     gastCallTimerCalc[ucCallId].ulStartCallTime = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_StartFluxCalculate
- 功能描述  : 开始统计通话时间
- 输入参数  : VOS_UINT8 ucCallId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-09-01
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月05日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-  3.日    期   : 2013年11月21日
-    作    者   : j00174725
-    修改内容   : ROTS 修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_StartFluxCalculate( VOS_UINT8 ucCallId)
 {
 
@@ -471,29 +300,7 @@ VOS_VOID  MN_CALL_StartFluxCalculate( VOS_UINT8 ucCallId)
     gastCallTimerCalc[ucCallId].CallidActiveSwitch = MN_CALL_ACTIVE_SWITCH_ON;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_StopFluxCalculate
- 功能描述  : 停止统计通话时间
- 输入参数  : VOS_UINT8 ucCallId
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-09-01
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月05日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-  3.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年11月21日
-    作    者   : j00174725
-    修改内容   : ROTS 修改
-*****************************************************************************/
 VOS_VOID  MN_CALL_StopFluxCalculate( VOS_UINT8 ucCallId)
 {
     VOS_UINT32                      	ulCurCallTime = 0;
@@ -551,67 +358,7 @@ VOS_VOID  MN_CALL_StopFluxCalculate( VOS_UINT8 ucCallId)
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ResetAllCalls
- 功能描述  : 复位所有呼叫, 将所有控制信息置为初始状态
- 输入参数  : enPowerState - 开机或关机态复位所有呼叫
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 软关机时释放Invoke Id
-  3.日    期   : 2010年4月20日
-    作    者   : z00161729
-    修改内容   : 问题单:AT2D18405软关机如果存在呼叫需要上报释放事件
-  4.日    期   : 2011年10月15日
-    作    者   : f00179208
-    修改内容   : AT移植项目
-  5.日    期   : 2012年03月02日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012020206417，使用ATD117;拨打电话，一段时间后挂断电话，
-                 单板主动上报的CEND中，通话时间显示为0
-
-  6.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-  7.日    期   : 2012年10月29日
-    作    者   : z00161729
-    修改内容   : DTS2012083102536:支持cc呼叫重建
-  8.日    期   : 2012年11月19日
-    作    者   : Y00213812
-    修改内容   : DTS2012111401720,当前如果有非IDLE态的呼叫实体，则上报367原因值
-  9.日    期   : 2013年01月18日
-    作    者   : Y00213812
-    修改内容   : DTS2013011201560修改错误原因值上报
- 10.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS FDN&Call Control移动到TAF
- 11.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目，软关机时重置DTMF状态及缓存
- 12.日    期   : 2013年11月04日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目
- 13.日    期   : 2014年03月01日
-    作    者   : s00217060
-    修改内容   : CS域业务状态变化时通知MTC
- 14.日    期   : 2014年4月15日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
- 15.日    期   :2014年9月28日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
- 16.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090607329
-*****************************************************************************/
 VOS_VOID   MN_CALL_ResetAllCalls(MN_CALL_POWER_STATE_ENUM_U8 enPowerState)
 {
     VOS_UINT32                          i;
@@ -647,9 +394,7 @@ VOS_VOID   MN_CALL_ResetAllCalls(MN_CALL_POWER_STATE_ENUM_U8 enPowerState)
                  && (pstMsgBuff->stBufferedSetupMsg.ucCallId == f_astCallMgmtEntities[i].stCallInfo.callId))
                 {
                     MN_CALL_ClearBufferedMsg();
-                    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, begin */
                     TAF_CALL_StopAllRedialTimers(pstMsgBuff->stBufferedSetupMsg.ucCallId);
-                    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, end */
                 }
 
 #if (FEATURE_ON == FEATURE_PTM)
@@ -679,22 +424,16 @@ VOS_VOID   MN_CALL_ResetAllCalls(MN_CALL_POWER_STATE_ENUM_U8 enPowerState)
         /* 所有呼叫都RELEASED后，上报所有呼叫都已RELEASED */
         MN_CALL_ReportEvent(f_astCallMgmtEntities[0].stCallInfo.callId,
                             MN_CALL_EVT_ALL_RELEASED);
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
         
         TAF_CALL_SetCsCallExistFlg(VOS_FALSE, MN_CALL_TYPE_BUTT);
         
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
-        /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
         /* 给MTC模块上报当前CS域业务状态 */
         TAF_SendMtcCsSrvInfoInd();
 #endif
-        /* Added by s00217060 for CS域业务状态变化时通知MTC, 2014/03/01, end */
 
-        /* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
         TAF_CALL_ResetDtmfCtx(TAF_CS_CAUSE_POWER_OFF);
-        /* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
      }
      else
@@ -728,23 +467,7 @@ VOS_VOID   MN_CALL_ResetAllCalls(MN_CALL_POWER_STATE_ENUM_U8 enPowerState)
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_AllocCallId
- 功能描述  : 分配对应的Call Id
- 输入参数  : pCallId  - 需要分配的呼叫ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2014年6月23日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-*****************************************************************************/
 VOS_UINT32 MN_CALL_AllocCallId(
     MN_CALL_ID_T                        *pCallId
 )
@@ -775,41 +498,7 @@ VOS_UINT32 MN_CALL_AllocCallId(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_FreeCallId
- 功能描述  : 释放呼叫ID
- 输入参数  : callId  - 需要释放的呼叫ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS FDN&Call Control移动到TAF
-  4.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报呼叫状态
-  5.日    期   : 2013年11月04日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目
-  6.日    期   : 2014年04月08日
-    作    者   : y00245242
-    修改内容   : 为eCall特性功能修改
-  7.日    期   : 2014年6月24日
-    作    者   : z00161729
-    修改内容   : DSDS III新增
-  8.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090607329
-*****************************************************************************/
 VOS_VOID   MN_CALL_FreeCallId(
     MN_CALL_ID_T                        callId
 )
@@ -829,9 +518,7 @@ VOS_VOID   MN_CALL_FreeCallId(
     f_astCallMgmtEntities[callId - 1].stCallInfo.enCallState = MN_CALL_S_IDLE;
     f_astCallMgmtEntities[callId - 1].stCallInfo.clientId = MN_CLIENT_ALL;
 
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-5-21, begin */
     f_astCallMgmtEntities[callId - 1].stCallInfo.stDiscDir.ucDiscCallFlag = VOS_FALSE;
-    /* Added by y00245242 for V3R3C60_eCall项目, 2014-5-21, end */
 
     /* 清除呼叫子状态为null */
     TAF_CALL_SetCallSubState(callId, TAF_CALL_SUB_STATE_NULL);
@@ -851,16 +538,12 @@ VOS_VOID   MN_CALL_FreeCallId(
 
     if (MN_CALL_MAX_NUM == i)
     {
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
         TAF_CALL_SetCsCallExistFlg(VOS_FALSE, MN_CALL_TYPE_BUTT);
-        /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
         /* 给MTC模块上报当前CS域业务状态 */
         TAF_SendMtcCsSrvInfoInd();
 #endif
-        /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
     }
 
 #if (FEATURE_ON == FEATURE_HUAWEI_VP)
@@ -869,24 +552,7 @@ VOS_VOID   MN_CALL_FreeCallId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_IsAllowToMakeNewCall
- 功能描述  : 检查是否可以发起/接听一个新的呼叫
- 输入参数  : callId    - 需要检查的呼叫的ID
-              enCallDir - 呼叫的方向(主叫/被叫)
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_BOOL   MN_CALL_IsAllowToMakeNewCall(
     MN_CALL_ID_T                        callId,
     MN_CALL_DIR_ENUM_U8                 enCallDir
@@ -944,52 +610,7 @@ VOS_BOOL   MN_CALL_IsAllowToMakeNewCall(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CreateMoCallEntity
- 功能描述  : 新建一个主叫呼叫管理实体，保存所有应用数据到全局变量
- 输入参数  : callId         - 呼叫的ID
-             clientId       - 控制该呼叫的Client, 对于被叫而言, 由于创建实体时Client
-             pstOrigParam   - 主叫请求中携带的参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年05月21日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012052100994,拨打可视电话，发给网侧的承载类型不对
-  3.日    期   : 2012年09月18日
-    作    者   : y00213812
-    修改内容   : STK&DCM 项目新增函数
-  4.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-  5.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 修改被叫号码结构体
-  6.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS FDN&Call Control移动到TAF
-  7.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  8.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报呼叫状态
-  9.日    期   : 2013年9月20日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseII 增加呼叫域信息
-  10.日    期   : 2014年4月26日
-     作    者   : z00161729
-     修改内容   : DTS2014042604200:f_abCallReleaseFlag标识维护不对，导致第二个电话结束时不给卡下发disconnect event
- 11.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090607329
-*****************************************************************************/
 VOS_VOID  MN_CALL_CreateMoCallEntity(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -1019,10 +640,8 @@ VOS_VOID  MN_CALL_CreateMoCallEntity(
     f_astCallMgmtEntities[callId - 1].stCallInfo.enCallDir  = MN_CALL_DIR_MO;
     f_astCallMgmtEntities[callId - 1].enClirCfg             = pstOrigParam->enClirCfg;
 
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, begin */
     /* 语音呼叫域信息 */
     f_astCallMgmtEntities[callId - 1].stCallInfo.enVoiceDomain = TAF_CALL_VOICE_DOMAIN_3GPP;                                  /* VOICE DOMAIN */
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, end */
 
     PS_MEM_CPY(&f_astCallMgmtEntities[callId - 1].stCugCfg,
                &pstOrigParam->stCugCfg,
@@ -1044,42 +663,21 @@ VOS_VOID  MN_CALL_CreateMoCallEntity(
                &pstOrigParam->stSubaddr,
                sizeof(MN_CALL_SUBADDR_STRU));
 
-    /* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
     TAF_CALL_SetCsCallExistFlg(VOS_TRUE, f_astCallMgmtEntities[callId - 1].stCallInfo.enCallType);
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
     MN_CALL_UpdateCallReleaseFlag(callId, VOS_FALSE);
 
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     /* 给MTC模块上报当前CS域业务状态 */
     TAF_SendMtcCsSrvInfoInd();
 #endif
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
     return;
 }
 
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-4, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallTypeEcall
- 功能描述  : 根据ucCallId获取当前eCall标志
- 输入参数  : ucCallId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : 返回eCall flag.
-             VOS_TRUE  -- 当前呼叫属于eCall
-             VOS_FALSE -- 当前呼叫不属于eCall
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月04日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_IsCallTypeEcall(MN_CALL_ID_T ucCallId)
 {
     if ( (ucCallId == 0) || ( ucCallId > MN_CALL_MAX_NUM ) )
@@ -1101,22 +699,7 @@ VOS_UINT8 TAF_CALL_IsCallTypeEcall(MN_CALL_ID_T ucCallId)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallTypeEmgencyCall
- 功能描述  : 根据ucCallId确认当前呼叫是否时紧急呼
- 输入参数  : ucCallId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  :
-             VOS_TRUE  -- 当前呼叫属于紧急呼
-             VOS_FALSE -- 当前呼叫不属于紧急呼
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年04月26日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_IsCallTypeEmgencyCall(MN_CALL_ID_T ucCallId)
 {
     if ( (ucCallId == 0) || ( ucCallId > MN_CALL_MAX_NUM ) )
@@ -1138,25 +721,7 @@ VOS_UINT8 TAF_CALL_IsCallTypeEmgencyCall(MN_CALL_ID_T ucCallId)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_UpdateCallInfo
- 功能描述  : 根据ucCallId获取当前eCall标志
- 输入参数  : usClientId - 用户标识
-             ucOpId     - 操作标识
-             ucCallId   - 呼叫的ID
-             enCause    - 原因值
 
- 输出参数  : 无
- 返 回 值  : 无
-
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年04月04日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-*****************************************************************************/
 VOS_VOID TAF_CALL_UpdateCallInfo(
     MN_CALL_ID_T                        ucCallId,
     MN_CALL_INFO_STRU                  *pstCallInfo
@@ -1174,22 +739,8 @@ VOS_VOID TAF_CALL_UpdateCallInfo(
                sizeof(MN_CALL_INFO_STRU));
 
 }
-/* Added by y00245242 for V3R3C60_eCall项目, 2014-4-4, end */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetSpecificCallInfo
- 功能描述  : 新建一个呼叫管理实体，填写实体中的一些初始信息
- 输入参数  : callId         - 呼叫的ID
- 输出参数  : pstCallInfo    -
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年02月23日
-    作    者   : 傅映君/f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_CALL_GetSpecificCallInfo(
     MN_CALL_ID_T                        CallId,
     MN_CALL_MGMT_STRU                  *pstCallInfo
@@ -1206,20 +757,7 @@ VOS_UINT32 MN_CALL_GetSpecificCallInfo(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CcIeCallingNumToApiCallingNum
- 功能描述  : 将空口的主叫号码结构转换成API要求的结构
- 输入参数  : pstCcIeNum - 来自CC的空口结构的主叫号码
- 输出参数  : pstNum     - API定义的主叫号码结构
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 新增函数
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_CcIeCallingNumToApiCallingNum(
     NAS_CC_IE_CALLING_NUM_STRU          *pstCcIeNum,
     MN_CALL_BCD_NUM_STRU                *pstNum
@@ -1241,20 +779,7 @@ LOCAL VOS_VOID  MN_CALL_CcIeCallingNumToApiCallingNum(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CcIeCalledNumtoApiCalledNum
- 功能描述  : 将空口的被叫号码结构转换成API要求的结构
- 输入参数  : pstCcIeNum - 来自CC的空口结构的被叫号码
- 输出参数  : pstNum     - API定义的号码结构
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 新增函数
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_CcIeCalledNumtoApiCalledNum(
     NAS_CC_IE_CALLED_NUM_STRU          *pstCcIeNum,
     MN_CALL_CALLED_NUM_STRU            *pstNum
@@ -1276,20 +801,7 @@ LOCAL VOS_VOID  MN_CALL_CcIeCalledNumtoApiCalledNum(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CcIeCalledSubAddrtoApiSubAddr
- 功能描述  : 将空口的被叫子地址结构转换成API要求的结构
- 输入参数  : pstCcIeSubAddr - 来自CC的空口结构的被叫号码
- 输出参数  : pstSubAddr     - API定义的号码结构
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 新增函数
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_CcIeCalledSubAddrtoApiSubAddr(
     NAS_CC_IE_CALLED_SUBADDR_STRU      *pstCcIeSubAddr,
     MN_CALL_SUBADDR_STRU               *pstSubAddr
@@ -1318,20 +830,7 @@ LOCAL VOS_VOID  MN_CALL_CcIeCalledSubAddrtoApiSubAddr(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CcIeCallingSubAddrtoApiSubAddr
- 功能描述  : 将空口的主叫子地址结构转换成API要求的结构
- 输入参数  : pstCcIeSubAddr - 来自CC的空口结构的被叫号码
- 输出参数  : pstSubAddr     - API定义的号码结构
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 新增函数
-*****************************************************************************/
 LOCAL VOS_VOID  MN_CALL_CcIeCallingSubAddrtoApiSubAddr(
     NAS_CC_IE_CALLING_SUBADDR_STRU     *pstCcIeSubAddr,
     MN_CALL_SUBADDR_STRU               *pstSubAddr
@@ -1360,37 +859,7 @@ LOCAL VOS_VOID  MN_CALL_CcIeCallingSubAddrtoApiSubAddr(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CreateMtCallEntity
- 功能描述  : 新建一个被叫呼叫管理实体，保存所有应用数据到全局变量
- 输入参数  : callId         - 呼叫的ID
-             ucTi           - 呼叫实体对应的Ti
-             pstSetup       - 被叫请求中携带的参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 新增函数
-  2.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS FDN&Call Control移动到TAF
-  3.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  4.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报呼叫状态
-  5.日    期   : 2013年9月20日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseII 增加呼叫域信息
-  6.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090607329
-*****************************************************************************/
 VOS_VOID  MN_CALL_CreateMtCallEntity(
     MN_CALL_ID_T                        callId,
     VOS_UINT8                           ucTi,
@@ -1422,10 +891,8 @@ VOS_VOID  MN_CALL_CreateMtCallEntity(
     f_astCallMgmtEntities[callId - 1].stCallInfo.enCallMode = MN_CALL_MODE_SINGLE;
     f_astCallMgmtEntities[callId - 1].stCallInfo.enCallDir  = MN_CALL_DIR_MT;
 
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, begin */
     /* 语音呼叫域信息 */
     f_astCallMgmtEntities[callId - 1].stCallInfo.enVoiceDomain = TAF_CALL_VOICE_DOMAIN_3GPP;                                  /* VOICE DOMAIN */
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, end */
 
     /* 转换主叫号码 */
     MN_CALL_CcIeCallingNumToApiCallingNum(&pstSetup->stCallingNum, &stCallingNum);
@@ -1454,72 +921,20 @@ VOS_VOID  MN_CALL_CreateMtCallEntity(
                0,
                sizeof(MN_CALL_CS_DATA_CFG_INFO_STRU));
 
-    /* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
     MN_CALL_UpdateCallReleaseFlag(callId, VOS_FALSE);
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
     TAF_CALL_SetCsCallExistFlg(VOS_TRUE, f_astCallMgmtEntities[callId - 1].stCallInfo.enCallType);
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     /* 给MTC模块上报当前CS域业务状态 */
     TAF_SendMtcCsSrvInfoInd();
 #endif
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CreateCallEntity
- 功能描述  : 新建一个呼叫管理实体，填写实体中的一些初始信息
- 输入参数  : callId     - 呼叫的ID
-              ulTi       - 该呼叫对应的CC实体中的Ti值.对于主叫而言,由于CC实体还未
-                          创建, 该参数将被忽略, 等网侧回复上报时再记录
-              clientId   - 控制该呼叫的Client, 对于被叫而言, 由于创建实体时Client
-                          未确定, 该参数将被忽略
-              enCallType - 该呼叫的呼叫类型
-              enCallMode - 该呼叫的呼叫模式
-              enCallDir  - 该呼叫的呼叫方向(主叫/被叫)
-              pstDataCfgInfo - 该呼叫的数据设置. 对于语音呼叫, 该参数将被忽略.
-              pstNumber  - 该呼叫的对方号码. 被叫时如果Setup消息中没有对方号码,
-                          该参数填为NULL
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2012年09月18日
-    作    者   : y00213812
-    修改内容   : STK&DCM 项目新增函数
-  4.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目, 清除呼叫释放标记
-  5.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 创建呼叫实体前增加清空操作
-  6.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS FDN&Call Control移动到TAF
-  7.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  8.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报呼叫状态
-  9.日    期   : 2013年9月20日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseII 增加呼叫域信息
-*****************************************************************************/
 VOS_VOID  MN_CALL_CreateCallEntity(
     MN_CALL_ID_T                        callId,
     VOS_UINT32                          ulTi,
@@ -1546,10 +961,8 @@ VOS_VOID  MN_CALL_CreateCallEntity(
     f_astCallMgmtEntities[callId - 1].stCallInfo.enCallMode = enCallMode;
     f_astCallMgmtEntities[callId - 1].stCallInfo.enCallDir = enCallDir;
 
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, begin */
     /* 语音呼叫域信息 */
     f_astCallMgmtEntities[callId - 1].stCallInfo.enVoiceDomain = TAF_CALL_VOICE_DOMAIN_3GPP;                                  /* VOICE DOMAIN */
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, end */
 
     if (VOS_NULL_PTR != pstDataCfgInfo)
     {
@@ -1580,43 +993,22 @@ VOS_VOID  MN_CALL_CreateCallEntity(
     f_astCallMgmtEntities[callId - 1].stCallInfo.stRedirectSubaddr.LastOctOffset = 0;
     f_astCallMgmtEntities[callId - 1].stCallInfo.stRedirectSubaddr.IsExist       = VOS_FALSE;
 
-    /* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
     MN_CALL_UpdateCallReleaseFlag(callId, VOS_FALSE);
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
     TAF_CALL_SetCsCallExistFlg(VOS_TRUE, f_astCallMgmtEntities[callId - 1].stCallInfo.enCallType);
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     /* 给MTC模块上报当前CS域业务状态 */
     TAF_SendMtcCsSrvInfoInd();
 #endif
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
     return;
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DeleteCallEntity
- 功能描述  : 清除一个呼叫管理实体
- 输入参数  : callId - 需要清除的呼叫的ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_DeleteCallEntity(
     MN_CALL_ID_T                        callId
 )
@@ -1635,23 +1027,7 @@ VOS_VOID  MN_CALL_DeleteCallEntity(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCcTi
- 功能描述  : 根据CallId获取EntityId
- 输入参数  : callId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_UINT32 MN_CALL_GetCcTi(MN_CALL_ID_T callId)
 {
 
@@ -1664,23 +1040,7 @@ VOS_UINT32 MN_CALL_GetCcTi(MN_CALL_ID_T callId)
     return f_astCallMgmtEntities[callId-1].ulTi;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCcCallDir
- 功能描述  : 根据CallId获取EntityId
- 输入参数  : callId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 
 VOS_UINT32 MN_CALL_GetCcCallDir(MN_CALL_ID_T callId)
 {
@@ -1694,40 +1054,12 @@ VOS_UINT32 MN_CALL_GetCcCallDir(MN_CALL_ID_T callId)
     return f_astCallMgmtEntities[callId-1].stCallInfo.enCallDir;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ReportEvent
- 功能描述  : 向所有Client上报呼叫事件
- 输入参数  : callId      - 需要上报事件的呼叫的ID
-              enEventType - 事件类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年11月14日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project:incoming和release事件根据呼叫控制标志判断是否上报
-  3.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  4.日    期   : 2012年12月31日
-    作    者   : l65478
-    修改内容   : DTS2012122900264:DTMF发送失败
-  5.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核及mma和mmc接口调整
-*****************************************************************************/
 VOS_VOID  MN_CALL_ReportEvent(
     MN_CALL_ID_T                        callId,
     MN_CALL_EVENT_ENUM_U32              enEventType
 )
 {
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
     TAF_SDC_CURC_RPT_CTRL_STRU          *pstCurcRptCtrl           = VOS_NULL_PTR;
     TAF_SDC_UNSOLICITED_RPT_CTRL_STRU   *pstUnsolicitedRptCtrl    = VOS_NULL_PTR;
 
@@ -1751,10 +1083,7 @@ VOS_VOID  MN_CALL_ReportEvent(
 
     MN_INFO_LOG1("MN_CALL_ReportEvent: event.", (VOS_INT32)enEventType);
 
-    /* Modified by l60609 for AT Project，2011-11-14,  Begin*/
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
     if (VOS_FALSE == TAF_CALL_GetCallStatusControl())
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
     {
         /*不需要上报语音呼叫的incoming事件*/
         if ((MN_CALL_EVT_INCOMING == enEventType)
@@ -1775,7 +1104,6 @@ VOS_VOID  MN_CALL_ReportEvent(
             return;
         }
     }
-    /* Modified by l60609 for AT Project，2011-11-14,  End*/
 
     /* 增加主动上报相关全局变量的值 */
     PS_MEM_CPY(f_astCallMgmtEntities[callId - 1].stCallInfo.aucCurcRptCfg,
@@ -1786,7 +1114,6 @@ VOS_VOID  MN_CALL_ReportEvent(
                 pstUnsolicitedRptCtrl->aucRptCfg,
                 MN_CALL_RPT_CFG_MAX_SIZE);
 
-    /* Modified by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
     /* 对所有注册了CS域呼叫事件回调函数的Client调用回调函数 */
     MN_SendClientEvent(MN_CLIENT_ALL,
@@ -1796,24 +1123,7 @@ VOS_VOID  MN_CALL_ReportEvent(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateClientId
- 功能描述  : 更新指定呼叫的Client ID信息
- 输入参数  : callId   - 需要更新Client ID的呼叫的ID
-              clientId - 新的Client ID值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateClientId(
     MN_CALL_ID_T                        callId,
     MN_CLIENT_ID_T                      clientId
@@ -1830,24 +1140,7 @@ VOS_VOID  MN_CALL_UpdateClientId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCallState
- 功能描述  : 更新指定呼叫的呼叫状态信息
- 输入参数  : callId      - 需要更新状态的呼叫的ID
-              enCallState - 新的呼叫状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateCallState(
     MN_CALL_ID_T                        callId,
     MN_CALL_STATE_ENUM_U8               enCallState
@@ -1865,24 +1158,7 @@ VOS_VOID  MN_CALL_UpdateCallState(
     MN_INFO_LOG1("MN_CALL_UpdateCallState: CallState,", enCallState);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateMptyState
- 功能描述  : 更新指定呼叫的MPTY状态信息
- 输入参数  : callId      - 需要更新MPTY状态的呼叫的ID
-              enMptyState - 新的MPTY状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateMptyState(
     MN_CALL_ID_T                        callId,
     MN_CALL_MPTY_STATE_ENUM_U8          enMptyState
@@ -1900,24 +1176,7 @@ VOS_VOID  MN_CALL_UpdateMptyState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCallType
- 功能描述  : 获取指定呼叫的呼叫类型信息
- 输入参数  : callId     - 需要更新呼叫类型的呼叫的ID
-              enCallType - 新的呼叫类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 MN_CALL_TYPE_ENUM_U8  MN_CALL_GetCallType(
     MN_CALL_ID_T                        callId
 )
@@ -1933,24 +1192,7 @@ MN_CALL_TYPE_ENUM_U8  MN_CALL_GetCallType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCallType
- 功能描述  : 更新指定呼叫的呼叫类型信息
- 输入参数  : callId     - 需要更新呼叫类型的呼叫的ID
-              enCallType - 新的呼叫类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateCallType(
     MN_CALL_ID_T                        callId,
     MN_CALL_TYPE_ENUM_U8                enCallType
@@ -1967,24 +1209,7 @@ VOS_VOID  MN_CALL_UpdateCallType(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCallMode
- 功能描述  : 更新指定呼叫的呼叫模式信息
- 输入参数  : callId     - 需要更新呼叫模式的呼叫的ID
-              enCallMode - 新的呼叫模式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateCallMode(
     MN_CALL_ID_T                        callId,
     MN_CALL_MODE_ENUM_U8                enCallMode
@@ -2001,24 +1226,7 @@ VOS_VOID  MN_CALL_UpdateCallMode(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateDataCallCfgInfo
- 功能描述  : 更新指定呼叫的数据呼叫配置信息
- 输入参数  : callId     - 需要更新数据呼叫配置的呼叫的ID
-             pstDataCfgInfo - 新的数据呼叫配置
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateDataCallCfgInfo(
     MN_CALL_ID_T                        callId,
     const MN_CALL_CS_DATA_CFG_INFO_STRU *pstDataCfgInfo
@@ -2034,24 +1242,7 @@ VOS_VOID  MN_CALL_UpdateDataCallCfgInfo(
     f_astCallMgmtEntities[callId-1].stCallInfo.stDataCfgInfo= *pstDataCfgInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetDataCallCfgInfo
- 功能描述  : 获取指定呼叫的数据呼叫配置信息
- 输入参数  : callId     - 需要更新数据呼叫配置的呼叫的ID
-              pstDataCfgInfo - 新的数据呼叫配置
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetDataCallCfgInfo(
     MN_CALL_ID_T                        callId,
     MN_CALL_CS_DATA_CFG_INFO_STRU       *pstDataCfgInfo
@@ -2067,24 +1258,7 @@ VOS_VOID  MN_CALL_GetDataCallCfgInfo(
     *pstDataCfgInfo = f_astCallMgmtEntities[callId-1].stCallInfo.stDataCfgInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetMgmtEntityInfoByCallId
- 功能描述  : 获取指定CallId对应的呼叫信息
- 输入参数  : callId        - 呼叫ID
-              pstMgmtEntity - 新的数据呼叫配置
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetMgmtEntityInfoByCallId(
     MN_CALL_ID_T                        callId,
     MN_CALL_MGMT_STRU                   *pstMgmtEntity
@@ -2100,24 +1274,7 @@ VOS_VOID  MN_CALL_GetMgmtEntityInfoByCallId(
     *pstMgmtEntity = f_astCallMgmtEntities[callId-1];
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCallInfoByCallId
- 功能描述  : 根据呼叫Id来获取对应的实体呼叫管理信息
- 输入参数  : callId      - 需要更新数据呼叫配置的呼叫的ID
-              pstCallInfo - 呼叫管理实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetCallInfoByCallId(
     MN_CALL_ID_T                        callId,
     MN_CALL_INFO_STRU                   *pstCallInfo
@@ -2133,24 +1290,7 @@ VOS_VOID  MN_CALL_GetCallInfoByCallId(
     *pstCallInfo = f_astCallMgmtEntities[callId-1].stCallInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateRedirNumber
- 功能描述  : 更新指定呼叫的转移号码信息
- 输入参数  : callId         - 需要更新转移号码的呼叫的ID
-              pstRedirNumber - 新的转移号码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateRedirNumber(
     MN_CALL_ID_T                        callId,
     const MN_CALL_BCD_NUM_STRU          *pstRedirNumber
@@ -2167,24 +1307,7 @@ VOS_VOID  MN_CALL_UpdateRedirNumber(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateConnNumber
- 功能描述  : 更新指定呼叫的连接号码信息
- 输入参数  : callId        - 需要更新连接号码的呼叫的ID
-              pstConnNumber - 新的连接号码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateConnNumber(
     MN_CALL_ID_T                        callId,
     const MN_CALL_BCD_NUM_STRU          *pstConnNumber
@@ -2201,24 +1324,7 @@ VOS_VOID  MN_CALL_UpdateConnNumber(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCallNumber
- 功能描述  : 更新指定呼叫来电号码信息
- 输入参数  : callId        - 需要更新连接号码的呼叫的ID
-              pstCallNumber - 新的连接号码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateCallNumber(
     MN_CALL_ID_T                        callId,
     const MN_CALL_BCD_NUM_STRU          *pstCallNumber
@@ -2235,22 +1341,7 @@ VOS_VOID  MN_CALL_UpdateCallNumber(
     f_astCallMgmtEntities[callId-1].stCallInfo.stCallNumber = *pstCallNumber;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCalledNumber
- 功能描述  : 更新指定呼叫被叫号码信息
- 输入参数  : callId             - 需要更新连接号码的呼叫的ID
-             pstCalledNumber    - 新的连接被叫号码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 新生成函数
-
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateCalledNumber(
     MN_CALL_ID_T                        callId,
     const MN_CALL_CALLED_NUM_STRU      *pstCalledNumber
@@ -2274,21 +1365,7 @@ VOS_VOID  MN_CALL_UpdateCalledNumber(
 
 
 #if 0
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateSsCmd
- 功能描述  : 更新指定呼叫的补充业务命令信息
- 输入参数  : callId      - 需要更新补充业务命令的呼叫的ID
-             pConnNumber - 新的补充业务命令
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateSsCmd(
     MN_CALL_ID_T       callId,
     MN_CALL_SUPS_CMD_ENUM_U8     SsCmd,
@@ -2296,24 +1373,7 @@ VOS_VOID  MN_CALL_UpdateSsCmd(
 );
 #endif
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateSsNotify
- 功能描述  : 更新指定呼叫的补充业务通知信息
- 输入参数  : callId    - 需要更新补充业务命令的呼叫的ID
-              pstSsInfo - 新的补充业务通知信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateSsNotify(
     MN_CALL_ID_T                        callId,
     const MN_CALL_SS_NOTIFY_STRU        *pstSsInfo
@@ -2332,27 +1392,7 @@ VOS_VOID  MN_CALL_UpdateSsNotify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCcCause
- 功能描述  : 更新指定呼叫的CC原因值信息
- 输入参数  : callId    - 需要更新CC原因值的呼叫的ID
-              enCcCause - 新的CC原因值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年07月17日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateCcCause(
     MN_CALL_ID_T                        callId,
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCcCause
@@ -2365,34 +1405,14 @@ VOS_VOID  MN_CALL_UpdateCcCause(
         return;
     }
 
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, begin */
     f_astCallMgmtEntities[callId-1].stCallInfo.enCause = enCcCause;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, end */
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCcCause
- 功能描述  : 获取指定呼叫的CC原因值信息
- 输入参数  : callId    - 需要更新CC原因值的呼叫的ID
- 输出参数  : 无
- 返 回 值  : MN_CALL_CC_CAUSE_ENUM_U8 -CC原因值
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月18日
-    作    者   : Y00213812
-    修改内容   : DTS2013011201560新增函数
-  2.日    期   : 2013年07月09日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目,返回值类型由MN_CALL_CC_CAUSE_ENUM_U8变成TAF_CS_CAUSE_ENUM_UINT32
-                 函数名变为MN_CALL_GetCsCause
-*****************************************************************************/
 TAF_CS_CAUSE_ENUM_UINT32  MN_CALL_GetCsCause(
     MN_CALL_ID_T                        callId
 )
 {
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, begin */
     if ( (callId == 0) || ( callId > MN_CALL_MAX_NUM ) )
     {
         TAF_ERROR_LOG(WUEPS_PID_TAF, "MN_CALL_GetCsCause: callId error!");
@@ -2400,27 +1420,9 @@ TAF_CS_CAUSE_ENUM_UINT32  MN_CALL_GetCsCause(
     }
 
     return f_astCallMgmtEntities[callId-1].stCallInfo.enCause;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, end */
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateNoCliCause
- 功能描述  : 更新指定呼叫的无号码显示原因信息
- 输入参数  : callId       - 需要更新无号码显示原因的呼叫的ID
-              enNoCliCause - 新的无号码显示原因
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateNoCliCause(
     MN_CALL_ID_T                        callId,
     MN_CALL_NO_CLI_CAUSE_ENUM_U8        enNoCliCause
@@ -2437,24 +1439,7 @@ VOS_VOID  MN_CALL_UpdateNoCliCause(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateRabId
- 功能描述  : 更新指定呼叫的RAB ID信息
- 输入参数  : callId  - 需要更新RAB ID的呼叫的ID
-              ucRabId - 新的RAB ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateRabId(
     MN_CALL_ID_T                        callId,
     VOS_UINT8                           ucRabId
@@ -2471,24 +1456,7 @@ VOS_VOID  MN_CALL_UpdateRabId(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateTi
- 功能描述  : 更新指定呼叫的TI信息
- 输入参数  : callId  - 需要更新RAB ID的呼叫的ID
-              ucTi    - 新的Ti值
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateTi(
     MN_CALL_ID_T                        callId,
     VOS_UINT8                           ucTi
@@ -2504,21 +1472,7 @@ VOS_VOID  MN_CALL_UpdateTi(
     f_astCallMgmtEntities[callId - 1].ulTi = ucTi;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetSrvccLocalAlertedFlagByCallId
- 功能描述  : 获取SRVCC时本地振铃的状态
- 输入参数  : MN_CALL_ID_T                        callId
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月25日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_GetSrvccLocalAlertedFlagByCallId(
     MN_CALL_ID_T                        callId
 )
@@ -2532,22 +1486,7 @@ VOS_UINT8 TAF_CALL_GetSrvccLocalAlertedFlagByCallId(
     return f_astCallMgmtEntities[callId - 1].ucSrvccLocalAlertedFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SetSrvccLocalAlertedFlagByCallId
- 功能描述  : 设置SRVCC时本地振铃的状态
- 输入参数  : MN_CALL_ID_T                        callId
-             VOS_UINT8                           ucSrvccLocalAlertedFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月26日
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_CALL_SetSrvccLocalAlertedFlagByCallId(
     MN_CALL_ID_T                        callId,
     VOS_UINT8                           ucSrvccLocalAlertedFlag
@@ -2562,24 +1501,7 @@ VOS_VOID TAF_CALL_SetSrvccLocalAlertedFlagByCallId(
     f_astCallMgmtEntities[callId - 1].ucSrvccLocalAlertedFlag = ucSrvccLocalAlertedFlag;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCallState
- 功能描述  : 获取指定呼叫的状态信息
- 输入参数  : callId       - 需要获取状态信息的呼叫的ID
- 输出参数  : penCallState - 获得的呼叫状态
-              penMptyState - 获得的MPTY状态
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetCallState(
     MN_CALL_ID_T                        callId,
     MN_CALL_STATE_ENUM_U8               *penCallState,
@@ -2598,20 +1520,7 @@ VOS_VOID  MN_CALL_GetCallState(
     *penMptyState = f_astCallMgmtEntities[callId - 1].stCallInfo.enMptyState;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetCallSubState
- 功能描述  : 获取指定呼叫的子状态信息
- 输入参数  : callId       - 需要获取状态信息的呼叫的ID
- 输出参数  : 无
- 返 回 值  : 呼叫子状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月13日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 TAF_CALL_SUB_STATE_ENUM_UINT8 TAF_CALL_GetCallSubState(
     MN_CALL_ID_T                        callId
 )
@@ -2625,21 +1534,7 @@ TAF_CALL_SUB_STATE_ENUM_UINT8 TAF_CALL_GetCallSubState(
     return f_astCallMgmtEntities[callId - 1].stCallInfo.enCallSubState;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SetCallSubState
- 功能描述  : 设置指定呼叫的子状态信息
- 输入参数  : callId         - 需要设置状态信息的呼叫的ID
-             enCallSubState - 呼叫子状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年6月13日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_SetCallSubState(
     MN_CALL_ID_T                        callId,
     TAF_CALL_SUB_STATE_ENUM_UINT8       enCallSubState
@@ -2655,21 +1550,7 @@ VOS_VOID TAF_CALL_SetCallSubState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCallsByState
- 功能描述  : 获取特定呼叫状态的所有呼叫
- 输入参数  : enCallState     - 指定的呼叫状态
- 输出参数  : pulNumOfCalls - 指定状态的呼叫个数
-              pCallIds      - 指定状态的呼叫ID列表(输入的缓存需能容纳7个记录)
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetCallsByState(
     MN_CALL_STATE_ENUM_U8               enCallState,
     VOS_UINT32                          *pulNumOfCalls,
@@ -2693,23 +1574,8 @@ VOS_VOID  MN_CALL_GetCallsByState(
 }
 
 
-/* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetNotIdleStateCalls
- 功能描述  : 获取不处于Idle状态的Call
- 输入参数  : 无
- 输出参数  : pulNumOfCalls - 呼叫个数
-              pCallIds - 对应的呼叫Id
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetNotIdleStateCalls(
     VOS_UINT32                          *pulNumOfCalls,
     MN_CALL_ID_T                        *pCallIds
@@ -2731,21 +1597,7 @@ VOS_VOID  MN_CALL_GetNotIdleStateCalls(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCallsByMptyState
- 功能描述  : 获取特定MPTY状态的所有呼叫
- 输入参数  : enMptyState   - 指定的MPTY状态
- 输出参数  : pulNumOfCalls - 指定状态的呼叫个数
-              pCallIds      - 指定状态的呼叫ID列表(输入的缓存需能容纳7个记录)
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetCallsByMptyState(
     MN_CALL_MPTY_STATE_ENUM_U8          enMptyState,
     VOS_UINT32                          *pulNumOfCalls,
@@ -2770,24 +1622,7 @@ VOS_VOID  MN_CALL_GetCallsByMptyState(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_RegSsKeyEvent
- 功能描述  : 注册补充业务操作的关注事件
-             当关注的呼叫上发生关注的事件时，注册的后续操作(enSubseqOp)
-             将被执行; 其它事件在发生时不会引起任何操作, 将被忽略
- 输入参数  : callId     - 标识发生事件的呼叫
-              enEvt      - 关注的事件类型
-              enSubseqOp - 该事件将引起的操作
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_RegSsKeyEvent(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_PROGRESS_EVT_ENUM        enEvt,
@@ -2812,24 +1647,7 @@ VOS_VOID  MN_CALL_RegSsKeyEvent(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_DeRegSsKeyEvent
- 功能描述  : 删除补充业务操作的关注事件
- 输入参数  : callId     - 标识发生事件的呼叫
-             enEvt      - 不需要关注的事件类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2009年12月31日
-    作    者   : z40661
-    修改内容   :下标错误
-*****************************************************************************/
 VOS_VOID  MN_CALL_DeRegSsKeyEvent(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_PROGRESS_EVT_ENUM        enEvt
@@ -2864,41 +1682,14 @@ VOS_VOID  MN_CALL_DeRegSsKeyEvent(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ClearSsKeyEvent
- 功能描述  : 清除所有的关注事件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_ClearSsKeyEvent(VOS_VOID)
 {
     f_stCallSupsCmdMgmt.ucNumOfKeyEvt = 0;
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_BeginCallSupsCmdProgress
- 功能描述  : 开始进行补充业务操作, 记录初始信息, 设置补充业务进行标志
- 输入参数  : clientId - 发起该补充业务操作的Client的ID
-              enCallMgmtCmd    - 发起的补充业务操作
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_BeginCallSupsCmdProgress(
     MN_CLIENT_ID_T                      clientId,
     MN_CALL_SUPS_CMD_ENUM_U8            enCallSupsCmd
@@ -2912,60 +1703,14 @@ VOS_VOID  MN_CALL_BeginCallSupsCmdProgress(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_IsCallSupsCmdInProgress
- 功能描述  : 查看当前是否在进行补充业务操作
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE - 正在进行补充业务操作,  VOS_FALSE - 没有进行补充业务操作
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL  MN_CALL_IsCallSupsCmdInProgress(VOS_VOID)
 {
     return  f_stCallSupsCmdMgmt.bInProgress;
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCallSupsProgress
- 功能描述  : 当发生了补充业务操作相关的事件时, 更新补充业务操作的进展.
-             该函数根据发生的事件和已注册的关注事件来产生特定操作.
- 输入参数  : callId  - 标识发生事件的呼叫
-             enEvt   - 发生的事件类型
-             ulErrno - 如果是操作拒绝类的事件, 需要携带错误码，该参数只有在
-                       向上层上报操作失败时才有效.
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年07月09日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-
-  4.日    期   : 2013年12月28日
-    作    者   : j00174725
-    修改内容   : HSUART PHASE III
-  5.日    期   : 2014年7月29日
-    作    者   : b00269685
-    修改内容   : 编译告警清理
-  6.日    期   : 2014年12月17日
-    作    者   : l00198894
-    修改内容   : DTS2014121602595: AT+CHLD=2异常流程处理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateCallSupsProgress(
     MN_CALL_ID_T                        callId,
     MN_CALL_SS_PROGRESS_EVT_ENUM        enEvt,
@@ -3113,9 +1858,7 @@ VOS_VOID  MN_CALL_UpdateCallSupsProgress(
     if ( VOS_TRUE == bOpCmplt )
     {
         /* 补充业务操作完成 */
-        /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, begin */
         MN_CALL_ReportEvent(callId, MN_CALL_EVT_SS_CMD_RSLT);
-        /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, end */
         MN_CALL_ClearSsKeyEvent();
         f_stCallSupsCmdMgmt.bInProgress = VOS_FALSE;
         MN_INFO_LOG("MN_CALL_UpdateCallSupsProgress: clear event & not in progress");
@@ -3130,21 +1873,7 @@ VOS_VOID  MN_CALL_UpdateCallSupsProgress(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCallInfoList
- 功能描述  : 获取当前所有状态不为IDLE的呼叫信息
- 输入参数  : pucNumOfCalls - 输出缓存最多能存储的呼叫信息个数
- 输出参数  : pucNumOfCalls - 实际输出的(状态不为IDLE的)呼叫信息个数
-              pstCallInfos  - 输出的呼叫信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetCallInfoList(
     TAF_UINT8                           *pucNumOfCalls,
     MN_CALL_INFO_STRU                   *pstCallInfos
@@ -3178,20 +1907,7 @@ VOS_VOID  MN_CALL_GetCallInfoList(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_TiUsedCheck
- 功能描述  : 检查当前Ti是否属于某个呼叫实体
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_TRUE - Ti已经被使用,  VOS_FALSE - Ti尚未使用
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL  MN_CALL_TiUsedCheck(
     VOS_UINT32                          ulTi
 )
@@ -3212,21 +1928,7 @@ VOS_BOOL  MN_CALL_TiUsedCheck(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CheckNotIdleStateExist
- 功能描述  : 判定当前是否有非Idle态的实体存在
- 输入参数  : CallState     - 指定的呼叫状态
- 输出参数  : pulNumOfCalls - 指定状态的呼叫个数
-             pCallIds      - 指定状态的呼叫ID列表(输入的缓存需能容纳7个记录)
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL  MN_CALL_CheckNotIdleStateExist( VOS_VOID )
 {
     VOS_UINT16                          i;
@@ -3244,23 +1946,7 @@ VOS_BOOL  MN_CALL_CheckNotIdleStateExist( VOS_VOID )
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CheckCallEntityExist
- 功能描述  : 判定当前指定call id的实体是否存在
- 输入参数  : callId     - 指定的呼叫ID
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_BOOL  MN_CALL_CheckCallEntityExist(
     MN_CALL_ID_T                        callId
 )
@@ -3341,27 +2027,7 @@ VOS_INT32 MN_CALL_InvokeIdAlloc(
 
     return VOS_ERR;
 }
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateAlsLineInfo
- 功能描述  : 更新内存和NVIM中的LINE信息
- 输入参数  : enAlsLine :选择的线路号
- 输出参数  : 无
- 返 回 值  : VOS_OK:成功
-             VOS_ERR:失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月22日
-    作    者   : z40661
-    修改内容   : 新生成函数
-  2.日    期   : 2013年5月17日
-    作    者   : l00167671
-    修改内容   : NV项拆分项目, 将NV项数据用结构体描述
-  3.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口整合
-*****************************************************************************/
 VOS_UINT32 MN_CALL_UpdateAlsLineInfo(
     MN_CALL_ALS_LINE_NO_ENUM_U8         enAlsLine,
     VOS_BOOL                            bUpdateNvim
@@ -3413,44 +2079,13 @@ VOS_UINT32 MN_CALL_UpdateAlsLineInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetAlsLineInfo
- 功能描述  : 获取当前使用线路号
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 用户当前使用的线路号
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月22日
-    作    者   : z40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 MN_CALL_ALS_LINE_NO_ENUM_U8  MN_CALL_GetAlsLineInfo( VOS_VOID )
 {
     return f_enAlsLineNo;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateAlsLineNbr
- 功能描述  : 更新指定呼叫使用的线路号信息
- 输入参数  : callId - 需要更新状态的呼叫的ID
-             enAlsLineNbr - 新的线路号
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateAlsLineNbr(
     MN_CALL_ID_T                        callId,
     MN_CALL_ALS_LINE_NO_ENUM_U8         enAlsLineNbr
@@ -3580,23 +2215,7 @@ VOS_BOOL  MN_CALL_InCall(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Prototype      : TAF_CALL_ProcRelCallSsKeyEvent
- Description    : 补充业务在进行中对异常状态的响应函数
- Input          : callId
- Output         : 无
- Return Value   : 无
- Calls          :
- Called By      :
 
- History        :
-  1.日    期   : 2008年7月12日
-    作    者   : 胡文 44270
-    修改内容   : 新生成函数，问题单号:AT2D04057
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_VOID  TAF_CALL_ProcRelCallSsKeyEvent(
     MN_CALL_ID_T                        callId
 )
@@ -3616,15 +2235,11 @@ VOS_VOID  TAF_CALL_ProcRelCallSsKeyEvent(
             {
              case MN_CALL_SS_PROG_EVT_HOLD_CNF:
 
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
                 TAF_CALL_ProcRelCallHoldRetrieveSsKeyEvent(callId, MN_CALL_SS_PROG_EVT_HOLD_CNF);
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
                 break;
 
             case MN_CALL_SS_PROG_EVT_RETRIEVE_CNF:
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
                 TAF_CALL_ProcRelCallHoldRetrieveSsKeyEvent(callId, MN_CALL_SS_PROG_EVT_RETRIEVE_CNF);
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
                 break;
 
             case MN_CALL_SS_PROG_EVT_BUILD_MPTY_CNF:
@@ -3676,40 +2291,14 @@ VOS_VOID  TAF_CALL_ProcRelCallSsKeyEvent(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCcbsSetup
- 功能描述  : 更新全局变量f_stCcbsSetup的内容
- 输入参数  : pstCcbsSetup - Mo setup内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
-  1.日    期  : 2009-12-25
-    作    者  : z00161729
-    修改内容  : 新生成函数，
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateCcbsSetup(
     const NAS_CC_MSG_SETUP_MO_STRU   *pstCcbsSetup
 )
 {
     PS_MEM_CPY(&f_stCcbsSetup, pstCcbsSetup, sizeof(NAS_CC_MSG_SETUP_MO_STRU));
 }
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCcbsSetup
- 功能描述  :获取全局变量f_stCcbsSetup的内容
- 输入参数  :pstCcbsSetup - Mo setup内容
- 输出参数  :无
- 返 回 值  :无
- 调用函数  :
- 被调函数  :
 
- 修改历史       :
-  1.日    期    : 2009-12-25
-    作    者    : z00161729
-    修改内容    : 新生成函数，
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetCcbsSetup(
     NAS_CC_MSG_SETUP_MO_STRU   *pstCcbsSetup
 )
@@ -3717,24 +2306,7 @@ VOS_VOID  MN_CALL_GetCcbsSetup(
     PS_MEM_CPY(pstCcbsSetup, &f_stCcbsSetup, sizeof(NAS_CC_MSG_SETUP_MO_STRU));
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCcCallDir
- 功能描述  : 更新呼叫的方向
- 输入参数  : callId - 呼叫的ID
-             enCallDir - 呼叫的方向
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-12-25
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID MN_CALL_UpdateCcCallDir(
     MN_CALL_ID_T                        callId,
     MN_CALL_DIR_ENUM_U8                 enCallDir
@@ -3749,27 +2321,7 @@ VOS_VOID MN_CALL_UpdateCcCallDir(
 
     f_astCallMgmtEntities[callId-1].stCallInfo.enCallDir = enCallDir;
 }
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCcbsSupsProgress
- 功能描述  : 当发生了补充业务操作相关的事件时, 更新补充业务操作的进展.
-             该函数根据发生的事件和已注册的关注事件来产生特定操作.
- 输入参数  : callId     - 标识发生事件的呼叫
-             ulErrno    - 如果是操作拒绝类的事件, 需要携带错误码，该参数只有在
-                          向上层上报操作失败时才有效.
-             enSsResult - 操作结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-12-25
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateCcbsSupsProgress(
     MN_CALL_ID_T                        callId,
     VOS_UINT32                          ulErrno,
@@ -3792,30 +2344,7 @@ VOS_VOID  MN_CALL_UpdateCcbsSupsProgress(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateRecallSupsProgress
- 功能描述  : 当发生了补充业务操作相关的事件时, 更新补充业务操作的进展.
-             该函数根据发生的事件和已注册的关注事件来产生特定操作.
- 输入参数  : callId  - 标识发生事件的呼叫
-             ulErrno - 如果是操作拒绝类的事件, 需要携带错误码，该参数只有在
-                       向上层上报操作失败时才有效.
-             enSsResult - 操作结果
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009-12-25
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年07月09日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateRecallSupsProgress(
     MN_CALL_ID_T                        callId,
     VOS_UINT32                          ulErrno,
@@ -3833,29 +2362,13 @@ VOS_VOID  MN_CALL_UpdateRecallSupsProgress(
     f_astCallMgmtEntities[callId - 1].stCallInfo.enSsErrCode = (VOS_UINT8)ulErrno;
     f_astCallMgmtEntities[callId - 1].stCallInfo.enCallSupsCmd
             = MN_CALL_SUPS_CMD_ACT_CCBS;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, begin */
     MN_CALL_ReportEvent(callId, MN_CALL_EVT_SS_CMD_RSLT);
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, end */
     f_stCallSupsCmdMgmt.bInProgress = VOS_FALSE;
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateRbId
- 功能描述  : 刷新RbId
- 输入参数  : 无
- 输出参数  : pulNumOfCalls - 呼叫个数
-              pCallIds - 对应的呼叫Id
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_CALL_UpdateRbId(
     MN_CALL_ID_T                        callId,
     VOS_UINT32                          ulRbId
@@ -3866,40 +2379,13 @@ VOS_VOID  MN_CALL_UpdateRbId(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetRbId
- 功能描述  : 根据CallId获取RbId
- 输入参数  : callId - 呼叫的ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月20日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MN_CALL_GetRbId(MN_CALL_ID_T callId)
 {
     return f_astCallMgmtEntities[callId - 1].ulRbId;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SetVideoCallChannelOpenFlg
- 功能描述  : 设置可视电话业务信道已经建立标识
- 输入参数  : bVideoCallChannelOpenFlg - 可视电话信道打开标志
-             callId                   - 呼叫ID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月1日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_SetVideoCallChannelOpenFlg(
     VOS_BOOL                            bVideoCallChannelOpenFlg,
     MN_CALL_ID_T                        callId
@@ -3908,21 +2394,7 @@ VOS_VOID MN_CALL_SetVideoCallChannelOpenFlg(
     f_astCallMgmtEntities[callId - 1].bVpChannelOpenFlg = bVideoCallChannelOpenFlg;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetVideoCallChannelOpenFlg
- 功能描述  : 查询可视电话业务信道是否打开标识
- 输入参数  : callId                   - 呼叫ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE - 可视电话业务信道打开
-             VOS_FALSE - 可视电话业务信道未打开
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月1日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL MN_CALL_GetVideoCallChannelOpenFlg(
     MN_CALL_ID_T                        callId
 )
@@ -3931,21 +2403,7 @@ VOS_BOOL MN_CALL_GetVideoCallChannelOpenFlg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ConCallMsgTypeToCcMsgType
- 功能描述  : 将CALLL的定义的消息类型转换为CC定义的消息类型
- 输入参数  : enCallMsgType :  CALL设置需携带UUS1的消息
- 输出参数  : penCcMsgType  :  CC定义的消息名称
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_ConCallMsgTypeToCcMsgType(
     MN_CALL_UUS1_MSG_TYPE_ENUM_U32      enCallMsgType,
     NAS_CC_MSG_TYPE_ENUM_U8             *penCcMsgType
@@ -3966,21 +2424,7 @@ VOS_UINT32 MN_CALL_ConCallMsgTypeToCcMsgType(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ConCcMsgTypeToCallMsgType
- 功能描述  : 将CC的消息类型转换为CALL的消息类型
- 输入参数  : enCcMsgType    :CC定义的消息名称
- 输出参数  : penCallMsgType :CALL定义的消息名称
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_ConCcMsgTypeToCallMsgType(
     NAS_CC_MSG_TYPE_ENUM_U8             enCcMsgType,
     MN_CALL_UUS1_MSG_TYPE_ENUM_U32      *penCallMsgType
@@ -4001,24 +2445,7 @@ VOS_UINT32 MN_CALL_ConCcMsgTypeToCallMsgType(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateRptUus1Info
- 功能描述  : 更新上报Call信息中UUS1值
- 输入参数  : callId         :呼叫ID
-             enCcMsgType    :需更新的消息类型
-             pstUserUser    :UUS1信息
 
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2010年7月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_CALL_UpdateRptUus1Info(
     MN_CALL_ID_T                        callId,
     NAS_CC_MSG_TYPE_ENUM_U8             enCcMsgType,
@@ -4033,22 +2460,7 @@ VOS_VOID MN_CALL_UpdateRptUus1Info(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ConCcUusInfoToCall
- 功能描述  : 将CC的UUS消息格式转换为需上报的消息格式
- 输入参数  : enCcMsgType        :需转换的消息类型
-             pstUserUser        :CC上报的UUS的消息格式
- 输出参数  : pstUus1Info        :转换后上报的UUS的消息格式
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_CALL_ConCcUusInfoToCall(
     NAS_CC_MSG_TYPE_ENUM_U8             enCcMsgType,
     NAS_CC_IE_USER_USER_STRU            *pstUserUser,
@@ -4080,22 +2492,7 @@ VOS_VOID MN_CALL_ConCcUusInfoToCall(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ConCallUusInfoToCc
- 功能描述  : 填充激活UUS1相关信息
- 输入参数  : enMsgType    :  需转换的消息类型
-             pstUus1Info  :  用户需要设置UUS1相关信息
- 输出参数  : pstUuieInfo  :  发送到网络UUIE信息
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月27日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  MN_CALL_ConCallUusInfoToCc(
     MN_CALL_UUS1_MSG_TYPE_ENUM_U32      enMsgType,
     MN_CALL_UUS1_INFO_STRU              *pstUus1Info,
@@ -4131,34 +2528,16 @@ VOS_UINT32  MN_CALL_ConCallUusInfoToCc(
 
     return VOS_OK;
 }
-/*****************************************************************************
- 函 数 名  : NAS_CALL_SndOutsideContextData
- 功能描述  : 把CALL外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年11月30日
-    作    者   : 王毛 00166186
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : BalongV300R002 Build优化项目
-*****************************************************************************/
 VOS_VOID NAS_CALL_SndOutsideContextData()
 {
     NAS_CALL_SDT_MSG_ST                      *pSndMsgCB     = VOS_NULL_PTR;
     NAS_CALL_OUTSIDE_RUNNING_CONTEXT_ST      *pstOutsideCtx;
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     pSndMsgCB = (NAS_CALL_SDT_MSG_ST *)PS_ALLOC_MSG(WUEPS_PID_TAF, sizeof(NAS_CALL_SDT_MSG_ST));
@@ -4174,7 +2553,6 @@ VOS_VOID NAS_CALL_SndOutsideContextData()
     PS_MEM_CPY(pstOutsideCtx->pc_g_f_astCallMgmtEntities,f_astCallMgmtEntities,MN_CALL_MAX_NUM * sizeof(MN_CALL_MGMT_STRU));
     PS_MEM_CPY(&pstOutsideCtx->pc_g_f_stCallSupsCmdMgmt, &f_stCallSupsCmdMgmt,sizeof(MN_CALL_SUPS_CMD_ENUM_U8_MGMT_STRU));
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     /*CCBS功能打开时,保留的Setup消息 */
     if (MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg)
     {
@@ -4185,12 +2563,9 @@ VOS_VOID NAS_CALL_SndOutsideContextData()
     {
         pstOutsideCtx->pc_g_f_enAlsLineNo                   = f_enAlsLineNo;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
     pstOutsideCtx->pc_g_gucTafCallStatusControl         = TAF_CALL_GetCallStatusControl();
     pstOutsideCtx->pc_g_gucTafMultiSimCallStatusControl = TAF_CALL_GetMultiSimCallStatusControl();
     pstOutsideCtx->pc_g_g_enVpNvCfgState                = TAF_CALL_GetVpCfgState();
-    /* Modified by z00234330 for PCLINT清理, 2014-06-24, end */
 
     pSndMsgCB->MsgHeader.ulReceiverPid   = WUEPS_PID_TAF;
     pSndMsgCB->MsgHeader.ulSenderPid     = WUEPS_PID_TAF;
@@ -4207,37 +2582,15 @@ VOS_VOID NAS_CALL_SndOutsideContextData()
 }
 
 #ifdef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : NAS_CALL_RestoreContextData
- 功能描述  : 恢复CALL全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年12月1日
-    作    者   : 王毛 00166186
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  3.日    期   : 2015年10月08日
-    作    者   : zwx247453
-    修改内容   : 清除cppcheck告警
-
-*****************************************************************************/
 VOS_UINT32 NAS_CALL_RestoreContextData(struct MsgCB * pMsg)
 {
     NAS_CALL_SDT_MSG_ST                      *pRcvMsgCB;
     NAS_CALL_OUTSIDE_RUNNING_CONTEXT_ST      *pstOutsideCtx;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU             *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     pRcvMsgCB     = (NAS_CALL_SDT_MSG_ST *)pMsg;
@@ -4250,7 +2603,6 @@ VOS_UINT32 NAS_CALL_RestoreContextData(struct MsgCB * pMsg)
         PS_MEM_CPY(&f_stCallSupsCmdMgmt,&pstOutsideCtx->pc_g_f_stCallSupsCmdMgmt,sizeof(MN_CALL_SUPS_CMD_ENUM_U8_MGMT_STRU));
 
         /*CCBS功能打开时,保留的Setup消息 */
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
         if (MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCcbsSupportFlg)
         {
             PS_MEM_CPY(&f_stCcbsSetup,&pstOutsideCtx->pc_g_f_stCcbsSetup,sizeof(NAS_CC_MSG_SETUP_MO_STRU));
@@ -4260,12 +2612,9 @@ VOS_UINT32 NAS_CALL_RestoreContextData(struct MsgCB * pMsg)
         {
             f_enAlsLineNo                   = pstOutsideCtx->pc_g_f_enAlsLineNo;
         }
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
-		/* Modified by z00234330 for PCLINT清理, 2014-06-24, begin */
         TAF_CALL_SetCallStatusControl(pstOutsideCtx->pc_g_gucTafCallStatusControl);
         TAF_CALL_SetMultiSimCallStatusControl(pstOutsideCtx->pc_g_gucTafMultiSimCallStatusControl);
         TAF_CALL_SetVpCfgState(pstOutsideCtx->pc_g_g_enVpNvCfgState);
-        /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
         TAF_LOG(WUEPS_PID_TAF, VOS_NULL, PS_LOG_LEVEL_INFO,"CALL: NAS_CALL_RestoreContextData - data is restored.");
         return VOS_TRUE;
@@ -4275,37 +2624,7 @@ VOS_UINT32 NAS_CALL_RestoreContextData(struct MsgCB * pMsg)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_InfoReqProc
- 功能描述  : 获取当前所有呼叫的信息
- 输入参数  : clientId           - 发起该请求的Client的ID
-             opId               - Operation ID, 标识本次操作
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月17日
-    作    者   : 范晶/00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2012年04月06日
-    作    者   : l65478
-    修改内容   : DTS2012032802031:使用CLCC查询时号码没有显示
-  3.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 增加被叫号码
-  4.日    期   : 2012年12月22日
-    作    者   : z00220246
-    修改内容   : DSDA Phase II,根据SenderPid获得上报的ClientId
-  5.日    期   : 2013年07月27日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-  6.日    期   : 2013年09月18日
-    作    者   : Y00213812
-    修改内容   : 新增语音呼叫域信息
-
-*****************************************************************************/
 VOS_VOID  MN_CALL_CallInfoReqProc(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId
@@ -4335,7 +2654,6 @@ VOS_VOID  MN_CALL_CallInfoReqProc(
          && (MN_CALL_S_IDLE != f_astCallMgmtEntities[i].stCallInfo.enCallState))
 
         {
-            /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
             pstAppCnfMsg->astCallInfos[pstAppCnfMsg->ucNumOfCalls].callId      = f_astCallMgmtEntities[i].stCallInfo.callId;
             pstAppCnfMsg->astCallInfos[pstAppCnfMsg->ucNumOfCalls].enCallDir   = f_astCallMgmtEntities[i].stCallInfo.enCallDir;
             pstAppCnfMsg->astCallInfos[pstAppCnfMsg->ucNumOfCalls].enCallState = f_astCallMgmtEntities[i].stCallInfo.enCallState;
@@ -4354,7 +2672,6 @@ VOS_VOID  MN_CALL_CallInfoReqProc(
             PS_MEM_CPY(&(pstAppCnfMsg->astCallInfos[pstAppCnfMsg->ucNumOfCalls].stCalledNumber),
                        &(f_astCallMgmtEntities[i].stCallInfo.stCalledNumber),
                        sizeof(MN_CALL_CALLED_NUM_STRU));
-            /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, end */
 
             (pstAppCnfMsg->ucNumOfCalls)++;
         }
@@ -4375,35 +2692,7 @@ VOS_VOID  MN_CALL_CallInfoReqProc(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCdur
- 功能描述  : 获取指定呼叫的通话时长
- 输入参数  : MN_CLIENT_ID_T                      clientId  发起该请求的Client的ID
-             MN_OPERATION_ID_T                   opId      Operation ID, 标识本次操作
-             MN_CALL_ID_T                        callId    呼叫的ID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月6日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2012年04月24日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012031402745, 语言通话过程中，at^cdur=1返回值中没有index
-
-  3.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-  4.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  5.日    期   : 2013年07月09日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseI项目
-*****************************************************************************/
 VOS_VOID  MN_CALL_GetCdur(
     MN_CLIENT_ID_T                      clientId,
     MN_OPERATION_ID_T                   opId,
@@ -4426,7 +2715,6 @@ VOS_VOID  MN_CALL_GetCdur(
         /* 不在激活态， 输出AT_CME_INCORRECT_PARAMETERS */
         MN_WARN_LOG("MN_CALL_GetCdur: call is inactive!");
 
-        /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, begin */
         /* 失败时只看原因值，成功时才看ulCurCallTime，所以失败时不用更新ulCurCallTime */
         f_astCallMgmtEntities[callId -1].stCallInfo.enCause      = TAF_CS_CAUSE_STATE_ERROR;
 
@@ -4435,7 +2723,6 @@ VOS_VOID  MN_CALL_GetCdur(
                            MN_CALLBACK_CS_CALL,
                            MN_CALL_EVT_GET_CDUR_CNF,
                            &f_astCallMgmtEntities[callId - 1].stCallInfo);
-        /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, end */
 
         return;
     }
@@ -4454,9 +2741,7 @@ VOS_VOID  MN_CALL_GetCdur(
         {
             MN_WARN_LOG("MN_CALL_GetCdur: Calculate the last  link time FAIL!");
 
-            /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, begin */
             f_astCallMgmtEntities[callId - 1].stCallInfo.enCause      = TAF_CS_CAUSE_UNKNOWN;
-            /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, end */
 
             /* 更新该呼叫的Client信息 */
             MN_SendClientEvent(clientId,
@@ -4472,9 +2757,7 @@ VOS_VOID  MN_CALL_GetCdur(
         /* 不在通话状态或通话保持状态 输出AT_ERROR */
         MN_WARN_LOG("MN_CALL_GetCdur: invalid enCallState!");
 
-        /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, begin */
         f_astCallMgmtEntities[callId - 1].stCallInfo.enCause      = TAF_CS_CAUSE_STATE_ERROR;
-        /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-17, end */
 
         /* 更新该呼叫的Client信息 */
         MN_SendClientEvent(clientId,
@@ -4486,7 +2769,6 @@ VOS_VOID  MN_CALL_GetCdur(
     }
 
     /* 上报应用请求确认 */
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, begin */
 
     f_astCallMgmtEntities[callId - 1].stCallInfo.ulCurCallTime = ulCurCallTime;
 
@@ -4499,34 +2781,14 @@ VOS_VOID  MN_CALL_GetCdur(
                        MN_CALLBACK_CS_CALL,
                        MN_CALL_EVT_GET_CDUR_CNF,
                        &f_astCallMgmtEntities[callId - 1].stCallInfo);
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-09, end */
 
     MN_NORM_LOG("MN_CALL_GetCdur: get cdur normal.");
 
     return;
 }
 
-/* Added by w00199382 for PS Project，2011-12-06,  Begin*/
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_RcvTafAgentGetCallInfo
- 功能描述  : 获取CID的参数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月17日
-    作    者   : c00173809
-    修改内容   : 新生成函数
-  2.日    期   : 2014年8月29日
-    作    者   : w00242748
-    修改内容   : DTS2014082707275:第一路被叫，接听，第二路被叫，响铃，这时挂断第一路被叫
-                 (网络挂断或者用户主动挂断)，使用ATA接听第二路电话，发现无法接听。
-
-*****************************************************************************/
 VOS_VOID MN_CALL_RcvTafAgentGetCallInfo(VOS_VOID)
 {
     TAFAGERNT_MN_GET_CALL_INFO_CNF_STRU                    *pstCnf;
@@ -4575,57 +2837,8 @@ VOS_VOID MN_CALL_RcvTafAgentGetCallInfo(VOS_VOID)
 
 }
 
-/* Added by w00199382 for PS Project，2011-12-06,  End*/
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_CreateStkMoCallEntity
- 功能描述  : 新建一个STK主叫呼叫管理实体，保存所有应用数据到全局变量
- 输入参数  : callId         - 呼叫的ID
-             enCallType     - 呼叫的类型
-             pstOrigParam   - 主叫请求中携带的参数
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-
-  2.日    期   : 2012年10月29日
-    作    者   : l00198894
-    修改内容   : DTS2012100901666: 修改被叫号码结构体
-  3.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-  4.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS FDN&Call Control移动到TAF
-  5.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  6.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目，给MTC上报呼叫状态
-
-  7.日    期   : 2013年10月18日
-    作    者   : z00234330
-    修改内容   : dts2013101800405
-  8.日    期   : 2013年9月20日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseII 增加呼叫域信息
-  9.日    期   : 2014年4月26日
-    作    者   : z00161729
-    修改内容   : DTS2014042604200:f_abCallReleaseFlag标识维护不对，导致第二个电话结束时不给卡下发disconnect event
- 10.日    期   : 2014年5月7日
-    作    者   : w00242748
-    修改内容   : DTS2014050602822:STK拨打电话，卡中BCD号码有误，导致电话没打起来；
-                 STK发送的USSD请求，网络需要用户确认时，未给AT上报需确认。
- 11.日    期   : 2015年10月10日
-    作    者   : c00318887
-    修改内容   : DTS2015090607329
-*****************************************************************************/
 VOS_VOID  MN_CALL_CreateStkMoCallEntity(
     MN_CALL_ID_T                        callId,
     MN_CALL_TYPE_ENUM_U8                enCallType,
@@ -4668,10 +2881,8 @@ VOS_VOID  MN_CALL_CreateStkMoCallEntity(
     f_astCallMgmtEntities[callId - 1].stCallInfo.enCallDir  = MN_CALL_DIR_MO;
     f_astCallMgmtEntities[callId - 1].enClirCfg             = MN_CALL_CLIR_AS_SUBS;
 
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, begin */
     /* 语音呼叫域信息 */
     f_astCallMgmtEntities[callId - 1].stCallInfo.enVoiceDomain = TAF_CALL_VOICE_DOMAIN_3GPP;                                  /* VOICE DOMAIN */
-    /* Added by Y00213812 for VoLTE_PhaseII 项目, 2013-9-12, end */
 
     PS_MEM_CPY(&f_astCallMgmtEntities[callId - 1].stCallInfo.stCalledNumber,
                (MN_CALL_CALLED_NUM_STRU *)&pstStkCallOrig->stCalledAddr,
@@ -4708,38 +2919,20 @@ VOS_VOID  MN_CALL_CreateStkMoCallEntity(
 
     MN_CALL_UpdateDataCallCfgInfo(callId, &stDataCfgInfo);
 
-    /* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
     TAF_CALL_SetCsCallExistFlg(VOS_TRUE, f_astCallMgmtEntities[callId - 1].stCallInfo.enCallType);
-    /* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
     MN_CALL_UpdateCallReleaseFlag(callId, VOS_FALSE);
 
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
     /* 给MTC模块上报当前CS域业务状态 */
     TAF_SendMtcCsSrvInfoInd();
 #endif
-    /* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetCallReleaseFlag
- 功能描述  : 获取呼叫实体的释放状态
- 输入参数  : VOS_UINT8                           ucCallId  呼叫实体索引
- 输出参数  : VOS_BOOL                           *pbReleaseFlag  呼叫释放标志，第一条释放命令置位
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_GetCallReleaseFlag(
     VOS_UINT8                           ucCallId,
     VOS_BOOL                           *pbReleaseFlag
@@ -4750,21 +2943,7 @@ VOS_VOID MN_CALL_GetCallReleaseFlag(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateSubAddress
- 功能描述  : 获取呼叫实体的子地址
- 输入参数  : VOS_UINT8                           ucCallId         呼叫实体索引
-             MN_CALL_SUBADDR_STRU               *pstSubCallNumber 子地址
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_UpdateSubAddress(
     VOS_UINT8                           ucCallId,
     MN_CALL_SUBADDR_STRU               *pstSubCallNumber
@@ -4777,24 +2956,7 @@ VOS_VOID MN_CALL_UpdateSubAddress(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateCallReleaseFlag
- 功能描述  : 更新呼叫实体的释放标志
- 输入参数  : VOS_UINT8                           ucCallId         呼叫实体索引
- 输出参数  : VOS_BOOL                            bReleaseFlag     呼叫实体的释放标志
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年4月7日
-    作    者   : A00165503
-    修改内容   : DTS2014040305777: 入参增加有效性检查, 防止内存地址越界
-*****************************************************************************/
 VOS_VOID MN_CALL_UpdateCallReleaseFlag(
     VOS_UINT8                           ucCallId,
     VOS_BOOL                            bReleaseFlag
@@ -4811,21 +2973,7 @@ VOS_VOID MN_CALL_UpdateCallReleaseFlag(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateOpId
- 功能描述  : 更新呼叫实体的OPID
- 输入参数  : VOS_UINT8                           ucCallId         呼叫实体索引
-             MN_OPERATION_ID_T                   opId             Operation ID, 标识本次操作
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_UpdateOpId(
     VOS_UINT8                           ucCallId,
     MN_OPERATION_ID_T                   opId
@@ -4836,30 +2984,9 @@ VOS_VOID MN_CALL_UpdateOpId(
 
 }
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetSpecificStatusCallInfo
- 功能描述  : 根据呼叫状态来获取对应的实体呼叫管理信息
- 输入参数  : MN_CALL_STATE_ENUM_U8   enCallStatus- 呼叫状态
-             MN_CALL_INFO_STRU      *pstCallInfo - 呼叫管理实体信息
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年9月20日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年9月25日
-    作    者   : A00165503
-    修改内容   : STK&DCM项目: CS域错误码上报
-*****************************************************************************/
 VOS_UINT32  MN_CALL_GetSpecificStatusCallInfo(
     MN_CALL_STATE_ENUM_U8                enCallStatus,
     MN_CALL_INFO_STRU                   *pstCallInfo
@@ -4880,50 +3007,21 @@ VOS_UINT32  MN_CALL_GetSpecificStatusCallInfo(
     return TAF_CS_CAUSE_STATE_ERROR;
 }
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 /* 移这部分函数到文件MnCallSendApp.c文件中 */
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetUeDiscEventInfo
- 功能描述  : 获取UE发起的DISCONNECT, RELEASE, RELEASE COMPLETE消息的CAUSE,CALLID和TI
- 输入参数  : const MNCC_IND_PRIM_MSG_STRU       *pstMsg DISCONNECT, RELEASE, RELEASE COMPLETE消息
- 输出参数  : SI_STK_CALL_DISCONNECTED_EVENT_STRU *pstDiscEvent 呼叫释放事件结构
-             VOS_UINT8                          *pucTi,     消息对应的呼叫TI
-             VOS_UINT8                          *pucCallId  消息对应的CALL ID
- 返 回 值  : VOS_UINT32
-                MN_ERR_NO_ERROR     获取操作成功
-                其他                获取操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年7月13日
-    作    者   : l00208543
-    修改内容   : STK升级项目
-
-*****************************************************************************/
 VOS_UINT32 MN_CALL_GetUeDiscEventInfo(
     const MNCC_REQ_PRIM_MSG_STRU       *pstMsg,
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, begin */
     NAS_STK_CALL_DISC_CAUSE_STRU       *pstDiscEventCause,
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, end */
     VOS_UINT8                          *pucTi,
     VOS_UINT8                          *pucCallId
 )
 {
     const NAS_CC_IE_CAUSE_STRU         *pstCause    = VOS_NULL_PTR;
 
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, begin */
     VOS_UINT8                           ucPos;
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, begin */
 
     /*
         事件名称                对应的数据结构                      对应的空口消息
@@ -4937,8 +3035,6 @@ VOS_UINT32 MN_CALL_GetUeDiscEventInfo(
         MNCC_RADIO_LINK_FAILURE none                                    呼叫重建
     */
 
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-07-10, begin */
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
     switch (pstMsg->enPrimName)
     {
@@ -4962,7 +3058,6 @@ VOS_UINT32 MN_CALL_GetUeDiscEventInfo(
     *pucTi      = pstMsg->ucTi;
     *pucCallId  = pstMsg->ucCallId;
 
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, begin */
     ucPos       = 0;
 
     if (0 != pstCause->IsExist)
@@ -4981,52 +3076,20 @@ VOS_UINT32 MN_CALL_GetUeDiscEventInfo(
 
         pstDiscEventCause->ucLength = ucPos;
     }
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, end */
 
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_GetNetDiscEventInfo
- 功能描述  : 获取UE发起的DISCONNECT, RELEASE, RELEASE COMPLETE消息的CAUSE, CALLID和TI
- 输入参数  : const MNCC_IND_PRIM_MSG_STRU       *pstMsg DISCONNECT, RELEASE, RELEASE COMPLETE消息
- 输出参数  : SI_STK_CALL_DISCONNECTED_EVENT_STRU *pstDiscEvent 呼叫释放事件结构
-             VOS_UINT8                          *pucTi,     消息对应的呼叫TI
-             VOS_UINT8                          *pucCallId  消息对应的CALL ID
- 返 回 值  : VOS_UINT32
-                MN_ERR_NO_ERROR     获取操作成功
-                其他                获取操作失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年9月21日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872,callId赋值
-  3.日    期   : 2013年04月12日
-    作    者   : f62575
-    修改内容   : DTS2013041503184,解决3G下RADIO LINK FAILURE没有按协议要求输出近端释放事件问题
-                 仅在呼叫重建失败后上报给UICC，此处删除MNCC_RADIO_LINK_FAILURE分支
-  4.日    期   : 2013年07月13日
-    作    者   : l00208543
-    修改内容   : STK升级项目
-*****************************************************************************/
 VOS_UINT32 MN_CALL_GetNetDiscEventInfo(
     const MNCC_IND_PRIM_MSG_STRU       *pstMsg,
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, begin */
     NAS_STK_CALL_DISC_CAUSE_STRU       *pstDiscEventCause,
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, end */
     VOS_UINT8                          *pucTi,
     VOS_UINT8                          *pucCallId
 )
 {
     const NAS_CC_IE_CAUSE_STRU         *pstCause    = VOS_NULL_PTR;
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, begin */
     VOS_UINT8                           ucPos;
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-10, begin */
 
     /*
         事件名称                对应的数据结构                          对应的空口消息
@@ -5039,8 +3102,6 @@ VOS_UINT32 MN_CALL_GetNetDiscEventInfo(
         MNCC_REJ_IND            none                                    MMCC_REL_IND或MMCC_ERR_IND
     */
 
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-07-10, begin */
-    /* Deleted by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
     switch (pstMsg->enPrimName)
     {
@@ -5058,10 +3119,8 @@ VOS_UINT32 MN_CALL_GetNetDiscEventInfo(
 
         case MNCC_REJ_IND:
              /*Cause信息来源于DISCONNECT, RELEASE or RELEASE COMPLETE消息，如果消息中没有Cause信息，则不包含这个信息，如果呼叫释放时无线链路超时导致，需要携带Cause信息字段，长度填0。*/
-             /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, begin */
              pstDiscEventCause->ucLength     = 0;
              pstDiscEventCause->ucExistFlg   = VOS_TRUE;
-             /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, end */
 
             *pucCallId                      = pstMsg->ucCallId;
             return MN_ERR_NO_ERROR;
@@ -5074,7 +3133,6 @@ VOS_UINT32 MN_CALL_GetNetDiscEventInfo(
     *pucTi      = pstMsg->ucTi;
     *pucCallId  = pstMsg->ucCallId;
 
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, begin */
     ucPos       = 0;
 
     if (0 != pstCause->IsExist)
@@ -5094,32 +3152,14 @@ VOS_UINT32 MN_CALL_GetNetDiscEventInfo(
 
         pstDiscEventCause->ucLength = ucPos;
     }
-    /* Modified by l00208543 for V9R1 STK升级, 2013-07-13, end */
 
     return MN_ERR_NO_ERROR;
 
 }
 
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 /* 移这部分函数到文件MnCallSendApp.c文件中 */
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_RecordCallEntityRedirectInfo
- 功能描述  : 记录CC接入的呼叫信息，包括转移号码和转移号的子号码等
- 输入参数  : callId     呼叫的ID
-             pstSetup   接入的呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月18日
-    作    者   : y00213812
-    修改内容   : STK&DCM 项目新增函数
-
-*****************************************************************************/
 VOS_VOID  MN_CALL_RecordCallEntityRedirectInfo(
         MN_CALL_ID_T                        callId,
         NAS_CC_MSG_SETUP_MT_STRU            *pstSetup)
@@ -5194,22 +3234,7 @@ VOS_VOID  MN_CALL_RecordCallEntityRedirectInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_ReadCallEntityRedirectInfo
- 功能描述  : 读取转移呼叫号码和转移号码的子地址等信息
- 输入参数  : callId     呼叫的ID
-             pstSetup   接入的呼叫信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年09月18日
-    作    者   : y00213812
-    修改内容   : STK&DCM 项目新增函数
-
-*****************************************************************************/
 VOS_VOID  MN_CALL_ReadCallEntityRedirectInfo(
         MN_CALL_ID_T                        callId,
         MN_CALL_CLPR_GET_CNF_STRU          *pstGetClprCnf)
@@ -5253,25 +3278,8 @@ VOS_VOID  MN_CALL_ReadCallEntityRedirectInfo(
     return;
 }
 
-/* Deleted by l00198894 for V9R1 STK升级, 2013/07/11 */
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_AllowSupsOperation
- 功能描述  : 判断呼叫相关的补充业务操作是否允许
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 是否允许呼叫相关的补充业务操作
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月11日
-    作    者   : h44270
-    修改内容   : STK&DCM 项目新增函数
-  2.日    期   : 2013年03月23日
-    作    者   : f62575
-    修改内容   : DTS2013031406373，解决DTMF过程中呼叫不能挂断问题
-*****************************************************************************/
 VOS_UINT32 MN_CALL_AllowSupsOperation(VOS_VOID)
 {
 
@@ -5283,35 +3291,7 @@ VOS_UINT32 MN_CALL_AllowSupsOperation(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_IsNeedCallRedial
- 功能描述  : 判断是否满足呼叫重建条件
- 输入参数  : ucCallId - 呼叫ID
- 输出参数  : 无
- 返 回 值  : VOS_TRUE  - 需要呼叫重建
-             VOS_FALSE - 不需要呼叫重建
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年10月30日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月13日
-    作    者   : L00171473
-    修改内容   : DTS2012121802573, TQE清理
-
-  3.日    期   : 2013年7月2日
-    作    者   : z00234330
-    修改内容   : DTS2013062709165,判断是否当前正在进行挂断流程，如果正在进行挂断流程，则不需
-                 要重拨了
-  4.日    期   : 2014年4月8日
-    作    者   : y00245242
-    修改内容   : 为eCall feature修改
-  5.日    期   :2014年9月24日
-    作    者   :s00217060
-    修改内容   :for cs_err_log
-*****************************************************************************/
 VOS_UINT32 MN_CALL_IsNeedCallRedial(
     MN_CALL_ID_T                        ucCallId,
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause
@@ -5334,17 +3314,14 @@ VOS_UINT32 MN_CALL_IsNeedCallRedial(
 
     MN_CALL_GetCallState(ucCallId, &enCallState, &enMptyState);
 
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, begin */
     ulCallRedialSupportFlg      = TAF_CALL_GetRedialSupportFlg(ucCallId);
     ulCallRedialIntervalLen     = TAF_CALL_GetRedialIntervalTimerLen(ucCallId);
     ulCallRedialPeriodRemainLen = TAF_CALL_GetRemainRedialPeriodTimerLen(ucCallId);
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-8, end */
 
     if ((MN_CALL_DIR_MO == MN_CALL_GetCcCallDir(ucCallId))
      && (MN_CALL_S_DIALING == enCallState)
      && (VOS_TRUE == ulCallRedialSupportFlg))
     {
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, begin */
         if (ulCallRedialPeriodRemainLen > ulCallRedialIntervalLen)
         {
 #if (FEATURE_ON == FEATURE_ECALL)
@@ -5361,28 +3338,12 @@ VOS_UINT32 MN_CALL_IsNeedCallRedial(
             }
         }
 
-        /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-9, end */
     }
 
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_UpdateDiscCallDir
- 功能描述  : 更新CALL挂断的方向
- 输入参数  : callId     - 呼叫ID
-             ucIsUser   - 是否是用户发起的挂断
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年01月29日
-    作    者   : Y00213812
-    修改内容   : DTS2013012909872新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_CALL_UpdateDiscCallDir(
     MN_CALL_ID_T                        callId,
     VOS_UINT8                           ucIsUser
@@ -5406,21 +3367,7 @@ VOS_VOID MN_CALL_UpdateDiscCallDir(
 }
 
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsOrigNeedRpt
- 功能描述  : 呼叫过程中的事件MN_CALL_EVT_ORIG是否需要上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要上报；VOS_TRUE:需要上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsOrigNeedRpt(VOS_VOID)
 {
     TAF_SDC_CURC_RPT_CTRL_STRU          *pstCurcRptCtrl          = VOS_NULL_PTR;
@@ -5446,20 +3393,7 @@ VOS_UINT32 TAF_CALL_IsOrigNeedRpt(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsConfNeedRpt
- 功能描述  : 呼叫过程中的事件MN_CALL_EVT_CALL_PROC是否需要上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要上报；VOS_TRUE:需要上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsConfNeedRpt(VOS_VOID)
 {
     TAF_SDC_CURC_RPT_CTRL_STRU          *pstCurcRptCtrl          = VOS_NULL_PTR;
@@ -5485,20 +3419,7 @@ VOS_UINT32 TAF_CALL_IsConfNeedRpt(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsConnNeedRpt
- 功能描述  : 呼叫过程中的事件MN_CALL_EVT_CONNECT是否需要上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要上报；VOS_TRUE:需要上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsConnNeedRpt(VOS_VOID)
 {
     TAF_SDC_CURC_RPT_CTRL_STRU          *pstCurcRptCtrl          = VOS_NULL_PTR;
@@ -5524,20 +3445,7 @@ VOS_UINT32 TAF_CALL_IsConnNeedRpt(VOS_VOID)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCendNeedRpt
- 功能描述  : 呼叫过程中的事件MN_CALL_EVT_RELEASED是否需要上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:不需要上报；VOS_TRUE:需要上报
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年4月3日
-    作    者   : s00217060
-    修改内容   : 主动上报AT命令控制下移至C核新增函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsCendNeedRpt(VOS_VOID)
 {
     TAF_SDC_CURC_RPT_CTRL_STRU          *pstCurcRptCtrl          = VOS_NULL_PTR;
@@ -5562,24 +3470,9 @@ VOS_UINT32 TAF_CALL_IsCendNeedRpt(VOS_VOID)
 
     return VOS_TRUE;
 }
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetDisconnectFlg
- 功能描述  : 获取当前CALL ID是否正在挂断
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月2日
-    作    者   : z00234330
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_GetDisconnectFlg(
     MN_CALL_ID_T                        callId
 )
@@ -5587,21 +3480,7 @@ VOS_UINT8 TAF_CALL_GetDisconnectFlg(
     return f_astCallMgmtEntities[callId - 1].stCallInfo.stDiscDir.ucDiscCallFlag;
 }
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, begin */
-/*****************************************************************************
- 函 数 名  : TAF_CALL_InitDtmfCtx
- 功能描述  : 初始化DTMF状态及缓存信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_InitDtmfCtx(VOS_VOID)
 {
     PS_MEM_SET(&f_stCallDtmfCtx, 0, sizeof(f_stCallDtmfCtx));
@@ -5615,26 +3494,7 @@ VOS_VOID TAF_CALL_InitDtmfCtx(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ResetDtmfCtx
- 功能描述  : 重置DTMF状态及缓存信息
- 输入参数  : enCause        -- 重置缓存的原因值
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  2.日    期   : 2013年09月02日
-    作    者   : f62575
-    修改内容   : DTS2013082307371,解决定时器超时触发STOP DTMF请求消息后，定时器上下文没有清除问题
-  3.日    期   :2013年10月24日
-    作    者   :z00161729
-    修改内容   :DTS2013102403705:dtmf不支持off_length参数，SBM IOT认证需要stop dtmf req和下一个start dtmf req间隔大于70ms
-*****************************************************************************/
 VOS_VOID TAF_CALL_ResetDtmfCtx(
     TAF_CS_CAUSE_ENUM_UINT32            enCause
 )
@@ -5681,22 +3541,7 @@ VOS_VOID TAF_CALL_ResetDtmfCtx(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsAllowDtmf
- 功能描述  : 判断当前该呼叫ID是否允许发起DTMF请求
- 输入参数  : pCallIds       -- 当前已Attach的呼叫ID
-             ulNumOfCalls   -- 已Attach的呼叫个数
-             CallId         -- 要发起DTMF的呼叫ID
- 输出参数  : 无
- 返 回 值  : TAF_CS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 TAF_CS_CAUSE_ENUM_UINT32 TAF_CALL_IsAllowDtmf(
     MN_CALL_ID_T                       *pCallIds,
     VOS_UINT32                          ulNumOfCalls,
@@ -5725,23 +3570,7 @@ TAF_CS_CAUSE_ENUM_UINT32 TAF_CALL_IsAllowDtmf(
     return TAF_CS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetAllowedDtmfCallId
- 功能描述  : 获取用于发送DTMF的CALL ID
- 输入参数  : 无
- 输出参数  : pCallId        -- 可以用来发送DTMF的CallID
- 返 回 值  : TAF_CS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，修改参数含义由原来的输入输出参数修改为仅作输出参数
-*****************************************************************************/
 TAF_CS_CAUSE_ENUM_UINT32  TAF_CALL_GetAllowedDtmfCallId(
     MN_CALL_ID_T                       *pCallId
 )
@@ -5775,24 +3604,7 @@ TAF_CS_CAUSE_ENUM_UINT32  TAF_CALL_GetAllowedDtmfCallId(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_CheckUserDtmfCallId
- 功能描述  : 获取用于发送DTMF的CALL ID
-             DTMF发送请求接口约定，
-             用户输入的CALL ID是无效值0，指示使用任意CALL ID发送DTMF消息
-             用户输入的CALL ID不是无效值0，指示用用户下发的CALL ID发送DTMF消息，所以这个CALL ID
-             需要满足发送DTMF消息的条件
- 输入参数  : CallId        -- 用户的DTMF请求消息中的CallID
- 输出参数  : 无
- 返 回 值  : TAF_CS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，
-*****************************************************************************/
 TAF_CS_CAUSE_ENUM_UINT32  TAF_CALL_CheckUserDtmfCallId(
     MN_CALL_ID_T                        CallId
 )
@@ -5838,58 +3650,19 @@ TAF_CS_CAUSE_ENUM_UINT32  TAF_CALL_CheckUserDtmfCallId(
     return TAF_CALL_IsAllowDtmf(aCallIds, ulNumOfCalls, CallId);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetDtmfCtx
- 功能描述  : 获取CALL模块DTMF信息及缓存
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_CALL_DTMF_CTX_STRU    -- CALL模块DTMF信息及缓存
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 TAF_CALL_DTMF_CTX_STRU* TAF_CALL_GetDtmfCtx(VOS_VOID)
 {
     return &f_stCallDtmfCtx;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetDtmfState
- 功能描述  : 获取CALL模块DTMF在状态
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : TAF_CALL_DTMF_STATE_ENUM_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 TAF_CALL_DTMF_STATE_ENUM_UINT8 TAF_CALL_GetDtmfState(VOS_VOID)
 {
     return f_stCallDtmfCtx.enDtmfState;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SetDtmfState
- 功能描述  : 设置CALL模块DTMF在状态
- 输入参数  : enState    -- DTMF状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_SetDtmfState(
     TAF_CALL_DTMF_STATE_ENUM_UINT8      enState
 )
@@ -5898,119 +3671,39 @@ VOS_VOID TAF_CALL_SetDtmfState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetDtmfBufCnt
- 功能描述  : 获取CALL模块DTMF的缓存个数
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_UINT8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_GetDtmfBufCnt(VOS_VOID)
 {
     return f_stCallDtmfCtx.ucDtmfCnt;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_DtmfBufCntIncrement
- 功能描述  : CALL模块DTMF的缓存个数自增1
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_DtmfBufCntIncrement(VOS_VOID)
 {
     f_stCallDtmfCtx.ucDtmfCnt++;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_DtmfBufCntDecrement
- 功能描述  : CALL模块DTMF的缓存个数自检1
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_DtmfBufCntDecrement(VOS_VOID)
 {
     f_stCallDtmfCtx.ucDtmfCnt--;
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetDtmfListHead
- 功能描述  : 获取CALL模块DTMF的缓存的头结点
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : HI_LIST_S
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 HI_LIST_S* TAF_CALL_GetDtmfListHead(VOS_VOID)
 {
     return &(f_stCallDtmfCtx.stList);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetDtmfCurInfo
- 功能描述  : 获取CALL模块当前DTMF信息
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : HI_LIST_S
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 TAF_CALL_DTMF_INFO_STRU* TAF_CALL_GetDtmfCurInfo(VOS_VOID)
 {
     return &(f_stCallDtmfCtx.stCurrDtmf);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_FillDtmfCnf
- 功能描述  : 填充DTMF回复信息
- 输入参数  : usClientId     -- ClientID
-             opId           -- 操作ID
-             enCause        -- 原因值
- 输出参数  : pstDtmfCnf     -- 需要填充的DTMF回复信息
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_FillDtmfCnf(
     MN_CLIENT_ID_T                      usClientId,
     MN_OPERATION_ID_T                   opId,
@@ -6033,24 +3726,9 @@ VOS_VOID TAF_CALL_FillDtmfCnf(
     return;
 }
 
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 /* 移这部分函数到文件MnCallSendApp.c文件中 */
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_AddDtmfInfo
- 功能描述  : 增加DTMF信息到DTMF缓存
- 输入参数  : pstDtmfInfo   -- 新增的DTMF信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_AddDtmfInfo(
     TAF_CALL_DTMF_INFO_STRU            *pstDtmfInfo
 )
@@ -6076,20 +3754,7 @@ VOS_VOID TAF_CALL_AddDtmfInfo(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_SaveDtmfInfo
- 功能描述  : 将DTMF信息保存到DTMF缓存中
- 输入参数  : pstDtmfInfo    -- 需要保存到缓存中的DTMF信息
- 输出参数  : 无
- 返 回 值  : TAF_CS_CAUSE_ENUM_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 TAF_CS_CAUSE_ENUM_UINT32 TAF_CALL_SaveDtmfInfo(
     TAF_CALL_DTMF_INFO_STRU            *pstDtmfInfo
 )
@@ -6132,20 +3797,7 @@ TAF_CS_CAUSE_ENUM_UINT32 TAF_CALL_SaveDtmfInfo(
     return TAF_CS_CAUSE_SUCCESS;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_DelDtmfNode
- 功能描述  : 删除DTMF缓存链表中的节点
- 输入参数  : pstNode    -- 需要删除DTMF缓存链表中的节点
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月11日
-    作    者   : l00198894
-    修改内容   : V9R1 STK升级项目
-*****************************************************************************/
 VOS_VOID TAF_CALL_DelDtmfNode(
     TAF_CALL_DTMF_NODE_STRU            *pstNode
 )
@@ -6161,22 +3813,8 @@ VOS_VOID TAF_CALL_DelDtmfNode(
     return;
 }
 
-/* Added by l00198894 for V9R1 STK升级, 2013/07/11, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_PreProcRelAllCall
- 功能描述  : 释放所有呼叫前，结束正在执行的补充业务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月17日
-    作    者   : f62575
-    修改内容   : DTS2013091104858，挂机前结束完成的用户请求
-*****************************************************************************/
 VOS_VOID TAF_CALL_PreProcRelAllCall(VOS_VOID)
 {
     MN_CALL_ID_T                        callId;
@@ -6199,29 +3837,10 @@ VOS_VOID TAF_CALL_PreProcRelAllCall(VOS_VOID)
     return;
 }
 
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, begin */
 /* 移这部分函数到文件MnCallSendApp.c文件中 */
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-18, end */
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, begin */
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ConvertImsaCallStateToMnCallState
- 功能描述  : 转换IMSA的呼叫状态到CALL的呼叫状态
- 输入参数  : enImsaCallSta---IMSA的呼叫状态
- 输出参数  : 无
- 返 回 值  : MN_CALL_STATE_ENUM_U8---转换后的call状态
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月25日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_CALL_STATE_ENUM_U8 TAF_CALL_ConvertImsaCallStateToMnCallState(
     CALL_IMSA_SRVCC_CALL_STATE_ENUM_UINT8                   enImsaCallSta
 )
@@ -6263,20 +3882,7 @@ MN_CALL_STATE_ENUM_U8 TAF_CALL_ConvertImsaCallStateToMnCallState(
     return enCallSta;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_CallStateIsLegal
- 功能描述  : 使用IMS域的呼叫信息创建呼叫实体
- 输入参数  : enCallState -- CALL状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月12日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_CallStateIsLegal(
     CALL_IMSA_SRVCC_CALL_STATE_ENUM_UINT8                   enCallState
 )
@@ -6303,20 +3909,7 @@ VOS_UINT8 TAF_CALL_CallStateIsLegal(
     return ucRst;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsDtmfAllowedInCurrentState
- 功能描述  : 当前状态下，DTMF是否允许
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月24日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8 TAF_CALL_IsDtmfAllowedInCurrentState(VOS_VOID)
 {
     VOS_UINT8                           ucLoop;
@@ -6341,20 +3934,7 @@ VOS_UINT8 TAF_CALL_IsDtmfAllowedInCurrentState(VOS_VOID)
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_ProcSrvccDtmfBuffInfo
- 功能描述  : 处理在SRVCC过程中，IMSA呼叫信息中的DTMF请求信息
- 输入参数  : pstDtmfBuffInfo -- DTMF请求指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月14日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_CALL_ProcSrvccDtmfBuffInfo(TAF_CALL_DTMF_BUFF_STRU *pstDtmfBuffInfo)
 {
     VOS_UINT8                           i;
@@ -6392,29 +3972,7 @@ VOS_VOID TAF_CALL_ProcSrvccDtmfBuffInfo(TAF_CALL_DTMF_BUFF_STRU *pstDtmfBuffInfo
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_CreateCallEntitiesWithImsCallInfo
- 功能描述  : 使用IMS域的呼叫信息创建呼叫实体
- 输入参数  : pMsg:消息入口
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年09月25日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年1月7日
-    作    者   : y00245242
-    修改内容   : 修改SRVCC过程中的call呼叫实体创建
-  3.日    期   : 2015年02月28日
-    作    者   : f00179208
-    修改内容   : IMS SWITCH项目
-  4.日    期   : 2015年08月30日
-    作    者   : n00269697
-    修改内容   : srvcc_alert_DTS2015072500266
-*****************************************************************************/
 VOS_VOID TAF_CALL_CreateCallEntitiesWithImsCallInfo(
     VOS_UINT8                           ucSrvccCallNum,
     CALL_IMSA_SRVCC_CALL_INFO_STRU     *pstSrvccCallInfo,
@@ -6572,20 +4130,7 @@ VOS_VOID TAF_CALL_CreateCallEntitiesWithImsCallInfo(
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_GetCallEntityAddr
- 功能描述  : 获取call entity数组首地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 返回call entity首地址，数据类型MN_CALL_MGMT_STRU
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月11日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_CALL_MGMT_STRU *TAF_CALL_GetCallEntityAddr(VOS_VOID)
 {
     return &f_astCallMgmtEntities[0];
@@ -6593,28 +4138,9 @@ MN_CALL_MGMT_STRU *TAF_CALL_GetCallEntityAddr(VOS_VOID)
 
 /* 删除获取呼叫实体数目 */
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-25, end */
 
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallRedialCause_CmSrvRej
- 功能描述  : 原因值是否需要重拨(CM_SRV_REJ)
- 输入参数  : NAS_CC_CAUSE_VALUE_ENUM_U32:呼叫失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要重拨
-             VOS_FALSE:不需要重拨
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年8月23日
-    作    者   : n00355355
-    修改内容   : User_exp_Improve
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsCallRedialCause_CmSrvRej(
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause
 )
@@ -6637,21 +4163,7 @@ VOS_UINT32 TAF_CALL_IsCallRedialCause_CmSrvRej(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallRedialCause_CsfbSrvRej
- 功能描述  : 原因值是否需要重拨(CSFB_SRV_REJ)
- 输入参数  : NAS_CC_CAUSE_VALUE_ENUM_U32:呼叫失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要重拨
-             VOS_FALSE:不需要重拨
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsCallRedialCause_CsfbSrvRej(
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause
 )
@@ -6661,34 +4173,15 @@ VOS_UINT32 TAF_CALL_IsCallRedialCause_CsfbSrvRej(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallRedialCause_RrConnFail
- 功能描述  : 原因值是否需要重拨(RR_CONN_FAIL)
- 输入参数  : NAS_CC_CAUSE_VALUE_ENUM_U32:呼叫失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要重拨
-             VOS_FALSE:不需要重拨
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年8月19日
-    作    者   : c00318887
-    修改内容   : DTS2015080505192:  立即指派被拒需要重拨
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsCallRedialCause_RrConnFail(
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause
 )
 {
-    /* Modified by c00318887 for DTS2015080505192:  立即指派被拒需要重拨, 2015-8-19, begin */
     if ((NAS_CC_CAUSE_RR_CONN_FAIL_ACCESS_BAR                       == enCause)
      || (NAS_CC_CAUSE_RR_CONN_FAIL_CURRENT_PROTOCOL_NOT_SUPPORT     == enCause)
      || (NAS_CC_CAUSE_RR_CONN_FAIL_INVALID_UE_STATE                 == enCause)
      || (NAS_CC_CAUSE_RR_CONN_FAIL_CELL_BARRED                      == enCause))
-    /* Modified by c00318887 for DTS2015080505192:  立即指派被拒需要重拨, 2015-8-19, end */
     {
         return VOS_FALSE;
     }
@@ -6698,25 +4191,7 @@ VOS_UINT32 TAF_CALL_IsCallRedialCause_RrConnFail(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallRedialCause_RrRel
- 功能描述  : 原因值是否需要重拨(RR_REL)
- 输入参数  : NAS_CC_CAUSE_VALUE_ENUM_U32:呼叫失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要重拨
-             VOS_FALSE:不需要重拨
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-  2.日    期   : 2015年11月23日
-    作    者   : w00167002
-    修改内容   : DTS2015112307317:NAS_CC_CAUSE_RR_REL_RL_FAILURE重播，AS可能选择到
-                 新的LAC上，增加电话成功率。
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsCallRedialCause_RrRel(
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause
 )
@@ -6734,21 +4209,7 @@ VOS_UINT32 TAF_CALL_IsCallRedialCause_RrRel(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallRedialCause_CsfbLmmFail
- 功能描述  : 原因值是否需要重拨(CSFB_LMM_FAIL)
- 输入参数  : NAS_CC_CAUSE_VALUE_ENUM_U32:呼叫失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要重拨
-             VOS_FALSE:不需要重拨
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsCallRedialCause_CsfbLmmFail(
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause
 )
@@ -6758,21 +4219,7 @@ VOS_UINT32 TAF_CALL_IsCallRedialCause_CsfbLmmFail(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallRedialCause_MmInterErr
- 功能描述  : 原因值是否需要重拨(MM_INTER_ERR)
- 输入参数  : NAS_CC_CAUSE_VALUE_ENUM_U32:呼叫失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要重拨
-             VOS_FALSE:不需要重拨
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsCallRedialCause_MmInterErr(
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause
 )
@@ -6810,21 +4257,7 @@ VOS_UINT32 TAF_CALL_IsCallRedialCause_MmInterErr(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallRedialCause_CcInterErr
- 功能描述  : 原因值是否需要重拨(CC_INTER_ERR)
- 输入参数  : NAS_CC_CAUSE_VALUE_ENUM_U32:呼叫失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要重拨
-             VOS_FALSE:不需要重拨
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsCallRedialCause_CcInterErr(
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause
 )
@@ -6840,21 +4273,7 @@ VOS_UINT32 TAF_CALL_IsCallRedialCause_CcInterErr(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_CALL_IsCallRedialCause
- 功能描述  : 原因值是否需要重拨
- 输入参数  : NAS_CC_CAUSE_VALUE_ENUM_U32:呼叫失败原因值
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 需要重拨
-             VOS_FALSE:不需要重拨
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月29日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_CALL_IsCallRedialCause(
     NAS_CC_CAUSE_VALUE_ENUM_U32         enCause
 )
@@ -6924,20 +4343,7 @@ VOS_UINT32 TAF_CALL_IsCallRedialCause(
 
 /*lint -restore */
 #if (FEATURE_ON == FEATURE_HUAWEI_VP)
-/*****************************************************************************
- 函 数 名  : MN_CALl_VoicePreferJudgeVoiceCallExist
- 功能描述  : 语音优先功能:判断当前是否存在激活的/保持的语音业务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALl_VoicePreferJudgeVoiceCallExist(VOS_VOID)
 {
     VOS_UINT32      i;
@@ -6967,20 +4373,7 @@ VOS_VOID MN_CALl_VoicePreferJudgeVoiceCallExist(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_VoicePreferSendRabmVoiceCallIndMsg
- 功能描述  : 语音优先:通知RABM是否存在激活的或者保持的语音业务
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月26日
-    作    者   : s00273135
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID MN_CALL_VoicePreferSendRabmVoiceCallIndMsg(VOS_UINT32 ulVoiceFlag)
 {
     VOS_UINT32                                              ulRet;              /* 定义调用VOS发送函数的返回值 */

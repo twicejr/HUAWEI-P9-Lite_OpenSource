@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : mlowpower.c
-  版 本 号   : 初稿
-  作    者   : s00207770
-  生成日期   : 2015年8月15日
-  最近修改   :
-  功能描述   : GUTL多模低功耗控制模块
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年8月15日
-    作    者   : s00207770
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -51,21 +34,7 @@ NV_SLEEP_BBE16_CTRL_STRU                g_stSleepBBE16Ctrl;
 *****************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_load
- 功能描述  : BBE16加载接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月15日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_load( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -109,21 +78,7 @@ VOS_UINT32 mlp_dsp_load( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_run
- 功能描述  : BBE16激活接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月15日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_run( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -167,21 +122,7 @@ VOS_UINT32 mlp_dsp_run( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_stop
- 功能描述  : BBE16停止接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月15日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_stop( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -225,21 +166,7 @@ VOS_UINT32 mlp_dsp_stop( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_unreset
- 功能描述  : BBE16解复位接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_unreset( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -283,21 +210,7 @@ VOS_UINT32 mlp_dsp_unreset( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_reset
- 功能描述  : BBE16复位接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_reset( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -346,21 +259,7 @@ VOS_UINT32 mlp_dsp_reset( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_enable_clk
- 功能描述  : BBE16时钟打开接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_enable_clock( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -404,21 +303,7 @@ VOS_UINT32 mlp_dsp_enable_clock( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_disable_clk
- 功能描述  : BBE16时钟关闭接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_disable_clock( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -467,21 +352,7 @@ VOS_UINT32 mlp_dsp_disable_clock( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_resume
- 功能描述  : BBE16镜像恢复接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_restore( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -527,21 +398,7 @@ VOS_UINT32 mlp_dsp_restore( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_backup
- 功能描述  : BBE16镜像备份接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_backup( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -592,21 +449,7 @@ VOS_UINT32 mlp_dsp_backup( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_resume
- 功能描述  : BBE16等待镜像恢复接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_wait_restore( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -652,21 +495,7 @@ VOS_UINT32 mlp_dsp_wait_restore( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_backup
- 功能描述  : BBE16等待镜像备份接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_wait_backup( VOS_RATMODE_ENUM_UINT32 enMode )
 {
     VOS_ULONG                           ulLockLevel;
@@ -714,21 +543,7 @@ VOS_UINT32 mlp_dsp_wait_backup( VOS_RATMODE_ENUM_UINT32 enMode )
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_resume
- 功能描述  : BBE16等待镜像恢复接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_pwrup( VOS_RATMODE_ENUM_UINT32 enMode, PWC_COMM_MODEM_E enModemId )
 {
     VOS_ULONG                           ulLockLevel;
@@ -774,21 +589,7 @@ VOS_UINT32 mlp_dsp_pwrup( VOS_RATMODE_ENUM_UINT32 enMode, PWC_COMM_MODEM_E enMod
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_backup
- 功能描述  : BBE16等待镜像备份接口
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 mlp_dsp_pwrdown( VOS_RATMODE_ENUM_UINT32 enMode, PWC_COMM_MODEM_E enModemId )
 {
     VOS_ULONG                           ulLockLevel;
@@ -836,21 +637,7 @@ VOS_UINT32 mlp_dsp_pwrdown( VOS_RATMODE_ENUM_UINT32 enMode, PWC_COMM_MODEM_E enM
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : mlp_dsp_init
- 功能描述  : BBE16低功耗接口初始化
- 输入参数  : VOS_RATMODE_ENUM_UINT32 enMode
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月23日
-    作    者   : x00306642
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID mlp_dsp_init(VOS_VOID)
 {
     (VOS_VOID)VOS_MemSet(&g_stmlpBBE16Handle, 0, sizeof(g_stmlpBBE16Handle));

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-  Copyright (C), 2001-2011, Huawei Tech. Co., Ltd.
-
- ******************************************************************************
-  File Name     : dhcp_inc.h
-  Version       : Initial Draft
-  Author        : l00103336
-  Created       : 2012/4/23
-  Last Modified :
-  Description   : DHCP模块公共头文件
-  Function List :
-  History       :
-  1.Date        : 2012/4/23
-    Author      : l00103336
-    Modification: Created file
-
-******************************************************************************/
 #ifndef __DHCP_INC_H__
 #define __DHCP_INC_H__
 
@@ -77,12 +60,10 @@ typedef int             VOS_INTPTR;
 #define DHCP_INVALID_ULONG      0xFFFFFFFF
 #define DHCP_INVALID_USHORT      0xFFFF
 
-/* Added start by ZhangYang  z00142225 at 2008-12-29 UGWV900R001C001 for 地址分配功能 */
 #define     DHCPS_GET_ROLE_INVALID 0
 #define     DHCP_ENCAP_GTPV0   0
 #define     DHCP_ENCAP_GTPV1  1
 #define     DHCP_ENCAP_PMIP_GRE 2
-/* Added end by ZhangYang  z00142225 at 2008-12-29 UGWV900R001C001 for 地址分配功能 */
 
 #define     DHCP_IPUDP_HEAD_LENGTH  28
 

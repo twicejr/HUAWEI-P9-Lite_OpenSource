@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_p2p.c
-  版 本 号   : 初稿
-  作    者   : duankaiyong
-  生成日期   : 2014年11月25日
-  最近修改   :
-  功能描述   : P2P 相关特性处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年11月25日
-    作    者   : duankaiyong 00194999
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -108,22 +91,7 @@ hmac_input_req_priority_stru g_mac_fsm_input_type_priority_table[HMAC_FSM_INPUT_
 };
 
 
-/*****************************************************************************
- 函 数 名  : hmac_p2p_check_can_enter_state
- 功能描述  : 检查外部输入事件是否允许执行
- 输入参数  : mac_vap_stru *pst_mac_vap
-             hmac_fsm_input_type_enum_uint8 en_input_req
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_p2p_check_can_enter_state(mac_vap_stru *pst_mac_vap,
                                             hmac_fsm_input_type_enum_uint8 en_input_req)
 {
@@ -166,23 +134,7 @@ oal_uint32 hmac_p2p_check_can_enter_state(mac_vap_stru *pst_mac_vap,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_p2p_get_home_channel
- 功能描述  : 返回已经UP 的vap 的信道
- 输入参数  : mac_vap_stru                     *pst_mac_vap
-             oal_uint32                        *pul_home_channel
-             wlan_channel_bandwidth_enum_uint8 *pen_home_channel_type
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_p2p_get_home_channel(mac_vap_stru                     *pst_mac_vap,
                                     oal_uint32                        *pul_home_channel,
                                     wlan_channel_bandwidth_enum_uint8 *pen_home_channel_bandwidth)
@@ -250,21 +202,7 @@ oal_uint32 hmac_p2p_get_home_channel(mac_vap_stru                     *pst_mac_v
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_check_p2p_vap_num
- 功能描述  : 添加vap时检查P2P vap的num是否符合要求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_check_p2p_vap_num(mac_device_stru *pst_mac_device, wlan_p2p_mode_enum_uint8 en_p2p_mode)
 {
     if (WLAN_P2P_DEV_MODE == en_p2p_mode)
@@ -333,24 +271,7 @@ oal_uint32 hmac_check_p2p_vap_num(mac_device_stru *pst_mac_device, wlan_p2p_mode
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_add_p2p_cl_vap
- 功能描述  : 创建P2P CL 业务VAP
- 输入参数  : pst_vap   : 指向配置vap
-             us_len    : 参数长度
-             puc_param : 参数
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-   1.日    期   : 2014年12月31日
-     作    者   : z00273164
-     修改内容   : 新生成函数
-
-
-*****************************************************************************/
 oal_uint32  hmac_add_p2p_cl_vap(mac_vap_stru *pst_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     mac_cfg_add_vap_param_stru    *pst_param;
@@ -432,23 +353,7 @@ oal_uint32  hmac_add_p2p_cl_vap(mac_vap_stru *pst_vap, oal_uint16 us_len, oal_ui
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_del_p2p_cl_vap
- 功能描述  : 删除p2p cl vap
- 输入参数  : pst_vap   : 指向vap的指针
-             us_len    : 参数长度
-             puc_param : 参数
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月31日
-    作    者   : z00273164
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_del_p2p_cl_vap(mac_vap_stru *pst_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     hmac_vap_stru                 *pst_hmac_vap;
@@ -512,21 +417,7 @@ oal_uint32  hmac_del_p2p_cl_vap(mac_vap_stru *pst_vap, oal_uint16 us_len, oal_ui
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_p2p_send_listen_expired_to_host
- 功能描述  : 监听超时处理,通知WAL 监听超时
- 输入参数  : mac_device_stru *pst_mac_device
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_p2p_send_listen_expired_to_host(hmac_vap_stru *pst_hmac_vap)
 {
     mac_device_stru                 *pst_mac_device;
@@ -586,21 +477,7 @@ oal_uint32 hmac_p2p_send_listen_expired_to_host(hmac_vap_stru *pst_hmac_vap)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_p2p_send_listen_expired_to_device
- 功能描述  : 监听超时处理，通知DMAC 返回home 信道
- 输入参数  : hmac_vap_stru *pst_hmac_vap
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月25日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32 hmac_p2p_send_listen_expired_to_device(hmac_vap_stru *pst_hmac_vap)
 {
     mac_device_stru                 *pst_mac_device;
@@ -652,21 +529,7 @@ oal_uint32 hmac_p2p_send_listen_expired_to_device(hmac_vap_stru *pst_hmac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_disable_p2p_pm
- 功能描述  : 停止p2p noa,p2p oppps
- 输入参数  : hmac_vap_stru *pst_hmac_vap
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月11日
-    作    者   : xiaoyuren 00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_disable_p2p_pm(hmac_vap_stru *pst_hmac_vap)
 {
     mac_vap_stru                   *pst_mac_vap;
@@ -692,21 +555,7 @@ oal_void hmac_disable_p2p_pm(hmac_vap_stru *pst_hmac_vap)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_is_p2p_go_neg_req_frame
- 功能描述  : 是否是P2P GO negotiation request action帧
- 输入参数  : oal_uint8 *puc_data
- 输出参数  : 无
- 返 回 值  : OAL_TRUE 是P2P GO negotiation request action帧
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月22日
-    作    者   : x00305155
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_is_p2p_go_neg_req_frame(OAL_CONST oal_uint8* puc_data)
 {
     if((MAC_ACTION_CATEGORY_PUBLIC == puc_data[MAC_ACTION_OFFSET_CATEGORY + MAC_80211_FRAME_LEN])&&
@@ -721,22 +570,7 @@ oal_bool_enum_uint8 hmac_is_p2p_go_neg_req_frame(OAL_CONST oal_uint8* puc_data)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_get_p2p_status
- 功能描述  : 判断p2p 是否为该状态
- 输入参数  : oal_uint32 ul_p2p_status
-             hmac_cfgp2p_status_enum_uint32 en_status
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 hmac_get_p2p_status(oal_uint32 ul_p2p_status, hmac_cfgp2p_status_enum_uint32 en_status)
 {
     if (ul_p2p_status & BIT(en_status))
@@ -749,43 +583,13 @@ oal_uint8 hmac_get_p2p_status(oal_uint32 ul_p2p_status, hmac_cfgp2p_status_enum_
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_set_p2p_status
- 功能描述  : 设置p2p 为对应状态
- 输入参数  : oal_uint32 ul_p2p_status
-             hmac_cfgp2p_status_enum_uint32 en_status
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_set_p2p_status(oal_uint32 *pul_p2p_status, hmac_cfgp2p_status_enum_uint32 en_status)
 {
     *pul_p2p_status |= ((oal_uint32)BIT(en_status));
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_clr_p2p_status
- 功能描述  : 清除p2p 对应状态
- 输入参数  : oal_uint32 ul_p2p_status
-             hmac_cfgp2p_status_enum_uint32 en_status
- 输出参数  : 无
- 返 回 值  : oal_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月20日
-    作    者   : duankaiyong 00194999
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void hmac_clr_p2p_status(oal_uint32 *pul_p2p_status, hmac_cfgp2p_status_enum_uint32 en_status)
 {
     *pul_p2p_status &= ~((oal_uint32)BIT(en_status));

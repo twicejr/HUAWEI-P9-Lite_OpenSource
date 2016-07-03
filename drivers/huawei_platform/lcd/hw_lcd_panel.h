@@ -172,6 +172,8 @@ struct hw_lcd_information {
 	u32 lcd_id0;
 	/*ID1*/
 	u32 lcd_id1;
+	/*esd set backlight*/
+	u8 esd_set_bl;
 };
 
 enum {

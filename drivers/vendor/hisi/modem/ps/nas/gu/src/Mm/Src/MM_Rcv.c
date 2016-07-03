@@ -1,76 +1,9 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : MM_Rcv.c
-  Description  : MM接收原语处理
-  Function List:
-            1  : Mm_RcvMmcStartReq
-            2  : Mm_RcvMmcPlmnSrchIni
-            3  : Mm_RcvMmcPlmnUserSelReq
-            4  : Mm_RcvMmcSysInfoInd
-            5  : Mm_RcvGmmCombinedAttachIni
-            6  : Mm_RcvGmmCombinedAttachAccept
-            7  : NAS_MM_RcvGmmCombinedAttachRej
-            8  : Mm_RcvGmmImsiDetechIni
-            9  : Mm_RcvGmmImsiDetechComplete
-            10 : NAS_MM_RcvGmmNetworkDetechInd
-            11 : Mm_RcvGmmGmmActionResultInd
-            12 : Mm_RcvGmmAuthFailInd
-            13 : Mm_RcvGmmCombinedRauInitiation
-            14 : Mm_RcvGmmCombinedRauAccepted
-            15 : Mm_RcvGmmCombinedRauRejected
-            16 : Mm_RcvMmcCoverageLostInd
-            17 : Mm_RcvCcEstReq
-            18 : Mm_RcvCcRelReq
-            19 : Mm_RcvCcAbortReq
-            20 : Mm_RcvCcDataReq
-            21 : Mm_RcvCcReestReq
-            22 : Mm_RcvRrcPagingInd
-            23 : Mm_RcvRrcEstCnf
-            24 : Mm_RcvRrcRelInd
-            25 : Mm_RcvRrcSecurityInd
-            26 : Mm_RcvRrcSyncInd
-            27 : Mm_RcvRrcDataInd
-            28 : NAS_MM_RcvGmmGprsDetechIni
-            29 : Mm_RcvGmmGprsDetechCmpl
-            30 : Mm_RcvAgntUsimAuthenticationCnf
-            31 : Mm_RcvMmcDetachReq
-            32 : Mm_RcvMmcPowerOffReq
-            33 : Mm_RcvSsEstReq
-            34 : Mm_RcvSsRelReq
-            35 : Mm_RcvSsDataReq
-            36 : Mm_RcvSmsEstReq
-            37 : Mm_RcvSmsRelReq
-            38 : Mm_RcvSmsDataReq
-            39 : Mm_RcvCcPromptRej
-            40 : Mm_RcvMmcAttachReq
-            41 : Mm_RcvMmcModeChngReq
-            42 : Mm_RcvGmmLuIni
 
-
-
-  History:
-
-   1.日    期   : 2009年09月04日
-     作    者   : AT2D14129
-     修改内容   : 问题单号:AT2D13779,ue在发起语音业务的过程中重选至RA、LA不同的小区，网络模式II->I,目标小区正常，新小区上业务必然失败
-   2.日    期   : 2009年10月09日
-     作    者   : s46746
-     修改内容   : 问题单号:AT2D14994,CS域无核心网广播信息时，仍然发起周期性位置更新
-
-  3.日    期   : 2010年3月16日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率控制
-  4.日    期   : 2010年12月7日
-    作    者   : h44270
-    修改内容   : 问题单号：DTS2010112702584, 之前注册失败，进入一个BAR的小区后再回到之前小区，未发起LAU
-*******************************************************************************/
 
 #include        "MM_Inc.h"
 #include        "MmCcInterface.h"
 #include        "GmmMmInterface.h"
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-16, begin */
 #include        "NasMmProcLResult.h"
-/* Added by w00176964 for V3R3C60_eCall项目, 2014-4-16, end */
 
 
 #ifdef  __cplusplus
@@ -167,19 +100,7 @@ VOS_UINT8 Mm_RcvGmmCombinedAttachIni(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvGmmCombinedAttachAccept
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      03-12-09  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvGmmCombinedAttachAccept(
                                     VOS_VOID            *pRcvMsg                /* 收到的原语头指针                         */
                                     )
@@ -220,19 +141,7 @@ VOS_UINT8 Mm_RcvGmmCombinedAttachAccept(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : NAS_MM_RcvGmmCombinedAttachRej
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      03-12-09  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 NAS_MM_RcvGmmCombinedAttachRej(
                                 VOS_VOID            *pRcvMsg                    /* 收到的原语头指针                         */
                                 )
@@ -289,19 +198,7 @@ VOS_UINT8 Mm_RcvGmmImsiDetechComplete(
 }
 
 
-/***********************************************************************
- *  MODULE   : NAS_MM_RcvGmmNetworkDetechInd
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      03-12-09  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 NAS_MM_RcvGmmNetworkDetechInd(
     VOS_VOID                           *pRcvMsg
 )
@@ -339,19 +236,7 @@ VOS_UINT8 NAS_MM_RcvGmmNetworkDetechInd(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvGmmGmmActionResultInd
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      03-12-09  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvGmmGmmActionResultInd(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -416,19 +301,7 @@ VOS_UINT8 Mm_RcvGmmCombinedRauInitiation(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvGmmCombinedRauAccepted
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      03-12-09  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvGmmCombinedRauAccepted(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -454,19 +327,7 @@ VOS_UINT8 Mm_RcvGmmCombinedRauAccepted(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvGmmCombinedRauRejected
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      03-12-09  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvGmmCombinedRauRejected(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -507,23 +368,7 @@ VOS_UINT8 Mm_RcvMmcCoverageLostInd(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvCcEstReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      03-12-09  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
 
-  2.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
- ************************************************************************/
 VOS_UINT8 Mm_RcvCcEstReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -573,19 +418,7 @@ VOS_UINT8 Mm_RcvCcEstReq(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvCcRelReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      03-12-09  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvCcRelReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -612,19 +445,7 @@ VOS_UINT8 Mm_RcvCcRelReq(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvCcAbortReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇    2003.12.11    新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvCcAbortReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -650,19 +471,7 @@ VOS_UINT8 Mm_RcvCcAbortReq(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvCcDataReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇    2003.12.11  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvCcDataReq(
                    VOS_VOID            *pRcvMsg                                 /* 收到的原语头指针                         */
                    )
@@ -680,19 +489,7 @@ VOS_UINT8 Mm_RcvCcDataReq(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvCcReestReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇    2003.12.11  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvCcReestReq(
                         VOS_VOID             *pRcvMsg                           /* 收到的原语头指针                         */
                         )
@@ -716,19 +513,7 @@ VOS_UINT8 Mm_RcvCcReestReq(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvRrcPagingInd
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇    2003.12.11    新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvRrcPagingInd(
                         VOS_VOID             *pRcvMsg                           /* 收到的原语头指针                         */
                         )
@@ -801,49 +586,7 @@ VOS_UINT8 Mm_RcvRrcPagingInd(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvRrcEstCnf
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇    2003.12.11  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
 
-       3.日    期   : 2011年7月14日
-         作    者   : zhoujun 40661
-         修改内容   : 更新MML_CTX中的链接存在状态
-       4.日    期   : 2011年7月28日
-         作    者   : sunxibo 46746
-         修改内容   : V7R1 phase II,autoplmnsrch状态机调整为PlmnSelection状态机
-       5.日    期   : 2012年7月14日
-         作    者   : l65478
-         修改内容   : DTS2012071303294在连接建立失败时没有清除CS连接标志
-       6,.日    期   : 2012年11月29日
-         作    者   : l65478
-         修改内容   : DTS2012112602789:CSFB标志没有清除
-       7.日    期   : 2013年3月30日
-         作    者   : l00167671
-         修改内容   : 主动上报AT命令控制下移至C核
-       8.日    期   : 2014年6月13日
-         作    者   : w00242748
-         修改内容   : DSDS 新特性
-       9.日    期   : 2014年8月14日
-         作    者   : z00161729
-         修改内容   : gas下lau建链失败原因值random access reject no valid information场景未按协议实现8s内不发起lau，t3213 4s超时就发起了lau
-      10.日    期   :2014年9月24日
-         作    者   :s00217060
-         修改内容   :for cs_err_log
-      11.日    期   : 2014年11月8日
-         作    者   : w00167002
-         修改内容   : DTS2014110605230:在W下也可能收到拒绝RRC_EST_RANDOM_ACCESS_REJECT。
-                      在L下电话感到G后，lau建联失败17，也清楚了CSFB，后续收到系统
-                      消息，没有发起LAU.期望不清楚,继续CSFB流程。
- ************************************************************************/
 VOS_UINT8 Mm_RcvRrcEstCnf(
                         VOS_VOID            *pRcvMsg                            /* 收到的原语头指针                         */
                         )
@@ -932,9 +675,7 @@ VOS_UINT8 Mm_RcvRrcEstCnf(
 
         NAS_MML_SetCsfbServiceStatus(NAS_MML_CSFB_SERVICE_STATUS_NOT_EXIST);
 
-        /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MML_SetRelCauseCsfbHighPrioFlg(VOS_FALSE);
-        /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 #endif
 
     }
@@ -942,46 +683,7 @@ VOS_UINT8 Mm_RcvRrcEstCnf(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvRrcRelInd
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇    2003.12.11    新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
-       3.日    期  : 2007年03月01日
-         作    者  : luojian id:60022475
-         修改内容  : MAPS3000接口修改
-       4.日    期   : 2008年12月9日
-         作    者   : l00130025
-         修改内容   : 问题单号：AT2D07328,有链接存在时，SYSCFG被缓存，后丢网，SYSCFG消息被清除
-       5.日    期   : 2011年3月3日
-         作    者   : z00161729
-         修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
 
-       6.日    期   : 2011年7月14日
-         作    者   : zhoujun 40661
-         修改内容   : 更新MML_CTX中的全局变量
-       7.日    期   : 2012年2月15日
-         作    者   : z00161729
-         修改内容   : V7R1C50 支持CSFB特性修改
-                       1.若当前是CSFB的被叫，则收到RRMM_REL_IND可认为被叫结束
-          TS23.272 7.3 When the MSC receives a LA Update Request, it shall check
-          for pending terminating CS calls and, if the "CSMT" flag is set,
-          maintain the CS signalling connection after the Location Area Update
-          procedure for pending terminating CS calls.
-      8.日    期   : 2013年3月30日
-        作    者   : l00167671
-        修改内容   : 主动上报AT命令控制下移至C核
-      9.日    期   : 2014年6月13日
-        作    者   : w00242748
-        修改内容   : DSDS 新特性
- ************************************************************************/
 VOS_UINT8 Mm_RcvRrcRelInd(
     VOS_VOID                           *pRcvMsg                            /* 收到的原语头指针                         */
 )
@@ -1036,9 +738,7 @@ VOS_UINT8 Mm_RcvRrcRelInd(
 
         NAS_MML_SetCsfbServiceStatus(NAS_MML_CSFB_SERVICE_STATUS_NOT_EXIST);
 
-        /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         NAS_MML_SetRelCauseCsfbHighPrioFlg(VOS_FALSE);
-        /* Added by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
     }
 #endif
 
@@ -1067,26 +767,7 @@ VOS_UINT8 Mm_RcvRrcRelInd(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvRrcSecurityInd
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *  1.  张志勇    2003.12.11  新版作成
-    2.  张志勇 2005.04.15  MM_Review_HW_BUG_038对应
-    3.日    期  : 2006年12月4日
-      作    者  : luojian id:60022475
-      修改内容  : 问题单号:A32D07777
-    4.日    期   : 2011年3月3日
-      作    者   : z00161729
-      修改内容   : DTS2011021201997:PS、CS完整性保护是否开启由GMM和MM分开维护,MMC不再维护
-    5.日    期   : 2011年7月27日
-      作    者   : h44270
-      修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvRrcSecurityInd(
                            VOS_VOID            *pRcvMsg                         /* 收到的原语头指针                         */
                            )
@@ -1188,34 +869,7 @@ VOS_UINT8 Mm_RcvRrcSecurityInd(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvRrcSyncInd
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇    2003.12.11  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
-       3.日    期  : 2008年12月2日
-         作    者  : s62952
-         修改内容  : 根据问题单A32D07110修改
 
-  3.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-
-  4.日    期   : 2010年3月18日
-    作    者   : zhoujun /z40661
-    修改内容   : AMR速率调整
-
-  5.日    期   : 2012年2月9日
-    作    者   : z40661
-    修改内容   : 支持AMR-WB功能
- ************************************************************************/
 VOS_UINT8 Mm_RcvRrcSyncInd(
                        VOS_VOID            *pRcvMsg
                        )
@@ -1294,19 +948,7 @@ VOS_UINT8 Mm_RcvRrcDataInd(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : NAS_MM_RcvGmmGprsDetechIni
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇    2003.12.12  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 NAS_MM_RcvGmmGprsDetechIni(
                              VOS_VOID            *pRcvMsg                       /* 收到的原语头指针                         */
                             )
@@ -1352,27 +994,7 @@ VOS_UINT8 Mm_RcvGmmGprsDetechCmpl(
 
 
 
-/*******************************************************************************
-  Module:   Mm_RcvAgntUsimAuthenticationCnf
-  Function: 接收 AGENT_USIM_AUTHENTICATION_CNF 公共处理
-  Input:    VOS_VOID* pMsg
-  Output:
-  NOTE:
-  Return:   MM_TRUE,成功 MM_FALSE,失败
-  History:
-      1. 张志勇  2003.12.15  新版做成
-      2. 张志勇  2003.10.23  AGENT接口变更对应
 
-      3.日    期  : 2013年7月22日
-        作    者  : y00245242
-        修改内容  : VoIP开发，适配新的USIM接口
-      4.日    期   : 2014年4月175日
-        作    者   : s00246516
-        修改内容   : DTS2014041700472:使用2G SIM卡，PAD形态上出现鉴权被网络拒绝
-      5.日    期   : 2014年10月20日
-        作    者   : w00167002
-        修改内容   : DTS2014102000868:在鉴权成功后才更新CKSN
-*******************************************************************************/
 VOS_UINT8   Mm_RcvAgntUsimAuthenticationCnf(
                                          VOS_VOID     *pMsg                     /* 当前处理的消息                           */
                                         )
@@ -1460,22 +1082,7 @@ VOS_UINT8   Mm_RcvAgntUsimAuthenticationCnf(
     return ucRet;
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvMmcDetachReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *  1.  张志勇    2004.03.12  新版作成
-    2.日    期  : 2006年12月4日
-      作    者  : luojian id:60022475
-      修改内容  : 问题单号:A32D07777
-    3.日    期   : 2011年7月26日
-      作    者   : h44270
-      修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-************************************************************************/
+
 VOS_UINT8 Mm_RcvMmcDetachReq(
                          VOS_VOID            *pRcvMsg                           /* 收到的原语头指针                         */
                          )
@@ -1500,22 +1107,7 @@ VOS_UINT8 Mm_RcvMmcDetachReq(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvMmcPowerOffReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇    2004.03.12  新版作成
-       2.日    期   : 2006年9月9日
-         作    者   : sunxibo id:46746
-         修改内容   : 根据问题单号：A32D05803
-       3.日    期   : 2012年3月27日
-         作    者   : w00166186
-         修改内容   : CSFB&PPAC&ETWS&ISR 开发 ENERGENCY CALL
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvMmcPowerOffReq(
                          VOS_VOID            *pRcvMsg                           /* 收到的原语头指针                         */
                          )
@@ -1541,19 +1133,7 @@ VOS_UINT8 Mm_RcvMmcPowerOffReq(
 
     return ucRet;                                                               /* 返回检查结果                             */
 }
-/***********************************************************************
- *  MODULE   : Mm_RcvSsEstReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      04-03-09  新版作成
- *     2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvSsEstReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -1588,19 +1168,7 @@ VOS_UINT8 Mm_RcvSsEstReq(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvSsRelReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      04-03-09  新版作成
- *     2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvSsRelReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -1625,19 +1193,7 @@ VOS_UINT8 Mm_RcvSsRelReq(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvSsDataReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      04-03-09  新版作成
- *     2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvSsDataReq(
                    VOS_VOID            *pRcvMsg                                 /* 收到的原语头指针                         */
                    )
@@ -1660,19 +1216,7 @@ VOS_UINT8 Mm_RcvSsDataReq(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvSmsEstReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      04-03-09  新版作成
- *     2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvSmsEstReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -1699,19 +1243,7 @@ VOS_UINT8 Mm_RcvSmsEstReq(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvSmsRelReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      04-03-09  新版作成
- *     2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvSmsRelReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -1736,19 +1268,7 @@ VOS_UINT8 Mm_RcvSmsRelReq(
 }
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvSmsDataReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      04-03-09  新版作成
- *     2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvSmsDataReq(
                    VOS_VOID            *pRcvMsg                                 /* 收到的原语头指针                         */
                    )
@@ -1771,19 +1291,7 @@ VOS_UINT8 Mm_RcvSmsDataReq(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvCcPromptRej
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      04-03-10  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvCcPromptRej(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -1798,25 +1306,7 @@ VOS_UINT8 Mm_RcvCcPromptRej(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvMmcAttachReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *  1.  张志勇      04-03-10  新版作成
-    2.日    期  : 2006年12月4日
-      作    者  : luojian id:60022475
-      修改内容  : 问题单号:A32D07777
-    3.日    期   : 2011年7月25日
-      作    者   : h44270
-      修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-    4.日    期   : 2013年2月4日
-      作    者   : w00176964
-      修改内容   : DTS2011022802215:CS ONLY,网络模式I下也进行联合注册
-************************************************************************/
+
 VOS_UINT8 Mm_RcvMmcAttachReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -1863,37 +1353,14 @@ VOS_UINT8 Mm_RcvMmcAttachReq(
 
 
 
-/***********************************************************************
- *  MODULE   : Mm_RcvMmcRelReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
-       2.日    期  : 2008年12月7日
-         作    者  : l00130025
-         修改内容  : 问题单号:AT2D07018,SYSCFG执行时间过长
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvMmcRelReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
 {
     return MM_TRUE;                                                                   /* 返回检查结果                             */
 }
-/***********************************************************************
- *  MODULE   : Mm_RcvMmcModeChngReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇      04-03-10  新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvMmcModeChngReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -1913,26 +1380,7 @@ VOS_UINT8 Mm_RcvMmcModeChngReq(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvGmmLuIni
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇     04-03-25  新版作成
- *     2.  张志勇     2005.01.27  007005 for MM
-       3.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
-       4.日    期  : 2012年3月29日
-         作    者  : z00161729
-         修改内容  : 支持ISR特性修改
-       3.日    期   : 2012年5月7日
-         作    者   : l00171473
-         修改内容   : DTS2012050204913, 做保护,L模下不处理超时消息
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvGmmLuIni(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -1962,20 +1410,7 @@ VOS_UINT8 Mm_RcvGmmLuIni(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvRrcAcInfoChgInd
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇     04-03-25  新版作成
- *     2.  张志勇        2005.01.07  007005 for MM
-       3.日    期   : 2012年12月27日
-         作    者   : s00217060
-         修改内容   : for DSDA GUNAS C CORE:如果USIM卡GSM禁止接入，直接返回MM_FALSE
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvRrcAcInfoChgInd(
                             VOS_VOID            *pRcvMsg                        /* 收到的原语头指针                         */
                             )
@@ -2007,19 +1442,7 @@ VOS_UINT8 Mm_RcvMmAgentInquire(
     return MM_TRUE;                                                             /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvSsAbortReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇   2005.02.01    新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvSsAbortReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )
@@ -2041,19 +1464,7 @@ VOS_UINT8 Mm_RcvSsAbortReq(
     return ucRet;                                                               /* 返回检查结果                             */
 }
 
-/***********************************************************************
- *  MODULE   : Mm_RcvSmsAbortReq
- *  FUNCTION : 消息检查
- *  INPUT    : VOS_VOID            *pRcvMsg  收到的原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_UINT8            消息检查结果
- *  NOTE     :
- *  HISTORY  :
- *     1.  张志勇   2005.02.01    新版作成
-       2.日    期  : 2006年12月4日
-         作    者  : luojian id:60022475
-         修改内容  : 问题单号:A32D07777
- ************************************************************************/
+
 VOS_UINT8 Mm_RcvSmsAbortReq(
                        VOS_VOID            *pRcvMsg                             /* 收到的原语头指针                         */
                        )

@@ -196,23 +196,7 @@ extern VOS_UINT32 SHPA_ReadWTxPower( VOS_VOID);
 
 extern VOS_UINT32 GHPA_GetRealFN(MODEM_ID_ENUM_UINT16 enModemID);
 
-/*****************************************************************************
- 函 数 名  : DualModem_DDRQosUpdate
- 功能描述  : CCPU通信组件DDR调频接口
- 输入参数  : MODEM_ID_ENUM_UINT16 enModem                       当前Modem Id
-             DUALMODEM_SCENE_TYPE_ENUM_UINT16   enSceneType     投票通道类型
-             VOS_UINT32 ulValue                                 DDR实际投票频率
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月11日
-    作    者   : s00207770
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern VOS_UINT32 DualModem_DDRQosUpdate(MODEM_ID_ENUM_UINT16 enModem, DUALMODEM_SCENE_TYPE_ENUM_UINT16 enSceneType,  VOS_UINT32 ulValue);
 
 #ifdef  __LDF_FUNCTION__

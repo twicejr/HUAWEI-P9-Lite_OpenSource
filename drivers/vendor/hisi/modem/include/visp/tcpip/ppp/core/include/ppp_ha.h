@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2006, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              ppp_ha.h
-*
-*  Project Code: VISPV100R006
-*   Module Name: HA
-*  Date Created: 2006-12-15
-*        Author: xiehuaguo
-*   Description: PPP备份处理头文件
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE        NAME             DESCRIPTION    
-*  -----------------------------------------------------------------------------
-*  2006-12-15  xiehuaguo        Create
-*  2007-06-28  f54882           增加PPP模块全局变量备份(同步问题单A82D11804)
-*  2008-08-25  f54882           Modify for BC3D00263
-*******************************************************************************/
+
 
 #ifndef _PPP_HA_H_
 #define _PPP_HA_H_
@@ -705,7 +682,6 @@ typedef struct tagPPP_NEGTIME_BAK
     ULONG  ulNegTime;
 }PPP_NEGTIME_BAK_S;
 
-/*定义PPP模块HA的标准备份消息头等数据结构,add by wuhailan,2008-04-11.*/
 /*PPP模块HA备份消息头*/
 typedef struct tagPPP_HA_HEAD
 {
@@ -859,13 +835,12 @@ enum enumPPPNEWCFGBAKSubMsgType  /*PPP_NEWBAK_CONFIG_INFO消息类型下的子消息类型,
 
 enum PPP_NEWBAK_TLV_MSG_TYPE  /*PPP_NEWBAK_TLV_MSG消息类型下的子消息类型,占两个字节*/
 {
-    /*Mod By t00110672 for BC3D01741,2009-8-25,修改REQ为CFG*/
     PPP_NEWBAK_TLV_DISCARDREQ_CFG = 1, /* 备份配置的Discard Request开关的子消息类型，V1R7C01的类型  */
     /*Mod End*/
     PPP_NEWBAK_TLV_DISCARDREQ_USE,      /* 备份生效的Discard Request开关的子消息类型，V1R7C01的类型 */
     PPP_NEWBAK_TLV_DEAL_ACFCPFC_CFG,    /* 备份配置的"是否接受和处理ACFC/PFC协商选项的标记"子消息类型，VR6C05类型 */
     PPP_NEWBAK_TLV_DEAL_ACFCPFC_USE,    /* 备份生效的"是否接受和处理ACFC/PFC协商选项的标记"子消息类型，VR6C05类型 */
-    PPP_NEWBAK_TLV_IPHCUNIDIRT_USE,     /* 备份生效的IPHC单通使能标记，z00104207 for BC3D01706，V1R7C01的类型 */
+    PPP_NEWBAK_TLV_IPHCUNIDIRT_USE,
     PPP_NEWBAK_TLV_NEGO_MAGICNUM_USE,   /* 备份生效的"是否协商Magic Number选项的标记"子消息类型，VR6C02类型 */
     PPP_NEWBAK_TLV_NEGO_MAGICNUM_CFG,   /* 备份配置的"是否协商Magic Number选项的标记"子消息类型，VR6C02类型 */
     PPP_NEWBAK_TLV_SELFLOOP_USE,        /* 备份生效的"是否设置自环模式标记"子消息类型，VR6C02类型 */

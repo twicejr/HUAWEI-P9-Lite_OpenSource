@@ -1,68 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name:          SmcSmrApi.c
-  Description:        SMC和SMR的API函数
-  Function List:
-               1.  SMC_SmrApiDataReq
-               2.  SMC_SmrApiEstReq
-               3.  SMC_SmrApiAbortReq
-               4.  SMC_SmrApiRelReq
-               5.  SMR_SmcApiDataInd
-               6.  SMR_SmcApiEstInd
-               7.  SMR_SmcApiErrorInd
-  History:
-      1.   张志勇      2004.03.09   新规作成
-      2.   张志勇   2005.06.28   对应测试记录06-19修改
-  3. Date:          2006-08-17
-     Author:        郜东东
-     Modification:  OSA优化整改,问题单号:A32D05312
-  4. Date:          2006-12-30
-     Author:        x51137
-     Modification:  A32D07797
-  5. Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
-  6. Date         : 2007-04-23
-     Author       : z40661
-     Modification : 问题单号:A32D09426
-  7. Date:          2007-08-20
-     Author:        z40661
-     Modification:  问题单号:A32D12705
-  8. Date:          2008-12-11
-     Author:        f62575
-     Modification:  问题单号:AT2D07461,短信发送失败，但是在事件上报栏中上报成功
-  9. Date:          2008-12-17
-     Author:        f62575
-     Modification:  问题单号:AT2D07651,PS域接收短信，用户确认超时错误的回复了CP-ERROR，应回复RP-ERROR
- 10.日    期   : 2009年3月23日
-    作    者   : f62575
-    修改内容   : AT2D08752, W接入方式下，信号较弱时连续发送多条短信会概率性出现发送操作失败；
- 11.日    期   : 2009年3月25日
-    作    者   : f62575
-    修改内容   : AT2D10419, 由于启动CS域短信连发功能，但CS域短信发送失败时，通过PS域短信发送，SMC层错误的将发送域修改为CS层，并没有通过PS域发送；
- 12.日    期   : 2009年5月23日
-    作    者   : f62575
-    修改内容   : AT2D10986, 2G下PS域发送短信连续两次发送失败后，
-                 CP层再次超时事件与RP层超时事件同时到达SMS模块内存的错误操作，
-                 导致单板的复位
- 13.日    期   : 2009年5月10日
-    作    者   : f62575
-    修改内容   : AT2D12319, NAS R6升级；
- 14.日    期   : 2010年1月9日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D16263，无效代码删除 Sms_IsAllowSleep SMC_SndEstReq
 
- 15.日    期   : 2010年04月28日
-    作    者   : z40661
-    修改内容   : 问题单号AT2D16570
-                 接收到DATA-IND消息的无效的消息类型，应回复CP-ERROR错误原因值97
-                 接收到DATA-IND消息的无CP-USER-DATA，应回复CP-ERROR错误原因值96
-                 非SMC_MO_WAIT_FOR_CP_ACK状态，应回复CP-ERROR错误原因值98
- 16.日    期   : 2010年9月26日
-    作    者   : 傅映君/f62575
-    修改内容   : 问题单DTS2010092500635：GCF用例51010 34。2。8。2失败，原因
-                 为第29步UE给SS的RP-ERROR没有发送
-*******************************************************************************/
 #include "smsinclude.h"
 #include "NasGmmInterface.h"
 
@@ -83,28 +19,7 @@
 
 /*lint -e438 -e830*/
 
-/***********************************************************************
-*  MODULE   : SMR_SndReportReq
-*  FUNCTION : 制作并发送SMRL_REPORT_REQ原语
-*  INPUT    : VOS_UINT8 ucMti-------------消息类型指示
-*             VOS_UINT8 ucCause-----------错误原因值
-*             VOS_UINT8 ucRpCause---------Rp原因值
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : VOS_VOID
-*  HISTORY  :
-*  1.  张志勇   04-10-22  新规作成
-*  2.  张志勇   05-01-12  对应接口修改
-*  3.  Date         : 2006-04-26
-*      Author       : 郜东东
-*      Modification : 修改了无法连续接收多条短信的问题,问题单号:A32D02986
-   4. Date         : 2007-04-07
-      Author       : h44270
-      Modification : 问题单号:A32D10113
-   5.日    期   : 2009年3月23日
-     作    者   : f62575
-     修改内容   : AT2D08752, W接入方式下，信号较弱时连续发送多条短信会概率性出现发送操作失败；
-************************************************************************/
+
 VOS_VOID SMR_SndReportReq(
     VOS_UINT8    ucMti,                                        /* 消息类型指示                             */
     VOS_UINT8    ucFcs,                                        /* 错误原因值                               */
@@ -164,27 +79,7 @@ VOS_VOID SMR_SndReportReq(
 }
 /*lint +e438 +e830*/
 
-/*******************************************************************************
-  Module:   SMC_SmrApiDataReq
-  Function: SMR指示SMC传输MT数据
-  Input:    VOS_UINT8     *pucData     数据首地址
-            VOS_UINT32     ulLen        数据长度
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.张志勇      2004.03.09   新规作成
-      2.日    期   : 2010年9月26日
-        作    者   : 傅映君/f62575
-        修改内容   : 问题单DTS2010092500635：GCF用例51010 34。2。8。2失败，原因
-                     为第29步UE给SS的RP-ERROR没有发送
-      3.日    期   : 2011年12月26日
-        作    者   : z00161729
-        修改内容   : V7R1 PhaseIV支持L短信修改
-      4.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_SmrApiDataReq(
                         VOS_UINT8     *pucData,                                     /* 数据首地址                               */
                         VOS_UINT16    usLen                                         /* 数据长度                                 */
@@ -482,30 +377,7 @@ VOS_VOID SMC_SmrApiDataReq(
     }
 }
 
-/*******************************************************************************
-  Module:   SMC_SmrApiEstReq
-  Function: 建立SMC实体及信令连接
-  Input:    VOS_UINT8     *pucData     数据(包含RP-DATA长度和内容段)首地址
-            VOS_UINT32     ulLen       数据长度
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇      2004.03.09   新规作成
-      2.   张志勇   2005.06.28   对应测试记录06-19修改
-      3. Date         : 2006-04-26
-         Author       : 郜东东
-         Modification : 修改了实际发送域和设置域不同的问题,问题单号:A32D03350
-      4.日    期   : 2011年11月28日
-        作    者   : z00161729
-        修改内容   : 增加支持L模发短信的处理
-      5.日    期  : 2013年03月13日
-        作    者  : z00214637
-        修改内容  : BodySAR项目
-      6.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_SmrApiEstReq(
     VOS_UINT8                           ucCurSendDomain,
     VOS_UINT8                           *pucData,                                       /* 数据首地址                               */
@@ -656,35 +528,7 @@ VOS_VOID SMC_SmrApiEstReq(
     }
     return;
 }
-/*******************************************************************************
-  Module:   SMC_SmrApiAbortReq
-  Function: SMR指示终止SMS过程
-  Input:    VOS_UINT8     ucCause     终止原因
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇      2004.03.09   新规作成
-      2.   x51137      20061230    A32D07797
-      3. Date         : 2007-04-06
-         Author       : h44270
-         Modification : 问题单号:A32D10113
-      4. Date         : 2007-04-23
-         Author       : z40661
-         Modification : 问题单号:A32D09426
-      5. Date         : 2012-11-29
-         Author       : f62575
-         Modification : 问题单号:DTS2012112902674，支持协议的ABORT流程
-                        TR1M超时，非SMMA流程要求给网络先发CP-ERROR后发RELEASE消息
-      6. Date         : 2013-01-03
-         Author       : f62575
-         Modification : 问题单号:DTS2012123101285, 支持协议的ABORT流程
-                        TR1M超时，非SMMA流程要求给网络先发CP-ERROR后发RELEASE消息
-      7.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
 
-*******************************************************************************/
 VOS_VOID SMC_SmrApiAbortReq(
                         VOS_UINT8     ucCause                                       /* 终止原因                                 */
                         )
@@ -832,23 +676,7 @@ VOS_VOID SMC_SmrApiAbortReq(
 
     }
 }
-/*******************************************************************************
-  Module:   SMC_SmrApiRelReq
-  Function: SMR指示SMC释放MM连接
-  Input:    VOS_UINT8     ucRelCause     终止原因
-            VOS_UINT8     ucMtFlg        是MT过程
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇      2004.03.09   新规作成
-      2. Date         : 2007-04-06
-         Author       : h44270
-         Modification : 问题单号:A32D10113
-      3.日    期   : 2014年6月24日
-        作    者   : w00167002
-        修改内容   : DSDS III项目
-*******************************************************************************/
+
 VOS_VOID SMC_SmrApiRelReq(
                       VOS_UINT8     ucRelCause,                                     /* 释放原因                                 */
                       VOS_UINT8     ucMtFlg                                         /* 是MT过程                                 */
@@ -1014,26 +842,7 @@ VOS_VOID SMC_SmrApiRelReq(
     }
 }
 
-/*******************************************************************************
-Module:   SMR_SmcApiDataInd
-Function: 向SMR上报RP-ACK/RP-ERROR
-Input:    VOS_UINT8     *pucData        数据首地址
-VOS_UINT32        ulLen          数据长度
-Output:   VOS_VOID
-NOTE:
-Return:   VOS_VOID
-History:
-1.   张志勇   2004.03.10   新规作成
-2.   Date         : 2007-04-06
-     Author       : h44270
-     Modification : 问题单号:A32D10113
-3. 日   期   : 2012年8月29日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改
-4.日    期   :2014年9月28日
-  作    者   :s00217060
-  修改内容   :for cs_err_log
-*******************************************************************************/
+
 VOS_UINT32 SMR_SmcApiDataInd(
                        VOS_UINT8 *pucData,                                          /* 数据首地址                               */
                        VOS_UINT32  ulLen                                             /* 数据长度                                 */
@@ -1100,9 +909,7 @@ VOS_UINT32 SMR_SmcApiDataInd(
 
             g_SmrEnt.SmrMo.ucState = SMR_IDLE;                                      /* 状态迁移到空闲状态                       */
 
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMS_SendMnReportReq(SMR_SMT_ERROR_NO_ERROR, pucData, ulLen);
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
             NAS_EventReport(WUEPS_PID_SMS, NAS_OM_EVENT_SMS_MO_SUCC,
                             &stSmsMoReportPara, sizeof(stSmsMoReportPara));
@@ -1132,19 +939,15 @@ VOS_UINT32 SMR_SmcApiDataInd(
                     || (SMR_ERR_CAUSE_RES_UNAVAIL == pucData[3])
                     || (SMR_ERR_CAUSE_NET_OUT_OF_ORDER == pucData[3]))
                 {                                                               /* 是temporary error                        */
-                    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
                     SMR_MemNotifyRetrans((SMR_SMT_ERROR_RP_ERROR_BEGIN | pucData[NAS_SMS_RP_ERROR_OFFSET]),
                                         pucData,
                                         ulLen);         /* 调用重发过程的处理                       */
-                    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
                 }
                 else
                 {
-                    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
                     SMS_SendMnReportReq((SMR_SMT_ERROR_RP_ERROR_BEGIN | pucData[NAS_SMS_RP_ERROR_OFFSET]),
                                         pucData,
                                         ulLen);                                 /* 向高层指示错误                           */
-                    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
                     g_SmrEnt.SmrMo.ucMemAvailFlg = SMS_FALSE;                   /* 清除mem avail标志                        */
                     g_SmrEnt.SmrMo.ucRetransFlg  = SMR_RETRANS_PERMIT;          /* 复位重发标志                             */
                     PS_NAS_LOG(WUEPS_PID_SMS, VOS_NULL, PS_LOG_LEVEL_NORMAL, "SMR_SmcApiDataInd:NORMAL:SMS state = SMR_IDLE");
@@ -1153,11 +956,9 @@ VOS_UINT32 SMR_SmcApiDataInd(
             }
             else
             {                                                                   /* 此过程是MO过程                           */
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
                 SMS_SendMnReportReq((SMR_SMT_ERROR_RP_ERROR_BEGIN | pucData[NAS_SMS_RP_ERROR_OFFSET]),
                                     pucData,
                                     ulLen);                           /* 向高层指示错误                           */
-                /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
                 PS_NAS_LOG(WUEPS_PID_SMS, VOS_NULL, PS_LOG_LEVEL_NORMAL, "SMR_SmcApiDataInd:NORMAL:SMS state = SMR_IDLE");
                 g_SmrEnt.SmrMo.ucState = SMR_IDLE;                                      /* 状态迁移到空闲状态                       */
             }
@@ -1182,24 +983,7 @@ VOS_UINT32 SMR_SmcApiDataInd(
     }
     return ulRet;
 }
-/*******************************************************************************
-Module:   SMR_SmcApiEstInd
-Function: 指示SMR建立实体
-Input:    VOS_UINT8     *pucData        数据首地址
-          VOS_UINT32      ulLen          数据长度
-Output:   VOS_VOID
-NOTE:
-Return:   VOS_VOID
-History:
-1.   张志勇   2004.03.10   新规作成
 
-2.日    期   : 2010年8月21日
-  作    者   : zhoujun /40661
-  修改内容   : DTS2010081901387,网络下发的长度过短时,短信有可能内存越界
-3.日    期   : 2013年6月4日
-  作    者   : s00217060
-  修改内容   : for V9R1_SVLTE:接收短信时，把接收域是CS还是PS域带上去，MSG要用
-*******************************************************************************/
 VOS_UINT32 SMR_SmcApiEstInd(
                       VOS_UINT8 *pucData,                                       /* 数据首地址           */
                       VOS_UINT32  ulLen,                                        /* 数据长度             */
@@ -1280,24 +1064,7 @@ VOS_UINT32 SMR_SmcApiEstInd(
     return ulRet;
 }
 
-/*******************************************************************************
-Module:   SMR_SmcApiErrorInd
-Function: 向SMR上报错误
-Input:    VOS_UINT8   *pucData      - 数据首地址
-          VOS_UINT32   ulLen        - 数据长度
-                       enErrorType  - 错误类型
-Output:   VOS_VOID
-NOTE:
-Return:   VOS_VOID
-History:
-1.   张志勇   2004.03.10   新规作成
-2. 日    期   : 2012年8月29日
-   作    者   : z00161729
-   修改内容   : DCM定制需求和遗留问题修改,增加函数入参enErrorType
-3.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************************/
+
 VOS_VOID SMR_SmcApiErrorInd(
     SMR_SMT_ERROR_ENUM_UINT32           enErrorCode,
     VOS_UINT8                           ucMtFlag
@@ -1307,9 +1074,7 @@ VOS_VOID SMR_SmcApiErrorInd(
     {                                                                           /* 在MO过程                                 */
         if (SMR_IDLE != g_SmrEnt.SmrMo.ucState)
         {
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMS_SendMnReportReq(enErrorCode, VOS_NULL_PTR, 0);
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
             g_SmrEnt.SmrMo.ucRetransFlg = 0;                                    /* 将RETRANS FLAG置零                       */
 
             /* 停止timer TR1M */
@@ -1338,9 +1103,7 @@ VOS_VOID SMR_SmcApiErrorInd(
     {
         if (SMR_WAIT_TO_SND_RP_ACK == g_SmrEnt.SmrMt.ucState)
         {
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
             SMS_SendMnMtErrInd(enErrorCode);
-            /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
             /* 停止timer TR2M */
             SMS_LOG( PS_LOG_LEVEL_NORMAL, "SMS:SMR_SmcApiErrorInd: TimerStop: TR2M" );

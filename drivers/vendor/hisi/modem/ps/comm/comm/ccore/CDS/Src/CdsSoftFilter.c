@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2006, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CdsSoftFilter.c
-  版 本 号   : 初稿
-  作    者   : y00151394
-  生成日期   : 2013年07月30日
-  最近修改   :
-  功能描述   : CDS软过滤功能
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2013年07月30日
-    作    者   : y00151394
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -61,22 +43,7 @@ extern VOS_UINT32 CDS_IpFragmentProc( VOS_UINT8              *pucEpsbID,
    5 函数实现
 ******************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : CDS_IsIpv4FragInfoEq
- 功能描述  : 判断IPV4分片信息是否相同
- 输入参数  :
- 输出参数  :
- 返 回 值  : 相同返回PS_TRUE；不同返回PS_FALSE.
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年02月07日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_IsIpv4FragInfoEq(const CDS_IP_DATA_INFO_STRU *pstSrc,
                                       const CDS_IP_DATA_INFO_STRU *pstTarget)
 {
@@ -106,22 +73,7 @@ VOS_UINT32 CDS_IsIpv4FragInfoEq(const CDS_IP_DATA_INFO_STRU *pstSrc,
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IsIpv6FragInfoEq
- 功能描述  : 判断IPV6分片信息是否相同
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2014年02月07日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_IsIpv6FragInfoEq(const CDS_IP_DATA_INFO_STRU *pstSrc,
                                       const CDS_IP_DATA_INFO_STRU *pstTarget)
 {
@@ -151,42 +103,13 @@ VOS_UINT32 CDS_IsIpv6FragInfoEq(const CDS_IP_DATA_INFO_STRU *pstSrc,
     return PS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv4MaskedAddrCmp
- 功能描述  : 判断两个IPV4地址与Mask相与后的结果是否相同。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年08月04日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv4MaskedAddrCmp(const IPV4_ADDR_UN *a1, const IPV4_ADDR_UN *m, const IPV4_ADDR_UN *a2)
 {
     return (!!((a1->ulIpAddr ^ a2->ulIpAddr) & m->ulIpAddr));
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_IPFragmentType
- 功能描述  : 根据MF和Fragment Offset的值来区分IP分片的类型。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_IPFragmentType(VOS_UINT16 usMF, VOS_UINT16 usFragOffset)
 {
 
@@ -215,21 +138,7 @@ VOS_UINT32 CDS_IPFragmentType(VOS_UINT16 usMF, VOS_UINT16 usFragOffset)
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DecodeIPSecHdrs
- 功能描述  : 解析IPSec AH/ESP头
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DecodeIPSecHdr(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *pstIpInfo)
 {
     AH_HDR_STRU     *pstAhHdr;
@@ -263,21 +172,7 @@ VOS_VOID CDS_DecodeIPSecHdr(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *p
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DecodeTransportLayer
- 功能描述  : 解析传输层信息
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DecodeTransportLayer(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *pstIpInfo)
 {
 
@@ -314,21 +209,7 @@ VOS_VOID CDS_DecodeTransportLayer(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_S
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DecodeIpv4Hdr
- 功能描述  : 解析IPv4头
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DecodeIpv4Hdr(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *pstIpInfo)
 {
     IPV4_HDR_STRU      *pstIpv4Hdr;
@@ -355,41 +236,13 @@ VOS_VOID CDS_DecodeIpv4Hdr(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *ps
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_IsIpSecPacket
- 功能描述  : 根据Protocol字段判断是否是IPSec数据包
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_IsIPSecPacket(VOS_UINT8 ucProtocol)
 {
     return (VOS_UINT32)((IPV4_PROTOCOL_AUTH == ucProtocol) || (IPV4_PROTOCOL_ESP == ucProtocol));
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DecodeIpv4Packet
- 功能描述  : 解析IPv4数据包
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年1月4日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DecodeIpv4Packet(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *pstIpInfo)
 {
 
@@ -416,22 +269,7 @@ VOS_VOID CDS_DecodeIpv4Packet(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU 
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv6AddrEqual
- 功能描述  : 判断两个IPV6地址是否相同
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv6AddrEqual(const IPV6_ADDR_UN *a1, const IPV6_ADDR_UN *a2)
 {
     return (0 == ( (a1->aulIpAddr[0] ^ a2->aulIpAddr[0]) |
@@ -440,22 +278,7 @@ VOS_UINT32 CDS_Ipv6AddrEqual(const IPV6_ADDR_UN *a1, const IPV6_ADDR_UN *a2)
                     (a1->aulIpAddr[3] ^ a2->aulIpAddr[3])));
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv6MaskedAddrCmp
- 功能描述  : 判断两个IPV6地址与Mask相与后的结果。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2013年08月04日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv6MaskedAddrCmp(const IPV6_ADDR_UN *a1, const IPV6_ADDR_UN *m, const IPV6_ADDR_UN *a2)
 {
 
@@ -466,22 +289,7 @@ VOS_UINT32 CDS_Ipv6MaskedAddrCmp(const IPV6_ADDR_UN *a1, const IPV6_ADDR_UN *m, 
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv6ExtHdr
- 功能描述  : 判断是否是IPV6的扩展头
- 输入参数  :
- 输出参数  :
- 返 回 值  :
 
- 调用函数  :
- 被调函数  :
-
- 修改历史  :
-    1.日    期   : 2012年05月08日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv6ExtHdr(VOS_UINT8 ucNextHdr)
 {
     return (VOS_UINT32)((IPV6_NEXTHDR_HOP == ucNextHdr)
@@ -493,21 +301,7 @@ VOS_UINT32 CDS_Ipv6ExtHdr(VOS_UINT8 ucNextHdr)
             || (IPV6_NEXTHDR_DEST == ucNextHdr));
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DecodeIpv6Hdr
- 功能描述  : 解析IPv6头
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DecodeIpv6Hdr(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *pstIpInfo)
 {
     IPV6_HDR_STRU       *pstIpv6Hdr;
@@ -524,21 +318,7 @@ VOS_VOID CDS_DecodeIpv6Hdr(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *ps
     return ;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DecodeIpv6ExtHdr
- 功能描述  : 解析IPv6扩展头.
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DecodeIpv6ExtHdr(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *pstIpInfo)
 {
     VOS_UINT8              ucNextHdr;
@@ -622,21 +402,7 @@ VOS_VOID CDS_DecodeIpv6ExtHdr(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU 
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_DecodeIpv6Packet
- 功能描述  : 解析IPv6数据包
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年1月4日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CDS_DecodeIpv6Packet(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU *pstIpInfo)
 {
 
@@ -662,21 +428,7 @@ VOS_VOID CDS_DecodeIpv6Packet(const TTF_MEM_ST *pstIpPkt, CDS_IP_DATA_INFO_STRU 
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIpv4SrcAddr
- 功能描述  : 匹配IPv4源地址
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchIpv4SrcAddr(IPV4_ADDR_UN  unSrcAddr, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
 
@@ -699,21 +451,7 @@ VOS_UINT32 CDS_MatchIpv4SrcAddr(IPV4_ADDR_UN  unSrcAddr, const CDS_SOFTFILTER_IN
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIpv4DestAddr
- 功能描述  : 匹配IPv4目的地址
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchIpv4DestAddr(IPV4_ADDR_UN unDestAddr, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
 
@@ -736,21 +474,7 @@ VOS_UINT32 CDS_MatchIpv4DestAddr(IPV4_ADDR_UN unDestAddr, const CDS_SOFTFILTER_I
 
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIpv4ServiceType
- 功能描述  : 匹配IPv4服务类型
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchServiceType(VOS_UINT8  ucServiceType, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
 
@@ -769,21 +493,7 @@ VOS_UINT32 CDS_MatchServiceType(VOS_UINT8  ucServiceType, const CDS_SOFTFILTER_I
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIpv6SrcAddr
- 功能描述  : 匹配IPv6源地址
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchIpv6SrcAddr(const IPV6_ADDR_UN  *pstSrcAddr, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
     if (PS_TRUE != pstSoftFilter->bitOpLcIpv6AddrAndMask)
@@ -802,21 +512,7 @@ VOS_UINT32 CDS_MatchIpv6SrcAddr(const IPV6_ADDR_UN  *pstSrcAddr, const CDS_SOFTF
     return PS_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIpv6DestAddr
- 功能描述  : 匹配IPv6目的地址
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchIpv6DestAddr(const IPV6_ADDR_UN *pstDestAddr, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
 
@@ -835,21 +531,7 @@ VOS_UINT32 CDS_MatchIpv6DestAddr(const IPV6_ADDR_UN *pstDestAddr, const CDS_SOFT
     return PS_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIpv6FlowLable
- 功能描述  : 匹配IPv6 FlowLable字段
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchIpv6FlowLable(VOS_UINT32   ulFlowLabel, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
     if (PS_TRUE != pstSoftFilter->bitOpFlowLabelType)
@@ -868,21 +550,7 @@ VOS_UINT32 CDS_MatchIpv6FlowLable(VOS_UINT32   ulFlowLabel, const CDS_SOFTFILTER
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIpProtocol
- 功能描述  : 匹配过滤器中的Protocol字段。IPv4为Protocol字段，IPv6为NextHeader字段。
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchIpProtocol(VOS_UINT8 ucProtocol, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
     if (PS_TRUE != pstSoftFilter->bitOpProtocolId)
@@ -900,21 +568,7 @@ VOS_UINT32 CDS_MatchIpProtocol(VOS_UINT8 ucProtocol, const CDS_SOFTFILTER_INFO_S
     }
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIPSecSPI
- 功能描述  : 匹配IPSec SPI值
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchIPSecSPI(const CDS_IP_DATA_INFO_STRU *pstIpInfo, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
     if (PS_TRUE != pstSoftFilter->bitOpSecuParaIndex)
@@ -937,21 +591,7 @@ VOS_UINT32 CDS_MatchIPSecSPI(const CDS_IP_DATA_INFO_STRU *pstIpInfo, const CDS_S
     return PS_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchSrcPort
- 功能描述  : 匹配源端口号
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchSrcPort(VOS_UINT16 usSrcPort, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
     /*单源端口*/
@@ -984,21 +624,7 @@ VOS_UINT32 CDS_MatchSrcPort(VOS_UINT16 usSrcPort, const CDS_SOFTFILTER_INFO_STRU
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchDestPort
- 功能描述  : 匹配目的端口号
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchDestPort(VOS_UINT16 usDestPort, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
     /*单目的端口*/
@@ -1031,21 +657,7 @@ VOS_UINT32 CDS_MatchDestPort(VOS_UINT16 usDestPort, const CDS_SOFTFILTER_INFO_ST
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIpv4SoftFilter
- 功能描述  : 匹配IPv4过滤器
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchIpv4SoftFilter(const CDS_IP_DATA_INFO_STRU *pstIpInfo, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
     /*匹配源IPv4地址*/
@@ -1093,21 +705,7 @@ VOS_UINT32 CDS_MatchIpv4SoftFilter(const CDS_IP_DATA_INFO_STRU *pstIpInfo, const
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_MatchIpv6SoftFilter
- 功能描述  : 匹配IPv6过滤器
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_MatchIpv6SoftFilter(const CDS_IP_DATA_INFO_STRU *pstIpInfo, const CDS_SOFTFILTER_INFO_STRU *pstSoftFilter)
 {
     /*匹配源IPv6地址*/
@@ -1161,21 +759,7 @@ VOS_UINT32 CDS_MatchIpv6SoftFilter(const CDS_IP_DATA_INFO_STRU *pstIpInfo, const
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv4PktSoftFilter
- 功能描述  : IPv4数据包软过滤
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv4PktSoftFilter(const TTF_MEM_ST *pstIpPkt, IPF_RESULT_STRU *pstIpfResult, const CDS_ENTITY_STRU *pstCdsEntity)
 {
     CDS_IP_DATA_INFO_STRU           stIpInfo        = {0};
@@ -1217,21 +801,7 @@ VOS_UINT32 CDS_Ipv4PktSoftFilter(const TTF_MEM_ST *pstIpPkt, IPF_RESULT_STRU *ps
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv6PktSoftFilter
- 功能描述  : IPv6数据包软过滤
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_Ipv6PktSoftFilter(const TTF_MEM_ST *pstIpPkt, IPF_RESULT_STRU *pstIpfResult,const CDS_ENTITY_STRU *pstCdsEntity)
 {
 
@@ -1276,21 +846,7 @@ VOS_UINT32 CDS_Ipv6PktSoftFilter(const TTF_MEM_ST *pstIpPkt, IPF_RESULT_STRU *ps
 }
 
 
-/*****************************************************************************
- 函 数 名  : CDS_Ipv4PktSoftFilter
- 功能描述  : IPv4数据包软过滤
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CDS_IpSoftFilter(TTF_MEM_ST *pstIpPkt, VOS_UINT16 *pusResult, const CDS_ENTITY_STRU *pstCdsEntity)
 {
     VOS_UINT32           ulResult;
@@ -1342,21 +898,7 @@ VOS_UINT32 CDS_IpSoftFilter(TTF_MEM_ST *pstIpPkt, VOS_UINT16 *pusResult, const C
     return PS_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : CDS_SetUlSoftFilter
- 功能描述  : 设置上行软过滤器
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史  :
-    1.日    期   : 2013年8月1日
-      作    者   : y00151394
-      修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CDS_SetUlSoftFilter(const CDS_SOFTFILTER_INFO_STRU *pstUlFilterInfo, VOS_UINT32 ulFilterNum)
 {
 

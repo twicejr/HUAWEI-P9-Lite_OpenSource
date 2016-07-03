@@ -1,0 +1,420 @@
+/*
+ * Hisilicon Ltd. Hi3650 SoC
+ *
+ * Copyright (C) 2012-2014 Hisilicon Ltd.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 as
+ * publishhed by the Free Software Foundation.
+ */
+
+ /{
+	hisi_ipc: ipc@e896b000 {
+		#address-cells = <2>;
+		#size-cells = <2>;
+		compatible = "hisilicon,HiIPCV230";
+		reg = <0x0 0xe896b000 0x0 0x1000>;
+		interrupts = <0 192 4>, <0 193 4>;
+		clocks = <&pclk>;
+		clock-names = "apb_pclk";
+
+		/*
+		 * "remote processor type"
+		 * <remote_processor_type: meaning>
+		 * <0: GIC_1>;
+		 * <1: GIC_2>;
+		 * <2: IOM3>;
+		 * <3: LPM3>;
+		 * <4: HIFI>;
+		 * <5: MODEM_A9>;
+		 * <6: MODEM_BBE16>;
+		 * <7: IVP>;
+		 * <8: COMM>;
+		 *
+		 * "remote processor"
+		 * <remote_processor, remote_processor_type>
+		 * <"HI3650_GIC_1",	0>;
+		 * <"HI3650_GIC_2",	1>;
+		 * <"HI3650_IOM3_XXX",	2>;
+		 * <"HI3650_DEFAULT_XXX",	3>;
+		 * <"HI3650_LPM3_XXX",	3>;
+		 * <"HI3650_HIFI_XXX",	4>;
+		 * <"HI3650_MODEM_A9_XXX",	5>;
+		 * <"HI3650_MODEM_BBE16_XXX",	6>;
+		 * <"HI3650_IVP_XXX",	7>;
+		 * <"HI3650_COMM_XXX",	8>;
+		 */
+		remote_processor_num = <23>;/*don't forget to increase the number when add a mailbox channel or decrease when delete one*/
+		remote_processor = "HI3650_GIC_1",
+				"HI3650_GIC_2",
+				"HI3650_LPM3_MBX0",
+				"HI3650_DEFAULT_MBX1",
+				"HI3650_HIFI_MBX2",
+				"HI3650_DEFAULT_MBX3",
+				"HI3650_IOM3_MBX4",
+				"HI3650_IVP_MBX5",
+				"HI3650_IVP_MBX6",
+				/*******************maybe used in the future
+				"HI3650_DEFAULT_MBX7",
+				"HI3650_DEFAULT_MBX8",
+				"HI3650_DEFAULT_MBX9",	
+				********************/			
+				"HI3650_IOM3_MBX10",
+				"HI3650_IOM3_MBX11",
+				"HI3650_IOM3_MBX12",
+				"HI3650_LPM3_MBX13",
+				"HI3650_LPM3_MBX14",
+				"HI3650_LPM3_MBX15",
+				"HI3650_LPM3_MBX16",
+				"HI3650_LPM3_MBX17",
+				"HI3650_HIFI_MBX18",
+				/*******************maybe used in the future
+				"HI3650_MODEM_A9_MBX19",
+				"HI3650_MODEM_A9_MBX20",
+				"HI3650_MODEM_A9_MBX21",
+				"HI3650_MODEM_BBE16_MBX22",
+				"HI3650_MODEM_BBE16_MBX23",
+				"HI3650_MODEM_BBE16_MBX24",
+				********************/	
+				"HI3650_IVP_MBX25",
+				"HI3650_IVP_MBX26",
+				"HI3650_LPM3_MBX27",
+				"HI3650_LPM3_MBX28",
+				"HI3650_HIFI_MBX29";
+				/*******************maybe used in the future
+				"HI3650_LPM3_MBX30";
+				********************/
+		/*remote_processor_type = <0 1 3 3 4 3 2 3 3 3 3 3 2 2 2 3 3 3 3 3 4 5 5 5 6 6 6 7 7 3 3 3 3>;*/
+		remote_processor_type = <0 1 3 3 4 3 2 7 7 2 2 2 3 3 3 3 3 4 7 7 3 3 4>;/*don't forget to increase the number when add a mailbox channel or decrease when delete one*/
+		unlock_key = <0x1ACCE551>;
+		capability = <8>;
+		status = "disable";
+
+		/*
+		 * "func"
+		 * <mbox_type, is_src_mbox, is_des_mbox>;
+		 */
+		mailboxes = <21>;/*don't forget to increase the number when add a mailbox channel or decrease when delete one*/
+		mailbox-0 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 197 4>;
+			src_remote_processor = "HI3650_LPM3_MBX0";
+			des_remote_processor = "HI3650_GIC_1";
+			src_bit = <3>;
+			des_bit = <0>;
+			index = <0>;
+		};
+
+		mailbox-1 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 198 4>;
+			src_remote_processor = "HI3650_DEFAULT_MBX1";
+			des_remote_processor = "HI3650_GIC_1";
+			src_bit = <3>;
+			des_bit = <0>;
+			index = <1>;
+		};
+
+		mailbox-2 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 199 4>;
+			src_remote_processor = "HI3650_HIFI_MBX2";
+			des_remote_processor = "HI3650_GIC_1";
+			src_bit = <4>;
+			des_bit = <0>;
+			index = <2>;
+		};
+
+		mailbox-3 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 200 4>;
+			src_remote_processor = "HI3650_DEFAULT_MBX3";
+			des_remote_processor = "HI3650_GIC_1";
+			src_bit = <3>;
+			des_bit = <0>;
+			index = <3>;
+		};
+
+		mailbox-4 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 201 4>;
+			src_remote_processor = "HI3650_IOM3_MBX4";
+			des_remote_processor = "HI3650_GIC_1";
+			src_bit = <2>;
+			des_bit = <0>;
+			index = <4>;
+		};
+
+		mailbox-5 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 202 4>;
+			src_remote_processor = "HI3650_IVP_MBX5";
+			des_remote_processor = "HI3650_GIC_2";
+			src_bit = <7>;
+			des_bit = <1>;
+			index = <5>;
+		};
+
+		mailbox-6 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 203 4>;
+			src_remote_processor = "HI3650_IVP_MBX6";
+			des_remote_processor = "HI3650_GIC_2";
+			src_bit = <7>;
+			des_bit = <1>;
+			index = <6>;
+		};
+/*******************maybe used in the future
+		mailbox-7 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 204 4>;
+			src_remote_processor = "HI3650_DEFAULT_MBX7";
+			des_remote_processor = "HI3650_GIC_2";
+			src_bit = <3>;
+			des_bit = <1>;
+			index = <7>;
+		};
+
+		mailbox-8 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 205 4>;
+			src_remote_processor = "HI3650_DEFAULT_MBX8";
+			des_remote_processor = "HI3650_GIC_2";
+			src_bit = <3>;
+			des_bit = <1>;
+			index = <8>;
+		};
+
+		mailbox-9 {
+			compatible = "HiIPCV230,rx-mailbox-fast";
+			func = <1 0 1>;
+			interrupts = <0 206 4>;
+			src_remote_processor = "HI3650_DEFAULT_MBX9";
+			des_remote_processor = "HI3650_GIC_2";
+			src_bit = <3>;
+			des_bit = <1>;
+			index = <9>;
+		};
+********************/
+		mailbox-10 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_IOM3_MBX10";
+			src_bit = <0>;
+			des_bit = <2>;
+			index = <10>;
+		};
+
+		mailbox-11 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_IOM3_MBX11";
+			src_bit = <0>;
+			des_bit = <2>;
+			index = <11>;
+		};
+
+		mailbox-12 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_IOM3_MBX12";
+			src_bit = <0>;
+			des_bit = <2>;
+			index = <12>;
+		};
+
+		mailbox-13 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_LPM3_MBX13";
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <13>;
+		};
+
+		mailbox-14 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_2";
+			des_remote_processor = "HI3650_LPM3_MBX14";
+			src_bit = <1>;
+			des_bit = <3>;
+			index = <14>;
+		};
+
+		mailbox-15 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_LPM3_MBX15";
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <15>;
+		};
+
+		mailbox-16 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_LPM3_MBX16";
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <16>;
+		};
+
+		mailbox-17 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_2";
+			des_remote_processor = "HI3650_LPM3_MBX17";
+			src_bit = <1>;
+			des_bit = <3>;
+			index = <17>;
+		};
+
+		mailbox-18 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_2";
+			des_remote_processor = "HI3650_HIFI_MBX18";
+			src_bit = <1>;
+			des_bit = <4>;
+			index = <18>;
+		};
+/*******************maybe used in the future
+		mailbox-19 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_MODEM_A9_MBX19";
+			src_bit = <0>;
+			des_bit = <5>;
+			index = <19>;
+		};
+
+		mailbox-20 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_MODEM_A9_MBX20";
+			src_bit = <0>;
+			des_bit = <5>;
+			index = <20>;
+		};
+
+		mailbox-21 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_MODEM_A9_MBX21";
+			src_bit = <0>;
+			des_bit = <5>;
+			index = <21>;
+		};
+
+		mailbox-22 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_MODEM_BBE16_MBX22";
+			src_bit = <0>;
+			des_bit = <6>;
+			index = <22>;
+		};
+
+		mailbox-23 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_MODEM_BBE16_MBX23";
+			src_bit = <0>;
+			des_bit = <6>;
+			index = <23>;
+		};
+
+		mailbox-24 {
+			compatible = "HiIPCV230,tx-mailbox-fast";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_MODEM_BBE16_MBX24";
+			src_bit = <0>;
+			des_bit = <6>;
+			index = <24>;
+		};
+********************/
+		mailbox-25 {
+			compatible = "HiIPCV230,mailbox-comm";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_IVP_MBX25";
+			src_bit = <0>;
+			des_bit = <7>;
+			index = <25>;
+		};
+
+		mailbox-26 {
+			compatible = "HiIPCV230,mailbox-comm";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_IVP_MBX26";
+			src_bit = <0>;
+			des_bit = <7>;
+			index = <26>;
+		};
+
+		mailbox-27 {
+			compatible = "HiIPCV230,mailbox-comm";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_LPM3_MBX27";
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <27>;
+		};
+
+		mailbox-28 {
+			compatible = "HiIPCV230,mailbox-comm";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_LPM3_MBX28";
+			src_bit = <0>;
+			des_bit = <3>;
+			index = <28>;
+		};
+
+		mailbox-29 {
+			compatible = "HiIPCV230,mailbox-comm";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_1";
+			des_remote_processor = "HI3650_HIFI_MBX29";
+			src_bit = <0>;
+			des_bit = <4>;
+			index = <29>;
+		};
+		/*The mailbox-29 and mailbox-30  is comm-mailbox in SOC but fast-mailbox in software, define the src and des here, if need use, add it below*/
+/*******************maybe used in the future
+		mailbox-30 {
+			compatible = "HiIPCV230,mailbox-comm";
+			func = <1 1 0>;
+			src_remote_processor = "HI3650_GIC_2";
+			des_remote_processor = "HI3650_LPM3_MBX30";
+			src_bit = <1>;
+			des_bit = <3>;
+			index = <30>;
+		};
+********************/
+	};
+ };

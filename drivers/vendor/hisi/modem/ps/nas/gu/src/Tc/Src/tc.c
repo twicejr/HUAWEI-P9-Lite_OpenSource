@@ -307,23 +307,7 @@ VOS_VOID Tc_SndRabmTestReq(VOS_UINT8 ucMode)
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Tc_SndRabmTestLoopReq
- *  FUNCTION : 向RABM发送LOOP TEST消息
- *  INPUT    : VOS_UINT8 ucMode      模式信息
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   张志勇      2004.05.24   新规作成
-      2.日    期   : 2012年09月07日
-        作    者   : l00171473
-        修改内容   : 内存清零
 
-      3.日    期   : 2012年9月18日
-        作    者   : z40661
-        修改内容   : DTS2012091600237,TC环回存在问题。
- ************************************************************************/
 VOS_VOID Tc_SndRabmTestLoopReq(VOS_UINT8 ucMode)
 {
     VOS_UINT8                       k;                                                      /* 定义循环变量                             */
@@ -485,7 +469,6 @@ VOS_VOID Tc_SndRrcfTestControlMsg(VOS_UINT32 ulMode)
 
 
 
-/* Deleted by wx270776 for OM融合, 2015-7-16, begin */
 //RFA模块被OM删除，此段代码不起作用，故删除
 #if 0
 /***********************************************************************
@@ -553,22 +536,8 @@ VOS_VOID Tc_SndRfaTestControlMsg(VOS_UINT32 ulMsgName)
     return;
 }
 #endif
-/* Deleted by wx270776 for OM融合, 2015-7-16, end */
 
-/*****************************************************************************
-函 数 名  : Tc_SndMtaResetStoredPosInfoInd
-功能描述  : TC向MTA发送清除定位辅助数据指示消息
-输入参数  : enUePosTech         UE Positioning Technology
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_VOID Tc_SndMtaResetStoredPosInfoInd(TC_UE_POS_TECH_ENUM_UINT8 enUePosTech)
 {
     TCMTA_RESET_UE_POS_STORED_INFO_STRU         *pstResetInd;
@@ -656,19 +625,7 @@ VOS_VOID Tc_RcvRabmTestCnf(VOS_VOID *pMsg)
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Tc_RcvRabmTestLoopCnf
- *  FUNCTION : 收到RABM的响应，向网侧回响应消息。
- *  INPUT    : VOS_VOID
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   张志勇      2004.05.24   新规作成
-      2.日    期   : 2013年3月30日
-        作    者   : l00167671
-        修改内容   : 主动上报AT命令控制下移至C核
- ************************************************************************/
+
 VOS_VOID Tc_RcvRabmTestLoopCnf()
 {
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8             enCurrUtranMode;
@@ -691,9 +648,7 @@ VOS_VOID Tc_RcvRabmTestLoopCnf()
         /* 闪灯: WCDMA PS环回建立 */
         if (TC_CN_DOMAIN_PS == g_TcInfo.ucCnDomain)
         {
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             NAS_MMC_SndMsccDataTranAttri(NAS_MSCC_PIF_DATATRAN_ATTRI_PDP_ACT);
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
         }
         break;
     case TC_OPEN_UE_TEST_LOOP:
@@ -710,9 +665,7 @@ VOS_VOID Tc_RcvRabmTestLoopCnf()
         /* 闪灯: WCDMA PS环回释放 */
         if (TC_CN_DOMAIN_PS == g_TcInfo.ucCnDomain)
         {
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             NAS_MMC_SndMsccDataTranAttri(NAS_MSCC_PIF_DATATRAN_ATTRI_PDP_DEACT);
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
         }
         break;
     default:
@@ -845,21 +798,7 @@ VOS_VOID Tc_RcvRabmRabInd(VOS_VOID *pMsg)
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Tc_SndRlcTcModeInfo
- *  FUNCTION : 向RLC发送TC模式信息
- *  INPUT    : VOS_UINT8    ucTcFlag    TC环回启停标志
-               VOS_UINT8    ucTcMode    TC环回模式信息
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
-      1. L47619      2007.03.22   MAPS3000
 
-  2.日    期   : 2012年7月14日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseI: 确认当前UTRAN模式，进而确认当前的接收PID.
- ************************************************************************/
 VOS_VOID  Tc_SndRlcTcModeInfo(VOS_UINT8 ucTcFlag, VOS_UINT8 ucTcMode)
 {
     TC_RLC_TEST_IND_STRU    *pTcRlcTestInd;
@@ -913,26 +852,7 @@ VOS_VOID  Tc_SndRlcTcModeInfo(VOS_UINT8 ucTcFlag, VOS_UINT8 ucTcMode)
 }
 
 
-/***********************************************************************
- *  MODULE   : Tc_RcvCloseLoop
- *  FUNCTION : 判断是否启动回环测试，配置LB参数
- *  INPUT    : VOS_UINT8  * pRcvTcMsg    TC_CLOSE_UE_TEST_LOOP消息指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
- 1.张 志 勇     2004.05.24   新规作成
- 2.L47619       2006.01.10   问题单:A32D01571
- 3.日    期   : 2010年3月16日
-   作    者   : z00163274
-   修改内容   : 问题单AT2D17622修改
- 4.日    期   : 2013年8月29日
-   作    者   : w00242748
-   修改内容   : KLOC告警清理
- 5.日    期   : 2015年6月9日
-   作    者   : wx270776
-   修改内容   : TAS需求: 通知MTC环回状态
- ************************************************************************/
+
 VOS_VOID Tc_RcvCloseLoop(VOS_UINT8 * pRcvTcMsg)
 {
     VOS_UINT8       i,k;                                                                    /* 定义循环变量                             */
@@ -1023,20 +943,7 @@ VOS_VOID Tc_RcvCloseLoop(VOS_UINT8 * pRcvTcMsg)
     }
 }
 
-/***********************************************************************
- *  MODULE   : Tc_RcvOpenLoop
- *  FUNCTION : 判断是否启动回环测试，配置LB参数
- *  INPUT    : VOS_UINT8
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
- 1.张 志 勇     s2004.05.24   新规作成
- 2.日    期   : 2015年6月9日
-   作    者   : wx270776
-   修改内容   : TAS需求: 通知MTC环回状态
 
- ************************************************************************/
 VOS_VOID Tc_RcvOpenLoop()
 {
     if(TC_MSG_INVALID != g_TcInfo.ucMsgType)
@@ -1075,24 +982,7 @@ VOS_VOID Tc_RcvOpenLoop()
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Tc_RcvActRbTest
- *  FUNCTION : 通知nas其它task激活
- *  INPUT    : VOS_UINT8
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   张志勇      2004.05.25   新规作成
-      2.   L47619      2006.08.24   问题单: A32D05570
-      3.   L47619      2006.09.08   问题单: A32D06342
-      4.日    期   : 2011年9月14日
-        作    者   : l00171473
-        修改内容   : V7R1PhaseII, TC环回调整，删除向MMC发送激活
-      5.日    期   : 2015年6月9日
-        作    者   : wx270776
-        修改内容   : TAS需求: 通知MTC环回状态
- ************************************************************************/
+
 VOS_VOID Tc_RcvActRbTest()
 {
     if(TC_MSG_INVALID != g_TcInfo.ucMsgType)
@@ -1105,9 +995,7 @@ VOS_VOID Tc_RcvActRbTest()
     case TC_NORMAL_MODE:
         g_TcInfo.ucMsgType = TC_ACT_RB_TEST_MODE;                                       /* 记录正在处理的消息类型                   */
 
-        /* Deleted by wx270776 for OM融合, 2015-7-16, begin */
         //Tc_SndRfaTestControlMsg(ID_TC_RFA_ACT_REQ);
-        /* Deleted by wx270776 for OM融合, 2015-7-16, end */
 
         if (NAS_UTRANCTRL_UTRAN_MODE_FDD == NAS_UTRANCTRL_GetCurrUtranMode())
         {
@@ -1136,25 +1024,7 @@ VOS_VOID Tc_RcvActRbTest()
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Tc_RcvDeactRbTest
- *  FUNCTION : 通知nas其它task去激活
- *  INPUT    : VOS_UINT8
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   张志勇      2004.05.25   新规作成
-      2.   张志勇      2004.11.23   修改发送去激活cmp消息的时机，在发送DataReq以前
-      3.   L47619      2006.08.24   问题单: A32D05570
-      4.   L47619      2006.09.08   问题单: A32D06342
-      5. 日    期   : 2011年9月14日
-         作    者   : l00171473
-         修改内容   : V7R1PhaseII, TC环回调整，删除向MMC发送去激活
-      6.日    期    : 2015年6月9日
-        作    者    : wx270776
-        修改内容    : TAS需求: 通知MTC环回状态
- ************************************************************************/
+
 VOS_VOID Tc_RcvDeactRbTest()
 {
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8             enCurrUtranMode;
@@ -1170,9 +1040,7 @@ VOS_VOID Tc_RcvDeactRbTest()
     case TC_CLOSE_TEST_LOOP:
         g_TcInfo.ucMsgType = TC_DEACT_RB_TEST_MODE;                                     /* 记录正在处理的消息类型                   */
 
-        /* Deleted by wx270776 for OM融合, 2015-7-16, begin */
         //Tc_SndRfaTestControlMsg(ID_TC_RFA_DEACT_REQ);
-        /* Deleted by wx270776 for OM融合, 2015-7-16, end */
 
         enCurrUtranMode = NAS_UTRANCTRL_GetCurrUtranMode();
         if ((VOS_TRUE == g_TcInfo.ucSndWphyCloseLoopNtfLable)
@@ -1202,20 +1070,7 @@ VOS_VOID Tc_RcvDeactRbTest()
     return;
 }
 
-/*****************************************************************************
-函 数 名  : Tc_RcvResetUePosStoredInfo
-功能描述  : 收到RESET UE POSITIONING STORED INFORMATION消息的处理
-输入参数  : pRcvTcMsg
-输出参数  : 无
-返 回 值  : 无
-调用函数  :
-被调函数  :
 
-修改历史
-1.日    期  : 2012年7月09日
-  作    者  : L47619
-  修改内容  : 新生成函数
-*****************************************************************************/
 VOS_VOID Tc_RcvResetUePosStoredInfo(VOS_UINT8 * pRcvTcMsg)
 {
     TC_UE_POS_TECH_ENUM_UINT8           enUePosTech;
@@ -1566,24 +1421,7 @@ VOS_VOID Tc_RcvPhyTestInterfaceCnf(TC_TEST_INTERFACE_CNF_STRU *pTestInterfaceCnf
 
 
 
-/***********************************************************************
- *  MODULE   : Tc_RcvCloseTchLoopCmd
- *  FUNCTION : 接收到GSM下的TC_CLOSE_TCH_LOOP_CMD原语
- *  INPUT    : pRcvTcMsg         收到的原语码流指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   L47619   2006.02.17  根据问题单新增:A32D02126
-      2.   L47619   2006.08.24   问题单: A32D05570
-      3. 日    期   : 2011年9月14日
-         作    者   : l00171473
-         修改内容   : V7R1PhaseII, TC环回调整，删除向MMC发送激活
-      4. 日    期   : 2015年5月15日
-         作    者   : wx270776
-         修改内容   : 增加TAS环回可维可测
 
- ************************************************************************/
 VOS_VOID Tc_RcvCloseTchLoopCmd(VOS_UCHAR *pRcvTcMsg)
 {
     TC_CLOSE_TCH_LOOP_REQ_STRU  TcCloseTchLoopReq;
@@ -1632,24 +1470,7 @@ VOS_VOID Tc_RcvCloseTchLoopCmd(VOS_UCHAR *pRcvTcMsg)
 
 
 
-/***********************************************************************
- *  MODULE   : Tc_RcvOpenLoopCmd
- *  FUNCTION : 接收到GSM下的TC_OPEN_LOOP_CMD原语
- *  INPUT    : pRcvTcMsg         收到的原语码流指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   L47619   2006.02.17  根据问题单新增:A32D02126
-      2.   L47619   2006.08.24   问题单: A32D05570
-      3. 日    期   : 2011年9月14日
-         作    者   : l00171473
-         修改内容   : V7R1PhaseII, TC环回调整，删除向MMC发送激活
-      4. 日    期   : 2015年5月15日
-         作    者   : wx270776
-         修改内容   : 增加TAS环回可维可测
 
- ************************************************************************/
 VOS_VOID Tc_RcvOpenLoopCmd(VOS_UCHAR *pRcvTcMsg)
 {
     TC_OPEN_TCH_LOOP_REQ_STRU   TcOpenTchLoopReq;
@@ -1891,20 +1712,7 @@ VOS_VOID  Tc_SndGrmGtmRelRsp(VOS_VOID)
 }
 
 
-/***********************************************************************
- *  MODULE   : Tc_RcvGrmGtmSetupCnf
- *  FUNCTION : 接收到GRM的建立环回确认信息
- *  INPUT    : pMsg             TC_GTM_SETUP_CNF_MSG消息指针
- *  OUTPUT   : VOID
- *  RETURN   : VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   L47619   2006.04.12  根据问题单新增:A32D08523
-      2. 日    期   : 2011年9月14日
-         作    者   : l00171473
-         修改内容   : V7R1PhaseII, TC环回调整，删除向MMC发送激活
 
- ************************************************************************/
 VOS_VOID  Tc_RcvGrmGtmSetupCnf(VOS_UCHAR *pMsg)
 {
     TC_GTM_SETUP_CNF_MSG *pSetupCnfMsg;
@@ -1920,10 +1728,8 @@ VOS_VOID  Tc_RcvGrmGtmSetupCnf(VOS_UCHAR *pMsg)
             g_TcInfo.ucTcState = TC_GPRS_CLOSE_TCH_LOOP;
             g_TcInfo.ucMsgType = TC_MSG_INVALID;
 
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             /* 闪灯: GPRS环回建立 */
             NAS_MMC_SndMsccDataTranAttri(NAS_MSCC_PIF_DATATRAN_ATTRI_PDP_ACT);
-			/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
         }
         else   /*失败*/
         {
@@ -1953,22 +1759,7 @@ VOS_VOID  Tc_RcvGrmGtmSetupCnf(VOS_UCHAR *pMsg)
 
 
 
-/***********************************************************************
- *  MODULE   : Tc_RcvGrmGtmRelInd
- *  FUNCTION : 接收到GRM的释放环回指示信息
- *  INPUT    : VOID
- *  OUTPUT   : VOID
- *  RETURN   : VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   L47619   2006.04.12  根据问题单新增:A32D08523
-      2. 日    期   : 2011年9月14日
-         作    者   : l00171473
-         修改内容   : V7R1PhaseII, TC环回调整，删除向MMC发送激活
-      3. 日    期   : 2013年3月30日
-         作    者   : l00167671
-         修改内容   : 主动上报AT命令控制下移至C核
- ************************************************************************/
+
 VOS_VOID  Tc_RcvGrmGtmRelInd(VOS_VOID)
 {
     if(TC_MSG_INVALID != g_TcInfo.ucMsgType)
@@ -1993,10 +1784,8 @@ VOS_VOID  Tc_RcvGrmGtmRelInd(VOS_VOID)
         /*切换状态*/
         g_TcInfo.ucTcState = TC_NORMAL_MODE;
 
-		/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         /* 闪灯: GPRS环回释放 */
         NAS_MMC_SndMsccDataTranAttri(NAS_MSCC_PIF_DATATRAN_ATTRI_PDP_DEACT);
-		/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
     }
     else
     {
@@ -2048,20 +1837,7 @@ VOS_VOID  Tc_RcvGrmMsgHandle(struct MsgCB *pMsg)
 
 
 
-/***********************************************************************
- *  MODULE   : Tc_RcvGprsTestModeCmd
- *  FUNCTION : 接收到GPRS下的GPRS_TEST_MODE_CMD
- *  INPUT    : pRcvTcMsg        收到的GPRS_TEST_MODE_CMD原语指针
- *  OUTPUT   : VOID
- *  RETURN   : VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   L47619   2006.04.12  根据问题单新增:A32D08523
-      2. 日    期   : 2011年9月14日
-         作    者   : l00171473
-         修改内容   : V7R1PhaseII, TC环回调整，删除向MMC发送激活
 
- ************************************************************************/
 VOS_VOID  Tc_RcvGprsTestModeCmd(VOS_UCHAR *pRcvTcMsg)
 {
     VOS_UINT32      ulResult;
@@ -2100,26 +1876,7 @@ VOS_VOID  Tc_RcvGprsTestModeCmd(VOS_UCHAR *pRcvTcMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : Tc_SndGrmGtmEgprsSetupReq
- 功能描述  : 向GRM发送建立EGPRS环回请求信息
- 输入参数  : ucModeFlg - 环回模式
- 输出参数  : 无
- 返 回 值  : VOS_OK    -  消息发送成功
-             VOS_ERR   -  消息发送失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年08月05日
-    作    者   : L47619
-    修改内容   : EGPRS环回特性
-
-  2.日    期   : 2011年8月11日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011081101776, TC和GRM之间的接口增加环回模式参数
-
-*****************************************************************************/
 VOS_UINT32  Tc_SndGrmGtmEgprsSetupReq(
     VOS_UINT8                           ucModeFlg
 
@@ -2224,22 +1981,7 @@ VOS_VOID  Tc_SndGrmGtmEgprsRelRsp(VOS_VOID)
 
 
 
-/***********************************************************************
- *  MODULE   : Tc_RcvGrmGtmEgprsSetupCnf
- *  FUNCTION : 接收到GRM的建立EGPRS环回确认信息
- *  INPUT    : pMsg             GTM_TC_SRB_SETUP_CNF消息指针
- *  OUTPUT   : VOID
- *  RETURN   : VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   L47619   2008.08.05  EGPRS特性
-      2. 日    期   : 2011年9月14日
-         作    者   : l00171473
-         修改内容   : V7R1PhaseII, TC环回调整，删除向MMC发送激活
-      3. 日    期   : 2013年3月30日
-         作    者   : l00167671
-         修改内容   : 主动上报AT命令控制下移至C核
- ************************************************************************/
+
 VOS_VOID  Tc_RcvGrmGtmEgprsSetupCnf(VOS_UCHAR *pMsg)
 {
     GTM_TC_SRB_SETUP_CNF_MSG *pSetupCnfMsg;
@@ -2255,10 +1997,8 @@ VOS_VOID  Tc_RcvGrmGtmEgprsSetupCnf(VOS_UCHAR *pMsg)
             g_TcInfo.ucTcState = TC_EGPRS_CLOSE_TCH_LOOP;
             g_TcInfo.ucMsgType = TC_MSG_INVALID;
 
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
             /* 闪灯: EGPRS环回建立 */
             NAS_MMC_SndMsccDataTranAttri(NAS_MSCC_PIF_DATATRAN_ATTRI_PDP_ACT);
-            /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
         }
         else   /*失败*/
         {
@@ -2287,22 +2027,7 @@ VOS_VOID  Tc_RcvGrmGtmEgprsSetupCnf(VOS_UCHAR *pMsg)
 
 
 
-/***********************************************************************
- *  MODULE   : Tc_RcvGrmGtmEgprsRelInd
- *  FUNCTION : 接收到GRM的释放EGPRS环回指示信息
- *  INPUT    : VOID
- *  OUTPUT   : VOID
- *  RETURN   : VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   L47619   2008.08.05  EGPRS特性
-      2. 日    期   : 2011年9月14日
-         作    者   : l00171473
-         修改内容   : V7R1PhaseII, TC环回调整，删除向MMC发送去激活
-      3. 日    期   : 2013年3月30日
-         作    者   : l00167671
-         修改内容   : 主动上报AT命令控制下移至C核
- ************************************************************************/
+
 VOS_VOID  Tc_RcvGrmGtmEgprsRelInd(VOS_VOID)
 {
     if(TC_MSG_INVALID != g_TcInfo.ucMsgType)
@@ -2327,10 +2052,8 @@ VOS_VOID  Tc_RcvGrmGtmEgprsRelInd(VOS_VOID)
         /*切换状态*/
         g_TcInfo.ucTcState = TC_NORMAL_MODE;
 
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
         /* 闪灯: EGPRS环回释放 */
         NAS_MMC_SndMsccDataTranAttri(NAS_MSCC_PIF_DATATRAN_ATTRI_PDP_DEACT);
-        /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
     }
     else
     {
@@ -2340,25 +2063,7 @@ VOS_VOID  Tc_RcvGrmGtmEgprsRelInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Tc_RcvEgprsLoopBackCmd
- 功能描述  : 接收到EGPRS下的TC_EGPRS_START_RADIO_BLOCK_LOOPBACK_CMD
- 输入参数  : ucModeFlg - 环回模式
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年08月05日
-    作    者   : L47619
-    修改内容   : EGPRS环回特性
-
-  2.日    期   : 2011年8月11日
-    作    者   : A00165503
-    修改内容   : 问题单号: DTS2011081101776, TC和GRM之间的接口增加环回模式参数
-
-*****************************************************************************/
 VOS_VOID  Tc_RcvEgprsLoopBackCmd(
     VOS_UINT8                           ucModeFlg
 )
@@ -2463,19 +2168,7 @@ VOS_VOID Tc_RcvMmDataInd(VOS_VOID *pMsg)
     return;
 }
 
-/***********************************************************************
- *  MODULE   : Tc_RcvGmmDataInd
- *  FUNCTION : 收到TCGMM_DATA_IND原语的处理
- *  INPUT    : VOS_VOID     *pMsg           收到的MM原语头指针
- *  OUTPUT   : VOS_VOID
- *  RETURN   : VOS_VOID
- *  NOTE     :
- *  HISTORY  :
-      1.   张志勇      2004.05.24   新规作成
-      2.日    期   : 2011年8月11日
-        作    者   : A00165503
-        修改内容   : 问题单号: DTS2011081101776, TC和GRM之间的接口增加环回模式参数
- ************************************************************************/
+
 VOS_VOID Tc_RcvGmmDataInd(VOS_VOID *pMsg)
 {
     TCGMM_DATA_IND_STRU                *pRcvMsg;                                                /* 收到的消息                               */
@@ -2550,21 +2243,7 @@ VOS_VOID Tc_TaskInit()
 }
 
 
-/* 050205 huxuef Add for Pid消息分发函数 begin */
-/*******************************************************************************
-  Module:   Tc_TaskEntry
-  Function: TC Pid提供为FID的消息处理函数
-  Input:    struct MsgCB * pMsg
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   张志勇      2005.02.05   新规作成
-      2.   L47619   2006.02.21   问题单:A32D02126
-      3.  日    期   : 2011年10月11日
-          作    者   : l00171473
-          修改内容   : V7R1 phase II, TC环回调整，维护PS TC业务存在标志
-*******************************************************************************/
+
 VOS_VOID Tc_TaskEntry (struct MsgCB * pRcvMsg)
 {
     MSG_HEADER_STRU*        pMsgHeader;
@@ -2716,25 +2395,7 @@ VOS_UINT32  Tc_GetMode(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_TC_RcvMmRelInd
- 功能描述  : 收到MM上报的连接释放信息，根据TC的状态进行处理
- 输入参数  : struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月14日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2015年5月15日
-   作    者   : wx270776
-   修改内容   : TAS环回测试可维可测
-
-*****************************************************************************/
 VOS_VOID NAS_TC_RcvMmRelInd(
     struct MsgCB                       *pstMsg
 )
@@ -2783,30 +2444,7 @@ VOS_VOID NAS_TC_RcvMmRelInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_TC_RcvGmmRelInd
- 功能描述  : 收到GMM上报的连接释放消息，根据TC的状态进行处理
- 输入参数  : struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月14日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
- 2.日    期   : 2012年4月12日
-   作    者   : A00165503
-   修改内容   : DTS2012041202517: CS域环回, PS域连接释放, TC直接进入去激活
-                状态, 导致环回失败
-
- 3.日    期   : 2015年5月15日
-   作    者   : wx270776
-   修改内容   : TAS环回测试可维可测
-
-*****************************************************************************/
 VOS_VOID NAS_TC_RcvGmmRelInd(
     struct MsgCB                       *pstMsg
 )
@@ -2861,21 +2499,7 @@ VOS_VOID NAS_TC_RcvGmmRelInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_TC_RcvGmmHandoverInd
- 功能描述  : 收到GMM上报的异系统切换消息，根据TC的状态进行处理
- 输入参数  : struct MsgCB                       *pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年9月14日
-   作    者   : L00171473
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_TC_RcvGmmHandoverInd(
     struct MsgCB                       *pstMsg
 )
@@ -2909,21 +2533,7 @@ VOS_VOID NAS_TC_RcvGmmHandoverInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_TC_SndWphyCloseLoopNtf
- 功能描述  : 给WPHY发送消息通知进入换回模式
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月17日
-   作    者   : z60575
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_TC_SndWphyCloseLoopNtf(VOS_VOID)
 {
     VOS_UINT32                          ulLength;
@@ -2963,21 +2573,7 @@ VOS_VOID NAS_TC_SndWphyCloseLoopNtf(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_TC_SndWphyOpenLoopNtf
- 功能描述  : 给WPHY发送消息通知退出入换回模式
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2012年8月17日
-   作    者   : z60575
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_TC_SndWphyOpenLoopNtf(VOS_VOID)
 {
     VOS_UINT32                          ulLength;
@@ -3017,21 +2613,7 @@ VOS_VOID NAS_TC_SndWphyOpenLoopNtf(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_TC_SndMtcStatusInfoInd
- 功能描述  : 给MTC发送消息通知TC环回测试状态信息
- 输入参数  : MTC_NAS_TC_STATUS_ENUM_UINT16    enTcStatus  TC环回状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月5日
-   作    者   : wx270776
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_TC_SndMtcStatusInfoInd(
     MTC_NAS_TC_STATUS_ENUM_UINT16       enTcStatus
 )
@@ -3073,21 +2655,7 @@ VOS_VOID NAS_TC_SndMtcStatusInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_TC_GetNetRatMode
- 功能描述  : 获取当前接入技术
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : MTC_NAS_RAT_MODE_ENUM_UINT16  通知MTC当前接入技术
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月5日
-   作    者   : wx270776
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 MTC_NAS_RAT_MODE_ENUM_UINT16 NAS_TC_GetNetRatMode(VOS_VOID)
 {
     NAS_MML_NET_RAT_TYPE_ENUM_UINT8     enCurNetRat;

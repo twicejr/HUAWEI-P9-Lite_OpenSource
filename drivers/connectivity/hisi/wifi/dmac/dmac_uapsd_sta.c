@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_uapsd_sta.c
-  版 本 号   : 初稿
-  作    者   : l00280485
-  生成日期   : 2014年12月19日
-  最近修改   :
-  功能描述   : sta uapsd特性所在函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月19日
-    作    者   : l00280485
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -43,21 +26,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_trigger_sp_sta
- 功能描述  : 确定是否发送qos null帧触发一个uapsd sp
- 输入参数  : pst_dmac_vap:dmac_vap 结构体
- 输出参数  : oal_void
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月20日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_uapsd_trigger_sp_sta(dmac_vap_stru *pst_dmac_vap)
 {
     oal_uint8                 uc_tid;
@@ -118,21 +87,7 @@ oal_void dmac_uapsd_trigger_sp_sta(dmac_vap_stru *pst_dmac_vap)
     	pst_mac_sta_pm_handle->uc_eosp_timeout_cnt = 0;
     }
 }
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_rx_process_data_sta
- 功能描述  : uapsd 特性下接收数据的处理
- 输入参数  : pst_dmac_vap:dmac_vap 结构体
- 输出参数  : oal_void
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月20日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_uapsd_rx_process_data_sta(dmac_vap_stru *pst_dmac_vap, oal_netbuf_stru *pst_netbuf)
 {
     oal_uint8                   uc_tid;
@@ -197,22 +152,7 @@ oal_void dmac_uapsd_rx_process_data_sta(dmac_vap_stru *pst_dmac_vap, oal_netbuf_
    }
 
 }
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_tx_process_data_sta
- 功能描述  : This functions handles a packet transmission event for STA mode based on
-                the protocol defined
- 输入参数  : pst_dmac_vap:dmac_vap 结构体 pst_tx_ctl: TX CB
- 输出参数  : oal_void
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月20日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint8 dmac_uapsd_tx_process_data_sta(dmac_vap_stru *pst_dmac_vap, mac_tx_ctl_stru *pst_tx_ctl)
 {
     oal_uint8                 uc_tid;
@@ -247,21 +187,7 @@ oal_uint8 dmac_uapsd_tx_process_data_sta(dmac_vap_stru *pst_dmac_vap, mac_tx_ctl
     return STA_PWR_SAVE_STATE_ACTIVE;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_uapsd_process_tx_complete_sta
- 功能描述  : uapsd 特性下发送完成中断的处理
- 输入参数  : pst_dmac_vap:dmac_vap 结构体 uc_dscr_status:发送描述符的状态 pst_netbuf: netbuf结构体
- 输出参数  : oal_void
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月20日
-    作    者   : liuzhengqi
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_uapsd_process_tx_complete_sta(dmac_vap_stru *pst_dmac_vap, oal_uint8 uc_dscr_status, oal_netbuf_stru *pst_netbuf)
 {
     oal_uint8                        uc_tid;

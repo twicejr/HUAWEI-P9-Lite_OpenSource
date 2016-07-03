@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEsmMain.c
-  Description     : 该C文件给出了SM_MAIN模块的实现
-  History           :
-     1.丁丽 00128736      2008-09-01  Draft Enact
-     2.杨茜惠 00135146    2009-03-06  Modify  BA8D01127
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -101,11 +91,9 @@ VOS_VOID  NAS_ESM_TaskEntry(MsgBlock * pMsg)
 {
     /* 定义消息头指针*/
     PS_MSG_HEADER_STRU          *pHeader = VOS_NULL_PTR;
-    /*z00282933，多模OM融合添加 - BEGIN*/
     #if (VOS_WIN32 != VOS_OS_VER)
     DIAG_TRANS_IND_STRU stDiagTransInd;
     #endif
-    /*z00282933, 多模OM融合添加 - END*/
 
     /* 判断入口参数是否合法*/
     if( VOS_NULL_PTR == pMsg)
@@ -181,7 +169,6 @@ VOS_VOID  NAS_ESM_TaskEntry(MsgBlock * pMsg)
     {
         if (NAS_ESM_FAILURE == NAS_ESM_CompareEsmInfo())
         {
-            /*z00282933，多模OM融合添加 - BEGIN*/
             #if (VOS_WIN32 != VOS_OS_VER)
 
             NAS_ESM_MEM_SET_S(  &stDiagTransInd,
@@ -198,13 +185,10 @@ VOS_VOID  NAS_ESM_TaskEntry(MsgBlock * pMsg)
             /* 通过DIAG上报 */
             (VOS_VOID)LDRV_DIAG_COMMONREPORT(&stDiagTransInd);
             #endif
-            /*z00282933, 多模OM融合添加 - END*/
         }
     }
 
-    /*V7R2-DT ,l00195322,2014/5/7, ESM模块向路测软件上报信息有变的话，则主动上报,begin*/
     NAS_ESM_DtJudgeifNeedRpt();
-    /*V7R2-DT ,l00195322,2014/5/7, ESM模块向路测软件上报信息有变的话，则主动上报,end*/
 
     #if (FEATURE_PTM == FEATURE_ON)
     NAS_ESM_OmInfoIndProc();
@@ -358,18 +342,7 @@ VOS_VOID NAS_ESM_Init(VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_ESM_ClearEsmResource
- Discription    : 清空SM资源
- Input          : VOS_VOID
- Output         : VOS_VOID
- Return         : None
- History:
-      1.丁丽      00128736      2008-09-01  Draft Enact
-      2.sunbing   49683         2009-02-05  Modify
-      3.lihong    00150010      2010-02-10  Modify
-      4.liuhua    00212067      2012-09-06  Add support for double APN
-*****************************************************************************/
+
 VOS_VOID NAS_ESM_ClearEsmResource( VOS_VOID )
 {
     VOS_UINT32                          ulCnt               = NAS_ESM_NULL;
@@ -691,17 +664,7 @@ VOS_UINT32 CM_FidInit ( enum VOS_INIT_PHASE_DEFINE ip )
     return VOS_OK;
 }
 
-/*****************************************************************************
- Function Name  : LNAS_LPSOM_GetIpAddrInfo()
- Description    : 提供给PS OM的API，用于获取PDN IP ADDR
- Input          : APP_PS_CAMPED_CELL_INFO_STRU *pstCampedCellInfo
- Output         : APP_PS_CAMPED_CELL_INFO_STRU *pstCampedCellInfo
- Return Value   : VOS_VOID
 
- History        :
-      1.zhangwei 00103912      2011-05-25  Draft Enact
-
-*****************************************************************************/
 VOS_VOID LNAS_LPSOM_GetIpAddrInfo(APP_LPS_CAMPED_CELL_INFO_STRU *pstCampedCellInfo)
 {
     VOS_UINT32 i = 0;
@@ -719,16 +682,7 @@ VOS_VOID LNAS_LPSOM_GetIpAddrInfo(APP_LPS_CAMPED_CELL_INFO_STRU *pstCampedCellIn
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ESM_ClearEsmResoureWhenEstingEmcPdn
- Description     : 本地去激活所有非紧急承载
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.liuhua    00212067       2012-10-25  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ESM_ClearEsmResoureWhenEstingEmcPdn(VOS_VOID)
 {
     VOS_UINT32 ulCnt = 0;

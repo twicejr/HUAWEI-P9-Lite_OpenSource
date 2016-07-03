@@ -43,16 +43,7 @@ VOS_UINT32      NAS_LPP_UT_PRINTF(VOS_UINT32    ulBitPos,   VOS_UINT32  ulBitVal
     vos_printf("\n\tthe BitPos is %d,the DecodeValue is %d,theCurrentLen is %d\n",ulBitPos,ulBitValue,ulBitLen);
     return 1;
 }
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeNormalSmallInt
-Description     :解码通用小的非负整数
-Input           : 消息体码流
-Output          : None
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-5  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32     NAS_LPP_DecodeNormalSmallInt
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -104,17 +95,7 @@ VOS_UINT32     NAS_LPP_DecodeNormalSmallInt
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeExtObject
-Description     :解码网络侧可能存在的扩展项，本协议版本没有，直接跳过
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeExtObject
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -192,17 +173,7 @@ VOS_UINT32  NAS_LPP_DecodeExtObject
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeExtEnumerated
-Description     :解码可扩展枚举
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeExtEnumerated
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -237,19 +208,7 @@ VOS_UINT32  NAS_LPP_DecodeExtEnumerated
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEpduBody
-Description     :解码LPP_EPDU_BODY_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-EPDU-Body ::= OCTET STRING
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEpduBody
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -296,21 +255,7 @@ VOS_UINT32  NAS_LPP_DecodeEpduBody
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEpduIdentifier
-Description     :解码LPP_EPDU_IDENTIFIER_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-EPDU-ID ::= INTEGER (1..256)
 
-EPDU-Name ::= VisibleString (SIZE (1..32))
-
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
  VOS_UINT32  NAS_LPP_DecodeEpduIdentifier
  (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -368,21 +313,7 @@ History         :
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEpdu
-Description     :解码LPP_EPDU_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-EPDU ::= SEQUENCE {
-        ePDU-Identifier         EPDU-Identifier,
-        ePDU-Body               EPDU-Body
-    }
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeEpdu
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -409,17 +340,7 @@ VOS_UINT32  NAS_LPP_DecodeEpdu
 
     return  NAS_LPP_DECODE_SUCC;
 }
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEpduSequence
-Description     :解码LPP_EPDU_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeEpduSequence
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -451,17 +372,7 @@ VOS_UINT32  NAS_LPP_DecodeEpduSequence
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReqCapEpdu
-Description     :解码LPP_EPDU_REQ_CAP_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-                EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeReqCapEpdu
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -481,17 +392,7 @@ VOS_UINT32  NAS_LPP_DecodeReqCapEpdu
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReqCapEcid
-Description     :解码LPP_ECID_REQ_CAP_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-        协议为空
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeReqCapEcid(
                                                     VOS_UINT8                       *pucDecodeBitStream,
                                                     VOS_UINT32                      *pulCurrentBitPos,
@@ -523,18 +424,7 @@ VOS_UINT32  NAS_LPP_DecodeReqCapEcid(
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReqCapOTDOA
-Description     :解码LPP_OTDOA_REQ_CAP_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-    协议为空
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
 
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeReqCapOTDOA
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -567,23 +457,7 @@ VOS_UINT32  NAS_LPP_DecodeReqCapOTDOA
 
     return  NAS_LPP_DECODE_SUCC;
 }
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeAGNSS
-Description     :解码LPP_AGNSS_REQ_CAP_STRU结构体
-Input           : 消息体码流
-Output          : None
-ASN             :
-A-GNSS-RequestCapabilities ::= SEQUENCE {
-        gnss-SupportListReq             BOOLEAN,
-        assistanceDataSupportListReq    BOOLEAN,
-        locationVelocityTypesReq        BOOLEAN,
-        ...
-    }
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeReqCapAGNSS
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -648,17 +522,7 @@ VOS_UINT32  NAS_LPP_DecodeReqCapAGNSS
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReqCapCommonIEs
-Description     :解码commonIEsRequestCapabilities
-Input           : 消息体码流
-Output          : None
-ASN             :
-       协议为空
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeReqCapCommonIEs
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -695,28 +559,7 @@ VOS_UINT32  NAS_LPP_DecodeReqCapCommonIEs
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReqCapR9IEs
-Description     :解码RequestCapabilities-r9-IEs
-Input           : 消息体码流
-Output          : None
-ASN             :
 
-    RequestCapabilities-r9-IEs ::= SEQUENCE {
-        commonIEsRequestCapabilities        CommonIEsRequestCapabilities        OPTIONAL,   -- Need ON
-        a-gnss-RequestCapabilities          A-GNSS-RequestCapabilities          OPTIONAL,   -- Need ON
-        otdoa-RequestCapabilities           OTDOA-RequestCapabilities           OPTIONAL,   -- Need ON
-        ecid-RequestCapabilities            ECID-RequestCapabilities            OPTIONAL,   -- Need ON
-        epdu-RequestCapabilities            EPDU-Sequence                       OPTIONAL,   -- Need ON
-        ...
-    }
-
-
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeReqCapR9IEs
 (
     VOS_UINT8                              *pucDecodeBitStream,
@@ -824,22 +667,7 @@ VOS_UINT32  NAS_LPP_DecodeReqCapR9IEs
 
     return  NAS_LPP_DECODE_SUCC;
 }
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeExtReqCap
-Description     :解码RequestCapabilities的criticalExtensions
-Input           : 消息体码流
-Output          : None
-asn             :
-c1                      CHOICE {
-                requestCapabilities-r9      RequestCapabilities-r9-IEs,
-                spare3 NULL, spare2 NULL, spare1 NULL
-            },
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-
-History         :
-  1.WANGENSHENG 00324863           2015-05-7  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeExtReqCap
 (
     VOS_UINT8                                      *pucDecodeBitStream,
@@ -876,26 +704,7 @@ VOS_UINT32  NAS_LPP_DecodeExtReqCap
 }
 
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReqCap
-Description     :解码RequestCapabilities
-Input           : 消息体码流
-Output          : None
-ASN             :
-RequestCapabilities ::= SEQUENCE {
-        criticalExtensions      CHOICE {
-            c1                      CHOICE {
-                requestCapabilities-r9      RequestCapabilities-r9-IEs,
-                spare3 NULL, spare2 NULL, spare1 NULL
-            },
-            criticalExtensionsFuture    SEQUENCE {}
-        }
-    }
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeReqCap
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -931,26 +740,7 @@ VOS_UINT32  NAS_LPP_DecodeReqCap
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeErrorCause
-Description     :解码errorCause
-Input           : 消息体码流
-Output          : None
-ASN             :
-    errorCause  ENUMERATED {
-    undefined,
-    lppMessageHeaderError,
-    lppMessageBodyError,
-    epduError,
-    incorrectDataValue,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeErrorCause
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -982,28 +772,7 @@ VOS_UINT32  NAS_LPP_DecodeErrorCause
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCommonIEsError
-Description     :解码CommonIEsError
-Input           : 消息体码流
-Output          : None
-ASN             :
-CommonIEsError ::= SEQUENCE {
-        errorCause  ENUMERATED {
-        undefined,
-        lppMessageHeaderError,
-        lppMessageBodyError,
-        epduError,
-        incorrectDataValue,
-        ...
-    }
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCommonIEsError
 (
     VOS_UINT8                       *pucDecodeBitStream,
@@ -1024,20 +793,7 @@ VOS_UINT32  NAS_LPP_DecodeCommonIEsError
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEpduSequenceError
-Description     :解码EPDU-Sequence
-Input           : 消息体码流
-Output          : None
-ASN             :
-EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU
 
-maxEPDU INTEGER ::= 16
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEpduSequenceError
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1057,20 +813,7 @@ VOS_UINT32  NAS_LPP_DecodeEpduSequenceError
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEpduError
-Description     :解码EPDU-Sequence
-Input           : 消息体码流
-Output          : None
-ASN             :
-EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU
 
-maxEPDU INTEGER ::= 16
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEpduError
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1123,23 +866,7 @@ VOS_UINT32  NAS_LPP_DecodeEpduError
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeErrorIEsR9
-Description     :解码Error-r9-IEs
-Input           : 消息体码流
-Output          : None
-ASN             :
-Error-r9-IEs ::= SEQUENCE {
-    commonIEsError  CommonIEsError  OPTIONAL,-- Need ON
-    ...,
-    epdu-Error      EPDU-Sequence   OPTIONAL -- Need ON
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeErrorIEsR9
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1238,22 +965,7 @@ VOS_UINT32  NAS_LPP_DecodeErrorIEsR9
     }
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeError
-Description     :解码ErrorMessage
-Input           : 消息体码流
-Output          : None
-ASN             :
-Error ::= CHOICE {
-    error-r9                    Error-r9-IEs,
-    criticalExtensionsFuture    SEQUENCE {}
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeError
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1285,26 +997,7 @@ VOS_UINT32  NAS_LPP_DecodeError
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeErrorCause
-Description     :解码errorCause
-Input           : 消息体码流
-Output          : None
-ASN             :
-    errorCause  ENUMERATED {
-    undefined,
-    lppMessageHeaderError,
-    lppMessageBodyError,
-    epduError,
-    incorrectDataValue,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeAbortCause
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1333,27 +1026,7 @@ VOS_UINT32  NAS_LPP_DecodeAbortCause
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCommonIEsAbort
-Description     :解码criticalExtensions
-Input           : 消息体码流
-Output          : None
-ASN             :
-CommonIEsAbort ::= SEQUENCE {
-        abortCause  ENUMERATED {
-        undefined,
-        stopPeriodicReporting,
-        targetDeviceAbort,
-        networkAbort,
-        ...
-    }
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCommonIEsAbort
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1374,20 +1047,7 @@ VOS_UINT32  NAS_LPP_DecodeCommonIEsAbort
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEpduSequencAbort
-Description     :解码EPDU-Sequence
-Input           : 消息体码流
-Output          : None
-ASN             :
-EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU
 
-maxEPDU INTEGER ::= 16
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEpduSequencAbort
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1407,23 +1067,7 @@ VOS_UINT32  NAS_LPP_DecodeEpduSequencAbort
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEpduAbort
-Description     :解码epdu-Abort
-Input           : 消息体码流
-Output          : None
-ASN             :
-Abort-r9-IEs ::= SEQUENCE {
-        ommonIEsAbort   CommonIEsAbort  OPTIONAL,	-- Need ON
-        ...,
-        epdu-Abort      EPDU-Sequence   OPTIONAL	-- Need ON
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEpduAbort
 (
     VOS_UINT8                           *pucDecodeBitStream,
@@ -1477,23 +1121,7 @@ VOS_UINT32  NAS_LPP_DecodeEpduAbort
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCritExtAbortR9
-Description     :解码criticalExtensions
-Input           : 消息体码流
-Output          : None
-ASN             :
-Abort-r9-IEs ::= SEQUENCE {
-        ommonIEsAbort   CommonIEsAbort  OPTIONAL,	-- Need ON
-        ...,
-        epdu-Abort      EPDU-Sequence   OPTIONAL	-- Need ON
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCritExtAbortR9
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1591,26 +1219,7 @@ VOS_UINT32  NAS_LPP_DecodeCritExtAbortR9
     }
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCritExtAbort
-Description     :解码criticalExtensions
-Input           : 消息体码流
-Output          : None
-ASN             :
-Abort ::= SEQUENCE {
-        criticalExtensions      CHOICE {
-        c1                  CHOICE {
-        abort-r9        Abort-r9-IEs,
-        spare3 NULL, spare2 NULL, spare1 NULL
-        },
-        criticalExtensionsFuture    SEQUENCE {}
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCritExtAbort
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1640,26 +1249,7 @@ VOS_UINT32  NAS_LPP_DecodeCritExtAbort
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeError
-Description     :解码ErrorMessage
-Input           : 消息体码流
-Output          : None
-ASN             :
-Abort ::= SEQUENCE {
-        criticalExtensions      CHOICE {
-        c1                  CHOICE {
-        abort-r9        Abort-r9-IEs,
-        spare3 NULL, spare2 NULL, spare1 NULL
-        },
-        criticalExtensionsFuture    SEQUENCE {}
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeAbortMsg
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1690,26 +1280,7 @@ VOS_UINT32  NAS_LPP_DecodeAbortMsg
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeError
-Description     :解码ErrorMessage
-Input           : 消息体码流
-Output          : None
-ASN             :
-Abort ::= SEQUENCE {
-        criticalExtensions      CHOICE {
-        c1                  CHOICE {
-        abort-r9        Abort-r9-IEs,
-        spare3 NULL, spare2 NULL, spare1 NULL
-        },
-        criticalExtensionsFuture    SEQUENCE {}
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeAbort
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1728,24 +1299,7 @@ VOS_UINT32  NAS_LPP_DecodeAbort
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCommonIesReqLocationInfo
-Description     :解码CommonIEsRequestLocationInformation
-Input           : 消息体码流
-Output          : None
-ASN             :
-    LocationInformationType ::= ENUMERATED {
-        locationEstimateRequired,
-        locationMeasurementsRequired,
-        locationEstimatePreferred,
-        locationMeasurementsPreferred,
-        ...
-    }
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeLocationInfoType
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1775,22 +1329,7 @@ VOS_UINT32  NAS_LPP_DecodeLocationInfoType
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeLocationTriggeredReporting
-Description     :解码CommonIEsRequestLocationInformation
-Input           : 消息体码流
-Output          : None
-ASN             :
-    TriggeredReportingCriteria ::=      SEQUENCE {
-        cellChange                          BOOLEAN,
-        reportingDuration                   ReportingDuration,
-        ...
-    }
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeLocationTriggeredReporting
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1832,18 +1371,7 @@ VOS_UINT32  NAS_LPP_DecodeLocationTriggeredReporting
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReportingAmount
-Description     :解码enReportAmount
-Input           : 消息体码流
-Output          : None
-ASN             :
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeReportingAmount
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1856,18 +1384,7 @@ VOS_UINT32  NAS_LPP_DecodeReportingAmount
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReportingAmount
-Description     :解码enReportAmount
-Input           : 消息体码流
-Output          : None
-ASN             :
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeReportingInterval
 (
     VOS_UINT8                       *pucDecodeBitStream,
@@ -1887,27 +1404,7 @@ VOS_UINT32  NAS_LPP_DecodeReportingInterval
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeLocationPeriodicalReporting
-Description     :解码TriggeredReportingCriteria
-Input           : 消息体码流
-Output          : None
-ASN             :
-    PeriodicalReportingCriteria ::=     SEQUENCE {
-        reportingAmount                     ENUMERATED {
-                                                ra1, ra2, ra4, ra8, ra16, ra32,
-                                                ra64, ra-Infinity
-                                            } DEFAULT ra-Infinity,
-        reportingInterval                   ENUMERATED {
-                                                noPeriodicalReporting, ri0-25,
-                                                ri0-5, ri1, ri2, ri4, ri8, ri16, ri32, ri64
-                                            }
-    }
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeLocationPeriodicalReporting
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1946,23 +1443,7 @@ VOS_UINT32  NAS_LPP_DecodeLocationPeriodicalReporting
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeLocationAdditonInfo
-Description     :解码AdditionalInformation
-Input           : 消息体码流
-Output          : None
-ASN             :
-    AdditionalInformation ::= ENUMERATED {
-        onlyReturnInformationRequested,
-        mayReturnAditionalInformation,
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeLocationAdditonInfo
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -1993,22 +1474,7 @@ VOS_UINT32  NAS_LPP_DecodeLocationAdditonInfo
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeHoriazontalAccuracy
-Description     :解码HorizontalAccuracy
-Input           : 消息体码流
-Output          : None
-ASN             :
-    HorizontalAccuracy ::= SEQUENCE {
-        accuracy        INTEGER(0..127),
-        confidence      INTEGER(0..100),
-        ...
-    }
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeHoriazontalAccuracy
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2056,23 +1522,7 @@ VOS_UINT32  NAS_LPP_DecodeHoriazontalAccuracy
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeVerticalAccuracy
-Description     :解码VerticalAccuracy
-Input           : 消息体码流
-Output          : None
-ASN             :
-    VerticalAccuracy ::= SEQUENCE {
-        accuracy        INTEGER(0..127),
-        confidence      INTEGER(0..100),
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeVerticalAccuracy
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2120,23 +1570,7 @@ VOS_UINT32  NAS_LPP_DecodeVerticalAccuracy
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeVerticalAccuracy
-Description     :解码VerticalAccuracy
-Input           : 消息体码流
-Output          : None
-ASN             :
-    VerticalAccuracy ::= SEQUENCE {
-        accuracy        INTEGER(0..127),
-        confidence      INTEGER(0..100),
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeResponseTime
 (
     VOS_UINT8                       *pucDecodeBitStream,
@@ -2175,25 +1609,7 @@ VOS_UINT32  NAS_LPP_DecodeResponseTime
 
 
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeLocationQos
-Description     :解码QoS
-Input           : 消息体码流
-Output          : None
-ASN             :
-    QoS ::= SEQUENCE {
-        horizontalAccuracy          HorizontalAccuracy      OPTIONAL,   -- Need ON
-        verticalCoordinateRequest   BOOLEAN,
-        verticalAccuracy            VerticalAccuracy        OPTIONAL,   -- Need ON
-        responseTime                ResponseTime            OPTIONAL,   -- Need ON
-        velocityRequest             BOOLEAN,
-        ...
-    }
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeLocationQos
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2274,23 +1690,7 @@ VOS_UINT32  NAS_LPP_DecodeLocationQos
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeLocationEnvironment
-Description     :解码Environment
-Input           : 消息体码流
-Output          : None
-ASN             :
-    Environment ::= ENUMERATED {
-        badArea,
-        notBadArea,
-        mixedArea,
-        ...
-    }
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeLocationEnvironment
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2318,27 +1718,7 @@ VOS_UINT32  NAS_LPP_DecodeLocationEnvironment
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeLocationCoordinateType
-Description     :解码LocationCoordinateTypes
-Input           : 消息体码流
-Output          : None
-ASN             :
-    LocationCoordinateTypes ::= SEQUENCE {
-        ellipsoidPoint                                          BOOLEAN,
-        ellipsoidPointWithUncertaintyCircle                     BOOLEAN,
-        ellipsoidPointWithUncertaintyEllipse                    BOOLEAN,
-        polygon                                                 BOOLEAN,
-        ellipsoidPointWithAltitude                              BOOLEAN,
-        ellipsoidPointWithAltitudeAndUncertaintyEllipsoid       BOOLEAN,
-        ellipsoidArc                                            BOOLEAN,
-        ...
-    }
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeLocationCoordinateType
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2392,25 +1772,7 @@ VOS_UINT32  NAS_LPP_DecodeLocationCoordinateType
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeLocationVelocityTypes
-Description     :解码VelocityTypes
-Input           : 消息体码流
-Output          : None
-ASN             :
-    VelocityTypes ::= SEQUENCE {
-        horizontalVelocity                                      BOOLEAN,
-        horizontalWithVerticalVelocity                          BOOLEAN,
-        horizontalVelocityWithUncertainty                       BOOLEAN,
-        horizontalWithVerticalVelocityAndUncertainty            BOOLEAN,
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeLocationVelocityTypes
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2455,29 +1817,7 @@ VOS_UINT32  NAS_LPP_DecodeLocationVelocityTypes
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCommonIesReqLocationInfo
-Description     :解码CommonIEsRequestLocationInformation
-Input           : 消息体码流
-Output          : None
-ASN             :
-    CommonIEsRequestLocationInformation ::= SEQUENCE {
-        locationInformationType     LocationInformationType,
-        triggeredReporting          TriggeredReportingCriteria  OPTIONAL,   -- Cond ECID
-        periodicalReporting         PeriodicalReportingCriteria OPTIONAL,   -- Need ON
-        additionalInformation       AdditionalInformation       OPTIONAL,   -- Need ON
-        qos                         QoS                         OPTIONAL,   -- Need ON
-        environment                 Environment                 OPTIONAL,   -- Need ON
-        locationCoordinateTypes     LocationCoordinateTypes     OPTIONAL,   -- Need ON
-        velocityTypes               VelocityTypes               OPTIONAL,   -- Need ON
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCommonIesReqLocationInfo
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -2621,26 +1961,7 @@ VOS_UINT32  NAS_LPP_DecodeCommonIesReqLocationInfo
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssMethods
-Description     :解码GNSS-ID-Bitmap
-Input           : 消息体码流
-Output          : None
-ASN             :
-    GNSS-ID-Bitmap ::= SEQUENCE {
-        gnss-ids            BIT STRING {    gps         (0),
-                                            sbas        (1),
-                                            qzss        (2),
-                                            galileo     (3),
-                                            glonass     (4)  } (SIZE (1..16)),
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssMethods
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2679,25 +2000,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssMethods
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssPositioningInstructions
-Description     :解码GNSS-PositioningInstructions
-Input           : 消息体码流
-Output          : None
-ASN             :
-    GNSS-PositioningInstructions ::= SEQUENCE {
-        gnss-Methods                GNSS-ID-Bitmap,
-        fineTimeAssistanceMeasReq   BOOLEAN,
-        adrMeasReq                  BOOLEAN,
-        multiFreqMeasReq            BOOLEAN,
-        assistanceAvailability      BOOLEAN,
-        ...
-    }
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeGnssPositioningInstructions
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2751,22 +2054,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssPositioningInstructions
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeAgnssReqLocationInfo
-Description     :解码A-GNSS-RequestLocationInformatio
-Input           : 消息体码流
-Output          : None
-ASN             :
-    A-GNSS-RequestLocationInformation ::= SEQUENCE {
-        gnss-PositioningInstructions        GNSS-PositioningInstructions,
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeAgnssReqLocationInfo
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2807,22 +2095,7 @@ VOS_UINT32  NAS_LPP_DecodeAgnssReqLocationInfo
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeOtdoaReqLocationInfo
-Description     :解码OTDOA-RequestLocationInformation
-Input           : 消息体码流
-Output          : None
-ASN             :
-    OTDOA-RequestLocationInformation ::= SEQUENCE {
-        assistanceAvailability      BOOLEAN,
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeOtdoaReqLocationInfo
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2859,24 +2132,7 @@ VOS_UINT32  NAS_LPP_DecodeOtdoaReqLocationInfo
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEcellIdReqLocationInfo
-Description     :解码ECID-RequestLocationInformation
-Input           : 消息体码流
-Output          : None
-ASN             :
-    ECID-RequestLocationInformation ::= SEQUENCE {
-        requestedMeasurements       BIT STRING {    rsrpReq     (0),
-                                                    rsrqReq     (1),
-                                                    ueRxTxReq   (2) } (SIZE(1..8)),
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEcellIdReqLocationInfo
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2917,39 +2173,7 @@ VOS_UINT32  NAS_LPP_DecodeEcellIdReqLocationInfo
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEpduReqLocationInfo
-Description     :解码 EPDU-Sequence
-Input           : 消息体码流
-Output          : None
-ASN             :
-    EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU
 
-    maxEPDU INTEGER ::= 16
-
-    EPDU ::= SEQUENCE {
-        ePDU-Identifier         EPDU-Identifier,
-        ePDU-Body               EPDU-Body
-    }
-
-    EPDU-Identifier ::= SEQUENCE {
-        ePDU-ID                 EPDU-ID,
-        ePDU-Name               EPDU-Name       OPTIONAL,
-        ...
-    }
-
-    EPDU-ID ::= INTEGER (1..256)
-
-    EPDU-Name ::= VisibleString (SIZE (1..32))
-
-    EPDU-Body ::= OCTET STRING
-
-
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEpduReqLocationInfo
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -2969,27 +2193,7 @@ VOS_UINT32  NAS_LPP_DecodeEpduReqLocationInfo
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReqLocationInfo
-Description     :解码RequestLocationInformation
-Input           : 消息体码流
-Output          : None
-ASN             :
-    RequestLocationInformation-r9-IEs ::= SEQUENCE {
-        commonIEsRequestLocationInformation
-                                        CommonIEsRequestLocationInformation     OPTIONAL,   -- Need ON
-        a-gnss-RequestLocationInformation   A-GNSS-RequestLocationInformation   OPTIONAL,   -- Need ON
-        otdoa-RequestLocationInformation    OTDOA-RequestLocationInformation    OPTIONAL,   -- Need ON
-        ecid-RequestLocationInformation     ECID-RequestLocationInformation     OPTIONAL,   -- Need ON
-        epdu-RequestLocationInformation     EPDU-Sequence                       OPTIONAL,   -- Need ON
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeReqLocInfoR9IEs
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -3093,21 +2297,7 @@ VOS_UINT32  NAS_LPP_DecodeReqLocInfoR9IEs
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReqLocationInfo
-Description     :解码RequestLocationInformation
-Input           : 消息体码流
-Output          : None
-ASN             :
-    c1                      CHOICE {
-        requestLocationInformation-r9   RequestLocationInformation-r9-IEs,
-        spare3 NULL, spare2 NULL, spare1 NULL
-    },
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeExtReqLocationInfo
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -3140,27 +2330,7 @@ VOS_UINT32  NAS_LPP_DecodeExtReqLocationInfo
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeReqLocationInfo
-Description     :解码RequestLocationInformation
-Input           : 消息体码流
-Output          : None
-ASN             :
-    RequestLocationInformation ::= SEQUENCE {
-        criticalExtensions      CHOICE {
-            c1                      CHOICE {
-                requestLocationInformation-r9   RequestLocationInformation-r9-IEs,
-                spare3 NULL, spare2 NULL, spare1 NULL
-            },
-            criticalExtensionsFuture    SEQUENCE {}
-        }
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-06-02  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeReqLocationInfo
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -3191,18 +2361,7 @@ VOS_UINT32  NAS_LPP_DecodeReqLocationInfo
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeProAssistDataEPDU
-Description     :解码LPP_EPDU_PROVIDE_ASSIST_DATA_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-EPDU-Sequence ::= SEQUENCE (SIZE (1..maxEPDU)) OF EPDU
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeProAssistDataEPDU
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -3223,23 +2382,7 @@ VOS_UINT32  NAS_LPP_DecodeProAssistDataEPDU
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCellGlobalId
-Description     :解码LPP_ECGI_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-ECGI ::= SEQUENCE {
-    mcc             SEQUENCE (SIZE (3))     OF INTEGER (0..9),
-    mnc             SEQUENCE (SIZE (2..3))  OF INTEGER (0..9),
-    cellidentity    BIT STRING (SIZE (28))
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCellGlobalId
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -3264,20 +2407,7 @@ VOS_UINT32  NAS_LPP_DecodeCellGlobalId
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEarfcnRef
-Description     :解码LPP_ARFCN_VALUE_EUTRA_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-ARFCN-ValueEUTRA ::= INTEGER (0..maxEARFCN)
-maxEARFCN   INTEGER ::= 65535   -- Maximum value of EUTRA carrier frequency
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_DecodeEarfcnRef(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -3289,17 +2419,7 @@ VOS_VOID  NAS_LPP_DecodeEarfcnRef(
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeAntennaPortConfig
-Description     :解码LPP_ANTENNA_PORT_CONFIG_ENUM_UINT8
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeAntennaPortConfig
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -3328,17 +2448,7 @@ VOS_UINT32  NAS_LPP_DecodeAntennaPortConfig
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCpLength
-Description     :解码LPP_CP_LENGTH_ENUM_UINT8
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeCpLength
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -3366,19 +2476,7 @@ VOS_UINT32  NAS_LPP_DecodeCpLength
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodePrsBandWidth
-Description     :解码NAS_LPP_DecodePrsBandWidth
-Input           : 消息体码流
-Output          : None
-ASN             :
-prs-Bandwidth           ENUMERATED { n6, n15, n25, n50, n75, n100, ... },
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodePrsBandWidth
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -3407,19 +2505,7 @@ VOS_UINT32  NAS_LPP_DecodePrsBandWidth
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeNumDlFrames
-Description     :解码LPP_NUMDL_FRAMES_ENUM_UINT8
-Input           : 消息体码流
-Output          : None
-ASN             :
-numDL-Frames            ENUMERATED {sf-1, sf-2, sf-4, sf-6, ...},
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeNumDlFrames
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -3448,17 +2534,7 @@ VOS_UINT32  NAS_LPP_DecodeNumDlFrames
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeExtChoice
-Description     :解码可扩展choice项
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982         2015-05-21  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeExtChoice
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -3490,17 +2566,7 @@ VOS_UINT32  NAS_LPP_DecodeExtChoice
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeExtChoiceClockMoel
-Description     :解码可扩展choice项
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982         2015-05-21  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeExtChoiceMutingInfo(
                                     VOS_UINT8                       *pucDecodeBitStream,
                                     VOS_UINT32                      *pulCurrentBitPos,
@@ -3523,25 +2589,7 @@ VOS_UINT32  NAS_LPP_DecodeExtChoiceMutingInfo(
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeNumDlFrames
-Description     :解码LPP_NUMDL_FRAMES_ENUM_UINT8
-Input           : 消息体码流
-Output          : None
-ASN             :
-prs-MutingInfo-r9       CHOICE {
-    po2-r9                  BIT STRING (SIZE(2)),
-    po4-r9                  BIT STRING (SIZE(4)),
-    po8-r9                  BIT STRING (SIZE(8)),
-    po16-r9                 BIT STRING (SIZE(16)),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodePrsMutingInfoR9(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -3621,30 +2669,7 @@ VOS_UINT32  NAS_LPP_DecodePrsMutingInfoR9(
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodePrsInfo
-Description     :解码LPP_PRS_INFO_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-PRS-Info ::= SEQUENCE {
-    prs-Bandwidth           ENUMERATED { n6, n15, n25, n50, n75, n100, ... },
-    prs-ConfigurationIndex  INTEGER (0..4095),
-    numDL-Frames            ENUMERATED {sf-1, sf-2, sf-4, sf-6, ...},
-    ...,
-    prs-MutingInfo-r9       CHOICE {
-        po2-r9                  BIT STRING (SIZE(2)),
-        po4-r9                  BIT STRING (SIZE(4)),
-        po8-r9                  BIT STRING (SIZE(8)),
-        po16-r9                 BIT STRING (SIZE(16)),
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodePrsInfo(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -3746,30 +2771,7 @@ VOS_UINT32  NAS_LPP_DecodePrsInfo(
     }
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeOtdoaRefCellInfo
-Description     :解码LPP_OTDOA_REF_CELL_INFO_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-OTDOA-ReferenceCellInfo ::= SEQUENCE {
-    physCellId                  INTEGER (0..503),
-    cellGlobalId                ECGI                        OPTIONAL,       -- Need ON
-    earfcnRef                   ARFCN-ValueEUTRA            OPTIONAL,       -- Cond NotSameAsServ0
-    antennaPortConfig           ENUMERATED {ports1-or-2, ports4, ... }
-                                                            OPTIONAL,       -- Cond NotSameAsServ1
-    cpLength                    ENUMERATED { normal, extended, ... },
-    prsInfo                     PRS-Info                    OPTIONAL,       -- Cond PRS
-    ...,
-    [[ earfcnRef-v9a0           ARFCN-ValueEUTRA-v9a0       OPTIONAL        -- Cond NotSameAsServ2
-    ]]
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeOtdoaRefCellInfo
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -3917,35 +2919,7 @@ VOS_UINT32  NAS_LPP_DecodeOtdoaRefCellInfo
     }
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeOtdoaNeighbourCellInfoElement
-Description     :解码LPP_OTDOA_NEIGHBOUR_CELL_INFO_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-OTDOA-NeighbourCellInfoElement ::= SEQUENCE {
-    physCellId                          INTEGER (0..503),
-    cellGlobalId                        ECGI                OPTIONAL,       -- Need ON
-    earfcn                              ARFCN-ValueEUTRA    OPTIONAL,       -- Cond NotSameAsRef0
-    cpLength                            ENUMERATED {normal, extended, ...}
-                                                            OPTIONAL,       -- Cond NotSameAsRef1
-    prsInfo                             PRS-Info            OPTIONAL,       -- Cond NotSameAsRef2
-    antennaPortConfig                   ENUMERATED {ports-1-or-2, ports-4, ...}
-                                                            OPTIONAL,       -- Cond NotsameAsRef3
-    slotNumberOffset                    INTEGER (0..19)     OPTIONAL,       -- Cond NotSameAsRef4
-    prs-SubframeOffset                  INTEGER (0..1279)   OPTIONAL,       -- Cond InterFreq
-    expectedRSTD                        INTEGER (0..16383),
-    expectedRSTD-Uncertainty            INTEGER (0..1023),
-    ...,
-    [[ earfcn-v9a0          ARFCN-ValueEUTRA-v9a0           OPTIONAL        -- Cond NotSameAsRef5
-    ]]
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeOtdoaNeighbourCellInfoElement
 (
     VOS_UINT8                                   *pucDecodeBitStream,
@@ -4150,19 +3124,7 @@ VOS_UINT32  NAS_LPP_DecodeOtdoaNeighbourCellInfoElement
     }
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeNeighbourCellInfoList
-Description     :解码LPP_OTDOA_NEIGHBOUR_FREQ_INFO_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-OTDOA-NeighbourFreqInfo ::= SEQUENCE (SIZE (1..24)) OF OTDOA-NeighbourCellInfoElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeOtdoaNeighbourCellInfoList
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -4198,19 +3160,7 @@ VOS_UINT32  NAS_LPP_DecodeOtdoaNeighbourCellInfoList
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeOtdoaNeighbourCellInfo
-Description     :解码LPP_OTDOA_NEIGHOUR_CELL_INFO_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-OTDOA-NeighbourCellInfoList ::= SEQUENCE (SIZE (1..maxFreqLayers)) OF OTDOA-NeighbourFreqInfo
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeOtdoaNeighbourCellInfo
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -4291,26 +3241,7 @@ VOS_UINT32      NAS_LPP_DecodeOtdoaLocationServerErrorCause
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssErrorLocationServer
-Description     :解码LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-OTDOA-LocationServerErrorCauses ::= SEQUENCE {
-    cause       ENUMERATED  {   undefined,
-                                assistanceDataNotSupportedByServer,
-                                assistanceDataSupportedButCurrentlyNotAvailableByServer,
-                                ...
-                            },
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982          2015-05-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeOtdoaErrorLocationServer(
             VOS_UINT8                               *pucDecodeBitStream,
             VOS_UINT32                              *pulCurrentBitPos,
@@ -4390,28 +3321,7 @@ VOS_UINT32    NAS_LPP_DecodeOtdoaTargetDeviceErrorCause
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssErrorLocationServer
-Description     :解码LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-OTDOA-TargetDeviceErrorCauses ::= SEQUENCE {
-    cause       ENUMERATED {    undefined,
-                                assistance-data-missing,
-                                unableToMeasureReferenceCell,
-                                unableToMeasureAnyNeighbourCell,
-                                attemptedButUnableToMeasureSomeNeighbourCells,
-                                ...
-                            },
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982          2015-05-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeOtdoaTargetDevice(
             VOS_UINT8                               *pucDecodeBitStream,
             VOS_UINT32                              *pulCurrentBitPos,
@@ -4445,23 +3355,7 @@ VOS_UINT32  NAS_LPP_DecodeOtdoaTargetDevice(
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeOtdoaError
-Description     :解码LPP_OTDOA_ERROR_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-OTDOA-Error ::= CHOICE {
-    locationServerErrorCauses       OTDOA-LocationServerErrorCauses,
-    targetDeviceErrorCauses         OTDOA-TargetDeviceErrorCauses,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeOtdoaError(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -4502,24 +3396,7 @@ VOS_UINT32  NAS_LPP_DecodeOtdoaError(
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeProAssistDataOTDOA
-Description     :解码LPP_OTDOA_PROVIDE_ASSIST_DATA_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-OTDOA-ProvideAssistanceData ::= SEQUENCE {
-        otdoa-ReferenceCellInfo         OTDOA-ReferenceCellInfo             OPTIONAL,   -- Need ON
-        otdoa-NeighbourCellInfo         OTDOA-NeighbourCellInfoList         OPTIONAL,   -- Need ON
-        otdoa-Error                     OTDOA-Error                         OPTIONAL,   -- Need ON
-        ...
-    }
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-
-History         :
-  1.lifuxin 00253982          2015-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeProAssistDataOTDOA
 (
     VOS_UINT8                              *pucDecodeBitStream,
@@ -4636,18 +3513,7 @@ VOS_UINT32      NAS_LPP_DecodeGnssLocationServerErrorCause
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssErrorLocationServer
-Description     :解码LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982          2015-05-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssErrorLocationServer
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -4727,30 +3593,7 @@ VOS_UINT32      NAS_LPP_DecodeGnssTargetDeviceErrorCause
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssErrorLocationServer
-Description     :解码LPP_GNSS_LOCATION_SERVER_ERROR_CAUSE_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-TargetDeviceErrorCauses ::= SEQUENCE {
-    cause       ENUMERATED {    undefined,
-                                thereWereNotEnoughSatellitesReceived,
-                                assistanceDataMissing,
-                                notAllRequestedMeasurementsPossible,
-                                ...
-                            },
-    fineTimeAssistanceMeasurementsNotPossible       NULL        OPTIONAL,
-    adrMeasurementsNotPossible                      NULL        OPTIONAL,
-    multiFrequencyMeasurementsNotPossible           NULL        OPTIONAL,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982          2015-05-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssTargetDevice
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -4798,23 +3641,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssTargetDevice
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSError
-Description     :解码LPP_GNSS_ERROR_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-A-GNSS-Error ::= CHOICE {
-    locationServerErrorCauses       GNSS-LocationServerErrorCauses,
-    targetDeviceErrorCauses         GNSS-TargetDeviceErrorCauses,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982          2015-05-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSError
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -4862,17 +3689,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSError
      return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssIdWithExtNoChoice
-Description     :解码LPP_GNSS_ID_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeGnssIdWithExtNoChoice
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -4901,22 +3718,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssIdWithExtNoChoice
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssId
-Description     :解码LPP_GNSS_ID_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-ID ::= SEQUENCE {
-    gnss-id             ENUMERATED{ gps, sbas, qzss, galileo, glonass, ...},
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssId
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -4954,17 +3756,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssId
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssIdWithExtNoChoice
-Description     :解码LPP_GNSS_ID_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeSabsIdWithExtNoChoice
 (
     VOS_UINT8                       *pucDecodeBitStream,
@@ -4993,22 +3785,7 @@ VOS_UINT32  NAS_LPP_DecodeSabsIdWithExtNoChoice
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeSbasId
-Description     :解码LPP_SBAS_ID_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-SBAS-ID ::= SEQUENCE {
-    sbas-id             ENUMERATED { waas, egnos, msas, gagan, ...},
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeSbasId
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -5047,28 +3824,7 @@ VOS_UINT32  NAS_LPP_DecodeSbasId
 }
 
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssTimeModelReqElement
-Description     :解码LPP_GNSS_TIME_MODEL_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-TimeModelElement ::= SEQUENCE {
-    gnss-TimeModelRefTime       INTEGER (0..65535),
-    tA0                         INTEGER (-67108864..67108863),
-    tA1                         INTEGER (-4096..4095)                   OPTIONAL,   -- Need ON
-    tA2                         INTEGER (-64..63)                       OPTIONAL,   -- Need ON
-    gnss-TO-ID                  INTEGER (1..15),
-    weekNumber                  INTEGER (0..8191)                       OPTIONAL,   -- Need ON
-    deltaT                      INTEGER (-128..127)                     OPTIONAL,   -- Need ON
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssTimeModelReqElement
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -5151,19 +3907,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssTimeModelReqElement
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssTimeModel
-Description     :解码LPP_GNSS_TIME_MODEL_LIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-TimeModelList ::= SEQUENCE (SIZE (1..15)) OF GNSS-TimeModelElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssTimeModel
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -5201,22 +3945,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssTimeModel
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssSignalID
-Description     :解码LPP_GNSS_SIGNAL_ID_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-SignalID   ::= SEQUENCE {
-    gnss-SignalID       INTEGER (0 .. 7),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssSignalID
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -5252,22 +3981,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssSignalID
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeSvId
-Description     :解码LPP_SV_ID_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-SV-ID ::= SEQUENCE {
-    satellite-id        INTEGER(0..63),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeSvId(
     VOS_UINT8                               *pucDecodeBitStream,
     VOS_UINT32                              *pulCurrentBitPos,
@@ -5299,28 +4013,7 @@ VOS_UINT32  NAS_LPP_DecodeSvId(
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeDgnssSatListElement
-Description     :解码LPP_DGNSS_CORRECT_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-DGNSS-CorrectionsElement ::= SEQUENCE {
-    svID                SV-ID,
-    iod                 BIT STRING (SIZE(11)),
-    udre                INTEGER (0..3),
-    pseudoRangeCor      INTEGER (-2047..2047),
-    rangeRateCor        INTEGER (-127..127),
-    udreGrowthRate      INTEGER (0..7)          OPTIONAL,   -- Need ON
-    udreValidityTime    INTEGER (0..7)          OPTIONAL,   -- Need ON
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeDgnssSatListElement(
             VOS_UINT8                               *pucDecodeBitStream,
             VOS_UINT32                              *pulCurrentBitPos,
@@ -5385,19 +4078,7 @@ VOS_UINT32  NAS_LPP_DecodeDgnssSatListElement(
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeDgnssSatList
-Description     :解码LPP_DGNSS_SAT_LIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-DGNSS-SatList ::= SEQUENCE (SIZE (1..64)) OF DGNSS-CorrectionsElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeDgnssSatList(
             VOS_UINT8                               *pucDecodeBitStream,
             VOS_UINT32                              *pulCurrentBitPos,
@@ -5433,24 +4114,7 @@ VOS_UINT32  NAS_LPP_DecodeDgnssSatList(
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeDgnssSgnTypeListElement
-Description     :解码LPP_DGNSS_SGN_TYPE_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-DGNSS-SgnTypeElement ::= SEQUENCE {
-    gnss-SignalID        GNSS-SignalID,
-    gnss-StatusHealth    INTEGER (0..7),
-    dgnss-SatList        DGNSS-SatList,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeDgnssSgnTypeListElement
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -5500,19 +4164,7 @@ VOS_UINT32  NAS_LPP_DecodeDgnssSgnTypeListElement
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeDgnssSgnTypeList
-Description     :解码LPP_DGNSS_SGN_TYPE_LIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-DGNSS-SgnTypeList ::= SEQUENCE (SIZE (1..3)) OF DGNSS-SgnTypeElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeDgnssSgnTypeList
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -5548,23 +4200,7 @@ VOS_UINT32  NAS_LPP_DecodeDgnssSgnTypeList
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssdiffCorrection
-Description     :解码LPP_GNSS_DIFF_CORRECT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-DifferentialCorrections ::= SEQUENCE {
-    dgnss-RefTime       INTEGER (0..3599),
-    dgnss-SgnTypeList   DGNSS-SgnTypeList,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssdiffCorrection
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -5610,17 +4246,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssdiffCorrection
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeExtChoiceClockMoel
-Description     :解码可扩展choice项
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982         2015-05-21  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeExtChoiceClockMoel
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -5647,27 +4273,7 @@ VOS_UINT32  NAS_LPP_DecodeExtChoiceClockMoel
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeStandardClockModellListElement
-Description     :解码LPP_STANDARD_CLOCK_MODEL_LIST_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-StandardClockModelElement ::= SEQUENCE {
-    stanClockToc    INTEGER (0..16383),
-    stanClockAF2    INTEGER (-2048..2047),
-    stanClockAF1    INTEGER (-131072..131071),
-    stanClockAF0    INTEGER (-134217728..134217727),
-    stanClockTgd    INTEGER (-512..511)                 OPTIONAL,   -- Need ON
-    stanModelID     INTEGER (0..1)                      OPTIONAL,   -- Need ON
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeStandardClockModellListElement
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -5735,19 +4341,7 @@ VOS_UINT32  NAS_LPP_DecodeStandardClockModellListElement
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeStandardClockModeList
-Description     :解码LPP_STANDARD_CLOCK_MODEL_LIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-StandardClockModelList ::= SEQUENCE (SIZE(1..2)) OF StandardClockModelElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeStandardClockModeList
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -5776,26 +4370,7 @@ VOS_UINT32  NAS_LPP_DecodeStandardClockModeList
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeNavClockModel
-Description     :解码LPP_NAV_CLOCK_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-NAV-ClockModel ::= SEQUENCE {
-navToc          INTEGER (0..37799),
-navaf2          INTEGER (-128..127),
-navaf1          INTEGER (-32768..32767),
-navaf0          INTEGER (-2097152..2097151),
-navTgd          INTEGER (-128..127),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeNavClockModel
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -5856,36 +4431,7 @@ VOS_UINT32  NAS_LPP_DecodeNavClockModel
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCnavClockModel
-Description     :解码LPP_CNAV_CLOCK_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-CNAV-ClockModel ::= SEQUENCE {
-    cnavToc         INTEGER (0..2015),
-    cnavTop         INTEGER (0..2015),
-    cnavURA0        INTEGER (-16..15),
-    cnavURA1        INTEGER (0..7),
-    cnavURA2        INTEGER (0..7),
-    cnavAf2         INTEGER (-512..511),
-    cnavAf1         INTEGER (-524288..524287),
-    cnavAf0         INTEGER (-33554432..33554431),
-    cnavTgd         INTEGER (-4096..4095),
-    cnavISCl1cp     INTEGER (-4096..4095)           OPTIONAL,   -- Need ON
-    cnavISCl1cd     INTEGER (-4096..4095)           OPTIONAL,   -- Need ON
-    cnavISCl1ca     INTEGER (-4096..4095)           OPTIONAL,   -- Need ON
-    cnavISCl2c      INTEGER (-4096..4095)           OPTIONAL,   -- Need ON
-    cnavISCl5i5     INTEGER (-4096..4095)           OPTIONAL,   -- Need ON
-    cnavISCl5q5     INTEGER (-4096..4095)           OPTIONAL,   -- Need ON
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCnavClockModel
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -6022,24 +4568,7 @@ VOS_UINT32  NAS_LPP_DecodeCnavClockModel
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGlonassClockModel
-Description     :解码LPP_GLONASS_CLOCK_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GLONASS-ClockModel ::= SEQUENCE {
-    gloTau          INTEGER (-2097152..2097151),
-    gloGamma        INTEGER (-1024..1023),
-    gloDeltaTau     INTEGER (-16..15)               OPTIONAL,   -- Need ON
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGlonassClockModel
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -6089,24 +4618,7 @@ VOS_UINT32  NAS_LPP_DecodeGlonassClockModel
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeSbasClockModel
-Description     :解码LPP_SBAS_CLOCK_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-SBAS-ClockModel ::= SEQUENCE {
-    sbasTo          INTEGER (0..5399),
-    sbasAgfo        INTEGER (-2048..2047),
-    sbasAgf1        INTEGER (-128..127),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeSbasClockModel
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -6158,26 +4670,7 @@ VOS_UINT32  NAS_LPP_DecodeSbasClockModel
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssClockModel
-Description     :解码LPP_GNSS_CLOCK_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-ClockModel ::= CHOICE {
-    standardClockModelList  StandardClockModelList,         -- Model-1
-    nav-ClockModel          NAV-ClockModel,                 -- Model-2
-    cnav-ClockModel         CNAV-ClockModel,                -- Model-3
-    glonass-ClockModel      GLONASS-ClockModel,             -- Model-4
-    sbas-ClockModel         SBAS-ClockModel,                -- Model-5
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssClockModel
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -6246,37 +4739,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssClockModel
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeKeplerSet
-Description     :解码LPP_NAV_MODEL_KEPLERIAN_SET_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-NavModelKeplerianSet ::= SEQUENCE {
-    keplerToe        INTEGER (0 .. 16383),
-    keplerW          INTEGER (-2147483648..2147483647),
-    keplerDeltaN     INTEGER (-32768..32767),
-    keplerM0         INTEGER (-2147483648..2147483647),
-    keplerOmegaDot   INTEGER (-8388608.. 8388607),
-    keplerE          INTEGER (0..4294967295),
-    keplerIDot       INTEGER (-8192..8191),
-    keplerAPowerHalf INTEGER (0.. 4294967295),
-    keplerI0         INTEGER (-2147483648..2147483647),
-    keplerOmega0     INTEGER (-2147483648..2147483647),
-    keplerCrs        INTEGER (-32768..32767),
-    keplerCis        INTEGER (-32768..32767),
-    keplerCus        INTEGER (-32768..32767),
-    keplerCrc        INTEGER (-32768..32767),
-    keplerCic        INTEGER (-32768..32767),
-    keplerCuc        INTEGER (-32768..32767),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeKeplerSet
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -6372,24 +4835,7 @@ VOS_UINT32  NAS_LPP_DecodeKeplerSet
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEphemSf1Rsvd
-Description     :解码LPP_EPHEM_SF1_RSVD_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-ephemSF1Rsvd    SEQUENCE {
-    reserved1       INTEGER (0..8388607),   -- 23-bit field
-    reserved2       INTEGER (0..16777215),  -- 24-bit field
-    reserved3       INTEGER (0..16777215),  -- 24-bit field
-    reserved4       INTEGER (0..65535)      -- 16-bit field
-},
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEphemSf1Rsvd
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -6416,29 +4862,7 @@ VOS_UINT32  NAS_LPP_DecodeEphemSf1Rsvd
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeAddNavParam
-Description     :解码LPP_ADD_NAV_PARAM_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-addNAVparam     SEQUENCE {
-     ephemCodeOnL2   INTEGER (0..3),
-     ephemL2Pflag    INTEGER (0..1),
-     ephemSF1Rsvd    SEQUENCE {
-         reserved1       INTEGER (0..8388607),   -- 23-bit field
-         reserved2       INTEGER (0..16777215),  -- 24-bit field
-         reserved3       INTEGER (0..16777215),  -- 24-bit field
-         reserved4       INTEGER (0..65535)      -- 16-bit field
-     },
-     ephemAODA       INTEGER (0..31)
- }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeAddNavParam
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -6470,50 +4894,7 @@ VOS_UINT32  NAS_LPP_DecodeAddNavParam
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeNavKeplerSet
-Description     :解码LPP_NAV_MODEL_NAV_KEPLERIAN_SET_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-NavModelNAV-KeplerianSet ::= SEQUENCE {
-    navURA          INTEGER (0..15),
-    navFitFlag      INTEGER (0..1),
-    navToe          INTEGER (0..37799),
-    navOmega        INTEGER (-2147483648..2147483647),
-    navDeltaN       INTEGER (-32768..32767),
-    navM0           INTEGER (-2147483648..2147483647),
-    navOmegaADot    INTEGER (-8388608..8388607),
-    navE            INTEGER (0..4294967295),
-    navIDot         INTEGER (-8192..8191),
-    navAPowerHalf   INTEGER (0..4294967295),
-    navI0           INTEGER (-2147483648..2147483647),
-    navOmegaA0      INTEGER (-2147483648..2147483647),
-    navCrs          INTEGER (-32768..32767),
-    navCis          INTEGER (-32768..32767),
-    navCus          INTEGER (-32768..32767),
-    navCrc          INTEGER (-32768..32767),
-    navCic          INTEGER (-32768..32767),
-    navCuc          INTEGER (-32768..32767),
-    addNAVparam     SEQUENCE {
-        ephemCodeOnL2   INTEGER (0..3),
-        ephemL2Pflag    INTEGER (0..1),
-        ephemSF1Rsvd    SEQUENCE {
-            reserved1       INTEGER (0..8388607),   -- 23-bit field
-            reserved2       INTEGER (0..16777215),  -- 24-bit field
-            reserved3       INTEGER (0..16777215),  -- 24-bit field
-            reserved4       INTEGER (0..65535)      -- 16-bit field
-        },
-        ephemAODA       INTEGER (0..31)
-    }   OPTIONAL,   -- Need ON
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeNavKeplerSet
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -6632,40 +5013,7 @@ VOS_UINT32  NAS_LPP_DecodeNavKeplerSet
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCnavKeplerSet
-Description     :解码LPP_NAV_MODEL_CNAV_KEPLERIAN_SET_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-NavModelCNAV-KeplerianSet ::= SEQUENCE {
-    cnavTop             INTEGER (0..2015),
-    cnavURAindex        INTEGER (-16..15),
-    cnavDeltaA          INTEGER (-33554432..33554431),
-    cnavAdot            INTEGER (-16777216..16777215),
-    cnavDeltaNo         INTEGER (-65536..65535),
-    cnavDeltaNoDot      INTEGER (-4194304..4194303),
-    cnavMo              INTEGER (-4294967296..4294967295),
-    cnavE               INTEGER (0..8589934591),
-    cnavOmega           INTEGER (-4294967296..4294967295),
-    cnavOMEGA0          INTEGER (-4294967296..4294967295),
-    cnavDeltaOmegaDot   INTEGER (-65536..65535),
-    cnavIo              INTEGER (-4294967296..4294967295),
-    cnavIoDot           INTEGER (-16384..16383),
-    cnavCis             INTEGER (-32768..32767),
-    cnavCic             INTEGER (-32768..32767),
-    cnavCrs             INTEGER (-8388608..8388607),
-    cnavCrc             INTEGER (-8388608..8388607),
-    cnavCus             INTEGER (-1048576..1048575),
-    cnavCuc             INTEGER (-1048576..1048575),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCnavKeplerSet
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -6789,34 +5137,7 @@ VOS_UINT32  NAS_LPP_DecodeCnavKeplerSet
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGlonassEcef
-Description     :解码LPP_NAV_MODEL_GLONASS_ECEF_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-NavModel-GLONASS-ECEF ::= SEQUENCE {
-    gloEn               INTEGER (0..31),
-    gloP1               BIT STRING (SIZE(2)),
-    gloP2               BOOLEAN,
-    gloM                INTEGER (0..3),
-    gloX                INTEGER (-67108864..67108863),
-    gloXdot             INTEGER (-8388608..8388607),
-    gloXdotdot          INTEGER (-16..15),
-    gloY                INTEGER (-67108864..67108863),
-    gloYdot             INTEGER (-8388608..8388607),
-    gloYdotdot          INTEGER (-16..15),
-    gloZ                INTEGER (-67108864..67108863),
-    gloZdot             INTEGER (-8388608..8388607),
-    gloZdotdot          INTEGER (-16..15),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGlonassEcef
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -6899,32 +5220,7 @@ VOS_UINT32  NAS_LPP_DecodeGlonassEcef
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGlonassEcef
-Description     :解码LPP_NAV_MODEL_GLONASS_ECEF_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-NavModel-SBAS-ECEF ::= SEQUENCE {
-    sbasTo              INTEGER (0..5399)                   OPTIONAL,   -- Cond ClockModel
-    sbasAccuracy        BIT STRING (SIZE(4)),
-    sbasXg              INTEGER (-536870912..536870911),
-    sbasYg              INTEGER (-536870912..536870911),
-    sbasZg              INTEGER (-16777216..16777215),
-    sbasXgDot           INTEGER (-65536..65535),
-    sbasYgDot           INTEGER (-65536..65535),
-    sbasZgDot           INTEGER (-131072..131071),
-    sbasXgDotDot        INTEGER (-512..511),
-    sbagYgDotDot        INTEGER (-512..511),
-    sbasZgDotDot        INTEGER (-512..511),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeSbasEcef
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -7015,26 +5311,7 @@ VOS_UINT32  NAS_LPP_DecodeSbasEcef
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssOrbitModel
-Description     :解码LPP_GNSS_ORBIT_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-OrbitModel ::= CHOICE {
-    keplerianSet            NavModelKeplerianSet,           -- Model-1
-    nav-KeplerianSet        NavModelNAV-KeplerianSet,       -- Model-2
-    cnav-KeplerianSet       NavModelCNAV-KeplerianSet,      -- Model-3
-    glonass-ECEF            NavModel-GLONASS-ECEF,          -- Model-4
-    sbas-ECEF               NavModel-SBAS-ECEF,             -- Model-5
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssOrbitModel
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -7107,26 +5384,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssOrbitModel
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssNavModelListElement
-Description     :解码LPP_GNSS_NAV_MODEL_SATELLITE_LIST_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-NavModelSatelliteElement ::= SEQUENCE {
-    svID                SV-ID,
-    svHealth            BIT STRING (SIZE(8)),
-    iod                 BIT STRING (SIZE(11)),
-    gnss-ClockModel     GNSS-ClockModel,
-    gnss-OrbitModel     GNSS-OrbitModel,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssNavModelListElement
 (
     VOS_UINT8                                           *pucDecodeBitStream,
@@ -7190,19 +5448,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssNavModelListElement
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssSatLiteList
-Description     :解码LPP_GNSS_NAVIGATION_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-NavModelSatelliteList ::= SEQUENCE (SIZE(1..64)) OF GNSS-NavModelSatelliteElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssSatLiteList
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -7240,23 +5486,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssSatLiteList
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssNavigationModel
-Description     :解码LPP_GNSS_NAVIGATION_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-NavigationModel ::= SEQUENCE {
-    nonBroadcastIndFlag     INTEGER (0..1),
-    gnss-SatelliteList      GNSS-NavModelSatelliteList,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssNavigationModel
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -7301,22 +5531,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssNavigationModel
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssBadSignallListElement
-Description     :解码LPP_GNSS_BAD_SIGNAL_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-SignalIDs  ::= SEQUENCE {
-    gnss-SignalIDs      BIT STRING (SIZE(8)),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssSignalIDS
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -7352,23 +5567,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssSignalIDS
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssBadSignallListElement
-Description     :解码LPP_GNSS_BAD_SIGNAL_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-BadSignalElement ::= SEQUENCE {
-    badSVID             SV-ID,
-    badSignalID         GNSS-SignalIDs  OPTIONAL,   -- Need OP
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssBadSignallListElement
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -7423,19 +5622,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssBadSignallListElement
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssBadSignalList
-Description     :解码LPP_GNSS_BAD_SIGNAL_LIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-BadSignalList ::= SEQUENCE (SIZE(1..64)) OF BadSignalElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssBadSignalList
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -7474,22 +5661,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssBadSignalList
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssRealTimeIntegrity
-Description     :解码LPP_GNSS_REALTIME_INTERGRITY_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-RealTimeIntegrity ::= SEQUENCE {
-    gnss-BadSignalList  GNSS-BadSignalList,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssRealTimeIntegrity
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -7529,23 +5701,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssRealTimeIntegrity
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssBadBitsSgnListElement
-Description     :解码LPP_GNSS_DATA_BITS_SGN_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-DataBitsSgnElement ::= SEQUENCE {
-    gnss-SignalType         GNSS-SignalID,
-    gnss-DataBits           BIT STRING (SIZE (1..1024)),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssBadBitsSgnListElement
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -7628,19 +5784,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssBadBitsSgnListElement
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeDataBitsSgnList
-Description     :解码LPP_GNSS_DATA_BITS_SGN_LIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-DataBitsSgnList ::= SEQUENCE (SIZE(1..8)) OF GNSS-DataBitsSgnElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeDataBitsSgnList
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -7670,23 +5814,7 @@ VOS_UINT32  NAS_LPP_DecodeDataBitsSgnList
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssBadBitsSatListElement
-Description     :解码LPP_GNSS_DATA_BITS_SAT_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-DataBitsSatElement ::= SEQUENCE {
-    svID                    SV-ID,
-    gnss-DataBitsSgnList    GNSS-DataBitsSgnList,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssBadBitsSatListElement
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -7733,19 +5861,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssBadBitsSatListElement
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssDataBitAssit
-Description     :解码LPP_GNSS_DATA_BIT_ASSIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-DataBitsSatList ::= SEQUENCE (SIZE(1..64))OF GNSS-DataBitsSatElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeDataBitsSatList
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -7784,24 +5900,7 @@ VOS_UINT32  NAS_LPP_DecodeDataBitsSatList
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssDataBitAssit
-Description     :解码LPP_GNSS_DATA_BIT_ASSIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-DataBitAssistance ::= SEQUENCE {
-    gnss-TOD                INTEGER (0..3599),
-    gnss-TODfrac            INTEGER (0..999)        OPTIONAL,   -- Need ON
-    gnss-DataBitsSatList    GNSS-DataBitsSatList,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeDataBitsAssit
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -7872,17 +5971,7 @@ VOS_UINT32  NAS_LPP_DecodeDataBitsAssit
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssAcquisitAssitListElement
-Description     :解码LPP_GNSS_ACQUISIT_ASSIST_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeDopplerUncertExtR10
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -7912,36 +6001,7 @@ VOS_UINT32  NAS_LPP_DecodeDopplerUncertExtR10
 }
 
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssAcquisitAssitListElement
-Description     :解码LPP_GNSS_ACQUISIT_ASSIST_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-AcquisitionAssistElement  ::= SEQUENCE {
-    svID                        SV-ID,
-    doppler0                    INTEGER (-2048..2047),
-    doppler1                    INTEGER (0..63),
-    dopplerUncertainty          INTEGER (0..4),
-    codePhase                   INTEGER (0..1022),
-    intCodePhase                INTEGER (0..127),
-    codePhaseSearchWindow       INTEGER (0..31),
-    azimuth                     INTEGER (0..511),
-    elevation                   INTEGER (0..127),
-    ...,
-    codePhase1023               BOOLEAN             OPTIONAL,   -- Need OP
-    dopplerUncertaintyExt-r10   ENUMERATED {    d60,
-                                                d80,
-                                                d100,
-                                                d120,
-                                                noInformation, ... }    OPTIONAL    -- Need ON
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssAcquisitAssitListElement
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -8098,19 +6158,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssAcquisitAssitListElement
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssAcquisitonAssitList
-Description     :解码LPP_GNSS_ACQUISIT_ASSIST_LIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-AcquisitionAssistList ::= SEQUENCE (SIZE(1..64)) OF GNSS-AcquisitionAssistElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssAcquisitonAssitList
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -8150,24 +6198,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssAcquisitonAssitList
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssAcquisitionAssit
-Description     :解码LPP_GNSS_ACQUISIT_ASSIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-AcquisitionAssistance ::= SEQUENCE {
-    gnss-SignalID               GNSS-SignalID,
-    gnss-AcquisitionAssistList  GNSS-AcquisitionAssistList,
-    ...,
-    confidence-r10              INTEGER (0..100)    OPTIONAL    -- Need ON
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssAcquisitionAssit
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -8273,32 +6304,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssAcquisitionAssit
 }
 
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeKeplerianAlmanacSet
-Description     :解码LPP_ALMANAC_KEPLERIAN_SET_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-AlmanacKeplerianSet ::= SEQUENCE {
-    svID                    SV-ID,
-    kepAlmanacE             INTEGER (0..2047),
-    kepAlmanacDeltaI        INTEGER (-1024..1023),
-    kepAlmanacOmegaDot      INTEGER (-1024..1023),
-    kepSVHealth             INTEGER (0..15),
-    kepAlmanacAPowerHalf    INTEGER (-65536..65535),
-    kepAlmanacOmega0        INTEGER (-32768..32767),
-    kepAlmanacW             INTEGER (-32768..32767),
-    kepAlmanacM0            INTEGER (-32768..32767),
-    kepAlmanacAF0           INTEGER (-8192..8191),
-    kepAlmanacAF1           INTEGER (-1024..1023),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeKeplerianAlmanacSet
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -8378,32 +6384,7 @@ VOS_UINT32  NAS_LPP_DecodeKeplerianAlmanacSet
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeKeplerianNAVAlmanac
-Description     :解码LPP_ALMANAC_NAV_KEPLERIAN_SET_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-AlmanacNAV-KeplerianSet ::= SEQUENCE {
-    svID                    SV-ID,
-    navAlmE                 INTEGER (0..65535),
-    navAlmDeltaI            INTEGER (-32768..32767),
-    navAlmOMEGADOT          INTEGER (-32768..32767),
-    navAlmSVHealth          INTEGER (0..255),
-    navAlmSqrtA             INTEGER (0..16777215),
-    navAlmOMEGAo            INTEGER (-8388608..8388607),
-    navAlmOmega             INTEGER (-8388608..8388607),
-    navAlmMo                INTEGER (-8388608..8388607),
-    navAlmaf0               INTEGER (-1024..1023),
-    navAlmaf1               INTEGER (-1024..1023),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeKeplerianNAVAlmanac
 (
     VOS_UINT8                           *pucDecodeBitStream,
@@ -8483,28 +6464,7 @@ VOS_UINT32  NAS_LPP_DecodeKeplerianNAVAlmanac
      return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeKeplerianReducedAlmanac
-Description     :解码LPP_ALMANAC_REDUCED_KEPLERIAN_SET_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-AlmanacReducedKeplerianSet ::= SEQUENCE {
-    svID                    SV-ID,
-    redAlmDeltaA            INTEGER (-128..127),
-    redAlmOmega0            INTEGER (-64..63),
-    redAlmPhi0              INTEGER (-64..63),
-    redAlmL1Health          BOOLEAN,
-    redAlmL2Health          BOOLEAN,
-    redAlmL5Health          BOOLEAN,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeKeplerianReducedAlmanac
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -8568,34 +6528,7 @@ VOS_UINT32  NAS_LPP_DecodeKeplerianReducedAlmanac
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeKeplerianMidiAlmanac
-Description     :解码LPP_ALMANAC_MIDI_ALMANAC_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-AlmanacMidiAlmanacSet ::= SEQUENCE {
-    svID                    SV-ID,
-    midiAlmE                INTEGER (0..2047),
-    midiAlmDeltaI           INTEGER (-1024..1023),
-    midiAlmOmegaDot         INTEGER (-1024..1023),
-    midiAlmSqrtA            INTEGER (0..131071),
-    midiAlmOmega0           INTEGER (-32768..32767),
-    midiAlmOmega            INTEGER (-32768..32767),
-    midiAlmMo               INTEGER (-32768..32767),
-    midiAlmaf0              INTEGER (-1024..1023),
-    midiAlmaf1              INTEGER (-512..511),
-    midiAlmL1Health         BOOLEAN,
-    midiAlmL2Health         BOOLEAN,
-    midiAlmL5Health         BOOLEAN,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeKeplerianMidiAlmanac
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -8683,34 +6616,7 @@ VOS_UINT32  NAS_LPP_DecodeKeplerianMidiAlmanac
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeKeplerianGLONASS
-Description     :解码LPP_ALMANAC_GLONASS_ALMANAC_SET_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-AlmanacGLONASS-AlmanacSet ::= SEQUENCE {
-    gloAlm-NA               INTEGER (1..1461),
-    gloAlmnA                INTEGER (1..24),
-    gloAlmHA                INTEGER (0..31),
-    gloAlmLambdaA           INTEGER (-1048576..1048575),
-    gloAlmtlambdaA          INTEGER (0..2097151),
-    gloAlmDeltaIa           INTEGER (-131072..131071),
-    gloAlmDeltaTA           INTEGER (-2097152..2097151),
-    gloAlmDeltaTdotA        INTEGER (-64..63),
-    gloAlmEpsilonA          INTEGER (0..32767),
-    gloAlmOmegaA            INTEGER (-32768..32767),
-    gloAlmTauA              INTEGER (-512..511),
-    gloAlmCA                INTEGER (0..1),
-    gloAlmMA                BIT STRING (SIZE(2))            OPTIONAL,   -- Need ON
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeKeplerianGLONASS
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -8819,31 +6725,7 @@ VOS_UINT32  NAS_LPP_DecodeKeplerianGLONASS
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodestEcefSbasAlmanac
-Description     :解码LPP_ALMANAC_ECEF_SBAS_ALMANAC_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-AlmanacECEF-SBAS-AlmanacSet ::= SEQUENCE {
-    sbasAlmDataID           INTEGER (0..3),
-    svID                    SV-ID,
-    sbasAlmHealth           BIT STRING (SIZE(8)),
-    sbasAlmXg               INTEGER (-16384..16383),
-    sbasAlmYg               INTEGER (-16384..16383),
-    sbasAlmZg               INTEGER (-256..255),
-    sbasAlmXgdot            INTEGER (-4..3),
-    sbasAlmYgDot            INTEGER (-4..3),
-    sbasAlmZgDot            INTEGER (-8..7),
-    sbasAlmTo               INTEGER (0..2047),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEcefSbasAlmanac
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -8917,27 +6799,7 @@ VOS_UINT32  NAS_LPP_DecodeEcefSbasAlmanac
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssAlmanacListElement
-Description     :解码LPP_GNSS_ALMANAC_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-AlmanacElement ::= CHOICE {
-    keplerianAlmanacSet     AlmanacKeplerianSet,        -- Model-1
-    keplerianNAV-Almanac    AlmanacNAV-KeplerianSet,    -- Model-2
-    keplerianReducedAlmanac AlmanacReducedKeplerianSet, -- Model-3
-    keplerianMidiAlmanac    AlmanacMidiAlmanacSet,      -- Model-4
-    keplerianGLONASS        AlmanacGLONASS-AlmanacSet,  -- Model-5
-    ecef-SBAS-Almanac       AlmanacECEF-SBAS-AlmanacSet,-- Model-6
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssAlmanacListElement
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9023,19 +6885,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssAlmanacListElement
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssAlmanacList
-Description     :解码LPP_GNSS_ALMANAC_LIST_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-AlmanacList ::= SEQUENCE (SIZE(1..64)) OF GNSS-AlmanacElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssAlmanacList
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9074,25 +6924,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssAlmanacList
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssAlmanac
-Description     :解码LPP_GNSS_ALMANAC_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-Almanac ::= SEQUENCE {
-    weekNumber                  INTEGER (0..255)    OPTIONAL,   -- Need ON
-    toa                         INTEGER (0..255)    OPTIONAL,   -- Need ON
-    ioda                        INTEGER (0..3)      OPTIONAL,   -- Need ON
-    completeAlmanacProvided     BOOLEAN,
-    gnss-AlmanacList            GNSS-AlmanacList,
 
-
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssAlmanac
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9163,29 +6995,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssAlmanac
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeUtcModel1
-Description     :解码LPP_UTC_MODEL_SET1_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-UTC-ModelSet1 ::= SEQUENCE {
-    gnss-Utc-A1         INTEGER (-8388608..8388607),
-    gnss-Utc-A0         INTEGER (-2147483648..2147483647),
-    gnss-Utc-Tot        INTEGER (0..255),
-    gnss-Utc-WNt        INTEGER (0..255),
-    gnss-Utc-DeltaTls   INTEGER (-128..127),
-    gnss-Utc-WNlsf      INTEGER (0..255),
-    gnss-Utc-DN         INTEGER (-128..127),
-    gnss-Utc-DeltaTlsf  INTEGER (-128..127),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeUtcModel1
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9250,30 +7060,7 @@ VOS_UINT32  NAS_LPP_DecodeUtcModel1
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeUtcModel2
-Description     :解码LPP_UTC_MODEL_SET2_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-UTC-ModelSet2 ::= SEQUENCE {
-    utcA0               INTEGER (-32768..32767),
-    utcA1               INTEGER (-4096..4095),
-    utcA2               INTEGER (-64..63),
-    utcDeltaTls         INTEGER (-128..127),
-    utcTot              INTEGER (0..65535),
-    utcWNot             INTEGER (0..8191),
-    utcWNlsf            INTEGER (0..255),
-    utcDN               BIT STRING (SIZE(4)),
-    utcDeltaTlsf        INTEGER (-128..127),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeUtcModel2
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9341,26 +7128,7 @@ VOS_UINT32  NAS_LPP_DecodeUtcModel2
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeUtcModel3
-Description     :解码LPP_UTC_MODEL_SET3_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-UTC-ModelSet3 ::= SEQUENCE {
-    nA                  INTEGER (1..1461),
-    tauC                INTEGER (-2147483648..2147483647),
-    b1                  INTEGER (-1024..1023)                   OPTIONAL,   -- Cond GLONASS-M
-    b2                  INTEGER (-512..511)                     OPTIONAL,   -- Cond GLONASS-M
-    kp                  BIT STRING (SIZE(2))                    OPTIONAL,   -- Cond GLONASS-M
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeUtcModel3
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9434,30 +7202,7 @@ VOS_UINT32  NAS_LPP_DecodeUtcModel3
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeUtcModel4
-Description     :解码LPP_UTC_MODEL_SET4_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-UTC-ModelSet4 ::= SEQUENCE {
-    utcA1wnt            INTEGER (-8388608..8388607),
-    utcA0wnt            INTEGER (-2147483648..2147483647),
-    utcTot              INTEGER (0..255),
-    utcWNt              INTEGER (0..255),
-    utcDeltaTls         INTEGER (-128..127),
-    utcWNlsf            INTEGER (0..255),
-    utcDN               INTEGER (-128..127),
-    utcDeltaTlsf        INTEGER (-128..127),
-    utcStandardID       INTEGER (0..7),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeUtcModel4
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9526,25 +7271,7 @@ VOS_UINT32  NAS_LPP_DecodeUtcModel4
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssUtcModel
-Description     :解码LPP_GNSS_UTC_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-UTC-Model ::= CHOICE {
-    utcModel1           UTC-ModelSet1,  -- Model-1
-    utcModel2           UTC-ModelSet2,  -- Model-2
-    utcModel3           UTC-ModelSet3,  -- Model-3
-    utcModel4           UTC-ModelSet4,  -- Model-4
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssUtcModel
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9611,23 +7338,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssUtcModel
      return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssIdGpsElement
-Description     :解码LPP_GNSS_ID_GPS_SAT_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-ID-GPS-SatElement ::= SEQUENCE {
-    svID                SV-ID,
-    signalsAvailable    GNSS-SignalIDs,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssIdGpsElement
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9675,19 +7386,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssIdGpsElement
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssIdGps
-Description     :解码LPP_GNSS_ID_GPS_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-ID-GPS ::= SEQUENCE    (SIZE(1..64)) OF GNSS-ID-GPS-SatElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssIdGps
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9726,24 +7425,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssIdGps
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssIdGlonass
-Description     :解码LPP_GNSS_ID_GLONASS_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-ID-GLONASS-SatElement ::= SEQUENCE {
-    svID                SV-ID,
-    signalsAvailable    GNSS-SignalIDs,
-    channelNumber       INTEGER (-7..13)        OPTIONAL,       -- Cond FDMA
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssIdGlonassElement
 (
     VOS_UINT8                                              *pucDecodeBitStream,
@@ -9807,19 +7489,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssIdGlonassElement
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssIdGlonass
-Description     :解码LPP_GNSS_ID_GLONASS_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-ID-GLONASS ::= SEQUENCE (SIZE(1..64)) OF GNSS-ID-GLONASS-SatElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssIdGlonass
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9858,23 +7528,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssIdGlonass
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssAuxiliaryInfo
-Description     :解码LPP_GNSS_AUX_INFO_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-AuxiliaryInformation ::= CHOICE {
-    gnss-ID-GPS     GNSS-ID-GPS,
-    gnss-ID-GLONASS GNSS-ID-GLONASS,
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssAuxiliaryInfo
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -9921,32 +7575,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssAuxiliaryInfo
      return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGnssGenericAssitDataElement
-Description     :解码LPP_GNSS_GENERIC_ASSIST_DATA_ELEMENT_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-GenericAssistDataElement ::= SEQUENCE {
-    gnss-ID                         GNSS-ID,
-    sbas-ID                         SBAS-ID                         OPTIONAL, -- Cond GNSS-ID-SBAS
-    gnss-TimeModels                 GNSS-TimeModelList              OPTIONAL,   -- Need ON
-    gnss-DifferentialCorrections    GNSS-DifferentialCorrections    OPTIONAL,   -- Need ON
-    gnss-NavigationModel            GNSS-NavigationModel            OPTIONAL,   -- Need ON
-    gnss-RealTimeIntegrity          GNSS-RealTimeIntegrity          OPTIONAL,   -- Need ON
-    gnss-DataBitAssistance          GNSS-DataBitAssistance          OPTIONAL,   -- Need ON
-    gnss-AcquisitionAssistance      GNSS-AcquisitionAssistance      OPTIONAL,   -- Need ON
-    gnss-Almanac                    GNSS-Almanac                    OPTIONAL,   -- Need ON
-    gnss-UTC-Model                  GNSS-UTC-Model                  OPTIONAL,   -- Need ON
-    gnss-AuxiliaryInformation       GNSS-AuxiliaryInformation       OPTIONAL,   -- Need ON
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-23  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGnssGenericAssitDataElement
 (
     VOS_UINT8                                   *pucDecodeBitStream,
@@ -10117,19 +7746,7 @@ VOS_UINT32  NAS_LPP_DecodeGnssGenericAssitDataElement
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSGenAssistData
-Description     :解码LPP_GNSS_GENERIC_ASSIST_DATA_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-GenericAssistData ::= SEQUENCE (SIZE (1..16)) OF GNSS-GenericAssistDataElement
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSGenAssistData
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -10164,29 +7781,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSGenAssistData
 
     return      NAS_LPP_DECODE_SUCC;
 }
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSEarthParam
-Description     :解码LPP_GNSS_EARTH_ORIENTATION_PARAMETERS_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-EarthOrientationParameters ::= SEQUENCE {
-        teop                INTEGER (0..65535),
-        pmX                 INTEGER (-1048576..1048575),
-        pmXdot              INTEGER (-16384..16383),
-        pmY                 INTEGER (-1048576..1048575),
-        pmYdot              INTEGER (-16384..16383),
-        deltaUT1            INTEGER (-1073741824..1073741823),
-        deltaUT1dot         INTEGER (-262144..262143),
-        ...
-    }
 
-
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSEarthParam
 (
     VOS_UINT8                                   *pucDecodeBitStream,
@@ -10246,30 +7841,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSEarthParam
      return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeKlobucharModel
-Description     :解码LPP_GNSS_IONOSPHERIC_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-KlobucharModelParameter ::= SEQUENCE {
-    dataID          BIT STRING (SIZE (2)),
-    alfa0           INTEGER (-128..127),
-    alfa1           INTEGER (-128..127),
-    alfa2           INTEGER (-128..127),
-    alfa3           INTEGER (-128..127),
-    beta0           INTEGER (-128..127),
-    beta1           INTEGER (-128..127),
-    beta2           INTEGER (-128..127),
-    beta3           INTEGER (-128..127),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeKlobucharModel
 (
     VOS_UINT8                              *pucDecodeBitStream,
@@ -10338,29 +7910,7 @@ VOS_UINT32  NAS_LPP_DecodeKlobucharModel
      return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeNeQuickModel
-Description     :解码LPP_NEQUICK_MODEL_PARAMETER_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-NeQuickModelParameter ::= SEQUENCE {
-    ai0             INTEGER (0..4095),
-    ai1             INTEGER (0..4095),
-    ai2             INTEGER (0..4095),
-    ionoStormFlag1  INTEGER (0..1)      OPTIONAL,   -- Need OP
-    ionoStormFlag2  INTEGER (0..1)      OPTIONAL,   -- Need OP
-    ionoStormFlag3  INTEGER (0..1)      OPTIONAL,   -- Need OP
-    ionoStormFlag4  INTEGER (0..1)      OPTIONAL,   -- Need OP
-    ionoStormFlag5  INTEGER (0..1)      OPTIONAL,   -- Need OP
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeNeQuickModel
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -10456,23 +8006,7 @@ VOS_UINT32  NAS_LPP_DecodeNeQuickModel
 }
 
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSIonoModel
-Description     :解码LPP_GNSS_IONOSPHERIC_MODEL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-IonosphericModel ::= SEQUENCE {
-        klobucharModel          KlobucharModelParameter     OPTIONAL,   -- Need ON
-        neQuickModel            NeQuickModelParameter       OPTIONAL,   -- Need ON
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSIonoModel
 (
     VOS_UINT8                           *pucDecodeBitStream,
@@ -10530,30 +8064,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSIonoModel
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEllipsoidPointWithAltiAndUncertEllipsoid
-Description     :解码pstEllipAltitude
-Input           : 消息体码流
-Output          : None
-ASN             :
-EllipsoidPointWithAltitudeAndUncertaintyEllipsoid ::= SEQUENCE {
-    latitudeSign                ENUMERATED {north, south},
-    degreesLatitude             INTEGER (0..8388607),           -- 23 bit field
-    degreesLongitude            INTEGER (-8388608..8388607),    -- 24 bit field
-    altitudeDirection           ENUMERATED {height, depth},
-    altitude                    INTEGER (0..32767),             -- 15 bit field
-    uncertaintySemiMajor        INTEGER (0..127),
-    uncertaintySemiMinor        INTEGER (0..127),
-    orientationMajorAxis        INTEGER (0..179),
-    uncertaintyAltitude         INTEGER (0..127),
-    confidence                  INTEGER (0..100)
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEllipsoidPointWithAltiAndUncertEllipsoid
 (
     VOS_UINT8                                                  *pucDecodeBitStream,
@@ -10614,23 +8125,7 @@ VOS_UINT32  NAS_LPP_DecodeEllipsoidPointWithAltiAndUncertEllipsoid
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSRefLocation
-Description     :解码LPP_GNSS_REFERENCE_LOCATION_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-ReferenceLocation ::= SEQUENCE {
-            threeDlocation          EllipsoidPointWithAltitudeAndUncertaintyEllipsoid,
-            ...
-    }
 
-
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-22  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSRefLocation
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -10671,21 +8166,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSRefLocation
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeArfcnEutranV9a0
-Description     :解码pstEutra
-Input           : 消息体码流
-Output          : None
-ASN             :
-ARFCN-ValueEUTRA-v9a0 ::=INTEGER (maxEARFCN-Plus1..maxEARFCN2)
-maxEARFCN-Plus1 INTEGER ::= 65536   -- Lowest value extended EARFCN range
-maxEARFCN2 INTEGER ::= 262143   -- Highest value extended EARFCN range
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeArfcnEutranV9a0(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -10726,17 +8207,7 @@ VOS_UINT32  NAS_LPP_DecodeArfcnEutranV9a0(
 }
 
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEutra
-Description     :解码网络协议版本比本地协议版本高的部分
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeExtIeWithPartValid(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -10775,22 +8246,7 @@ VOS_UINT32  NAS_LPP_DecodeExtIeWithPartValid(
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodePlmnIdentity
-Description     :解码pstPlmnInetity
-Input           : 消息体码流
-Output          : None
-ASN             :
-plmn-Identity       SEQUENCE {
-                        mcc     SEQUENCE (SIZE (3))     OF INTEGER (0..9),
-                        mnc     SEQUENCE (SIZE (2..3))  OF INTEGER (0..9)
-                    },
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodePlmnIdentity
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -10837,22 +8293,7 @@ VOS_UINT32  NAS_LPP_DecodePlmnIdentity
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCellIdentity
-Description     :解码pstCellIndentity
-Input           : 消息体码流
-Output          : None
-ASN             :
-cellIdentity        CHOICE {
-    eutra   BIT STRING (SIZE (28)),
-    utra    BIT STRING (SIZE (32))
-},
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCellIdentity
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -10881,17 +8322,7 @@ VOS_UINT32  NAS_LPP_DecodeCellIdentity
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCellEutranAndUtra
-Description     :解码pstCellGloEutra
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeCellEutranAndUtra
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -10939,20 +8370,7 @@ VOS_UINT32  NAS_LPP_DecodeCellEutranAndUtra
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeARFCNValueEutra
-Description     :解码pstCellGloEutra
-Input           : 消息体码流
-Output          : None
-ASN             :
-ARFCN-ValueEUTRA ::= INTEGER (0..maxEARFCN)
-maxEARFCN   INTEGER ::= 65535   -- Maximum value of EUTRA carrier frequency
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeARFCNValueEutra
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -10967,26 +8385,7 @@ VOS_UINT32  NAS_LPP_DecodeARFCNValueEutra
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeEutra
-Description     :解码pstEutra
-Input           : 消息体码流
-Output          : None
-ASN             :
-eUTRA       SEQUENCE {
-            physCellId          INTEGER (0..503),
-            cellGlobalIdEUTRA   CellGlobalIdEUTRA-AndUTRA   OPTIONAL,   -- Need ON
-            earfcn              ARFCN-ValueEUTRA,
-            ...,
-            [[ earfcn-v9a0      ARFCN-ValueEUTRA-v9a0 OPTIONAL  -- Cond EARFCN-max
-            ]]  FIXME LIFUXIN
-            },
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeEutra
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -11108,23 +8507,7 @@ VOS_UINT32  NAS_LPP_DecodeEutra
 
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeFdd
-Description     :解码pstFdd
-Input           : 消息体码流
-Output          : None
-ASN             :
 
-fdd         SEQUENCE {
-                                                    primary-CPICH-Info  INTEGER (0..511),
-                                                    ...
-                                                  },
-
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeFdd(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -11154,22 +8537,7 @@ VOS_UINT32  NAS_LPP_DecodeFdd(
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeTdd
-Description     :解码pstTdd
-Input           : 消息体码流
-Output          : None
-ASN             :
-tdd         SEQUENCE {
-                                                    cellParameters      INTEGER (0..127),
-                                                    ...
-                                                    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeTdd(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -11199,28 +8567,7 @@ VOS_UINT32  NAS_LPP_DecodeTdd(
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeMode
-Description     :解码pstMode
-Input           : 消息体码流
-Output          : None
-ASN             :
-mode    CHOICE {
-                fdd     SEQUENCE {
-                        primary-CPICH-Info  INTEGER (0..511),
-                        ...
-                        },
-                tdd     SEQUENCE {
-                        cellParameters      INTEGER (0..127),
-                        ...
-                        }
-                },
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeMode(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -11244,19 +8591,7 @@ VOS_UINT32  NAS_LPP_DecodeMode(
 
     return ulRslt;
 }
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeARFCNValueUtra
-Description     :解码pstCellGloEutra
-Input           : 消息体码流
-Output          : None
-ASN             :
-ARFCN-ValueUTRA ::= INTEGER(0..16383)
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeARFCNValueUtra(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -11268,32 +8603,7 @@ VOS_UINT32  NAS_LPP_DecodeARFCNValueUtra(
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeUtra
-Description     :解码pstUtra
-Input           : 消息体码流
-Output          : None
-ASN             :
-uTRA        SEQUENCE {
-mode    CHOICE {
-                fdd     SEQUENCE {
-                        primary-CPICH-Info  INTEGER (0..511),
-                        ...
-                        },
-                tdd     SEQUENCE {
-                        cellParameters      INTEGER (0..127),
-                        ...
-                        }
-                },
-cellGlobalIdUTRA    CellGlobalIdEUTRA-AndUTRA   OPTIONAL,   -- Need ON
-uarfcn              ARFCN-ValueUTRA,
-...
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 
 VOS_UINT32  NAS_LPP_DecodeUtra(
                         VOS_UINT8                               *pucDecodeBitStream,
@@ -11349,27 +8659,7 @@ VOS_UINT32  NAS_LPP_DecodeUtra(
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCellGlobalGeran
-Description     :解码pstCellGloGeran
-Input           : 消息体码流
-Output          : None
-ASN             :
-CellGlobalIdGERAN ::= SEQUENCE {
-    plmn-Identity       SEQUENCE {
-                            mcc     SEQUENCE (SIZE (3))     OF INTEGER (0..9),
-                            mnc     SEQUENCE (SIZE (2..3))  OF INTEGER (0..9)
-                            },
-    locationAreaCode        BIT STRING (SIZE (16)),
-    cellIdentity            BIT STRING (SIZE (16)),
-    ...
-}
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeCellGlobalGeran(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -11409,25 +8699,7 @@ VOS_UINT32  NAS_LPP_DecodeCellGlobalGeran(
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGsm
-Description     :解码pstUtra
-Input           : 消息体码流
-Output          : None
-ASN             :
- gSM         SEQUENCE {
-         bcchCarrier         INTEGER (0..1023),
-         bsic                INTEGER (0..63),
-         cellGlobalIdGERAN   CellGlobalIdGERAN           OPTIONAL,   -- Need ON
-         ...
-         },
-...
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGsm(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -11473,17 +8745,7 @@ VOS_UINT32  NAS_LPP_DecodeGsm(
 }
 
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeCellId
-Description     :解码pCellId
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeCellId(
                         VOS_UINT8                               *pucDecodeBitStream,
                         VOS_UINT32                              *pulCurrentBitPos,
@@ -11536,23 +8798,7 @@ VOS_UINT32  NAS_LPP_DecodeCellId(
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeNetTime
-Description     :解码pNetWorkTime
-Input           : 消息体码流
-Output          : None
-ASN             :
-NetworkTime ::= SEQUENCE {
-    secondsFromFrameStructureStart              INTEGER(0..12533),
-    fractionalSecondsFromFrameStructureStart    INTEGER(0..3999999),
-    frameDrift                                  INTEGER (-64..63)   OPTIONAL,   -- Cond GNSSsynch
-    cellid .......
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeNetTime
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -11629,25 +8875,7 @@ VOS_UINT32  NAS_LPP_DecodeNetTime
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSRefTimeForCell
-Description     :解码LPP_GNSS_REFERENCE_TIME_FOR_CELL_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-ReferenceTimeForOneCell  ::= SEQUENCE {
-        networkTime                 NetworkTime,
-        referenceTimeUnc            INTEGER (0..127),
-        bsAlign                     ENUMERATED {true}   OPTIONAL,
-        ...
-    }
 
-
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSRefTimeForCell
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -11708,26 +8936,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSRefTimeForCell
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   : NAS_LPP_DecodeGPSTowAssitElement
-Description     :解码pGPSTOWAssistElement
-Input           : 消息体码流
-Output          : None
-ASN             :
-    GPS-TOW-AssistElement ::= SEQUENCE {
-        satelliteID     INTEGER (1..64),
-        tlmWord         INTEGER (0..16383),
-        antiSpoof       INTEGER (0..1),
-        alert           INTEGER (0..1),
-        tlmRsvdBits     INTEGER (0..3),
-        ...
-    }
 
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.lifuxin 00253982           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGPSTowAssitElement
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -11791,18 +9000,7 @@ VOS_UINT32  NAS_LPP_DecodeGPSTowAssitElement
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :
-Description     :解码
-Input           : 消息体码流
-Output          : None
-ASN             :
-    GPS-TOW-Assist ::= SEQUENCE (SIZE(1..64)) OF GPS-TOW-AssistElement
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-21  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeGPSTOWAssist
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -11832,17 +9030,7 @@ VOS_UINT32  NAS_LPP_DecodeGPSTOWAssist
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSTimeIDStr
-Description     :解码
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-21  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeGNSSTimeIDStr
 (
     VOS_UINT8                       *pucDecodeBitStream,
@@ -11890,19 +9078,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSTimeIDStr
     return ulReturnRslt;
 }
 
-/*****************************************************************************
-Function Name   :
-Description     :解码
-Input           : 消息体码流
-Output          : None
 
-gnss-id             ENUMERATED{ gps, sbas, qzss, galileo, glonass, ...}
-
-Return          : 成功返回NAS_LPP_DECODE_SUCC
-                  失败返回NAS_LPP_DecodeFAIL
-History         :
-  1.WANGENSHENG 00324863           2015-05-21  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSTimeID
 (
     VOS_UINT8                       *pucDecodeBitStream,
@@ -11932,27 +9108,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSTimeID
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSSysTime
-Description     :解码LPP_GNSS_SYSTEM_TIME_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-SystemTime ::= SEQUENCE {
-        gnss-TimeID                     GNSS-ID,
-        gnss-DayNumber                  INTEGER (0..32767),
-        gnss-TimeOfDay                  INTEGER (0..86399),
-        gnss-TimeOfDayFrac-msec         INTEGER (0..999)        OPTIONAL,   -- Need ON
-        notificationOfLeapSecond        BIT STRING (SIZE(2))    OPTIONAL,   -- Cond gnss-TimeID-glonass
-        gps-TOW-Assist                  GPS-TOW-Assist          OPTIONAL,   -- Cond gnss-TimeID-gps
-        ...
-    }
 
-
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863        2015-05-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSSysTime
 (
     VOS_UINT8                           *pucDecodeBitStream,
@@ -12035,24 +9191,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSSysTime
     return  ulReturnRslt;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSRefTime
-Description     :解码LPP_GNSS_REFERENCE_TIME_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-ReferenceTime ::= SEQUENCE  {
-        gnss-SystemTime             GNSS-SystemTime,
-        referenceTimeUnc            INTEGER (0..127)                    OPTIONAL,   -- Cond noFTA
-        gnss-ReferenceTimeForCells  SEQUENCE (SIZE (1..16)) OF
-                                        GNSS-ReferenceTimeForOneCell    OPTIONAL,   -- Need ON
-        ...
-    }
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.wangensheng  w00324863          2015-05-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSRefTime
 (
     VOS_UINT8                              *pucDecodeBitStream,
@@ -12122,24 +9261,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSRefTime
     return  ulReturnRslt;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeGNSSComAssistData
-Description     :解码LPP_GNSS_COMMON_ASSIST_DATA_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-GNSS-CommonAssistData ::= SEQUENCE {
-        gnss-ReferenceTime              GNSS-ReferenceTime                  OPTIONAL,   -- Need ON
-        gnss-ReferenceLocation          GNSS-ReferenceLocation              OPTIONAL,   -- Need ON
-        gnss-IonosphericModel           GNSS-IonosphericModel               OPTIONAL,   -- Need ON
-        gnss-EarthOrientationParameters GNSS-EarthOrientationParameters     OPTIONAL,   -- Need ON
-        ...
-    }
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.wangensheng  w00324863            2015-05-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeGNSSComAssistData
 (
     VOS_UINT8                          *pucDecodeBitStream,
@@ -12224,23 +9346,7 @@ VOS_UINT32  NAS_LPP_DecodeGNSSComAssistData
 
     return ulReturnRslt;
 }
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeProAssistDataAGNSS
-Description     :解码LPP_AGNSS_PROVIDE_ASSIST_DATA_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-A-GNSS-ProvideAssistanceData ::= SEQUENCE {
-        gnss-CommonAssistData           GNSS-CommonAssistData               OPTIONAL,   -- Need ON
-        gnss-GenericAssistData          GNSS-GenericAssistData              OPTIONAL,   -- Need ON
-        gnss-Error                      A-GNSS-Error                        OPTIONAL,   -- Need ON
-        ...
-    }
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.wangensheng  w00324863            2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeProAssistDataAGNSS
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -12319,17 +9425,7 @@ VOS_UINT32  NAS_LPP_DecodeProAssistDataAGNSS
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeProAssistDataComIEs
-Description     :解码LPP_COMMON_IES_PROVIDE_ASSIST_DATA_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeProAssistDataComIEs(
                                                     VOS_UINT8                               *pucDecodeBitStream,
                                                     VOS_UINT32                              *pulCurrentBitPos,
@@ -12364,24 +9460,7 @@ VOS_UINT32  NAS_LPP_DecodeProAssistDataComIEs(
 }
 
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeProAssistDataR9IEs
-Description     :解码LPP_PROVIDE_ASSIST_DATA_R9_IES_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-ProvideAssistanceData-r9-IEs ::= SEQUENCE {
-    commonIEsProvideAssistanceData      CommonIEsProvideAssistanceData      OPTIONAL,   -- Need ON
-    a-gnss-ProvideAssistanceData        A-GNSS-ProvideAssistanceData        OPTIONAL,   -- Need ON
-    otdoa-ProvideAssistanceData         OTDOA-ProvideAssistanceData         OPTIONAL,   -- Need ON
-    epdu-Provide-Assistance-Data        EPDU-Sequence                       OPTIONAL,   -- Need ON
-    ...
-}
 
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
     VOS_UINT32  NAS_LPP_DecodeProAssistDataR9IEs
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -12475,16 +9554,7 @@ History         :
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeExtProvideAssistData
-Description     :解码LPP_CRITI_EXT_PROVIDE_ASSIST_DATA_STRU
-Input           : 消息体码流
-Output          : None
-ASN             :
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-8  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_DecodeExtProvideAssistData
 (
     VOS_UINT8                               *pucDecodeBitStream,
@@ -12518,34 +9588,7 @@ VOS_UINT32  NAS_LPP_DecodeExtProvideAssistData
     return      NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeProvideAssist
-Description     :解码ProvideAssistanceData
-Input           : 消息体码流
-Output          : None
-ASN             :
-ProvideAssisData ::= SEQUENCE {
-        criticalExtensions      CHOICE {
-            c1                      CHOICE {
-                ProvideAssisData-r9      ProvideAssisData-r9-IEs,
-                spare3 NULL, spare2 NULL, spare1 NULL
-            },
-            criticalExtensionsFuture    SEQUENCE {}
-        }
-    }
 
-   ProvideAssisData-r9-IEs ::= SEQUENCE {
-        commonIEsProvideAssisData        CommonIEsProvideAssisData              OPTIONAL,
-        a-gnss-ProvideAssisData         A-GNSS-ProvideAssisData                 OPTIONAL,
-        otdoa-ProvideAssisData          OTDOA-ProvideAssisData                  OPTIONAL,
-        epdu-ProvideAssisData            EPDU-Sequence                          OPTIONAL,
-        ...
-    }
-
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeProvideAssist
 (
     VOS_UINT8                              *pucDecodeBitStream,
@@ -12579,29 +9622,7 @@ VOS_UINT32  NAS_LPP_DecodeProvideAssist
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeSupportMessageBody
-Description     :解码MessageBody中的联合体
-Input           : 消息体码流
-Asn             :
-c1                      CHOICE {
-    requestCapabilities         RequestCapabilities,
-    provideCapabilities         ProvideCapabilities,
-    requestAssistanceData       RequestAssistanceData,
-    provideAssistanceData       ProvideAssistanceData,
-    requestLocationInformation  RequestLocationInformation,
-    provideLocationInformation  ProvideLocationInformation,
-    abort                       Abort,
-    error                       Error,
-    spare7 NULL, spare6 NULL, spare5 NULL, spare4 NULL,
-    spare3 NULL, spare2 NULL, spare1 NULL, spare0 NULL
-},
 
-Output          : None
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32      NAS_LPP_DecodeSupportMessageBody
 (
     VOS_UINT8                       *pucDecodeBitStream,
@@ -12673,23 +9694,7 @@ VOS_UINT32      NAS_LPP_DecodeSupportMessageBody
 
     return      NAS_LPP_DECODE_SUCC;
 }
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeIntiator
-Description     :解码LPP_INITIATOR_TYPE_ENUM_UINT8
-Input           :  pucDecodeBitStream   需要译码的下行消息码流
-                   pulCurrentBitPos     开始译码的bit位
-                   pstTransactionID     译码之后消息存放buffer
-Asn             :
-    Initiator ::= ENUMERATED {
-        locationServer,
-        targetDevice,
-        ...
-    }
-Output          : None
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-18  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32      NAS_LPP_DecodeIntiator
 (
     VOS_UINT8                       *pucDecodeBitStream,
@@ -12717,25 +9722,7 @@ VOS_UINT32      NAS_LPP_DecodeIntiator
     return NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeTransactionID
-Description     :解码TRANSACTIONID
-Input           :  pucDecodeBitStream   需要译码的下行消息码流
-                   pulCurrentBitPos     开始译码的bit位
-                   pstTransactionID     译码之后消息存放buffer
-ASN             :
 
-    LPP-TransactionID ::= SEQUENCE {
-        initiator               Initiator,
-        transactionNumber       TransactionNumber,
-        ...
-
-    }
-Output          : None
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32      NAS_LPP_DecodeTransactionID(
                                                 VOS_UINT8       *pucDecodeBitStream,
                                                 VOS_UINT32      *pulCurrentBitPos,
@@ -12772,18 +9759,7 @@ VOS_UINT32      NAS_LPP_DecodeTransactionID(
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   : NAS_LPP_DecodeSequenceNumber
-Description     : 解码SequenceNumber
-Input           :  pucDecodeBitStream   需要译码的下行消息码流
-                   pulCurrentBitPos     开始译码的bit位
-                   pSequenceNumber     译码之后消息存放buffer
-Output          : None
-asn             :SequenceNumber ::= INTEGER (0..255)
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-5  Draft Enact
-*****************************************************************************/
+
 VOS_VOID      NAS_LPP_DecodeSequenceNumber(
                                                 VOS_UINT8       *pucDecodeBitStream,
                                                 VOS_UINT32      *pulCurrentBitPos,
@@ -12793,22 +9769,7 @@ VOS_VOID      NAS_LPP_DecodeSequenceNumber(
 
 }
 
-/*****************************************************************************
 
-Function Name   :NAS_LPP_DecodeAcknowledgement
-Description     :解码Acknowledgement结构体
-Input           :  pucDecodeBitStream   需要译码的下行消息码流
-                   pulCurrentBitPos     开始译码的bit位
-                   pstAcknowledgement   译码之后消息存放buffer
-Output          : None
-ASN             :
-        Acknowledgement ::= SEQUENCE {
-        ackRequested    BOOLEAN,
-        ackIndicator    SequenceNumber      OPTIONAL
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32      NAS_LPP_DecodeAcknowledgement
 (
     VOS_UINT8                           *pucDecodeBitStream,
@@ -12844,34 +9805,7 @@ VOS_UINT32      NAS_LPP_DecodeAcknowledgement
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
-Function Name   :NAS_LPP_DecodeMessageBody
-Description     : 解码LPP消息体
-Input           :  pucDecodeBitStream   需要译码的下行消息码流
-                   pulCurrentBitPos     开始译码的bit位
-                   pstAcknowledgement   译码之后消息存放buffer
-asn             :
-LPP-MessageBody ::= CHOICE {
-                    CHOICE {
-        requestCapabilities         RequestCapabilities,
-        provideCapabilities         ProvideCapabilities,
-        requestAssistanceData       RequestAssistanceData,
-        provideAssistanceData       ProvideAssistanceData,
-        requestLocationInformation  RequestLocationInformation,
-        provideLocationInformation  ProvideLocationInformation,
-        abort                       Abort,
-        error                       Error,
-        spare7 NULL, spare6 NULL, spare5 NULL, spare4 NULL,
-        spare3 NULL, spare2 NULL, spare1 NULL, spare0 NULL
-        ,
-        messageClassExtension	SEQUENCE {}
-}
 
-Output          : None
-Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
-History         :
-  1.WANGENSHENG 00324863           2015-05-5  Draft Enact
-*****************************************************************************/
 VOS_UINT32      NAS_LPP_DecodeMessageBody(
                                                 VOS_UINT8       *pucDecodeBitStream,
                                                 VOS_UINT32      *pulCurrentBitPos,
@@ -12902,27 +9836,7 @@ VOS_UINT32      NAS_LPP_DecodeMessageBody(
     return  NAS_LPP_DECODE_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LPP_DecodeMessage
- Description     : LPP下行消息解码入口函数
- Input           : pucDecodeInMsg  需要译码的下行消息码流
-                   pByteLen       译码的下行消息的byte num
-                   pstLppMsg     译码之后消息存放buffer
- ASN             :
 
- LPP-Message ::= SEQUENCE {
-     transactionID           LPP-TransactionID   OPTIONAL,   -- Need ON
-     endTransaction          BOOLEAN,
-     sequenceNumber          SequenceNumber      OPTIONAL,   -- Need ON
-     acknowledgement         Acknowledgement     OPTIONAL,   -- Need ON
-     lpp-MessageBody         LPP-MessageBody     OPTIONAL    -- Need ON
- }
-
- Output          :
- Return          : VOS_UINT32:NAS_LPP_CAUSE_DECODE_CAUSE_ENUM_UINT32
- History         :
-    1.wangensheng    00324863   2015-05-05  Draft   Enact
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_DecodeMessage
 (
     VOS_UINT8                          *pucDecodeInMsg,

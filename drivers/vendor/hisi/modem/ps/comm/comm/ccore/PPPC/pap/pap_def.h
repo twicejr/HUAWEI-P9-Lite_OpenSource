@@ -1,25 +1,5 @@
 
-/************************************************************************
- *                                                                      *
- *                             pap_def.h                               *
- *                                                                      *
- *  Project Code:       VRP3.0                                          *
- *  Create Date:        2000/06/01                                      *
- *  Author:             Zhu Fengzhi                                      *
- *  Modify Date:                                                        *
- *  Document:                                                           *
- *  Function:           PPP的PAP协议模块私有宏定义                      *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- * Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
- *                     ALL RIGHTS RESERVED                              *
- *                                                                      *
- *----------------------------------------------------------------------*
- *                                                                      *
- *   这个文件定义了PAP协议模块的全部私有宏定义                          *
- *                                                                      *
- ************************************************************************/
+
 
 #if( VRP_MODULE_LINK_PPP == VRP_YES )
 
@@ -59,7 +39,7 @@ extern "C" {
 /*PAP 等待对端验证最长时间 */
 #define PAP_WAITREQUESTTIME	    60000   
 #define PAP_WAITLNSAUTHTIME             10000
-#define PAP_WAITAAARSPTIME      20000   /* modified by gxf 20030516  AAA向主、备server各发三次请求，每次间隔3s，3*6=18 */
+#define PAP_WAITAAARSPTIME      20000
 #define PAP_MAXAUTHTRANSMITS	1	/* max # times to send AUTH msg */
 
 #define PPP_PAP_AAAAuthFailed(pstPapInfo) \

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMtaProcAgps.h
-  版 本 号   : 初稿
-  作    者   : 闫志吉
-  生成日期   : 2012年6月27日
-  最近修改   :
-  功能描述   : MTA模块与其它模块信息交互处理函数声明
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年6月27日
-    作    者   : Y00213812
-    修改内容   : A-GPS项目新增
-
-******************************************************************************/
 
 #ifndef __TAFMTAPROCAGPS_H__
 #define __TAFMTAPROCAGPS_H__
@@ -29,9 +12,7 @@
 #include "TafMtaCtx.h"
 #include "XmlComm.h"
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 #include "TafSdcCtx.h"
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 #include "MtaMtcInterface.h"
 
@@ -412,7 +393,6 @@ extern "C" {
 /* 填充<GPS_assist>节点中的<DGPS_corrections>和<GPS_rt_integrity>子节点时，所用的偏移*/
 #define MTA_AGPS_CVRT_EXTRA_ASSI_DATA_OFFSET                (1)
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
 #define MTA_ECID_CELLINFO_MAX_STRLEN    (2000)              /* 字符串可能最大长度6836，但由于AT通道的限制暂定 */
 #define MTA_ECID_CELLINFO_MIN_STRLEN    (10)                /* 单个参数字符串可能最大长度10 */
 #define MTA_ECID_UNDEFINED_VALUE        (-1)                /* 该参数不支持时默认填写-1 */
@@ -420,7 +400,6 @@ extern "C" {
 #define MTA_ECID_NONE_RAT_STR           "0,NONE:,"
 #define MTA_ECID_LRRC_TA_TRANSPARA      (4)                 /* LRRC回复的TA参数转换系数 */
 #define MTA_ECID_PLMN_MAX_STR_LEN       (8)                 /* MCC\MNC及结束符字符串最大长度 */
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
 /*****************************************************************************
   3 枚举定义
@@ -857,7 +836,6 @@ VOS_VOID TAF_MTA_SndAtRefclkfreqInd(VOS_VOID);
 
 VOS_VOID TAF_MTA_RcvPhyRefClockStatusInd(VOS_VOID *pMsg);
 
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, begin */
 VOS_VOID TAF_MTA_RcvAtEcidSetReq(VOS_VOID *pMsg);
 
 VOS_VOID TAF_MTA_SndAtEcidSetCnf (
@@ -898,7 +876,6 @@ MTA_AT_RESULT_ENUM_UINT32 TAF_MTA_CodeLteEcidStr(
 #endif
 
 VOS_VOID TAF_MTA_RcvTiEcidSetExpired(VOS_VOID *pMsg);
-/* Added by l00198894 for 新增+ECID命令, 2013-12-10, end */
 
 VOS_UINT32 TAF_MTA_ProcEcidCustProgress(
     VOS_UINT32                         *pulResult

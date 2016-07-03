@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_reset.c
-  版 本 号   : 初稿
-  作    者   : z00241943
-  生成日期   : 2014年11月26日
-  最近修改   :
-  功能描述   : hmac复位处理文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年11月26日
-    作    者   : z00241943
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -50,20 +33,7 @@ extern oal_uint32  hmac_config_send_event(
   3 函数实现
 *****************************************************************************/
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : hmac_reset_sys_event
- 功能描述  : device进行复位时，同步host事件处理
- 输入参数  : pst_event_mem事件
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : zhangyu 00241943
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32 hmac_reset_sys_event(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     mac_device_stru     *pst_mac_dev;
@@ -106,21 +76,7 @@ oal_uint32 hmac_reset_sys_event(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_proc_query_response_event
- 功能描述  : hmac接收dmac抛回来的查询应答事件
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : z0085449
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_proc_query_response_event(mac_vap_stru *pst_mac_vap, oal_uint8 uc_len, oal_uint8 *puc_param)
 {
     hmac_vap_stru       *pst_hmac_vap;
@@ -157,20 +113,7 @@ oal_uint32  hmac_proc_query_response_event(mac_vap_stru *pst_mac_vap, oal_uint8 
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_config_reset_operate
- 功能描述  : 配置命令下发
- 输入参数  : pst_event_mem事件
- 输出参数  : 无
- 返 回 值  : OAL_SUCC | OAL_ERR_CODE_PTR_NULL
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月26日
-    作    者   : zhangyu 00241943
-    修改内容   : 新生成函数
-*****************************************************************************/
 oal_uint32 hmac_config_reset_operate(mac_vap_stru *pst_mac_vap, oal_uint16 us_len, oal_uint8 *puc_param)
 {
     mac_device_stru      *pst_mac_dev;

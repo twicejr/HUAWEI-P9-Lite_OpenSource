@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXCallProcNvim.c
-  版 本 号   : 初稿
-  作    者   : h00313353
-  生成日期   : 2015年07月07日
-  最近修改   :
-  功能描述   : 处理Nvim的文件
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2015年07月07日
-    作    者   : h00313353
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -57,20 +39,7 @@ static const VOS_UINT8 g_aucDefKmcPubKey[] = {
 /*****************************************************************************
    3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReadEmcCallRedialPeriod
- 功能描述  : 读取紧急呼重拨定时器时长
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月6日
-    作    者   : h00313353
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID  TAF_XCALL_ReadEmcCallRedialPeriod(VOS_VOID)
 {
     TAF_XCALL_CONFIG_STRU                                  *pstXcallConfig = VOS_NULL_PTR;
@@ -127,20 +96,7 @@ VOS_VOID TAF_XCALL_Read1xVoiceSoCfgNvim()
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReadStartAndStopContDtmfIntervalLen
- 功能描述  : 读取 发送Stop Cont DTMF Req和Start Cont DTMF Req时间间隔定时器时长，单位为毫秒
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月18日
-    作    者   : l00324781
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ReadStartAndStopContDtmfIntervalLen(VOS_VOID)
 {
     TAF_XCALL_CONFIG_STRU                                  *pstXcallConfig = VOS_NULL_PTR;
@@ -181,20 +137,7 @@ VOS_VOID TAF_XCALL_ReadStartAndStopContDtmfIntervalLen(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReadEmcCallBackCfgNvim
- 功能描述  : 读取紧急呼是否进入回呼模式配置
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2016年1月9日
-    作    者   : w00242748
-    修改内容   : 新增函数
-*****************************************************************************/
 VOS_VOID  TAF_XCALL_ReadEmcCallBackCfgNvim(VOS_VOID)
 {
     TAF_NVIM_1X_CALLBACK_CFG_STRU       stNvCallBackCfg;
@@ -222,20 +165,7 @@ VOS_VOID  TAF_XCALL_ReadEmcCallBackCfgNvim(VOS_VOID)
 
 
 #if (FEATURE_ON == FEATURE_CHINA_TELECOM_VOICE_ENCRYPT)
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReadVoiceEncryptPublicKeyAndVersionNumber
- 功能描述  : 读取ECC的公钥以及公钥版本号
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ReadVoiceEncryptPublicKeyAndVersionNumber(VOS_VOID)
 {
     TAF_XCALL_ECC_PUB_KEY_INFO_STRU                        *pstEccPubKeyInfo = VOS_NULL_PTR;
@@ -268,21 +198,7 @@ VOS_VOID TAF_XCALL_ReadVoiceEncryptPublicKeyAndVersionNumber(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_WriteVoiceEncryptPublicKeyAndVersionNumber
- 功能描述  : 写ECC的公钥以及公钥版本号
- 输入参数  : pucPubKey -- 公钥K0
-             ucVerNum  -- 版本号
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_WriteVoiceEncryptPublicKeyAndVersionNumber(
     VOS_UINT8                          *pucPubKey,
     VOS_UINT8                           ucVerNum
@@ -307,20 +223,7 @@ VOS_VOID TAF_XCALL_WriteVoiceEncryptPublicKeyAndVersionNumber(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReadVoiceEncryptCapCfgPara
- 功能描述  : 读取语音加密能力配置参数，即加密能力以及动态配置开关
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ReadVoiceEncryptCapCfgPara(VOS_VOID)
 {
     TAF_XCALL_ECC_SRV_CAP_INFO_STRU                        *pstEccSrvCapInfo = VOS_NULL_PTR;
@@ -362,21 +265,7 @@ VOS_VOID TAF_XCALL_ReadVoiceEncryptCapCfgPara(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_WriteVoiceEncryptCapCfgPara
- 功能描述  : 写语音加密能力配置参数，即加密能力以及动态配置开关
- 输入参数  :
-             ucEccSwithOnFlag
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_WriteVoiceEncryptCapCfgPara(
     TAF_CALL_APP_ECC_SRV_CAP_ENUM_UINT32                    enEccSrvCap,
     TAF_CALL_APP_ECC_SRV_STATUS_ENUM_UINT32                 enEccSrvStatus
@@ -415,20 +304,7 @@ VOS_VOID TAF_XCALL_WriteVoiceEncryptCapCfgPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReadVoiceEncryptSecInfoEraseSysTime
- 功能描述  : 读取安全信息擦除系统时间
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ReadVoiceEncryptSecInfoEraseSysTime(VOS_VOID)
 {
     TAF_STD_TIME_ZONE_TYPE_STRU                            *pstLastInfoEraseTime = VOS_NULL_PTR;
@@ -461,20 +337,7 @@ VOS_VOID TAF_XCALL_ReadVoiceEncryptSecInfoEraseSysTime(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_WriteVoiceEncryptSecInfoEraseSysTime
- 功能描述  : 写安全信息擦除系统时间
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_WriteVoiceEncryptSecInfoEraseSysTime(
     TAF_STD_TIME_ZONE_TYPE_STRU        *pstSysTime
 )
@@ -502,20 +365,7 @@ VOS_VOID TAF_XCALL_WriteVoiceEncryptSecInfoEraseSysTime(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReadVoiceEncryptPassWordResetSysTime
- 功能描述  : 读取密码重置系统时间
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ReadVoiceEncryptPassWordResetSysTime(VOS_VOID)
 {
     TAF_STD_TIME_ZONE_TYPE_STRU                            *pstLastPassworResetTime = VOS_NULL_PTR;
@@ -548,20 +398,7 @@ VOS_VOID TAF_XCALL_ReadVoiceEncryptPassWordResetSysTime(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_WriteVoiceEncryptPassWordResetSysTime
- 功能描述  : 写密码重置系统时间
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_WriteVoiceEncryptPassWordResetSysTime(
     TAF_STD_TIME_ZONE_TYPE_STRU        *pstSysTime
 )
@@ -589,20 +426,7 @@ VOS_VOID TAF_XCALL_WriteVoiceEncryptPassWordResetSysTime(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XCALL_ReadVoiceEncryptTimerCfgInfo
- 功能描述  : 读取语音加密延时密钥请求发送时长
- 输入参数  : VOS_VOID
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_XCALL_ReadVoiceEncryptTimerCfgInfo(VOS_VOID)
 {
     TAF_XCALL_ENCRYPT_VOICE_PARA_INFO_CTX                  *pstEncVoiceInfoCtx = VOS_NULL_PTR;

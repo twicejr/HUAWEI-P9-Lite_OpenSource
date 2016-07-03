@@ -1,0 +1,90 @@
+/*
+  Camera sensor driver dtsi setting, which are used by PUD3 products and HISI UDP
+*/
+
+ /{
+        huawei,ov8856 {
+                compatible = "huawei,ov8856";
+                huawei,sensor_name = "OV8856_SUNNY";
+                huawei,sensor_index = <1>;
+                huawei,pd_valid = <1>;
+                huawei,reset_valid = <1>;
+                huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <1>;
+                status = "disabled";
+        };
+
+	huawei,t4ka3 {
+		compatible = "huawei,t4ka3";
+		huawei,sensor_name = "T4KA3_LITEON";
+		huawei,sensor_index = <1>;
+		huawei,pd_valid = <1>;
+		huawei,reset_valid = <1>;
+		huawei,vcmpd_valid = <0>;
+
+		hisi,is_fpga = <0>;
+		status = "disabled";
+	};
+
+        huawei,hi843 {
+                compatible = "huawei,hi843";
+                huawei,sensor_name = "HI843_OFILM";
+                huawei,sensor_index = <1>;
+                huawei,pd_valid = <1>;
+                huawei,reset_valid = <1>;
+                huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <0>;
+                status = "disabled";
+        };
+
+    huawei,imx219 {
+                compatible = "huawei,imx219";
+                huawei,sensor_name = "IMX219_VENDOR";
+                huawei,sensor_index = <1>;
+                huawei,pd_valid = <1>;
+                huawei,reset_valid = <1>;
+                huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <0>;
+                status = "disabled";
+    };
+
+	huawei,imx214 {
+		compatible = "huawei,imx214";
+		huawei,sensor_name = "IMX214_VENDOR";
+		huawei,sensor_index = <0>;
+		huawei,pd_valid = <1>;
+		huawei,reset_valid = <1>;
+		huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <1>;
+		status = "ok";
+	};
+
+	huawei,ov13850 {
+		compatible = "huawei,ov13850";
+		huawei,sensor_name = "OV13850_VENDOR";
+		huawei,sensor_index = <0>;
+		huawei,pd_valid = <1>;
+		huawei,reset_valid = <1>;
+		huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <0>;
+		status = "disabled";
+	};
+
+	huawei,ar1335 {
+		compatible = "huawei,ar1335";
+		huawei,sensor_name = "AR1335_SUNNY";
+		huawei,sensor_index = <0>;
+		huawei,pd_valid = <1>;
+		huawei,reset_valid = <1>;
+		huawei,vcmpd_valid = <0>;
+
+        hisi,is_fpga = <0>;
+		status = "disabled";
+	};
+
+};

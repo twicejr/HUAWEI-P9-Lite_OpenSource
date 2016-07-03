@@ -1,32 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : pwrctrl_sleep.c
-  版 本 号   : 初稿
-  作    者   : 刘永富 56193
-  生成日期   : 2012年7月25日
-  最近修改   :
-  功能描述   : 低功耗睡眠底层模块
-  函数列表   :
-              pwrctrl_check_irq_pending_status
-              pwrctrl_deep_sleep
-              pwrctrl_l2c_disable
-              pwrctrl_l2c_enable
-              pwrctrl_restore_ip_reg
-              pwrctrl_sleep_initial
-              pwrctrl_sleep_tele_vote_lock
-              pwrctrl_sleep_tele_vote_unlock
-              pwrctrl_sleep_tele_vote_wake_status
-              pwrctrl_store_ip_reg
-
-  修改历史   :
-  1.日    期   : 2012年7月25日
-    作    者   : 刘永富 56193
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -140,22 +112,7 @@ ST_STORE_REG_ADDR_INFO g_aAcpuSocRegTable[] =
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : pwrctrl_sleep_initial
- 功能描述  : 低功耗底层初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_sleep_initial ( void_t )
 {
 
@@ -173,7 +130,7 @@ s32_t pwrctrl_sleep_initial ( void_t )
 #else
     pwrctrl_set_bits(IO_ADDRESS(SOC_AO_SCTRL_SC_SECURITY_CTRL2_ADDR(SOC_SC_ON_BASE_ADDR)), \
                      BIT(SOC_AO_SCTRL_SC_SECURITY_CTRL2_remap_sram_aarm_START));
-#endif/*默认使能，删除配置 w00176398 2013-11-26*/
+#endif
 #if 0/*defined(CHIP_BB_HI6210)*//*A7 feature, support hardware invalid cache*/
     pwrctrl_set_bits(IO_ADDRESS(SOC_ACPU_SCTRL_ACPU_SC_CPU0_CTRL_ADDR(SOC_ACPU_SC_BASE_ADDR)),\
                      BIT(SOC_ACPU_SCTRL_ACPU_SC_CPU0_CTRL_l1rstdisable0_START));
@@ -189,20 +146,7 @@ s32_t pwrctrl_sleep_initial ( void_t )
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_store_ip_reg
- 功能描述  : 备份soc下电区ip的寄存器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_store_ip_reg ( u32_t * addr )
 {
     u32_t * ulbakAddr;
@@ -218,20 +162,7 @@ s32_t pwrctrl_store_ip_reg ( u32_t * addr )
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_restore_ip_reg
- 功能描述  : 恢复soc下电区ip的寄存器
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_restore_ip_reg( u32_t * addr)
 {
     u32_t * ulbakAddr;
@@ -247,20 +178,7 @@ s32_t pwrctrl_restore_ip_reg( u32_t * addr)
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_l2c_disable
- 功能描述  : l2cach disable
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数(需要修改arm/mm下的cache-l2x0.c文件)
-
-*****************************************************************************/
 s32_t pwrctrl_l2c_disable( void_t )
 {
 #ifdef CONFIG_CACHE_L2X0
@@ -281,20 +199,7 @@ s32_t pwrctrl_l2c_disable( void_t )
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_l2c_enable
- 功能描述  : l2cach enable
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
 
- 修改历史      :
-  1.日    期   : 2012年8月25日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数(需要修改arm/mm下的cache-l2x0.c文件)
-
-*****************************************************************************/
 s32_t pwrctrl_l2c_enable( void_t )
 {
 #ifdef CONFIG_CACHE_L2X0
@@ -316,19 +221,7 @@ s32_t pwrctrl_l2c_enable( void_t )
 }
 
 
-/*****************************************************************************
- 函 数 名  : PWRCTRL_CheckIrqPendingStatus
- 功能描述  : 检查中断状态
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : TRUE:无中断；FALSE:有中断
 
- 修改历史      :
-  1.日    期   : 2012年8月23日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_check_irq_pending_status ( void_t )
 {
     u32_t i, j;
@@ -373,22 +266,7 @@ s32_t pwrctrl_check_irq_pending_status ( void_t )
 }
 
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_deep_sleep
- 功能描述  : ARM 进入休眠唤醒
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年7月30日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t  pwrctrl_deep_sleep( void_t )
 {
     u32_t key = 0;
@@ -445,23 +323,7 @@ s32_t  pwrctrl_deep_sleep( void_t )
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_sleep_tele_vote_lock
- 功能描述  : 远程投票禁止睡眠接口
- 输入参数  : teleModeId         远程模块ID
-             enClientId         投票模块ID
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月9日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_sleep_tele_vote_lock(u32_t teleModeId, u32_t enClientId)
 {
     ST_VOTE_HW_INFO * pStVoteInfo = NULL ;
@@ -472,23 +334,7 @@ s32_t pwrctrl_sleep_tele_vote_lock(u32_t teleModeId, u32_t enClientId)
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_sleep_tele_vote_unlock
- 功能描述  : 远程投票允许睡眠接口
- 输入参数  : teleModeId         远程模块ID
-             enClientId         投票模块ID
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月9日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_sleep_tele_vote_unlock( u32_t teleModeId, u32_t enClientId )
 {
     ST_VOTE_HW_INFO * pStVoteInfo = NULL ;
@@ -499,22 +345,7 @@ s32_t pwrctrl_sleep_tele_vote_unlock( u32_t teleModeId, u32_t enClientId )
     return RET_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : pwrctrl_sleep_tele_vote_wake_status
- 功能描述  : 远程投票的唤醒投票状态检查
- 输入参数  : teleModeId         远程模块ID
- 输出参数  : 无
- 返 回 值  : RET_OK         成功
-             RET_ERR        失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月10日
-    作    者   : 刘永富 56193
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 s32_t pwrctrl_sleep_tele_vote_wake_status(u32_t teleModeId)
 {
     ST_VOTE_HW_INFO * pStVoteInfo = NULL ;

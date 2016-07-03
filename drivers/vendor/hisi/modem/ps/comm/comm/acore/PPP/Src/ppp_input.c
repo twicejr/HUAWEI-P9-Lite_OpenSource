@@ -112,56 +112,19 @@ VOS_SPINLOCK           g_stPppASpinLock;
 /******************************************************************************
    5 函数实现
 ******************************************************************************/
-/*****************************************************************************
- Prototype      : PPP_InitSpinLock
- Description    : 初始化自旋锁
- Input          : 无
- Output         :
- Return Value   : VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2016-01-16
-    Author      : c00184031
-    Modification: Created function
-*****************************************************************************/
+
 VOS_VOID PPP_InitSpinLock(VOS_VOID)
 {
     VOS_SpinLockInit(&g_stPppASpinLock);
 }
 
-/*****************************************************************************
- Prototype      : PPP_GetRawDataByPassMode
- Description    : 获取RAW DATA拨号模式时是否是透传报文
- Input          : usPppId
- Output         :
- Return Value   : VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2015-03-05
-    Author      : c00184031
-    Modification: Created function
-*****************************************************************************/
+
 VOS_UINT32 PPP_GetRawDataByPassMode(VOS_VOID)
 {
     return g_ulRawDataByPassMode;
 }
 
-/*****************************************************************************
- Prototype      : PPP_SetRawDataByPassMode
- Description    : 设置RAW DATA拨号模式时是否是透传报文
- Input          : usPppId
-                  ulRawDataByPassMode     透传模式
- Output         :
- Return Value   : VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2015-03-05
-    Author      : c00184031
-    Modification: Created function
-*****************************************************************************/
+
 VOS_VOID PPP_SetRawDataByPassMode(VOS_UINT32 ulRawDataByPassMode)
 {
     g_ulRawDataByPassMode    = ulRawDataByPassMode;
@@ -296,21 +259,7 @@ VOS_UINT32  PPP_Snd1stDataNotify(VOS_VOID)
 } /* PPP_Snd1stDataNotify */
 
 
-/******************************************************************************
- Prototype       : PPP_EnqueueData
- Description     : 将上下行数据放入PPP数据队列，如果队列从空到非空，并发送消息通知PPP模块
- Input           :
- Output          : NONE
- Return Value    : PS_SUCC   --- 成功
-                   PS_FAIL   --- 失败
- History         :
-   1.Date        : 2008-07-16
-     Author      : l47619
-     Modification: Created function
-   2.Date        : 2015-07-28
-     Author      : g00178567
-     Modification: Add the threshold 3000 of g_PppDataQCtrl.stDataQ (DTS2015070704638)
-******************************************************************************/
+
 VOS_UINT32  PPP_EnqueueData(PPP_ZC_STRU *pstImmZc)
 {
     VOS_UINT32                          ulNonEmptyEvent = PS_FALSE;    /* 记录队列是否发生了由空到非空的转变 */
@@ -430,22 +379,7 @@ VOS_UINT32 PPP_PullPacketEvent(VOS_UINT16 usPppId, PPP_ZC_STRU *pstImmZc)
     return PS_SUCC;
 } /* PPP_PullPacketEvent */
 
-/*****************************************************************************
- Prototype      : PPP_PushPacket
- Description    : IP类型拨号，接收到Um/Uu口的数据
- Input          : usRabId    --  RAB ID
-                  pstImmZc   --  下行IP包
- Output         : ---
- Return Value   : PS_SUCC   --- 成功
-                  PS_FAIL   --- 失败
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2011-03-17
-    Author      : l00164359
-    Modification: Created function
-*****************************************************************************/
 VOS_UINT32 PPP_PushPacketEvent(VOS_UINT8 ucRabId, PPP_ZC_STRU *pstImmZc, ADS_PKT_TYPE_ENUM_UINT8 enPktType, VOS_UINT32 ulExParam)
 {
     PPP_ID                              usPppId = PPP_INVLAID_PPP_ID;
@@ -661,21 +595,7 @@ VOS_UINT32 PPP_PushRawDataEvent(VOS_UINT8 ucRabId, PPP_ZC_STRU *pstImmZc, ADS_PK
     return PS_SUCC;
 }
 
-/*****************************************************************************
- Prototype      : PPP_IsContinueProcData
- Description    : 硬化方案下，处理PPP_DATA_PROC_NOTIFY数据指示
- Input          : enResultType      软件或应急处理结果
- Output         : ---
- Return Value   : PS_TRUE           发消息给PPP继续处理数据
-                  PS_FALSE          不需要发消息继续处理
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2016-01-13
-    Author      : c00184031
-    Modification: Created function
-*****************************************************************************/
 PS_BOOL_ENUM_UINT8 PPP_IsContinueProcData
 (
     PPP_HDLC_RESULT_TYPE_ENUM_UINT32    enResultType
@@ -796,20 +716,7 @@ VOS_VOID  PPP_ProcDataNotify(VOS_VOID)
     return;
 } /* PPP_ProcDataNotify */
 
-/*****************************************************************************
- Prototype      : PPP_ProcAsFrmDataInd
- Description    : 收到PPP_HDLC_ENABLE_IND的消息处理函数
- Input          : VOS_VOID
- Output         : ---
- Return Value   :
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2012-05-04
-    Author      : c00191211
-    Modification: Created function
-*****************************************************************************/
 VOS_VOID PPP_ProcAsFrmDataInd(struct MsgCB * pMsg)
 {
     HDLC_PROC_AS_FRM_PACKET_IND_MSG_STRU    *pstHdlcEnable;
@@ -926,22 +833,7 @@ VOS_UINT32 PPP_ProcAtCtrlOper(struct MsgCB * pMsg)
     return PS_SUCC;
 }
 
-/*****************************************************************************
- Prototype      : Ppp_MBufFrameMntnInfo
- Description    : 将Mbuf结构的PPP帧进行勾包
- Input          : bp        指向mbuf结构的指针
-                  usproto   PPP协议字段
-                  uldir     上行/下行
- Output         : ---
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2009-02-02
-    Author      : x00138766
-    Modification: Created function
-*****************************************************************************/
 /*****************************************************************************
     PPP勾包原始内存中数据的结构
     -PPP_Frame_MNTN_Info_STRU    struct
@@ -999,22 +891,7 @@ VOS_VOID Ppp_MBufFrameMntnInfo
     return;
 }
 
-/******************************************************************************
- Prototype      : Ppp_TtfMemFrameMntnInfo
- Description    : 将TTF_MEM结构的PPP帧进行勾包
- Input          : pstMem    指向TTF_MEM结构的指针
-                  usproto   PPP协议字段
-                  uldir     上行/下行
- Output         : ---
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2009-02-02
-    Author      : x00138766
-    Modification: Created function
-******************************************************************************/
 VOS_VOID Ppp_TtfMemFrameMntnInfo
 (
     PPP_ZC_STRU *pstMem,
@@ -1067,22 +944,7 @@ VOS_VOID Ppp_TtfMemFrameMntnInfo
     return;
 }
 
-/******************************************************************************
- Prototype      : Ppp_TtfMemFrameMntnInfo
- Description    : 将PPP勾包结构发送到OM，并填入公共信息字段信息
- Input          : ptrPppMntnSt  指向PPP勾包结构的指针
-                  uldir         上行/下行
-                  ulFrameLen    帧长(涵盖PPP勾包结构+协议字段+PPP帧)
- Output         : ---
- Return Value   : ---
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2009-02-02
-    Author      : x00138766
-    Modification: Created function
-*****************************************************************************/
 VOS_VOID Ppp_FrameMntnInfo
 (
     PPP_FRAME_MNTN_INFO_STRU *ptrPppMntnSt,
@@ -1117,23 +979,7 @@ VOS_VOID Ppp_FrameMntnInfo
     return;
 }
 
-/*****************************************************************************
- Prototype      : Ppp_FillEventMntnInfo
- Description    : Event可维可测信息公共信息字段赋值
- Input          : ptrPppEveMntnSt  PPP Event可维可测信息结构指针
-                  usPppID          PPP ID
-                  ulEvent          PPP事件类型
-                  ulEventLen       PPP Event可维可测信息总长度(涵盖事件结构信息长度+内容长度)
- Output         : ---
- Return Value   : VOID
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2009-02-02
-    Author      : x00138766
-    Modification: Created function
-*****************************************************************************/
 VOS_VOID Ppp_FillEventMntnInfo
 (
     PPP_EVENT_MNTN_INFO_STRU  *ptrPppEveMntnSt,
@@ -1156,21 +1002,7 @@ VOS_VOID Ppp_FillEventMntnInfo
     ptrPppEveMntnSt->ulLcpState     = pgPppLink->lcp.fsm.state;
 }
 
-/*****************************************************************************
- Prototype      : Ppp_EventMntnInfo
- Description    : PPP事件消息上报，仅含事件上报结构内容，不含其他帧数据等
- Input          : usPppID    PPP ID
-                  ulEvent    PPP事件类型
- Output         : ---
- Return Value   : VOID
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2009-02-02
-    Author      : x00138766
-    Modification: Created function
-*****************************************************************************/
 VOS_VOID Ppp_EventMntnInfo
 (
     VOS_UINT16                usPppID,
@@ -1187,21 +1019,7 @@ VOS_VOID Ppp_EventMntnInfo
     return;
 }
 
-/*****************************************************************************
- Prototype      : Ppp_IndConfigInfoMntnInfo
- Description    : PPP config info ind中的消息内容上报
- Input          : usPppID               PPP ID
-                  ptrIndConfigInfo      PPP config info ind 内容
- Output         : ---
- Return Value   : VOID
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2009-02-02
-    Author      : x00138766
-    Modification: Created function
-*****************************************************************************/
 /*****************************************************************************
  PPP_ind_config_info可维可测信息勾包原始内存中的数据结构
  需要确保LEN在2BYTE对齐
@@ -1283,21 +1101,7 @@ VOS_VOID Ppp_RcvConfigInfoIndMntnInfo
     return;
 }
 
-/*****************************************************************************
- Prototype      : Ppp_RcvConfigInfoReqMntnInfo
- Description    : PPP_REQ_CONFIG_INFO_STRU 中的消息内容上报
- Input          : usPppID               PPP ID
-                  ptrReqConfigInfo      PPP config info req 内容
- Output         : ---
- Return Value   : VOID
- Calls          : ---
- Called By      : ---
 
- History        : ---
-  1.Date        : 2009-02-02
-    Author      : x00138766
-    Modification: Created function
-*****************************************************************************/
 /*****************************************************************************
  PPP_ind_config_info可维可测信息勾包原始内存中的数据结构
 

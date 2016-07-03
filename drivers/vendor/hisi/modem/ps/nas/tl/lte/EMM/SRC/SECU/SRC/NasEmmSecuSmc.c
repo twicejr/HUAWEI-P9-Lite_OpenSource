@@ -35,17 +35,7 @@ VOS_UINT8                           g_aucEia0Kasme[NAS_LMM_SECU_AUTH_KEY_ASME_LE
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DeriveNewNasKey
- Description     : 计算新的NasCK,NasIK
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-8  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_DeriveNewNasKey(      VOS_UINT8  *pucKasme,
                                         VOS_UINT8   ucEca,
                                         VOS_UINT8   ucEia)
@@ -80,17 +70,7 @@ VOS_VOID  NAS_EMM_DeriveNewNasKey(      VOS_UINT8  *pucKasme,
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ComputeNasKey
- Description     : 计算NAS密钥
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_ComputeNasKey(  VOS_UINT8  *pucKasme,
                                     VOS_UINT8  *pNasK,
                                     NAS_EMM_SECU_NAS_KEY_TYPE_ENUM_UINT8 enNasKeyType,
@@ -161,17 +141,7 @@ VOS_UINT32  NAS_EMM_ComputeNasKey(  VOS_UINT8  *pucKasme,
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_UpdateCurSecuCntxt
- Description     : 更新当前安全上下文的KSIasme,KEYasme
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-9  Draft Enact
-    2.sunjitan 00193151         2014-9-6  Mod: DTS2014090904779规避GU重选到L后SMC CMP发送不成功导致的后续异常
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID  NAS_EMM_UpdateCurSecuCntxt(VOS_VOID)
@@ -189,9 +159,7 @@ VOS_VOID  NAS_EMM_UpdateCurSecuCntxt(VOS_VOID)
                                         NAS_EMM_GetSecuNewMappedKasmeAddr(),
                                         NAS_LMM_SECU_AUTH_KEY_ASME_LEN);
 
-        /* s00193151 delete DTS2014090904779 2014-09-06:
-           GU重选到L后TAU流程SMC CMP发送不成功，后续重发TAU网侧直接激活时仍可能使用NEW MAPPED，
-           保留KSIsgsn就可以了，NEW MAPPED会在计算新Kasme时自动覆盖 */
+        
 
         /* 清空 new mapped security context */
         /* NAS_EMM_ClearNewMappedSecuCntxt(); */
@@ -237,15 +205,7 @@ VOS_VOID  NAS_EMM_UpdateCurSecuCntxt(VOS_VOID)
    return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_Eia0SmcVerifyKsi
- Description     : 启用EIA0时检查SMC消息携带的KSI
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-10-18  Draft Enact
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_Eia0SmcVerifyKsi
 (
     VOS_UINT8                           ucKsi
@@ -286,16 +246,7 @@ VOS_UINT32 NAS_EMM_Eia0SmcVerifyKsi
     return  NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_NotEia0SmcVerifyKsi
- Description     : 非启用EIA0时检查SMC消息携带的KSI
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-5  Draft Enact
-    2.zhengjunyan 00148421      2011-4-26 MOD:INTER RAT
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_NotEia0SmcVerifyKsi
 (
     VOS_UINT8                           ucSqn,
@@ -336,19 +287,7 @@ VOS_UINT32 NAS_EMM_NotEia0SmcVerifyKsi
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SmcVerifyNativeKsi
- Description     : 验证EPS native KSI
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-26  Draft Enact
-    2.zhengjunyan 00148421      2011-9-22  MOD:为了适应GCF仪器下发AUTH REQ消息
-                                    的KSIasme与UE当前安全上下文KSIasme相同的问题
-                                    调整匹配的顺序
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SmcVerifyNativeKsi( VOS_UINT8 ucKsiValue)
 {
     NAS_EMM_SECU_LOG1_INFO("NAS_EMM_SmcVerifyNativeKsi: ucKsiValue = ", ucKsiValue);
@@ -375,17 +314,7 @@ VOS_UINT32  NAS_EMM_SmcVerifyNativeKsi( VOS_UINT8 ucKsiValue)
     return  NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SmcVerifyMappedKsi
- Description     : 验证EPS mapped KSI
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-26  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SmcVerifyMappedKsi
 (
     VOS_UINT8                           ucSqn,
@@ -426,18 +355,7 @@ VOS_UINT32  NAS_EMM_SmcVerifyMappedKsi
     return  NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_Eia0SmcVerifyAlg
- Description     : 启用EIA0时验证SMC消息携带的保护算法，加解密算法是否符合UeNetCap
-                   加密算法是否为EEA0
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-10-18  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_Eia0SmcVerifyAlg( VOS_UINT8 ucSelEca, VOS_UINT8 ucSelEia)
 {
     if (NAS_EMM_SECU_ALG_EEA0 != ucSelEca)
@@ -451,17 +369,7 @@ VOS_UINT32 NAS_EMM_Eia0SmcVerifyAlg( VOS_UINT8 ucSelEca, VOS_UINT8 ucSelEia)
     return NAS_EMM_IsAlgUeSupported(ucSelEca, ucSelEia);
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsAlgUeSupported
- Description     : 验证SMC消息携带的保护算法，加解密算法是否符合UeNetCap
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-8  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_IsAlgUeSupported( VOS_UINT8 ucSelEca, VOS_UINT8 ucSelEia)
 {
     NAS_MM_UE_NET_CAP_STRU             *pstUeNetCap = NAS_EMM_NULL_PTR;
@@ -489,17 +397,7 @@ VOS_UINT32 NAS_EMM_IsAlgUeSupported( VOS_UINT8 ucSelEca, VOS_UINT8 ucSelEia)
 
     return NAS_EMM_SECU_SUCC;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetIntegrityAlg
- Description     : 将网侧携带的完整性保护算法进行转换，传给底软
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181       2013-06-05  Draft Enact
-
-*****************************************************************************/
 CIPHER_ALGORITHM_E NAS_EMM_GetIntegrityAlg( VOS_UINT8 ucSelEia)
 {
 
@@ -527,17 +425,7 @@ CIPHER_ALGORITHM_E NAS_EMM_GetIntegrityAlg( VOS_UINT8 ucSelEia)
 
     }
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_GetSecurityAlg
- Description     : 将网侧携带的加密算法进行转换，传给底软
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.wangchen 00209181       2013-06-05  Draft Enact
-
-*****************************************************************************/
 CIPHER_ALGORITHM_E NAS_EMM_GetSecurityAlg( VOS_UINT8 ucSelEca)
 {
 
@@ -568,18 +456,7 @@ CIPHER_ALGORITHM_E NAS_EMM_GetSecurityAlg( VOS_UINT8 ucSelEca)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SmcVerifyUeSecuCap
- Description     : 检查SMC消息中携带的 replayed UE_SECURITY_CAP是否与本地匹配
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-8  Draft Enact
-    2.zhengjunyan 00148421      2011-4-26 MOD:INTER RAT
-    3.sunbing 49683             2012-04-25 DTS2012042501002
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SmcVerifyUeSecuCap(
                         const NAS_LMM_UE_SECURITY_CAP_STRU    *pstUeSecuCap )
 {
@@ -650,17 +527,7 @@ VOS_UINT32  NAS_EMM_SmcVerifyUeSecuCap(
     return NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SmcVerifyNonceUE
- Description     : 检查SMC消息携带的 replayed NonceUE是否与UE本地的相同
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-26  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SmcVerifyNonceUE(
                                         const NAS_EMM_SECU_SMC_STRU *pstSmcStru )
 {
@@ -686,15 +553,7 @@ VOS_UINT32  NAS_EMM_SmcVerifyNonceUE(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_DecodeSmcMsg
- Description     : 把MM CN 消息解码到具体的结构中
- Input           :
- Output          :
- Return          :
- History         :
-    1.zhengjunyan 00148421      2011-5-03  Draft Enact
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_DecodeSmcMsg(
                                         LRRC_LNAS_MSG_STRU      *pstCnSmcMsg,
                                         NAS_EMM_SECU_SMC_STRU   *pstSecurModeCtrl)/*lint -e662 -e661 -e831 -e416 -e415*/
@@ -867,17 +726,7 @@ VOS_UINT32  NAS_EMM_DecodeSmcMsg(
 
 }/*lint +e662 +e661 +e831 +e416 +e415*/
 
-/*****************************************************************************
- Function Name   : NAS_EMM_Eia0SmcVerifyParam
- Description     : 启用EIA0时SMC携带的参数检查,包括:KSI, 算法, replayed UE_NET_CAP,
-                                          replayed NONCEue
- Input           : SMC消息码流
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-10-18  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_NotEia0SmcVerifyParam
 (
     const NAS_EMM_SECU_SMC_STRU              *pstSmcStru,
@@ -943,17 +792,7 @@ VOS_UINT32  NAS_EMM_NotEia0SmcVerifyParam
     return NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_Eia0SmcVerifyParam
- Description     : 启用EIA0时SMC携带的参数检查,包括:KSI, 算法, replayed UE_NET_CAP,
-                                          replayed NONCEue
- Input           : SMC消息码流
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-10-18  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_Eia0SmcVerifyParam
 (
     const NAS_EMM_SECU_SMC_STRU              *pstSmcStru
@@ -1007,18 +846,7 @@ VOS_UINT32  NAS_EMM_Eia0SmcVerifyParam
     return NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SmcVerifyParam
- Description     : SMC携带的参数检查,包括:KSI, 算法, replayed UE_NET_CAP,
-                                          replayed NONCEue
- Input           : SMC消息码流
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-10  Draft Enact
-    2.zhengjunyan 00148421      2011-4-26  MOD:INTER RAT
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SmcVerifyParam( LRRC_LNAS_MSG_STRU  *pstSmcMsg )
 {
     VOS_UINT8                           ucSmcEia = 0;
@@ -1072,18 +900,7 @@ VOS_UINT32  NAS_EMM_SmcVerifyParam( LRRC_LNAS_MSG_STRU  *pstSmcMsg )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuGetNonceMmeInSmc
- Description     : 获取SMC消息中的 NONCEmme
-                   ref:24301-950 8.2.20.1
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-4-26  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SecuGetNonceMmeInSmc( VOS_VOID )
 {
     NAS_EMM_SECU_SMC_STRU              *pstSmcStru = VOS_NULL_PTR;
@@ -1100,17 +917,7 @@ VOS_VOID  NAS_EMM_SecuGetNonceMmeInSmc( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_Eia0SmcIntCheckPara
- Description     : 启动EIA0时计算NAS CK和NAS IK
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2012-10-18  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_Eia0SmcIntCheckPara
 (
     LRRC_LNAS_MSG_STRU                 *pstSmcMsg,
@@ -1263,18 +1070,7 @@ VOS_VOID  NAS_EMM_NotEia0SmcIntCheckPara(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SmcIntCheck
- Description     : SMC消息完整性检查：需要根据enSmcType来获取不同的参数
- Input           : None
- Output          : 若解保护成功,
-                   pstSmcMsg->aucNasMsg 为去掉 头类型/MAC/SN后的纯粹的SMC消息
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-10  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_SmcIntCheck( LRRC_LNAS_MSG_STRU  *pstSmcMsg )
 {
     VOS_UINT32                          ulRslt          = NAS_EMM_SECU_FAIL;
@@ -1327,17 +1123,7 @@ VOS_UINT32  NAS_EMM_SmcIntCheck( LRRC_LNAS_MSG_STRU  *pstSmcMsg )
     return NAS_EMM_SECU_SUCC;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SendSecuParamToRrc
- Description     : 发送RRC_MM_INFO_CHANGE_REQ给RRC,携带安全参数:Kasme + UL_NasCount
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-9-9  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SendSecuParamToRrc( VOS_VOID )
 {
     LRRC_LNAS_INFO_STRU                   stNasInfo;
@@ -1363,17 +1149,7 @@ VOS_VOID  NAS_EMM_SendSecuParamToRrc( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuSendSmcCmp
- Description     : 向MRRC发送NAS_EMM_MRRC_DATA_REQ(SECURITY MODE COMPLETE)消息
- Input           : enIfImeisvReq:是否需要回复IMEISV
- Output          : None
- Return          : None
- History         :
-    1.liuwenyu 00143951         2008-12-20  Draft Enact
-    2.zhuyiqiang 00138739       2009-08-11  MODIFY    BJ9D01672,上行编码优化
 
-*****************************************************************************/
 VOS_VOID    NAS_EMM_SecuSendSmcCmp(
                         NAS_EMM_IMEISV_REQUEST_INFO_ENUM_UINT8  enIfImeisvReq)
 {
@@ -1447,16 +1223,7 @@ VOS_VOID    NAS_EMM_SecuSendSmcCmp(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SecuSendSmcRej
- Description     : 向MRRC发送NAS_EMM_MRRC_DATA_REQ(SECURITY MODE REJECT)消息
- Input           : None
- Output          : None
- Return          : None
- History         :
-    1.zhengjunyan 00148421         2010-03-22  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_EMM_SecuSendSmcRej(NAS_EMM_SMC_REJ_CAUSE_ENUM_UINT8 enCause)
 {
     VOS_UINT32                          ulPos               = 0;
@@ -1517,17 +1284,7 @@ VOS_VOID NAS_EMM_SecuSendSmcRej(NAS_EMM_SMC_REJ_CAUSE_ENUM_UINT8 enCause)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsImeisvReq
- Description     : 判断SMC消息中是否要求回复IMEISV信息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-11  Draft Enact
-
-*****************************************************************************/
 NAS_EMM_IMEISV_REQUEST_INFO_ENUM_UINT8  NAS_EMM_IsImeisvReq( VOS_VOID)
 {
     NAS_EMM_SECU_SMC_STRU              *pstSmcStru = VOS_NULL_PTR;
@@ -1548,19 +1305,7 @@ NAS_EMM_IMEISV_REQUEST_INFO_ENUM_UINT8  NAS_EMM_IsImeisvReq( VOS_VOID)
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SmcSucc
- Description     : SMC消息验证成功的处理函数
- Input           : pucSmcMsg: 包括安全头的 NAS CN SMC消息
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-10  Draft Enact
-    2.zhengjunyan 00148421      2011-12-13 Mod:non-current security context还原时，
-                                           NASCOUNT也要还原
-    3.lihong 00150010           2012-10-18 Mod:emergency
-*****************************************************************************/
 VOS_VOID  NAS_EMM_SmcSucc( const LRRC_LNAS_MSG_STRU    *pstSmcMsg )
 {
     NAS_EMM_IMEISV_REQUEST_INFO_ENUM_UINT8  enIfImeisvReq   = NAS_EMM_IMEISV_REQUEST_INFO_BUTT;
@@ -1650,22 +1395,7 @@ VOS_VOID  NAS_EMM_SmcSucc( const LRRC_LNAS_MSG_STRU    *pstSmcMsg )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SmcCommProcess
- Description     : SMC消息处理函数:
-                   1.检查消息类型，关键消息和关键事件上报
-                   2.SMC携带的参数检查，包括:KSI,算法,replayed UE_NET_CAP,
-                                             replayed NONCEue
-                   3.完整性检查
-                   4.检查成功，更新安全上下文
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2010-3-5  Draft Enact
-
-*****************************************************************************/
 
 /*lint -e416*/
 /*lint -e415*/
@@ -1743,16 +1473,7 @@ VOS_UINT32  NAS_EMM_SmcCommProcess(LRRC_LNAS_MSG_STRU  *pstSmcMsg)/*lint -e416 -
 /*lint +e416*/
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_HandleLrrcMsgSndFailForHandOver
- Description     : LRRC_LMM_SEND_RSLT_FAILURE发送失败时的处理
- Input           : None
- Output          : None
- Return          : None
 
- History         : leixiantiao 00258641    2013-12-03      Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_EMM_HandleLrrcMsgSndFailForHandOver(
                                         NAS_EMM_MRRC_MGMT_DATA_STRU  *pEmmMrrcMgmtData,
                                         VOS_UINT32 *pulIsDelBuff)
@@ -1795,16 +1516,7 @@ VOS_VOID NAS_EMM_HandleLrrcMsgSndFailForHandOver(
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SndCommonProcedureMsgFailProc
- Description     : GUTI CMP,IDEN RSP,SMC CMP,SMC REJ,AUTH RSP,AUTH FAILURE发送失败时的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         : wangchen 00209181    2013-03-30      Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_EMM_SndCommonProcedureMsgFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulIsDelBuff)
 {
     LRRC_LMM_DATA_CNF_STRU              *pstRrcMmDataCnf = VOS_NULL_PTR;
@@ -1848,9 +1560,7 @@ VOS_UINT32 NAS_EMM_SndCommonProcedureMsgFailProc(VOS_VOID* pMsg,VOS_UINT32 *pulI
     switch (pstRrcMmDataCnf->enSendRslt)
     {
         case LRRC_LMM_SEND_RSLT_FAILURE_HO:
-            /*l00258641 2013-12-3 圈复杂度太高，重构代码 begin*/
             NAS_EMM_HandleLrrcMsgSndFailForHandOver(pEmmMrrcMgmtData, pulIsDelBuff);
-            /*l00258641 2013-12-3 圈复杂度太高，重构代码 end*/
 
             break;
         case LRRC_LMM_SEND_RSLT_FAILURE_TXN:

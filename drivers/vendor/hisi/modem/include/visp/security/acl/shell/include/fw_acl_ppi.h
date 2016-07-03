@@ -1,27 +1,4 @@
-/*******************************************************************************
-*
-*
-*                Copyright 2008, Huawei Technologies Co. Ltd.
-*                            ALL RIGHTS RESERVED
-*
-*-------------------------------------------------------------------------------
-*
-*                              acl_ppi.h
-*
-*  Project Code: VISPV1R7
-*   Module Name: ACL  
-*  Date Created: 2008-07-25
-*        Author: wuhailan
-*   Description: ACL PPI信息下发文件
-*
-*-------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  -----------------------------------------------------------------------------
-*  2008-07-25   wuhailan                Create
-*  2008-09-10   liangjicheng          V1R7C02 同步V1R7C01  文件新增
-*  2011-08-13   Eswar-72335          Added PPI download for MAC based rules
-*******************************************************************************/
+
 #ifndef __FW_ACL_PPI_H__
 #define __FW_ACL_PPI_H__
 

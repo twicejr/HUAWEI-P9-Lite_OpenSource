@@ -11,29 +11,13 @@ extern UDI_HANDLE                   g_astOMPortUDIHandle[OM_PORT_HANDLE_BUTT];
 
 extern UDI_HANDLE                   g_ulCbtPortUDIHandle;
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_VOID uttest_CBTPPM_OamCbtPortInit_case1(VOS_VOID)
 {
 	CBTPPM_OamCbtPortInit();
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_VOID uttest_CBTPPM_OamCbtPortInit_case2(VOS_VOID)
 {
 	stPortCfg.enCbtPortNum = CPM_CBT_PORT_USB;
@@ -41,43 +25,19 @@ VOS_VOID uttest_CBTPPM_OamCbtPortInit_case2(VOS_VOID)
 	CBTPPM_OamCbtPortInit();
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_VOID uttest_CBTPPM_OamVComCbtPortInit_case1(VOS_VOID)
 {
 	CBTPPM_OamVComCbtPortInit();
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_VOID uttest_CBTPPM_OamVComCbtPortInit_case2(VOS_VOID)
 {
 	CBTPPM_OamVComCbtPortInit();
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_CBTPPM_OamVComCbtSendData_case1(VOS_VOID)
 {
 	VOS_UINT8 ucVirAddr; 
@@ -87,15 +47,7 @@ VOS_UINT32 uttest_CBTPPM_OamVComCbtSendData_case1(VOS_VOID)
 	return CBTPPM_OamVComCbtSendData(&ucVirAddr, &ucPhyAddr, ulDataLen);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case1(VOS_VOID)
 {
 	VOS_UINT8 ucDevIndex = APP_VCOM_DEV_INDEX_LOG+1;
@@ -105,15 +57,7 @@ VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case1(VOS_VOID)
 	return CBTPPM_OamVComCbtReadData(ucDevIndex, aucData, ullength);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case2(VOS_VOID)
 {
 	VOS_UINT8 ucDevIndex = APP_VCOM_DEV_INDEX_LOG;
@@ -123,15 +67,7 @@ VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case2(VOS_VOID)
 	return CBTPPM_OamVComCbtReadData(ucDevIndex, pucData, ullength);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case3(VOS_VOID)
 {
 	VOS_UINT8 ucDevIndex = APP_VCOM_DEV_INDEX_LOG;
@@ -141,15 +77,7 @@ VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case3(VOS_VOID)
 	return CBTPPM_OamVComCbtReadData(ucDevIndex, aucData, ullength);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case4(VOS_VOID)
 {
 	VOS_UINT8 ucDevIndex = APP_VCOM_DEV_INDEX_LOG;
@@ -159,15 +87,7 @@ VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case4(VOS_VOID)
 	return CBTPPM_OamVComCbtReadData(ucDevIndex, aucData, ullength);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case5(VOS_VOID)
 {
 	VOS_UINT8 ucDevIndex = APP_VCOM_DEV_INDEX_LOG;
@@ -177,15 +97,7 @@ VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case5(VOS_VOID)
 	return CBTPPM_OamVComCbtReadData(ucDevIndex, aucData, ullength);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case6(VOS_VOID)
 {
 	VOS_UINT8 ucDevIndex = APP_VCOM_DEV_INDEX_LOG;
@@ -195,29 +107,13 @@ VOS_UINT32 uttest_CBTPPM_OamVComCbtReadData_case6(VOS_VOID)
 	return CBTPPM_OamVComCbtReadData(ucDevIndex, aucData, ullength);
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_CBTPPM_OamUsbCbtPortInit_case1(VOS_VOID)
 {
 	return CBTPPM_OamUsbCbtPortInit();
 }
 
-/*******************************************************************
-*测试项:
-*被测函数功能描述:
-*预期结果：
-************************* 修改记录 *********************************
-#  1.日    期:
-#    作    者: j00168360
-#    修改内容: 新建CASE
-*******************************************************************/
+
 VOS_UINT32 uttest_CBTPPM_OamUsbCbtPortInit_case2(VOS_VOID)
 {
 	return CBTPPM_OamUsbCbtPortInit();

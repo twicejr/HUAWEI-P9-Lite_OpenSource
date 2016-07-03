@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_dfs.c
-  版 本 号   : 初稿
-  作    者   : mayuan
-  生成日期   : 2014年10月16日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -73,21 +56,7 @@ OAL_STATIC oal_uint32  hmac_dfs_off_chan_cac_opern_ch_dwell_timeout(oal_void *p_
 /*****************************************************************************
   4 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : hmac_dfs_init
- 功能描述  : DFS特性初始化函数
- 输入参数  : pst_mac_device: MAC DEVICE指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_dfs_init(mac_device_stru *pst_mac_device)
 {
     mac_dfs_info_stru   *pst_dfs_info;
@@ -121,21 +90,7 @@ oal_void  hmac_dfs_init(mac_device_stru *pst_mac_device)
     pst_dfs_info->uc_offchan_flag = 0;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_channel_list_init
- 功能描述  : DFS信道列表初始化
- 输入参数  : pst_mac_device: MAC DEVICE指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月4日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_dfs_channel_list_init(mac_device_stru *pst_mac_device)
 {
     mac_chan_status_enum_uint8    en_ch_status;
@@ -173,22 +128,7 @@ oal_void  hmac_dfs_channel_list_init(mac_device_stru *pst_mac_device)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_find_available_chan
- 功能描述  : 从管制域支持的信道中，选择最低可用信道
- 输入参数  : pst_mac_device: MAC DEVICE结构体指针
-             pst_mac_vap   : MAC VAP结构体指针
- 输出参数  : 无
- 返 回 值  : 信道号
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint8  hmac_dfs_find_lowest_available_channel(mac_device_stru *pst_mac_device)
 {
     oal_uint8     uc_channel_num = 36;
@@ -217,22 +157,7 @@ OAL_STATIC oal_uint8  hmac_dfs_find_lowest_available_channel(mac_device_stru *ps
     return uc_channel_num;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_recalculate_channel
- 功能描述  : 是否需要重新计算(更改)可用信道
- 输入参数  : pst_mac_device: MAC DEVICE结构体指针
- 输出参数  : puc_freq      : 信道号
- 返 回 值  : OAL_TRUE : 需要
-             OAL_FALSE: 不需要
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_dfs_recalculate_channel(
                     mac_device_stru                     *pst_mac_device,
                     oal_uint8                           *puc_freq,
@@ -280,21 +205,7 @@ oal_uint32  hmac_dfs_recalculate_channel(
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_radar_detect_event
- 功能描述  : HMAC 雷达中断处理入口函数
- 输入参数  : pst_event_mem: 事件内存指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_dfs_radar_detect_event(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru         *pst_event;
@@ -325,23 +236,7 @@ oal_uint32  hmac_dfs_radar_detect_event(frw_event_mem_stru *pst_event_mem)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_update_channel_list
- 功能描述  : 更新信道信息
- 输入参数  : pst_mac_device   : MAC DEVICE指针
-             uc_chan_idx      : 信道索引
-             en_radar_detected: 是否检测到雷达
- 输出参数  : pst_mac_device   : MAC DEVICE指针
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_dfs_update_available_channel_list(
                 mac_device_stru       *pst_mac_device,
                 oal_uint8              uc_chan_idx,
@@ -377,21 +272,7 @@ OAL_STATIC oal_uint32  hmac_dfs_update_available_channel_list(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_cac_timeout_fn
- 功能描述  : Channel Availability Check(CAC) 超时函数
- 输入参数  : p_arg: HMAC VAP的指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_dfs_cac_timeout_fn(oal_void *p_arg)
 {
     mac_device_stru          *pst_mac_device;
@@ -478,21 +359,7 @@ oal_uint32  hmac_dfs_cac_timeout_fn(oal_void *p_arg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_start_bss
- 功能描述  : setchannel时判断是否需要cac检测，不需要则启动vap
- 输入参数  : pst_hmac_vap: HMAC VAP的指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月16日
-    作    者   : s00304087
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_dfs_start_bss(hmac_vap_stru *pst_hmac_vap)
 {
     mac_device_stru          *pst_mac_device;
@@ -518,22 +385,7 @@ oal_uint32  hmac_dfs_start_bss(hmac_vap_stru *pst_hmac_vap)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_get_cac_time
- 功能描述  : 获取Channel Availability Check(CAC)检测时间
- 输入参数  : pst_mac_device: MAC DEVICE指针
-             pst_mac_vap   : MAC VAP指针
- 输出参数  : 无
- 返 回 值  : CAC检测时间
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_chan_get_cac_time(mac_device_stru *pst_mac_device, mac_vap_stru *pst_mac_vap, oal_uint32 *ul_scan_time)
 {
     mac_regdomain_info_stru   *pst_rd_info;
@@ -569,21 +421,7 @@ OAL_STATIC oal_uint32  hmac_chan_get_cac_time(mac_device_stru *pst_mac_device, m
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_chan_get_off_chan_cac_time
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月28日
-    作    者   : sunxiaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_chan_get_off_chan_cac_time(mac_device_stru *pst_mac_device, mac_vap_stru *pst_mac_vap, oal_uint32 *ul_scan_time)
 {
     hmac_channel_list_stru     st_chan_info;
@@ -614,21 +452,7 @@ OAL_STATIC oal_uint32  hmac_chan_get_off_chan_cac_time(mac_device_stru *pst_mac_
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_cac_stop
- 功能描述  : Channel Availability Check(CAC)检测结束函数
- 输入参数  : pst_mac_device: MAC DEVICE指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_dfs_cac_stop(mac_device_stru *pst_mac_device)
 {
     if (OAL_TRUE == pst_mac_device->st_dfs.st_dfs_cac_timer.en_is_enabled)
@@ -668,22 +492,7 @@ oal_void  hmac_dfs_off_cac_stop(mac_device_stru *pst_mac_device, mac_vap_stru *p
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_cac_start
- 功能描述  : Channel Availability Check(CAC)检测开始函数
- 输入参数  : pst_mac_device: MAC DEVICE指针
-             pst_hmac_vap  : HMAC VAP指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_dfs_cac_start(mac_device_stru *pst_mac_device, hmac_vap_stru *pst_hmac_vap)
 {
     oal_uint32   ul_scan_time = 0;
@@ -734,22 +543,7 @@ oal_void  hmac_dfs_cac_start(mac_device_stru *pst_mac_device, hmac_vap_stru *pst
                  pst_hmac_vap->st_vap_base_info.st_channel.uc_chan_number, pst_mac_device->st_dfs.st_dfs_info.uc_timer_end_cnt);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_radar_wait
- 功能描述  :
- 输入参数  : pst_mac_device: MAC DEVICE指针
-             uc_chan_idx   : 信道索引
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_dfs_radar_wait(mac_device_stru *pst_mac_device, oal_uint8 uc_chan_idx)
 {
     mac_vap_stru   *pst_mac_vap;
@@ -785,21 +579,7 @@ oal_void  hmac_dfs_radar_wait(mac_device_stru *pst_mac_device, oal_uint8 uc_chan
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_nol_timeout_fn
- 功能描述  : NOL超时函数，超时后将某一信道从NOL列表中剔除
- 输入参数  : p_arg: NOL Node节点指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_dfs_nol_timeout_fn(oal_void *p_arg)
 {
     mac_device_stru         *pst_mac_device;
@@ -830,22 +610,7 @@ OAL_STATIC oal_uint32  hmac_dfs_nol_timeout_fn(oal_void *p_arg)
     return hmac_dfs_nol_delchan(pst_mac_device, pst_nol_node);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_nol_addchan
- 功能描述  : 将指定信道加入NOL列表
- 输入参数  : pst_mac_device: MAC DEVICE指针
-             uc_chan_idx   : 信道索引
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_dfs_nol_addchan(mac_device_stru *pst_mac_device, oal_uint8 uc_chan_idx)
 {
     mac_dfs_nol_node_stru   *pst_nol_node;
@@ -880,22 +645,7 @@ OAL_STATIC oal_uint32  hmac_dfs_nol_addchan(mac_device_stru *pst_mac_device, oal
     return hmac_dfs_update_available_channel_list(pst_mac_device, uc_chan_idx, OAL_TRUE);
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_nol_delchan
- 功能描述  : 将指定信道从NOL列表中剔除
- 输入参数  : pst_mac_device: MAC DEVICE指针
-             pst_nol_node  : NOL Node节点指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月17日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_dfs_nol_delchan(mac_device_stru *pst_mac_device, mac_dfs_nol_node_stru *pst_nol_node)
 {
     /* 更新可用信道列列表 */
@@ -908,22 +658,7 @@ OAL_STATIC oal_uint32  hmac_dfs_nol_delchan(mac_device_stru *pst_mac_device, mac
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_channel_mark_radar
- 功能描述  : 将主、次信道标记为检测到雷达，并将主、次信道加入Non-Occupancy List(NOL)列表
- 输入参数  : pst_mac_device: MAC DEVICE指针
-             pst_mac_vap   : MAC VAP指针
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月1日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hmac_dfs_channel_mark_radar(mac_device_stru *pst_mac_device, mac_vap_stru *pst_mac_vap)
 {
     hmac_channel_list_stru    st_chan_info;
@@ -953,22 +688,7 @@ OAL_STATIC oal_void  hmac_dfs_channel_mark_radar(mac_device_stru *pst_mac_device
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_select_random_channel
- 功能描述  : 挑选一条信道(对)
- 输入参数  : pst_mac_vap      : MAC VAP结构体指针
- 输出参数  : puc_new_channel  : 挑选出来的主信道号
-             pen_new_bandwidth: 挑选出来的带宽模式
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月18日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32 hmac_dfs_select_random_channel(
                 mac_vap_stru                        *pst_mac_vap,
                 oal_uint8                           *puc_new_channel,
@@ -1093,7 +813,6 @@ OAL_STATIC oal_uint32 hmac_dfs_select_random_channel(
         return OAL_SUCC;
     }
 
-    /* DTS2015122204079,避免选择到邻近信道*/
     uc_sub = 0;
     for (ul_window = 0; ul_window < uc_available_chan_cnt; ul_window++)
     {
@@ -1136,21 +855,7 @@ OAL_STATIC oal_uint32 hmac_dfs_select_random_channel(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_ap_wait_start_radar_handler
- 功能描述  : AP在WAIT START状态下的雷达检测处理
- 输入参数  : pst_hmac_vap: HMAC VAP指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_dfs_ap_wait_start_radar_handler(hmac_vap_stru *pst_hmac_vap)
 {
     mac_device_stru                     *pst_mac_device;
@@ -1246,21 +951,7 @@ oal_uint32 hmac_dfs_switch_channel_for_radar(mac_device_stru *pst_mac_device, ma
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_off_chan_cac_timeout_fn
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_dfs_off_chan_cac_timeout_fn(oal_void *p_arg)
 {
     mac_device_stru     *pst_mac_device;
@@ -1319,21 +1010,7 @@ OAL_STATIC oal_uint32  hmac_dfs_off_chan_cac_timeout_fn(oal_void *p_arg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_ap_up_radar_handler
- 功能描述  : AP在UP状态下的雷达检测处理
- 输入参数  : pst_hmac_vap: HMAC VAP指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月20日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_dfs_ap_up_radar_handler(hmac_vap_stru *pst_hmac_vap)
 {
     mac_device_stru                     *pst_mac_device;
@@ -1390,21 +1067,7 @@ oal_uint32  hmac_dfs_ap_up_radar_handler(hmac_vap_stru *pst_hmac_vap)
 
 }
 #ifdef _PRE_WLAN_FEATURE_OFFCHAN_CAC
-/*****************************************************************************
- 函 数 名  : hmac_scan_switch_channel_off
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_scan_switch_channel_off(mac_vap_stru *pst_mac_vap)
 {
     frw_event_mem_stru   *pst_event_mem;
@@ -1449,21 +1112,7 @@ OAL_STATIC oal_uint32  hmac_scan_switch_channel_off(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_scan_switch_channel_back
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_scan_switch_channel_back(mac_vap_stru *pst_mac_vap)
 {
     frw_event_mem_stru   *pst_event_mem;
@@ -1509,21 +1158,7 @@ OAL_STATIC oal_uint32  hmac_scan_switch_channel_back(mac_vap_stru *pst_mac_vap)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_off_chan_cac_opern_ch_dwell_timeout
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_dfs_off_chan_cac_opern_ch_dwell_timeout(oal_void *p_arg)
 {
     mac_device_stru   *pst_mac_device;
@@ -1574,21 +1209,7 @@ OAL_STATIC oal_uint32  hmac_dfs_off_chan_cac_opern_ch_dwell_timeout(oal_void *p_
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_off_chan_cac_off_ch_dwell_timeout
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月29日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_dfs_off_chan_cac_off_ch_dwell_timeout(oal_void *p_arg)
 {
     mac_device_stru   *pst_mac_device;
@@ -1629,21 +1250,7 @@ OAL_STATIC oal_uint32  hmac_dfs_off_chan_cac_off_ch_dwell_timeout(oal_void *p_ar
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_dfs_off_chan_cac_start
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年10月28日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-******************************************************************************/
 oal_void  hmac_dfs_off_chan_cac_start(mac_device_stru *pst_mac_device, hmac_vap_stru *pst_hmac_vap)
 {
     oal_uint32 ul_scan_time;
@@ -1682,22 +1289,7 @@ oal_void  hmac_dfs_off_chan_cac_start(mac_device_stru *pst_mac_device, hmac_vap_
 
     hmac_dfs_off_chan_cac_opern_ch_dwell_timeout(pst_hmac_vap);
 }
-/*****************************************************************************
- 函 数 名  : hmac_dfs_try_cac
- 功能描述  : 尝试进行CAC
- 输入参数  : mac_device_stru *pst_mac_device
-             mac_vap_stru *pst_mac_vap
- 输出参数  : 无
- 返 回 值  : oal_bool_enum_uint8
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月28日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_bool_enum_uint8 hmac_dfs_try_cac(hmac_device_stru *pst_hmac_device, mac_vap_stru *pst_mac_vap)
 {
     hmac_vap_stru    *pst_hmac_vap;
@@ -1771,22 +1363,7 @@ oal_bool_enum_uint8 hmac_dfs_try_cac(hmac_device_stru *pst_hmac_device, mac_vap_
 
     return OAL_FALSE;
 }
-/*****************************************************************************
- 函 数 名  : hmac_dfs_init_scan_hook
- 功能描述  : 初始信道检查模块钩子函数，进行CAC检查
- 输入参数  : hmac_scan_runtime_record_stru   *pst_scan_record
-             mac_device_stru                 *pst_dev
- 输出参数  : 无
- 返 回 值  : oal_uint32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月28日
-    作    者   : gaolin
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hmac_dfs_init_scan_hook(hmac_scan_record_stru   *pst_scan_record,
                                     hmac_device_stru        *pst_hmac_device)
 {

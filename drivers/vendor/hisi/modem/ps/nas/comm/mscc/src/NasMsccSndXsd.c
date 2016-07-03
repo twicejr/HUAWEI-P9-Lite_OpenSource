@@ -27,22 +27,7 @@ extern "C"{
   3 函数定义
 *****************************************************************************/
 
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SndXsdStartReq
-Description     :   THis API sends the start request to XSD Module
 
-Input parameters:   enCsimStatus
-Output parameters:  None
-Return Value    :   VOS_VOID
-
-Modify History:
-    1)  Date    :   2015-2-3
-        Author  :   m00270891
-        Modify content :    Create
-    2.日    期   : 2015年4月15日
-      作    者   : y00245242
-      修改内容   : iteration 13开发
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdStartReq(
     NAS_MSCC_PIF_CARD_STATUS_ENUM_UINT8                     enCsimStatus,
     NAS_MSCC_PIF_RAT_PRIO_STRU                             *pstRatPrio
@@ -137,21 +122,7 @@ VOS_VOID NAS_MSCC_SndXsdPowerOffReq(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdCdmaMoCallStartNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdCdmaMoCallStartNtf(
     MMA_MSCC_CDMA_MO_CALL_START_NTF_STRU         *pstCdmaMoCallStartNtf
 )
@@ -189,21 +160,7 @@ VOS_VOID NAS_MSCC_SndXsdCdmaMoCallStartNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdCdmaMoCallRedialSysAcqNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdCdmaMoCallRedialSysAcqNtf(
     MMA_MSCC_CDMA_MO_CALL_REDIAL_SYS_ACQ_NTF_STRU         *pstCdmaMoCallRedialSysAcqNtf
 )
@@ -242,21 +199,7 @@ VOS_VOID NAS_MSCC_SndXsdCdmaMoCallRedialSysAcqNtf(
 
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdCdmaMoCallSuccessNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdCdmaMoCallSuccessNtf(
     MMA_MSCC_CDMA_MO_CALL_SUCCESS_NTF_STRU         *pstCdmaMoCallSuccessNtf
 )
@@ -293,21 +236,7 @@ VOS_VOID NAS_MSCC_SndXsdCdmaMoCallSuccessNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdCdmaMoCallEndNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdCdmaMoCallEndNtf(
     MMA_MSCC_CDMA_MO_CALL_END_NTF_STRU *pstCdmaMoCallEndNtf
 )
@@ -344,25 +273,7 @@ VOS_VOID NAS_MSCC_SndXsdCdmaMoCallEndNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdCfreqLockNtf
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-  2.日    期   : 2016年1月6日
-    作    者   : m00312079
-    修改内容   : DTS2016010507928:发送给XSD的锁频携带是否支持1x的标记
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdCfreqLockNtf(
     MMA_MSCC_CFREQ_LOCK_NTF_STRU       *pstCfreqLockNtf,
     VOS_UINT32                          ulIsSupport1x
@@ -407,21 +318,7 @@ VOS_VOID NAS_MSCC_SndXsdCfreqLockNtf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdCdmacsqSetReq
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月6日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdCdmacsqSetReq(
     MMA_MSCC_CDMACSQ_SET_REQ_STRU       *pstCdmacsqSetReq
 )
@@ -579,21 +476,7 @@ VOS_VOID NAS_MSCC_SndXsdSysCfgReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_ConvertHsdStatusTypeToXsd
- 功能描述  : 将MSCC与HSD的状态类型转换成MSCC与XSD的类型
- 输入参数  : HSD_MSCC_HRPD_CAS_STATUS_ENUM_UINT16
- 输出参数  : 无
- 返 回 值  : MSCC_XSD_HRPD_CAS_STATUS_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年12月15日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 MSCC_XSD_HRPD_CAS_STATUS_ENUM_UINT16 NAS_MSCC_ConvertHsdStatusTypeToXsd(
     HSD_MSCC_HRPD_CAS_STATUS_ENUM_UINT16                    enHsdStatus
 )
@@ -665,21 +548,7 @@ VOS_VOID NAS_MSCC_SndXsdHrpdCasStatusInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdHandsetInfoQryReq
- 功能描述  : 给XSD发送手机信息查询请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月22日
-    作    者   : z00316370
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdHandsetInfoQryReq(
     VOS_UINT32                          ulInfoType
 )
@@ -716,21 +585,7 @@ VOS_VOID NAS_MSCC_SndXsdHandsetInfoQryReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdSrvAcqReq
- 功能描述  : 向XSD发送因服务触发的搜网指示请求消息
- 输入参数  : pstSrvAcqReq
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月21日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdSrvAcqReq(
     MMA_MSCC_SRV_ACQ_REQ_STRU          *pstSrvAcqReq
 )
@@ -766,21 +621,7 @@ VOS_VOID NAS_MSCC_SndXsdSrvAcqReq(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdBeginSessionNotify
- 功能描述  : 向XSD发送申请资源消息
- 输入参数  : enSessionType:Session类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月21日
-   作    者   : W00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdBeginSessionNotify(
     MMA_MSCC_BEGIN_SESSION_NOTIFY_STRU *pstBeginSessionNtf
 )
@@ -817,21 +658,7 @@ VOS_VOID NAS_MSCC_SndXsdBeginSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdEndSessionNotify
- 功能描述  : 向XSD发送释放资源消息
- 输入参数  : pstEndSessionNtf
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月21日
-   作    者   : w00242748
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdEndSessionNotify(
     MMA_MSCC_END_SESSION_NOTIFY_STRU   *pstEndSessionNtf
 )
@@ -868,21 +695,7 @@ VOS_VOID NAS_MSCC_SndXsdEndSessionNotify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_MSCC_SndXsdEndEmcCallBackReq
- 功能描述  : 向XSD发送因服务触发的搜网指示请求消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年07月07日
-   作    者   : h00313353
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SndXsdEndEmcCallBackNtf( VOS_VOID )
 {
     MSCC_XSD_END_EMC_CALLBACK_NTF_STRU          *pstMsg = VOS_NULL_PTR;

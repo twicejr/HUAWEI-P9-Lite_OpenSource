@@ -1,16 +1,4 @@
-/******************************************************************************
 
-
-        @(#)Copyright(C)2013,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : ImsaEntity.h
-    Description : IMSA实体头文件
-    History     :
-      1.sunbing 00049683    2013-04-22  Draft Enact
-
-
-******************************************************************************/
 
 #ifndef __IMSAENTITY_H__
 #define __IMSAENTITY_H__
@@ -461,14 +449,7 @@ enum    IMSA_TIMER_RUN_STA_ENUM
 typedef VOS_UINT32   IMSA_TIMER_RUN_STA_ENUM_UINT32;
 
 
-/*****************************************************************************
- 结构名    : NAS_EMM_TIMER_INFO_STRU
- 结构说明  : log出EMM定时器运行情况
- 1.日    期   : 2012年12月03日
-   作    者   : n00181501
-   修改内容   : 新建
 
-*****************************************************************************/
 typedef struct
 {
     VOS_MSG_HEADER
@@ -886,6 +867,8 @@ typedef struct
     VOS_UINT8                           ucTqosExpFlag;
     VOS_UINT8                           ucIsImsaRelCallFlag;    /**< 是否是IMSA主动挂断的电话 */
 
+    VOS_UINT8                           ucSipLostRelCallFlag;
+    VOS_UINT8                           aucRsv[3];
     IMSA_CALL_ECONF_SUMMARY_STRU        stEconfCalllist[IMSA_IMS_ECONF_CALLED_MAX_NUM];    /* 增强多方通话的成员列表 */
 }IMSA_CALL_ENTITY_STRU;
 

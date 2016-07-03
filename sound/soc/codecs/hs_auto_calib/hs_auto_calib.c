@@ -24,7 +24,6 @@ do {\
 static bool hs_auto_calib_enable = false;
 static int g_vol_record[KEY_TYPE_MAX] = {-1};
 static struct calib_btn_voltage btn_voltage = {0};
-static int g_vol_record_num = 0;
 static int g_vol_error[KEY_TYPE_MAX] = {DEFAULT_ERROR, DEFAULT_ERROR, DEFAULT_ERROR};
 static int g_vol_distance = DEFAULT_ERROR;
 static int g_vol_btn = FORWARD;
@@ -44,7 +43,7 @@ enum auto_btn_voltage{/*mV*/
 static bool  isVolRecordEmpty()
 {
 	int i = 0;
-	for(i = FORWARD; i < g_vol_record_num; i++) {
+	for(i = FORWARD; i < g_vol_btn; i++) {
 		if((g_vol_record[i] != -1) )
 			return false;
 	}
@@ -96,7 +95,6 @@ void headset_auto_calib_reset_interzone()
 		g_vol_record[i] = -1;
 		g_vol_error[i] = DEFAULT_ERROR;
 	}
-	g_vol_record_num = 0;
 	g_vol_btn = FORWARD;
 	logi("end\n");
 	return;
@@ -146,14 +144,14 @@ static void store_error()
 {
 	int temp=0;
 	int vol_distance = 0;
-	logi("begin g_vol_error[FORWARD] %d g_vol_error[BACK] %d", g_vol_error[FORWARD], g_vol_error[BACK]);
+	logi("begin g_vol_error[FORWARD] %d g_vol_error[BACK] %d\n", g_vol_error[FORWARD], g_vol_error[BACK]);
 	vol_distance = g_vol_record[BACK] - g_vol_record[FORWARD];
 	g_vol_distance = (g_vol_distance > vol_distance) ? g_vol_distance : vol_distance;
 	g_vol_error[BACK] = g_vol_distance >> 1;
 	temp = (g_vol_record[FORWARD] - btn_voltage.key_play_max_value) >> 1;
 	g_vol_error[FORWARD] = (g_vol_error[BACK] > temp) ? temp : g_vol_error[BACK];
 	g_vol_error[BACK] = g_vol_distance - g_vol_error[FORWARD];
-	logi("end g_vol_error[FORWARD] %d g_vol_error[BACK] %d", g_vol_error[FORWARD], g_vol_error[BACK]);
+	logi("end g_vol_error[FORWARD] %d g_vol_error[BACK] %d\n", g_vol_error[FORWARD], g_vol_error[BACK]);
 }
 
 
@@ -168,13 +166,11 @@ static void record_sort(int hkadc_value)
 	logi("hkadc_value %d \n", hkadc_value);
 	if (hkadc_value < btn_voltage.key_play_max_value) {
 		g_vol_record[HOOK] = hkadc_value;
-		g_vol_record_num++;
 		return;
 	}
 	switch (g_vol_btn) {
 	case FORWARD:
 		g_vol_record[FORWARD] = hkadc_value;
-		g_vol_record_num++;
 		g_vol_btn = BACK;
 		break;
 
@@ -186,7 +182,6 @@ static void record_sort(int hkadc_value)
 			g_vol_record[FORWARD] = hkadc_value;
 			g_vol_record[BACK] = temp;
 		}
-		g_vol_record_num++;
 		g_vol_btn = KEY_TYPE_MAX;
 		store_error();
 		break;
@@ -215,6 +210,7 @@ static void readjust_interzone()
 	logi("begin\n");
 	btn_voltage.key_forward_max_value = (g_vol_record[FORWARD] +g_vol_record[BACK])/2;
 	btn_voltage.key_back_min_value = btn_voltage.key_forward_max_value + 1;
+	logi("interzone reset to key_forward_max=%d , key_back_min= %d\n",btn_voltage.key_forward_max_value,btn_voltage.key_back_min_value);
 	logi("end\n");
 
 }
@@ -228,7 +224,7 @@ static bool is_voltage_error(int hkadc_value)
 	int i = 0;
 	logi("begin, hkadc_value %d\n", hkadc_value);
 	//has this button being pressed
-	for(i = (int )FORWARD; i < g_vol_record_num; i++) {
+	for(i = (int )FORWARD; i < g_vol_btn; i++) {
 		if(abs(hkadc_value - g_vol_record[i])  < g_vol_error[i]) {
 			return true;
 		}
@@ -241,7 +237,16 @@ static bool is_voltage_error(int hkadc_value)
 void startup_FSM(enum adjust_State state, int hkadc_value, int * pr_btn_type)
 {
 	if(!hs_auto_calib_enable)
+	{
 		return;
+	}
+
+	if(hkadc_value > btn_voltage.key_back_max_value)
+	{
+		loge("error:hkadc_value[%d] is bigger than max value!!!", hkadc_value);
+		return;
+	}
+
 	logi("begin, adjust_state %d hkadc_value %d\n", state, hkadc_value);
 	int headset_type = 0;
 	while(1) {

@@ -1,17 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLmmPubMPrint.c
-  Description     : 状态机、消息和定时器相关的打印函数
-  History         :
-     1.lining 00141619       2008-10-24   Draft Enact
-     2.hanlufeng 41410 2008-05-07 BJ9D00610 初始化修改后，修订几个定时器
-                                            的打印
-     3.zhengjunyan 00148421   2011-05-28 文件名由 NasMmPubMPrint.c修改为
-                                           NasLmmPubMPrint.c
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -1010,19 +997,7 @@ NAS_COMM_PRINT_MSG_LIST_STRU g_astLMmLcsMsgIdArray[] =
 /*****************************************************************************
   3.1 外部模块调用打印函数
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_LMM_PrintFsmState
- Description     : 打印状态机状态(包括并行状态，主状态，子状态，状态定时器，系统TICK值)
- Input           : enParallelFsm -- NAS_LMM_PARALLEL_FSM_ENUM_UINT16
-                                    -- NAS_LMM_PARALLEL_FSM_EMM
-                                    -- NAS_LMM_PARALLEL_FSM_MMC
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID    NAS_LMM_PrintFsmState(
@@ -1057,19 +1032,7 @@ VOS_VOID    NAS_LMM_PrintFsmState(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PrintFsmStateStack
- Description     : 打印状态机状态堆栈(包括堆栈深度，状态机状态，系统TICK值)
- Input           : enParallelFsm -- NAS_LMM_PARALLEL_FSM_ENUM_UINT16
-                                    -- NAS_LMM_PARALLEL_FSM_EMM
-                                    -- NAS_LMM_PARALLEL_FSM_MMC
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_PrintFsmStateStack(
                     NAS_LMM_PARALLEL_FSM_ENUM_UINT16         enParallelFsmId )
 {
@@ -1160,17 +1123,7 @@ VOS_VOID    NAS_LMM_PrintFsmStateStack(
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PrintFsmState
- Description     : 打印状态(包括EMM更新状态，RRC连接状态，SIM卡状态，系统TICK值)
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_PrintAuxFsm( VOS_VOID )
 {
     NAS_LMM_AUXILIARY_FSM_STRU            *pstAuxFsm;
@@ -1211,18 +1164,7 @@ VOS_VOID    NAS_LMM_PrintAuxFsm( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PrintCnMsgAndData
- Description     : 打印CN消息和携带的数据
- Input           : enMsgId  -- NAS_EMM_CN_MSG_TYPE_ENUM_UINT8
-                   pstCnMsg -- LRRC_LNAS_MSG_STRU
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_VOID    NAS_LMM_PrintCnMsgAndData
 (
     LRRC_LNAS_MSG_STRU                    *pstCnMsg
@@ -1237,7 +1179,6 @@ VOS_VOID    NAS_LMM_PrintCnMsgAndData
     PS_LOG_RETURN();
     /* delay end */
 
-    /*leixiantiao00258641在使用前对pstCnMsg进行空指针检查*/
     if ( VOS_NULL_PTR == pstCnMsg )
     {
         NAS_LMM_PUBM_LOG_WARN("NAS_LMM_PrintCnMsgAndData, pstCnMsg is Null pointer!");
@@ -1318,22 +1259,7 @@ VOS_VOID    NAS_LMM_PrintCnMsgAndData
 /*****************************************************************************
   3.3 文件内部调用打印函数
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintParallelFsm
- Description     : 打印并行状态(文件内部调用函数,入参空指针检查省略)
- Input           : pcBuff          -- Formatted buffer
-                   usOffset        -- Offset
-                   enParallelFsmId -- NAS_LMM_PARALLEL_FSM_ENUM_UINT16
-                                      -- NAS_LMM_PARALLEL_FSM_EMM
-                                      -- NAS_LMM_PARALLEL_FSM_MMC
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintParallelFsm(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1377,20 +1303,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintParallelFsm(
     return ilOutPutLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintMainState
- Description     : 打印主状态
- Input           : pcBuff      -- Formatted buffer
-                   usOffset    -- Offset
-                   enMainState -- NAS_LMM_MAIN_STATE_ENUM_UINT16
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintMainState(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1434,20 +1347,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintMainState(
     return ilOutPutLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintSubState
- Description     : 打印子状态
- Input           : pcBuff     -- Formatted buffer
-                   usOffset   -- Offset
-                   enSubState -- NAS_LMM_SUB_STATE_ENUM_UINT16
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintSubState(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1491,20 +1391,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintSubState(
     return ilOutPutLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintStateTimer
- Description     : 打印状态定时器
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enStaTId -- NAS_LMM_STATE_TI_ENUM_UINT16
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintStateTimer(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1557,19 +1444,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintStateTimer(
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintPtlTimer
- Description     : 打印协议定时器
- Input           : VOS_CHAR *pcBuff
-                   VOS_UINT16 usOffset
-                   NAS_LMM_PTL_TI_ENUM_UINT16 usPtlTId
- Output          : None
- Return          : VOS_INT32
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintPtlTimer(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1623,20 +1498,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintPtlTimer(
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintFsmState
- Description     : 打印状态机状态(包括并行状态，主状态，子状态，状态定时器)
- Input           : pcBuff      -- Formatted buffer
-                   usOffset    -- Offset
-                   pstFsmState -- NAS_LMM_FSM_STATE_STRU
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintFsmState(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1739,23 +1601,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintFsmState(
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintEmmUpState
- Description     : 打印EMM更新状态
- Input           : pcBuff       -- Formatted buffer
-                   usOffset     -- Offset
-                   enEmmUpState -- NAS_EMM_UPDATE_STATE_ENUM_UINT8
-                                   -- EMM_US_UPDATED_EU1
-                                   -- EMM_US_NOT_UPDATED_EU2
-                                   -- EMM_US_ROAMING_NOT_ALLOWED_EU3
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintEmmUpState(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1799,22 +1645,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintEmmUpState(
     return ilOutPutLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintRrcConnState
- Description     : 打印RRC连接状态
- Input           : pcBuff         -- Formatted buffer
-                   usOffset       -- Offset
-                   enRrcConnState -- NAS_EMM_RRC_CONN_STATE_ENUM_UINT8
-                                     -- NAS_EMM_CONN_IDLE
-                                     -- EMM_RCS_CONN_EXIST
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintRrcConnState(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1858,22 +1689,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintRrcConnState(
     return ilOutPutLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintUsimState
- Description     : 打印SIM卡状态
- Input           : pcBuff      -- Formatted buffer
-                   usOffset    -- Offset
-                   enUsimState -- NAS_EMM_USIM_STATE_ENUM_UINT8
-                                  -- EMM_USIM_STATE_VALID
-                                  -- EMM_USIM_STATE_INVALID
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintUsimState(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1918,20 +1734,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintUsimState(
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintAuxFsm
- Description     : 打印辅助状态机(包括EMM更新状态，RRC连接状态，SIM卡状态)
- Input           : pcBuff    -- Formatted buffer
-                   usOffset  -- Offset
-                   pstAuxFsm -- NAS_LMM_AUXILIARY_FSM_STRU
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintAuxFsm(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -1992,20 +1795,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintAuxFsm(
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintTimer
- Description     : 打印定时器
- Input           : pcBuff       -- Formatted buffer
-                   usOffset     -- Offset
-                   pRelTimerMsg -- REL_TIMER_MSG
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintTimer(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -2045,20 +1835,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintTimer(
     return ilOutPutLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintMmIntraMsg
- Description     : 打印MM内部消息
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- NAS_LMM_INTRA_MSG_ID_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintMmIntraMsg(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -2111,20 +1888,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintMmIntraMsg(
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintRrcMsg
- Description     : 打印收到RRC消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- LRRC_LNAS_MSG_ID_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintRrcMsg
 (
     VOS_CHAR                           *pcBuff,
@@ -2180,20 +1944,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintRrcMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintAppMsg
- Description     : 打印收到APP消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- APP_MM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintAppMsg
 (
     VOS_CHAR                           *pcBuff,
@@ -2248,20 +1999,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintAppMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintMmcMsg
- Description     : 打印收到APP消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- APP_MM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintMmcMsg
 (
     VOS_CHAR                           *pcBuff,
@@ -2317,20 +2055,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintMmcMsg
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintGmmMsg
- Description     : 打印收到APP消息(文件内部调用函数)
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- APP_MM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintGmmMsg
 (
     VOS_CHAR                           *pcBuff,
@@ -2385,20 +2110,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintGmmMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintMmMsg
- Description     : 打印MM消息
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- APP_MM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lihong 00150010      2011-12-07  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintMmMsg
 (
     VOS_CHAR                           *pcBuff,
@@ -2583,20 +2295,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintUsimMsg
 }
 
 #if (FEATURE_LPP == FEATURE_ON)
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintLppMsg
- Description     : 打印LPP消息
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- APP_MM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lifuxin 00253982 2015-08-08 新开发
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintLppMsg
 (
     VOS_CHAR                           *pcBuff,
@@ -2651,20 +2350,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintLppMsg
     return (usTotalLen - usOffset);
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintLcsMsg
- Description     : 打印LPP消息
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- APP_MM_MSG_TYPE_ENUM_UINT32
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lifuxin 00253982 2015-08-08 新开发
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintLcsMsg
 (
     VOS_CHAR                           *pcBuff,
@@ -2722,22 +2408,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintLcsMsg
 
 #endif
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintRevMsg
- Description     : 打印消息
- Input           : ulPid    -- MSG Sender PID or Receiver PID
-                   pstMsg   -- NAS_LMM_PID_MSG_STRU
-                   pcBuff   -- Formatted buffer
-                   usOffset -- Offset
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-    2.X00148705            2009-10-20  改名为NAS_LMM_PUBM_PrintRevMsg
-
-*****************************************************************************/
 VOS_VOID NAS_LMM_PUBM_PrintRevMsg
 (
     const PS_MSG_HEADER_STRU               *pstMsg,
@@ -3225,20 +2896,7 @@ VOS_VOID NAS_LMM_PUBM_PrintSendMsg
     return ;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintCnMsg
- Description     : 打印CN消息
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   enMsgId  -- NAS_EMM_CN_MSG_TYPE_ENUM_UINT8
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintCnMsg(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,
@@ -3281,20 +2939,7 @@ VOS_INT32   NAS_LMM_PUBM_PrintCnMsg(
     return ilOutPutLen;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PUBM_PrintData
- Description     : 打印CN消息携带的数据
- Input           : pcBuff   -- Formatted buffer
-                   usOffset -- Offset
-                   pstMsg   -- LRRC_LNAS_MSG_STRU
- Output          : None
- Return          : The number of bytes that have been stored in the output buffer pcBuff
-                   If the input parameter is erroneous, the return value will be 0.
 
- History         :
-    1.lining 00141619      2008-10-24  Draft Enact
-
-*****************************************************************************/
 VOS_INT32   NAS_LMM_PUBM_PrintData(
                     VOS_CHAR                                *pcBuff,
                     VOS_UINT16                              usOffset,

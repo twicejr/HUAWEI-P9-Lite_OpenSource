@@ -26,6 +26,7 @@ HWLOG_REGIST();
 #define GOLD  0x87
 #define GRAY  0x78
 #define CAFE  0x69
+#define CAFE2  0x5A
 #define TP_COLOR_BUF_SIZE		20
 static unsigned char tp_color_buf[TP_COLOR_BUF_SIZE];
 
@@ -151,6 +152,7 @@ static int write_tp_color_to_nv(void)
 			strncpy(user_info.nv_data,"gray", sizeof(user_info.nv_data));
 			break;
 	case CAFE:
+	case CAFE2:
 			strncpy(user_info.nv_data, "cafe", sizeof(user_info.nv_data));
 			break;
 	default:
@@ -218,6 +220,7 @@ static ssize_t attr_get_tp_color_info(struct device *dev, struct device_attribut
 			strncpy(buf,"gray", sizeof("gray"));
 			break;
 	case CAFE:
+	case CAFE2:
 			strncpy(buf, "cafe", sizeof("cafe"));
 			break;
 	default:

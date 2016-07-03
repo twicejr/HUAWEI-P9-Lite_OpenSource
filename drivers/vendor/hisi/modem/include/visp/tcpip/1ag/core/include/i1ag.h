@@ -121,15 +121,12 @@ DECLARE_INTERFACE (IIF_COMP_OAM1AG_ComIntCFG)
     METHOD_(ULONG, pfOAM_1AG_GetRmepWarnState)(UCHAR * pszMdName, UCHAR * pszMaName, 
                                                USHORT usRmepId, OAM1AG_WARN_STATE_S * pst1agWarnState);
     
-    /* Add for V2R3C06, by shuxieliu00176784, at 2011-10-04. 修改原因: 支持EOAM协议版本全局设置 */
     METHOD_(ULONG, pfOAM_1AG_SetGlobalVersion)(ULONG ulVersion);           
     METHOD_(ULONG, pfOAM_1AG_GetGlobalVersion)(ULONG *pulVersion);  
 
-    /* Add for V2R3C06, by z00187940/s00176784, at 2011-10-13. 修改原因: 支持EOAM AIS使能设置 */
     METHOD_(ULONG, pfOAM_Y1731_EnableAIS)(UCHAR *pucMdName,UCHAR *pucMaName,UCHAR ucEnable);  
 
-    /* Add for V2R3C06, by  z00171897/p00193127, at 2011-10-12. 修改原因: 支持Y1731使能/去使双端帧丢失检测、
-          单端帧丢失检测SLM功能、双向延时检测DM功能*/
+    
     METHOD_(ULONG, pfOAM_Y1731_EnablePMCheck)(UCHAR * pszMdName, UCHAR * pszMaName,
                                                     USHORT usMepId, USHORT usRmepId,UCHAR ucPMType,UCHAR ucCheckFlag,
                                                     ULONG ulSendInterval, ULONG ulTimeOut); 

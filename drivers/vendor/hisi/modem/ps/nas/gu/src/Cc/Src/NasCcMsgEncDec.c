@@ -1,24 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasCcMsgEncDec.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年8月25日
-  最近修改   :
-  功能描述   : 实现CC空口消息编解码
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年8月25日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-
-  2.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -517,22 +497,7 @@ CONST NAS_MSG_ENTRY_STRU c_aNasCcMsgEntry[] =
 
 /*lint -save -e958 */
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_EncodeMsg
- 功能描述  : Encode Nas Msg
- 输入参数  : pucMsg          - 消息编码前源地址
- 输出参数  : pucRawData      - 消息编码后目的地址
-             pucLength       - 消息长度
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年8月25日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_CC_EncodeMsg(
     const NAS_CC_AIR_MSG_UNION          *punMsg,
     VOS_UINT8                           *pucRawData,
@@ -550,24 +515,7 @@ VOS_VOID NAS_CC_EncodeMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_DecodeMsg
- 功能描述  : Decode Nas Msg
- 输入参数  : pucRawData         - 消息解码前源地址
-             ucLength           - 消息长度
- 输出参数  : pucMsg             - 消息解码后目的地址
- 返 回 值  : 协议错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年8月25日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2013年02月25日
-    作    者   : z00214637
-    修改内容   : 问题单号:DTS2013022107190,CC在解析消息时，表格访问越界保护；
-*****************************************************************************/
 NAS_PROTOCOL_ERR_ENUM_U8 NAS_CC_DecodeMsg(
     const VOS_UINT8                     *pucRawData,
     VOS_UINT8                           ucLength,
@@ -582,21 +530,7 @@ NAS_PROTOCOL_ERR_ENUM_U8 NAS_CC_DecodeMsg(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetFacilityInfoWithRsltTag
- 功能描述  : 解析带result tag的facility IE
- 输入参数  : paucFacility    - Facility IE 内容地址
- 输出参数  : pstFacilityInfo - Facility Info
-             pucLength       - Component偏移地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月2日
-    作    者   : z00161729
-    修改内容   : 降NAS_CC_GetFacilityInfo圈复杂度新生成函数
-*****************************************************************************/
 VOS_VOID NAS_CC_GetFacilityInfoWithRsltTag(
     const VOS_UINT8                     *paucFacility,
     NAS_CC_FACILITY_INFO_STRU           *pstFacilityInfo,
@@ -641,21 +575,7 @@ VOS_VOID NAS_CC_GetFacilityInfoWithRsltTag(
 
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetFacilityInfoWithInvokeTag
- 功能描述  : 解析带invoke tag的facility IE
- 输入参数  : paucFacility    - Facility IE 内容地址
- 输出参数  : pstFacilityInfo - Facility Info
-             pucLength       - Component偏移地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月2日
-    作    者   : z00161729
-    修改内容   : 降NAS_CC_GetFacilityInfo圈复杂度新生成函数
-*****************************************************************************/
 VOS_VOID NAS_CC_GetFacilityInfoWithInvokeTag(
     const VOS_UINT8                    *paucFacility,
     NAS_CC_FACILITY_INFO_STRU          *pstFacilityInfo,
@@ -691,27 +611,7 @@ VOS_VOID NAS_CC_GetFacilityInfoWithInvokeTag(
     return;
 
 }
-/*****************************************************************************
- 函 数 名  : NAS_CC_GetFacilityInfo
- 功能描述  : 解谐facility IE
- 输入参数  : paucFacility      - Facility IE 内容地址
- 输出参数  : pstFacilityInfo   - Facility Info
- 返 回 值  : Component偏移地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年8月25日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2009年6月25日
-    作    者   : z00161729
-    修改内容   : CC降圈复杂度
-  3.日    期   : 2013年6月05日
-    作    者   : Y00213812
-    修改内容   : DTS2013060507591,COVERITY和FORITY修改
-
-*****************************************************************************/
 VOS_UINT8 NAS_CC_GetFacilityInfo(
     const VOS_UINT8                    *paucFacility,
     NAS_CC_FACILITY_INFO_STRU          *pstFacilityInfo
@@ -750,22 +650,7 @@ VOS_UINT8 NAS_CC_GetFacilityInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_CC_FillAirMsgHeader
- 功能描述  : 填写CC的空口消息头
- 输入参数  : ucTi      - Transcation ID
-             ucMsgType - 消息类型
- 输出参数  : pstHeader - 填写完成的消息头
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年2月14日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  NAS_CC_FillAirMsgHeader(
     VOS_UINT8                           ucTi,
     VOS_UINT8                           ucMsgType,

@@ -1,51 +1,4 @@
-/*******************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : SmMain.c
-  Description  : SM的入口，初始化及消息分发函数
-  Function List:
-              NAS_SM_FillPDPContextInfo
-              NAS_SM_RestoreContextData
-              NAS_SM_Restore_SmEntity
-              NAS_SM_Restore_SmPdpAddrApn
-              NAS_SM_SndOutsideContextData
-              Sm_FillQosInfo
-              SM_GmmMsgDistr
-              SM_Init
-              SM_MemCmp
-              SM_NwActProtectTimerExpire
-              SM_NwModifyProtectTimerExpire
-              Sm_OmQuery
-              Sm_PowerOff
-              SM_RabmMsgDistr
-              SM_RcvStatusMsg
-              SM_RcvTimerMsgDistr
-              SM_RegisterProtectTimerExpire
-              SM_ReportN2MOtaMsg
-              SM_T3380Expire
-              SM_T3381Expire
-              SM_T3390Expire
-              SM_TafMsgDistr
-              Sm_TaskEntry
-              SM_TimerStart
-              SM_TimerStop
-              WuepsSmPidInit
-  History:
-      1.   张志勇       2003.12.08   新规作成
-      2.   h41410  2005.10.19  打印全局数据结构 问题单A32D00636
-      3.   added by h41410 2005-10-19 for A32D00636
-      4.   2006-04-14 delete by h41410 for A32d03181
-      5.   2006-8-11 changed by f49086  for A32D04825
-      6.   Date        : 2006-09-14
-           Author      : l47619
-           Modification: 根据问题单新增:A32D05600
-      7.   Date        : 2006-11-25
-           Author      : l47619
-           Modification: 根据问题单新增:A32D07646
-      8.   L47619 2007.10.27   A32D13038
-      9.日    期   : 2010年02月26日
-        作    者   : z00163274
-        修改内容   : 增加PS域可维可测功能
-*******************************************************************************/
+
 #include "SmInclude.h"
 #if (FEATURE_ON == FEATURE_LTE)
 #include "NasSmMultiMode.h"
@@ -71,9 +24,7 @@
 
 VOS_UINT8      g_ucSmSystemAppConfigAddr;
 
-/* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
 VOS_UINT8      g_ucSmTimerFiveExpireFlag = VOS_FALSE;
-/* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
 NAS_SM_GMM_ERR_CODE_MAP_STRU            g_astNasSmGmmErrCodeMapTbl[] =
 {
@@ -203,24 +154,7 @@ VOS_VOID SM_ReportN2MOtaMsg(VOS_UINT8 ucMsgType, NAS_MSG_STRU *pNasMsg)
 
 
 #ifdef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : NAS_SM_Restore_SmEntity
- 功能描述  : 恢复SM全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年03月16日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-*****************************************************************************/
 VOS_VOID NAS_SM_Restore_SmEntity(SM_ENTITY_STRU  *pSmEntity)
 {
     int i;
@@ -236,24 +170,7 @@ VOS_VOID NAS_SM_Restore_SmEntity(SM_ENTITY_STRU  *pSmEntity)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_Restore_SmPdpAddrApn
- 功能描述  : 恢复SM全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年03月16日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-*****************************************************************************/
 VOS_VOID NAS_SM_Restore_SmPdpAddrApn(SM_PDP_ADDR_AND_APN_STRU  *pSmPdpAddrApn)
 {
     PS_MEM_CPY(&g_SmPdpAddrApn, pSmPdpAddrApn, sizeof(SM_PDP_ADDR_AND_APN_STRU));
@@ -262,21 +179,7 @@ VOS_VOID NAS_SM_Restore_SmPdpAddrApn(SM_PDP_ADDR_AND_APN_STRU  *pSmPdpAddrApn)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RestoreContextData
- 功能描述  : 恢复SM全局变量。
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年03月16日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_SM_RestoreContextData(struct MsgCB * pMsg)
 {
     NAS_SM_SDT_MSG_ST                      *pRcvMsgCB;
@@ -302,21 +205,7 @@ VOS_UINT32 NAS_SM_RestoreContextData(struct MsgCB * pMsg)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndOutsideContextData
- 功能描述  : 把SM外部上下文作为SDT消息发送出去，以便在回放时通过桩函数还原
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年03月16日
-    作    者   : 欧阳飞 00132663
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID NAS_SM_SndOutsideContextData()
 {
     NAS_SM_SDT_MSG_ST                      *pSndMsgCB     = VOS_NULL_PTR;
@@ -354,21 +243,7 @@ VOS_VOID NAS_SM_SndOutsideContextData()
     return;
 }
 
-/***********************************************************************
-*  MODULE   : Sm_TaskEntry
-*  FUNCTION : SM模块TASK入口处理
-*  INPUT    : struct MsgCB* pMsg-----------消息指针
-*  OUTPUT   : VOS_VOID
-*  RETURN   : VOS_VOID
-*  NOTE     : 消息指针由DOPRA释放，入口函数不需要释放
-*  HISTORY  :
-*     1.  张志勇   05-01-28  新规作成
-*     2.  张志勇   05-03-08  使用PID进行分发处理
-      3.  日    期   : 2011年06月24日
-          作    者   : c00173809
-          修改内容   : 根据问题单号：DTS2011051202669，SM的T3380,T3390超时消息解析不正确。
 
-************************************************************************/
 VOS_VOID Sm_TaskEntry( struct MsgCB* pMsg )
 {
     MSG_HEADER_STRU         *pHeader;                                           /* 定义消息头指针                           */
@@ -416,45 +291,13 @@ VOS_VOID Sm_TaskEntry( struct MsgCB* pMsg )
 #endif
 }
 
-/*****************************************************************************
- 函 数 名  : SM_GetSystemAppConfigAddr
- 功能描述  : 获取SM模块控制特性的NV的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 控制特性的信息
- 调用函数  :
- 被调函数  :
 
- 修改历史     :
- 1.日    期   : 2011年12月07日
-   作    者   : s62952
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT8* SM_GetSystemAppConfigAddr(VOS_VOID)
 {
     return &g_ucSmSystemAppConfigAddr;
 }
 
-/*****************************************************************************
- 函 数 名  : SM_ReadSystemAppConfigNV
- 功能描述  : 读取特性控制NV相关信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月18日
-    作    者   : s62952
-    修改内容   : 新生成函数
-  2.日    期   : 2012年8月10日
-    作    者   : L00171473
-    修改内容   : DTS2012082204471, TQE清理
-  3.日    期   : 2013年05月17日
-    作    者   : m00217266
-    修改内容   : nv项拆分
-*****************************************************************************/
 VOS_VOID  SM_ReadSystemAppConfigNV(VOS_VOID)
 {
     VOS_UINT8                                      *pucSystemAppConfig;
@@ -487,23 +330,7 @@ VOS_VOID  SM_ReadSystemAppConfigNV(VOS_VOID)
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_Init
-  Function: Sm的初始化函数
-  Input:    VOS_VOID
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   郑 伟   2003.12.12   新规作成
-      2.   张志勇  2005.01.05   移植修改
-      3.日    期   : 2013年05月18日
-        作    者   : l00198894
-        修改内容   : Taf&Sm接口优化
-      2. 日    期   : 2013年07月222日
-        作    者   : j00177245
-        修改内容   : 清理编译warning
-*******************************************************************************/
+
 VOS_VOID SM_Init()
 {
     SM_ENTITY_STRU                     *pstSmEntity     = VOS_NULL_PTR;
@@ -540,28 +367,7 @@ VOS_VOID SM_Init()
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_RcvTafMsg
- 功能描述  : 处理TAF消息
- 输入参数  : MSG_HEADER_STRU                       *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2003年12月09日
-    作    者   : 郑 伟
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年12月20日
-    作    者   : A00165503
-    修改内容   : PS Project: 增加ID_APS_SM_PDP_ABORT_REQ原语处理
-
-  3.日    期   : 2013年4月23日
-    作    者   : L47619
-    修改内容   : V9R1 IPv6&TAF/SM接口优化项目修改
-*****************************************************************************/
 VOS_VOID NAS_SM_RcvTafMsg(
     MSG_HEADER_STRU                    *pMsg
 )
@@ -625,19 +431,7 @@ VOS_VOID NAS_SM_RcvTafMsg(
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_GmmMsgDistr
-  Function: GMM消息分发处理
-  Input:    VOS_VOID    *pRcvMsg           收到的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.   郑 伟   2003.12.11   新规作成
-  2.日    期   : 2012年8月25日
-    作    者   : m00217266
-    修改内容   : 修改接口SM_RcvGmmSmServiceRej，上报原因值
-*******************************************************************************/
+
 VOS_VOID SM_GmmMsgDistr(
     VOS_VOID                            *pRcvMsg
 )
@@ -693,37 +487,7 @@ VOS_VOID SM_GmmMsgDistr(
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_RcvStatusMsg
-  Function: 接收SM STATUS消息的处理
-  Input:    VOS_VOID    *pRcvMsg           收到的消息
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. 郑 伟   2003.12.11   新规作成
-  2. 张志勇  2005.01.06   移植修改
 
-  3.日    期   : 2010年10月25日
-    作    者   : z00161729
-    修改内容   : CS Only情况,PDP去激活后,SM需要通过pdp_deactive_ind消息通知GMM进行detach
-
-  4.日    期   : 2012年01月17日
-    作    者   : f00179208
-    修改内容   : PS融合项目，UE处于IDLE，pdp激活过程中，网络侧下发SM Status，
-                 原因值为Invalid transaction identifier value（#81）UE没有回到IDLE态
-
-  5.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  6.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-  7.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_RcvStatusMsg(GMMSM_DATA_IND_STRU *pGmmDataInd)
 {
     VOS_UINT8       ucTi;
@@ -964,44 +728,7 @@ VOS_VOID SM_RcvTimerMsgDistr(
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_T3380Expire
-  Function: T3380超时的处理
-  Input:    VOS_UINT8          ucCntxtIndex     PDP context的索引
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.   郑 伟   2003.12.09   新规作成
 
-  2. 日    期   : 2010年10月22日
-     作    者   : z00161729
-     修改内容   : 问题单:DTS2010102003076,E5 GCF测试要求pdp激活达到最大次数后,如果网侧没响应则主动释放链路
-                  SM需要给GMM发送pdp deactivated ind 消息
-
-  3. 日    期   : 2013年04月10日
-     作    者   : Y00213812
-     修改内容   : DTS2013040902281,增加可维可测
-
-  4. 日    期   : 2013年06月30日
-     作    者   : m00217266
-     修改内容   : DCM LOGGER项目定时器事件上报
-
-  5.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  6.日    期   : 2014年12月17日
-    作    者   : A00165503
-    修改内容   : DTS2014112107909: 每次信令流程发起时, 需要申请新的资源
-
-  7.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-  8.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_T3380Expire(VOS_UINT8 ucCntxtIndex)
 {
     NAS_SM_PDP_CONTEXT_INFO_STRU       *pstPdpCntxt = VOS_NULL_PTR;
@@ -1009,9 +736,7 @@ VOS_VOID SM_T3380Expire(VOS_UINT8 ucCntxtIndex)
     VOS_UINT8                           ucAddrIndex;
     VOS_UINT8                           ucCause;
 
-    /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
     NAS_TIMER_EventReport(SM_TIMER_TYPE_T3380, WUEPS_PID_SM, NAS_OM_EVENT_TIMER_OPERATION_EXPIRED);
-    /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
     pstPdpCntxt = NAS_SM_GetPdpCtxInfoAddr(ucCntxtIndex);
     pstHoldMsg  = (GMMSM_DATA_REQ_STRU *)pstPdpCntxt->pHoldSndMsg;
@@ -1047,12 +772,10 @@ VOS_VOID SM_T3380Expire(VOS_UINT8 ucCntxtIndex)
         {
         }
 
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
         /* T3380 5次超时，停止定时器时不发送定时器停止事件 */
         g_ucSmTimerFiveExpireFlag = VOS_TRUE;
         SM_ComClearPdpCntxt(ucCntxtIndex);                                      /* 释放实体                                 */
         g_ucSmTimerFiveExpireFlag = VOS_FALSE;
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
         SM_SndRabmSmDeactivateInd(1, &ucCntxtIndex);                            /* 通知RABM去激活                           */
         SM_ComDelNsapiFromAddr(ucAddrIndex,ucCntxtIndex);
@@ -1076,9 +799,7 @@ VOS_VOID SM_T3380Expire(VOS_UINT8 ucCntxtIndex)
     }
     else
     {
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
         NAS_TIMER_EventReport(SM_TIMER_TYPE_T3380, WUEPS_PID_SM, NAS_OM_EVENT_TIMER_OPERATION_START);
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
         NAS_SM_BeginSession();
 
@@ -1092,40 +813,14 @@ VOS_VOID SM_T3380Expire(VOS_UINT8 ucCntxtIndex)
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_T3381Expire
-  Function: T3381超时的处理
-  Input:    VOS_UINT8          ucCntxtIndex     PDP context的索引
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. 郑 伟   2003.12.09   新规作成
 
-  2. 日    期   : 2013年06月30日
-     作    者   : m00217266
-     修改内容   : DCM LOGGER项目定时器事件上报
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  4.日    期   : 2014年12月17日
-    作    者   : A00165503
-    修改内容   : DTS2014112107909: 每次信令流程发起时, 需要申请新的资源
-  5.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_T3381Expire(VOS_UINT8 ucCntxtIndex)
 {
     NAS_SM_PDP_CONTEXT_INFO_STRU       *pstPdpCntxt = VOS_NULL_PTR;
     GMMSM_DATA_REQ_STRU                *pstHoldMsg  = VOS_NULL_PTR;
     VOS_UINT8                           ucCause;
 
-    /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
     NAS_TIMER_EventReport(SM_TIMER_TYPE_T3381, WUEPS_PID_SM, NAS_OM_EVENT_TIMER_OPERATION_EXPIRED);
-    /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
     pstPdpCntxt = NAS_SM_GetPdpCtxInfoAddr(ucCntxtIndex);
     pstHoldMsg  = (GMMSM_DATA_REQ_STRU *)pstPdpCntxt->pHoldSndMsg;
@@ -1138,12 +833,10 @@ VOS_VOID SM_T3381Expire(VOS_UINT8 ucCntxtIndex)
         SM_Free(g_SmEntity.aPdpCntxtList[ucCntxtIndex].pHoldSndMsg);            /* 释放备份的消息                           */
         g_SmEntity.aPdpCntxtList[ucCntxtIndex].pHoldSndMsg = SM_NULL;
 
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
         /* T3381 5次超时，停止定时器时不发送定时器停止事件 */
         g_ucSmTimerFiveExpireFlag = VOS_TRUE;
         SM_TimerStop(ucCntxtIndex);                                             /* 停止T3381                                */
         g_ucSmTimerFiveExpireFlag = VOS_FALSE;
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
         g_SmEntity.aPdpCntxtList[ucCntxtIndex].ucState = SM_PDP_ACTIVE;         /* 状态切换到SM_PDP_ACTIVE                  */
 
         SM_SndTafSmPdpModifyRej(
@@ -1161,9 +854,7 @@ VOS_VOID SM_T3381Expire(VOS_UINT8 ucCntxtIndex)
     }
     else
     {
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
         NAS_TIMER_EventReport(SM_TIMER_TYPE_T3381, WUEPS_PID_SM, NAS_OM_EVENT_TIMER_OPERATION_START);
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
         NAS_SM_BeginSession();
 
@@ -1177,50 +868,13 @@ VOS_VOID SM_T3381Expire(VOS_UINT8 ucCntxtIndex)
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_T3390Expire
-  Function: T3390超时的处理
-  Input:    VOS_UINT8          ucCntxtIndex     PDP context的索引
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1. 郑 伟   2003.12.09   新规作成
-  2. 日    期   : 2010年08月13日
-     作    者   : a165503
-     修改内容   : 问题单号:DTS2010070502076，接收到PDP去激活时，CS ONLY下待SM指示PDP去激活完成后进行PS DETACH
 
-  3. 日    期  : 2013年03月13日
-     作    者  : z00214637
-     修改内容  : BodySAR项目
-
-  4. 日    期  : 2013年06月30日
-     作    者  : m00217266
-     修改内容  : DCM LOGGER项目定时器事件上报
-
-  5.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  6.日    期   : 2014年12月17日
-    作    者   : A00165503
-    修改内容   : DTS2014112107909: 每次信令流程发起时, 需要申请新的资源
-
-  7.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-  8.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_T3390Expire(VOS_UINT8 ucCntxtIndex)
 {
     NAS_SM_PDP_CONTEXT_INFO_STRU       *pstPdpCntxt = VOS_NULL_PTR;
     GMMSM_DATA_REQ_STRU                *pstHoldMsg  = VOS_NULL_PTR;
 
-    /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
     NAS_TIMER_EventReport(SM_TIMER_TYPE_T3390, WUEPS_PID_SM, NAS_OM_EVENT_TIMER_OPERATION_EXPIRED);
-    /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
     pstPdpCntxt = NAS_SM_GetPdpCtxInfoAddr(ucCntxtIndex);
     pstHoldMsg  = (GMMSM_DATA_REQ_STRU *)pstPdpCntxt->pHoldSndMsg;
@@ -1230,12 +884,10 @@ VOS_VOID SM_T3390Expire(VOS_UINT8 ucCntxtIndex)
     if( SM_MAX_EXPIRE_TIMES
         == g_SmEntity.aPdpCntxtList[ucCntxtIndex].TimerInfo.ucExpireTimes)
     {                                                                           /* 达到最大的次数(SM_MAX_EXPIRE_TIMES)      */
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
         /* T3390 5次超时，停止定时器时不发送定时器停止事件 */
         g_ucSmTimerFiveExpireFlag = VOS_TRUE;
         SM_TimerStop(ucCntxtIndex);                                             /* 停止T3390                                */
         g_ucSmTimerFiveExpireFlag = VOS_FALSE;
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
         SM_Free( g_SmEntity.aPdpCntxtList[ucCntxtIndex].pHoldSndMsg );          /* 释放备份的消息                           */
         g_SmEntity.aPdpCntxtList[ucCntxtIndex].pHoldSndMsg = SM_NULL;
@@ -1261,9 +913,7 @@ VOS_VOID SM_T3390Expire(VOS_UINT8 ucCntxtIndex)
     }
     else
     {
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, begin */
         NAS_TIMER_EventReport(SM_TIMER_TYPE_T3390, WUEPS_PID_SM, NAS_OM_EVENT_TIMER_OPERATION_START);
-        /* added  by m00217266 for v9r1 dcm logger可维可测项目, 2013-06-30, end */
 
         NAS_SM_BeginSession();
 
@@ -1277,35 +927,7 @@ VOS_VOID SM_T3390Expire(VOS_UINT8 ucCntxtIndex)
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_RegisterProtectTimerExpire
-  Function: 注册保护Timer超时
-  Input:    VOS_UINT8          ucCntxtIndex     PDP context的索引
-  Output:   VOS_VOID
-  NOTE:     VOS_VOID
-  Return:   VOS_VOID
-  History:
-  1.   郑 伟   2003.12.10   新规作成
 
-  2.日    期   : 2010年01月04日
-    作    者   : w00166186
-    修改内容   : 问题单号:DTS2010122004132 W CS ONLY PDP激活过程重定向到G,PDP激活失败
-
-  3.日    期   : 2014年05月05日
-    作    者   : Y00213812
-    修改内容   : 如果当前为正在注册状态才继续清理缓存等操作
-
-  4.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-
-  5.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-  6.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_RegisterProtectTimerExpire(VOS_UINT8 ucCntxtIndex)
 {
     VOS_UINT8                           i;
@@ -1363,27 +985,7 @@ VOS_VOID SM_RegisterProtectTimerExpire(VOS_UINT8 ucCntxtIndex)
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_NwModifyProtectTimerExpire
-  Function: Network发起PDP context Modify保护Timer超时的处理
-  Input:    VOS_UINT8          ucCntxtIndex
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-  1.郑 伟   2003.12.10   新规作成
 
-  2.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程发起前申请资源
-
-  3.日    期   : 2014年12月06日
-    作    者   : A00165503
-    修改内容   : DTS2014120207400: 连续去激活多个PDP, 网侧不释放RRC连接
-  4.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*******************************************************************************/
 VOS_VOID SM_NwModifyProtectTimerExpire(VOS_UINT8 ucCntxtIndex)
 {
     NAS_SM_NORM_LOG("SM_NwModifyProtectTimerExpire: SM_PDP_NW_MODIFY ==> SM_PDP_INACTIVE_PENDING");
@@ -1411,24 +1013,7 @@ VOS_VOID SM_NwModifyProtectTimerExpire(VOS_UINT8 ucCntxtIndex)
     return;
 }
 
-/*******************************************************************************
-  Module:   SM_TimerStart
-  Function: 启动Timer
-  Input:    VOS_UINT8   ucTimerId
-            VOS_UINT32   ulTimerLen
-            VOS_UINT8   ucTimerType
-  Output:   VOS_VOID
-  NOTE:
-  Return:   VOS_VOID
-  History:
-      1.   郑 伟   2003.12.09   新规作成
-      2.   Date        : 2006-11-25
-           Author      : l47619
-           Modification: 根据问题单新增:A32D07646
-      3.   日    期   : 2011年06月24日
-           作    者   : c00173809
-           修改内容   : 根据问题单号：DTS2011051202669，SM的T3380,T3390超时消息解析不正确。
-*******************************************************************************/
+
 VOS_VOID SM_TimerStart(
                    VOS_UINT8        ucEntId,                                        /* Timer ID 为实体的索引                    */
                    VOS_UINT32        ulTimerLen,                                     /* Timer的时长                              */
@@ -1650,30 +1235,7 @@ VOS_UINT32 WuepsSmPidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 }
 
 
-/*****************************************************************************
- Prototype      : Sm_PowerOff()
- Description    : 软关机过程中，用以回收资源。包括动态分配的内存和定时器等。
- Input          : VOS_VOID
- Output         :
- Return Value   : VOID
- Calls          :
- Called By      :
- History        :
-  1.Date        : 2006-09-14
-    Author      : l47619
-    Modification: 根据问题单新增:A32D05600
 
-  2.日    期   : 2013年2月6日
-    作    者   : A00165503
-    修改内容   : DTS2013020505170: SM关机函数有内存泄露风险
-
-  3.日    期   : 2014年6月28日
-    作    者   : A00165503
-    修改内容   : DSDS III 项目, 信令流程结束后释放资源
-  4.日    期   : 2015年4月28日
-    作    者   : z00161729
-    修改内容   : 24301 R11 CR升级项目修改
-*****************************************************************************/
 VOS_VOID  Sm_PowerOff(VOS_VOID)
 {
     NAS_SM_PDP_CONTEXT_INFO_STRU       *pstPdpCtxInfo;
@@ -1723,22 +1285,7 @@ VOS_VOID  Sm_PowerOff(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_CalcMaxSduSize
- 功能描述  : 解析Qos中Maximum SDU size的值
- 输入参数  : VOS_UINT8      *pucQos     - Qos数组码流
-             VOS_UINT8      ucCurrOctet - Qos数组码流当前字节索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 NAS_SM_CalcMaxSduSize(
     VOS_UINT8                           *pucQos,
     VOS_UINT8                           ucCurrOctet
@@ -1775,26 +1322,7 @@ VOS_UINT16 NAS_SM_CalcMaxSduSize(
     return usMaxSduSize;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_CalcQosBitRate
- 功能描述  : 根据 TS 24.008 10.5.6.5 中的规定，计算QOS中Maximum(Guaranteed) bit
-             rate for uplink(downlink)的值
- 输入参数  : VOS_UINT8      *pucQos          - Qos数组码流
-             VOS_UINT8      ucCurrOctetIndex - Qos数组码流当前字节索引
-             VOS_UINT8      ucExtOctetIndex  - 上行或下行速率的扩展字节索引
-             VOS_UINT8      ucBitRateType    - 上行或下行
-             VOS_UINT32     ulQosLen         - Qos数组码流长度
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月20日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_SM_CalcQosBitRate(
     VOS_UINT8                           *pucQos,
     VOS_UINT8                           ucCurrOctetIndex,
@@ -1913,22 +1441,7 @@ VOS_UINT32 NAS_SM_CalcQosBitRate(
     return ulQosBitRate;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_CalcTransDelay
- 功能描述  :
- 输入参数  : VOS_UINT8          *pucQos     - Qos数组码流
-             VOS_UINT8          ucCurrOctet - Qos数组码流当前字节索引
- 输出参数  : 无
- 返 回 值  : VOS_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT16 NAS_SM_CalcTransDelay(
     VOS_UINT8                           *pucQos,
     VOS_UINT8                           ucCurrOctet
@@ -1980,26 +1493,7 @@ VOS_UINT16 NAS_SM_CalcTransDelay(
     return usTransDelay;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_FillQos
- 功能描述  : 填写OM查询所需要Qos信息
- 输入参数  : NAS_QOS_STRUCT     *pMsg       - 待填写的Qos信息
-             VOS_UINT8          *pucQos     - Qos数组码流
-             VOS_UINT32         *pulQosLen  - Qos数组码流的长度
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2015年9月17日
-    作    者   : zwx247453
-    修改内容   : Dallas寄存器按原语上报及BBP采数项目
-
-*****************************************************************************/
 VOS_VOID NAS_SM_FillQos(
     NAS_QOS_IND_STRUCT                  *pMsg,
     VOS_UINT8                           *pucQos,
@@ -2010,7 +1504,6 @@ VOS_VOID NAS_SM_FillQos(
 
     ucCurrOctet = 0;
 
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     /* Octet 3 of Qos struct. Refer to sction 10.5.6 in TS 24.008 */
     pMsg->enDelayClass           = (*(pucQos) & NAS_SM_QOS_DELAY_CLASS_MASK) >> 3;
     pMsg->enReliabilityClass     = (*(pucQos) & NAS_SM_QOS_RELIABILITY_CLASS_MASK);
@@ -2075,7 +1568,6 @@ VOS_VOID NAS_SM_FillQos(
     /* Octet 11 */
     pMsg->usTransDelay           = NAS_SM_CalcTransDelay(pucQos, ucCurrOctet);
     pMsg->enTraffHandlPrior      = (*(pucQos + ucCurrOctet) & NAS_SM_QOS_TRAFFIC_HANDLING_PRIORITY_MASK);
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
 
     ucCurrOctet++;
 
@@ -2104,21 +1596,7 @@ VOS_VOID NAS_SM_FillQos(
                                                     ulQosLen);
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_FindCurrPdpId
- 功能描述  : 获取当前PDP的ID，并判断其Qos是否有效
- 输入参数  : 无
- 输出参数  : VOS_UINT8      *pucNSAPI - 存储当前PDP context的NSAPI值
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年6月21日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_SM_FindCurrPdpId(
     VOS_UINT8                           *pucNSAPI
 )
@@ -2151,24 +1629,7 @@ VOS_UINT32 NAS_SM_FindCurrPdpId(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : Sm_FillQosInfo
- 功能描述  : 填写OM查询所需要的Qos信息
- 输入参数  : NAS_QOS_STRUCT *pMsg - 待填写的QOS内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月23日
-    作    者   : A00165503
-    修改内容   : SM降圈复杂度
-
-  2.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : SM保存的QOS和APN由动态内存改为静态数组
-*****************************************************************************/
 VOS_VOID Sm_FillQosInfo(
     NAS_QOS_IND_STRUCT                 *pMsg
 )
@@ -2197,25 +1658,7 @@ VOS_VOID Sm_FillQosInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Sm_FillPDPContextInfo
- 功能描述  : 填写上报的PDP上下文的信息
- 输入参数  : NAS_PDP_CONTEXT_STRU *
- 输出参数  : 无
- 返 回 值  : None
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月26日
-    作    者   : z00163274
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年7月14日
-    作    者   : wx270776
-    修改内容   : OM融合
-
-*****************************************************************************/
 VOS_VOID NAS_SM_FillPDPContextInfo(
     NAS_OM_PDP_CONTEXT_IND_STRU        *pstPdpCntxt
 )
@@ -2229,9 +1672,7 @@ VOS_VOID NAS_SM_FillPDPContextInfo(
         return;
     }
 
-    /* Deleted by wx270776 for OM融合, 2015-7-14, begin */
     /* 删除PS_MEM_SET。在调用前已经初始化过。 */
-    /* Deleted by wx270776 for OM融合, 2015-7-14, end */
 
     /*查询PDP当前状态是否是处于激活状态*/
     for (ucCntxtIndex = 0; ucCntxtIndex < SM_MAX_NSAPI_NUM; ucCntxtIndex++)
@@ -2250,22 +1691,7 @@ VOS_VOID NAS_SM_FillPDPContextInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_CheckPdpActiveState
- 功能描述  : 检查当前是否有激活的PDP context
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
-             VOS_FALSE  - 没有激活的PDP context
-             VOS_TRUE   - 有激活的PDP context
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年8月14日
-    作    者   : A00165503
-    修改内容   : 新生成函数，问题单号：DTS2010081802507
-
-*****************************************************************************/
 VOS_UINT32 NAS_SM_CheckPdpActiveState()
 {
     VOS_UINT32                          ucCntxtIndex;
@@ -2284,24 +1710,7 @@ VOS_UINT32 NAS_SM_CheckPdpActiveState()
     return VOS_FALSE;
 }
 
-/* Added by wx270776 for OM融合, 2015-7-21, begin */
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndOmQosIndMsg
- 功能描述  : 发送OM的查询消息透传消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ulRet: 结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月21日
-   作    者   : wx270776
-   修改内容   : OM融合
- 2.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-*****************************************************************************/
 VOS_UINT32 NAS_SM_SndOmQosIndMsg(VOS_VOID)
 {
     NAS_QOS_IND_STRUCT                  stNasQosInd;
@@ -2313,16 +1722,12 @@ VOS_UINT32 NAS_SM_SndOmQosIndMsg(VOS_VOID)
 
     /* 填充消息内容 */
     Sm_FillQosInfo(&stNasQosInd);
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     stNasQosInd.enPrimId            = ID_NAS_OM_QOS_CONFIRM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
     stNasQosInd.usToolsId           = 0;
 
     stDiagTransInd.ulModule         = DIAG_GEN_MODULE(VOS_GetModemIDFromPid(WUEPS_PID_SM), DIAG_MODE_UMTS);;
     stDiagTransInd.ulPid            = WUEPS_PID_SM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-11-09, begin */
     stDiagTransInd.ulMsgId          = ((VOS_UINT32)(VOS_GetModemIDFromPid(WUEPS_PID_SM)) << 16) + ID_NAS_OM_QOS_CONFIRM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-11-09, end */
     stDiagTransInd.ulLength         = sizeof(NAS_QOS_IND_STRUCT);
     stDiagTransInd.pData            = &stNasQosInd;
 
@@ -2338,23 +1743,7 @@ VOS_UINT32 NAS_SM_SndOmQosIndMsg(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_SndOmPdpCtxIndMsg
- 功能描述  : 发送OM的查询消息透传消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : ulRet: 结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年7月21日
-   作    者   : wx270776
-   修改内容   : OM融合
- 2.日    期   : 2015年9月17日
-   作    者   : zwx247453
-   修改内容   : Dallas寄存器按原语上报及BBP采数项目
-*****************************************************************************/
 VOS_UINT32 NAS_SM_SndOmPdpCtxIndMsg(VOS_VOID)
 {
     NAS_OM_PDP_CONTEXT_IND_STRU        *pstNasOmPdpCtxInd = VOS_NULL_PTR;
@@ -2374,16 +1763,12 @@ VOS_UINT32 NAS_SM_SndOmPdpCtxIndMsg(VOS_VOID)
 
     /*获取相应的PDP上下文的IE值*/
     NAS_SM_FillPDPContextInfo(pstNasOmPdpCtxInd);
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, begin */
     pstNasOmPdpCtxInd->enPrimId     = ID_NAS_OM_PDP_CONTEXT_CONFIRM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-09-17, end */
     pstNasOmPdpCtxInd->usToolsId    = 0;
 
     stDiagTransInd.ulModule         = DIAG_GEN_MODULE(VOS_GetModemIDFromPid(WUEPS_PID_SM), DIAG_MODE_UMTS);;
     stDiagTransInd.ulPid            = WUEPS_PID_SM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-11-09, begin */
     stDiagTransInd.ulMsgId          = ((VOS_UINT32)(VOS_GetModemIDFromPid(WUEPS_PID_SM)) << 16) + ID_NAS_OM_PDP_CONTEXT_CONFIRM;
-    /* Modified by zwx247453 for 寄存器上报, 2015-11-09, end */
     stDiagTransInd.ulLength         = sizeof(NAS_OM_PDP_CONTEXT_IND_STRU);
     stDiagTransInd.pData            = pstNasOmPdpCtxInd;
 
@@ -2399,44 +1784,12 @@ VOS_UINT32 NAS_SM_SndOmPdpCtxIndMsg(VOS_VOID)
     return ulRet;
 
 }
-/* Added by wx270776 for OM融合, 2015-7-21, end */
 
-/*****************************************************************************
- 函 数 名  : Sm_OmQuery
- 功能描述  :
- 输入参数  :
 
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年9月01日
-    作    者   :
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年2月26日
-    作    者   : z00163274
-    修改内容   : 增加PDP上下文的可维可测需求
-
-  3.日    期   : 2010年2月26日
-    作    者   : o00132663
-    修改内容   : DTS2011022105462,NAS回复给SDT的透明消息长度错误
-
-  4.日    期   : 2012年11月1日
-    作    者   : z40661
-    修改内容   : DTS2012102501504
-
-  5.日    期   : 2015年7月9日
-    作    者   : wx270776
-    修改内容   : OM融合
-*****************************************************************************/
 VOS_VOID Sm_OmQuery(
     VOS_VOID                           *pMsg
 )
 {
-    /* Modified by wx270776 for OM融合, 2015-7-1, begin */
     ID_NAS_OM_INQUIRE_STRU             *pOmMsg;
     NAS_QOS_STRUCT                     *pQosMsg;
     VOS_UINT32                          ulRet;
@@ -2546,24 +1899,9 @@ VOS_VOID Sm_OmQuery(
         break;
     }
 
-    /* Modified by wx270776 for OM融合, 2015-7-1, end */
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_MapGmmCause
- 功能描述  : 将GMM错误码映射成SM/APS错误码
- 输入参数  : enGmmCause - GMM错误码
- 输出参数  : 无
- 返 回 值  : SM_TAF_CAUSE_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年8月22日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SM_TAF_CAUSE_ENUM_UINT16 NAS_SM_MapGmmCause(
     GMM_SM_CAUSE_ENUM_UINT16            enGmmCause
 )
@@ -2586,21 +1924,7 @@ SM_TAF_CAUSE_ENUM_UINT16 NAS_SM_MapGmmCause(
     return SM_TAF_CAUSE_GMM_UNKNOWN;
 }
 
-/*****************************************************************************
- 函 数 名  : NAS_SM_MapSmNWCause
- 功能描述  : 将SM NW的错误码进行偏移得到SM的错误码
- 输入参数  : ucSmCause - SM NW的错误码
- 输出参数  : 无
- 返 回 值  : SM_TAF_CAUSE_ENUM_UINT16
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月24日
-    作    者   : w00316404
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 SM_TAF_CAUSE_ENUM_UINT16 NAS_SM_MapSmNWCause(VOS_UINT8 ucSmCause)
 {
     SM_TAF_CAUSE_ENUM_UINT16            usSmCause;

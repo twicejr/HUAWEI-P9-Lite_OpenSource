@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2013, 深圳华为技术有限公司.
-*
-*   文 件 名 :  ipf_balong_pm.c
-*
-*   作    者 :  chendongyue
-*
-*   描    述 :  IPF的低功耗接口，运行于m3
-*
-*   修改记录 :  2013年4月23日v1.00 chendongyue 创建
-*
-*************************************************************************/
+
 
 /*lint -save -e18 -e156 -e438 -e740 -e830*/
 
@@ -130,18 +119,7 @@ __ao_data unsigned int g_ipf_addr_limit_table[] =
 };
 
 #ifdef CONFIG_BALONG_MODEM_RESET
-/*****************************************************************************
-* 函 数 名  : bsp_ipf_reset_ccore_lpm3_cb
-*
-* 功能描述  : 在ccore单独复位流程中，设置ipf reset标记
-*
-* 输入参数  : 
-*             
-* 输出参数  : 无
-* 返 回 值  : 无
-*
-* 修改记录  : 2012年11月29日   z00212992  创建
-*****************************************************************************/
+
 int bsp_ipf_reset_ccore_lpm3_cb(DRV_RESET_CB_MOMENT_E eparam, int userdata)
 {
 	if(MDRV_RESET_CB_BEFORE == eparam)
@@ -155,18 +133,7 @@ int bsp_ipf_reset_ccore_lpm3_cb(DRV_RESET_CB_MOMENT_E eparam, int userdata)
 	return IPF_SUCCESS;
 }
 #endif
-/*****************************************************************************
-* 函 数 名  : bsp_ipf_init
-*
-* 功能描述  : m core init function.
-*
-* 输入参数  : void
-*             
-* 输出参数  : 无
-* 返 回 值  : 无
-*
-* 修改记录  : 2014-8-30  l00265142  created
-*****************************************************************************/
+
 int	bsp_ipf_init(void)
 {
     struct device_node *node;
@@ -187,18 +154,7 @@ int	bsp_ipf_init(void)
 	return 0;
 }
 
-/*****************************************************************************
-* 函 数 名  : ipf_drx_restore_adq_rptr
-*
-* 功能描述  : 根据adq状态寄存器回退adq读指针
-*
-* 输入参数  : u32Index ADQ序列
-*             
-* 输出参数  : 无
-* 返 回 值  : 无
-*
-* 修改记录  : 2012年11月29日   z00212992  创建
-*****************************************************************************/
+
 static void ipf_drx_restore_adq_rptr(void)
 {
     unsigned int u32Index = 0;

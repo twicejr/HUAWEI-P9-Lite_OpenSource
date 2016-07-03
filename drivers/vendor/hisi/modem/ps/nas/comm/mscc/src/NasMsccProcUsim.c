@@ -259,18 +259,7 @@ VOS_VOID  NAS_MSCC_RcvUsimmReadFileCnf(
 
 
 #ifdef DMT
-/*****************************************************************************
-Function Name   :   NAS_MSCC_SendCardReadTimerExpireMsgForDmt
-Description     :   发送读卡定时器超时，用于DTM测试
-Input parameters:   None
-Output parameters:  None
-Return Value    :   None
 
-Modify History:
-    1)  Date    :   2015-4-28
-        Author  :   y00174758
-        Modify content :    Create
-*****************************************************************************/
 VOS_VOID NAS_MSCC_SendCardReadTimerExpireMsgForDmt(VOS_VOID)
 {
     NAS_TIMER_MSG_STRU                 *pstMsg  = VOS_NULL_PTR;

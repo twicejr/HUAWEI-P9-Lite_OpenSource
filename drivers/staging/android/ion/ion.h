@@ -228,5 +228,4 @@ struct ion_handle *ion_import_dma_buf(struct ion_client *client, int fd);
 int ion_sync_for_cpu(struct ion_client *client, int fd);
 int ion_sync_for_device(struct ion_client *client, int fd);
 size_t ion_get_used_memory(struct ion_heap *heap);
-int hisi_ion_memory_info(void);
 #endif /* _LINUX_ION_H */

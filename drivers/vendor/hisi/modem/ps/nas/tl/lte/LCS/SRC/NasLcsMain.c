@@ -1,13 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasLcsMain.c
-  Description     : 该C文件给出了LCS_MAIN模块的实现
-  History           :
-        1.lihong  00150010       2015-09-28  Draft Enact
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -41,16 +32,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name  : NAS_LCS_TaskEntry
- Description    : LCS模块TASK入口处理,根据接收到的消息的所属模块，将消息分发给处理该模块消息的子模块。
- Input          : struct MsgCB* pMsg-----------消息指针
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010 2015-9-28 Draft Enact
- *****************************************************************************/
 VOS_VOID  NAS_LCS_TaskEntry(MsgBlock * pMsg)
 {
     /* 定义消息头指针*/
@@ -109,15 +91,7 @@ VOS_VOID  NAS_LCS_TaskEntry(MsgBlock * pMsg)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LCS_Init
- Discription    : LCS的初始化函数
- Input          : None
- Output         : None
- Return         : None
- History:
-      1.lihong 00150010 2015-9-28 Draft Enact
-*****************************************************************************/
+
 VOS_VOID NAS_LCS_Init ( VOS_VOID )
 {
 #if (FEATURE_LPP == FEATURE_ON)
@@ -166,15 +140,7 @@ VOS_VOID NAS_LCS_Init ( VOS_VOID )
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LCS_PidInit
- Discription    : LPP的PID初始化函数
- Input          :
- Output         : None
- Return         : None
- History:
-      1.lihong 00150010 2015-9-28 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_LCS_PidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
 #if (FEATURE_LPP == FEATURE_ON)
@@ -208,15 +174,7 @@ VOS_UINT32 NAS_LCS_PidInit ( enum VOS_INIT_PHASE_DEFINE ip )
     return VOS_OK;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LCS_FidInit
- Discription    : LCS的PID初始化函数
- Input          :
- Output         : None
- Return         : None
- History:
-      1.leixiantiao 00258641 2016-01-11 Draft Enact
-*****************************************************************************/
+
 VOS_UINT32 NAS_ESM_FidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
     VOS_UINT32                              ulRet;

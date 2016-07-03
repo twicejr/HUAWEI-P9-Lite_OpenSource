@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2014, 华为技术有限公司
-*******************************************************************************
-  文 件 名   : BST_PAL_As.c
-  版 本 号   : 初稿
-  作    者   : d00173029
-  生成日期   : 2014年7月3日
-  最近修改   :
-  功能描述   : 实现接入层相关处理驱动接口
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2014年07月3日
-    作    者   : d00173029
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifdef __cplusplus
 #if __cplusplus
@@ -69,21 +52,7 @@ BST_PAL_AS_INFO_STRU                    g_stBstPalAsInfo;
 ******************************************************************************/
 
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiReleaseRrcConn
- 功能描述  : AS层相关控制命令接口实现
- 输入参数  : BST_DRV_CMD_ENUM_UINT32 enCmd, 控制命令名称
-             BST_VOID *pvData               控制命令内容
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8 BST_NO_ERROR_MSG        控制成功执行
-                                BST_ERR_ILLEGAL_PARAM   控制参数有误
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_PAL_AsApiReleaseRrcConn( BST_VOID )
 {
     BST_MODEM_ID_ENUM_UINT32           enPsModemId;
@@ -124,29 +93,7 @@ BST_ERR_ENUM_UINT8  BST_PAL_AsApiReleaseRrcConn( BST_VOID )
     return BST_NO_ERROR_MSG;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiGetModemRat
- 功能描述  : 获取指定的Modem当前接入模式
- 输入参数  : BST_MODEM_ID_ENUM_UINT32 enModemId
-            BST_MODEM_ID_1,     Modem 1
-            BST_MODEM_ID_2,     Modem 2
 
- 输出参数  : 无
- 返 回 值  :
-            BST_AS_RAT_NONE(0x00)       无效模式
-            BST_AS_RAT_GPRS(0x01)       GSM/GPRS/EDGE模式
-            BST_AS_RAT_CDMA(0x02)       CDMA 1X(IS95)模式
-            BST_AS_RAT_EVDO(0x04)       EVDO(HDR)模式
-            BST_AS_RAT_WCDMA(0x08)      UMTS模式
-            BST_AS_RAT_TDSCDMA(0x10)    TD-SCDMA模式
-            BST_AS_RAT_LTE(0x20)        LTE(TDD/FDD)模式
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
 BST_AS_RAT_MODE_UINT32 BST_PAL_AsApiGetModemRat( BST_MODEM_ID_ENUM_UINT32 enModemId )
 {
     if(enModemId >= BST_MODEM_MAX)
@@ -163,41 +110,13 @@ BST_AS_RAT_MODE_UINT32 BST_PAL_AsApiGetModemRat( BST_MODEM_ID_ENUM_UINT32 enMode
     return g_stBstPalAsInfo.stModemInfo[enModemId].enRatMode;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiGetPsModemId
- 功能描述  : 获取当前PDP激活（PS业务）所在的MODEM ID
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BST_MODEM_ID_ENUM_UINT32
-             BST_MODEM_ID_1,        Modem 1
-             BST_MODEM_ID_2,        Modem 2
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_MODEM_ID_ENUM_UINT32 BST_PAL_AsApiGetPsModemId( BST_VOID )
 {
     return g_stBstPalAsInfo.enPsModemId;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiGetCsServiceState
- 功能描述  : 获取指定的modem的CS服务状态
- 输入参数  : BST_MODEM_ID_ENUM_UINT32
-                           BST_MODEM_ID_1,        Modem 1
-                           BST_MODEM_ID_2,        Modem 2
- 输出参数  : 无
- 返 回 值  :    BST_TRUE, CS有服务，BST_FALSE, CS无服务
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年12月04日
-      作    者   :  z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_BOOL BST_PAL_AsApiGetCsServiceState( BST_MODEM_ID_ENUM_UINT32 enModemId )
 {
     if(enModemId >= BST_MODEM_MAX)
@@ -208,21 +127,7 @@ BST_BOOL BST_PAL_AsApiGetCsServiceState( BST_MODEM_ID_ENUM_UINT32 enModemId )
     return g_stBstPalAsInfo.stModemInfo[enModemId].bCsInService;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiGetPsServiceState
- 功能描述  : 获取指定的modem的PS服务状态
- 输入参数  : BST_MODEM_ID_ENUM_UINT32
-                           BST_MODEM_ID_1,        Modem 1
-                           BST_MODEM_ID_2,        Modem 2
- 输出参数  : 无
- 返 回 值  :    BST_TRUE, PS有服务，BST_FALSE, PS无服务
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年12月04日
-      作    者   :  z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_BOOL BST_PAL_AsApiGetPsServiceState( BST_MODEM_ID_ENUM_UINT32 enModemId )
 {
     if(enModemId >= BST_MODEM_MAX)
@@ -233,21 +138,7 @@ BST_BOOL BST_PAL_AsApiGetPsServiceState( BST_MODEM_ID_ENUM_UINT32 enModemId )
     return g_stBstPalAsInfo.stModemInfo[enModemId].bPsInService;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiGetCsExistInfo
- 功能描述  : 获取指定的modem的是否存在Cs业务
- 输入参数  : BST_MODEM_ID_ENUM_UINT32
-                           BST_MODEM_ID_1,        Modem 1
-                           BST_MODEM_ID_2,        Modem 2
- 输出参数  : 无
- 返 回 值  :    BST_TRUE,有CS业务，BST_FALSE, 无CS业务
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年12月04日
-      作    者   :  z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_BOOL BST_PAL_AsApiGetCsConnectState( BST_MODEM_ID_ENUM_UINT32 enModemId )
 {
     if(enModemId >= BST_MODEM_MAX)
@@ -260,20 +151,7 @@ BST_BOOL BST_PAL_AsApiGetCsConnectState( BST_MODEM_ID_ENUM_UINT32 enModemId )
 
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiReadRfCfgNvim
- 功能描述  : 根据NV:BST_PAL_ReadModemRfShareCfgNvim初始化是否支持DSDS
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月10日
-    作    者   : z00128442
-    修改内容   : 新生成函数
-*****************************************************************************/
 BST_VOID BST_PAL_AsApiReadRfCfgNvim(BST_VOID)
 {
     NV_MODEM_RF_SHARE_CFG_STRU          stNvimRfShareCfgInfo;
@@ -308,19 +186,7 @@ BST_VOID BST_PAL_AsApiReadRfCfgNvim(BST_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiJudgeModemConflict
- 功能描述  : 判断指定的两个modem对应的RF是否冲突
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年07月18日
-      作    者   :  z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_BOOL BST_PAL_AsApiJudgeModemConflict(
     BST_MODEM_ID_ENUM_UINT32 enModemId1,
@@ -377,21 +243,7 @@ BST_BOOL BST_PAL_AsApiJudgeModemConflict(
 
 
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiSetLpmMode
- 功能描述  : AS层相关控制命令接口实现
- 输入参数  : BST_DRV_CMD_ENUM_UINT32 enCmd, 控制命令名称
-             BST_VOID *pvData               控制命令内容
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8 BST_NO_ERROR_MSG        控制成功执行
-                                BST_ERR_ILLEGAL_PARAM   控制参数有误
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_PAL_AsApiSetChnlMode( BST_DRV_CHNLMODE_ENUM_UINT32 enChnlMode  )
 {
     BST_MODEM_ID_ENUM_UINT32            enModeId;
@@ -448,20 +300,7 @@ BST_ERR_ENUM_UINT8  BST_PAL_AsApiSetChnlMode( BST_DRV_CHNLMODE_ENUM_UINT32 enChn
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsMsgSetRatModeInfo
- 功能描述  : 设置对应modem的当前接入制式
- 输入参数  : enModemId   -- 通知的modemid
-                           enRatMode    -- 该modem对应的接入制式
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年11月10日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_AsMsgSetRatModeInfo(
     BST_MODEM_ID_ENUM_UINT32 enModemId,
     BST_AS_RAT_MODE_UINT32   enRatMode
@@ -517,22 +356,7 @@ BST_VOID BST_PAL_AsMsgSetRatModeInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_SetCsRrcStatus
- 功能描述  : 设置 CS的Rrc 状态
- 输入参数  :BST_MODEM_ID_ENUM_UINT32
-             BST_MODEM_ID_1,        Modem 1
-             BST_MODEM_ID_2,        Modem 2
-             BST_BOOL                 bExist  是否存在CS业务
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年11月10日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_PAL_AsMsgSetCsUsingInfo(
     BST_MODEM_ID_ENUM_UINT32 enModemId,
@@ -555,23 +379,7 @@ BST_VOID BST_PAL_AsMsgSetCsUsingInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsMsgSetServiceStatus
- 功能描述  : 设置对应modem的服务状态
- 输入参数  :BST_MODEM_ID_ENUM_UINT32
-             BST_MODEM_ID_1,        Modem 1
-             BST_MODEM_ID_2,        Modem 2
-             BST_BOOL                 bCSInservice  CS是否有服务
-             BST_BOOL                 bPSInservice  PS是否有服务
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年11月10日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_PAL_AsMsgSetServiceStatus(
     BST_MODEM_ID_ENUM_UINT32 enModemId,
@@ -634,20 +442,7 @@ BST_VOID BST_PAL_AsMsgSetServiceStatus(
 
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsMsgModemIdChanged
- 功能描述  : 处理PS 所在modem发生变化消息
- 输入参数  :enOldModemId  --变化前Ps所在modem
-                          enNewModemId  --变化后Ps所在modem
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年11月10日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_PAL_AsMsgModemIdChanged(
     BST_MODEM_ID_ENUM_UINT32 enNewModemId )
@@ -685,20 +480,7 @@ BST_VOID BST_PAL_AsMsgModemIdChanged(
 
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiSndRptFlag
- 功能描述  : 设置是否允许MODEM上报相关
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
-            BST_BOOL    bReportFlg  是否允许上报
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_AsApiSndRptFlag (
     BST_MODEM_ID_ENUM_UINT32    enPsModemId,
     BST_UINT8                   ucReportFlg )
@@ -706,19 +488,7 @@ BST_VOID BST_PAL_AsApiSndRptFlag (
 
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsMsgSetRabID
- 功能描述  : 设置当前使用的Rabid
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年11月10日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_VOID BST_PAL_AsMsgSetRabID(
     BST_UINT16                  usRabId
@@ -733,38 +503,14 @@ BST_VOID BST_PAL_AsMsgSetRabID(
     g_stBstPalAsInfo.usRabId            = usRabId;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsMsgGetRabID
- 功能描述  : 获取当前使用的Rabid
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年11月10日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 
 BST_UINT16 BST_PAL_AsMsgGetRabID ( BST_VOID )
 {
     return g_stBstPalAsInfo.usRabId;
 }
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsCsEvtProc
- 功能描述  : CS域事件处理的驱动函数
- 输入参数  :
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2015年07月18日
-      作    者   : z00128442
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_VOID BST_PAL_AsCsEvtProc( BST_VOID )
 {
     BST_MODEM_ID_ENUM_UINT32            ulPsModemId;
@@ -827,20 +573,7 @@ BST_VOID BST_PAL_AsCsEvtProc( BST_VOID )
 }
 
 
-/*****************************************************************************
- 函 数 名  : BST_PAL_AsApiInitial
- 功能描述  : 初始化AS(接入层)相关消息接口
- 输入参数  : BST_DRV_RCV_AS_EVENT_T pfRcvCallBack   收到消息后回调函数
- 输出参数  : 无
- 返 回 值  : BST_ERR_ENUM_UINT8     BST_ERR_INVALID_PTR:回调句柄空，不成功
-                                    BST_NO_ERROR_MSG:初始化成功
- 调用函数  :
- 被调函数  :
- 修改历史  :
-    1.日    期   : 2014年06月04日
-      作    者   : d00173029
-      修改内容   : 新生成函数
-*****************************************************************************/
+
 BST_ERR_ENUM_UINT8  BST_PAL_AsApiInitial( BST_DRV_RCV_AS_EVENT_T pfRcvCallBack )
 {
     BST_MODEM_ID_ENUM_UINT32            enModemIndex;

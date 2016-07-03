@@ -1,35 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : MmaAppLocal.h
-  Author      : ---
-  Version     : V200R001
-  Date        : 2005-09-10
-  Description : 该头文件定义了MMA函数的内部类型与函数原型
-  History     :
 
- 1.日    期   : 2009年08月03日
-    作    者   : h44270
-    修改内容   : 问题单号：AT2D13476，对机要数据写操作需要鉴权，而现在的鉴权算法与产品线要求有出入，需要与产品线保持要求一致
- 2.日    期   : 2009年08月11日
-    作    者   : z40661
-    修改内容   : 问题单号：AT2D13693，关机下设置SYSCFG，读取NVIM失败，但设置SYSCFG仍然成功
- 3.日    期   : 2009年08月25日
-    作    者   : l00130025
-    修改内容   : 问题单号：AT2D14054，【EF_USIM_UST配置】EF_USIM_UST配置的实现代码与产品线提供的需求不一致
- 4.日    期   : 2009年11月28日
-    作    者   : s46746
-    修改内容   : 问题单号：AT2D15677,澳大利亚漫游定制合入
-
- 5.日    期   : 2010年3月12日
-    作    者   : zhoujun /z40661
-    修改内容   : VOS_TASK清理
- 6.日    期   : 2010年07月20日
-    作    者   : s62952
-    修改内容   : 飞行模式合入
- 7.日    期   : 2011年04月23日
-   作    者   : L00171473
-   修改内容   : for V7R1 porting, 去掉BUTT后的逗号，避免编译WARNING
-************************************************************************/
 
 #ifndef __MMA_APPLOCAL_H__
 #define __MMA_APPLOCAL_H__
@@ -46,13 +15,9 @@
 #include "Taf_Tafm_Local.h"
 #include "TafAppMma.h"
 #include "NasUtranCtrlInterface.h"
-/* Added by wx270776 for OM融合, 2015-6-27, begin */
 #include "TafLog.h"
-/* Added by wx270776 for OM融合, 2015-6-27, end */
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMsccInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
 
 #include "Taf_Status.h"
@@ -62,17 +27,13 @@
 #include "UsimPsInterface.h"
 #include "CardLockCipher.h"
 #include "siappstk.h"
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MmaMsccInterface.h"
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 #include "NasNvInterface.h"
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
 #include "TafMtcApi.h"
 #endif
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
 #include "MtcMmaInterface.h"
 
@@ -333,7 +294,6 @@ typedef struct
     VOS_UINT32                      ulCostTime;
 } MN_PH_REG_TIME_INFO_STRU;
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 typedef struct
 {
     TAF_SDC_PLMN_ID_STRU            stPlmn;
@@ -343,7 +303,6 @@ typedef struct
     VOS_UINT32                      ulCellId;
 }TAF_MMA_LOCATION_STATUS_EVENT_INFO_STRU;
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
 /*****************************************************************************
@@ -374,9 +333,7 @@ typedef struct   TAF_PMU_STATE
 /*****************************************************************************
   4 全局变量声明
 *****************************************************************************/
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-13, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-13, end */
 /*****************************************************************************
   5 消息头定义
 *****************************************************************************/
@@ -426,13 +383,7 @@ typedef VOS_UINT16   MMA_SYS_CFG_SET_FLG;
 #define  MMA_SYS_CFG_NONE_SET                               0x0000 /*设置为空*/
 
 
-/*****************************************************************************
- 结构名    : MMA_EOPLMN_SET_STRU
- 结构说明  : EOPLMN设置上下文
- 1.日    期   : 2013年10月15日
-   作    者   : x65241
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usClientId;     /*Client Id*/
@@ -515,16 +466,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名  : MMA_READ_PNN_LIST_CTRL_STRU
- 结构说明: AT^PNN=1读取PNN LIST时用于MMA层的控制信息
- 1.日    期   : 2013年09月05日
-   作    者   : l00208543
-   修改内容   : DTS2013090309526
- 2.日    期   : 2015年2月25日
-   作    者   : b00269685
-   修改内容   : DTS2013090309526
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usCurrIndex;                    /* 本次需要读取的PNN list起始位index */
@@ -533,13 +475,7 @@ typedef struct
     VOS_UINT8                           aucReserve[3];
 }MMA_READ_PNN_LIST_CTRL_STRU;
 
-/*****************************************************************************
- 结构名  : MMA_READ_PNN_LIST_DATA_STRU
- 结构说明: AT^PNN=1读取PNN LIST时用于存储USIM回复的内容
- 1.日    期   : 2013年09月05日
-   作    者   : l00208543
-   修改内容   : DTS2013090309526
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16                          usSumPnnNumInSim;               /* 卡中PNN总数目 */
@@ -547,13 +483,7 @@ typedef struct
     VOS_UINT8                          *pucPnnData;                       /* 记录从卡里读出来的PNN列表首地址 */
 }MMA_READ_PNN_LIST_DATA_STRU;
 
-/*****************************************************************************
- 结构名  : MMA_READ_PNN_LIST_INFO_STRU
- 结构说明: AT^PNN=1读取PNN LIST时用于控制AT的分次读取
- 1.日    期   : 2013年09月05日
-   作    者   : l00208543
-   修改内容   : DTS2013090309526
-*****************************************************************************/
+
 typedef struct
 {
     MMA_READ_PNN_LIST_CTRL_STRU         stPnnListCtrInfo;
@@ -603,14 +533,7 @@ typedef struct
 /* remove this data structure to ctx */
 
 
-/*****************************************************************************
- 结构名    : MMA_NET_SCAN_STRU
- 结构说明  : MMA全局变量信息,用于记录NETSCAN命令下发的ClientID,OpId
- 1.日    期   : 2013年10月16日
-   作    者   : w00242748
-   修改内容   : 新增结构
 
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT16                   usClientId;
@@ -625,17 +548,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_GLOBAL_VALUE_ST
- 结构说明  : MMA全局变量信息
- 1.日    期   : 2011年7月11日
-   作    者   : z00161729
-   修改内容   : 增加用户设置的LTE频段信息和接入模式优先级
- 2.日    期   : 2012年6月11日
-   作    者   : w00166186
-   修改内容   : AT&T&DCM项目
 
-*****************************************************************************/
 typedef struct
 {
     STATUS_CONTEXT_STRU          *pg_StatusContext;
@@ -645,35 +558,25 @@ typedef struct
     MMA_PIN_OP_ST                       stOpPinData;                /*MMA对PIN码操作数据*/
 
     MMA_SET_MS_CLASS_TYPE_ST            stSetMsClass;               /*手机类型设置相关标志与结果*/
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
     MMA_RSSI_VALUE_LIST_ST              stRssiValue;                /*手机信号强度*/
     TAF_MMA_BATTERYPOWER_STRU           stBatteryPower;             /*手机电池管理*/
     TAF_PH_MEINFO_STRU                  stMeInfo;                   /*手机基本信息*/
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
     TAF_USIM_INFO_STRU                  stUsimInfo;                 /*USIM相关信息*/
     MMA_QUICK_START_STA_UINT32          ulQuickStartFlg;
     MMA_GET_ICC_ID_ST                   stGetIccId;
     MMA_GET_PNN_ST                      stPNN;                  /*读取PNN文件内容*/
     MMA_GET_OPL_ST                      stOPL;                  /*读取OPL文件内容*/
 
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
     VOS_UINT8                           aucReserved1[2];
     MMA_EFUST_SERVICE_CFG_STRU          stEfustServiceCfg;
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, begin */
 
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, end */
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
     VOS_UINT8                           ucReserved2;
 
     VOS_UINT8                           ucRoamFeatureStatus;
     VOS_UINT8                           ucRoamBrokerSwitch;         /* 是否打开roaming broker.VOS_TRUE:打开;VOS_FALSE:不打开。默认关闭 */
 
-    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, begin */
-    /* Deleted by s00217060 for VoLTE_PhaseI  项目, 2013-07-22, end */
 
 
     VOS_UINT8                           ucReportPlmnFlg;
@@ -682,9 +585,7 @@ typedef struct
 
     TAF_PH_RSSI_STRU                      stCerssiValue;                  /* 保存接入层主动上报的信号质量信息 */
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-22, begin */
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-22, end */
 
     MMA_EOPLMN_SET_STRU                 stEOPlmnSet;
     MMA_NET_SCAN_STRU                   stNetScan;
@@ -761,14 +662,10 @@ typedef VOS_UINT8 MN_PH_SIM_TIMER_ENUM_U8;
 #define MMA_INTERNAL_OP_CLASS_CHANGE    0x01
 #endif
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 /* <==A32D12535 */
 #define MMA_INTERNAL_SET_BAND_REQ       0x03
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 #define MMA_WAIT_PHY_READ_MAX_TIMES     0x01
 #define MMA_SET_PREF_PLMN_REQ           0x06
 #define MMA_WAIT_SET_PREF_PLMN_CNF_MAX_TIMES 0x14
@@ -825,13 +722,9 @@ typedef struct
     VOS_UINT8    ucTimes;
 }MMA_START_INITIAL_TIMER_ST;
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-8, begin */
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-8, end */
 
-/* Deleted by c64416 for L4A优化, 2013-9-4, begin */
 
-/* Deleted by c64416 for L4A优化, 2013-9-4, end */
 
 
 /*启动标志变量结构定义，0：未启动，1：已启动*/
@@ -909,29 +802,14 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : TAF_PH_OPERATOR_NAME_TBL_STRU
- 结构说明  : 运营商结构信息，仅用于记录运营商信息中的MCC和MNC
- 修改历史      :
-  1.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，支持+COPN命令
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT16    Mcc;
     VOS_UINT16    Mnc;
 }TAF_PH_OPERATOR_PLMN_ID_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_PH_OPERATOR_NAME_TBL_STRU
- 结构说明  : 运营商结构信息
- 修改历史      :
-  1.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，支持+COPN命令
-                新增ucMncLength字段
-*****************************************************************************/
+
 typedef struct
 {
     TAF_PH_OPERATOR_PLMN_ID_STRU        PlmnId;
@@ -948,16 +826,7 @@ typedef struct
     VOS_UINT16                              usIndex;
 }MMA_MODIFY_PLMN_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : NAS_MMA_USIM_STATUS_INFO_STRT
- 结构说明  : 卡状态信息
-  1.日    期   : 2012年6月14日
-    作    者   : f00179208
-    修改内容   : 新建
-  2.日    期   : 2012年07月09日
-    作    者   : f00179208
-    修改内容   : 问题单号:DTS2012061209698,增加USIM卡热插拔可维可测信息
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT32                          ulUsimHotInFlg;
@@ -965,21 +834,13 @@ typedef struct
     VOS_UINT32                          ulUsimHotInCount;
     VOS_UINT32                          ulUsimHotOutCount;
     VOS_UINT8                           ucUsimStatusFromUsim;
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-30, begin */
 
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-30, end */
     VOS_UINT8                           ucMeLockStatus;
     VOS_UINT8                           ucMmaGlobalUsimStatus;
     MMA_START_FLG_ST                    stMmaStartFlg;
 }NAS_MMA_USIM_STATUS_INFO_STRT;
 
-/*****************************************************************************
- 结构名    : NAS_MMA_MNTN_GET_USIM_STATUS_STRU
- 结构说明  : 获取USIM卡状态可维可测消息结构
-  1.日    期   : 2012年6月14日
-    作    者   : f00179208
-    修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -999,12 +860,10 @@ typedef struct
     VOS_CHAR                                acVersionBuffer[VER_MAX_LENGTH];
     VOS_UINT8                               aucReserve[2];
 
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
     VOS_UINT8                               ucSimType;
     VOS_UINT8                               pc_g_aucMmaImsi[9];
     VOS_UINT8                               pc_g_aucMmaImei[TAF_PH_IMEI_LEN-1];
     VOS_UINT8                               reserved[2];
-    /* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 
     STATUS_CONTEXT_STRU                     pc_g_StatusContext;
     TAF_MMA_GLOBAL_VALUE_ST                 pc_gstMmaValue;
@@ -1013,9 +872,7 @@ typedef struct
     MMA_TI_TABLE                            pc_gastMmaTiTab[MMA_MAX_TI];
 
     MMA_INTERNAL_TIMER_ST                   pc_gstMmaInternalTimer;
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, begin */
 
-    /* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, end */
     MMA_TIMER_ST                            pc_g_MmaSimTimer[TAF_SIM_TIMER_NUM];
 } NAS_MMA_OUTSIDE_RUNNING_CONTEXT_ST;
 
@@ -1120,16 +977,7 @@ typedef struct
     NAS_MMA_FIXED_PART_CONTEXT_ST        stFixedOutsideCtx;
 }NAS_MMA_FIXED_CONTEXT_MSG_ST;
 
-/*****************************************************************************
- 结构名    : MMA_CIPHER_INFO_STRU
- 结构说明  : MMA保存Cipher消息的结构体
 
- 修改记录  :
- 1.日    期   : 2012年02月02日
-   作    者   : l00198894
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     VOS_UINT8                           ucGprsCipherAlg;                        /* GPRS加密算法 */
@@ -1138,16 +986,7 @@ typedef struct
     MMA_CIPHER_ALGOR_ENUM_UINT8         enCipherAlgorForPSDomain;               /* PS域加密算法  0:uea0; 1:uea1; 2:uea2 */
 }MMA_CIPHER_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_MMA_GET_CACHE_FILE_STRU
- 结构说明  : 调用USIMM_GetCachedFile接口，勾消息
 
- 修改记录  :
- 1.日    期   : 2012年06月30日
-   作    者   : l60609
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */
@@ -1159,16 +998,7 @@ typedef struct
 
 
 
-/*****************************************************************************
- 结构名    : TAF_MMA_DRX_TIMER_STAUTS_STRU
- 结构说明  : 调用OM的接口
 
- 修改记录  :
- 1.日    期   : 2012年11月9日
-   作    者   : z40661
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;                            /* 消息头 */
@@ -1179,16 +1009,7 @@ typedef struct
 
 #define TAF_MMA_LOG_NV_READ_WRITE_RSLT_MSG      0xdddd
 #define TAF_MMA_MAX_NV_INFO_LEN                 0x20
-/*****************************************************************************
- 结构名    : TAF_MMA_LOG_READ_WRITE_NV_INFO_STRU
- 结构说明  : 勾MMA的读写NV的结构
 
- 修改记录  :
- 1.日    期   : 2012年11月28日
-   作    者   : l65478
-   修改内容   : 新增
-
-*****************************************************************************/
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头 */ /*_H2ASN_Skip*/
@@ -1213,13 +1034,7 @@ typedef struct
 }MMA_GET_REC_INFO_STRU;
 
 
-/*****************************************************************************
- 枚举名  : TAF_MMA_PROC_NET_SCAN_PROTECT_TIMER_ENUM
- 枚举说明: NETSCAN保护定时器，启动和停止的枚举类型
- 1.日    期   : 2013年10月16日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_MMA_PROC_NET_SCAN_PROTECT_TIMER_ENUM
 {
    TAF_MMA_PROC_NET_SCAN_PROTECT_TIMER_START,
@@ -1229,13 +1044,7 @@ enum TAF_MMA_PROC_NET_SCAN_PROTECT_TIMER_ENUM
 };
 typedef VOS_UINT8 TAF_MMA_PROC_NET_SCAN_PROTECT_TIMER_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名  : TAF_MMA_PROC_ABORT_NET_SCAN_PROTECT_TIMER_ENUM
- 枚举说明: 停止NETSCAN保护定时器，启动和停止的枚举类型
- 1.日    期   : 2013年10月16日
-   作    者   : w00242748
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_MMA_PROC_ABORT_NET_SCAN_PROTECT_TIMER_ENUM
 {
    TAF_MMA_PROC_ABORT_NET_SCAN_PROTECT_TIMER_START,
@@ -1246,13 +1055,7 @@ enum TAF_MMA_PROC_ABORT_NET_SCAN_PROTECT_TIMER_ENUM
 typedef VOS_UINT8 TAF_MMA_PROC_ABORT_NET_SCAN_PROTECT_TIMER_ENUM_UINT8;
 
 
-/*****************************************************************************
- 枚举名  : MMA_DEACT_SIM_WHEN_POWEROFF_ENUM
- 枚举说明: AT+CFUN=0命令软关机，去激活(U)SIM卡功能使能标识
- 1.日    期   : 2013年06月03日
-   作    者   : L47619
-   修改内容   : V3R3 Share-PDP项目创建
-*****************************************************************************/
+
 enum MMA_DEACT_SIM_WHEN_POWEROFF_ENUM
 {
    MMA_DEACT_SIM_WHEN_POWEROFF_DISABLE,
@@ -1295,11 +1098,9 @@ VOS_VOID TAF_MMA_UsimGetFileRspPnnMsgProc(
 
 
 
-/* Added by s00246516 for L-C互操作项目, 2014-3-31, Begin */
 VOS_UINT32 TAF_MMA_GetPidFromClientId(
     MN_CLIENT_ID_T                      usClientId
 );
-/* Added by s00246516 for L-C互操作项目, 2014-3-31, End */
 
 VOS_VOID MMA_DefPhAccessMode(VOS_UINT16      ClientId,
                              VOS_UINT8             OpId,
@@ -1315,19 +1116,13 @@ VOS_VOID MMA_PhModeReport(
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
 );
 
-/* Added by l00208543 for V9R1 STK升级, 2013-08-02, begin */
 NAS_STK_SERVICE_STATUS_ENUM_UINT8 NAS_MMA_ConvertSdcServStaToStkServSta(
     TAF_SDC_REPORT_SRVSTA_ENUM_UINT8    enSdcSrvSta
 );
-/* Added by l00208543 for V9R1 STK升级, 2013-08-02, end */
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, begin */
 
-/* Deleted by w00167002 for L-C互操作项目, 2014-2-19, begin */
 /* MMA_PhSysCfgHandle */
-/* Deleted by w00167002 for L-C互操作项目, 2014-2-19, end */
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, end */
 
 #if (FEATURE_ON == FEATURE_LTE)
 
@@ -1338,13 +1133,11 @@ NAS_STK_SERVICE_STATUS_ENUM_UINT8 NAS_MMA_ConvertSdcServStaToStkServSta(
 
 
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, begin */
 /* delete this function */
 
 VOS_VOID TAF_MMA_ReportSysCfgSetCnf(
     TAF_ERROR_CODE_ENUM_UINT32          enErrorCode
 );
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, end */
 
 
 
@@ -1361,9 +1154,7 @@ VOS_VOID MMA_ChangeSrv2Class(
 );
 VOS_VOID MMA_ChangeClass2Srv(TAF_MMA_SERVICE_DOMAIN_ENUM_UINT8 *pucSrvDomain,
                                      TAF_PH_MS_CLASS_TYPE    ucMsClass);
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
 /* 删除MMA_FillWholeInfo() */
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 VOS_UINT32 MMA_GetIdByTi (VOS_UINT8         ucModule,
                           VOS_UINT8         ucTi,
                           VOS_UINT16    *pClientId,
@@ -1398,9 +1189,7 @@ extern VOS_VOID Tc_TaskInit(VOS_VOID);
 
 extern  VOS_VOID    Ss_Init(VOS_VOID);
 
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-29, begin */
 /* 删除此处函数声明 */
-/* Deleted by y00245242 for V3R3C60_eCall项目, 2014-4-29, end */
 extern VOS_VOID MN_MSG_PowerOff(VOS_VOID);
 extern VOS_VOID NAS_CC_PowerOff(VOS_VOID);
 extern VOS_UINT32 sysIMEISet( VOS_UINT8 *pucStr,  VOS_UINT32 ulStrlen, VOS_UINT32 ulOffset);
@@ -1408,27 +1197,21 @@ VOS_VOID    MMA_InitCm(VOS_VOID);
 VOS_VOID MMA_Init1(VOS_VOID);
 VOS_VOID MMA_Init2(VOS_UINT8    ucUsimStatus);
 VOS_VOID MMA_InitEventInfoOP(TAF_PHONE_EVENT_INFO_STRU *pstEvent);
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, begin */
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, end */
 VOS_VOID MMA_GetForbBandFromNV(VOS_VOID);
 
 VOS_VOID MMA_GetUESupportBandFromNV(VOS_VOID);
 
 extern VOS_VOID MMA_InitOrigMeInfo( VOS_VOID );
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, end */
 
 VOS_VOID  MMA_InitUsimInfo(TAF_USIM_INFO_STRU       *pstUsimInfo,
                            MMA_INIT_TYPE_ENUM      enInitType,
                            TAF_PH_USIM_SPN_CNF_STRU *pstSpnCnfTmp);
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, begin */
 TAF_PH_ROAM_STA MMA_IsRoam(
     VOS_UINT8                           ucRoamFlg
 );
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-2, end */
 VOS_VOID MMA_OpPinExpired(VOS_VOID);
 VOS_VOID MMA_ParaQueryReport(VOS_UINT16            ClientId,
                               VOS_UINT8                   OpId,
@@ -1442,18 +1225,14 @@ VOS_UINT32 TAF_MMA_IsCGIInfoChanged(
     TAF_SDC_SYS_INFO_STRU              *pstNewSysInfo
 );
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 VOS_UINT32 TAF_MMA_Rcv3gppMsccSysInfoInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
 );
 
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, Begin */
 VOS_VOID TAF_MMA_ProcMsccSysInfoInNormalService(
     VOS_UINT32                          ulCellChangeFlg
 );
-/* Added by s00246516 for L-C互操作项目, 2014-02-14, End */
 
 VOS_UINT32 TAF_MMA_RcvMsccAcInfoChangeInd(
     VOS_UINT32                          ulEventType,
@@ -1470,7 +1249,6 @@ VOS_UINT32 MMA_DbProc(
 
 
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 
 VOS_UINT32 MMA_PhoneGetAlphanumericNameByPlmnIdFromNV( TAF_PH_OPERATOR_NAME_STRU   *pstOperName);
 VOS_UINT32 MMA_PhoneFindNtwkNameByPlmnId( TAF_PH_OPERATOR_NAME_STRU   *pstOperName);
@@ -1485,13 +1263,9 @@ VOS_UINT32 MMA_PhoneGetOperInfoByShortNameFromOperTbl( TAF_PH_OPERATOR_NAME_STRU
 VOS_UINT32 MMA_PhoneGetOperNameInfoByShortOperatorName( TAF_PH_OPERATOR_NAME_STRU   *pstOperName);
 VOS_VOID MMA_PhoneGetProductName( VOS_UINT16     ClientId, VOS_UINT8    OpId );
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 VOS_VOID MMA_PhoneGetRoamSta(VOS_UINT16    ClientId,   VOS_UINT8 OpId);
 
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, begin */
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-16, end */
 VOS_VOID  MMA_PhonePlmnList (VOS_VOID);
 VOS_VOID MMA_PhonePlmnUserSel (
     VOS_UINT16                              ClientId,
@@ -1500,13 +1274,11 @@ VOS_VOID MMA_PhonePlmnUserSel (
     TAF_MMA_RAT_TYPE_ENUM_UINT8             enPhRat,
     TAF_PLMN_RESEL_MODE_TYPE                ReselMode);
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
 /* MMA_PhoneRssiInd移到预处理函数中 */
 VOS_VOID MMA_DbQuery(VOS_UINT16             ClientId,
                      VOS_UINT8                    OpId,
                      TAF_PARA_TYPE       ParaType);
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 
 VOS_UINT32 MMA_PhoneUsimReady( VOS_UINT16           ClientId,
                                VOS_UINT8                  OpId,
@@ -1522,9 +1294,7 @@ VOS_VOID MMA_QueryProc(VOS_UINT16 ClientId,
 VOS_VOID MMA_GetUESupportCPHSFlgFromNV(VOS_VOID);
 
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-18, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-18, end */
 VOS_BOOL MMA_IsNeedToDisplayCPHSOperNameStr(VOS_VOID);
 VOS_VOID MMA_ReportPNNParaFromCPHSOperNameStr(
     VOS_UINT16                          ClientId,
@@ -1553,8 +1323,6 @@ VOS_UINT32 MMA_WriteValue2Nvim(const NV_ID_ENUM_U16 enNVItemType,
 VOS_VOID TafPhoneGetNetworkNameForListPlmn(TAF_PH_OPERATOR_NAME_FORMAT_OP_STRU *pstOperName);
 VOS_UINT32 Taf_PhoneGetOperNameInfo( TAF_PH_OPERATOR_NAME_FORMAT_OP_STRU *pstOperName );
 VOS_VOID  Taf_PhoneEvent (TAF_PHONE_EVENT_INFO_STRU  *pEvent);
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
 VOS_VOID MMA_CleanTiVar(VOS_UINT16 ClientId, VOS_UINT8 OpId);
 VOS_VOID MMA_ImsiBcd2Ascii(VOS_UINT8 ucLen, VOS_UINT8 *pucNum, VOS_UINT8 *pucAsciiStr);
@@ -1565,20 +1333,15 @@ VOS_VOID MMA_InitAtMsgReq( VOS_UINT16   ClientId,
                              TAF_START_INFO_IND_STRU   stAtMsgReq);
 VOS_VOID MMA_PhoneEventBroadcast(TAF_PHONE_EVENT_INFO_STRU  *pEvent);
 VOS_UINT32 MMA_StartInitialTimer(VOS_VOID);
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, end */
 VOS_VOID MMA_PlmnId2Bcd(TAF_PLMN_ID_STRU *pstPlmnId);
 VOS_VOID MMA_PlmnId2NasStyle(TAF_PLMN_ID_STRU *pstPlmnId);
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 VOS_UINT32 TAF_MMA_IsUsimCardStatusChanged(
     USIMM_CARD_SERVIC_ENUM_UINT32       enCardStatus
 );
 VOS_UINT32 MMA_CheckPin1Satus(VOS_VOID);
 VOS_VOID MMA_UsimMsgProc(struct MsgCB *pMsg);
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-13, begin */
 VOS_UINT32 TAF_MMA_IsCardStatusChanged(
     USIMM_CARDSTATUS_IND_STRU          *pstUsimMsg
 );
@@ -1591,16 +1354,11 @@ VOS_UINT32 TAF_MMA_IsImsiChanged(
 
 
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-13, end */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-10, begin */
 /* MMA_UsimChangeProc移动位置 */
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-10, end */
 VOS_UINT32 MMA_PhoneGetUsimStatus( VOS_UINT8 *pucSimStatus );
 VOS_UINT32 MMA_CheckPuk1Satus(VOS_VOID);
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, begin */
 /* MMA_ResetMsClassFromNvim函数删除 */
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-11, end */
 VOS_UINT32 MMA_CheckPin1SatusSimple(VOS_VOID);
 VOS_UINT32 MMA_StartInternalTimer(VOS_UINT32    ulTimes,
                                   VOS_UINT32    ulOpType,
@@ -1615,18 +1373,12 @@ VOS_UINT32 Mma_CheckPinAvail(VOS_UINT8 *pucPin);
 VOS_UINT32 Mma_CheckPinValue(VOS_UINT8 *pucPin);
 VOS_VOID MMA_InitTi(VOS_VOID);
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 VOS_UINT32 MMA_OpPin1Success(const TAF_PH_PIN_CNF_STRU *pstPinCnf);
 VOS_UINT32 MMA_Pin1Noneed(VOS_VOID);
 VOS_UINT32 MMA_CheckUsimStatus(VOS_VOID);
 TAF_PH_MS_CLASS_TYPE MMA_GetCurMsClass(VOS_VOID);
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-4, begin */
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-4, end */
 VOS_VOID MMA_ClearCurRegOp(TAF_PH_REG_STATE_STRU  *pstCurRegSta);
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-4, begin */
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-4, end */
 VOS_UINT32 MMA_GsmSetFreq(VOS_UINT32 ulGsmFreq);
 VOS_UINT32 MMA_PhoneGetUsimType( VOS_UINT8 *pucSimType );
 VOS_UINT32 MMA_WcdmaSetFreq(VOS_UINT32 ulDlFreqHighFreq,
@@ -1636,8 +1388,6 @@ VOS_UINT32 MMA_SetFreq(VOS_UINT32 ulDlFreqHighFreq,
                        VOS_UINT8  ucRadioAccessMode);
 VOS_VOID MMA_StopInternalTimer(VOS_VOID);
 VOS_VOID MMA_ResetInternalTimerFlg(VOS_VOID);
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 VOS_VOID MMA_TurnOnForFlightMode(VOS_VOID);
 VOS_VOID MMA_TurnOffForFlightMode(VOS_VOID);
 
@@ -1657,9 +1407,7 @@ VOS_UINT16 MN_PH_GetUpdateFileForPrefPlmn(
 
 VOS_UINT32 MMA_CheckSetUplmn();
 VOS_VOID MMA_DefPhImei(TAF_UINT16 usClientId, TAF_UINT8 OpId, TAF_PH_IMEI_STRU* pstImei);
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-9, begin */
 /* 删除MMA_OmMsg 和MMA_UsimMsg函数 */
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-9, end */
 VOS_VOID  MMA_PhoneGetIccId(VOS_UINT16           ClientId,
                             VOS_UINT8            OpId);
 
@@ -1668,7 +1416,6 @@ MMA_GET_ICC_ID_ST *TAF_MMA_GetIccIdInfo(VOS_VOID);
 
 VOS_VOID MMA_GetUsimIccIdExpired(VOS_VOID);
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
 VOS_UINT32 MMA_UsimRestrictedAccessCnfMsgProc(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1702,16 +1449,12 @@ VOS_UINT8 MMA_GetUsimStatus(
     VOS_UINT32                          ulUsimStaChg
 );
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 
 VOS_VOID MMA_GetPhIccType(VOS_UINT16 ClientId, VOS_UINT8 OpId);
 VOS_VOID MMA_GetPhIccStatus(VOS_UINT16 ClientId, VOS_UINT8 OpId);
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 /* VOS_VOID MMA_IccStatusInd(VOS_VOID );
 VOS_UINT8 MMA_GetUsimStatus(VOS_VOID); */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
 VOS_UINT32 MMA_LoadDefaultVaule(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -1732,7 +1475,6 @@ VOS_UINT8 MMA_GetCsimStatus(
 );
 #endif
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 VOS_UINT8 MMA_GetMeLockStatus(VOS_VOID);
 VOS_VOID MMA_CPnnQuery(VOS_UINT16 ClientId, VOS_UINT8 OpId,TAF_PH_ICC_TYPE  *pIccType);
 VOS_VOID MMA_CPnnReport(
@@ -1791,14 +1533,9 @@ VOS_UINT32  TAF_MMA_ReadHplmnMncLenAndEhplmn(VOS_VOID);
 extern TAF_UINT32 Mm_AtTest(VOS_VOID *pInput, VOS_VOID *pRslt);
 
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-29, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-29, end */
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-1, begin */
 
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-1, end */
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 VOS_UINT32 TAF_MMA_ConvertDetachTypeToMscc(
     TAF_MMA_DETACH_TYPE_ENUM_UINT8           enDetachType,
     NAS_MSCC_PIF_DETACH_TYPE_ENUM_UINT32    *pulMsccDetachType
@@ -1809,9 +1546,7 @@ VOS_UINT32 TAF_MMA_ConvertAttachTypeToMscc(
     NAS_MSCC_PIF_ATTACH_TYPE_ENUM_UINT32    *pulMsccAttachType
 );
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-17, begin */
 VOS_VOID TAF_MMA_ConvertPlmnPriorityClass(
     NAS_MSCC_PIF_PLMN_PRIORITY_CLASS_ENUM_UINT8                  enPrioClass,
     TAF_MMA_PLMN_PRIORITY_CLASS_ENUM_UINT8                 *penDestPrioClass
@@ -1824,14 +1559,11 @@ VOS_UINT32 TAF_MMA_ConvertCardStatus(
     USIMM_CARD_SERVIC_ENUM_UINT32       enCardStatus,
     TAF_MMA_CARD_STATUS_ENUM_UINT8     *penDestCardStatus
 );
-/* Added by w00167002 for L-C互操作项目, 2014-2-17, end */
 
-/* Added by b00269685 for L-C互操作项目, 2014-2-21, begin */
 VOS_UINT32 TAF_MMA_ConvertServiceStatus(
     TAF_SDC_SERVICE_STATUS_ENUM_UINT8                       enServiceStatus,
     TAF_PHONE_SERVICE_STATUS                               *penDestServiceStatus
 );
-/* Added by b00269685 for L-C互操作项目, 2014-2-21, end */
 
 VOS_UINT32 MMA_SndMsccDetachAttachReq(VOS_UINT32 ulMsgName,VOS_UINT32 ulDetachAttachType);
 
@@ -1854,9 +1586,7 @@ VOS_VOID TAF_MMA_UpdateLteBandToNvim(
 );
 #endif
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-9, begin */
 /* MMA_TafMsgProc 函数删除 */
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-9, end */
 
 VOS_UINT32 MMA_GetUsimStatusFromUsim(VOS_UINT8 *pucCardStatus, VOS_UINT8 *pucCardType);
 VOS_UINT8 MMA_CheckUsimStatusForPlmnSel(VOS_VOID);
@@ -1867,10 +1597,8 @@ VOS_UINT8 MMA_GetCurrentPhoneMode(VOS_VOID);
 VOS_VOID MMA_ClearEplmnFromNV(VOS_VOID);
 
 #if (VOS_WIN32 == VOS_OS_VER)
-/*Added by  z59430 for PC回放,2010-1-6,end*/
 VOS_VOID   NAS_MMA_SndNVData(VOS_VOID);
 VOS_UINT32 NAS_MMA_SndNVFileData(const VOS_CHAR * aucNVFolder ,const VOS_CHAR * aucFileName);
-/*Added by  z59430 for PC回放,2010-1-6,end*/
 #endif
 
 VOS_VOID MN_PH_ResetTimerOutProc( VOS_VOID  );
@@ -1883,12 +1611,8 @@ VOS_VOID NAS_MMA_TransferSysSubMode2ActForAtCmdCreg(
 );
 extern VOS_VOID NAS_MMA_ReportLociStatus(VOS_VOID);
 
-/* Added by l00208543 for V9R1 STK升级, 2013-07-12, begin */
 extern VOS_VOID NAS_MMA_SndStkLociStatusEvent(VOS_VOID);
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 VOS_VOID TAF_MMA_SndStkLocationInfoInd (VOS_VOID);
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
-/* Added by l00208543 for V9R1 STK升级, 2013-07-12, end */
 
 
 extern VOS_BOOL NAS_MMA_CellIdChangeForStkLocSta(VOS_VOID);
@@ -1898,15 +1622,11 @@ VOS_VOID MN_PH_SimLockedRpt( VOS_VOID  );
 VOS_VOID MN_PH_RoamingRpt( VOS_UINT8 ucTmpRoamStatus );
 VOS_VOID MN_PH_AppRoamStatusRpt( VOS_VOID );
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseI项目, 2013-7-12, end */
 
 MN_MMA_CPAM_RAT_TYPE_ENUM_UINT8 MN_MMA_CovertPlmnRatFromSimToUserFormat(VOS_UINT16 usSimPlmnRat);
 VOS_UINT16 MN_MMA_CovertPlmnRatFromUserToSimFormat(MN_MMA_CPAM_RAT_TYPE_ENUM_UINT8 ucPlmnRat);
 
-/* Deleted by w00167002 for L-C互操作项目, 2014-2-13, begin */
-/* Deleted by w00167002 for L-C互操作项目, 2014-2-13, end */
 
 VOS_UINT8 NAS_MMA_GetPhoneMode(VOS_VOID);
 
@@ -1983,9 +1703,7 @@ VOS_VOID TAF_MMA_ReportEonsUcs2Rsp(
 
 VOS_VOID Taf_InitEventInfoOP(TAF_PHONE_EVENT_INFO_STRU *pstEvent);
 
-/* Deleted by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, end */
 
 
 
@@ -2006,8 +1724,6 @@ VOS_UINT32 MN_PH_QryLocinfo (
     VOS_UINT32                         *pulCellId
 );
 
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
 VOS_VOID MMA_QryCipherInfo(
     VOS_UINT16                          usClientId,
@@ -2027,7 +1743,6 @@ VOS_VOID TAF_MMA_GetSimActingHplmnFileInd(
 );
 
 VOS_VOID TAF_MMA_SndAtHplmnQryCnf_RcvUsimFileCnf(VOS_VOID);
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
 VOS_UINT32 TAF_MMA_RcvOamConnectStatusInd(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -2048,27 +1763,22 @@ VOS_UINT32 MMA_SaveGCipherInfo(
     struct MsgCB                       *pstMsg
 );
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 
 
 
 
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, begin */
 
 VOS_UINT32  MN_MMA_IsUserSettedBandValid(
     TAF_MMA_SYS_CFG_PARA_STRU           *pstSysCfgPara
 );
-/* Modified by w00167002 for L-C互操作项目, 2014-2-13, end */
 
 
 VOS_UINT32 NAS_MMA_MntnTraceGetUsimStatus(
     VOS_UINT8                           ucUsimStatus,
     VOS_UINT8                           ucMeLockStatus
 );
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 /* VOS_VOID TAF_MMA_InitNetworkSelectionMenuCtx(VOS_VOID);
 VOS_VOID TAF_MMA_InitRatBalancingCtx(VOS_VOID); */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 VOS_VOID TAF_MMA_ReadAttEnsCustomNvim(VOS_VOID);
 VOS_VOID TAF_MMA_SetNetworkSelectionMenuEnableFlg(VOS_UINT8 ucEnableFlg);
 VOS_UINT8 TAF_MMA_GetNetworkSelectionMenuEnableFlg(VOS_VOID);
@@ -2081,9 +1791,7 @@ VOS_UINT32 TAF_MMA_RcvCustomerServiceProfileFile_PreProc(
 VOS_VOID TAF_MMA_ProcCustomerServiceProfileFile(VOS_VOID);
 
 
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 /* VOS_VOID TAF_MMA_ReadPlmnSelectionModeNvim(VOS_VOID); */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 VOS_VOID TAF_MMA_SetPlmnSelectionMode(VOS_UINT8 ucPlmnSelMode);
 VOS_UINT8 TAF_MMA_GetPlmnSelectionMode(VOS_VOID);
 VOS_VOID TAF_MMA_SetAutoPlmnSelUser(TAF_MMA_AUTO_PLMN_SEL_USER_ENUM_UINT8 enAutoPlmnSelUser);
@@ -2117,9 +1825,7 @@ VOS_VOID TAF_MMA_TransferRatMode(
     TAF_MMA_RAT_ORDER_STRU             *pstRatModeOrder
 );
 VOS_VOID TAF_MMA_ReadRatModeFile(VOS_VOID);
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 VOS_VOID TAF_MMA_ReadRatPrioListNvim(VOS_VOID);
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 VOS_VOID TAF_MMA_SetRatMode_Refresh(TAF_MMA_RAT_MODE_ENUM_U8 enRatMode);
 TAF_MMA_RAT_MODE_ENUM_U8 TAF_MMA_GetRatMode_Refresh(VOS_VOID);
 VOS_VOID TAF_MMA_ProcRatMode_EnableStatus(TAF_MMA_RAT_MODE_ENUM_U8 ucRatMode);
@@ -2141,9 +1847,7 @@ VOS_VOID TAF_MMA_PlmnIdReport(
     TAF_PLMN_ID_STRU                   *pstPlmn
 );
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-13, end */
 
 VOS_VOID TAF_MMA_StopPlmnListTimer_UserAbort( VOS_VOID );
 
@@ -2155,33 +1859,25 @@ VOS_VOID TAF_MMA_ReadNvimRatPrioList(
     TAF_MMA_RAT_ORDER_STRU             *pstRatPrioList
 );
 
-/* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-15, begin */
 VOS_VOID MN_MMA_SetDefaultRatPrioList(
     TAF_MMA_RAT_ORDER_STRU             *pstRatPrioList
 );
-/* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-15, end */
 
 VOS_UINT32 TAF_MMA_IsPlatformSupportSpecUserRat(
     TAF_MMA_RAT_TYPE_ENUM_UINT8         enUserRat
 );
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
 
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, begin */
 VOS_VOID TAF_MMA_SaveCellAcInfo(
     MSCC_MMA_AC_INFO_CHANGE_IND_STRU    *pstAcInfoInd
 );
 VOS_VOID TAF_MMA_InitCellAcInfo(VOS_VOID);
 
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 /* VOS_VOID TAF_MMA_RcvMsccAcInfoChangeInd(
     MSCC_MMA_AC_INFO_CHANGE_IND_STRU    *pstAcInfoChangeInd
 ); */
-/* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
 
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
 VOS_VOID TAF_MMA_DelPlatformUnsupportedRat(
     TAF_MMA_RAT_ORDER_STRU             *pstRatPrioList
 );
@@ -2241,7 +1937,6 @@ VOS_UINT32 TAF_MMA_IsEventNeedRpt(
     TAF_PHONE_EVENT_INFO_STRU          *pEvent
 );
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-3, end */
 
 extern VOS_VOID TAF_MMA_DefaultAlphaToAscii(
     VOS_UINT8                          *pucDefAlpha,
@@ -2251,7 +1946,6 @@ extern VOS_VOID TAF_MMA_DefaultAlphaToAscii(
 
 
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, begin */
 
 VOS_UINT32 MMA_ProcHotInOutUsimStatusInd(
     VOS_UINT32                          ulEventType,
@@ -2269,14 +1963,10 @@ VOS_UINT32 MMA_UsimPINOperateMsgProc(
 );
 
 
-/* Modified by w00176964 for VoLTE_PhaseI项目, 2013-7-15, end */
 
 
 
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, begin */
 VOS_VOID MMA_WriteVersion(VOS_VOID);
-/* Modified by s00217060 for VoLTE_PhaseII  项目, 2013-11-04, end */
-/* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-18, begin */
 VOS_VOID TAF_MMA_ReadSpnFile(VOS_VOID);
 
 VOS_VOID  TAF_DRVAPI_PWRCTRL_SLEEPVOTE_UNLOCK(
@@ -2286,7 +1976,6 @@ VOS_VOID  TAF_DRVAPI_PWRCTRL_SLEEPVOTE_UNLOCK(
 VOS_VOID  TAF_DRVAPI_PWRCTRL_SLEEPVOTE_LOCK(
     PWC_CLIENT_ID_E                     enPwcClientId
 );
-/* Added by w00176964 for VoLTE_PhaseI项目, 2013-7-18, end */
 
 
 
@@ -2294,8 +1983,6 @@ VOS_VOID MN_MMA_Convert64BitBandTo32Bit(
     TAF_USER_SET_PREF_BAND64           *pstBand,
     VOS_UINT32                         *pulBand
 );
-/* Deleted by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, begin */
-/* Deleted by w00176964 for VoLTE_PhaseII 项目, 2013-10-10, end */
 VOS_UINT32 TAF_MMA_IsUsimStatusChange_UsimmCardServiceAbsent(
     TAF_SDC_USIM_STATUS_ENUM_UINT8      enPreSimStatus
 );
@@ -2307,14 +1994,12 @@ VOS_UINT32 TAF_MMA_IsUsimStatusChange_UsimmCardServiceSimPin(
     TAF_SDC_USIM_STATUS_ENUM_UINT8      enPreSimStatus
 );
 
-/* Added by l00198894 for V9R1 干扰控制, 2013/08/19, begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
 MTC_RATMODE_ENUM_UINT8 TAF_MMA_ConvertRatTypeToMtc(
     TAF_MMA_RAT_TYPE_ENUM_UINT8         enRatType
 );
 
 #endif
-/* Added by l00198894 for V9R1 干扰控制, 2013/08/19, end */
 
 
 #if (VOS_WIN32 == VOS_OS_VER)
@@ -2376,9 +2061,7 @@ VOS_UINT32 TAF_MMA_GetPlmnPnnIndexInOplFile(
 
 
 
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, begin */
 VOS_VOID TAF_MMA_UpdateSimRegStatus(VOS_VOID);
-/* Added by w00176964 for VoLTE_PhaseII 项目, 2013-11-20, end */
 
 VOS_VOID TAF_MMA_NetScanTimerExpired(VOS_VOID);
 
@@ -2400,7 +2083,6 @@ VOS_VOID TAF_MMA_SndMtcCurrCampPlmnInfoInd(
 );
 #endif
 
-/* Added by w00167002 for L-C互操作项目, 2014-2-17, begin */
 VOS_VOID TAF_MMA_BuildMmaCtrlInfo(
     VOS_UINT32                          ulModuleId,
     VOS_UINT16                          usClientId,
@@ -2409,16 +2091,13 @@ VOS_VOID TAF_MMA_BuildMmaCtrlInfo(
 );
 
 VOS_UINT32 TAF_MMA_IsPowerOnCLInterWork(VOS_VOID);
-/* Added by w00167002 for L-C互操作项目, 2014-2-17, end */
 
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-27, Begin */
 #if (FEATURE_MULTI_MODEM == FEATURE_ON)
 VOS_UINT32 MMA_MTC_ConvertCardStatus(
     USIMM_CARD_SERVIC_ENUM_UINT32           enCardStatus,
     TAF_MTC_USIMM_CARD_SERVIC_ENUM_UINT16  *penDestCardStatus
 );
 #endif
-/* Add by j00174725 for K3V3 多模多天线特性, 2014-06-27, Begin */
 
 #if (FEATURE_LTE == FEATURE_ON)
 VOS_VOID TAF_MMA_GetRssiLevelFromLteRssi(

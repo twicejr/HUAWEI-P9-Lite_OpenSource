@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : cas_hrpd_sessioncfg_session_layer_pif.h
-  版 本 号   : 初稿
-  作    者   : W00200446
-  生成日期   : 2015年2月27日
-  最近修改   :
-  功能描述   : 配置协商相关处理公共的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年2月27日
-    作    者   : W00200446
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CAS_HRPD_SESSIONCFG_SESSION_LAYER_PIF_H__
 #define __CAS_HRPD_SESSIONCFG_SESSION_LAYER_PIF_H__
@@ -125,38 +108,10 @@ typedef struct
 *****************************************************************************/
 #ifndef INFUSION_VERSION
 
-/*****************************************************************************
- 函 数 名  : CAS_HRPD_HSCP_GetDefaultAmpAttr
- 功能描述  : 获取default address management protocol的属性，输入参数不能为空
- 输入参数  : CAS_HRPD_DEFAULT_AMP_ATTRIB_STRU *pstDeAmp
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月26日
-    作    者   : W00200446
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern VOS_VOID CAS_HRPD_HSCP_GetDefaultAmpAttr(CAS_HRPD_DEFAULT_AMP_ATTRIB_STRU *pstDeAmp);
 
-/*****************************************************************************
- 函 数 名  : CAS_HRPD_HSCP_GetDefaultSmpAttr
- 功能描述  : 获取default session management protocol的属性，输入参数不能为空
- 输入参数  : CAS_HRPD_DEFAULT_SMP_ATTRIB_STRU *pstDeSmp
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年2月26日
-    作    者   : W00200446
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 extern VOS_VOID CAS_HRPD_HSCP_GetDefaultSmpAttr(CAS_HRPD_DEFAULT_SMP_ATTRIB_STRU *pstDeSmp);
 
 #endif

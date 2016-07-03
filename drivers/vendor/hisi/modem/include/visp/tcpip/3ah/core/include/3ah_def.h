@@ -412,7 +412,6 @@ typedef enum
 #define OAM3AH_EVENT_WINDOW(pstErrEvent) \
     ((pstErrEvent)->stLinkEventInfo.stDulErrWindows.ulDulLo)
     
-/* Modified by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/12 */
 /* Errored Threshold */
 #define OAM3AH_EVENT_THRESHOLDHI(pstErrEvent) \
     ((pstErrEvent)->stLinkEventInfo.stDulErrThreshold.ulDulHi)
@@ -647,7 +646,6 @@ enum
 #define OAM3AH_WINDOW_100   100 
 #define OAM3AH_WINDOW_600   600 
 #define OAM3AH_WINDOW_9000  9000 
-/* Modified by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/12 */
 #define OAM3AH_LINKEVT_CHECK_WINDOW(ulLinkEventType,stdulErrWindow,ulCheckWin)\
 {\
     ulCheckWin = OAM3AH_OK;\
@@ -699,7 +697,6 @@ enum
     }\
 }
 
-/* Modified by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/12 */
 /* 检查用户配置的链路事件门限值是否合法 */
 #define OAM3AH_THRESHOLD_900    900 
 #define OAM3AH_LINKEVT_CHECK_THRESHOLD(ulLinkEventType, stdulErrThres, ulCheckThres)\

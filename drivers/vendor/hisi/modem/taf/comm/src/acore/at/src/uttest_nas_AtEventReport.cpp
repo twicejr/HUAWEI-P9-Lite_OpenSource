@@ -57,15 +57,7 @@ extern "C" {
 #endif
 #endif
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
-类名     : Test_At_SendSmRspProc
-功能描述 : At_SendSmRspProc UT工程类
-修改历史     :
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*****************************************************************************/
+
 class Test_At_SendSmRspProc: public ::testing::Test
 {
 public:
@@ -79,15 +71,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SendSmRspProc_001
-测试用例标题      : 短信发送失败
-预期结果          : 上报错误TAF错误码对应的原因值
-修改历史          :
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************/
+
 TEST_F(Test_At_SendSmRspProc, Test_At_SendSmRspProc_001)
 {
     // 变量声明
@@ -118,15 +102,7 @@ TEST_F(Test_At_SendSmRspProc, Test_At_SendSmRspProc_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendSmRspProc_002
-测试用例标题      : 短信发送失败，错误码不在列表中
-预期结果          : 上报错误TAF错误码对应的原因值AT_CMS_UNKNOWN_ERROR
-修改历史          :
-1.日    期   : 2013年6月26日
-  作    者   : f62575
-  修改内容   : V9R1 STK升级
-*******************************************************************/
+
 TEST_F(Test_At_SendSmRspProc, Test_At_SendSmRspProc_002)
 {
     // 变量声明
@@ -157,18 +133,10 @@ TEST_F(Test_At_SendSmRspProc, Test_At_SendSmRspProc_002)
 
 }
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 
 
-/*****************************************************************************
-类名     : Test_AT_RcvDrvAgentAppdmverQryRsp
-功能描述 : Test_AT_RcvDrvAgentAppdmverQryRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvDrvAgentAppdmverQryRsp: public ::testing::Test
 {
 public:
@@ -183,15 +151,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAppdmverQryRsp_001
-测试用例标题      : 获取AT Index失败
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR，异常打印
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAppdmverQryRsp, Test_AT_RcvDrvAgentAppdmverQryRsp_001)
 {
     // 变量声明
@@ -236,15 +196,7 @@ TEST_F(Test_AT_RcvDrvAgentAppdmverQryRsp, Test_AT_RcvDrvAgentAppdmverQryRsp_001)
     free(pstDrvAgentMsg);
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAppdmverQryRsp_002
-测试用例标题      : 成功获取AT Index，但AT模块没在等待APPDMVER查询命令的结果事件上报
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAppdmverQryRsp, Test_AT_RcvDrvAgentAppdmverQryRsp_002)
 {
     // 变量声明
@@ -290,15 +242,7 @@ TEST_F(Test_AT_RcvDrvAgentAppdmverQryRsp, Test_AT_RcvDrvAgentAppdmverQryRsp_002)
     free(pstDrvAgentMsg);
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAppdmverQryRsp_003
-测试用例标题      : 成功获取AT Index，且AT模块在等待APPDMVER查询命令的结果事件上报，但查询失败。
-预期结果          : 调用At_ClientIdToUserId、At_FormatResultData，返回VOS_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAppdmverQryRsp, Test_AT_RcvDrvAgentAppdmverQryRsp_003)
 {
     // 变量声明
@@ -356,15 +300,7 @@ TEST_F(Test_AT_RcvDrvAgentAppdmverQryRsp, Test_AT_RcvDrvAgentAppdmverQryRsp_003)
     free(pstDrvAgentMsg);
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAppdmverQryRsp_004
-测试用例标题      : 成功获取AT Index，且AT模块在等待APPDMVER查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAppdmverQryRsp, Test_AT_RcvDrvAgentAppdmverQryRsp_004)
 {
     // 变量声明
@@ -437,14 +373,7 @@ TEST_F(Test_AT_RcvDrvAgentAppdmverQryRsp, Test_AT_RcvDrvAgentAppdmverQryRsp_004)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_RcvDrvAgentDloadInfoQryRsp
-功能描述 : Test_AT_RcvDrvAgentDloadInfoQryRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvDrvAgentDloadInfoQryRsp: public ::testing::Test
 {
 public:
@@ -483,15 +412,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentDloadInfoQryRsp_001
-测试用例标题      : 获取AT Index失败
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR，异常打印
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentDloadInfoQryRsp, Test_AT_RcvDrvAgentDloadInfoQryRsp_001)
 {
     // 变量声明
@@ -520,15 +441,7 @@ TEST_F(Test_AT_RcvDrvAgentDloadInfoQryRsp, Test_AT_RcvDrvAgentDloadInfoQryRsp_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentDloadInfoQryRsp_002
-测试用例标题      : 成功获取AT Index，但AT模块没在等待APPDMVER查询命令的结果事件上报
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentDloadInfoQryRsp, Test_AT_RcvDrvAgentDloadInfoQryRsp_002)
 {
     // 变量声明
@@ -554,15 +467,7 @@ TEST_F(Test_AT_RcvDrvAgentDloadInfoQryRsp, Test_AT_RcvDrvAgentDloadInfoQryRsp_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentDloadInfoQryRsp_003
-测试用例标题      : 成功获取AT Index，且AT模块在等待APPDMVER查询命令的结果事件上报，但查询失败。
-预期结果          : 调用At_ClientIdToUserId、At_FormatResultData，返回VOS_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentDloadInfoQryRsp, Test_AT_RcvDrvAgentDloadInfoQryRsp_003)
 {
     // 变量声明
@@ -602,15 +507,7 @@ TEST_F(Test_AT_RcvDrvAgentDloadInfoQryRsp, Test_AT_RcvDrvAgentDloadInfoQryRsp_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentDloadInfoQryRsp_004
-测试用例标题      : 成功获取AT Index，且AT模块在等待APPDMVER查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentDloadInfoQryRsp, Test_AT_RcvDrvAgentDloadInfoQryRsp_004)
 {
     // 变量声明
@@ -650,14 +547,7 @@ TEST_F(Test_AT_RcvDrvAgentDloadInfoQryRsp, Test_AT_RcvDrvAgentDloadInfoQryRsp_00
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_RcvDrvAgentAuthorityVerQryRsp
-功能描述 : Test_AT_RcvDrvAgentAuthorityVerQryRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvDrvAgentAuthorityVerQryRsp: public ::testing::Test
 {
 public:
@@ -696,15 +586,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthorityVerQryRsp_001
-测试用例标题      : 获取AT Index失败
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR，异常打印
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthorityVerQryRsp, Test_AT_RcvDrvAgentAuthorityVerQryRsp_001)
 {
     // 变量声明
@@ -733,15 +615,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthorityVerQryRsp, Test_AT_RcvDrvAgentAuthorityVerQry
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthorityVerQryRsp_002
-测试用例标题      : 成功获取AT Index，但AT模块没在等待AUTHORITYVER查询命令的结果事件上报
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthorityVerQryRsp, Test_AT_RcvDrvAgentAuthorityVerQryRsp_002)
 {
     // 变量声明
@@ -767,15 +641,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthorityVerQryRsp, Test_AT_RcvDrvAgentAuthorityVerQry
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthorityVerQryRsp_003
-测试用例标题      : 成功获取AT Index，且AT模块在等待AUTHORITYVER查询命令的结果事件上报，但查询失败。
-预期结果          : 调用At_ClientIdToUserId、At_FormatResultData，返回VOS_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthorityVerQryRsp, Test_AT_RcvDrvAgentAuthorityVerQryRsp_003)
 {
     // 变量声明
@@ -815,15 +681,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthorityVerQryRsp, Test_AT_RcvDrvAgentAuthorityVerQry
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthorityVerQryRsp_004
-测试用例标题      : 成功获取AT Index，且AT模块在等待AUTHORITYVER查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回VOS_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthorityVerQryRsp, Test_AT_RcvDrvAgentAuthorityVerQryRsp_004)
 {
     // 变量声明
@@ -862,14 +720,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthorityVerQryRsp, Test_AT_RcvDrvAgentAuthorityVerQry
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvDrvAgentAuthorityIdQryRsp
-功能描述 : Test_AT_RcvDrvAgentAuthorityIdQryRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvDrvAgentAuthorityIdQryRsp: public ::testing::Test
 {
 public:
@@ -908,15 +759,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthorityIdQryRsp_001
-测试用例标题      : 获取AT Index失败
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR，异常打印
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthorityIdQryRsp, Test_AT_RcvDrvAgentAuthorityIdQryRsp_001)
 {
     // 变量声明
@@ -945,15 +788,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthorityIdQryRsp, Test_AT_RcvDrvAgentAuthorityIdQryRs
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthorityIdQryRsp_002
-测试用例标题      : 成功获取AT Index，但AT模块没在等待AUTHORITYID查询命令的结果事件上报
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthorityIdQryRsp, Test_AT_RcvDrvAgentAuthorityIdQryRsp_002)
 {
     // 变量声明
@@ -979,15 +814,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthorityIdQryRsp, Test_AT_RcvDrvAgentAuthorityIdQryRs
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthorityIdQryRsp_003
-测试用例标题      : 成功获取AT Index，且AT模块在等待AUTHORITYID查询命令的结果事件上报，但查询失败。
-预期结果          : 调用At_ClientIdToUserId、At_FormatResultData，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthorityIdQryRsp, Test_AT_RcvDrvAgentAuthorityIdQryRsp_003)
 {
     // 变量声明
@@ -1027,15 +854,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthorityIdQryRsp, Test_AT_RcvDrvAgentAuthorityIdQryRs
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthorityIdQryRsp_004
-测试用例标题      : 成功获取AT Index，且AT模块在等待AUTHORITYID查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthorityIdQryRsp, Test_AT_RcvDrvAgentAuthorityIdQryRsp_004)
 {
     // 变量声明
@@ -1074,14 +893,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthorityIdQryRsp, Test_AT_RcvDrvAgentAuthorityIdQryRs
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvDrvAgentGodloadSetRsp
-功能描述 : Test_AT_RcvDrvAgentGodloadSetRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvDrvAgentGodloadSetRsp: public ::testing::Test
 {
 public:
@@ -1120,15 +932,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentGodloadSetRsp_001
-测试用例标题      : 获取AT Index失败
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR，异常打印
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentGodloadSetRsp, Test_AT_RcvDrvAgentGodloadSetRsp_001)
 {
     // 变量声明
@@ -1157,15 +961,7 @@ TEST_F(Test_AT_RcvDrvAgentGodloadSetRsp, Test_AT_RcvDrvAgentGodloadSetRsp_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentGodloadSetRsp_002
-测试用例标题      : 成功获取AT Index，但AT模块没在等待GODLOAD查询命令的结果事件上报
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentGodloadSetRsp, Test_AT_RcvDrvAgentGodloadSetRsp_002)
 {
     // 变量声明
@@ -1191,15 +987,7 @@ TEST_F(Test_AT_RcvDrvAgentGodloadSetRsp, Test_AT_RcvDrvAgentGodloadSetRsp_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentGodloadSetRsp_003
-测试用例标题      : 成功获取AT Index，且AT模块在等待GODLOAD查询命令的结果事件上报，但查询失败。
-预期结果          : 调用At_ClientIdToUserId、At_FormatResultData，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentGodloadSetRsp, Test_AT_RcvDrvAgentGodloadSetRsp_003)
 {
     // 变量声明
@@ -1239,15 +1027,7 @@ TEST_F(Test_AT_RcvDrvAgentGodloadSetRsp, Test_AT_RcvDrvAgentGodloadSetRsp_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentGodloadSetRsp_004
-测试用例标题      : 成功获取AT Index，且AT模块在等待GODLOAD查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentGodloadSetRsp, Test_AT_RcvDrvAgentGodloadSetRsp_004)
 {
     // 变量声明
@@ -1286,14 +1066,7 @@ TEST_F(Test_AT_RcvDrvAgentGodloadSetRsp, Test_AT_RcvDrvAgentGodloadSetRsp_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvDrvAgentHwnatQryRsp
-功能描述 : Test_AT_RcvDrvAgentHwnatQryRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvDrvAgentHwnatQryRsp: public ::testing::Test
 {
 public:
@@ -1332,15 +1105,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentHwnatQryRsp_001
-测试用例标题      : 获取AT Index失败
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR，异常打印
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentHwnatQryRsp, Test_AT_RcvDrvAgentHwnatQryRsp_001)
 {
     // 变量声明
@@ -1369,15 +1134,7 @@ TEST_F(Test_AT_RcvDrvAgentHwnatQryRsp, Test_AT_RcvDrvAgentHwnatQryRsp_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentHwnatQryRsp_002
-测试用例标题      : 成功获取AT Index，但AT模块没在等待HWNATQRY查询命令的结果事件上报
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentHwnatQryRsp, Test_AT_RcvDrvAgentHwnatQryRsp_002)
 {
     // 变量声明
@@ -1403,15 +1160,7 @@ TEST_F(Test_AT_RcvDrvAgentHwnatQryRsp, Test_AT_RcvDrvAgentHwnatQryRsp_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentHwnatQryRsp_003
-测试用例标题      : 成功获取AT Index，且AT模块在等待HWNATQRY查询命令的结果事件上报，但查询失败。
-预期结果          : 调用At_ClientIdToUserId、At_FormatResultData，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentHwnatQryRsp, Test_AT_RcvDrvAgentHwnatQryRsp_003)
 {
     // 变量声明
@@ -1452,15 +1201,7 @@ TEST_F(Test_AT_RcvDrvAgentHwnatQryRsp, Test_AT_RcvDrvAgentHwnatQryRsp_003)
 }
 
 #if 0
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentHwnatQryRsp_004
-测试用例标题      : 成功获取AT Index，且AT模块在等待HWNATQRY查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentHwnatQryRsp, Test_AT_RcvDrvAgentHwnatQryRsp_004)
 {
     // 变量声明
@@ -1504,14 +1245,7 @@ TEST_F(Test_AT_RcvDrvAgentHwnatQryRsp, Test_AT_RcvDrvAgentHwnatQryRsp_004)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_AT_RcvDrvAgentFlashInfoQryRsp
-功能描述 : Test_AT_RcvDrvAgentFlashInfoQryRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvDrvAgentFlashInfoQryRsp: public ::testing::Test
 {
 public:
@@ -1550,15 +1284,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentFlashInfoQryRsp_001
-测试用例标题      : 获取AT Index失败
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR，异常打印
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentFlashInfoQryRsp, Test_AT_RcvDrvAgentFlashInfoQryRsp_001)
 {
     // 变量声明
@@ -1587,15 +1313,7 @@ TEST_F(Test_AT_RcvDrvAgentFlashInfoQryRsp, Test_AT_RcvDrvAgentFlashInfoQryRsp_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentFlashInfoQryRsp_002
-测试用例标题      : 成功获取AT Index，但AT模块没在等待^FLASHINFO查询命令的结果事件上报
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentFlashInfoQryRsp, Test_AT_RcvDrvAgentFlashInfoQryRsp_002)
 {
     // 变量声明
@@ -1621,15 +1339,7 @@ TEST_F(Test_AT_RcvDrvAgentFlashInfoQryRsp, Test_AT_RcvDrvAgentFlashInfoQryRsp_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentFlashInfoQryRsp_003
-测试用例标题      : 成功获取AT Index，且AT模块在等待^FLASHINFO查询命令的结果事件上报，但查询失败。
-预期结果          : 调用At_ClientIdToUserId、At_FormatResultData，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentFlashInfoQryRsp, Test_AT_RcvDrvAgentFlashInfoQryRsp_003)
 {
     // 变量声明
@@ -1669,15 +1379,7 @@ TEST_F(Test_AT_RcvDrvAgentFlashInfoQryRsp, Test_AT_RcvDrvAgentFlashInfoQryRsp_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentFlashInfoQryRsp_004
-测试用例标题      : 成功获取AT Index，且AT模块在等待^FLASHINFO查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentFlashInfoQryRsp, Test_AT_RcvDrvAgentFlashInfoQryRsp_004)
 {
     // 变量声明
@@ -1716,14 +1418,7 @@ TEST_F(Test_AT_RcvDrvAgentFlashInfoQryRsp, Test_AT_RcvDrvAgentFlashInfoQryRsp_00
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvDrvAgentAuthVerQryRsp
-功能描述 : Test_AT_RcvDrvAgentAuthVerQryRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvDrvAgentAuthVerQryRsp: public ::testing::Test
 {
 public:
@@ -1762,15 +1457,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthVerQryRsp_001
-测试用例标题      : 获取AT Index失败
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR，异常打印
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthVerQryRsp, Test_AT_RcvDrvAgentAuthVerQryRsp_001)
 {
     // 变量声明
@@ -1799,15 +1486,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthVerQryRsp, Test_AT_RcvDrvAgentAuthVerQryRsp_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthVerQryRsp_002
-测试用例标题      : 成功获取AT Index，但AT模块没在等待AUTHVER查询命令的结果事件上报
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthVerQryRsp, Test_AT_RcvDrvAgentAuthVerQryRsp_002)
 {
     // 变量声明
@@ -1833,15 +1512,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthVerQryRsp, Test_AT_RcvDrvAgentAuthVerQryRsp_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthVerQryRsp_003
-测试用例标题      : 成功获取AT Index，且AT模块在等待AUTHVER查询命令的结果事件上报，但查询失败。
-预期结果          : 调用At_ClientIdToUserId、At_FormatResultData，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthVerQryRsp, Test_AT_RcvDrvAgentAuthVerQryRsp_003)
 {
     // 变量声明
@@ -1881,15 +1552,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthVerQryRsp, Test_AT_RcvDrvAgentAuthVerQryRsp_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentAuthVerQryRsp_004
-测试用例标题      : 成功获取AT Index，且AT模块在等待AUTHVER查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentAuthVerQryRsp, Test_AT_RcvDrvAgentAuthVerQryRsp_004)
 {
     // 变量声明
@@ -1936,14 +1599,7 @@ TEST_F(Test_AT_RcvDrvAgentAuthVerQryRsp, Test_AT_RcvDrvAgentAuthVerQryRsp_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvCdurQryRsp
-功能描述 : Test_AT_RcvCdurQryRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvCdurQryRsp: public ::testing::Test
 {
 public:
@@ -1958,15 +1614,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvCdurQryRsp_001
-测试用例标题      : 成功获取AT Index，但AT模块没在等待CDUR查询命令的结果事件上报
-预期结果          : 函数直接返回
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvCdurQryRsp, Test_AT_RcvCdurQryRsp_001)
 {
     // 变量声明
@@ -1993,15 +1641,7 @@ TEST_F(Test_AT_RcvCdurQryRsp, Test_AT_RcvCdurQryRsp_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvCdurQryRsp_002
-测试用例标题      : 成功获取AT Index，且AT模块在等待CDUR查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvCdurQryRsp, Test_AT_RcvCdurQryRsp_002)
 {
     // 变量声明
@@ -2052,17 +1692,7 @@ TEST_F(Test_AT_RcvCdurQryRsp, Test_AT_RcvCdurQryRsp_002)
 
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvDrvAgentPfverQryRsp
-功能描述 : Test_AT_RcvDrvAgentPfverQryRsp UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-2.日   期  : 2013-8-26
-  作   者  : y00245242
-  修改内容 : 修改case，初始化变量g_stParseContext，避免空指针操作
-*****************************************************************************/
+
 class Test_AT_RcvDrvAgentPfverQryRsp: public ::testing::Test
 {
 public:
@@ -2118,15 +1748,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentPfverQryRsp_001
-测试用例标题      : 获取AT Index失败
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR，异常打印
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentPfverQryRsp, Test_AT_RcvDrvAgentPfverQryRsp_001)
 {
     // 变量声明
@@ -2155,15 +1777,7 @@ TEST_F(Test_AT_RcvDrvAgentPfverQryRsp, Test_AT_RcvDrvAgentPfverQryRsp_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentPfverQryRsp_002
-测试用例标题      : 成功获取AT Index，但AT模块没在等待PFVER查询命令的结果事件上报
-预期结果          : 调用At_ClientIdToUserId，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentPfverQryRsp, Test_AT_RcvDrvAgentPfverQryRsp_002)
 {
     // 变量声明
@@ -2189,15 +1803,7 @@ TEST_F(Test_AT_RcvDrvAgentPfverQryRsp, Test_AT_RcvDrvAgentPfverQryRsp_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentPfverQryRsp_003
-测试用例标题      : 成功获取AT Index，且AT模块在等待PFVER查询命令的结果事件上报，但查询失败。
-预期结果          : 调用At_ClientIdToUserId、At_FormatResultData，返回VOS_ERR
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentPfverQryRsp, Test_AT_RcvDrvAgentPfverQryRsp_003)
 {
     // 变量声明
@@ -2237,15 +1843,7 @@ TEST_F(Test_AT_RcvDrvAgentPfverQryRsp, Test_AT_RcvDrvAgentPfverQryRsp_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvDrvAgentPfverQryRsp_004
-测试用例标题      : 成功获取AT Index，且AT模块在等待PFVER查询命令的结果事件上报，查询成功。
-预期结果          : 调用At_ClientIdToUserId、At_sprintf、At_FormatResultData的输入参数2为AT_OK，输出字符串符合命令返回格式要求，返回AT_OK
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentPfverQryRsp, Test_AT_RcvDrvAgentPfverQryRsp_004)
 {
     // 变量声明
@@ -2285,14 +1883,7 @@ TEST_F(Test_AT_RcvDrvAgentPfverQryRsp, Test_AT_RcvDrvAgentPfverQryRsp_004)
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtPdpActivateCnf
-*功能描述    :  AT_RcvTafPsCallEvtPdpActivateCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtPdpActivateCnf: public ::testing::Test
 {
 public:
@@ -2315,15 +1906,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpActivateCnf_001
-*测试用例标题:  PDP激活成功事件处理
-*预期结果    :  PDP激活成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_001)
 {
     //参数定义
@@ -2362,15 +1945,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_002
-测试用例标题      : AP发起的PDP激活，通过HSIC4通道下发，处理正常
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2012年07月17日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_002)
 {
     //参数定义
@@ -2408,15 +1983,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_003
-测试用例标题      : 发起的PDP激活，未配置CHDATA，通过HSIC1通道下发，处理正常
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年05月8日
-  作    者   : l60609
-  修改内容   : IPv6&TAF/SM Project项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_003)
 {
     //参数定义
@@ -2467,15 +2034,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_004
-测试用例标题      : 发起的PDP激活，已配置CHDATA，通过HSIC1通道下发，处理正常
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年05月8日
-  作    者   : l60609
-  修改内容   : IPv6&TAF/SM Project项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_004)
 {
     //参数定义
@@ -2535,15 +2094,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_005
-测试用例标题      : WEBUI发起的PDP激活，通过APP通道下发，处理正常
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年05月8日
-  作    者   : L60609
-  修改内容   : IPv6&TAF/SM Project项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_005)
 {
     //参数定义
@@ -2581,15 +2132,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_006
-测试用例标题      : AP通过AT+CGACT发起的PDP激活，通过APP通道下发，处理正常
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年5月8日
-  作    者   : L60609
-  修改内容   : IPv6&TAF/SM Project项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_006)
 {
     //参数定义
@@ -2634,15 +2177,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_007
-测试用例标题      : AT^NDISDUP发起的PDP激活,未配置CHDATA，通过APP通道下发，处理正常
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年05月8日
-  作    者   : l60609
-  修改内容   : IPv6&TAF/SM Project项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_007)
 {
     //参数定义
@@ -2702,15 +2237,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_008
-测试用例标题      : AT^NDISDUP发起的PDP激活，已配置CHDATA，通过APP通道下发，处理正常
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年05月8日
-  作    者   : l60609
-  修改内容   : IPv6&TAF/SM Project项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_008)
 {
     //参数定义
@@ -2780,15 +2307,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_009
-测试用例标题      : PCUI口直接返回
-预期结果          : 返回AT_OK
-修改历史          :
-1.日    期   : 2013年05月8日
-  作    者   : l60609
-  修改内容   : IPv6&TAF/SM Project项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_009)
 {
     //参数定义
@@ -2852,15 +2371,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_010
-测试用例标题      : MODEM-PPP类型的拨号,创建PPPID成功
-预期结果          : 上报connect
-修改历史          :
-1.日    期   : 2013年05月30日
-  作    者   : f00179208
-  修改内容   : PPP拨号项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_010)
 {
     //参数定义
@@ -2920,15 +2431,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_011
-测试用例标题      : MODEM-PPP类型的拨号，创建PPPID失败
-预期结果          : 上报connect
-修改历史          :
-1.日    期   : 2013年05月30日
-  作    者   : f00179208
-  修改内容   : PPP拨号项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_011)
 {
     //参数定义
@@ -2991,15 +2494,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_012
-测试用例标题      : MODEM-IP类型的拨号
-预期结果          : 上报connect
-修改历史          :
-1.日    期   : 2013年05月30日
-  作    者   : f00179208
-  修改内容   : PPP拨号项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_012)
 {
     //参数定义
@@ -3059,15 +2554,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateCnf_013
-测试用例标题      : MODEM口直接返回
-预期结果          : 上报connect
-修改历史          :
-1.日    期   : 2013年06月05日
-  作    者   : f00179208
-  修改内容   : PPP拨号项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivateCnf_013)
 {
     //参数定义
@@ -3123,14 +2610,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateCnf, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtPdpActivateRej
-*功能描述    :  AT_RcvTafPsCallEvtPdpActivateRej UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtPdpActivateRej: public ::testing::Test
 {
 public:
@@ -3146,15 +2626,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateRej_001
-测试用例标题      : AP通过AT^NDISDUP发起的PDP激活被拒绝，通过HSIC4通道下发，处理正常
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2012年07月17日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivateRej_001)
 {
     //参数定义
@@ -3202,15 +2674,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateRej_002
-测试用例标题      : AP通过AT+CGACT发起的PDP激活被拒绝，通过HSIC4通道下发，处理正常
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2012年07月17日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivateRej_002)
 {
     //参数定义
@@ -3248,15 +2712,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateRej_003
-测试用例标题      : AP通过AT^NDISDUP发起IPV4类型的PDP激活被拒绝，通过APP道下发，处理正常
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年03月21日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivateRej_003)
 {
     //参数定义
@@ -3303,15 +2759,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateRej_004
-测试用例标题      : AP通过AT+CGACT发起的PDP激活被拒绝，通过APP道下发，处理正常
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2012年07月17日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivateRej_004)
 {
     //参数定义
@@ -3346,15 +2794,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateRej_005
-测试用例标题      : AP通过AT^NDISDUP发起IPV6类型的PDP激活被拒绝，通过APP道下发，处理正常
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年03月21日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivateRej_005)
 {
     //参数定义
@@ -3406,15 +2846,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpActivateRej_006
-测试用例标题      : AP通过AT^NDISDUP发起IPVV46类型的PDP激活被拒绝，通过APP道下发，处理正常
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年03月21日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivateRej_006)
 {
     //参数定义
@@ -3470,15 +2902,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTafPsCallEvtPdpActivateRej_007
-测试用例标题    : HSUART端口处理TAF_PS_CALL_PDP_ACTIVATE_REJ事件
-预期结果        : 处理同MODEM端口
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivateRej_007)
 {
     //参数定义
@@ -3509,15 +2933,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvTafPsCallEvtPdpActivateRej_008
-测试用例标题: NDIS拨号处理
-预期结果    : 返回VOS_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivateRej_008)
 {
     //参数定义
@@ -3551,14 +2967,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpActivateRej, Test_AT_RcvTafPsCallEvtPdpActivate
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtPdpManageInd
-*功能描述    :  AT_RcvTafPsCallEvtPdpManageInd UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtPdpManageInd: public ::testing::Test
 {
 public:
@@ -3573,15 +2982,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtCallPdpActivateInd_001
-*测试用例标题:  PDP激活请求事件处理
-*预期结果    :  PDP激活请求事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_001)
 {
     //参数定义
@@ -3612,15 +3013,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpManageInd_002
-*测试用例标题:  IPV6 PDP激活请求事件处理
-*预期结果    :  PDP激活请求事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_002)
 {
     //参数定义
@@ -3658,15 +3051,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpManageInd_003
-*测试用例标题:  IPV4V6 PDP激活请求事件处理
-*预期结果    :  PDP激活请求事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_003)
 {
     //参数定义
@@ -3705,15 +3090,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_
 }
 #endif
 #endif
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpManageInd_004
-*测试用例标题:  PPP PDP激活请求事件处理
-*预期结果    :  PDP激活请求事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_004)
 {
     //参数定义
@@ -3750,15 +3127,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpManageInd_005
-测试用例标题      : PDP激活主动上报，扩展格式上报使能
-预期结果          : 上报格式为+CRING
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_005)
 {
     AT_MODEM_SS_CTX_STRU               *pstSsCtx = VOS_NULL_PTR;
@@ -3795,14 +3164,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpManageInd, Test_AT_RcvTafPsCallEvtPdpManageInd_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtPdpModifyCnf
-*功能描述    :  AT_RcvTafPsCallEvtPdpModifyCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtPdpModifyCnf: public ::testing::Test
 {
 public:
@@ -3817,15 +3179,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpModifyCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_001)
 {
     //参数定义
@@ -3853,15 +3207,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpModifyCnf_002
-*测试用例标题:  PDP修改成功事件处理
-*预期结果    :  PDP修改成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_002)
 {
     //参数定义
@@ -3891,15 +3237,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpModifyCnf_003
-测试用例标题      : PDP修改，当前为HSIC4通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2012年07月18日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_003)
 {
     //参数定义
@@ -3941,15 +3279,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpModifyCnf_004
-测试用例标题      : WEBUI, PDP修改，当前为APP VCOM通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年01月17日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_004)
 {
     //参数定义
@@ -3978,15 +3308,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpModifyCnf_005
-测试用例标题      : 手机APP，PDP已激活，并配置网卡，进行修改，当前为APP VCOM通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年01月17日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_005)
 {
     //参数定义
@@ -4040,15 +3362,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpModifyCnf_006
-测试用例标题      : 手机APP，PDP已激活，未配置网卡，进行修改，当前为APP VCOM通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年01月17日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_006)
 {
     //参数定义
@@ -4097,15 +3411,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTafPsCallEvtPdpModifyCnf_007
-测试用例标题    : UART端口处理TAF_PS_CALL_PDP_MODIFY_REJ事件
-预期结果        : 处理同MODEM端口
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_007)
 {
     // 变量声明
@@ -4137,14 +3443,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyCnf, Test_AT_RcvTafPsCallEvtPdpModifyCnf_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtPdpModifyRej
-*功能描述    :  AT_RcvTafPsCallEvtPdpModifyRej UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtPdpModifyRej: public ::testing::Test
 {
 public:
@@ -4159,15 +3458,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpModifyRej_001
-*测试用例标题:  PDP修改被拒事件处理
-*预期结果    :  PDP修改被拒事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyRej, Test_AT_RcvTafPsCallEvtPdpModifyRej_001)
 {
     //参数定义
@@ -4195,15 +3486,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyRej, Test_AT_RcvTafPsCallEvtPdpModifyRej_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpModifyRej_002
-*测试用例标题:  PDP修改被拒事件处理
-*预期结果    :  PDP修改被拒事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyRej, Test_AT_RcvTafPsCallEvtPdpModifyRej_002)
 {
     //参数定义
@@ -4233,14 +3516,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifyRej, Test_AT_RcvTafPsCallEvtPdpModifyRej_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtPdpModifiedInd
-*功能描述    :  AT_RcvTafPsCallEvtPdpModifiedInd UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtPdpModifiedInd: public ::testing::Test
 {
 public:
@@ -4255,29 +3531,13 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpModifiedInd_001
-*测试用例标题:  PDP修改事件处理
-*预期结果    :  PDP修改事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModifiedInd_001)
 {
     /* 该事件不处理 */
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpModifiedInd_002
-测试用例标题      : 网侧发起PDP修改，当前为HSIC4通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2012年07月17日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModifiedInd_002)
 {
     //参数定义
@@ -4315,15 +3575,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModified
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpModifiedInd_003
-测试用例标题      : 网侧发起PDP修改，当前为APP VCOM通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年01月17日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModifiedInd_003)
 {
     //参数定义
@@ -4353,15 +3605,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModified
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpModifiedInd_004
-测试用例标题      : 手机APP，PDP已激活，并配置网卡，网侧发起修改，当前为APP VCOM通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年01月17日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModifiedInd_004)
 {
     //参数定义
@@ -4412,15 +3656,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModified
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpModifiedInd_005
-测试用例标题      : 手机APP，PDP已激活，未配置网卡，网侧发起修改，当前为APP VCOM通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年01月17日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModifiedInd_005)
 {
     //参数定义
@@ -4468,15 +3704,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModified
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTafPsCallEvtPdpModifiedInd_006
-测试用例标题    : UART端口处理ID_EVT_TAF_PS_CALL_PDP_MODIFIED_IND事件
-预期结果        : 处理同MODEM端口
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModifiedInd_006)
 {
     // 变量声明
@@ -4507,14 +3735,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpModifiedInd, Test_AT_RcvTafPsCallEvtPdpModified
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtPdpDeactivateCnf
-*功能描述    :  AT_RcvTafPsCallEvtPdpDeactivateCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtPdpDeactivateCnf: public ::testing::Test
 {
 public:
@@ -4529,15 +3750,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_001
-*测试用例标题:  PDP去激活成功事件处理
-*预期结果    :  PDP去激活成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_001)
 {
     //参数定义
@@ -4569,15 +3782,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_002
-测试用例标题      : PDP通过AT+CGACT去激活成功事件处理，当前为HSIC4通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2012年07月17日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_002)
 {
     //参数定义
@@ -4619,15 +3824,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_003
-测试用例标题      : PDP通过AT^NDISDUP去激活成功事件处理，未配置CHDATA，当前为HSIC4通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年5月9日
-  作    者   : L60609
-  修改内容   : IPv6&TAF/SM Project新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_003)
 {
     //参数定义
@@ -4679,15 +3876,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_004
-测试用例标题      : PDP通过AT^NDISDUP去激活成功事件处理，已配置CHDATA，当前为HSIC4通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年5月9日
-  作    者   : L60609
-  修改内容   : IPv6&TAF/SM Project新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_004)
 {
     //参数定义
@@ -4747,15 +3936,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_005
-测试用例标题      : app通过AT+CGACT去激活成功事件处理，当前为APP通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年5月9日
-  作    者   : L60609
-  修改内容   : IPv6&TAF/SM Project新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_005)
 {
     //参数定义
@@ -4798,15 +3979,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_006
-测试用例标题      : app通过AT^NDISDUP去激活成功事件处理，未配置CHDATA，当前为APP通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年5月8日
-  作    者   : L60609
-  修改内容   : IPv6&TAF/SM Project项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_006)
 {
     //参数定义
@@ -4861,15 +4034,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_007
-测试用例标题      : app通过AT^NDISDUP去激活成功事件处理，已配置CHDATA，当前为APP通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年5月8日
-  作    者   : L60609
-  修改内容   : IPv6&TAF/SM Project项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_007)
 {
     //参数定义
@@ -4931,15 +4096,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_008
-测试用例标题      : webui通过AT+CGACT去激活成功事件处理，当前为APP通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年5月9日
-  作    者   : L60609
-  修改内容   : IPv6&TAF/SM Project新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_008)
 {
     //参数定义
@@ -4976,15 +4133,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_009
-测试用例标题      : PCUI通过AT+CGACT去激活成功事件处理
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年5月9日
-  作    者   : L60609
-  修改内容   : IPv6&TAF/SM Project新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_009)
 {
     //参数定义
@@ -5022,15 +4171,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_010
-测试用例标题    : UART端口处理ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_CNF事件
-预期结果        : 处理同MODEM端口
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeactivateCnf_010)
 {
     // 变量声明
@@ -5062,14 +4203,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivateCnf, Test_AT_RcvTafPsCallEvtPdpDeacti
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtPdpDeactivatedInd
-*功能描述    :  AT_RcvTafPsCallEvtPdpDeactivatedInd UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtPdpDeactivatedInd: public ::testing::Test
 {
 public:
@@ -5084,15 +4218,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_001
-*测试用例标题:  PDP网侧去激活成功事件处理
-*预期结果    :  PDP网侧去激活成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_001)
 {
     //参数定义
@@ -5124,15 +4250,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeact
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_002
-测试用例标题      : PDP网侧去激活成功事件处理，当前为HSIC4通道
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2012年07月17日
-  作    者   : L47619
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_002)
 {
     //参数定义
@@ -5162,15 +4280,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeact
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_003
-测试用例标题      : PDP网侧去激活成功事件处理，当前为APP通道,手机形态
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年01月06日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_003)
 {
     //参数定义
@@ -5199,15 +4309,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeact
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_004
-测试用例标题      : PDP网侧去激活成功事件处理，当前为APP通道,非手机形态
-预期结果          : 返回VOS_OK
-修改历史          :
-1.日    期   : 2013年01月06日
-  作    者   : l00227485
-  修改内容   : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_004)
 {
     //参数定义
@@ -5236,15 +4338,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeact
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_005
-测试用例标题    : UART端口处理ID_EVT_TAF_PS_CALL_PDP_DEACTIVATE_IND事件
-预期结果        : 处理同MODEM端口
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeactivatedInd_005)
 {
     // 变量声明
@@ -5275,14 +4369,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtPdpDeactivatedInd, Test_AT_RcvTafPsCallEvtPdpDeact
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtCallOrigCnf
-*功能描述    :  AT_RcvTafPsCallEvtCallOrigCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtCallOrigCnf: public ::testing::Test
 {
 public:
@@ -5297,15 +4384,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallOrigCnf_001
-*测试用例标题:  PS CALL 发起成功事件处理: NDIS
-*预期结果    :  PS CALL 发起成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_001)
 {
     //参数定义
@@ -5339,15 +4418,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_00
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallOrigCnf_002
-*测试用例标题:  PS CALL 发起失败事件处理: NDIS
-*预期结果    :  PS CALL 发起失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_002)
 {
     //参数定义
@@ -5380,15 +4451,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallOrigCnf_003
-*测试用例标题:  PS CALL 发起成功事件处理: APP（非手机形态）
-*预期结果    :  PS CALL 发起成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_003)
 {
     //参数定义
@@ -5428,15 +4491,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_00
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallOrigCnf_004
-*测试用例标题:  PS CALL 发起失败事件处理: APP（非手机形态）
-*预期结果    :  PS CALL 发起失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_004)
 {
     //参数定义
@@ -5474,15 +4529,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallOrigCnf_005
-*测试用例标题:  PS CALL 发起失败事件处理: APP（手机形态）
-*预期结果    :  PS CALL 发起失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_005)
 {
     //参数定义
@@ -5530,15 +4577,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_00
 }
 
 #if (FEATURE_ON == FEATURE_AT_HSIC)
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallOrigCnf_006
-*测试用例标题:  PS CALL 发起失败事件处理: HSIC
-*预期结果    :  PS CALL 发起失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_006)
 {
     //参数定义
@@ -5588,15 +4627,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_00
 }
 #endif
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallOrigCnf_007
-*测试用例标题:  PS CALL 发起事件处理: PCUI
-*预期结果    :  PS CALL 发起事件处理正常，直接返回OK
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_007)
 {
     //参数定义
@@ -5634,14 +4665,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallOrigCnf, Test_AT_RcvTafPsCallEvtCallOrigCnf_00
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtCallEndCnf
-*功能描述    :  AT_RcvTafPsCallEvtCallEndCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtCallEndCnf: public ::testing::Test
 {
 public:
@@ -5656,15 +4680,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallEndCnf_001
-*测试用例标题:  PS CALL 挂断成功事件处理: NDIS
-*预期结果    :  PS CALL 挂断成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_001)
 {
     //参数定义
@@ -5698,15 +4714,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_001)
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallEndCnf_002
-*测试用例标题:  PS CALL 挂断失败事件处理: NDIS
-*预期结果    :  PS CALL 挂断失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_002)
 {
     //参数定义
@@ -5739,15 +4747,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallEndCnf_003
-*测试用例标题:  PS CALL 挂断成功事件处理: WEBUI
-*预期结果    :  PS CALL 挂断成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_003)
 {
     //参数定义
@@ -5787,15 +4787,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallEndCnf_004
-*测试用例标题:  PS CALL 挂断失败事件处理: WEBUI
-*预期结果    :  PS CALL 挂断失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2013年5月9日
-#    作    者:  L60609
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_004)
 {
     //参数定义
@@ -5835,15 +4827,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallEndCnf_005
-*测试用例标题:  PS CALL 挂断成功事件处理: APP
-*预期结果    :  PS CALL 挂断成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2013年5月9日
-#    作    者:  L60609
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_005)
 {
     //参数定义
@@ -5893,15 +4877,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallEndCnf_006
-*测试用例标题:  PS CALL 挂断成功事件处理: HSIC
-*预期结果    :  PS CALL 挂断成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2013年5月9日
-#    作    者:  L60609
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_006)
 {
     //参数定义
@@ -5951,15 +4927,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTafPsCallEvtCallEndCnf_007
-测试用例标题    : UART端口处理ID_EVT_TAF_PS_CALL_END_CNF事件
-预期结果        : 处理同MODEM端口
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_007)
 {
     // 变量声明
@@ -5991,14 +4959,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallEndCnf, Test_AT_RcvTafPsCallEvtCallEndCnf_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtCallModifyCnf
-*功能描述    :  AT_RcvTafPsCallEvtCallModifyCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtCallModifyCnf: public ::testing::Test
 {
 public:
@@ -6013,15 +4974,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallModifyCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallModifyCnf, Test_AT_RcvTafPsCallEvtCallModifyCnf_001)
 {
     //参数定义
@@ -6050,15 +5003,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallModifyCnf, Test_AT_RcvTafPsCallEvtCallModifyCn
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallModifyCnf_002
-*测试用例标题:  PS CALL 修改失败
-*预期结果    :  返回VOS_OK
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallModifyCnf, Test_AT_RcvTafPsCallEvtCallModifyCnf_002)
 {
     //参数定义
@@ -6089,14 +5034,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallModifyCnf, Test_AT_RcvTafPsCallEvtCallModifyCn
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsCallEvtCallAnswerCnf
-*功能描述    :  AT_RcvTafPsCallEvtCallAnswerCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsCallEvtCallAnswerCnf: public ::testing::Test
 {
 public:
@@ -6115,15 +5053,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallAnswerCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallAnswerCnf, Test_AT_RcvTafPsCallEvtCallAnswerCnf_001)
 {
     //参数定义
@@ -6152,15 +5082,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallAnswerCnf, Test_AT_RcvTafPsCallEvtCallAnswerCn
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallAnswerCnf_002
-*测试用例标题:  PS CALL 应答失败
-*预期结果    :  返回VOS_OK
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallAnswerCnf, Test_AT_RcvTafPsCallEvtCallAnswerCnf_002)
 {
     //参数定义
@@ -6191,15 +5113,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallAnswerCnf, Test_AT_RcvTafPsCallEvtCallAnswerCn
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsCallEvtCallAnswerCnf_003
-*测试用例标题:  IP类型的应答，创建PPP实体失败，回复ERROR
-*预期结果    :  返回VOS_OK
-************************* 修改记录 *************************
-#  1.日    期:  2013年06月08日
-#    作    者:  L60609
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsCallEvtCallAnswerCnf, Test_AT_RcvTafPsCallEvtCallAnswerCnf_003)
 {
     //参数定义
@@ -6237,14 +5151,7 @@ TEST_F(Test_AT_RcvTafPsCallEvtCallAnswerCnf, Test_AT_RcvTafPsCallEvtCallAnswerCn
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf
-*功能描述    :  AT_RcvTafPsEvtSetPrimPdpContextInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf: public ::testing::Test
 {
 public:
@@ -6259,15 +5166,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf_001)
 {
     //参数定义
@@ -6296,15 +5195,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtSetPrimPd
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf_002
-*测试用例标题:  PDP上下文设置失败
-*预期结果    :  返回VOS_OK
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf_002)
 {
     //参数定义
@@ -6335,14 +5226,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtSetPrimPd
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetPrimPdpContextInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf: public ::testing::Test
 {
 public:
@@ -6357,15 +5241,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf_001)
 {
     //参数定义
@@ -6397,15 +5273,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetPrimPd
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf_002
-*测试用例标题:  获取PDP上下文成功事件处理
-*预期结果    :  获取PDP上下文成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf_002)
 {
     //参数定义
@@ -6439,15 +5307,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetPrimPd
 }
 
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf_003
-测试用例标题: 设置EPS_QOS成功
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf_003)
 {
     // 变量声明
@@ -6543,14 +5403,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetPrimPd
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf
-*功能描述    :  AT_RcvTafPsEvtSetSecPdpContextInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf: public ::testing::Test
 {
 public:
@@ -6565,15 +5418,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf_001)
 {
     //参数定义
@@ -6602,15 +5447,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtSetSecPdpC
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf_002
-*测试用例标题:  设置PDP上下文失败事件处理
-*预期结果    :  设置PDP上下文失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf_002)
 {
     //参数定义
@@ -6643,14 +5480,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtSetSecPdpC
 
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetSecPdpContextInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf: public ::testing::Test
 {
 public:
@@ -6665,15 +5495,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf_001)
 {
     //参数定义
@@ -6704,15 +5526,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetSecPdpC
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf_002
-*测试用例标题:  获取PDP上下文成功事件处理
-*预期结果    :  获取PDP上下文成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf_002)
 {
     //参数定义
@@ -6744,15 +5558,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetSecPdpC
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf_003
-测试用例标题: 查询SEC_PDP_CONTEX成功
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf_003)
 {
     // 变量声明
@@ -6816,14 +5622,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetSecPdpC
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetTftInfoCnf
-*功能描述    :  AT_RcvTafSetTftInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetTftInfoCnf: public ::testing::Test
 {
 public:
@@ -6838,15 +5637,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsSetPdpTftInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetTftInfoCnf, Test_AT_RcvTafPsEvtSetTftInfoCnf_001)
 {
     //参数定义
@@ -6876,15 +5667,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetTftInfoCnf, Test_AT_RcvTafPsEvtSetTftInfoCnf_001)
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetPdpTftInfoCnf_002
-*测试用例标题:  设置TFT参数失败事件处理
-*预期结果    :  设置TFT参数失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetTftInfoCnf, Test_AT_RcvTafPsEvtSetTftInfoCnf_002)
 {
     //参数定义
@@ -6916,14 +5699,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetTftInfoCnf, Test_AT_RcvTafPsEvtSetTftInfoCnf_002)
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetTftInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetTftInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetTftInfoCnf: public ::testing::Test
 {
 public:
@@ -6938,15 +5714,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpTftInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetTftInfoCnf, Test_AT_RcvTafPsEvtGetTftInfoCnf_001)
 {
     //参数定义
@@ -6977,15 +5745,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetTftInfoCnf, Test_AT_RcvTafPsEvtGetTftInfoCnf_001)
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpTftInfoCnf_002
-*测试用例标题:  获取TFT参数成功事件处理
-*预期结果    :  获取TFT参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetTftInfoCnf, Test_AT_RcvTafPsEvtGetTftInfoCnf_002)
 {
     //参数定义
@@ -7018,14 +5778,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetTftInfoCnf, Test_AT_RcvTafPsEvtGetTftInfoCnf_002)
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf
-*功能描述    :  AT_RcvTafPsEvtSetUmtsQosInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf: public ::testing::Test
 {
 public:
@@ -7040,15 +5793,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf, Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf_001)
 {
     //参数定义
@@ -7078,15 +5823,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf, Test_AT_RcvTafPsEvtSetUmtsQosInfoCn
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf_002
-*测试用例标题:  设置UMTS QOS参数失败事件处理
-*预期结果    :  设置UMTS QOS参数失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf, Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf_002)
 {
     //参数定义
@@ -7118,14 +5855,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetUmtsQosInfoCnf, Test_AT_RcvTafPsEvtSetUmtsQosInfoCn
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetUmtsQosInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf: public ::testing::Test
 {
 public:
@@ -7140,15 +5870,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf, Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf_001)
 {
     //参数定义
@@ -7180,15 +5902,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf, Test_AT_RcvTafPsEvtGetUmtsQosInfoCn
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf_002
-*测试用例标题:  获取UMTS QOS参数成功事件处理
-*预期结果    :  获取UMTS QOS参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf, Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf_002)
 {
     //参数定义
@@ -7222,14 +5936,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetUmtsQosInfoCnf, Test_AT_RcvTafPsEvtGetUmtsQosInfoCn
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf
-*功能描述    :  AT_RcvTafPsEvtSetUmtsQosMinInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf: public ::testing::Test
 {
 public:
@@ -7244,15 +5951,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf_001
-*测试用例标题:  设置UMTS MIN QOS参数成功事件处理
-*预期结果    :  设置UMTS MIN QOS参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf, Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf_001)
 {
     //参数定义
@@ -7282,15 +5981,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf, Test_AT_RcvTafPsEvtSetUmtsQosMin
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf_002
-*测试用例标题:  设置UMTS MIN QOS参数失败事件处理
-*预期结果    :  设置UMTS MIN QOS参数失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf, Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf_002)
 {
     //参数定义
@@ -7322,14 +6013,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetUmtsQosMinInfoCnf, Test_AT_RcvTafPsEvtSetUmtsQosMin
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetUmtsQosMinInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf: public ::testing::Test
 {
 public:
@@ -7344,15 +6028,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf, Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf_001)
 {
     //参数定义
@@ -7385,15 +6061,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf, Test_AT_RcvTafPsEvtGetUmtsQosMin
 
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf_002
-*测试用例标题:  获取UMTS MIN QOS参数成功事件处理
-*预期结果    :  获取UMTS MIN QOS参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf, Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf_002)
 {
     //参数定义
@@ -7427,14 +6095,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetUmtsQosMinInfoCnf, Test_AT_RcvTafPsEvtGetUmtsQosMin
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf: public ::testing::Test
 {
 public:
@@ -7449,15 +6110,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf, Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf_001)
 {
     //参数定义
@@ -7489,15 +6142,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf, Test_AT_RcvTafPsEvtGetDynami
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf_002
-*测试用例标题:  获取动态UMTS QOS参数成功事件处理
-*预期结果    :  获取动态UMTS QOS参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf, Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf_002)
 {
     //参数定义
@@ -7531,14 +6176,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicUmtsQosInfoCnf, Test_AT_RcvTafPsEvtGetDynami
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetPdpContextCnf
-*功能描述    :  AT_RcvTafPsEvtSetPdpContextCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetPdpContextCnf: public ::testing::Test
 {
 public:
@@ -7553,15 +6191,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetPdpContextCnf_001
-*测试用例标题:  设置PDP状态成功事件处理
-*预期结果    :  设置PDP状态成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetPdpContextCnf, Test_AT_RcvTafPsEvtSetPdpContextCnf_001)
 {
     //参数定义
@@ -7590,15 +6220,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetPdpContextCnf, Test_AT_RcvTafPsEvtSetPdpContextCnf_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetPdpContextCnf_003
-*测试用例标题:  设置PDP状态成功事件处理: 返回ERROR
-*预期结果    :  设置PDP状态成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetPdpContextCnf, Test_AT_RcvTafPsEvtSetPdpContextCnf_002)
 {
     //参数定义
@@ -7629,14 +6251,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetPdpContextCnf, Test_AT_RcvTafPsEvtSetPdpContextCnf_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetPdpContextCnf
-*功能描述    :  AT_RcvTafPsEvtGetPdpStateCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetPdpStateCnf: public ::testing::Test
 {
 public:
@@ -7651,15 +6266,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpStateCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpStateCnf, Test_AT_RcvTafPsEvtGetPdpStateCnf_001)
 {
     //参数定义
@@ -7691,15 +6298,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpStateCnf, Test_AT_RcvTafPsEvtGetPdpStateCnf_001)
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpStateCnf_002
-*测试用例标题:  获取PDP状态成功事件处理
-*预期结果    :  获取PDP状态成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpStateCnf, Test_AT_RcvTafPsEvtGetPdpStateCnf_002)
 {
     //参数定义
@@ -7733,15 +6332,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpStateCnf, Test_AT_RcvTafPsEvtGetPdpStateCnf_002)
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpStateCnf_003
-*测试用例标题:  获取PDP状态成功事件处理，当前为AT_CMD_CGACT_READ操作
-*预期结果    :  获取PDP状态成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  l00130025
-#    修改内容:  DTS2011120604361,CGEQNEG错误
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpStateCnf, Test_AT_RcvTafPsEvtGetPdpStateCnf_003)
 {
     //参数定义
@@ -7780,15 +6371,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpStateCnf, Test_AT_RcvTafPsEvtGetPdpStateCnf_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpStateCnf_004
-*测试用例标题:  获取PDP状态成功事件处理,当前为AT_CMD_CGEQNEG_TEST操作
-*预期结果    :  获取PDP状态成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  l00130025
-#    修改内容:  DTS2011120604361,CGEQNEG错误
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpStateCnf, Test_AT_RcvTafPsEvtGetPdpStateCnf_004)
 {
     //参数定义
@@ -7828,14 +6411,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpStateCnf, Test_AT_RcvTafPsEvtGetPdpStateCnf_004)
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetPdpIpAddrInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf: public ::testing::Test
 {
 public:
@@ -7850,15 +6426,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf, Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf_001)
 {
     //参数定义
@@ -7889,15 +6457,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf, Test_AT_RcvTafPsEvtGetPdpIpAddrIn
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf_002
-*测试用例标题:  获取PDP地址信息成功事件处理
-*预期结果    :  获取PDP地址信息成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf, Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf_002)
 {
     //参数定义
@@ -7930,14 +6490,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpIpAddrInfoCnf, Test_AT_RcvTafPsEvtGetPdpIpAddrIn
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetAnsModeInfoCnf
-*功能描述    :  AT_RcvTafPsEvtSetAnsModeInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetAnsModeInfoCnf: public ::testing::Test
 {
 public:
@@ -7952,15 +6505,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetAnsModeInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetAnsModeInfoCnf, Test_AT_RcvTafPsEvtSetAnsModeInfoCnf_001)
 {
     //参数定义
@@ -7990,15 +6535,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetAnsModeInfoCnf, Test_AT_RcvTafPsEvtSetAnsModeInfoCn
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetAnsModeInfoCnf_002
-*测试用例标题:  设置PS CALL应答模式失败事件处理
-*预期结果    :  设置PS CALL应答模式失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetAnsModeInfoCnf, Test_AT_RcvTafPsEvtSetAnsModeInfoCnf_002)
 {
     //参数定义
@@ -8030,14 +6567,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetAnsModeInfoCnf, Test_AT_RcvTafPsEvtSetAnsModeInfoCn
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetAnsModeInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetAnsModeInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetAnsModeInfoCnf: public ::testing::Test
 {
 public:
@@ -8052,15 +6582,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetAnsModeInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetAnsModeInfoCnf, Test_AT_RcvTafPsEvtGetAnsModeInfoCnf_001)
 {
     //参数定义
@@ -8092,15 +6614,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetAnsModeInfoCnf, Test_AT_RcvTafPsEvtGetAnsModeInfoCn
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetAnsModeInfoCnf_002
-*测试用例标题:  获取PS CALL应答模式成功事件处理
-*预期结果    :  获取PS CALL应答模式成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetAnsModeInfoCnf, Test_AT_RcvTafPsEvtGetAnsModeInfoCnf_002)
 {
     //参数定义
@@ -8140,14 +6654,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetAnsModeInfoCnf, Test_AT_RcvTafPsEvtGetAnsModeInfoCn
 
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf: public ::testing::Test
 {
 public:
@@ -8162,15 +6669,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf_001)
 {
     //参数定义
@@ -8202,15 +6701,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGe
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf_002
-*测试用例标题:  获取动态PDP上下文信息成功事件处理
-*预期结果    :  获取动态PDP上下文信息成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf_002)
 {
     //参数定义
@@ -8243,15 +6734,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGe
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf_003
-测试用例标题: 获取动态PDP上下文信息成功事件处理
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf_003)
 {
     // 变量声明
@@ -8355,15 +6838,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGe
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf_004
-测试用例标题: 获取动态PDP上下文信息成功事件处理
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf_004)
 {
     // 变量声明
@@ -8445,14 +6920,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicPrimPdpContextInfoCnf, Test_AT_RcvTafPsEvtGe
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf: public ::testing::Test
 {
 public:
@@ -8467,15 +6935,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf_001)
 {
     //参数定义
@@ -8507,15 +6967,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGet
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf_002
-*测试用例标题:  获取动态PDP上下文信息成功事件处理
-*预期结果    :  获取动态PDP上下文信息成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf_002)
 {
     //参数定义
@@ -8549,14 +7001,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicSecPdpContextInfoCnf, Test_AT_RcvTafPsEvtGet
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetDynamicTftInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf: public ::testing::Test
 {
 public:
@@ -8571,15 +7016,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf, Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf_001)
 {
     //参数定义
@@ -8611,15 +7048,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf, Test_AT_RcvTafPsEvtGetDynamicTft
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf_002
-*测试用例标题:  获取动态TFT参数成功事件处理
-*预期结果    :  获取动态TFT参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf, Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf_002)
 {
     //参数定义
@@ -8653,14 +7082,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicTftInfoCnf, Test_AT_RcvTafPsEvtGetDynamicTft
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetDsFlowInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetDsFlowInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetDsFlowInfoCnf: public ::testing::Test
 {
 public:
@@ -8675,15 +7097,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetDsFlowInfoCnf_001
-*测试用例标题:  AT操作类型不匹配
-*预期结果    :  返回VOS_ERR
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDsFlowInfoCnf, Test_AT_RcvTafPsEvtGetDsFlowInfoCnf_001)
 {
     //参数定义
@@ -8715,14 +7129,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDsFlowInfoCnf, Test_AT_RcvTafPsEvtGetDsFlowInfoCnf_
 
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtClearDsFlowInfoCnf
-*功能描述    :  AT_RcvTafPsEvtClearDsFlowInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtClearDsFlowInfoCnf: public ::testing::Test
 {
 public:
@@ -8737,15 +7144,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtClearDsFlowInfoCnf_001
-*测试用例标题:  清除流量信息成功事件处理
-*预期结果    :  清除流量信息成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtClearDsFlowInfoCnf, Test_AT_RcvTafPsEvtClearDsFlowInfoCnf_001)
 {
     //参数定义
@@ -8775,15 +7174,7 @@ TEST_F(Test_AT_RcvTafPsEvtClearDsFlowInfoCnf, Test_AT_RcvTafPsEvtClearDsFlowInfo
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtClearDsFlowInfoCnf_002
-*测试用例标题:  清除流量信息失败事件处理
-*预期结果    :  清除流量信息失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtClearDsFlowInfoCnf, Test_AT_RcvTafPsEvtClearDsFlowInfoCnf_002)
 {
     //参数定义
@@ -8815,14 +7206,7 @@ TEST_F(Test_AT_RcvTafPsEvtClearDsFlowInfoCnf, Test_AT_RcvTafPsEvtClearDsFlowInfo
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtConfigDsFlowRptCnf
-*功能描述    :  AT_RcvTafPsEvtConfigDsFlowRptCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtConfigDsFlowRptCnf: public ::testing::Test
 {
 public:
@@ -8837,15 +7221,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtConfigDsFlowRptCnf_001
-*测试用例标题:  配置流量上报成功事件处理
-*预期结果    :  配置流量上报成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtConfigDsFlowRptCnf, Test_AT_RcvTafPsEvtConfigDsFlowRptCnf_001)
 {
     //参数定义
@@ -8875,15 +7251,7 @@ TEST_F(Test_AT_RcvTafPsEvtConfigDsFlowRptCnf, Test_AT_RcvTafPsEvtConfigDsFlowRpt
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtConfigDsFlowRptCnf_002
-*测试用例标题:  配置流量上报失败事件处理
-*预期结果    :  配置流量上报失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtConfigDsFlowRptCnf, Test_AT_RcvTafPsEvtConfigDsFlowRptCnf_002)
 {
     //参数定义
@@ -8915,14 +7283,7 @@ TEST_F(Test_AT_RcvTafPsEvtConfigDsFlowRptCnf, Test_AT_RcvTafPsEvtConfigDsFlowRpt
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf
-*功能描述    :  AT_RcvTafPsEvtSetPdpAuthInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf: public ::testing::Test
 {
 public:
@@ -8937,15 +7298,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf_001
-*测试用例标题:  设置PDP鉴权参数成功事件处理
-*预期结果    :  设置PDP鉴权参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf, Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf_001)
 {
     //参数定义
@@ -8975,15 +7328,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf, Test_AT_RcvTafPsEvtSetPdpAuthInfoCn
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf_002
-*测试用例标题:  设置PDP鉴权参数失败事件处理
-*预期结果    :  设置PDP鉴权参数失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf, Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf_002)
 {
     //参数定义
@@ -9015,14 +7360,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetPdpAuthInfoCnf, Test_AT_RcvTafPsEvtSetPdpAuthInfoCn
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetPdpAuthInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf: public ::testing::Test
 {
 public:
@@ -9037,15 +7375,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf_001
-*测试用例标题:  获取PDP鉴权参数成功事件处理
-*预期结果    :  获取PDP鉴权参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf, Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf_001)
 {
     //参数定义
@@ -9077,15 +7407,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf, Test_AT_RcvTafPsEvtGetPdpAuthInfoCn
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf_002
-*测试用例标题:  获取PDP鉴权参数成功事件处理
-*预期结果    :  获取PDP鉴权参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf, Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf_002)
 {
     //参数定义
@@ -9119,14 +7441,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpAuthInfoCnf, Test_AT_RcvTafPsEvtGetPdpAuthInfoCn
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf
-*功能描述    :  AT_RcvTafPsEvtSetPdpDnsInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf: public ::testing::Test
 {
 public:
@@ -9141,15 +7456,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf_001
-*测试用例标题:  设置PDP DNS成功事件处理
-*预期结果    :  设置PDP DNS成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf_001)
 {
     //参数定义
@@ -9179,15 +7486,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf_
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf_002
-*测试用例标题:  设置PDP DNS失败事件处理
-*预期结果    :  设置PDP DNS失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf_002)
 {
     //参数定义
@@ -9219,14 +7518,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtSetPdpDnsInfoCnf_
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetPdpDnsInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf: public ::testing::Test
 {
 public:
@@ -9241,15 +7533,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf_001
-*测试用例标题:  获取PDP DNS成功事件处理
-*预期结果    :  获取PDP DNS成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf_001)
 {
     //参数定义
@@ -9282,15 +7566,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf_
 
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf_002
-*测试用例标题:  获取PDP DNS成功事件处理
-*预期结果    :  获取PDP DNS成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf_002)
 {
     //参数定义
@@ -9323,15 +7599,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf_
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf_003
-测试用例标题: 获取动态DNS信息成功事件处理
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf_003)
 {
     // 变量声明
@@ -9392,14 +7660,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf, Test_AT_RcvTafPsEvtGetPdpDnsInfoCnf_
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtSetAuthDataInfoCnf
-*功能描述    :  AT_RcvTafPsEvtSetAuthDataInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtSetAuthDataInfoCnf: public ::testing::Test
 {
 public:
@@ -9414,15 +7675,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetAuthDataInfoCnf_001
-*测试用例标题:  设置AUTHDATA参数成功事件处理
-*预期结果    :  设置AUTHDATA参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetAuthDataInfoCnf, Test_AT_RcvTafPsEvtSetAuthDataInfoCnf_001)
 {
     //参数定义
@@ -9452,15 +7705,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetAuthDataInfoCnf, Test_AT_RcvTafPsEvtSetAuthDataInfo
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtSetAuthDataInfoCnf_002
-*测试用例标题:  设置AUTHDATA参数失败事件处理
-*预期结果    :  设置AUTHDATA参数失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetAuthDataInfoCnf, Test_AT_RcvTafPsEvtSetAuthDataInfoCnf_002)
 {
     //参数定义
@@ -9492,14 +7737,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetAuthDataInfoCnf, Test_AT_RcvTafPsEvtSetAuthDataInfo
 }
 
 
-/*******************************************************************
-*类名        :  Test_AT_RcvTafPsEvtGetAuthDataInfoCnf
-*功能描述    :  AT_RcvTafPsEvtGetAuthDataInfoCnf UT工程类
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 class Test_AT_RcvTafPsEvtGetAuthDataInfoCnf: public ::testing::Test
 {
 public:
@@ -9514,15 +7752,7 @@ public:
     }
 };
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetAuthDataInfoCnf_001
-*测试用例标题:  获取AUTHDATA参数成功事件处理
-*预期结果    :  获取AUTHDATA参数成功事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetAuthDataInfoCnf, Test_AT_RcvTafPsEvtGetAuthDataInfoCnf_001)
 {
     //参数定义
@@ -9554,15 +7784,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetAuthDataInfoCnf, Test_AT_RcvTafPsEvtGetAuthDataInfo
 }
 
 
-/*******************************************************************
-*测试用例编号:  Test_AT_RcvTafPsEvtGetAuthDataInfoCnf_002
-*测试用例标题:  获取AUTHDATA参数失败事件处理
-*预期结果    :  获取AUTHDATA参数失败事件处理正常
-************************* 修改记录 *************************
-#  1.日    期:  2011年10月13日
-#    作    者:  A00165503
-#    修改内容:  新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetAuthDataInfoCnf, Test_AT_RcvTafPsEvtGetAuthDataInfoCnf_002)
 {
     //参数定义
@@ -9597,14 +7819,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetAuthDataInfoCnf, Test_AT_RcvTafPsEvtGetAuthDataInfo
 
 
 
-/*****************************************************************************
-类名     : Test_At_PhPlmnListProc
-功能描述 : At_PhPlmnListProc UT工程类
-修改历史     :
-1.日   期  : 2011-11-17
-作   者  :   c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvTafPsEvtGetPdpContextInfoCnf: public ::testing::Test
 {
 public:
@@ -9627,15 +7842,7 @@ public:
     {
     }
 };
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtGetPdpContextInfoCnf_001
-测试用例标题      : 等待的不是CGPADDR测试命令
-预期结果          :
-修改历史     :
-1.日   期  : 2011-11-17
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpContextInfoCnf,Test_AT_RcvTafPsEvtGetPdpContextInfoCnf_001)
 {
     /* 变量定义 */
@@ -9651,15 +7858,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpContextInfoCnf,Test_AT_RcvTafPsEvtGetPdpContextI
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtGetPdpContextInfoCnf_002
-测试用例标题      : 等待的不是CGPADDR测试命令
-预期结果          :
-修改历史     :
-1.日   期  : 2011-11-17
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetPdpContextInfoCnf,Test_AT_RcvTafPsEvtGetPdpContextInfoCnf_002)
 {
     /* 变量定义 */
@@ -9684,14 +7883,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetPdpContextInfoCnf,Test_AT_RcvTafPsEvtGetPdpContextI
 
 
 
-/*****************************************************************************
-类名     : Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf
-功能描述 : AT_RcvTafPsEvtGetDynamicDnsInfoCnf UT工程类
-修改历史 :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf: public ::testing::Test
 {
 public:
@@ -9724,15 +7916,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_001
-测试用例标题      : 收到与网侧协商的主DNS、辅DNS信息查询结果，返回查询结果成功
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_001)
 {
     VOS_UINT32                          ulRet;
@@ -9786,15 +7970,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDns
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_003
-测试用例标题      : 获取的用户索引非法
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_003)
 {
     VOS_UINT32                          ulRet;
@@ -9825,15 +8001,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDns
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_004
-测试用例标题      : 当前的操作类型不符
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_004)
 {
     VOS_UINT32                          ulRet;
@@ -9864,15 +8032,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDns
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_005
-测试用例标题      : 收到查询操作失败消息
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_005)
 {
     VOS_UINT32                          ulRet;
@@ -9907,15 +8067,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDns
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_006
-测试用例标题      : 收到与网侧协商的主DNS、无辅DNS信息查询结果，返回查询结果成功
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf_006)
 {
     VOS_UINT32                          ulRet;
@@ -9972,14 +8124,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetDynamicDnsInfoCnf, Test_AT_RcvTafPsEvtGetDynamicDns
 
 
 
-/*****************************************************************************
- 类名       : Test_AT_RcvTafPsEvtPppDialOrigCnf
- 功能描述   : Test_AT_RcvTafPsEvtPppDialOrigCnf UT工程类
- 修改历史   :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvTafPsEvtPppDialOrigCnf: public ::testing::Test
 {
 public:
@@ -10000,15 +8145,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvTafPsEvtPppDialOrigCnf_001
- 测试用例标题   : AT_CMD_OPT_SET_CMD_NO_PARA
- 预期结果       : 返回AT_CME_INCORRECT_PARAMETERS, 错误码为参数错误
- 修改历史       :
- 1.日   期  : 2012-08-22
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtPppDialOrigCnf, Test_AT_RcvTafPsEvtPppDialOrigCnf_001)
 {
     //参数定义
@@ -10039,15 +8176,7 @@ TEST_F(Test_AT_RcvTafPsEvtPppDialOrigCnf, Test_AT_RcvTafPsEvtPppDialOrigCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_AT_RcvTafPsEvtPppDialOrigCnf_002
-测试用例标题    : UART端口处理ID_EVT_TAF_PS_PPP_DIAL_ORIG_CNF事件
-预期结果        : 处理同MODEM端口
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtPppDialOrigCnf, Test_AT_RcvTafPsEvtPppDialOrigCnf_002)
 {
     // 变量声明
@@ -10080,14 +8209,7 @@ TEST_F(Test_AT_RcvTafPsEvtPppDialOrigCnf, Test_AT_RcvTafPsEvtPppDialOrigCnf_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_CheckRptCmdStatus
-功能描述 : AT_CheckRptCmdStatus UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_CheckRptCmdStatus: public ::testing::Test
 {
 public:
@@ -10102,15 +8224,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_CheckRptCmdStatus_001
-测试用例标题      : 命令不在控制范围内
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CheckRptCmdStatus, Test_AT_CheckRptCmdStatus_001)
 {
     // 变量声明
@@ -10137,15 +8251,7 @@ TEST_F(Test_AT_CheckRptCmdStatus, Test_AT_CheckRptCmdStatus_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CheckRptCmdStatus_002
-测试用例标题      : 所有受控命令均禁止上报
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CheckRptCmdStatus, Test_AT_CheckRptCmdStatus_002)
 {
     // 变量声明
@@ -10172,15 +8278,7 @@ TEST_F(Test_AT_CheckRptCmdStatus, Test_AT_CheckRptCmdStatus_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CheckRptCmdStatus_003
-测试用例标题      : 当前属于自定义模式，进上报^CEND
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CheckRptCmdStatus, Test_AT_CheckRptCmdStatus_003)
 {
     // 变量声明
@@ -10211,15 +8309,7 @@ TEST_F(Test_AT_CheckRptCmdStatus, Test_AT_CheckRptCmdStatus_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CheckRptCmdStatus_004
-测试用例标题      : 主动上报既不受CURC控制，又不受单个命令控制
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2013-04-18
-  作   者  : s00217060
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CheckRptCmdStatus, Test_AT_CheckRptCmdStatus_004)
 {
     // 变量声明
@@ -10247,14 +8337,7 @@ TEST_F(Test_AT_CheckRptCmdStatus, Test_AT_CheckRptCmdStatus_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvTafPsEvtReportDsFlowInd
-功能描述 : AT_RcvTafPsEvtReportDsFlowInd UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvTafPsEvtReportDsFlowInd: public ::testing::Test
 {
 public:
@@ -10268,15 +8351,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtReportDsFlowInd_001
-测试用例标题      : 开启流量主动上报命令
-预期结果          : 打印^DSFLOWRPT主动上报命令
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtReportDsFlowInd, Test_AT_RcvTafPsEvtReportDsFlowInd_001)
 {
     // 变量声明
@@ -10308,14 +8383,7 @@ TEST_F(Test_AT_RcvTafPsEvtReportDsFlowInd, Test_AT_RcvTafPsEvtReportDsFlowInd_00
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_ForwardDeliverMsgToTe
-功能描述 : Test_AT_ForwardDeliverMsgToTe UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ForwardDeliverMsgToTe: public ::testing::Test
 {
 public:
@@ -10330,15 +8398,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardDeliverMsgToTe_001
- 测试用例标题      : 通过ClientId获取ucIndex失败
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_001)
 {
     MN_MSG_EVENT_INFO_STRU               stEvent;
@@ -10351,15 +8411,7 @@ TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardDeliverMsgToTe_002
- 测试用例标题      : 通过ClientId获取ucIndex成功，将接收到的或缓存的DELIVER事件发送到modem0的广播client
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_002)
 {
     MN_MSG_EVENT_INFO_STRU               stEvent;
@@ -10377,15 +8429,7 @@ TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardDeliverMsgToTe_003
- 测试用例标题      : Modem0通过ClientId获取ucIndex成功，消息CNMI MT类型为AT_CNMI_MT_NO_SEND_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_003)
 {
     //参数定义
@@ -10409,15 +8453,7 @@ TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardDeliverMsgToTe_004
- 测试用例标题      : Modem0通过ClientId获取ucIndex成功，消息CNMI MT类型为AT_CNMI_MT_CMTI_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_004)
 {
     //参数定义
@@ -10446,15 +8482,7 @@ TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_004)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardDeliverMsgToTe_005
- 测试用例标题      : Modem1通过ClientId获取ucIndex成功，消息CNMI MT类型为AT_CNMI_MT_NO_SEND_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_005)
 {
     //参数定义
@@ -10480,15 +8508,7 @@ TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardDeliverMsgToTe_006
- 测试用例标题      : Modem1通过ClientId获取ucIndex成功，消息CNMI MT类型为AT_CNMI_MT_CLASS3_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_006)
 {
     //参数定义
@@ -10518,14 +8538,7 @@ TEST_F(Test_AT_ForwardDeliverMsgToTe, Test_AT_ForwardDeliverMsgToTe_006)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_ForwardStatusReportMsgToTe
-功能描述 : Test_AT_ForwardStatusReportMsgToTe UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ForwardStatusReportMsgToTe: public ::testing::Test
 {
 public:
@@ -10540,15 +8553,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardStatusReportMsgToTe_001
- 测试用例标题      : 通过ClientId获取ucIndex失败
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_001)
 {
     MN_MSG_EVENT_INFO_STRU               stEvent;
@@ -10561,15 +8566,7 @@ TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardStatusReportMsgToTe_002
- 测试用例标题      : 通过ClientId获取ucIndex成功，将接收到的或缓存的状态报告事件发送到modem0的广播client
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_002)
 {
     MN_MSG_EVENT_INFO_STRU               stEvent;
@@ -10587,15 +8584,7 @@ TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardStatusReportMsgToTe_003
- 测试用例标题      : Modem0通过ClientId获取ucIndex成功，消息CNMI DS类型为AT_CNMI_DS_NO_SEND_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_003)
 {
     //参数定义
@@ -10621,15 +8610,7 @@ TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardStatusReportMsgToTe_004
- 测试用例标题      : Modem0通过ClientId获取ucIndex成功，消息CNMI DS类型不为AT_CNMI_DS_NO_SEND_TYPE，消息格式为TEXT
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_004)
 {
     //参数定义
@@ -10658,15 +8639,7 @@ TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_00
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardStatusReportMsgToTe_005
- 测试用例标题      : Modem1通过ClientId获取ucIndex成功，消息CNMI DS类型为AT_CNMI_DS_NO_SEND_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_005)
 {
     //参数定义
@@ -10692,15 +8665,7 @@ TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_00
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardStatusReportMsgToTe_006
- 测试用例标题      : Modem1通过ClientId获取ucIndex成功，消息CNMI DS类型不为AT_CNMI_DS_NO_SEND_TYPE，消息格式为TEXT
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_006)
 {
     //参数定义
@@ -10731,14 +8696,7 @@ TEST_F(Test_AT_ForwardStatusReportMsgToTe, Test_AT_ForwardStatusReportMsgToTe_00
 #endif
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
-/*****************************************************************************
-类名     : Test_AT_ForwardCbMsgToTe
-功能描述 : Test_AT_ForwardCbMsgToTe UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ForwardCbMsgToTe: public ::testing::Test
 {
 public:
@@ -10756,15 +8714,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardCbMsgToTe_001
- 测试用例标题      : 通过ClientId获取ucIndex失败
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardCbMsgToTe, Test_AT_ForwardCbMsgToTe_001)
 {
     MN_MSG_EVENT_INFO_STRU               stEvent;
@@ -10776,15 +8726,7 @@ TEST_F(Test_AT_ForwardCbMsgToTe, Test_AT_ForwardCbMsgToTe_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardCbMsgToTe_002
- 测试用例标题      : 通过ClientId获取ucIndex成功，将上报广播短信内容发送到modem0的广播client
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardCbMsgToTe, Test_AT_ForwardCbMsgToTe_002)
 {
     MN_MSG_EVENT_INFO_STRU                 stEvent;
@@ -10804,15 +8746,7 @@ TEST_F(Test_AT_ForwardCbMsgToTe, Test_AT_ForwardCbMsgToTe_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardCbMsgToTe_003
- 测试用例标题      : Modem0通过ClientId获取ucIndex成功，消息格式为TEXT
- 预期结果          : 上报短信内容
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardCbMsgToTe, Test_AT_ForwardCbMsgToTe_003)
 {
     //参数定义
@@ -10839,15 +8773,7 @@ TEST_F(Test_AT_ForwardCbMsgToTe, Test_AT_ForwardCbMsgToTe_003)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
- 测试用例编号      : Test_AT_ForwardCbMsgToTe_004
- 测试用例标题      : Modem1通过ClientId获取ucIndex成功，消息格式为TEXT
- 预期结果          : 上报短信内容
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ForwardCbMsgToTe, Test_AT_ForwardCbMsgToTe_004)
 {
     //参数定义
@@ -10876,14 +8802,7 @@ TEST_F(Test_AT_ForwardCbMsgToTe, Test_AT_ForwardCbMsgToTe_004)
 #endif
 #endif
 
-/*****************************************************************************
-类名     : Test_At_TAFPbMsgProc
-功能描述 : At_TAFPbMsgProc UT工程类
-修改历史     :
-1.日   期  : 2013-1-9
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_TAFPbMsgProc: public ::testing::Test
 {
 public:
@@ -10898,15 +8817,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_At_TAFPbMsgProc_001
- 测试用例标题      : 查找用户索引失败
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-1-9
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_TAFPbMsgProc, Test_At_TAFPbMsgProc_001)
 {
     TAF_UINT8                          *pData;
@@ -10923,14 +8834,7 @@ TEST_F(Test_At_TAFPbMsgProc, Test_At_TAFPbMsgProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_PhEventProc
-功能描述 : Test_At_PhEventProc UT工程类
-修改历史     :
-1.日   期  : 2013-1-9
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PhEventProc: public ::testing::Test
 {
 public:
@@ -10946,14 +8850,7 @@ public:
 };
 
 
-/*****************************************************************************
-类名     : Test_At_ChgMnErrCodeToAt
-功能描述 : At_ChgMnErrCodeToAt UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ChgMnErrCodeToAt: public ::testing::Test
 {
 public:
@@ -10968,15 +8865,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ChgMnErrCodeToAt_001
-测试用例标题      : Modem0错误码为MN_ERR_CLASS_SMS_MSGLEN_OVERFLOW，获取当前短信模式为TXT
-预期结果          : 返回AT_CMS_INVALID_TEXT_MODE_PARAMETER
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ChgMnErrCodeToAt,Test_At_ChgMnErrCodeToAt_001)
 {
     //参数定义
@@ -11003,15 +8892,7 @@ TEST_F(Test_At_ChgMnErrCodeToAt,Test_At_ChgMnErrCodeToAt_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ChgMnErrCodeToAt_002
-测试用例标题      : Modem0错误码为MN_ERR_CLASS_SMS_MSGLEN_OVERFLOW，获取当前短信模式为PDU
-预期结果          : 返回AT_CMS_INVALID_PDU_MODE_PARAMETER
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ChgMnErrCodeToAt,Test_At_ChgMnErrCodeToAt_002)
 {
     //参数定义
@@ -11039,15 +8920,7 @@ TEST_F(Test_At_ChgMnErrCodeToAt,Test_At_ChgMnErrCodeToAt_002)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_ChgMnErrCodeToAt_003
-测试用例标题      : Modem1错误码为MN_ERR_CLASS_SMS_MSGLEN_OVERFLOW，获取当前短信模式为TXT
-预期结果          : 返回AT_CMS_INVALID_TEXT_MODE_PARAMETER
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ChgMnErrCodeToAt,Test_At_ChgMnErrCodeToAt_003)
 {
     //参数定义
@@ -11073,15 +8946,7 @@ TEST_F(Test_At_ChgMnErrCodeToAt,Test_At_ChgMnErrCodeToAt_003)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_ChgMnErrCodeToAt_004
-测试用例标题      : Modem1错误码为MN_ERR_CLASS_SMS_MSGLEN_OVERFLOW，获取当前短信模式为PDU
-预期结果          : 返回AT_CMS_INVALID_PDU_MODE_PARAMETER
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ChgMnErrCodeToAt,Test_At_ChgMnErrCodeToAt_004)
 {
     //参数定义
@@ -11111,16 +8976,8 @@ TEST_F(Test_At_ChgMnErrCodeToAt,Test_At_ChgMnErrCodeToAt_004)
 
 
 
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-25, begin */
 
-/******************************************************************************
-类名     : Test_AT_RcvTafPsEvtGetCidSdfInfoCnf
-功能描述 : AT_RcvTafPsEvtGetCidSdfInfoCnf UT工程类
-修改历史 :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_RcvTafPsEvtGetCidSdfInfoCnf: public ::testing::Test
 {
 public:
@@ -11135,15 +8992,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvTafPsEvtGetCidSdfInfoCnf_001
-测试用例标题: 收到ID_EVT_TAF_PS_GET_CID_SDF_CNF消息的处理
-预期结果    : 返回VOS_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtGetCidSdfInfoCnf, Test_AT_RcvTafPsEvtGetCidSdfInfoCnf_001)
 {
     // 变量声明
@@ -11175,14 +9024,7 @@ TEST_F(Test_AT_RcvTafPsEvtGetCidSdfInfoCnf, Test_AT_RcvTafPsEvtGetCidSdfInfoCnf_
 }
 
 
-/******************************************************************************
-类名     : Test_AT_RcvTafPsEvtSetEpsQosInfoCnf
-功能描述 : AT_RcvTafPsEvtSetEpsQosInfoCnf UT工程类
-修改历史 :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增类
-******************************************************************************/
+
 class Test_AT_RcvTafPsEvtSetEpsQosInfoCnf: public ::testing::Test
 {
 public:
@@ -11196,15 +9038,7 @@ public:
         AT_InitCtx();
     }
 };
-/******************************************************************************
-测试用例编号: Test_AT_RcvTafPsEvtSetEpsQosInfoCnf_001
-测试用例标题: 设置EPS_QOS成功
-预期结果    : 返回AT_OK
-修改历史    :
- 1.日   期  : 2013-08-02
-   作   者  : Y00213812
-   修改内容 : 新增用例
-******************************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtSetEpsQosInfoCnf, Test_AT_RcvTafPsEvtSetEpsQosInfoCnf_001)
 {
     // 变量声明
@@ -11232,14 +9066,7 @@ TEST_F(Test_AT_RcvTafPsEvtSetEpsQosInfoCnf, Test_AT_RcvTafPsEvtSetEpsQosInfoCnf_
 }
 
 #if (FEATURE_ON == FEATURE_VSIM)
-/******************************************************************************
-类名     : Test_AT_RcvDrvAgentHvpdhSetCnf
-功能描述 : AT_RcvDrvAgentHvpdhSetCnf UT工程类
-修改历史 :
- 1.日   期  : 2013-9-3
-   作   者  : L47619
-   修改内容 : V9R1 vSIM项目修改
-******************************************************************************/
+
 class Test_AT_RcvDrvAgentHvpdhSetCnf: public ::testing::Test
 {
 public:
@@ -11265,15 +9092,7 @@ public:
             PS_MEM_FREE(WUEPS_PID_AT, pMsg);
         }
     }};
-/******************************************************************************
-测试用例编号: Test_AT_RcvDrvAgentHvpdhSetCnf_001
-测试用例标题: 通过clientid获取index失败
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-9-3
-   作   者  : L47619
-   修改内容 : V9R1 vSIM项目修改
-******************************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_001)
 {
     // 变量声明
@@ -11296,15 +9115,7 @@ TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvDrvAgentHvpdhSetCnf_002
-测试用例标题: 广播index
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-9-3
-   作   者  : L47619
-   修改内容 : V9R1 vSIM项目修改
-******************************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_002)
 {
     // 变量声明
@@ -11327,15 +9138,7 @@ TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvDrvAgentHvpdhSetCnf_003
-测试用例标题: 当前不在等待AT_CMD_HVPDH_SET结果
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-9-3
-   作   者  : L47619
-   修改内容 : V9R1 vSIM项目修改
-******************************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_003)
 {
     // 变量声明
@@ -11366,15 +9169,7 @@ TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvDrvAgentHvpdhSetCnf_004
-测试用例标题: enResult结果为失败
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-9-3
-   作   者  : L47619
-   修改内容 : V9R1 vSIM项目修改
-******************************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_004)
 {
     // 变量声明
@@ -11409,15 +9204,7 @@ TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvDrvAgentHvpdhSetCnf_005
-测试用例标题: enResult结果为成功
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-9-3
-   作   者  : L47619
-   修改内容 : V9R1 vSIM项目修改
-******************************************************************************/
+
 TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_005)
 {
     // 变量声明
@@ -11458,15 +9245,7 @@ TEST_F(Test_AT_RcvDrvAgentHvpdhSetCnf, Test_AT_RcvDrvAgentHvpdhSetCnf_005)
 
 
 
-/* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, begin */
-/******************************************************************************
-类名     : Test_AT_RcvNvManufactureExtSetCnf
-功能描述 : AT_RcvNvManufactureExtSetCnf UT工程类
-修改历史 :
- 1.日   期  : 2013-10-26
-   作   者  : d00212987
-   修改内容 : V9R1 NV备份数据丢失容错&恢复
-******************************************************************************/
+
 class Test_AT_RcvNvManufactureExtSetCnf: public ::testing::Test
 {
 public:
@@ -11492,15 +9271,7 @@ public:
             PS_MEM_FREE(WUEPS_PID_AT, pMsg);
         }
     }};
-/******************************************************************************
-测试用例编号: Test_AT_RcvNvManufactureExtSetCnf_001
-测试用例标题: 通过clientid获取index失败
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-10-26
-   作   者  : d00212987
-   修改内容 : V9R1 NV备份数据丢失容错&恢复
-******************************************************************************/
+
 TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_001)
 {
     // 变量声明
@@ -11523,15 +9294,7 @@ TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvNvManufactureExtSetCnf_002
-测试用例标题: 广播index
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-10-26
-   作   者  : d00212987
-   修改内容 : V9R1 NV备份数据丢失容错&恢复
-******************************************************************************/
+
 TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_002)
 {
     // 变量声明
@@ -11554,15 +9317,7 @@ TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvNvManufactureExtSetCnf_003
-测试用例标题: 当前不在等待AT_CMD_NVMANUFACTUREEXT_SET结果
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-10-26
-   作   者  : d00212987
-   修改内容 : V9R1 NV备份数据丢失容错&恢复
-******************************************************************************/
+
 TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_003)
 {
     // 变量声明
@@ -11593,15 +9348,7 @@ TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvNvManufactureExtSetCnf_004
-测试用例标题: enResult结果为失败
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-10-26
-   作   者  : d00212987
-   修改内容 : V9R1 NV备份数据丢失容错&恢复
-******************************************************************************/
+
 TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_004)
 {
     // 变量声明
@@ -11636,15 +9383,7 @@ TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_RcvNvManufactureExtSetCnf_005
-测试用例标题: enResult结果为成功
-预期结果    :
-修改历史    :
- 1.日   期  : 2013-10-26
-   作   者  : d00212987
-   修改内容 : V9R1 NV备份数据丢失容错&恢复
-******************************************************************************/
+
 TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_005)
 {
     // 变量声明
@@ -11679,18 +9418,9 @@ TEST_F(Test_AT_RcvNvManufactureExtSetCnf, Test_AT_RcvNvManufactureExtSetCnf_005)
 
     GlobalMockObject::verify();
 }
-/* Added by d00212987 for BalongV9R1 NV备份数据丢失容错&恢复 项目 2013-10-24, end */
 
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, begin */
 #if (FEATURE_ON == FEATURE_ECALL)
-/*****************************************************************************
-类名 : Test_At_ProcVcReportEcallStateEvent
-功能描述 : Test_At_ProcVcReportEcallStateEvent　UT工程类
-修改历史     :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ProcVcReportEcallStateEvent: public ::testing::Test
 {
 public:
@@ -11707,16 +9437,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcVcReportEcallStateEvent_001
-测试用例标题      : 上报ecall状态APP_VC_ECALL_MSD_TRANSMITTING_FAIL
-预期结果          : 检查gstAtSendData.usBufLen
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcVcReportEcallStateEvent, Test_At_ProcVcReportEcallStateEvent_001)
 {
     /* 初始化变量 */
@@ -11735,16 +9456,7 @@ TEST_F(Test_At_ProcVcReportEcallStateEvent, Test_At_ProcVcReportEcallStateEvent_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcVcReportEcallStateEvent_002
-测试用例标题      : 上报ecall状态APP_VC_ECALL_PSAP_MSD_REQUIRETRANSMITTING
-预期结果          : 检查gstAtSendData.usBufLen
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcVcReportEcallStateEvent, Test_At_ProcVcReportEcallStateEvent_002)
 {
     /* 初始化变量 */
@@ -11763,16 +9475,7 @@ TEST_F(Test_At_ProcVcReportEcallStateEvent, Test_At_ProcVcReportEcallStateEvent_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcVcReportEcallStateEvent_003
-测试用例标题      : 上报ecall状态APP_VC_ECALL_MSD_TRANSMITTING_START
-预期结果          : 检查gstAtSendData.usBufLen
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcVcReportEcallStateEvent, Test_At_ProcVcReportEcallStateEvent_003)
 {
     stVcEvtInfo.enEcallState = APP_VC_ECALL_MSD_TRANSMITTING_START;
@@ -11790,14 +9493,7 @@ TEST_F(Test_At_ProcVcReportEcallStateEvent, Test_At_ProcVcReportEcallStateEvent_
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_At_VcEventProc
-功能描述 : Test_At_VcEventProc　UT工程类
-修改历史     :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_VcEventProc: public ::testing::Test
 {
 public:
@@ -11816,16 +9512,7 @@ protected:
     APP_VC_EVENT_ENUM_U32               enEvent;
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_VcEventProc_001
-测试用例标题      : 事件名是APP_VC_EVT_ECALL_TRANS_STATUS
-预期结果          :At_ProcVcReportEcallStateEvent函数执行一次
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_VcEventProc, Test_At_VcEventProc_001)
 {
     /* 变量定义 */
@@ -11846,16 +9533,7 @@ TEST_F(Test_At_VcEventProc, Test_At_VcEventProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_VcEventProc_002
-测试用例标题      : 事件名是APP_VC_EVT_SET_ECALL_CFG
-预期结果          :At_ProcVcSetEcallCfgEvent函数执行一次
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_VcEventProc, Test_At_VcEventProc_002)
 {
     /* 变量定义 */
@@ -11877,14 +9555,7 @@ TEST_F(Test_At_VcEventProc, Test_At_VcEventProc_002)
 }
 
 
-/*****************************************************************************
-类名 : Test_At_ProcVcSetEcallCfgEvent
-功能描述 : Test_At_ProcVcSetEcallCfgEvent　UT工程类
-修改历史     :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ProcVcSetEcallCfgEvent: public ::testing::Test
 {
 public:
@@ -11900,16 +9571,7 @@ protected:
     VOS_UINT8                           ucIndex;
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcVcSetEcallCfgEvent_001
-测试用例标题      : ucIndex为AT_BROADCAST_CLIENT_INDEX_MODEM_0
-预期结果          : At_ProcVcSetEcallCfgEvent返回VOS_ERR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_001)
 {
     /* 变量定义 */
@@ -11928,16 +9590,7 @@ TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcVcSetEcallCfgEvent_002
-测试用例标题      : ucIndex为AT_BROADCAST_CLIENT_INDEX_MODEM_1
-预期结果          : At_ProcVcSetEcallCfgEvent返回VOS_ERR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_002)
 {
     /* 变量定义 */
@@ -11956,16 +9609,7 @@ TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcVcSetEcallCfgEvent_003
-测试用例标题      : 当前用户的命令操作类型不是AT_CMD_ECLCFG_SET
-预期结果          : At_ProcVcSetEcallCfgEvent返回VOS_ERR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_003)
 {
     /* 变量定义 */
@@ -11985,16 +9629,7 @@ TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcVcSetEcallCfgEvent_004
-测试用例标题      : VC返回设置ecall配置成功
-预期结果          : At_ProcVcSetEcallCfgEvent返回VOS_OK
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_004)
 {
     /* 变量定义 */
@@ -12015,16 +9650,7 @@ TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcVcSetEcallCfgEvent_005
-测试用例标题      : VC返回设置ecall配置失败
-预期结果          : At_ProcVcSetEcallCfgEvent返回VOS_OK
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_005)
 {
     /* 变量定义 */
@@ -12045,14 +9671,7 @@ TEST_F(Test_At_ProcVcSetEcallCfgEvent, Test_At_ProcVcSetEcallCfgEvent_005)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_At_RcvTafCallQryEcallInfoCnf
-功能描述 : Test_At_RcvTafCallQryEcallInfoCnf　UT工程类
-修改历史 :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_RcvTafCallQryEcallInfoCnf: public ::testing::Test
 {
 public:
@@ -12079,16 +9698,7 @@ protected:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvTafCallQryEcallInfoCnf_001
-测试用例标题      : 异常检查,At_ClientIdToUserId返回AT_FAILURE
-预期结果          :函数返回
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_001)
 {
     /* 变量定义 */
@@ -12107,16 +9717,7 @@ TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvTafCallQryEcallInfoCnf_002
-测试用例标题      : ucIndex为AT_BROADCAST_CLIENT_ID_MODEM_0
-预期结果          : At_RcvTafCallQryEcallInfoCnf返回VOS_ERR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_002)
 {
     /* 变量定义 */
@@ -12134,16 +9735,7 @@ TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvTafCallQryEcallInfoCnf_003
-测试用例标题      : ucIndex为AT_BROADCAST_CLIENT_ID_MODEM_1
-预期结果          : At_RcvTafCallQryEcallInfoCnf返回VOS_ERR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_003)
 {
     /* 变量定义 */
@@ -12161,16 +9753,7 @@ TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvTafCallQryEcallInfoCnf_004
-测试用例标题      : 当前用户的命令操作类型不是AT_CMD_CECALL_QRY
-预期结果          : At_RcvTafCallQryEcallInfoCnf返回VOS_ERR
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_004)
 {
     /* 变量定义 */
@@ -12189,16 +9772,7 @@ TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvTafCallQryEcallInfoCnf_005
-测试用例标题      : 当前用户的命令操作类型是AT_CMD_CECALL_QRY,返回的ecall类型是MN_CALL_TYPE_TEST
-预期结果          : 检查gstAtSendData.usBufLen
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_005)
 {
 
@@ -12220,16 +9794,7 @@ TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvTafCallQryEcallInfoCnf_006
-测试用例标题      : 当前用户的命令操作类型是AT_CMD_CECALL_QRY,返回的ecall类型是MN_CALL_TYPE_RECFGURATION
-预期结果          : 检查gstAtSendData.usBufLen
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_006)
 {
     pstEcallInfo->usClientId = 0;
@@ -12250,16 +9815,7 @@ TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvTafCallQryEcallInfoCnf_007
-测试用例标题      : 当前用户的命令操作类型是AT_CMD_CECALL_QRY,返回的ecall类型是MN_CALL_TYPE_MIEC
-预期结果          : 检查gstAtSendData.usBufLen
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_007)
 {
     pstEcallInfo->usClientId = 0;
@@ -12280,16 +9836,7 @@ TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvTafCallQryEcallInfoCnf_008
-测试用例标题      : 当前用户的命令操作类型是AT_CMD_CECALL_QRY,返回的ecall类型是MN_CALL_TYPE_AIEC
-预期结果          : 检查gstAtSendData.usBufLen
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_008)
 {
     pstEcallInfo->usClientId = 0;
@@ -12310,16 +9857,7 @@ TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvTafCallQryEcallInfoCnf_009
-测试用例标题      : 当前用户的命令操作类型是AT_CMD_CECALL_QRY,返回的不是ecall类型
-预期结果          : 检查gstAtSendData.usBufLen
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_009)
 {
     pstEcallInfo->usClientId = 0;
@@ -12341,14 +9879,7 @@ TEST_F(Test_At_RcvTafCallQryEcallInfoCnf, Test_At_RcvTafCallQryEcallInfoCnf_009)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_VcMsgProc
-功能描述 : At_VcMsgProc UT工程类
-修改历史 :
-1.日    期   : 2014年04月28日
-  作    者   : j00174725
-  修改内容   : ecall 新生成类
-*****************************************************************************/
+
 class Test_At_VcMsgProc: public ::testing::Test
 {
     void SetUp()
@@ -12362,15 +9893,7 @@ class Test_At_VcMsgProc: public ::testing::Test
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_VcMsgProc_001
-测试用例标题      : 异常处理,At_ClientIdToUserId函数返回AT_FAILURE
-预期结果          :
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : j00174725
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_VcMsgProc, Test_At_VcMsgProc_001)
 {
     /* 变量定义 */
@@ -12390,14 +9913,7 @@ TEST_F(Test_At_VcMsgProc, Test_At_VcMsgProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_CheckOrigCnfCallType
-功能描述 : At_CheckOrigCnfCallType UT工程类
-修改历史 :
-1.日    期   : 2014年04月25日
-  作    者   : n00269697
-  修改内容   : ecall 新生成类
-*****************************************************************************/
+
 class Test_At_CheckOrigCnfCallType: public ::testing::Test
 {
     void SetUp()
@@ -12411,15 +9927,7 @@ class Test_At_CheckOrigCnfCallType: public ::testing::Test
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckOrigCnfCallType_001
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_VOICE
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_001)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12436,15 +9944,7 @@ TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckOrigCnfCallType_002
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_EMERGENCY
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_002)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12461,15 +9961,7 @@ TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckOrigCnfCallType_003
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_MIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_003)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12486,15 +9978,7 @@ TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckOrigCnfCallType_004
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_AIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_004)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12511,15 +9995,7 @@ TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckOrigCnfCallType_005
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_TEST
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_005)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12536,15 +10012,7 @@ TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckOrigCnfCallType_006
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_RECFGURATION
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_006)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12561,15 +10029,7 @@ TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckOrigCnfCallType_007
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_BUTT
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_007)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12586,14 +10046,7 @@ TEST_F(Test_At_CheckOrigCnfCallType, Test_At_CheckOrigCnfCallType_007)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_CheckReportCendCallType
-功能描述 : At_CheckReportCendCallType UT工程类
-修改历史 :
-1.日    期   : 2014年04月25日
-  作    者   : n00269697
-  修改内容   : ecall 新生成类
-*****************************************************************************/
+
 class Test_At_CheckReportCendCallType: public ::testing::Test
 {
     void SetUp()
@@ -12607,15 +10060,7 @@ class Test_At_CheckReportCendCallType: public ::testing::Test
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportCendCallType_001
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_VOICE
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_001)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12632,15 +10077,7 @@ TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportCendCallType_002
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_EMERGENCY
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_002)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12657,15 +10094,7 @@ TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportCendCallType_003
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_MIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_003)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12682,15 +10111,7 @@ TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportCendCallType_004
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_AIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_004)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12707,15 +10128,7 @@ TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportCendCallType_005
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_TEST
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_005)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12732,15 +10145,7 @@ TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportCendCallType_006
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_RECFGURATION
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_006)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12757,15 +10162,7 @@ TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportCendCallType_007
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_PSAP_ECALL
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_007)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12783,15 +10180,7 @@ TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_007)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportCendCallType_008
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_BUTT
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_008)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12808,14 +10197,7 @@ TEST_F(Test_At_CheckReportCendCallType, Test_At_CheckReportCendCallType_008)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_CheckReportOrigCallType
-功能描述 : At_CheckReportCendCallType UT工程类
-修改历史 :
-1.日    期   : 2014年04月25日
-  作    者   : n00269697
-  修改内容   : ecall 新生成类
-*****************************************************************************/
+
 class Test_At_CheckReportOrigCallType: public ::testing::Test
 {
     void SetUp()
@@ -12829,15 +10211,7 @@ class Test_At_CheckReportOrigCallType: public ::testing::Test
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportOrigCallType_001
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_VOICE
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportOrigCallType, Test_At_CheckReportOrigCallType_001)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12854,15 +10228,7 @@ TEST_F(Test_At_CheckReportOrigCallType, Test_At_CheckReportOrigCallType_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportOrigCallType_002
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_EMERGENCY
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportOrigCallType, Test_At_CheckReportOrigCallType_002)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12879,15 +10245,7 @@ TEST_F(Test_At_CheckReportOrigCallType, Test_At_CheckReportOrigCallType_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportOrigCallType_003
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_BUTT
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportOrigCallType, Test_At_CheckReportOrigCallType_003)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12904,14 +10262,7 @@ TEST_F(Test_At_CheckReportOrigCallType, Test_At_CheckReportOrigCallType_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_CheckReportConfCallType
-功能描述 : At_CheckReportConfCallType UT工程类
-修改历史 :
-1.日    期   : 2014年04月25日
-  作    者   : n00269697
-  修改内容   : ecall 新生成类
-*****************************************************************************/
+
 class Test_At_CheckReportConfCallType: public ::testing::Test
 {
     void SetUp()
@@ -12925,15 +10276,7 @@ class Test_At_CheckReportConfCallType: public ::testing::Test
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportConfCallType_001
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_VOICE
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_001)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12950,15 +10293,7 @@ TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportConfCallType_002
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_EMERGENCY
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_002)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -12975,15 +10310,7 @@ TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportConfCallType_003
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_MIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_003)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13000,15 +10327,7 @@ TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportConfCallType_004
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_AIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_004)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13025,15 +10344,7 @@ TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportConfCallType_005
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_TEST
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_005)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13050,15 +10361,7 @@ TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportConfCallType_006
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_RECFGURATION
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_006)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13075,15 +10378,7 @@ TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportConfCallType_007
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_PSAP_ECALL
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_007)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13101,15 +10396,7 @@ TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_007)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckReportConfCallType_008
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_BUTT
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_008)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13126,14 +10413,7 @@ TEST_F(Test_At_CheckReportConfCallType, Test_At_CheckReportConfCallType_008)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_CheckUartRingTeCallType
-功能描述 : At_CheckUartRingTeCallType UT工程类
-修改历史 :
-1.日    期   : 2014年04月25日
-  作    者   : n00269697
-  修改内容   : ecall 新生成类
-*****************************************************************************/
+
 class Test_At_CheckUartRingTeCallType: public ::testing::Test
 {
     void SetUp()
@@ -13147,15 +10427,7 @@ class Test_At_CheckUartRingTeCallType: public ::testing::Test
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUartRingTeCallType_001
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_VOICE
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_001)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13172,15 +10444,7 @@ TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUartRingTeCallType_002
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_EMERGENCY
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_002)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13197,15 +10461,7 @@ TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUartRingTeCallType_003
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_MIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_003)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13222,15 +10478,7 @@ TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUartRingTeCallType_004
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_AIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_004)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13247,15 +10495,7 @@ TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUartRingTeCallType_005
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_TEST
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_005)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13272,15 +10512,7 @@ TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUartRingTeCallType_006
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_RECFGURATION
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_006)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13297,15 +10529,7 @@ TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUartRingTeCallType_007
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_PSAP_ECALL
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_007)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13323,15 +10547,7 @@ TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_007)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUartRingTeCallType_008
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_BUTT
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_008)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13348,14 +10564,7 @@ TEST_F(Test_At_CheckUartRingTeCallType, Test_At_CheckUartRingTeCallType_008)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_At_ChangeEcallTypeToCallType
-功能描述 : At_ChangeEcallTypeToCallType　UT工程类
-修改历史     :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ChangeEcallTypeToCallType: public ::testing::Test
 {
 public:
@@ -13367,15 +10576,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ChangeEcallTypeToCallType_001
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_TEST
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_001)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13392,15 +10593,7 @@ TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ChangeEcallTypeToCallType_002
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_RECFGURATION
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_002)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13417,15 +10610,7 @@ TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ChangeEcallTypeToCallType_003
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_PSAP_ECALL
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_003)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13442,15 +10627,7 @@ TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ChangeEcallTypeToCallType_004
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_MIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_004)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13467,15 +10644,7 @@ TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ChangeEcallTypeToCallType_005
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_AIEC
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_005)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13492,15 +10661,7 @@ TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ChangeEcallTypeToCallType_006
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_VOICE
-预期结果          : 返回PS_TRUE
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_006)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -13517,19 +10678,11 @@ TEST_F(Test_At_ChangeEcallTypeToCallType, Test_At_ChangeEcallTypeToCallType_006)
     GlobalMockObject::verify();
 }
 
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, end */
 
 /*****************************以下NAS2负责******************************/
 
 
-/*****************************************************************************
-类名     : Test_At_PbMsgProc
-功能描述 : At_PbMsgProc UT工程类
-修改历史     :
-1.日   期  : 2012-03-19
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PbMsgProc: public ::testing::Test
 {
 public:
@@ -13544,15 +10697,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_PbMsgProc_001
-测试用例标题      : 主动上报消息不会被丢弃
-预期结果          : 主动上报消息不会被丢弃
-修改历史          :
-1.日   期  : 2012-03-19
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PbMsgProc, Test_At_PbMsgProc_001)
 {
     // 变量声明
@@ -13582,15 +10727,7 @@ TEST_F(Test_At_PbMsgProc, Test_At_PbMsgProc_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PbMsgProc_002
-测试用例标题      : AT命令查询结果上报处理正确
-预期结果          : 按指定格式输出信号
-修改历史          :
-1.日   期  : 2012-03-19
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PbMsgProc, Test_At_PbMsgProc_002)
 {
     // 变量声明
@@ -13634,15 +10771,7 @@ TEST_F(Test_At_PbMsgProc, Test_At_PbMsgProc_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PbMsgProc_003
-测试用例标题      : 根据CLIENT ID获取ucIndex失败
-预期结果          : 告警并退出函数
-修改历史          :
-1.日   期  : 2012-03-19
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PbMsgProc, Test_At_PbMsgProc_003)
 {
     // 变量声明
@@ -13680,15 +10809,7 @@ TEST_F(Test_At_PbMsgProc, Test_At_PbMsgProc_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PbMsgProc_004
-测试用例标题      : 根据CLIENT ID获取ucIndex为AT_BROADCAST_CLIENT_INDEX_MODEM_0
-预期结果          : 告警并退出函数
-修改历史          :
-1.日   期         : 2012-03-19
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PbMsgProc, Test_At_PbMsgProc_004)
 {
     // 变量声明
@@ -13720,14 +10841,7 @@ TEST_F(Test_At_PbMsgProc, Test_At_PbMsgProc_004)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_QryParaRspProc
-功能描述 : At_QryParaRspProc UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryParaRspProc: public ::testing::Test
 {
 public:
@@ -13744,14 +10858,7 @@ public:
 
 
 
-/*****************************************************************************
-类名     : Test_At_SmsStubRspProc
-功能描述 : AT_QryParaRspCsqlvlProc UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsStubRspProc: public ::testing::Test
 {
 public:
@@ -13766,15 +10873,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsStubRspProc_001
-测试用例标题      : AT模块在等待CMSTUB设置命令的结果事件上报
-预期结果          : 按指定格式输出信号
-修改历史          :
-1.日   期         : 2011-10-14
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsStubRspProc,Test_At_SmsStubRspProc_001)
 {
     // 变量声明
@@ -13814,15 +10913,7 @@ TEST_F(Test_At_SmsStubRspProc,Test_At_SmsStubRspProc_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsStubRspProc_002
-测试用例标题      : AT模块不在等待CMSTUB设置命令的结果事件上报
-预期结果          : 按指定格式输出信号
-修改历史          :
-1.日   期         : 2011-10-14
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsStubRspProc,Test_At_SmsStubRspProc_002)
 {
     // 变量声明
@@ -13856,15 +10947,7 @@ TEST_F(Test_At_SmsStubRspProc,Test_At_SmsStubRspProc_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsStubRspProc_003
-测试用例标题      : AT模块在等待CMSTUB设置命令的结果事件上报：设置操作失败
-预期结果          : 按指定格式输出信号
-修改历史          :
-1.日   期         : 2011-10-14
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsStubRspProc,Test_At_SmsStubRspProc_003)
 {
     // 变量声明
@@ -13907,14 +10990,7 @@ TEST_F(Test_At_SmsStubRspProc,Test_At_SmsStubRspProc_003)
 
 
 
-/*****************************************************************************
-类名     : Test_At_CsAllCallInfoEvtCnfProc
-功能描述 : At_CsAllCallInfoEvtCnfProc函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CsAllCallInfoEvtCnfProc: public ::testing::Test
 {
 public:
@@ -13953,15 +11029,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CsAllCallInfoEvtCnfProc_001
-测试用例标题      : 通过clientid获取index失败
-预期结果          : 无
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_001)
 {
     // 参数定义
@@ -13986,15 +11054,7 @@ TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsAllCallInfoEvtCnfProc_002
-测试用例标题      : 当为CLCC查询命令时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_002)
 {
    // 参数定义
@@ -14029,15 +11089,7 @@ TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsAllCallInfoEvtCnfProc_003
-测试用例标题      : 当为CPAS查询命令时,呼叫超出最大
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_003)
 {
    // 参数定义
@@ -14079,15 +11131,7 @@ TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsAllCallInfoEvtCnfProc_004
-测试用例标题      : 当为CPAS查询命令时,没有呼叫
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_004)
 {
    // 参数定义
@@ -14131,15 +11175,7 @@ TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_004)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_CsAllCallInfoEvtCnfProc_005
-测试用例标题      : 当为CPAS查询命令时,有呼叫且没超过最大呼叫数
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_005)
 {
    // 参数定义
@@ -14161,9 +11197,7 @@ TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_005)
     // 相关全局变量初始化
     gastAtClientTab[ucIndex].CmdCurrentOpt      = AT_CMD_CPAS_SET;
     g_stParseContext[ucIndex].pstCmdElement     = &stCmdInfo;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
     pstCallInfos->astCallInfos[0].enCallState = MN_CALL_S_INCOMING;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
 
     // MOCKER操作;
     MOCKER(At_ClientIdToUserId)
@@ -14186,15 +11220,7 @@ TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_005)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsAllCallInfoEvtCnfProc_006
-测试用例标题      : 接收到其他回复消息
-预期结果          : 无
-修改历史     :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_006)
 {
     // 参数定义
@@ -14221,14 +11247,7 @@ TEST_F(Test_At_CsAllCallInfoEvtCnfProc,Test_At_CsAllCallInfoEvtCnfProc_006)
 
 }
 
-/*****************************************************************************
-类名     : Test_At_ProcSetClccResult
-功能描述 : At_ProcSetClccResult函数的UT测试类
-修改历史 :
-1.日   期  : 2011-10-13
-作   者  : f00179208
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ProcSetClccResult: public ::testing::Test
 {
 public:
@@ -14246,15 +11265,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcSetClccResult_001
-测试用例标题      : 主叫模式下存在连接时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_001)
 {
    // 参数定义
@@ -14274,7 +11285,6 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_001)
 
     // 参数初始化
     ucNumOfCalls                                = 2;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
 
     stCallInfos.astCallInfos[0].enCallDir       = MN_CALL_DIR_MO;
     stCallInfos.astCallInfos[0].stConnectNumber.ucNumLen = 1;
@@ -14282,7 +11292,6 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_001)
     stCallInfos.astCallInfos[1].stConnectNumber.ucNumLen = 1;
 
     stCallInfos.astCallInfos[0].stCallNumber.ucNumLen    = 0;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, end */
 
     enClccMode                                  = 0;
 
@@ -14312,15 +11321,7 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcSetClccResult_002
-测试用例标题      : 主叫模式下存在呼叫时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_002)
 {
    // 参数定义
@@ -14339,12 +11340,10 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_002)
                                                              (VOS_UINT8*)"+CLCC",VOS_NULL_PTR};
 
     // 参数初始化
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
     ucNumOfCalls                                = 1;
     stCallInfos.astCallInfos[0].enCallDir       = MN_CALL_DIR_MO;
     stCallInfos.astCallInfos[0].stConnectNumber.ucNumLen = 0;
     stCallInfos.astCallInfos[0].stCalledNumber.ucNumLen    = 1;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, end */
 
     enClccMode                                  = 0;
 
@@ -14375,15 +11374,7 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcSetClccResult_003
-测试用例标题      : 主叫模式下连接和呼叫都不存在时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_003)
 {
    // 参数定义
@@ -14401,12 +11392,10 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_003)
                                                              (VOS_UINT8*)"+CLCC",VOS_NULL_PTR};
 
     // 参数初始化
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
     ucNumOfCalls                                = 1;
     stCallInfos.astCallInfos[0].enCallDir       = MN_CALL_DIR_MO;
     stCallInfos.astCallInfos[0].stConnectNumber.ucNumLen = 0;
     stCallInfos.astCallInfos[0].stCallNumber.ucNumLen    = 0;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, end */
 
     enClccMode                                  = 0;
 
@@ -14432,15 +11421,7 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcSetClccResult_004
-测试用例标题      : 被叫模式下有呼叫存在时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_004)
 {
    // 参数定义
@@ -14459,11 +11440,9 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_004)
                                                              (VOS_UINT8*)"+CLCC",VOS_NULL_PTR};
 
     // 参数初始化
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
     ucNumOfCalls                                = 1;
     stCallInfos.astCallInfos[0].enCallDir       = MN_CALL_DIR_MT;
     stCallInfos.astCallInfos[0].stCallNumber.ucNumLen    = 1;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, end */
 
     enClccMode                                  = 0;
 
@@ -14493,15 +11472,7 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_004)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcSetClccResult_005
-测试用例标题      : 被叫模式下没有呼叫存在时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_005)
 {
    // 参数定义
@@ -14519,11 +11490,9 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_005)
                                                              (VOS_UINT8*)"+CLCC",VOS_NULL_PTR};
 
     // 参数初始化
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, begin */
     ucNumOfCalls                                = 1;
     stCallInfos.astCallInfos[0].enCallDir       = MN_CALL_DIR_MT;
     stCallInfos.astCallInfos[0].stCallNumber.ucNumLen    = 0;
-    /* Modified by s00217060 for VoLTE_PhaseI  项目, 2013-07-27, end */
 
     enClccMode                                  = 0;
 
@@ -14551,14 +11520,7 @@ TEST_F(Test_At_ProcSetClccResult,Test_At_ProcSetClccResult_005)
 
 
 
-/*****************************************************************************
-类名     : Test_At_CmdCnfMsgProc
-功能描述 : Test_At_CmdCnfMsgProc UT工程类
-修改历史 :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_At_CmdCnfMsgProc: public ::testing::Test
 {
 public:
@@ -14573,15 +11535,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : At_CmdCnfMsgProc_001
-测试用例标题      : 获取指定呼叫的通话时长: Callid未激活
-预期结果          : 输出错误原因值AT_CME_INCORRECT_PARAMETERS
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_001)
 {
     // 变量声明
@@ -14627,15 +11581,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : At_CmdCnfMsgProc_002
-测试用例标题      : 获取指定呼叫的通话时长: 获取当前系统时间失败
-预期结果          : 输出错误原因值AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_002)
 {
     // 变量声明
@@ -14680,15 +11626,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : At_CmdCnfMsgProc_003
-测试用例标题      : 获取指定呼叫的通话时长: 指定呼叫不在通话状态
-预期结果          : 输出错误原因值AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_003)
 {
     // 变量声明
@@ -14734,15 +11672,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : At_CmdCnfMsgProc_004
-测试用例标题      : 获取短信相关参数：MSG初始化过程没有完成，SMSP文件未获取
-预期结果          : 输出错误原因值AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_004)
 {
     // 变量声明
@@ -14787,15 +11717,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_004)
 
 }
 
-/*******************************************************************
-测试用例编号      : At_CmdCnfMsgProc_005
-测试用例标题      : 获取短信相关参数：SMSP文件不存在
-预期结果          : 输出错误原因值AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_005)
 {
     // 变量声明
@@ -14846,15 +11768,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_005)
 
 }
 
-/*******************************************************************
-测试用例编号      : At_CmdCnfMsgProc_006
-测试用例标题      : 获取短信相关参数：SMSP文件中无记录
-预期结果          : 输出错误原因值AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_006)
 {
     // 变量声明
@@ -14907,15 +11821,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_006)
 
 }
 
-/*******************************************************************
-测试用例编号      : At_CmdCnfMsgProc_007
-测试用例标题      : 获取短信相关参数：MSG初始化过程没有完成，但SMSP文件中记录数据异常
-预期结果          : 输出错误原因值AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_007)
 {
     // 变量声明
@@ -14968,15 +11874,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_007)
 
 }
 
-/*******************************************************************
-测试用例编号      : At_CmdCnfMsgProc_008
-测试用例标题      : 获取短信相关参数：SMSP文件不存在
-预期结果          : 输出错误原因值AT_ERROR
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_008)
 {
     // 变量声明
@@ -15028,15 +11926,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_008)
 }
 
 
-/*******************************************************************
- 测试用例编号   : At_CmdCnfMsgProc_011
- 测试用例标题   : 语音拨号, 适配层返回无CALL ID
- 预期结果       : 上报AT_ERROR
- 修改历史       :
- 1.日   期  : 2012-09-26
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_011)
 {
     //参数定义
@@ -15071,15 +11961,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : At_CmdCnfMsgProc_012
- 测试用例标题   : 挂断电话时出错
- 预期结果       : 上报AT_ERROR
- 修改历史       :
- 1.日   期  : 2012-10-10
-   作   者  : Y00213812
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_012)
 {
     //参数定义
@@ -15116,14 +11998,7 @@ TEST_F(Test_At_CmdCnfMsgProc, At_CmdCnfMsgProc_012)
 
 
 
-/*****************************************************************************
-类名     : Test_At_SetRcvPathRspProc
-功能描述 : At_SetRcvPathRspProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetRcvPathRspProc: public ::testing::Test
 {
 public:
@@ -15138,15 +12013,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SetRcvPathRspProc_001
-测试用例标题      : Modem0设置CPMS或CNMI命令如接收短信处理方式或存储介质变化时用于接收TAF的响应事件,操作不成功
-预期结果          :
-修改历史
-1.日    期: 2010年12月30日
-  作    者: w00166186
-  修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_001)
 {
     // 参数定义
@@ -15179,15 +12046,7 @@ TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_001)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_SetRcvPathRspProc_002
-测试用例标题      : Modem0设置CPMS或CNMI命令如接收短信处理方式或存储介质变化时用于接收TAF的响应事件,CSMS操作成功
-预期结果          :
-修改历史
-1.日    期: 2010年12月30日
-  作    者: w00166186
-  修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_002)
 {
     // 参数定义
@@ -15218,15 +12077,7 @@ TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_002)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_SetRcvPathRspProc_003
-测试用例标题      : Modem0设置CPMS或CNMI命令如接收短信处理方式或存储介质变化时用于接收TAF的响应事件,CPMS操作成功
-预期结果          :
-修改历史
-1.日    期: 2010年12月30日
-  作    者: w00166186
-  修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_003)
 {
     // 参数定义
@@ -15260,15 +12111,7 @@ TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_003)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_SetRcvPathRspProc_004
-测试用例标题      : Modem0设置CPMS或CNMI命令如接收短信处理方式或存储介质变化时用于接收TAF的响应事件,操作成功
-预期结果          :
-修改历史
-1.日    期: 2010年12月30日
-  作    者: w00166186
-  修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_004)
 {
     // 参数定义
@@ -15302,15 +12145,7 @@ TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_004)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SetRcvPathRspProc_005
-测试用例标题      : Modem1设置CPMS或CNMI命令如接收短信处理方式或存储介质变化时用于接收TAF的响应事件,操作不成功
-预期结果          : 返回
-修改历史
-1.日    期: 2013年3月7日
-  作    者: l00227485
-  修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_005)
 {
     // 参数定义
@@ -15343,15 +12178,7 @@ TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_005)
 
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_SetRcvPathRspProc_006
-测试用例标题      : Modem1设置CPMS或CNMI命令如接收短信处理方式或存储介质变化时用于接收TAF的响应事件,CSMS操作成功
-预期结果          : 返回
-修改历史
-1.日    期: 2013年3月7日
-  作    者: l00227485
-  修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_006)
 {
     // 参数定义
@@ -15381,15 +12208,7 @@ TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_006)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_SetRcvPathRspProc_007
-测试用例标题      : Modem1设置CPMS或CNMI命令如接收短信处理方式或存储介质变化时用于接收TAF的响应事件,CPMS操作成功
-预期结果          : 返回
-修改历史
-1.日    期: 2013年3月7日
-  作    者: l00227485
-  修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_007)
 {
     // 参数定义
@@ -15423,15 +12242,7 @@ TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_007)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_SetRcvPathRspProc_008
-测试用例标题      : Modem1设置CPMS或CNMI命令如接收短信处理方式或存储介质变化时用于接收TAF的响应事件,操作成功
-预期结果          : 返回
-修改历史
-1.日    期: 2013年3月7日
-  作    者: l00227485
-  修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_008)
 {
     // 参数定义
@@ -15465,14 +12276,7 @@ TEST_F(Test_At_SetRcvPathRspProc,Test_At_SetRcvPathRspProc_008)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SmsInitResultProc
-功能描述 : At_SmsInitResultProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  :   l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsInitResultProc: public ::testing::Test
 {
 public:
@@ -15487,15 +12291,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsInitResultProc_001
-测试用例标题      : Modem0 AT模块短消息数据的初始化
-预期结果          : 初始化成功
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsInitResultProc,Test_At_SmsInitResultProc_001)
 {
     // 参数定义
@@ -15521,15 +12317,7 @@ TEST_F(Test_At_SmsInitResultProc,Test_At_SmsInitResultProc_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SmsInitResultProc_002
-测试用例标题      : Modem1 AT模块短消息数据的初始化
-预期结果          : 初始化成功
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsInitResultProc,Test_At_SmsInitResultProc_002)
 {
     // 参数定义
@@ -15557,14 +12345,7 @@ TEST_F(Test_At_SmsInitResultProc,Test_At_SmsInitResultProc_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SmsRcvMsgPathChangeProc
-功能描述 : At_SmsRcvMsgPathChangeProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsRcvMsgPathChangeProc: public ::testing::Test
 {
 public:
@@ -15579,15 +12360,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsRcvMsgPathChangeProc_001
-测试用例标题      : Modem0 短信接收存储方式及存储区域变化事件上报的处理
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsRcvMsgPathChangeProc,Test_At_SmsRcvMsgPathChangeProc_001)
 {
     // 参数定义
@@ -15618,15 +12391,7 @@ TEST_F(Test_At_SmsRcvMsgPathChangeProc,Test_At_SmsRcvMsgPathChangeProc_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SmsRcvMsgPathChangeProc_002
-测试用例标题      : Modem1 短信接收存储方式及存储区域变化事件上报的处理
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsRcvMsgPathChangeProc,Test_At_SmsRcvMsgPathChangeProc_002)
 {
     // 参数定义
@@ -15658,14 +12423,7 @@ TEST_F(Test_At_SmsRcvMsgPathChangeProc,Test_At_SmsRcvMsgPathChangeProc_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SmsStorageListProc
-功能描述 : At_SmsStorageListProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsStorageListProc: public ::testing::Test
 {
 public:
@@ -15680,15 +12438,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsStorageListProc_001
-测试用例标题      : Modem0 短信存储状态变化事件上报，存储器为MN_MSG_MEM_STORE_SIM
-预期结果          : 修改SIM的短信容量等待标志为TAF_FALSE
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsStorageListProc,Test_At_SmsStorageListProc_001)
 {
     // 参数定义
@@ -15712,15 +12462,7 @@ TEST_F(Test_At_SmsStorageListProc,Test_At_SmsStorageListProc_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_SmsStorageListProc_002
-测试用例标题      : Modem0 短信存储状态变化事件上报，存储器为MN_MSG_MEM_STORE_NV
-预期结果          : 修改NV的短信容量等待标志为TAF_FALSE
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsStorageListProc,Test_At_SmsStorageListProc_002)
 {
     // 参数定义
@@ -15745,15 +12487,7 @@ TEST_F(Test_At_SmsStorageListProc,Test_At_SmsStorageListProc_002)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SmsStorageListProc_003
-测试用例标题      : Modem1 短信存储状态变化事件上报，存储器为MN_MSG_MEM_STORE_SIM
-预期结果          : 修改SIM的短信容量等待标志为TAF_FALSE
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsStorageListProc,Test_At_SmsStorageListProc_003)
 {
     // 参数定义
@@ -15777,15 +12511,7 @@ TEST_F(Test_At_SmsStorageListProc,Test_At_SmsStorageListProc_003)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_SmsStorageListProc_004
-测试用例标题      : Modem1 短信存储状态变化事件上报，存储器为MN_MSG_MEM_STORE_NV
-预期结果          : 修改NV的短信容量等待标志为TAF_FALSE
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsStorageListProc,Test_At_SmsStorageListProc_004)
 {
     // 参数定义
@@ -15812,15 +12538,7 @@ TEST_F(Test_At_SmsStorageListProc,Test_At_SmsStorageListProc_004)
 #endif
 
 
-/*******************************************************************
-*测试项:          短信中心号码长度不为0
-*被测函数功能描述:显示PDU格式的短信状态报告，+CDS: <length><CR><LF><pdu>
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2011年5月7日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST(Test_At_StaRptPduInd,Test_At_StaRptPduInd_001)
 {
     // 参数定义
@@ -15865,15 +12583,7 @@ TEST(Test_At_StaRptPduInd,Test_At_StaRptPduInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:          短信中心号码长度为0
-*被测函数功能描述:显示PDU格式的短信状态报告，+CDS: <length><CR><LF><pdu>
-*预期结果：
-************************* 修改记录 *************************
-#  1.日    期: 2011年5月7日
-#    作    者: f62575
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST(Test_At_StaRptPduInd,Test_At_StaRptPduInd_002)
 {
     // 参数定义
@@ -15923,14 +12633,7 @@ TEST(Test_At_StaRptPduInd,Test_At_StaRptPduInd_002)
 
 
 
-/*****************************************************************************
-类名     : Test_AT_QryParaAnQueryProc
-功能描述 : Test_AT_QryParaAnQueryProc UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryParaAnQueryProc: public ::testing::Test
 {
 public:
@@ -15951,15 +12654,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryParaAnQueryProc_001
-测试用例标题      : 圈外
-预期结果          : 函数返回ERROR
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryParaAnQueryProc, Test_AT_QryParaAnQueryProc_001)
 {
     /* 变量定义 */
@@ -16006,15 +12701,7 @@ TEST_F(Test_AT_QryParaAnQueryProc, Test_AT_QryParaAnQueryProc_001)
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*******************************************************************
-测试用例编号      : Test_AT_QryParaAnQueryProc_002
-测试用例标题      : 信号强度正常
-预期结果          : 函数返回返回丢网
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryParaAnQueryProc, Test_AT_QryParaAnQueryProc_002)
 {
     /* 变量定义 */
@@ -16062,14 +12749,7 @@ TEST_F(Test_AT_QryParaAnQueryProc, Test_AT_QryParaAnQueryProc_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_QryParaHomePlmnProc
-功能描述 : Test_AT_QryParaHomePlmnProc UT工程类
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryParaHomePlmnProc: public ::testing::Test
 {
 public:
@@ -16091,15 +12771,7 @@ public:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryParaHomePlmnProc_001
-测试用例标题      : 参数查询成功
-预期结果          : 函数返回HPLMN值
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryParaHomePlmnProc, Test_AT_QryParaHomePlmnProc_001)
 {
     /* 变量定义 */
@@ -16139,15 +12811,7 @@ TEST_F(Test_AT_QryParaHomePlmnProc, Test_AT_QryParaHomePlmnProc_001)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_AT_QryParaHomePlmnProc_002
-测试用例标题      : 参数查询成功
-预期结果          : 函数返回HPLMN值
-修改历史     :
-1.日   期  : 2011-10-13
-  作   者  : o00132663
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryParaHomePlmnProc, Test_AT_QryParaHomePlmnProc_002)
 {
     /* 变量定义 */
@@ -16189,14 +12853,7 @@ TEST_F(Test_AT_QryParaHomePlmnProc, Test_AT_QryParaHomePlmnProc_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_CsRspProc
-功能描述 : Test_At_CsRspProc UT工程类
-修改历史 :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CsRspProc: public ::testing::Test
 {
 public:
@@ -16211,15 +12868,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CsRspProc_001
-测试用例标题      : 事件类型为MN_CALL_EVT_ORIG
-预期结果          : 当前是否存在呼叫标志全局变量g_ulCurIsExistCallFlag被设为VOS_TRUE
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsRspProc, Test_At_CsRspProc_001)
 {
     // 变量声明
@@ -16246,15 +12895,7 @@ TEST_F(Test_At_CsRspProc, Test_At_CsRspProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsRspProc_002
-测试用例标题      : 事件类型为MN_CALL_EVT_CDUR_INFO
-预期结果          : 调用AT_RcvCdurQryRsp
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsRspProc, Test_At_CsRspProc_002)
 {
     // 变量声明
@@ -16283,15 +12924,7 @@ TEST_F(Test_At_CsRspProc, Test_At_CsRspProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsRspProc_003
-测试用例标题      : 事件类型为MN_CALL_EVT_ALL_RELEASED
-预期结果          : 全局变量g_ulCurIsExistCallFlag改为VOS_FALSE
-修改历史          :
-1.日   期  : 2011-10-13
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsRspProc, Test_At_CsRspProc_003)
 {
     // 变量声明
@@ -16319,15 +12952,7 @@ TEST_F(Test_At_CsRspProc, Test_At_CsRspProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsRspProc_004
-测试用例标题      : 事件类型为MN_CALL_EVT_CALL_PROC，紧急呼
-预期结果          : 打印主动上报命令^CONF
-修改历史          :
-1.日   期  : 2012-09-26
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsRspProc, Test_At_CsRspProc_004)
 {
     // 变量声明
@@ -16360,14 +12985,7 @@ TEST_F(Test_At_CsRspProc, Test_At_CsRspProc_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_QryCscaRspProc
-功能描述 : AT_QryCscaRspProc UT工程类
-修改历史 :
-1.日   期  : 2011-10-26
-  作   者  : f62575
-  修改内容 : 新建CASE
-*****************************************************************************/
+
 class Test_AT_QryCscaRspProc: public ::testing::Test
 {
 public:
@@ -16382,15 +13000,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCscaRspProc_002
-测试用例标题      : Modem0成功获取AT Index，但AT模块没在等待CSCA查询命令的结果事件上报
-预期结果          : 函数直接返回
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_002)
 {
     // 变量声明
@@ -16418,15 +13028,7 @@ TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCscaRspProc_003
-测试用例标题      : Modem0成功获取AT Index，但AT模块没在等待CSCA查询命令的结果事件上报
-预期结果          : 函数直接返回
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_003)
 {
     // 变量声明
@@ -16463,15 +13065,7 @@ TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCscaRspProc_004
-测试用例标题      : Modem0成功获取AT Index，且AT模块在等待CDUR查询命令的结果事件上报，查询成功。
-预期结果          : 短信中心号码长度非0，打印短信中心号码字符串
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_004)
 {
     // 变量声明
@@ -16525,15 +13119,7 @@ TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_004)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCscaRspProc_005
-测试用例标题      : 成功获取AT Index，且AT模块在等待CDUR查询命令的结果事件上报，查询成功。
-预期结果          : 短信中心号码长度为0，打印短信中心号码为空字符串，类型为128
-修改历史          :
-1.日   期  : 2011-10-25
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_005)
 {
     // 变量声明
@@ -16584,29 +13170,13 @@ TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_005)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_AT_QryCscaRspProc_006
-测试用例标题      : Modem1成功获取AT Index，但AT模块没在等待CSCA查询命令的结果事件上报
-预期结果          : 函数直接返回
-修改历史          :
-1.日   期  : 2013-3-8
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_006)
 {
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_QryCscaRspProc_007
-测试用例标题      : Modem1成功获取AT Index，且AT模块在等待CDUR查询命令的结果事件上报，查询成功。
-预期结果          : 短信中心号码长度非0，打印短信中心号码字符串
-修改历史          :
-1.日   期  : 2013-3-8
-  作   者  : l00227485
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_007)
 {
 
@@ -16618,14 +13188,7 @@ TEST_F(Test_AT_QryCscaRspProc, Test_AT_QryCscaRspProc_007)
 //
 //    return VOS_OK;
 //}
-/*****************************************************************************
-类名     : Test_AT_PhnEvtTestCpol
-功能描述 : 处理CPOL测试命令回复结果
-修改历史 :
-1.日   期  : 2011-10-25
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PhnEvtTestCpol: public ::testing::Test
 {
 public:
@@ -16650,15 +13213,7 @@ public:
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_INVALID;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_AT_PhnEvtTestCpol_001
-测试用例标题      : 回复结果正确
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PhnEvtTestCpol,Test_AT_PhnEvtTestCpol_001)
 {
     TAF_PHONE_EVENT_INFO_STRU   stEvent;
@@ -16682,14 +13237,7 @@ TEST_F(Test_AT_PhnEvtTestCpol,Test_AT_PhnEvtTestCpol_001)
 
 }
 
-/*****************************************************************************
-类名     : Test_AT_PhnEvtGetDomainAttachState
-功能描述 : 处理域注册状态上报事件
-修改历史 :
-1.日   期  : 2011-10-25
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PhnEvtGetDomainAttachState: public ::testing::Test
 {
 public:
@@ -16714,15 +13262,7 @@ public:
         gastAtClientTab[ucIndex].CmdCurrentOpt = AT_CMD_INVALID;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_AT_PhnEvtGetDomainAttachState_001
-测试用例标题      : 分配内存失败
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_001)
 {
     TAF_PHONE_EVENT_INFO_STRU   stEvent;
@@ -16732,15 +13272,7 @@ TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_001
     EXPECT_EQ((AT_CMD_CURRENT_OPT_ENUM)AT_CMD_INVALID, gastAtClientTab[ucIndex].CmdCurrentOpt);
 
 }
-/*******************************************************************
-测试用例编号      : Test_AT_PhnEvtGetDomainAttachState_002
-测试用例标题      : 事件标志位没置
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_002)
 {
     TAF_PHONE_EVENT_INFO_STRU   stEvent;
@@ -16756,15 +13288,7 @@ TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_002
 
     EXPECT_EQ((AT_CMD_CURRENT_OPT_ENUM)AT_CMD_MMA_GET_CURRENT_ATTACH_STATUS, gastAtClientTab[ucIndex].CmdCurrentOpt);
 }
-/*******************************************************************
-测试用例编号      : Test_AT_PhnEvtGetDomainAttachState_003
-测试用例标题      : 回复事件是CS和PS的注册状态
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_003)
 {
     TAF_PHONE_EVENT_INFO_STRU   stEvent;
@@ -16786,15 +13310,7 @@ TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_003
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_PhnEvtGetDomainAttachState_004
-测试用例标题      : 回复事件是PS的注册状态
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_004)
 {
     TAF_PHONE_EVENT_INFO_STRU   stEvent;
@@ -16817,15 +13333,7 @@ TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_004
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_PhnEvtGetDomainAttachState_005
-测试用例标题      : 回复事件是CS的注册状态
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_005)
 {
     TAF_PHONE_EVENT_INFO_STRU   stEvent;
@@ -16847,14 +13355,7 @@ TEST_F(Test_AT_PhnEvtGetDomainAttachState,Test_AT_PhnEvtGetDomainAttachState_005
 }
 
 
-/*****************************************************************************
-类名     : Test_At_SetAlsCnf
-功能描述 : 处理域注册状态上报事件
-修改历史 :
-1.日   期  : 2011-10-25
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetAlsCnf: public ::testing::Test
 {
 public:
@@ -16898,15 +13399,7 @@ public:
         }
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_SetAlsCnf_001
-测试用例标题      : 回复消息中指示设置ALS成功
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetAlsCnf,Test_At_SetAlsCnf_001)
 {
     /* 变量定义 */
@@ -16934,15 +13427,7 @@ TEST_F(Test_At_SetAlsCnf,Test_At_SetAlsCnf_001)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_SetAlsCnf_002
-测试用例标题      : 回复消息中指示设置ALS失败
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetAlsCnf,Test_At_SetAlsCnf_002)
 {
     /* 变量定义 */
@@ -16970,15 +13455,7 @@ TEST_F(Test_At_SetAlsCnf,Test_At_SetAlsCnf_002)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_SetAlsCnf_003
-测试用例标题      : 获取INDEX失败
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetAlsCnf,Test_At_SetAlsCnf_003)
 {
     /* 变量定义 */
@@ -16998,14 +13475,7 @@ TEST_F(Test_At_SetAlsCnf,Test_At_SetAlsCnf_003)
     GlobalMockObject::verify();
 
 }
-/*****************************************************************************
-类名     : Test_At_CsMsgProc
-功能描述 : 处理域注册状态上报事件
-修改历史 :
-1.日   期  : 2011-10-25
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CsMsgProc: public ::testing::Test
 {
 public:
@@ -17051,15 +13521,7 @@ public:
         }
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_001
-测试用例标题      : 接收到MN_CALL_EVT_QRY_ALS_CNF消息
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_001)
 {
     /* 变量定义 */
@@ -17080,15 +13542,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_001)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_002
-测试用例标题      : 接收到MN_CALL_EVT_QRY_UUS1_INFO_CNF消息
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_002)
 {
     /* 变量定义 */
@@ -17109,15 +13563,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_002)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_003
-测试用例标题      : 接收到MN_CALL_EVT_SET_UUS1_INFO_CNF消息
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_003)
 {
     /* 变量定义 */
@@ -17138,15 +13584,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_003)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_004
-测试用例标题      : 接收到MN_CALL_EVT_SET_ALS_CNF消息
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_004)
 {
     /* 变量定义 */
@@ -17167,15 +13605,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_004)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_005
-测试用例标题      : 接收到MN_CALL_EVT_CLCC_INFO消息
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_005)
 {
     /* 变量定义 */
@@ -17197,15 +13627,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_005)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_006
-测试用例标题      : 接收到MN_CALL_EVT_CALL_PROC消息
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_006)
 {
     /* 变量定义 */
@@ -17235,16 +13657,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_006)
 }
 #endif
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-17, begin */
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_007
-测试用例标题      : 事件为MN_CALL_EVT_SET_CSSN_CNF
-预期结果          : AT回复OK
-修改历史     :
-1.日   期  : 2013-04-18
-作   者  :   s00217060
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_007)
 {
     /* 变量定义 */
@@ -17273,16 +13686,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_007)
 
 }
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-8-10, begin */
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_008
-测试用例标题      : 事件为MN_CALL_EVT_CALL_ORIG_CNF
-预期结果          : AT回复OK
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_008)
 {
     /* 变量定义 */
@@ -17324,16 +13728,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_009
-测试用例标题      : 事件为MN_CALL_EVT_CALL_ORIG_CNF
 
-预期结果          : clientID转换失败，退出消息处理
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_009)
 {
     /* 变量定义 */
@@ -17370,15 +13765,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_010
-测试用例标题      : 事件为MN_CALL_EVT_CALL_ORIG_CNF
-预期结果          : 无OK回复
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_010)
 {
     /* 变量定义 */
@@ -17419,15 +13806,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_010)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_011
-测试用例标题      : 事件为MN_CALL_EVT_CALL_ORIG_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_011)
 {
     /* 变量定义 */
@@ -17469,15 +13848,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_012
-测试用例标题      : 事件为MN_CALL_EVT_CALL_ORIG_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_012)
 {
     /* 变量定义 */
@@ -17519,15 +13890,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_013
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_013)
 {
     /* 变量定义 */
@@ -17571,15 +13934,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_013)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_014
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_014)
 {
     /* 变量定义 */
@@ -17623,15 +13978,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_014)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_016
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_016)
 {
     /* 变量定义 */
@@ -17674,15 +14021,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_016)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_018
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_018)
 {
     /* 变量定义 */
@@ -17729,15 +14068,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_018)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_019
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_019)
 {
     /* 变量定义 */
@@ -17784,15 +14115,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_019)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_020
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_020)
 {
     /* 变量定义 */
@@ -17839,15 +14162,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_020)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_021
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_021)
 {
     /* 变量定义 */
@@ -17894,15 +14209,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_021)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_022
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_022)
 {
     /* 变量定义 */
@@ -17950,15 +14257,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_022)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_023
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_023)
 {
     /* 变量定义 */
@@ -18001,15 +14300,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_023)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_024
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_024)
 {
     /* 变量定义 */
@@ -18055,15 +14346,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_024)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_025
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2013-08-10
-作   者  :   y00245242
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_025)
 {
     /* 变量定义 */
@@ -18109,19 +14392,9 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_025)
     GlobalMockObject::verify();
 }
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-8-10, end */
 
 #if (FEATURE_ON == FEATURE_ECALL)
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, begin */
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_028
-测试用例标题      : 事件为MN_CALL_EVT_QRY_ECALL_INFO_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2014-5-9
-作   者  :   n00269697
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_028)
 {
     /* 变量定义 */
@@ -18149,15 +14422,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_028)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_029
-测试用例标题      : 事件为MN_CALL_EVT_SUPS_CMD_CNF
-预期结果          :
-修改历史     :
-1.日   期  : 2014-5-9
-作   者  :   n00269697
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_029)
 {
     /* 变量定义 */
@@ -18200,18 +14465,10 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_029)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/* Added by n00269697 for V3R3C60_eCall项目, 2014-3-29, end */
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_RcvMnCallSetCssnCnf
-功能描述 : 设置CSSN回复消息的处理函数
-修改历史 :
-1.日   期  : 2013-04-18
-作   者  : s00217060
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_RcvMnCallSetCssnCnf: public ::testing::Test
 {
 public:
@@ -18261,15 +14518,7 @@ public:
         }
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_RcvMnCallSetCssnCnf_001
-测试用例标题      : 事件为MN_CALL_EVT_SET_CSSN_CNF,At_ClientIdToUserId转换失败
-预期结果          : AT不回复OK
-修改历史     :
-1.日   期  : 2013-04-18
-作   者  :   s00217060
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_RcvMnCallSetCssnCnf,Test_At_RcvMnCallSetCssnCnf_001)
 {
     /* 变量定义 */
@@ -18297,15 +14546,7 @@ TEST_F(Test_At_RcvMnCallSetCssnCnf,Test_At_RcvMnCallSetCssnCnf_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvMnCallSetCssnCnf_002
-测试用例标题      : 事件为MN_CALL_EVT_SET_CSSN_CNF,clientID为广播消息
-预期结果          : AT不回复OK
-修改历史     :
-1.日   期  : 2013-04-18
-作   者  :   s00217060
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_RcvMnCallSetCssnCnf,Test_At_RcvMnCallSetCssnCnf_002)
 {
     /* 变量定义 */
@@ -18335,15 +14576,7 @@ TEST_F(Test_At_RcvMnCallSetCssnCnf,Test_At_RcvMnCallSetCssnCnf_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvMnCallSetCssnCnf_003
-测试用例标题      : 事件为MN_CALL_EVT_SET_CSSN_CNF,当前操作不是设置CSSN
-预期结果          : AT不回复OK
-修改历史     :
-1.日   期  : 2013-04-18
-作   者  :   s00217060
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_RcvMnCallSetCssnCnf,Test_At_RcvMnCallSetCssnCnf_003)
 {
     /* 变量定义 */
@@ -18372,15 +14605,7 @@ TEST_F(Test_At_RcvMnCallSetCssnCnf,Test_At_RcvMnCallSetCssnCnf_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvMnCallSetCssnCnf_004
-测试用例标题      : 事件为MN_CALL_EVT_SET_CSSN_CNF,回复消息中带的结果为错误
-预期结果          : AT回复AT_CME_INCORRECT_PARAMETERS
-修改历史     :
-1.日   期  : 2013-04-18
-作   者  :   s00217060
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_RcvMnCallSetCssnCnf,Test_At_RcvMnCallSetCssnCnf_004)
 {
     /* 变量定义 */
@@ -18409,16 +14634,8 @@ TEST_F(Test_At_RcvMnCallSetCssnCnf,Test_At_RcvMnCallSetCssnCnf_004)
 
 }
 
-/* Added by s00217060 for 主动上报AT命令控制下移至C核, 2013-4-17, end */
 
-/*****************************************************************************
-类名     : Test_At_QryAlsCnf
-功能描述 : 查询ALS回复消息的处理函数
-修改历史 :
-1.日   期  : 2011-10-25
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryAlsCnf: public ::testing::Test
 {
 public:
@@ -18466,15 +14683,7 @@ public:
         }
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_SetAlsCnf_001
-测试用例标题      : 回复消息中指示设置ALS成功
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryAlsCnf,Test_At_QryAlsCnf_001)
 {
     /* 变量定义 */
@@ -18505,14 +14714,7 @@ TEST_F(Test_At_QryAlsCnf,Test_At_QryAlsCnf_001)
     GlobalMockObject::verify();
 
 }
-/*****************************************************************************
-类名     : Test_At_SetUus1Cnf
-功能描述 : 设置UUS1回复消息的处理函数
-修改历史 :
-1.日   期  : 2011-10-25
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetUus1Cnf: public ::testing::Test
 {
 public:
@@ -18560,15 +14762,7 @@ public:
         }
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_SetUus1Cnf_001
-测试用例标题      : 回复消息中指示设置UUS1成功
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetUus1Cnf,Test_At_SetUus1Cnf_001)
 {
     /* 变量定义 */
@@ -18596,15 +14790,7 @@ TEST_F(Test_At_SetUus1Cnf,Test_At_SetUus1Cnf_001)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_At_SetUus1Cnf_002
-测试用例标题      : 回复消息中指示设置UUS1失败
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetUus1Cnf,Test_At_SetUus1Cnf_002)
 {
     /* 变量定义 */
@@ -18632,14 +14818,7 @@ TEST_F(Test_At_SetUus1Cnf,Test_At_SetUus1Cnf_002)
     GlobalMockObject::verify();
 
 }
-/*****************************************************************************
-类名     : Test_At_QryUus1Cnf
-功能描述 : 设置UUS1回复消息的处理函数
-修改历史 :
-1.日   期  : 2011-10-25
-作   者  : c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryUus1Cnf: public ::testing::Test
 {
 public:
@@ -18687,15 +14866,7 @@ public:
         }
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_QryUus1Cnf_001
-测试用例标题      : 回复消息中指示设置UUS1成功
-预期结果          :
-修改历史     :
-1.日   期  : 2011-10-25
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryUus1Cnf,Test_At_QryUus1Cnf_001)
 {
     /* 变量定义 */
@@ -18732,15 +14903,7 @@ TEST_F(Test_At_QryUus1Cnf,Test_At_QryUus1Cnf_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryUus1Cnf_002
-测试用例标题      : 回复消息中指示设置UUS1成功
-预期结果          :
-修改历史     :
-1.日   期  : 2013-04-18
-作   者  :   s00217060
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryUus1Cnf,Test_At_QryUus1Cnf_002)
 {
     /* 变量定义 */
@@ -18779,14 +14942,7 @@ TEST_F(Test_At_QryUus1Cnf,Test_At_QryUus1Cnf_002)
 
 }
 
-/*****************************************************************************
-类名     : Test_At_PhMsgProc
-功能描述 : At_PhMsgProc UT工程类
-修改历史     :
-1.日   期  : 2011-11-17
-作   者  :   c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PhMsgProc: public ::testing::Test
 {
 public:
@@ -18800,15 +14956,7 @@ public:
 
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_001
-测试用例标题      : 收到的是列表搜回复消息
-预期结果          :
-修改历史     :
-1.日   期  : 2011-11-17
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_001)
 {
     /* 变量定义 */
@@ -18826,15 +14974,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_002
-测试用例标题      : 收到的是ATTACH的回复消息
-预期结果          :
-修改历史     :
-1.日   期  : 2011-11-17
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_002)
 {
     /* 变量定义 */
@@ -18854,15 +14994,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_002)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_003
-测试用例标题      : 收到的网络拒绝原因值上报消息
-预期结果          :
-修改历史     :
-1.日   期  : 2013-8-15
-作   者  :   l00208543
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_003)
 {
     /* 变量定义 */
@@ -18881,15 +15013,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_004
-测试用例标题      : 收到的搜网开始和搜网结果信息
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-09
-作   者  :   l00208543
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_004)
 {
     /* 变量定义 */
@@ -18908,15 +15032,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_005
-测试用例标题      : 收到查询OPLMN命令的回复消息
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-15
-作   者  :   s00190137
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_005)
 {
     /* 变量定义 */
@@ -18937,15 +15053,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_006
-测试用例标题      : 收到设置OPLMN命令的回复消息
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-15
-作   者  :   s00190137
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_006)
 {
     /* 变量定义 */
@@ -18964,15 +15072,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_004
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId失败
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_004_1)
 {
     /* 变量定义 */
@@ -18998,16 +15098,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_004_1)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_005
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为SUCCESS
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_005_1)
 {
     /* 变量定义 */
@@ -19042,16 +15133,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_005_1)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_006
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为SUCCESS
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_006_1)
 {
     /* 变量定义 */
@@ -19105,16 +15187,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_006_1)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_007
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为SUCCESS
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_007)
 {
     /* 变量定义 */
@@ -19167,16 +15240,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_008
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为SUCCESS
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_008)
 {
     /* 变量定义 */
@@ -19241,16 +15305,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_009
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为TAF_MMA_NET_SCAN_CAUSE_SIGNAL_EXIST
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_009)
 {
     /* 变量定义 */
@@ -19291,17 +15346,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_010
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_STATE_NOT_ALLOWED
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_010)
 {
     /* 变量定义 */
@@ -19342,17 +15387,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_010)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_011
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_FREQ_LOCK
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_011)
 {
     /* 变量定义 */
@@ -19393,17 +15428,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_011)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_012
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_PARA_ERROR
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_012)
 {
     /* 变量定义 */
@@ -19444,17 +15469,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_012)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_013
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_CONFLICT
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_013)
 {
     /* 变量定义 */
@@ -19495,17 +15510,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_013)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_014
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_SERVICE_EXIST
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_014)
 {
     /* 变量定义 */
@@ -19545,17 +15550,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_014)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_015
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_TIMER_EXPIRED
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_015)
 {
     /* 变量定义 */
@@ -19596,17 +15591,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_015)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_016
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_RAT_TYPE_ERROR
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_016)
 {
     /* 变量定义 */
@@ -19647,17 +15632,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_016)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_017
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_MMA_STATE_DISABLE
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_017)
 {
     /* 变量定义 */
@@ -19698,17 +15673,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_017)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_018
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_MMA_STATE_DISABLE
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_018)
 {
     /* 变量定义 */
@@ -19749,17 +15714,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_018)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_019
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_NOT_CAMPED
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_019)
 {
     /* 变量定义 */
@@ -19800,17 +15755,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_019)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhMsgProc_020
-测试用例标题      : 收到MMA的NETSCAN回复,调用At_ClientIdToUserId成功，
-                    上报结果为FAILURE，失败原因值为
-                    TAF_MMA_NET_SCAN_CAUSE_NOT_CAMPED,ucIndex指示广播
-预期结果          :
-修改历史     :
-1.日   期  : 2013-10-29
-作   者  :   w00242748
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_020)
 {
     /* 变量定义 */
@@ -19848,14 +15793,7 @@ TEST_F(Test_At_PhMsgProc,Test_At_PhMsgProc_020)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_PhPlmnListProc
-功能描述 : At_PhPlmnListProc UT工程类
-修改历史     :
-1.日   期  : 2011-11-17
-作   者  :   c00173809
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PhPlmnListProc: public ::testing::Test
 {
 public:
@@ -19877,15 +15815,7 @@ public:
         ucIndex = 0;
     }
 };
-/*******************************************************************
-测试用例编号      : Test_At_PhPlmnListProc_001
-测试用例标题      : 收到的是列表搜回复消息
-预期结果          :
-修改历史     :
-1.日   期  : 2011-11-17
-作   者  :   c00173809
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhPlmnListProc,Test_At_PhPlmnListProc_001)
 {
     /* 变量定义 */
@@ -19934,14 +15864,7 @@ TEST_F(Test_At_PhPlmnListProc,Test_At_PhPlmnListProc_001)
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
-类名     : Test_AT_RcvTafPsEvtReportRaInfo
-功能描述 : Test_TAT_AppIpv6PdpActCnfProc UT工程类
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvTafPsEvtReportRaInfo: public ::testing::Test
 {
 public:
@@ -19983,15 +15906,7 @@ public:
 };
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*******************************************************************
- 测试用例编号      : Test_AT_RcvTafPsEvtReportRaInfo_001
- 测试用例标题      : 获取modemId失败，默认Modem0，事件处理
- 预期结果          : 返回VOS_OK
- 修改历史     :
- 1.日   期  : 2013-1-9
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtReportRaInfo, Test_AT_RcvTafPsEvtReportRaInfo_001)
 {
     VOS_UINT8                           ucIndex;
@@ -20005,15 +15920,7 @@ TEST_F(Test_AT_RcvTafPsEvtReportRaInfo, Test_AT_RcvTafPsEvtReportRaInfo_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_RcvTafPsEvtReportRaInfo_002
- 测试用例标题      : 获取modemId成功，事件处理
- 预期结果          : 返回VOS_OK
- 修改历史     :
- 1.日   期  : 2013-1-9
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtReportRaInfo, Test_AT_RcvTafPsEvtReportRaInfo_002)
 {
     VOS_UINT8                           ucIndex;
@@ -20045,15 +15952,7 @@ TEST_F(Test_AT_RcvTafPsEvtReportRaInfo, Test_AT_RcvTafPsEvtReportRaInfo_002)
 #endif
 
 #if(FEATURE_ON == FEATURE_NDIS)
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtReportRaInfo_003
-测试用例标题      : NDIS用户类型，产生IPV6地址成功，发送PDN信息给NDIS失败
-预期结果          : 产生正确的IPV6地址，发送失败后打印LOG
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtReportRaInfo,Test_AT_RcvTafPsEvtReportRaInfo_003)
 {
     AT_PDP_ENTITY_STRU                 *pstPdpEntity;
@@ -20093,15 +15992,7 @@ TEST_F(Test_AT_RcvTafPsEvtReportRaInfo,Test_AT_RcvTafPsEvtReportRaInfo_003)
     GlobalMockObject::verify();
 }
 #endif
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtReportRaInfo_004
-测试用例标题      : APP用户类型，产生IPV6地址成功，
-预期结果          : 产生正确的IPV6地址，主动上报IPV6信息
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtReportRaInfo,Test_AT_RcvTafPsEvtReportRaInfo_004)
 {
     AT_PDP_ENTITY_STRU                 *pstPdpEntity;
@@ -20156,15 +16047,7 @@ TEST_F(Test_AT_RcvTafPsEvtReportRaInfo,Test_AT_RcvTafPsEvtReportRaInfo_004)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtReportRaInfo_005
-测试用例标题      : APP用户类型，产生IPV6地址成功，
-预期结果          : 产生正确的IPV6地址，主动上报IPV6信息
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtReportRaInfo,Test_AT_RcvTafPsEvtReportRaInfo_005)
 {
     AT_PDP_ENTITY_STRU                 *pstPdpEntity;
@@ -20205,15 +16088,7 @@ TEST_F(Test_AT_RcvTafPsEvtReportRaInfo,Test_AT_RcvTafPsEvtReportRaInfo_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafPsEvtReportRaInfo_006
-测试用例标题      : HSIC用户类型，产生IPV6地址成功，
-预期结果          : 产生正确的IPV6地址，主动上报IPV6信息
-修改历史     :
-1.日   期  : 2011-12-21
-  作   者  : c00173809
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafPsEvtReportRaInfo,Test_AT_RcvTafPsEvtReportRaInfo_006)
 {
     AT_PDP_ENTITY_STRU                 *pstPdpEntity;
@@ -20252,14 +16127,7 @@ TEST_F(Test_AT_RcvTafPsEvtReportRaInfo,Test_AT_RcvTafPsEvtReportRaInfo_006)
 
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_SetMemStatusRspProc
-功能描述 : AT_SetMemStatusRspProc UT工程类
-修改历史 :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_SetMemStatusRspProc: public ::testing::Test
 {
 public:
@@ -20277,15 +16145,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetMemStatusRspProc_001
-测试用例标题      : 收到AP短信存储空间设置操作结果，返回操作结果成功
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_SetMemStatusRspProc, Test_AT_SetMemStatusRspProc_001)
 {
     MN_MSG_EVENT_INFO_STRU              stEvent;
@@ -20318,15 +16178,7 @@ TEST_F(Test_AT_SetMemStatusRspProc, Test_AT_SetMemStatusRspProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetMemStatusRspProc_002
-测试用例标题      : 获取的用户索引非法
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_SetMemStatusRspProc, Test_AT_SetMemStatusRspProc_002)
 {
     MN_MSG_EVENT_INFO_STRU              stEvent;
@@ -20357,15 +16209,7 @@ TEST_F(Test_AT_SetMemStatusRspProc, Test_AT_SetMemStatusRspProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetMemStatusRspProc_003
-测试用例标题      : 当前的操作类型不符
-预期结果          : 返回VOS_ERR
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_SetMemStatusRspProc, Test_AT_SetMemStatusRspProc_003)
 {
     MN_MSG_EVENT_INFO_STRU              stEvent;
@@ -20397,15 +16241,7 @@ TEST_F(Test_AT_SetMemStatusRspProc, Test_AT_SetMemStatusRspProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_SetMemStatusRspProc_004
-测试用例标题      : 收到设置操作失败消息
-预期结果          : 返回VOS_OK
-修改历史   :
-1.日   期  : 2012-02-13
-  作   者  : l00198894
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_SetMemStatusRspProc, Test_AT_SetMemStatusRspProc_004)
 {
     MN_MSG_EVENT_INFO_STRU              stEvent;
@@ -20441,15 +16277,7 @@ TEST_F(Test_AT_SetMemStatusRspProc, Test_AT_SetMemStatusRspProc_004)
 
 
 #if 0
-/*******************************************************************
-测试用例编号      : Test_AT_ClearDtmfInfo_001
-测试用例标题      : 清除DTMF相关的信息
-预期结果          : 清除DTMF相关的信息
-修改历史          :
-1.日   期         : 2011-10-14
-  作   者         : l65478
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_ClearDtmfInfo,Test_AT_ClearDtmfInfo_001)
 {
     // 变量声明
@@ -20473,15 +16301,7 @@ TEST(Test_AT_ClearDtmfInfo,Test_AT_ClearDtmfInfo_001)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_AT_ClearDtmfInfo_002
-测试用例标题      : 清除DTMF相关的信息，停止DTMF定时器失败
-预期结果          : 清除DTMF相关的信息
-修改历史          :
-1.日   期         : 2013-03-08
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_ClearDtmfInfo,Test_AT_ClearDtmfInfo_002)
 {
      // 变量声明
@@ -20510,14 +16330,7 @@ TEST(Test_AT_ClearDtmfInfo,Test_AT_ClearDtmfInfo_002)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_At_SsRspCusdProc
-功能描述 : Test_At_SsRspCusdProc测试命令的UT测试类
-修改历史 :
-1.日   期  : 2012-04-28
-  作   者  : f62575
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SsRspCusdProc: public ::testing::Test
 {
 public:
@@ -20535,15 +16348,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspCusdProc_001
-测试用例标题      : STK USSD业务错误响应消息处理
-预期结果          : 输出正确的错误码
-修改历史     :
-1.日   期  : 2012-04-28
-  作   者  : f62575
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_SsRspCusdProc, Test_At_SsRspCusdProc_001)
 {
     TAF_UINT32                          ulResult;
@@ -20566,14 +16371,7 @@ TEST_F(Test_At_SsRspCusdProc, Test_At_SsRspCusdProc_001)
 
 }
 
-/*****************************************************************************
-类名     : Test_At_SsRspProc
-功能描述 : Test_At_SsRspProc测试命令的UT测试类
-修改历史 :
-1.日   期  : 2012-04-28
-  作   者  : f62575
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SsRspProc: public ::testing::Test
 {
 public:
@@ -20591,15 +16389,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspProc_001
-测试用例标题      : STK USSD业务临时响应消息处理
-预期结果          : 输出正确的错误码
-修改历史     :
-1.日   期  : 2012-04-28
-  作   者  : f62575
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc, Test_At_SsRspProc_001)
 {
     TAF_UINT32                          ulResult;
@@ -20622,15 +16412,7 @@ TEST_F(Test_At_SsRspProc, Test_At_SsRspProc_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspProc_002
-测试用例标题      : STK USSD业务错误响应消息处理
-预期结果          : 输出正确的错误码
-修改历史     :
-1.日   期  : 2012-04-28
-  作   者  : f62575
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc, Test_At_SsRspProc_002)
 {
     TAF_UINT32                          ulResult;
@@ -20652,15 +16434,7 @@ TEST_F(Test_At_SsRspProc, Test_At_SsRspProc_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspProc_003
-测试用例标题      : ERASE业务等待网络响应超时
-预期结果          : 输出正确的错误码
-修改历史     :
-1.日   期  : 2012-04-28
-  作   者  : f62575
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc, Test_At_SsRspProc_003)
 {
     TAF_UINT32                          ulResult;
@@ -20683,15 +16457,7 @@ TEST_F(Test_At_SsRspProc, Test_At_SsRspProc_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspProc_004
-测试用例标题      : STK USSD业务错误响应消息处理
-预期结果          : 输出正确的错误码
-修改历史     :
-1.日   期  : 2012-04-28
-  作   者  : f62575
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc, Test_At_SsRspProc_004)
 {
     TAF_UINT32                          ulResult;
@@ -20715,15 +16481,7 @@ TEST_F(Test_At_SsRspProc, Test_At_SsRspProc_004)
 }
 
 
-/*******************************************************************
-*测试项:           AT命令为AT_CMD_CUSD的ssa上报事件处理
-*被测函数功能描述: AT命令为AT_CMD_CUSD的ssa上报事件处理
-*预期结果：        调用At_SsRspCusdProc()
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_123)
 {
     TAF_UINT8                                       ucIndex;
@@ -20741,15 +16499,7 @@ TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_123)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           ssa上报ERROR事件的处理
-*被测函数功能描述: ssa上报ERROR事件的处理
-*预期结果：        直接判断错误码
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_124)
 {
     TAF_UINT8                                       ucIndex;
@@ -20770,15 +16520,7 @@ TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_124)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           ssa上报TAF_SS_EVT_INTERROGATESS_CNF事件的处理
-*被测函数功能描述: ssa上报TAF_SS_EVT_INTERROGATESS_CNF事件的处理
-*预期结果：        调用At_SsRspInterrogateCnfProc()
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_125)
 {
     TAF_UINT8                                       ucIndex;
@@ -20798,19 +16540,7 @@ TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_125)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           ssa上报TAF_SS_EVT_ERASESS_CNF事件或TAF_SS_EVT_REGISTERSS_CNF或TAF_SS_EVT_ACTIVATESS_CNF
-                   或TAF_SS_EVT_DEACTIVATESS_CNF或TAF_SS_EVT_REG_PASSWORD_CNF或TAF_SS_EVT_ERASE_CC_ENTRY_CNF,
-                   不带error的处理
-*被测函数功能描述: ssa上报TAF_SS_EVT_ERASESS_CNF事件或TAF_SS_EVT_REGISTERSS_CNF或TAF_SS_EVT_ACTIVATESS_CNF
-                   或TAF_SS_EVT_DEACTIVATESS_CNF或TAF_SS_EVT_REG_PASSWORD_CNF或TAF_SS_EVT_ERASE_CC_ENTRY_CNF,
-                   不带error的处理
-*预期结果：        上报AT_OK
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_126)
 {
     VOS_UINT8                                       ucIndex;
@@ -20830,19 +16560,7 @@ TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_126)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           ssa上报TAF_SS_EVT_ERASESS_CNF事件或TAF_SS_EVT_REGISTERSS_CNF或TAF_SS_EVT_ACTIVATESS_CNF
-                   或TAF_SS_EVT_DEACTIVATESS_CNF或TAF_SS_EVT_REG_PASSWORD_CNF或TAF_SS_EVT_ERASE_CC_ENTRY_CNF,
-                   带error的处理
-*被测函数功能描述: ssa上报TAF_SS_EVT_ERASESS_CNF事件或TAF_SS_EVT_REGISTERSS_CNF或TAF_SS_EVT_ACTIVATESS_CNF
-                   或TAF_SS_EVT_DEACTIVATESS_CNF或TAF_SS_EVT_REG_PASSWORD_CNF或TAF_SS_EVT_ERASE_CC_ENTRY_CNF,
-                   带error的处理
-*预期结果：        上报相应错误码
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_127)
 {
     TAF_UINT8                                       ucIndex;
@@ -20864,17 +16582,7 @@ TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_127)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           ssa上报TAF_SS_EVT_USS_NOTIFY_IND或TAF_SS_EVT_USS_REQ_IND或TAF_SS_EVT_PROCESS_USS_REQ_CNF
-                   或TAF_SS_EVT_USS_RELEASE_COMPLETE_IND事件
-*被测函数功能描述: ssa上报TAF_SS_EVT_USS_NOTIFY_IND或TAF_SS_EVT_USS_REQ_IND或TAF_SS_EVT_PROCESS_USS_REQ_CNF
-                   或TAF_SS_EVT_USS_RELEASE_COMPLETE_IND事件的处理
-*预期结果：        调用At_SsRspUssdProc()处理
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_128)
 {
     TAF_UINT8                                       ucIndex;
@@ -20894,15 +16602,7 @@ TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_128)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           ssa上报TAF_SS_EVT_GET_PASSWORD_IND事件
-*被测函数功能描述: ssa上报TAF_SS_EVT_GET_PASSWORD_IND事件的处理
-*预期结果：        调用TAF_GetPasswordRsp()处理
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_129)
 {
     TAF_UINT8                                       ucIndex;
@@ -20920,15 +16620,7 @@ TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_129)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-*测试项:           ssa上报非法事件
-*被测函数功能描述: ssa上报非法事件的处理
-*预期结果：        不做处理,走default分支直接返回
-************************* 修改记录 *************************
-#  1.日    期: 2009年12月28日
-#    作    者: z161729
-#    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_130)
 {
     TAF_UINT8                                       ucIndex;
@@ -20945,14 +16637,7 @@ TEST_F(Test_At_SsRspProc,Test_At_SsRspProc_130)
 
 
 
-/*****************************************************************************
-类名     : Test_At_QryCpinRspProc
-功能描述 : At_QryCpinRspProc UT工程类
-修改历史 :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryCpinRspProc: public ::testing::Test
 {
 public:
@@ -20968,15 +16653,7 @@ public:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpinRspProc_001
-测试用例标题      :  PINTYPE为TAF_SIM_PIN
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_001)
 {
     // 变量声明
@@ -21001,15 +16678,7 @@ TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpinRspProc_002
-测试用例标题      :  PINTYPE为TAF_SIM_PUK
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_002)
 {
     // 变量声明
@@ -21034,15 +16703,7 @@ TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpinRspProc_003
-测试用例标题      :  PINTYPE为TAF_PHNET_PIN
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_003)
 {
     // 变量声明
@@ -21067,15 +16728,7 @@ TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_003)
     //GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpinRspProc_004
-测试用例标题      :  PINTYPE为TAF_PHNET_PUK
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_004)
 {
     // 变量声明
@@ -21100,15 +16753,7 @@ TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_004)
     //GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpinRspProc_005
-测试用例标题      :  PINTYPE为TAF_PHNETSUB_PIN
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_005)
 {
     // 变量声明
@@ -21133,15 +16778,7 @@ TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_005)
     //GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpinRspProc_006
-测试用例标题      :  PINTYPE为TAF_PHNETSUB_PUK
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_006)
 {
     // 变量声明
@@ -21168,15 +16805,7 @@ TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_006)
 
 
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpinRspProc_007
-测试用例标题      :  PINTYPE为TAF_PHSP_PIN
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_007)
 {
     // 变量声明
@@ -21201,15 +16830,7 @@ TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_007)
     //GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpinRspProc_008
-测试用例标题      :  PINTYPE为TAF_PHSP_PUK
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_008)
 {
     // 变量声明
@@ -21234,15 +16855,7 @@ TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_008)
     //GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryCpinRspProc_009
-测试用例标题      :  PINTYPE为TAF_SIM_PIN2
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_009)
 {
     // 变量声明
@@ -21267,14 +16880,7 @@ TEST_F(Test_At_QryCpinRspProc, Test_At_QryCpinRspProc_009)
     //GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_PhRspProc
-功能描述 : At_PhRspProc UT工程类
-修改历史 :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PhRspProc: public ::testing::Test
 {
 public:
@@ -21304,15 +16910,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_PhRspProc_001
-测试用例标题      : AT+CPIN命令查询结果打印
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_001)
 {
     // 变量声明
@@ -21347,15 +16945,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhRspProc_002
-测试用例标题      : AT^CPIN2命令查询, 但命令请求不符
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_002)
 {
     // 变量声明
@@ -21383,15 +16973,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhRspProc_003
-测试用例标题      : 打断结果上报, 当前不再列表搜过程
-预期结果          : 错误打印
-修改历史          :
-1.日   期  : 2012-09-26
-  作   者  : l00171473
-  修改内容 : 新建for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_003)
 {
     TAF_PHONE_EVENT_INFO_STRU           stEvent;
@@ -21411,15 +16993,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhRspProc_004
-测试用例标题      : 打断结果上报
-预期结果          : 上报ABORT结果
-修改历史          :
-1.日   期  : 2012-09-26
-  作   者  : l00171473
-  修改内容 : 新建for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_004)
 {
     VOS_UINT8                           aucDataAt[20];
@@ -21463,15 +17037,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhRspProc_005
-测试用例标题      : 列表搜结果上报
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-09-28
-  作   者  : s00217060
-  修改内容 : 新建for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_005)
 {
     VOS_UINT8                           aucDataAt[20];
@@ -21518,15 +17084,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhRspProc_006
-测试用例标题      : 列表搜结果上报
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-09-28
-  作   者  : s00217060
-  修改内容 : 新建for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_006)
 {
     VOS_UINT8                           aucDataAt[20];
@@ -21577,15 +17135,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhRspProc_007
-测试用例标题      : 列表搜结果上报
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-09-28
-  作   者  : s00217060
-  修改内容 : 新建for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_007)
 {
     VOS_UINT8                           aucDataAt[20];
@@ -21636,15 +17186,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_007)
 }
 
 #if(FEATURE_ON == FEATURE_LTE)
-/*******************************************************************
- 测试用例编号      : Test_At_PhRspProc_008
- 测试用例标题      : ClientID为AT_CLIENT_BUTT无效值
- 预期结果          : ModemID为默认值
- 修改历史     :
- 1.日   期  : 2013-01-05
-   作   者  : z00220246
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_008)
 {
     VOS_UINT8       ucIndex;
@@ -21675,15 +17217,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_At_PhRspProc_009
- 测试用例标题      : TAF_PH_EVT_OPER_MODE_CN事件，命令模式AT_CMD_TMODE_SET
- 预期结果          :返回
- 修改历史     :
- 1.日   期  : 2013-01-05
-   作   者  : z00220246
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_009)
 {
     VOS_UINT8       ucIndex;
@@ -21713,15 +17247,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_At_PhRspProc_010
- 测试用例标题      : TAF_PH_EVT_OPER_MODE_CN事件，命令模式为AT_CMD_SET_TMODE
- 预期结果          : 跳出case
- 修改历史     :
- 1.日   期  : 2013-01-05
-   作   者  : z00220246
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_010)
 {
     VOS_UINT8       ucIndex;
@@ -21750,15 +17276,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_010)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_At_PhRspProc_016
- 测试用例标题      : TAF_PH_EVT_SET_PREF_PLMN_TYPE_CNF事件
- 预期结果          : 结果返回OK
- 修改历史     :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_016)
 {
     VOS_UINT8                           ucIndex;
@@ -21790,14 +17308,7 @@ TEST_F(Test_At_PhRspProc, Test_At_PhRspProc_016)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_ProcOperModeWhenLteOn
-功能描述 : AT_ProcOperModeWhenLteOn UT工程类
-修改历史 :
-1.日   期  : 2013-01-06
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcOperModeWhenLteOn: public ::testing::Test
 {
 public:
@@ -21811,15 +17322,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcOperModeWhenLteOn_001
-测试用例标题      : AT_CMD_SET_TMODE，g_ulGuOnly=1
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2013-01-06
-  作   者  : z00220246
-  修改内容 : 新建case
-*******************************************************************/
+
 TEST_F(Test_AT_ProcOperModeWhenLteOn, Test_AT_ProcOperModeWhenLteOn_001)
 {
     VOS_UINT8       ucIndex;
@@ -21841,14 +17344,7 @@ TEST_F(Test_AT_ProcOperModeWhenLteOn, Test_AT_ProcOperModeWhenLteOn_001)
 }
 
 #endif
-/*****************************************************************************
-类名     : Test_AT_PhnEvtPlmnList
-功能描述 : AT_PhnEvtPlmnList UT工程类
-修改历史 :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PhnEvtPlmnList: public ::testing::Test
 {
 public:
@@ -21866,15 +17362,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_PhnEvtPlmnList_001
-测试用例标题      : 列表搜结果上报
-预期结果          : 返回AT_CME_UNKNOWN
-修改历史          :
-1.日   期  : 2012-09-28
-  作   者  : s00217060
-  修改内容 : 新建for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_AT_PhnEvtPlmnList, Test_AT_PhnEvtPlmnList_001)
 {
     VOS_UINT8                           aucDataAt[20];
@@ -21913,15 +17401,7 @@ TEST_F(Test_AT_PhnEvtPlmnList, Test_AT_PhnEvtPlmnList_001)
     EXPECT_EQ((TAF_UINT32)AT_CME_UNKNOWN, ulRtn);
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PhnEvtPlmnList_002
-测试用例标题      : 列表搜结果上报
-预期结果          : 返回AT_CME_UNKNOWN
-修改历史          :
-1.日   期  : 2012-09-28
-  作   者  : s00217060
-  修改内容 : 新建for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_AT_PhnEvtPlmnList, Test_AT_PhnEvtPlmnList_002)
 {
     VOS_UINT8                           aucDataAt[20];
@@ -21973,15 +17453,7 @@ TEST_F(Test_AT_PhnEvtPlmnList, Test_AT_PhnEvtPlmnList_002)
     EXPECT_EQ((TAF_UINT32)AT_OK, ulRtn);
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PhnEvtPlmnList_003
-测试用例标题      : 列表搜结果上报
-预期结果          : 返回AT_CME_UNKNOWN
-修改历史          :
-1.日   期  : 2012-09-28
-  作   者  : s00217060
-  修改内容 : 新建for V7R1C50_At_Abort
-*******************************************************************/
+
 TEST_F(Test_AT_PhnEvtPlmnList, Test_AT_PhnEvtPlmnList_003)
 {
     VOS_UINT8                           aucDataAt[20];
@@ -22034,14 +17506,7 @@ TEST_F(Test_AT_PhnEvtPlmnList, Test_AT_PhnEvtPlmnList_003)
 
 
 
-/*****************************************************************************
-类名     : Test_At_StkCsinIndPrint
-功能描述 : At_StkCsinIndPrint UT工程类
-修改历史     :
-1.日   期  : 2012-05-19
-作   者  :   h59254
-修改内容 :   新生成类
-*****************************************************************************/
+
 class Test_At_StkCsinIndPrint: public ::testing::Test
 {
 public:
@@ -22056,15 +17521,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_StkCsinIndPrint_001
-测试用例标题      : CSIN输出函数
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_StkCsinIndPrint, Test_At_StkCsinIndPrint_001)
 {
     SI_STK_EVENT_INFO_STRU              stEvent;
@@ -22084,14 +17541,7 @@ TEST_F(Test_At_StkCsinIndPrint, Test_At_StkCsinIndPrint_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_STKCnfMsgProc
-功能描述 : AT_STKCnfMsgProc UT工程类
-修改历史     :
-1.日   期  : 2012-05-19
-作   者  :   h59254
-修改内容 :   新生成类
-*****************************************************************************/
+
 class Test_AT_STKCnfMsgProc: public ::testing::Test
 {
 public:
@@ -22106,15 +17556,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_001
-测试用例标题      : STK输出函数，ClientId转换错误
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_001)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22141,15 +17583,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_002
-测试用例标题      : 非主动上报的AT命令输出转换得到的Index为广播
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_002)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22178,15 +17612,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_003
-测试用例标题      : 非主动上报的AT命令输出结果为ERROR
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_003)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22223,15 +17649,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_004
-测试用例标题      : 在Android系统上通过^CSIN的主动上报
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_004)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22265,15 +17683,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_005
-测试用例标题      : 在MBB上通过^STIN的主动上报
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_005)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22307,15 +17717,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_006
-测试用例标题      : 在Android系统上通过^CSIN的主动上报
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_006)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22353,15 +17755,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_007
-测试用例标题      : 在MBB上通过^STGI的获取主动命令
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_007)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22398,15 +17792,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_007)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_008
-测试用例标题      : call control 结果通过^ccin上报
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_008)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22444,15 +17830,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_008
-测试用例标题      : sms control 结果通过^ccin上报
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_009)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22491,15 +17869,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_009)
 }
 #if (FEATURE_VSIM == FEATURE_ON)
 
-/*******************************************************************
-测试用例编号      : Test_AT_STKCnfMsgProc_010
-测试用例标题      : OTA短信通过^HVSMR上报
-预期结果          : 无
-修改历史          :
-1.日   期  : 2012-05-19
-  作   者  :   h59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_010)
 {
     MN_APP_STK_AT_CNF_STRU              stCnfMsg;
@@ -22535,14 +17905,7 @@ TEST_F(Test_AT_STKCnfMsgProc, Test_AT_STKCnfMsgProc_010)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_AT_CsRspEvtConnectProc
-功能描述 : AT_CsRspEvtConnectProc UT工程类
-修改历史 :
-1.日   期  : 2012-05-21
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_CsRspEvtConnectProc: public ::testing::Test
 {
 public:
@@ -22557,15 +17920,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsRspEvtConnectProc_001
-测试用例标题      : 电路域MN_CALL_EVT_CONNECT事件主叫呼叫类型为voice且ConnectNumber不为空上报的处理
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-05-21
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_001)
 {
     TAF_UINT8                           ucIndex;
@@ -22594,15 +17949,7 @@ TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsRspEvtConnectProc_002
-测试用例标题      : 电路域MN_CALL_EVT_CONNECT事件主叫呼叫类型为voice且ConnectNumber为空上报的处理
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-05-21
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_002)
 {
     TAF_UINT8                           ucIndex;
@@ -22627,15 +17974,7 @@ TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsRspEvtConnectProc_003
-测试用例标题      : 电路域MN_CALL_EVT_CONNECT事件主叫呼叫类型为voice且colp_disable上报的处理
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-05-21
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_003)
 {
     TAF_UINT8                           ucIndex;
@@ -22659,15 +17998,7 @@ TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsRspEvtConnectProc_004
-测试用例标题      : 电路域MN_CALL_EVT_CONNECT事件呼叫类型为vedio上报的处理
-预期结果          : 返回AT_OK
-修改历史          :
-1.日   期  : 2012-05-21
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_004)
 {
     TAF_UINT8                           ucIndex;
@@ -22692,15 +18023,7 @@ TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsRspEvtConnectProc_005
-测试用例标题      : 电路域MN_CALL_EVT_CONNECT事件,获取ModemId失败
-预期结果          : 返回
-修改历史          :
-1.日   期  : 2013-03-20
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_005)
 {
     TAF_UINT8                           ucIndex;
@@ -22725,14 +18048,7 @@ TEST(Test_AT_CsRspEvtConnectProc,Test_AT_CsRspEvtConnectProc_005)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_IsFindVedioModemStatus
-功能描述 : AT_IsFindVedioModemStatus UT工程类
-修改历史 :
-1.日   期  : 2012-05-21
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_IsFindVedioModemStatus: public ::testing::Test
 {
 public:
@@ -22753,15 +18069,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsFindVedioModemStatus_001
-测试用例标题      : 通过可视电话端口挂断电话直接返回VOS_TRUE
-预期结果          : 返回VOS_TRUE
-修改历史          :
-1.日   期  : 2012-05-21
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_IsFindVedioModemStatus,Test_AT_IsFindVedioModemStatus_001)
 {
     TAF_UINT8                           ucIndex;
@@ -22791,15 +18099,7 @@ TEST(Test_AT_IsFindVedioModemStatus,Test_AT_IsFindVedioModemStatus_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_IsFindVedioModemStatus_002
-测试用例标题      : 通过AT端口挂断电话直接返回VOS_FALSE
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2012-05-21
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_IsFindVedioModemStatus,Test_AT_IsFindVedioModemStatus_002)
 {
     TAF_UINT8                           ucIndex;
@@ -22824,15 +18124,7 @@ TEST(Test_AT_IsFindVedioModemStatus,Test_AT_IsFindVedioModemStatus_002)
     GlobalMockObject::verify();
 
 }
-/*******************************************************************
-测试用例编号      : Test_AT_IsFindVedioModemStatus_003
-测试用例标题      : 当前未找到可视电话直接返回FALSE
-预期结果          : 返回VOS_FALSE
-修改历史          :
-1.日   期  : 2012-05-21
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_IsFindVedioModemStatus,Test_AT_IsFindVedioModemStatus_003)
 {
     TAF_UINT8                           ucIndex;
@@ -22849,14 +18141,7 @@ TEST(Test_AT_IsFindVedioModemStatus,Test_AT_IsFindVedioModemStatus_003)
 
 }
 
-/*****************************************************************************
-类名     : Test_AT_ConvertSysCfgRatOrderToStr
-功能描述 : AT_ConvertSysCfgRatOrderToStr UT工程类
-修改历史 :
-1.日   期  : 2012-05-24
-  作   者  : f62575
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ConvertSysCfgRatOrderToStr: public ::testing::Test
 {
 public:
@@ -22872,15 +18157,7 @@ public:
 };
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*******************************************************************
-测试用例编号      : Test_AT_ConvertSysCfgRatOrderToStr_001
-测试用例标题      : 网络接入次序为LTE->WCDMA->GSM
-预期结果          : 输出00自动模式
-修改历史          :
-1.日   期  : 2012-05-24
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_ConvertSysCfgRatOrderToStr,Test_AT_ConvertSysCfgRatOrderToStr_001)
 {
     TAF_MMA_RAT_ORDER_STRU               stRatOrder;
@@ -22901,15 +18178,7 @@ TEST(Test_AT_ConvertSysCfgRatOrderToStr,Test_AT_ConvertSysCfgRatOrderToStr_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ConvertSysCfgRatOrderToStr_002
-测试用例标题      : 网络接入次序为LTE->WCDMA
-预期结果          : 输出0302自动模式
-修改历史          :
-1.日   期  : 2012-05-24
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_ConvertSysCfgRatOrderToStr,Test_AT_ConvertSysCfgRatOrderToStr_002)
 {
     TAF_MMA_RAT_ORDER_STRU               stRatOrder;
@@ -22930,15 +18199,7 @@ TEST(Test_AT_ConvertSysCfgRatOrderToStr,Test_AT_ConvertSysCfgRatOrderToStr_002)
 
 }
 #else
-/*******************************************************************
-测试用例编号      : Test_AT_ConvertSysCfgRatOrderToStr_003
-测试用例标题      : 网络接入次序为WCDMA->GSM
-预期结果          : 输出00自动模式
-修改历史          :
-1.日   期  : 2012-05-24
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_ConvertSysCfgRatOrderToStr,Test_AT_ConvertSysCfgRatOrderToStr_003)
 {
     TAF_MMA_RAT_ORDER_STRU               stRatOrder;
@@ -22958,15 +18219,7 @@ TEST(Test_AT_ConvertSysCfgRatOrderToStr,Test_AT_ConvertSysCfgRatOrderToStr_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ConvertSysCfgRatOrderToStr_004
-测试用例标题      : 网络接入次序为WCDMA
-预期结果          : 输出02自动模式
-修改历史          :
-1.日   期  : 2012-05-24
-  作   者  : f62575
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_AT_ConvertSysCfgRatOrderToStr,Test_AT_ConvertSysCfgRatOrderToStr_004)
 {
     TAF_MMA_RAT_ORDER_STRU               stRatOrder;
@@ -22988,14 +18241,7 @@ TEST(Test_AT_ConvertSysCfgRatOrderToStr,Test_AT_ConvertSysCfgRatOrderToStr_004)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_CsIndProc
-功能描述 : At_CsIndProc UT工程类
-修改历史 :
-1.日   期  : 2012-06-01
-  作   者  : f00179208
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CsIndProc: public ::testing::Test
 {
     VOS_UINT16             usLoop;
@@ -23025,18 +18271,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIndProc_001
-测试用例标题      : CS域MN_CALL_EVT_INCOMING事件上报的处理
-预期结果          : 当前存在来电标识置上
-修改历史          :
-1.日   期  : 2012-06-01
-  作   者  : f00179208
-  修改内容 : 新建CASE
-2.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 增加AT_VoiceStartRingTe的检查
-*******************************************************************/
+
 TEST(Test_At_CsIndProc, Test_At_CsIndProc_001)
 {
     TAF_UINT8                           ucIndex;
@@ -23058,15 +18293,7 @@ TEST(Test_At_CsIndProc, Test_At_CsIndProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIndProc_002
-测试用例标题      : CS域MN_CALL_EVT_RELEASED事件上报,可视电话找到对应的MODEM端口
-预期结果          : 回复管脚信号
-修改历史          :
-1.日   期  : 2012-06-01
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_At_CsIndProc,Test_At_CsIndProc_002)
 {
     TAF_UINT8                           ucIndex;
@@ -23087,15 +18314,7 @@ TEST(Test_At_CsIndProc,Test_At_CsIndProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIndProc_003
-测试用例标题      : CS域MN_CALL_EVT_RELEASED事件上报,可视电话找到对应的MODEM端口
-预期结果          : 直接返回
-修改历史          :
-1.日   期  : 2012-06-01
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_At_CsIndProc,Test_At_CsIndProc_003)
 {
     TAF_UINT8                           ucIndex;
@@ -23115,18 +18334,7 @@ TEST(Test_At_CsIndProc,Test_At_CsIndProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIndProc_004
-测试用例标题      : CS域MN_CALL_EVT_RELEASED事件上报呼叫类型是voice,自动接听定时器已经启动
-预期结果          : 自动接听定时器停止
-修改历史          :
-1.日   期  : 2012-06-01
-  作   者  : f00179208
-  修改内容 : 新建CASE
-2.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 增加AT_VoiceStopRingTe的检查
-*******************************************************************/
+
 TEST(Test_At_CsIndProc,Test_At_CsIndProc_004)
 {
     TAF_UINT8                           ucIndex;
@@ -23156,18 +18364,7 @@ TEST(Test_At_CsIndProc,Test_At_CsIndProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIndProc_005
-测试用例标题      : CS域MN_CALL_EVT_CONNECT事件上报
-预期结果          : 不做处理直接返回
-修改历史          :
-1.日   期  : 2012-06-01
-  作   者  : f00179208
-  修改内容 : 新建CASE
-2.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 增加AT_VoiceStopRingTe的检查
-*******************************************************************/
+
 TEST(Test_At_CsIndProc,Test_At_CsIndProc_005)
 {
     TAF_UINT8                           ucIndex;
@@ -23193,15 +18390,7 @@ TEST(Test_At_CsIndProc,Test_At_CsIndProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIndProc_006
-测试用例标题      : CS域MN_CALL_EVT_SS_NOTIFY事件上报的处理
-预期结果          : 调用AT_CsSsNotifyEvtIndProc()
-修改历史          :
-1.日   期  : 2012-06-01
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_At_CsIndProc,Test_At_CsIndProc_006)
 {
     TAF_UINT8                           ucIndex;
@@ -23219,15 +18408,7 @@ TEST(Test_At_CsIndProc,Test_At_CsIndProc_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIndProc_007
-测试用例标题      : CS域MN_CALL_EVT_UUS1_INFO事件上报
-预期结果          : 不做处理直接返回
-修改历史          :
-1.日   期  : 2012-06-01
-  作   者  : f00179208
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST(Test_At_CsIndProc,Test_At_CsIndProc_007)
 {
     TAF_UINT8                           ucIndex;
@@ -23245,18 +18426,7 @@ TEST(Test_At_CsIndProc,Test_At_CsIndProc_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIndProc_008
-测试用例标题      : CS域MN_CALL_EVT_ALL_RELEASED事件上报的处理
-预期结果          : 当前存在来电标识置上false
-修改历史          :
-1.日   期  : 2013-03-20
-  作   者  : z00220246
-  修改内容 : 新建CASE
-2.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 增加AT_VoiceStopRingTe的检查
-*******************************************************************/
+
 TEST(Test_At_CsIndProc, Test_At_CsIndProc_008)
 {
     TAF_UINT8                           ucIndex;
@@ -23273,18 +18443,7 @@ TEST(Test_At_CsIndProc, Test_At_CsIndProc_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIndProc_009
-测试用例标题      : CS域MN_CALL_EVT_INCOMING事件上报的处理
-预期结果          : 当前存在来电标识置上
-修改历史          :
-1.日   期  : 2012-06-01
-  作   者  : f00179208
-  修改内容 : 新建CASE
-2.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 增加AT_VoiceStartRingTe的检查
-*******************************************************************/
+
 TEST(Test_At_CsIndProc, Test_At_CsIndProc_009)
 {
     TAF_UINT8                           ucIndex;
@@ -23303,14 +18462,7 @@ TEST(Test_At_CsIndProc, Test_At_CsIndProc_009)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_RcvMnCallEccNumIndProc
-功能描述 : At_RcvMnCallEccNumIndProc函数的UT测试类
-修改历史 :
-1.日   期  : 2012-06-18
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_RcvMnCallEccNumIndProc: public ::testing::Test
 {
 public:
@@ -23327,15 +18479,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvMnCallEccNumIndProc_001
-测试用例标题      : 通过clientid获取index失败
-预期结果          : 直接return
-修改历史          :
-1.日   期  : 2012-06-18
-  作   者  : m00217266
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_RcvMnCallEccNumIndProc, Test_At_RcvMnCallEccNumIndProc_001)
 {
     MN_CALL_ECC_NUM_INFO_STRU           stEccNum;
@@ -23370,15 +18514,7 @@ TEST_F(Test_At_RcvMnCallEccNumIndProc, Test_At_RcvMnCallEccNumIndProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvMnCallEccNumIndProc_002
-测试用例标题      : 存在50条紧急呼号码
-预期结果          : 上报50条紧急呼号码
-修改历史          :
-1.日   期  : 2012-06-18
-  作   者  : m00217266
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_RcvMnCallEccNumIndProc, Test_At_RcvMnCallEccNumIndProc_002)
 {
     MN_CALL_ECC_NUM_INFO_STRU           stEccNum;
@@ -23422,15 +18558,7 @@ TEST_F(Test_At_RcvMnCallEccNumIndProc, Test_At_RcvMnCallEccNumIndProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvMnCallEccNumIndProc_003
-测试用例标题      : 存在1条紧急呼号码
-预期结果          : 上报1条紧急呼号码
-修改历史          :
-1.日   期  : 2012-06-18
-  作   者  : m00217266
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_RcvMnCallEccNumIndProc, Test_At_RcvMnCallEccNumIndProc_003)
 {
     MN_CALL_ECC_NUM_INFO_STRU           stEccNum;
@@ -23470,14 +18598,7 @@ TEST_F(Test_At_RcvMnCallEccNumIndProc, Test_At_RcvMnCallEccNumIndProc_003)
 
 
 
-/*****************************************************************************
-类名     : Test_AT_RcvMmaNsmStatusInd
-功能描述 : AT_RcvMmaNsmStatusInd函数的UT测试类
-修改历史 :
-1.日   期  : 2012-06-18
-  作   者  : m00217266
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvMmaNsmStatusInd: public ::testing::Test
 {
 public:
@@ -23494,15 +18615,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvMmaNsmStatusInd_001
-测试用例标题      : 处理TAF_PH_EVT_NSM_STATUS_IND事件，ENABLE菜单
-预期结果          : 显示+PACSP1
-修改历史          :
-1.日   期         : 2012-06-18
-  作   者         : l60609
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMmaNsmStatusInd,Test_AT_RcvMmaNsmStatusInd_001)
 {
     TAF_PHONE_EVENT_INFO_STRU           stPhoneEvent;
@@ -23531,15 +18644,7 @@ TEST_F(Test_AT_RcvMmaNsmStatusInd,Test_AT_RcvMmaNsmStatusInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvMmaNsmStatusInd_002
-测试用例标题      : 处理TAF_PH_EVT_NSM_STATUS_IND事件，DISABLE菜单
-预期结果          : 显示+PACSP0
-修改历史          :
-1.日   期         : 2012-06-18
-  作   者         : l60609
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMmaNsmStatusInd,Test_AT_RcvMmaNsmStatusInd_002)
 {
     TAF_PHONE_EVENT_INFO_STRU           stPhoneEvent;
@@ -23569,14 +18674,7 @@ TEST_F(Test_AT_RcvMmaNsmStatusInd,Test_AT_RcvMmaNsmStatusInd_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_PIHRspProc
-功能描述 : At_PIHRspProc UT工程类
-修改历史 :
-1.日    期 : 2012年09月03日
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PIHRspProc: public ::testing::Test
 {
 public:
@@ -23609,15 +18707,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_001
-测试用例标题      : 收到消息SI_PIH_EVENT_ISDB_ACCESS_CNF, 参数不为空
-预期结果          : 打印结果
-修改历史          :
-1.日    期 : 2012年09月03日
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_001)
 {
     // 变量声明
@@ -23653,15 +18743,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_002
-测试用例标题      : 当前操作类型错误
-预期结果          : 直接返回
-修改历史          :
-1.日    期 : 2012年09月03日
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_002)
 {
     // 变量声明
@@ -23699,15 +18781,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_002)
 }
 
 #if (FEATURE_VSIM == FEATURE_ON)
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_003
-测试用例标题      : 收到消息SI_PIH_EVENT_HVSST_QUERY_CNF
-预期结果          : 数据长度与预期长度一致
-修改历史          :
-1.日    期 : 2013年09月03日
-  作   者  : zhangxuechao 00185430
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_003)
 {
     // 变量声明
@@ -23737,15 +18811,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_004
-测试用例标题      : 收到消息SI_PIH_EVENT_HVSST_SET_CNF
-预期结果          : 数据长度与预期长度一致
-修改历史          :
-1.日    期 : 2013年09月03日
-  作   者  : zhangxuechao 00185430
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_004)
 {
     // 变量声明
@@ -23772,15 +18838,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_005
-测试用例标题      : 收到消息SI_PIH_EVENT_HVSDH_SET_CNF
-预期结果          : 数据长度与预期长度一致
-修改历史          :
-1.日    期 : 2013年09月03日
-  作   者  : zhangxuechao 00185430
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_005)
 {
     // 变量声明
@@ -23806,15 +18864,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_006
-测试用例标题      : 收到消息SI_PIH_EVENT_HVSDH_QRY_CNF
-预期结果          : 数据长度与预期长度一致
-修改历史          :
-1.日    期 : 2013年09月03日
-  作   者  : zhangxuechao 00185430
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_006)
 {
     // 变量声明
@@ -23843,15 +18893,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_007
-测试用例标题      : 收到消息SI_PIH_EVENT_HVSCONT_QUERY_CNF
-预期结果          : 数据长度与预期长度一致
-修改历史          :
-1.日    期 : 2013年09月03日
-  作   者  : zhangxuechao 00185430
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_007)
 {
     // 变量声明
@@ -23880,15 +18922,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_008
-测试用例标题      : 收到消息SI_PIH_EVENT_FILE_WRITE_CNF
-预期结果          : 数据长度与预期长度一致
-修改历史          :
-1.日    期 : 2013年09月03日
-  作   者  : zhangxuechao 00185430
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_008)
 {
     // 变量声明
@@ -23915,15 +18949,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_008)
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_009
-测试用例标题      : 收到消息SI_PIH_EVENT_UICCAUTH_CNF
-预期结果          : 数据长度与预期长度一致
-修改历史          :
-1.日    期 : 2014年03月26日
-  作   者  : H59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_009)
 {
     // 变量声明
@@ -23953,15 +18979,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHRspProc_010
-测试用例标题      : 收到消息SI_PIH_EVENT_URSM_CNF
-预期结果          : 数据长度与预期长度一致
-修改历史          :
-1.日    期 : 2014年03月26日
-  作   者  : H59254
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_010)
 {
     // 变量声明
@@ -23994,14 +19012,7 @@ TEST_F(Test_At_PIHRspProc, Test_At_PIHRspProc_010)
 
 #endif
 
-/*****************************************************************************
- 类名       : Test_At_PIHIndProc
- 功能描述   : Test_At_PIHIndProc UT工程类
- 修改历史   :
- 1.日   期  : 2012-09-18
-   作   者  : zhangxuechao 00185430
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PIHIndProc: public ::testing::Test
 {
 public:
@@ -24018,15 +19029,7 @@ public:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHIndProc_001
-测试用例标题      : 收到消息SI_PIH_EVENT_HVRDH_IND
-预期结果          : 数据长度与预期长度一致
-修改历史          :
-1.日    期 : 2013年09月03日
-  作   者  : zhangxuechao 00185430
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHIndProc, Test_At_PIHIndProc_001)
 {
     // 变量声明
@@ -24053,15 +19056,7 @@ TEST_F(Test_At_PIHIndProc, Test_At_PIHIndProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHIndProc_002
-测试用例标题      : AT_GetModemIdFromClient失败
-预期结果          : 不会将消息通知到AP
-修改历史          :
-1.日    期 : 2013年09月03日
-  作   者  : zhangxuechao 00185430
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHIndProc, Test_At_PIHIndProc_002)
 {
     // 变量声明
@@ -24092,15 +19087,7 @@ TEST_F(Test_At_PIHIndProc, Test_At_PIHIndProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PIHIndProc_003
-测试用例标题      : 收到消息为SI_PIH_EVENT_HVRDH_IND，但结果失败
-预期结果          : 不会将消息通知到AP
-修改历史          :
-1.日    期 : 2013年09月03日
-  作   者  : zhangxuechao 00185430
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PIHIndProc, Test_At_PIHIndProc_003)
 {
     // 变量声明
@@ -24129,14 +19116,7 @@ TEST_F(Test_At_PIHIndProc, Test_At_PIHIndProc_003)
 }
 #endif
 
-/*****************************************************************************
- 类名       : Test_At_PrintMmTimeInfo
- 功能描述   : Test_At_PrintMmTimeInfo UT工程类
- 修改历史   :
- 1.日   期  : 2012-09-14
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PrintMmTimeInfo: public ::testing::Test
 {
 public:
@@ -24153,15 +19133,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_At_PrintMmTimeInfo_001
- 测试用例标题   : 获取modem id失败
- 预期结果       : 使用默认modem0的处理
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PrintMmTimeInfo, Test_At_PrintMmTimeInfo_001)
 {
     //参数定义
@@ -24188,15 +19160,7 @@ TEST_F(Test_At_PrintMmTimeInfo, Test_At_PrintMmTimeInfo_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_PrintMmTimeInfo_002
- 测试用例标题   : modem0下存在UTLTZ和DST
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2012-09-14
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PrintMmTimeInfo, Test_At_PrintMmTimeInfo_002)
 {
     //参数定义
@@ -24243,15 +19207,7 @@ TEST_F(Test_At_PrintMmTimeInfo, Test_At_PrintMmTimeInfo_002)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
- 测试用例编号   : Test_At_PrintMmTimeInfo_003
- 测试用例标题   : modem1下存在UTLTZ和DST
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2013-03-15
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PrintMmTimeInfo, Test_At_PrintMmTimeInfo_003)
 {
     //参数定义
@@ -24298,15 +19254,7 @@ TEST_F(Test_At_PrintMmTimeInfo, Test_At_PrintMmTimeInfo_003)
 }
 #endif
 
-/*******************************************************************
- 测试用例编号   : Test_At_PrintMmTimeInfo_004
- 测试用例标题   : modem0下不存在UTLTZ和DST
- 预期结果       :
- 修改历史       :
- 1.日   期  : 2013-03-15
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PrintMmTimeInfo, Test_At_PrintMmTimeInfo_004)
 {
     //参数定义
@@ -24352,14 +19300,7 @@ TEST_F(Test_At_PrintMmTimeInfo, Test_At_PrintMmTimeInfo_004)
 
 
 
-/*****************************************************************************
-类名     : Test_AT_CsRspEvtReleasedProc
-功能描述 : AT_CsRspEvtReleasedProc UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_CsRspEvtReleasedProc: public ::testing::Test
 {
 public:
@@ -24375,15 +19316,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsRspEvtReleasedProc_001
-测试用例标题      : 收到MN_CALL_EVT_RELEASED事件，当前命令操作类型为AT_CMD_H_SET
-预期结果          : 调用^CEND上报接口
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsRspEvtReleasedProc, Test_AT_CsRspEvtReleasedProc_001)
 {
     // 变量声明
@@ -24409,15 +19342,7 @@ TEST_F(Test_AT_CsRspEvtReleasedProc, Test_AT_CsRspEvtReleasedProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsRspEvtReleasedProc_002
-测试用例标题      : 收到MN_CALL_EVT_RELEASED事件，当前命令操作类型为AT_CMD_INVALID, 紧急呼
-预期结果          : 调用^CEND上报接口
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsRspEvtReleasedProc, Test_AT_CsRspEvtReleasedProc_002)
 {
     // 变量声明
@@ -24444,15 +19369,7 @@ TEST_F(Test_AT_CsRspEvtReleasedProc, Test_AT_CsRspEvtReleasedProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsRspEvtReleasedProc_003
-测试用例标题      : 收到MN_CALL_EVT_RELEASED事件
-预期结果          : 调用^CEND上报接口
-修改历史          :
-1.日   期  : 2013-03-17
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsRspEvtReleasedProc, Test_AT_CsRspEvtReleasedProc_003)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -24523,15 +19440,7 @@ TEST_F(Test_AT_CsRspEvtReleasedProc, Test_AT_CsRspEvtReleasedProc_003)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsRspEvtReleasedProc_004
-测试用例标题      : 收到MN_CALL_EVT_RELEASED事件
-预期结果          : 调用^CEND上报接口
-修改历史          :
-1.日   期  : 2013-03-17
-  作   者  : z00220246
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsRspEvtReleasedProc, Test_AT_CsRspEvtReleasedProc_004)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -24604,14 +19513,7 @@ TEST_F(Test_AT_CsRspEvtReleasedProc, Test_AT_CsRspEvtReleasedProc_004)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_CSCallStateReportProc
-功能描述 : AT_CSCallStateReportProc UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_CSCallStateReportProc: public ::testing::Test
 {
 public:
@@ -24627,15 +19529,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_001
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_ORIG，上报呼叫状态
-预期结果          : 打印当前呼叫状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_001)
 {
     // 变量声明
@@ -24678,15 +19572,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_002
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_CALL_PROC，上报呼叫状态
-预期结果          : 打印当前呼叫状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_002)
 {
     // 变量声明
@@ -24728,15 +19614,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_003
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_ALERTING，上报呼叫状态
-预期结果          : 打印当前呼叫状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_003)
 {
     // 变量声明
@@ -24778,15 +19656,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_004
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_CONNECT，上报呼叫状态
-预期结果          : 打印当前呼叫状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_004)
 {
     // 变量声明
@@ -24829,15 +19699,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_005
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_RELEASED，上报呼叫状态
-预期结果          : 打印当前呼叫状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_005)
 {
     // 变量声明
@@ -24879,15 +19741,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_006
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_INCOMING，上报呼叫状态
-预期结果          : 打印当前呼叫状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_006)
 {
     // 变量声明
@@ -24930,15 +19784,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_007
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_INCOMING，上报呼叫状态
-预期结果          : 打印当前呼叫状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_007)
 {
     // 变量声明
@@ -24981,15 +19827,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_008
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_HOLD，上报呼叫状态
-预期结果          : 打印当前呼叫状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_008)
 {
     // 变量声明
@@ -25036,15 +19874,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_009
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_RETRIEVE，上报呼叫状态
-预期结果          : 打印当前呼叫状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_009)
 {
     // 变量声明
@@ -25083,15 +19913,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_009)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CSCallStateReportProc_010
-测试用例标题      : 处理CALL模块消息MN_CALL_EVT_BUTT
-预期结果          : 无操作
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_010)
 {
     // 变量声明
@@ -25125,14 +19947,7 @@ TEST_F(Test_AT_CSCallStateReportProc, Test_AT_CSCallStateReportProc_010)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_SmsStorageExceedProc
-功能描述 : At_SmsStorageExceedProc UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsStorageExceedProc: public ::testing::Test
 {
 public:
@@ -25146,15 +19961,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsStorageExceedProc_001
-测试用例标题      : 当前短信存储为SM
-预期结果          : 打印短信存储空间状态
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsStorageExceedProc, Test_At_SmsStorageExceedProc_001)
 {
     // 变量声明
@@ -25184,14 +19991,7 @@ TEST_F(Test_At_SmsStorageExceedProc, Test_At_SmsStorageExceedProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_AT_RcvMmInfoInd
-功能描述 : AT_RcvMmInfoInd UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvMmInfoInd: public ::testing::Test
 {
 public:
@@ -25208,14 +20008,7 @@ public:
 
 
 
-/*****************************************************************************
-类名     : Test_At_STKCMDTypePrint
-功能描述 : At_STKCMDTypePrint UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_STKCMDTypePrint: public ::testing::Test
 {
 public:
@@ -25229,15 +20022,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_STKCMDTypePrint_001
-测试用例标题      : 非AP-Modem形态，事件SI_STK_CMD_END_EVENT处理，Sat检测失败
-预期结果          : 返回AT_FAILURE
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_001)
 {
     // 变量声明
@@ -25274,15 +20059,7 @@ TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_STKCMDTypePrint_002
-测试用例标题      : 非AP-Modem形态，事件SI_STK_CMD_END_EVENT处理，Sat检测成功，STK未开启
-预期结果          : 返回AT_FAILURE
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_002)
 {
     // 变量声明
@@ -25320,15 +20097,7 @@ TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_STKCMDTypePrint_003
-测试用例标题      : 事件类型SI_STK_CMD_QUERY_RSP_EVENT
-预期结果          : 返回AT_SUCCESS
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_003)
 {
     // 变量声明
@@ -25375,15 +20144,7 @@ TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_STKCMDTypePrint_004
-测试用例标题      : 事件类型SI_STK_CMD_IND_EVENT
-预期结果          : 返回AT_SUCCESS
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_004)
 {
     // 变量声明
@@ -25433,15 +20194,7 @@ TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_STKCMDTypePrint_005
-测试用例标题      : 事件类型SI_STK_CMD_END_EVENT
-预期结果          : 返回AT_SUCCESS
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_005)
 {
     // 变量声明
@@ -25490,15 +20243,7 @@ TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_STKCMDTypePrint_006
-测试用例标题      : 事件类型SI_STK_CMD_END_EVENT，AP-Modem形态
-预期结果          : 返回AT_SUCCESS
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_006)
 {
     // 变量声明
@@ -25545,15 +20290,7 @@ TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_STKCMDTypePrint_007
-测试用例标题      : 事件类型SI_STK_CALLBACK_BUTT
-预期结果          : 返回AT_SUCCESS
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_007)
 {
     // 变量声明
@@ -25602,14 +20339,7 @@ TEST_F(Test_At_STKCMDTypePrint, Test_At_STKCMDTypePrint_007)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_PhIndProc
-功能描述 : At_PhIndProc UT工程类
-修改历史 :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PhIndProc: public ::testing::Test
 {
 public:
@@ -25625,15 +20355,7 @@ public:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_At_PhIndProc_004
-测试用例标题      : 收到TAF_PH_EVT_USIM_INFO_IND获取modem id失败
-预期结果          : 使用默认的modem0处理上报
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhIndProc, Test_At_PhIndProc_004)
 {
     VOS_UINT8                           ucIndex;
@@ -25656,15 +20378,7 @@ TEST_F(Test_At_PhIndProc, Test_At_PhIndProc_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhIndProc_005
-测试用例标题      : modem1下处理事件TAF_PH_EVT_USIM_INFO_IND
-预期结果          : 打印结果
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhIndProc, Test_At_PhIndProc_005)
 {
     // 变量声明
@@ -25698,15 +20412,7 @@ TEST_F(Test_At_PhIndProc, Test_At_PhIndProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhIndProc_006
-测试用例标题      : 收到TAF_PH_EVT_SERVICE_STATUS_IND获取modem id失败
-预期结果          : 使用默认的modem0处理上报
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhIndProc, Test_At_PhIndProc_006)
 {
     VOS_UINT8                           ucIndex;
@@ -25729,15 +20435,7 @@ TEST_F(Test_At_PhIndProc, Test_At_PhIndProc_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PhIndProc_007
-测试用例标题      : 处理事件TAF_PH_EVT_SERVICE_STATUS_IND
-预期结果          : 打印结果
-修改历史          :
-1.日   期  : 2012-09-24
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PhIndProc, Test_At_PhIndProc_007)
 {
     // 变量声明
@@ -25772,14 +20470,7 @@ TEST_F(Test_At_PhIndProc, Test_At_PhIndProc_007)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_StkCcinIndPrint
-功能描述 : Test_At_StkCcinIndPrint UT工程类
-修改历史 :
-1.日   期  : 2012-09-22
-  作   者  : j00168360
-  修改内容 : CALL CONTROL结果打印
-*****************************************************************************/
+
 class Test_At_StkCcinIndPrint: public ::testing::Test
 {
 public:
@@ -25794,15 +20485,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号   : Test_At_StkCcinIndPrint_001
- 测试用例标题   : MO CALL CONTROL结果上报
- 预期结果       : 无
- 修改历史       :
- 1.日   期  : 2012-09-24
-   作   者  : j00168360
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_StkCcinIndPrint, Test_At_StkCcinIndPrint_001)
 {
     //参数定义
@@ -25836,15 +20519,7 @@ TEST_F(Test_At_StkCcinIndPrint, Test_At_StkCcinIndPrint_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_StkCcinIndPrint_002
- 测试用例标题   : MO ss CONTROL结果上报,无alpha域
- 预期结果       : 无
- 修改历史       :
- 1.日   期  : 2012-09-24
-   作   者  : j00168360
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_StkCcinIndPrint, Test_At_StkCcinIndPrint_002)
 {
     //参数定义
@@ -25872,15 +20547,7 @@ TEST_F(Test_At_StkCcinIndPrint, Test_At_StkCcinIndPrint_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_StkCcinIndPrint_003
- 测试用例标题   : MO ussd CONTROL结果上报,无alpha域
- 预期结果       : 无
- 修改历史       :
- 1.日   期  : 2012-09-24
-   作   者  : j00168360
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_StkCcinIndPrint, Test_At_StkCcinIndPrint_003)
 {
     //参数定义
@@ -25912,15 +20579,7 @@ TEST_F(Test_At_StkCcinIndPrint, Test_At_StkCcinIndPrint_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_StkCcinIndPrint_004
- 测试用例标题   : MO SMS CONTROL结果上报,无alpha域
- 预期结果       : 无
- 修改历史       :
- 1.日   期  : 2012-09-24
-   作   者  : j00168360
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_StkCcinIndPrint, Test_At_StkCcinIndPrint_004)
 {
     //参数定义
@@ -25959,14 +20618,7 @@ TEST_F(Test_At_StkCcinIndPrint, Test_At_StkCcinIndPrint_004)
 }
 
 
-/*****************************************************************************
- 类名       : Test_AT_RcvMnCallErrInd
- 功能描述   : Test_AT_RcvMnCallErrInd UT工程类
- 修改历史   :
- 1.日   期  : 2012-09-26
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvMnCallErrInd: public ::testing::Test
 {
 public:
@@ -25985,15 +20637,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMnCallErrInd_001
- 测试用例标题   : 记录CS域错误码
- 预期结果       : 记录错误码正确
- 修改历史       :
- 1.日   期  : 2012-09-26
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMnCallErrInd, Test_AT_RcvMnCallErrInd_001)
 {
     //参数定义
@@ -26032,14 +20676,7 @@ TEST_F(Test_AT_RcvMnCallErrInd, Test_AT_RcvMnCallErrInd_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_ConvertCallError
- 功能描述   : Test_AT_ConvertCallError UT工程类
- 修改历史   :
- 1.日   期  : 2012-09-26
-   作   者  : A00165503
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ConvertCallError: public ::testing::Test
 {
 public:
@@ -26058,15 +20695,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_ConvertCallError_001
- 测试用例标题   : 待转换错误码为TAF_CS_CAUSE_STATE_ERROR
- 预期结果       : 转换成AT_CME_INCORRECT_PARAMETERS
- 修改历史       :
- 1.日   期  : 2012-09-26
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ConvertCallError, Test_AT_ConvertCallError_001)
 {
     //参数定义
@@ -26090,15 +20719,7 @@ TEST_F(Test_AT_ConvertCallError, Test_AT_ConvertCallError_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_ConvertCallError_002
- 测试用例标题   : 待转换错误码为TAF_CS_CAUSE_NO_CALL_ID
- 预期结果       : 转换成AT_ERROR
- 修改历史       :
- 1.日   期  : 2012-09-26
-   作   者  : A00165503
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ConvertCallError, Test_AT_ConvertCallError_002)
 {
     //参数定义
@@ -26122,14 +20743,7 @@ TEST_F(Test_AT_ConvertCallError, Test_AT_ConvertCallError_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-类名     : Test_At_SetClprCnf
-功能描述 : At_SetClprCnf UT工程类
-修改历史 :
- 1.日   期  : 2012-09-28
-   作   者  : Y00213812
-   修改内容 : STK&DCM Project 项目新增类
-******************************************************************************/
+
 class Test_At_SetClprCnf: public ::testing::Test
 {
 public:
@@ -26205,15 +20819,7 @@ public:
     MN_AT_IND_EVT_STRU                 *pstData;
     MN_CALL_CLPR_GET_CNF_STRU           stClprGetCnf;
 };
-/******************************************************************************
-测试用例编号: Test_At_SetClprCnf_001
-测试用例标题: 源地址查询失败
-预期结果    : 打印AT_ERROR
-修改历史    :
- 1.日   期  : 2012-09-28
-   作   者  : Y00213812
-   修改内容 : STK&DCM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_001)
 {
     // 变量声明
@@ -26239,15 +20845,7 @@ TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetClprCnf_002
-测试用例标题      : 通过ClientId获取ucIndex失败
-预期结果          : 打印AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_002)
 {
     // 变量声明
@@ -26278,15 +20876,7 @@ TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetClprCnf_003
-测试用例标题      : 获得的UerId为AT_BROADCAST_CLIENT_INDEX_MODEM_0，
-预期结果          : 打印AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_003)
 {
     // 变量声明
@@ -26315,15 +20905,7 @@ TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SetClprCnf_004
-测试用例标题      : 当前操作类型不为AT_CMD_CPOS_SET
-预期结果          : 返回VOS_ERR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_004)
 {
     // 变量声明
@@ -26350,15 +20932,7 @@ TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_004)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetClprCnf_005
-测试用例标题: 打印源地址查询的结果
-预期结果    : 打印结果
-修改历史    :
- 1.日   期  : 2012-09-28
-   作   者  : Y00213812
-   修改内容 : STK&DCM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_005)
 {
     // 变量声明
@@ -26387,15 +20961,7 @@ TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_005)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_At_SetClprCnf_006
-测试用例标题: 打印源地址查询的结果,结果为空
-预期结果    : 打印空串
-修改历史    :
- 1.日   期  : 2012-09-28
-   作   者  : Y00213812
-   修改内容 : STK&DCM Project 项目新增
-******************************************************************************/
+
 TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_006)
 {
     // 变量声明
@@ -26428,14 +20994,7 @@ TEST_F(Test_At_SetClprCnf, Test_At_SetClprCnf_006)
 }
 
 #if(FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
-类名     : Test_AT_ReportCeregResult
-功能描述 : AT_ReportCeregResult　UT工程类
-修改历史     :
-1.日   期  : 2013-01-05
-  作   者  : z00220246
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ReportCeregResult: public ::testing::Test
 {
 public:
@@ -26450,15 +21009,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCeregResult_001
- 测试用例标题      : AT通道索引值错误
- 预期结果          : 默认值为Modem_ID_0
- 修改历史     :
- 1.日   期  : 2013-01-05
-   作   者  : z00220246
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_001)
 {
     VOS_UINT8                           ucIndex;
@@ -26477,15 +21028,7 @@ TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCeregResult_002
- 测试用例标题      : AT通道索引值正确，单板不支持LTE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-01-05
-   作   者  : z00220246
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_002)
 {
     VOS_UINT8                           ucIndex;
@@ -26504,15 +21047,7 @@ TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCeregResult_003
- 测试用例标题      : 网络注册状态发生改变时
- 预期结果          : 上报+CEREG: <stat>
- 修改历史     :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_003)
 {
     VOS_UINT8                           ucIndex;
@@ -26543,15 +21078,7 @@ TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCeregResult_004
- 测试用例标题      : 小区id发生改变时
- 预期结果          : 上报+CGREG: <stat>[,<lac>,<ci>,[rat]]
- 修改历史     :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_004)
 {
     VOS_UINT8                           ucIndex;
@@ -26587,15 +21114,7 @@ TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCeregResult_005
- 测试用例标题      : 小区注册状态(注册网络)发生改变时
- 预期结果          : 上报+CGREG: <stat>[,<lac>,<ci>,[rat]]
- 修改历史     :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_005)
 {
     VOS_UINT8                           ucIndex;
@@ -26628,15 +21147,7 @@ TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCeregResult_006
- 测试用例标题      : 小区注册状态(未注册网络)发生改变时
- 预期结果          : 上报+CGREG: <stat>[,<lac>,<ci>,[rat]]
- 修改历史     :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_006)
 {
     VOS_UINT8                           ucIndex;
@@ -26669,15 +21180,7 @@ TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCeregResult_007
- 测试用例标题      : 小区信息发生改变时，小区ID未改变，也未注册到其他网络
- 预期结果          : 无
- 修改历史     :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_007)
 {
     VOS_UINT8                           ucIndex;
@@ -26712,15 +21215,7 @@ TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCeregResult_008
- 测试用例标题      : 禁止CEREG主动上报时
- 预期结果          : 无
- 修改历史     :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_008)
 {
     VOS_UINT8                           ucIndex;
@@ -26756,14 +21251,7 @@ TEST_F(Test_AT_ReportCeregResult, Test_AT_ReportCeregResult_008)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SmsDeliverProc
-功能描述 : Test_At_SmsDeliverProc UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsDeliverProc: public ::testing::Test
 {
 public:
@@ -26778,15 +21266,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverProc_001
- 测试用例标题      : 通过ClientId获取ucIndex失败
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_001)
 {
     TAF_UINT8                              ucIndex;
@@ -26800,15 +21280,7 @@ TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverProc_002
- 测试用例标题      : 通过ClientId获取ucIndex成功，将上报的短信事件发送到modem0的广播client
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_002)
 {
     TAF_UINT8                              ucIndex;
@@ -26837,15 +21309,7 @@ TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverProc_003
- 测试用例标题      : Modem0通过ClientId获取ucIndex成功，CNMI ModeType为AT_CNMI_MODE_SEND_OR_DISCARD_TYPE或AT_CNMI_MODE_SEND_OR_BUFFER_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_003)
 {
     //参数定义
@@ -26876,15 +21340,7 @@ TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverProc_004
- 测试用例标题      : Modem0通过ClientId获取ucIndex成功，CNMI ModeType为AT_CNMI_MODE_BUFFER_TYPE或AT_CNMI_MODE_SEND_OR_BUFFER_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_004)
 {
     //参数定义
@@ -26917,15 +21373,7 @@ TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_004)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverProc_005
- 测试用例标题      : Modem1通过ClientId获取ucIndex成功，CNMI ModeType为AT_CNMI_MODE_SEND_OR_DISCARD_TYPE或AT_CNMI_MODE_SEND_OR_BUFFER_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_005)
 {
     //参数定义
@@ -26956,15 +21404,7 @@ TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverProc_006
- 测试用例标题      : Modem1通过ClientId获取ucIndex成功，CNMI ModeType为AT_CNMI_MODE_BUFFER_TYPE或AT_CNMI_MODE_SEND_OR_BUFFER_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_006)
 {
     //参数定义
@@ -26998,14 +21438,7 @@ TEST_F(Test_At_SmsDeliverProc, Test_At_SmsDeliverProc_006)
 
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
-/*****************************************************************************
-类名     : Test_At_SmsDeliverCbmProc
-功能描述 : At_SmsDeliverCbmProc UT工程类
-修改历史     :
-1.日   期  : 2013-3-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsDeliverCbmProc: public ::testing::Test
 {
 public:
@@ -27020,15 +21453,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverCbmProc_001
- 测试用例标题      : Modem0消息CNMI ModeType为AT_CNMI_MODE_SEND_OR_DISCARD_TYPE或AT_CNMI_MODE_SEND_OR_BUFFER_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverCbmProc, Test_AAt_SmsDeliverCbmProc_001)
 {
     //参数定义
@@ -27052,15 +21477,7 @@ TEST_F(Test_At_SmsDeliverCbmProc, Test_AAt_SmsDeliverCbmProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverCbmProc_002
- 测试用例标题      : Modem0消息CNMI ModeType为AT_CNMI_MODE_EMBED_AND_SEND_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverCbmProc, Test_AAt_SmsDeliverCbmProc_002)
 {
     //参数定义
@@ -27084,15 +21501,7 @@ TEST_F(Test_At_SmsDeliverCbmProc, Test_AAt_SmsDeliverCbmProc_002)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverCbmProc_003
- 测试用例标题      : Modem1消息CNMI ModeType为AT_CNMI_MODE_SEND_OR_DISCARD_TYPE或AT_CNMI_MODE_SEND_OR_BUFFER_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverCbmProc, Test_AAt_SmsDeliverCbmProc_003)
 {
     //参数定义
@@ -27117,15 +21526,7 @@ TEST_F(Test_At_SmsDeliverCbmProc, Test_AAt_SmsDeliverCbmProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsDeliverCbmProc_004
- 测试用例标题      : Modem1消息CNMI ModeType为AT_CNMI_MODE_EMBED_AND_SEND_TYPE
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsDeliverCbmProc, Test_AAt_SmsDeliverCbmProc_004)
 {
     //参数定义
@@ -27151,14 +21552,7 @@ TEST_F(Test_At_SmsDeliverCbmProc, Test_AAt_SmsDeliverCbmProc_004)
 #endif
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SmsInitSmspResultProc
-功能描述 : At_SmsInitSmspResultProc UT工程类
-修改历史     :
-1.日   期  : 2013-3-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsInitSmspResultProc: public ::testing::Test
 {
 public:
@@ -27173,15 +21567,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsInitSmspResultProc_001
- 测试用例标题      : Modem0 SMSP文件初始化完成事件处理
- 预期结果          : 处理成功
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsInitSmspResultProc, Test_At_SmsInitSmspResultProc_001)
 {
     //参数定义
@@ -27206,15 +21592,7 @@ TEST_F(Test_At_SmsInitSmspResultProc, Test_At_SmsInitSmspResultProc_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
- 测试用例编号      : Test_At_SmsInitSmspResultProc_002
- 测试用例标题      : Modem1 SMSP文件初始化完成事件处理
- 预期结果          : 处理成功
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsInitSmspResultProc, Test_At_SmsInitSmspResultProc_002)
 {
     //参数定义
@@ -27240,14 +21618,7 @@ TEST_F(Test_At_SmsInitSmspResultProc, Test_At_SmsInitSmspResultProc_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SmsSrvParmChangeProc
-功能描述 : At_SmsSrvParmChangeProc UT工程类
-修改历史     :
-1.日   期  : 2013-3-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsSrvParmChangeProc: public ::testing::Test
 {
 public:
@@ -27262,15 +21633,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_At_SmsSrvParmChangeProc_001
- 测试用例标题      : Modem0 短信业务参数变化事件上报处理
- 预期结果          : 处理成功
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsSrvParmChangeProc, Test_At_SmsSrvParmChangeProc_001)
 {
     //参数定义
@@ -27293,15 +21656,7 @@ TEST_F(Test_At_SmsSrvParmChangeProc, Test_At_SmsSrvParmChangeProc_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
- 测试用例编号      : Test_At_SmsSrvParmChangeProc_002
- 测试用例标题      : Modem1 短信业务参数变化事件上报处理
- 预期结果          : 处理成功
- 修改历史     :
- 1.日   期  : 2013-3-11
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsSrvParmChangeProc, Test_At_SmsSrvParmChangeProc_002)
 {
     //参数定义
@@ -27325,14 +21680,7 @@ TEST_F(Test_At_SmsSrvParmChangeProc, Test_At_SmsSrvParmChangeProc_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_ReportCCallstateResult
-功能描述 : Test_AT_ReportCCallstateResult UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ReportCCallstateResult: public ::testing::Test
 {
 public:
@@ -27347,15 +21695,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCCallstateResult_001
- 测试用例标题      : 通过ClientId获取ucIndex失败
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCCallstateResult, Test_AT_ReportCCallstateResult_001)
 {
     AT_CS_CALL_STATE_ENUM_UINT8         enCallState;
@@ -27372,15 +21712,7 @@ TEST_F(Test_AT_ReportCCallstateResult, Test_AT_ReportCCallstateResult_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCCallstateResult_002
- 测试用例标题      : 通过ClientId获取ucIndex成功，将^CCALLSTATE主动上报命令处理结果发送到modem0的广播client
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCCallstateResult, Test_AT_ReportCCallstateResult_002)
 {
     VOS_UINT16                          usClientId;
@@ -27403,15 +21735,7 @@ TEST_F(Test_AT_ReportCCallstateResult, Test_AT_ReportCCallstateResult_002)
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCCallstateResult_003
- 测试用例标题      : 通过ClientId获取ucIndex成功，将^CCALLSTATE主动上报命令处理结果发送到modem1的广播client
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2013-6-9
-   作   者  : z60575
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCCallstateResult, Test_AT_ReportCCallstateResult_003)
 {
     VOS_UINT16                          usClientId;
@@ -27433,14 +21757,7 @@ TEST_F(Test_AT_ReportCCallstateResult, Test_AT_ReportCCallstateResult_003)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_ReportCCallstateHoldList
-功能描述 : Test_AT_ReportCCallstateHoldList UT工程类
-修改历史     :
-1.日   期  : 2012-12-26
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ReportCCallstateHoldList: public ::testing::Test
 {
 public:
@@ -27455,15 +21772,7 @@ public:
     }
 };
 
-/*******************************************************************
- 测试用例编号      : Test_AT_ReportCCallstateHoldList_001
- 测试用例标题      : ^CCALLSTATE主动上报命令进行处理，多条打印
- 预期结果          : 返回
- 修改历史     :
- 1.日   期  : 2012-12-26
-   作   者  : l00227485
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ReportCCallstateHoldList, Test_AT_ReportCCallstateHoldList_001)
 {
     VOS_UINT16                          usClientId;
@@ -27489,14 +21798,7 @@ TEST_F(Test_AT_ReportCCallstateHoldList, Test_AT_ReportCCallstateHoldList_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_AT_RcvMmaRssiChangeInd
- 功能描述   : Test_AT_RcvMmaRssiChangeInd UT工程类
- 修改历史   :
- 1.日   期  : 2012-11-28
-   作   者  : s00217060
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvMmaRssiChangeInd: public ::testing::Test
 {
 public:
@@ -27513,15 +21815,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMmaRssiChangeInd_001
- 测试用例标题   : 待转换错误码为TAF_CS_CAUSE_STATE_ERROR
- 预期结果       : 转换成AT_CME_INCORRECT_PARAMETERS
- 修改历史       :
- 1.日   期  : 2012-11-28
-   作   者  : s00217060
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMmaRssiChangeInd, Test_AT_RcvMmaRssiChangeInd_001)
 {
     //参数定义
@@ -27551,15 +21845,7 @@ TEST_F(Test_AT_RcvMmaRssiChangeInd, Test_AT_RcvMmaRssiChangeInd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMmaRssiChangeInd_002
- 测试用例标题   : 接入技术为W，工作模式是FDD
- 预期结果       : 上报EC/IO的值为实际值
- 修改历史       :
- 1.日   期  : 2012-11-28
-   作   者  : s00217060
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMmaRssiChangeInd, Test_AT_RcvMmaRssiChangeInd_002)
 {
     //参数定义
@@ -27590,15 +21876,7 @@ TEST_F(Test_AT_RcvMmaRssiChangeInd, Test_AT_RcvMmaRssiChangeInd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMmaRssiChangeInd_003
- 测试用例标题   : 接入技术为W，工作模式是TDD
- 预期结果       : 上报EC/IO的值为255
- 修改历史       :
- 1.日   期  : 2012-11-28
-   作   者  : s00217060
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMmaRssiChangeInd, Test_AT_RcvMmaRssiChangeInd_003)
 {
     //参数定义
@@ -27630,31 +21908,14 @@ TEST_F(Test_AT_RcvMmaRssiChangeInd, Test_AT_RcvMmaRssiChangeInd_003)
 }
 
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMmaRssiChangeInd_004
- 测试用例标题   : 获取modem id失败
- 预期结果       : 使用默认modem0的处理
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMmaRssiChangeInd, Test_AT_RcvMmaRssiChangeInd_004)
 {
 }
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-15, begin */
 
 #if 0
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMmaAcInfoChangeInd002
- 测试用例标题   : AT^CURC关闭任何上报后收到MMA的AC INFO的上报信息
- 预期结果       : AT不上报
- 修改历史       :
- 1.日   期  : 2012-12-15
-   作   者  : w00176964
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMmaAcInfoChangeInd, Test_AT_RcvMmaAcInfoChangeInd_002)
 {
     //参数定义
@@ -27690,16 +21951,8 @@ TEST_F(Test_AT_RcvMmaAcInfoChangeInd, Test_AT_RcvMmaAcInfoChangeInd_002)
 #endif
 
 
-/* Added by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-15, end */
 
-/*****************************************************************************
-类名     : Test_AT_ProcCsRspEvtCallProc
-功能描述 : AT_ProcCsRspEvtCallProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcCsRspEvtCallProc: public ::testing::Test
 {
 public:
@@ -27715,15 +21968,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcCsRspEvtCallProc_001
-测试用例标题      : 通过ClientId获取ModemId失败
-预期结果          : 获取默认为modem0的Ctx
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcCsRspEvtCallProc, Test_AT_ProcCsRspEvtCallProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -27780,15 +22025,7 @@ TEST_F(Test_AT_ProcCsRspEvtCallProc, Test_AT_ProcCsRspEvtCallProc_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcCsRspEvtCallProc_002
-测试用例标题      : 允许^CONF主动上报，且是普通呼叫来电
-预期结果          : 主动上报^CONF:命令
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcCsRspEvtCallProc, Test_AT_ProcCsRspEvtCallProc_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -27848,14 +22085,7 @@ TEST_F(Test_AT_ProcCsRspEvtCallProc, Test_AT_ProcCsRspEvtCallProc_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_ProcCsCallConnectInd
-功能描述 : AT_ProcCsCallConnectInd UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcCsCallConnectInd: public ::testing::Test
 {
 public:
@@ -27871,15 +22101,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcCsCallConnectInd_001
-测试用例标题      : 通过ClientId获取ModemId失败
-预期结果          : 获取默认为modem0的Ctx
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcCsCallConnectInd, Test_AT_ProcCsCallConnectInd_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -27935,15 +22157,7 @@ TEST_F(Test_AT_ProcCsCallConnectInd, Test_AT_ProcCsCallConnectInd_001)
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_AT_ProcCsCallConnectInd_002
-测试用例标题      : 设置Modem1的CS域错误码
-预期结果          : 主动上报^CONN命令
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcCsCallConnectInd, Test_AT_ProcCsCallConnectInd_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28004,14 +22218,7 @@ TEST_F(Test_AT_ProcCsCallConnectInd, Test_AT_ProcCsCallConnectInd_002)
 }
 
 #endif
-/*****************************************************************************
-类名     : Test_AT_ProcCsRspEvtOrig
-功能描述 : AT_ProcCsRspEvtOrig UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_ProcCsRspEvtOrig: public ::testing::Test
 {
 public:
@@ -28028,15 +22235,7 @@ public:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_AT_ProcCsRspEvtOrig_001
-测试用例标题      : 获取ModemId失败
-预期结果          : 获取modem0的相关Ctx
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcCsRspEvtOrig, Test_AT_ProcCsRspEvtOrig_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -28096,15 +22295,7 @@ TEST_F(Test_AT_ProcCsRspEvtOrig, Test_AT_ProcCsRspEvtOrig_001)
 
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_AT_ProcCsRspEvtOrig_002
-测试用例标题      : ^ORIG主动上报为enable
-预期结果          : 呼叫标志位置VOS_TRUE
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_ProcCsRspEvtOrig, Test_AT_ProcCsRspEvtOrig_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -28171,14 +22362,7 @@ TEST_F(Test_AT_ProcCsRspEvtOrig, Test_AT_ProcCsRspEvtOrig_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_CsUus1InfoEvtIndProc
-功能描述 : AT_CsUus1InfoEvtIndProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_CsUus1InfoEvtIndProc: public ::testing::Test
 {
 public:
@@ -28194,15 +22378,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsUus1InfoEvtIndProc001
-测试用例标题      : 当前类型为MO CALL，CUUS1未激活
-预期结果          : CUUS1不上报
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsUus1InfoEvtIndProc, Test_AT_CsUus1InfoEvtIndProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28260,15 +22436,7 @@ TEST_F(Test_AT_CsUus1InfoEvtIndProc, Test_AT_CsUus1InfoEvtIndProc_001)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsUus1InfoEvtIndProc002
-测试用例标题      : 当前类型为MT CALL，CUUS1未激活
-预期结果          : CUUS1不上报
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsUus1InfoEvtIndProc, Test_AT_CsUus1InfoEvtIndProc_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28326,14 +22494,7 @@ TEST_F(Test_AT_CsUus1InfoEvtIndProc, Test_AT_CsUus1InfoEvtIndProc_002)
      GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_CsIncomingEvtOfIncomeStateIndProc
-功能描述 : At_CsIncomingEvtOfIncomeStateIndProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CsIncomingEvtOfIncomeStateIndProc: public ::testing::Test
 {
 public:
@@ -28349,15 +22510,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIncomingEvtOfIncomeStateIndProc_001
-测试用例标题      : modem0来电使能扩展格式上报，使能CLIP主动上报，使能^ALS主动上报,CallType为VIDEO
-预期结果          : Modem0主动上报^CRING，主动上报+CLIP，主动上报^ALS，启动自动监听功能
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsIncomingEvtOfIncomeStateIndProc, Test_At_CsIncomingEvtOfIncomeStateIndProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28435,15 +22588,7 @@ TEST_F(Test_At_CsIncomingEvtOfIncomeStateIndProc, Test_At_CsIncomingEvtOfIncomeS
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_CsIncomingEvtOfIncomeStateIndProc_002
-测试用例标题      : modem1来电使能扩展格式上报，使能CLIP主动上报，使能^ALS主动上报,CallType为VIDEO
-预期结果          : Modem1主动上报^CRING，主动上报+CLIP，主动上报^ALS，启动自动监听功能
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsIncomingEvtOfIncomeStateIndProc, Test_At_CsIncomingEvtOfIncomeStateIndProc_002)
 {
     MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28515,15 +22660,7 @@ TEST_F(Test_At_CsIncomingEvtOfIncomeStateIndProc, Test_At_CsIncomingEvtOfIncomeS
 #endif
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*******************************************************************
-测试用例编号      : Test_At_CsIncomingEvtOfIncomeStateIndProc_003
-测试用例标题      : IMS域的SS业务,modem0来电使能扩展格式上报，使能CLIP主动上报，使能^ALS主动上报
-预期结果          : Modem0主动上报IRING，主动上报+CLIP，主动上报^ALS，启动自动监听功能
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsIncomingEvtOfIncomeStateIndProc, Test_At_CsIncomingEvtOfIncomeStateIndProc_003)
 {
     MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28606,15 +22743,7 @@ TEST_F(Test_At_CsIncomingEvtOfIncomeStateIndProc, Test_At_CsIncomingEvtOfIncomeS
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIncomingEvtOfIncomeStateIndProc_004
-测试用例标题      : IMS域的SS业务,modem0来电去使能扩展格式上报，使能CLIP主动上报，使能^ALS主动上报
-预期结果          : Modem0主动上报IRING，主动上报+CLIP，主动上报^ALS，启动自动监听功能
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsIncomingEvtOfIncomeStateIndProc, Test_At_CsIncomingEvtOfIncomeStateIndProc_004)
 {
     MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28698,14 +22827,7 @@ TEST_F(Test_At_CsIncomingEvtOfIncomeStateIndProc, Test_At_CsIncomingEvtOfIncomeS
 }
 
 #endif
-/*****************************************************************************
-类名     : Test_At_SsIndProc
-功能描述 : At_SsIndProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SsIndProc: public ::testing::Test
 {
 public:
@@ -28722,15 +22844,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_001
-测试用例标题      : 处理TAF_SS_EVT_USS_REQ_IND事件
-预期结果          : Modem0的SS全局变量字段ucCusdStateInd为AT_CUSD_NT_IND_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28785,15 +22899,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_001)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_002
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND事件
-预期结果          : Modem0的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28848,15 +22954,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_002)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_009
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND事件, 应用为mp
-预期结果          :
-修改历史          :
-1.日   期         : 2013-11-07
-  作   者         : z00161729
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_009)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28916,15 +23014,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_009)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_010
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND事件, 应用为andriod
-预期结果          :
-修改历史          :
-1.日   期         : 2013-11-07
-  作   者         : z00161729
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_010)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -28984,15 +23074,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_010)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_003
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND事件，当前ucCusdType为AT_CUSD_DISABLE_TYPE
-预期结果          : Modem0的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE，返回
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_003)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29042,15 +23124,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_003)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_004
-测试用例标题      : 当前处理事件为TAF_SS_EVT_ERROR
-预期结果          : Modem0的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_004)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29106,15 +23180,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_004)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_005
-测试用例标题      : 处理TAF_SS_EVT_USS_REQ_IND事件
-预期结果          : Modem1的SS全局变量字段ucCusdStateInd为AT_CUSD_NT_IND_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_005)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29169,15 +23235,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_005)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_006
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND事件
-预期结果          : Modem1的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_006)
 {
     MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29232,15 +23290,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_006)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_007
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND事件，当前ucCusdType为AT_CUSD_DISABLE_TYPE
-预期结果          : Modem1的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE，返回
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_007)
 {
       MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29290,15 +23340,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_007)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsIndProc_008
-测试用例标题      : 当前处理事件为TAF_SS_EVT_ERROR
-预期结果          : Modem1的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_008)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29354,14 +23396,7 @@ TEST_F(Test_At_SsIndProc, Test_At_SsIndProc_008)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SsRspUssdProc
-功能描述 : At_SsRspUssdProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SsRspUssdProc: public ::testing::Test
 {
 public:
@@ -29377,15 +23412,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspUssdProc_001
-测试用例标题      : 处理TAF_SS_EVT_USS_REQ_IND的事件
-预期结果          : Modem0的SS全局变量字段ucCusdStateInd为AT_CUSD_NT_IND_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29444,15 +23471,7 @@ TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_001)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspUssdProc_002
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND的事件
-预期结果          : Modem0的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29511,15 +23530,7 @@ TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_002)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspUssdProc_003
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND的事件，modem0的ucCusdType为AT_CUSD_DISABLE_TYPE
-预期结果          : Modem0的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE，返回
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_003)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29573,15 +23584,7 @@ TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_003)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SsRspUssdProc_004
-测试用例标题      : 处理TAF_SS_EVT_USS_REQ_IND的事件
-预期结果          : Modem1的SS全局变量字段ucCusdStateInd为AT_CUSD_NT_IND_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_004)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29640,15 +23643,7 @@ TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_004)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspUssdProc_005
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND的事件
-预期结果          : Modem1的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_005)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29707,15 +23702,7 @@ TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_005)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspUssdProc_006
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND的事件，modem1的ucCusdType为AT_CUSD_DISABLE_TYPE
-预期结果          : Modem1的SS全局变量字段ucCusdStateInd为AT_CUSD_MT_IDL_STATE，返回
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_006)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29769,15 +23756,7 @@ TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_006)
 }
 #endif
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspUssdProc_008
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND的事件，对接应用为andriod
-预期结果          :
-修改历史          :
-1.日   期         : 2013-11-15
-  作   者         : z00161729
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_008)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29841,15 +23820,7 @@ TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_008)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspUssdProc_009
-测试用例标题      : 处理TAF_SS_EVT_USS_RELEASE_COMPLETE_IND的事件，对接应用为mp
-预期结果          :
-修改历史          :
-1.日   期         : 2013-11-15
-  作   者         : z00161729
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_009)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -29914,14 +23885,7 @@ TEST_F(Test_At_SsRspUssdProc, Test_At_SsRspUssdProc_009)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_CsIncomingEvtOfWaitStateIndProc
-功能描述 : At_CsIncomingEvtOfWaitStateIndProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CsIncomingEvtOfWaitStateIndProc: public ::testing::Test
 {
 public:
@@ -29937,15 +23901,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CsIncomingEvtOfWaitStateIndProc_001
-测试用例标题      : Modem0允许CCWA主动上报，允许^ALS主动上报　　　　　　　
-预期结果          : 主动上报^CCWA,^ALS
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsIncomingEvtOfWaitStateIndProc, Test_At_CsIncomingEvtOfWaitStateIndProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -30014,15 +23970,7 @@ TEST_F(Test_At_CsIncomingEvtOfWaitStateIndProc, Test_At_CsIncomingEvtOfWaitState
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_CsIncomingEvtOfWaitStateIndProc_002
-测试用例标题      : Modem1允许CCWA主动上报，允许^ALS主动上报　　　　　　　
-预期结果          : 主动上报^CCWA,^ALS
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsIncomingEvtOfWaitStateIndProc, Test_At_CsIncomingEvtOfWaitStateIndProc_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -30092,15 +24040,7 @@ TEST_F(Test_At_CsIncomingEvtOfWaitStateIndProc, Test_At_CsIncomingEvtOfWaitState
 #endif
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*******************************************************************
-测试用例编号      : Test_At_CsIncomingEvtOfWaitStateIndProc_003
-测试用例标题      : IMS域的SS业务，Modem0允许^CCWA主动上报，允许^ALS主动上报　　　　　　　
-预期结果          : 主动上报^CCWA,^ALS
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsIncomingEvtOfWaitStateIndProc, Test_At_CsIncomingEvtOfWaitStateIndProc_003)
 {
     MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -30178,14 +24118,7 @@ TEST_F(Test_At_CsIncomingEvtOfWaitStateIndProc, Test_At_CsIncomingEvtOfWaitState
 
 
 
-/*****************************************************************************
-类名     : Test_At_SsRspInterrogateCnfClipProc
-功能描述 : At_SsRspInterrogateCnfClipProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SsRspInterrogateCnfClipProc: public ::testing::Test
 {
 public:
@@ -30201,15 +24134,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfClipProc_001
-测试用例标题      : Modem0的CLIP值为0
-预期结果          : 查询结果+CLIP:0,2
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfClipProc, Test_At_SsRspInterrogateCnfClipProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -30275,15 +24200,7 @@ TEST_F(Test_At_SsRspInterrogateCnfClipProc, Test_At_SsRspInterrogateCnfClipProc_
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfClipProc_002
-测试用例标题      : Modem1的CLIP值为1
-预期结果          : 查询结果+CLIP:1
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfClipProc, Test_At_SsRspInterrogateCnfClipProc_002)
 {
     MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -30350,14 +24267,7 @@ TEST_F(Test_At_SsRspInterrogateCnfClipProc, Test_At_SsRspInterrogateCnfClipProc_
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SsRspInterrogateCnfClirProc
-功能描述 : At_SsRspInterrogateCnfClirProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SsRspInterrogateCnfClirProc: public ::testing::Test
 {
 public:
@@ -30373,15 +24283,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfClirProc_001
-测试用例标题      : Modem0的CLIR类型为1,并且消息的CLIR业务未提供
-预期结果          : 上报+CLIR:1,0
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfClirProc, Test_At_SsRspInterrogateCnfClirProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -30448,15 +24350,7 @@ TEST_F(Test_At_SsRspInterrogateCnfClirProc, Test_At_SsRspInterrogateCnfClirProc_
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfClirProc_002
-测试用例标题      : Modem1的CLIR类型为2，并且消息的CLIR业务未提供
-预期结果          : 上报+CLIR:2,0
-修改历史          :
-1.日   期         : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfClirProc, Test_At_SsRspInterrogateCnfClirProc_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -30522,14 +24416,7 @@ TEST_F(Test_At_SsRspInterrogateCnfClirProc, Test_At_SsRspInterrogateCnfClirProc_
      GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
- 类名       : Test_At_QryParaRspCopsProc
- 功能描述   : At_QryParaRspCopsProc UT工程类
- 修改历史   :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryParaRspCopsProc: public ::testing::Test
 {
 public:
@@ -30543,15 +24430,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryParaRspCopsProc_001
- 测试用例标题   : 长字符串格式
- 预期结果       : 输出长名字
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryParaRspCopsProc,Test_At_QryParaRspCopsProc_001)
 {
     VOS_UINT8                           ucIndex;
@@ -30588,15 +24467,7 @@ TEST_F(Test_At_QryParaRspCopsProc,Test_At_QryParaRspCopsProc_001)
 
     GlobalMockObject::verify();
 }
-/*******************************************************************
- 测试用例编号   : Test_At_QryParaRspCopsProc_002
- 测试用例标题   : 短字符串格式
- 预期结果       : 输出短名字
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryParaRspCopsProc,Test_At_QryParaRspCopsProc_002)
 {
     VOS_UINT8                           ucIndex;
@@ -30634,15 +24505,7 @@ TEST_F(Test_At_QryParaRspCopsProc,Test_At_QryParaRspCopsProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryParaRspCopsProc_003
- 测试用例标题   : 数字格式
- 预期结果       : 输出数字格式名字
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryParaRspCopsProc,Test_At_QryParaRspCopsProc_003)
 {
     VOS_UINT8                           ucIndex;
@@ -30679,15 +24542,7 @@ TEST_F(Test_At_QryParaRspCopsProc,Test_At_QryParaRspCopsProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryParaRspCopsProc_004
- 测试用例标题   : mcc和mnc都为0的情况
- 预期结果       : 返回搜索模式
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryParaRspCopsProc,Test_At_QryParaRspCopsProc_004)
 {
     VOS_UINT8                           ucIndex;
@@ -30724,14 +24579,7 @@ TEST_F(Test_At_QryParaRspCopsProc,Test_At_QryParaRspCopsProc_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_At_QryParaRspCregProc
- 功能描述   : At_QryParaRspCregProc UT工程类
- 修改历史   :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryParaRspCregProc: public ::testing::Test
 {
 public:
@@ -30745,15 +24593,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryParaRspCregProc_001
- 测试用例标题   : 参数查询结果Creg的上报处理
- 预期结果       : 上报结果
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryParaRspCregProc,Test_At_QryParaRspCregProc_001)
 {
     VOS_UINT8                           ucIndex;
@@ -30789,14 +24629,7 @@ TEST_F(Test_At_QryParaRspCregProc,Test_At_QryParaRspCregProc_001)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
- 类名       : Test_At_QryParaRspCgregProc
- 功能描述   : At_QryParaRspCgregProc UT工程类
- 修改历史   :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryParaRspCgregProc: public ::testing::Test
 {
 public:
@@ -30810,15 +24643,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_At_QryParaRspCgregProc_001
- 测试用例标题   : 参数查询结果Cgreg的上报处理
- 预期结果       : 上报结果
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryParaRspCgregProc,Test_At_QryParaRspCgregProc_001)
 {
     VOS_UINT8                           ucIndex;
@@ -30853,14 +24678,7 @@ TEST_F(Test_At_QryParaRspCgregProc,Test_At_QryParaRspCgregProc_001)
 }
 
 #if(FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 类名       : Test_AT_QryParaRspCeregProc
- 功能描述   : AT_QryParaRspCeregProc UT工程类
- 修改历史   :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_QryParaRspCeregProc: public ::testing::Test
 {
 public:
@@ -30874,15 +24692,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_QryParaRspCeregProc_001
- 测试用例标题   : 参数查询结果Cereg的上报处理
- 预期结果       : 上报结果
- 修改历史       :
- 1.日   期  : 2013-03-08
-   作   者  : f00179208
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_QryParaRspCeregProc,Test_AT_QryParaRspCeregProc_001)
 {
     VOS_UINT8                           ucIndex;
@@ -30919,14 +24729,7 @@ TEST_F(Test_AT_QryParaRspCeregProc,Test_AT_QryParaRspCeregProc_001)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_SetCscaCsmpRspProc
-功能描述 : At_SetCscaCsmpRspProc工程类
-修改历史     :
-1.日   期  : 2013-03-07
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetCscaCsmpRspProc: public ::testing::Test
 {
 public:
@@ -30941,15 +24744,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号 : Test_At_SetCscaCsmpRspProc_001
-测试用例标题 : Modem 0接收到CSCA或CSMP设置命令的响应事件处理
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetCscaCsmpRspProc, Test_At_SetCscaCsmpRspProc_001)
 {
     // 参数定义
@@ -30976,18 +24771,7 @@ TEST_F(Test_At_SetCscaCsmpRspProc, Test_At_SetCscaCsmpRspProc_001)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号 : Test_At_SetCscaCsmpRspProc_002
-测试用例标题 : Modem 0接收到CSCA或CSMP设置命令的响应事件处理
-预期结果     : 设置失败，返回失败原因值
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-  2.日    期 : 2013-05-21
-    作    者 : w00176964
-    修改内容 : SS FDN&Call Control项目UT修改
-*******************************************************************/
+
 TEST_F(Test_At_SetCscaCsmpRspProc, Test_At_SetCscaCsmpRspProc_002)
 {
     // 参数定义
@@ -31016,15 +24800,7 @@ TEST_F(Test_At_SetCscaCsmpRspProc, Test_At_SetCscaCsmpRspProc_002)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号 : Test_At_SetCscaCsmpRspProc_003
-测试用例标题 : Modem 1接收到CSCA或CSMP设置命令的响应事件处理
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetCscaCsmpRspProc, Test_At_SetCscaCsmpRspProc_003)
 {
     // 参数定义
@@ -31052,15 +24828,7 @@ TEST_F(Test_At_SetCscaCsmpRspProc, Test_At_SetCscaCsmpRspProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号 : Test_At_SetCscaCsmpRspProc_004
-测试用例标题 : Modem 1接收到CSCA或CSMP设置命令的响应事件处理
-预期结果     : 设置失败，返回失败原因值
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SetCscaCsmpRspProc, Test_At_SetCscaCsmpRspProc_004)
 {
     // 参数定义
@@ -31089,14 +24857,7 @@ TEST_F(Test_At_SetCscaCsmpRspProc, Test_At_SetCscaCsmpRspProc_004)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_ReadRspProc
-功能描述 : At_ReadRspProc工程类
-修改历史     :
-1.日   期  : 2013-03-07
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ReadRspProc: public ::testing::Test
 {
 public:
@@ -31111,15 +24872,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号 : Test_At_ReadRspProc_001
-测试用例标题 : Modem 0接收到CMGR命令的响应事件,短信格式为PDU
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_001)
 {
     // 参数定义
@@ -31162,15 +24915,7 @@ TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号 : Test_At_ReadRspProc_002
-测试用例标题 : Modem 0接收到CMGR命令的响应事件,TPDU短信类型为MN_MSG_TPDU_DELIVER，文本模式下参数显示类型为AT_CSDH_SHOW_TYPE
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_002)
 {
     // 参数定义
@@ -31215,15 +24960,7 @@ TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号 : Test_At_ReadRspProc_003
-测试用例标题 : Modem 0接收到CMGR命令的响应事件,TPDU短信类型为MN_MSG_TPDU_SUBMIT，文本模式下参数显示类型为AT_CSDH_SHOW_TYPE
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_003)
 {
     // 参数定义
@@ -31268,15 +25005,7 @@ TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_003)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号 : Test_At_ReadRspProc_004
-测试用例标题 : Modem 0接收到CMGR命令的响应事件,TPDU短信类型为MN_MSG_TPDU_COMMAND，文本模式下参数显示类型为AT_CSDH_SHOW_TYPE
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_004)
 {
     // 参数定义
@@ -31323,15 +25052,7 @@ TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_004)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号 : Test_At_ReadRspProc_005
-测试用例标题 : Modem 1接收到CMGR命令的响应事件,短信格式为PDU
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_005)
 {
     // 参数定义
@@ -31373,15 +25094,7 @@ TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号 : Test_At_ReadRspProc_006
-测试用例标题 : Modem 1接收到CMGR命令的响应事件,TPDU短信类型为MN_MSG_TPDU_DELIVER，文本模式下参数显示类型为AT_CSDH_SHOW_TYPE
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_006)
 {
     // 参数定义
@@ -31426,15 +25139,7 @@ TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号 : Test_At_ReadRspProc_007
-测试用例标题 : Modem 1接收到CMGR命令的响应事件,TPDU短信类型为MN_MSG_TPDU_SUBMIT，文本模式下参数显示类型为AT_CSDH_SHOW_TYPE
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_007)
 {
     // 参数定义
@@ -31479,15 +25184,7 @@ TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_007)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号 : Test_At_ReadRspProc_008
-测试用例标题 : Modem 1接收到CMGR命令的响应事件,TPDU短信类型为MN_MSG_TPDU_COMMAND，文本模式下参数显示类型为AT_CSDH_SHOW_TYPE
-预期结果     : 设置成功，保存设置数据到内存
-修改历史
-  1.日    期 : 2013-03-07
-    作    者 : l00227485
-    修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_008)
 {
     // 参数定义
@@ -31535,14 +25232,7 @@ TEST_F(Test_At_ReadRspProc, Test_At_ReadRspProc_008)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_ListRspProc
-功能描述 : At_ListRspProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ListRspProc: public ::testing::Test
 {
 public:
@@ -31557,15 +25247,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ListRspProc_001
-测试用例标题      : Modem 0接收到CMGL命令的响应事件,短信格式为PDU
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_001)
 {
     // 参数定义
@@ -31612,15 +25294,7 @@ TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ListRspProc_001_1
-测试用例标题      : Modem 0接收到CMGL命令的响应事件,短信格式为PDU
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年9月29日
-    作    者: w00167002
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_001_1)
 {
     // 参数定义
@@ -31687,15 +25361,7 @@ TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_001_1)
 
 
 
-/*******************************************************************
-测试用例编号      : Test_At_ListRspProc_002
-测试用例标题      : Modem 0接收到CMGL命令的响应事件,短信格式为TEXT,DELIVER模式
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_002)
 {
     // 参数定义
@@ -31745,15 +25411,7 @@ TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_002)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_ListRspProc_003
-测试用例标题      : Modem 1接收到CMGL命令的响应事件,短信格式为PDU
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_003)
 {
     // 参数定义
@@ -31798,15 +25456,7 @@ TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_003)
     //检查调用时，需要在用例结束位置加上这句
     GlobalMockObject::verify();
 }
-/*******************************************************************
-测试用例编号      : Test_At_ListRspProc_004
-测试用例标题      : Modem 0接收到CMGL命令的响应事件,短信格式为TEXT,SUBMIT模式
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_004)
 {
     // 参数定义
@@ -31857,14 +25507,7 @@ TEST_F(Test_At_ListRspProc,Test_At_ListRspProc_004)
 
 #endif
 
-/*****************************************************************************
-类名     : Test_At_GetCbActiveMidsRspProc
-功能描述 : At_GetCbActiveMidsRspProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_GetCbActiveMidsRspProc: public ::testing::Test
 {
 public:
@@ -31879,15 +25522,7 @@ public:
     }
 };
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
-/*******************************************************************
-测试用例编号      : Test_At_GetCbActiveMidsRspProc_001
-测试用例标题      : Modem 0接收到CSCB查询命令的响应事件处理
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_GetCbActiveMidsRspProc,Test_At_GetCbActiveMidsRspProc_001)
 {
     // 参数定义
@@ -31922,15 +25557,7 @@ TEST_F(Test_At_GetCbActiveMidsRspProc,Test_At_GetCbActiveMidsRspProc_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_GetCbActiveMidsRspProc_002
-测试用例标题      : Modem 1接收到CSCB查询命令的响应事件处理
-预期结果          : 返回
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_GetCbActiveMidsRspProc,Test_At_GetCbActiveMidsRspProc_002)
 {
     // 参数定义
@@ -31969,14 +25596,7 @@ TEST_F(Test_At_GetCbActiveMidsRspProc,Test_At_GetCbActiveMidsRspProc_002)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_ForwardMsgToTeInCmt
-功能描述 : At_ForwardMsgToTeInCmt UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ForwardMsgToTeInCmt: public ::testing::Test
 {
 public:
@@ -31991,15 +25611,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ForwardMsgToTeInCmt_001
-测试用例标题      : Modem 0消息格式为TEXT，参数显示类型为AT_CSDH_SHOW_TYPE
-预期结果          : 以CMT格式发给TE
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ForwardMsgToTeInCmt,Test_At_ForwardMsgToTeInCmt_001)
 {
     // 参数定义
@@ -32026,15 +25638,7 @@ TEST_F(Test_At_ForwardMsgToTeInCmt,Test_At_ForwardMsgToTeInCmt_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_ForwardMsgToTeInCmt_002
-测试用例标题      : Modem 1消息格式为TEXT，参数显示类型为AT_CSDH_SHOW_TYPE
-预期结果          : 以CMT格式发给TE
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ForwardMsgToTeInCmt,Test_At_ForwardMsgToTeInCmt_002)
 {
     // 参数定义
@@ -32062,14 +25666,7 @@ TEST_F(Test_At_ForwardMsgToTeInCmt,Test_At_ForwardMsgToTeInCmt_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SsRspInterrogateCnfColpProc
-功能描述 : At_SsRspInterrogateCnfColpProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SsRspInterrogateCnfColpProc: public ::testing::Test
 {
 public:
@@ -32085,15 +25682,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfColpProc_001
-测试用例标题      : Modem0SS中查询结果针对Colp的上报处理，状态为1，ucColpType为1
-预期结果          : 上报结果
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfColpProc, Test_At_SsRspInterrogateCnfColpProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -32166,15 +25755,7 @@ TEST_F(Test_At_SsRspInterrogateCnfColpProc, Test_At_SsRspInterrogateCnfColpProc_
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfColpProc_002
-测试用例标题      : Modem1SS中查询结果针对Colp的上报处理，没有查到状态，ucColpType为0
-预期结果          : 上报结果
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfColpProc, Test_At_SsRspInterrogateCnfColpProc_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = TAF_NULL_PTR;
@@ -32247,14 +25828,7 @@ TEST_F(Test_At_SsRspInterrogateCnfColpProc, Test_At_SsRspInterrogateCnfColpProc_
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_ProcCsRspEvtCssiNotifiy
-功能描述 : At_ProcCsRspEvtCssiNotifiy UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ProcCsRspEvtCssiNotifiy: public ::testing::Test
 {
 public:
@@ -32270,15 +25844,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssiNotifiy_001
-测试用例标题      : 当前事件的编码为MN_CALL_SS_NTFY_MO_CUG_INFO
-预期结果          : 上报+CSSI
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcCsRspEvtCssiNotifiy, Test_At_ProcCsRspEvtCssiNotifiy_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32338,16 +25904,7 @@ TEST_F(Test_At_ProcCsRspEvtCssiNotifiy, Test_At_ProcCsRspEvtCssiNotifiy_001)
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssiNotifiy_002
-测试用例标题      : IMS域SS业务上报
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcCsRspEvtCssiNotifiy, Test_At_ProcCsRspEvtCssiNotifiy_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32409,14 +25966,7 @@ TEST_F(Test_At_ProcCsRspEvtCssiNotifiy, Test_At_ProcCsRspEvtCssiNotifiy_002)
 
 #endif
 
-/*****************************************************************************
-类名     : Test_At_ProcCsRspEvtCssuNotifiy
-功能描述 : At_ProcCsRspEvtCssuNotifiy UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ProcCsRspEvtCssuNotifiy: public ::testing::Test
 {
 public:
@@ -32432,15 +25982,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssuNotifiy_001
-测试用例标题      : 当前ucCssnMType为AT_CSSN_M_ENABLE_TYPE，call的enCode为MN_CALL_SS_NTFY_FORWORDED_CALL
-预期结果          : 上报+CSSU
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32503,15 +26045,7 @@ TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_001)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssuNotifiy_002
-测试用例标题      : 当前ucCssnMType为AT_CSSN_M_ENABLE_TYPE，call的enCode为MN_CALL_SS_NTFY_MT_CUG_INFO
-预期结果          : 上报+CSSU
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32571,15 +26105,7 @@ TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_002)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssuNotifiy_003
-测试用例标题      : 当前ucCssnMType为AT_CSSN_M_ENABLE_TYPE，call的enCode为MN_CALL_SS_NTFY_ON_HOLD
-预期结果          : 上报+CSSU
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_003)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32641,15 +26167,7 @@ TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_003)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssuNotifiy_004
-测试用例标题      : 当前ucCssnMType为AT_CSSN_M_ENABLE_TYPE，call的enCode为MN_CALL_SS_NTFY_RETRIEVED
-预期结果          : 上报+CSSU
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_004)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32711,15 +26229,7 @@ TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_004)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssuNotifiy_005
-测试用例标题      : 当前ucCssnMType为AT_CSSN_M_ENABLE_TYPE，call的enCode为MN_CALL_SS_NTFY_ENTER_MPTY
-预期结果          : 上报+CSSU
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_005)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32781,15 +26291,7 @@ TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_005)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssuNotifiy_006
-测试用例标题      : 当前ucCssnMType为AT_CSSN_M_ENABLE_TYPE，call的enCode为MN_CALL_SS_NTFY_DEFLECTED_CALL
-预期结果          : 上报+CSSU
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_006)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32851,15 +26353,7 @@ TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_006)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssuNotifiy_007
-测试用例标题      : 当前ucCssnMType为AT_CSSN_M_ENABLE_TYPE，call的enCode为default
-预期结果          : 上报+CSSU
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_007)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32922,16 +26416,7 @@ TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_007)
      GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_IMS)
-/*******************************************************************
-测试用例编号      : Test_At_ProcCsRspEvtCssuNotifiy_008
-测试用例标题      : IMS域SS业务上报
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
 
-*******************************************************************/
 TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_008)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -32997,14 +26482,7 @@ TEST_F(Test_At_ProcCsRspEvtCssuNotifiy, Test_At_ProcCsRspEvtCssuNotifiy_008)
 
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_CsSsNotifyEvtIndProc
-功能描述 : AT_CsSsNotifyEvtIndProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_CsSsNotifyEvtIndProc: public ::testing::Test
 {
 public:
@@ -33020,15 +26498,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsSsNotifyEvtIndProc_001
-测试用例标题      : 上报类型为+CSSI: <code1>[,<index>]
-预期结果          : 上报+CSSI
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsSsNotifyEvtIndProc, Test_AT_CsSsNotifyEvtIndProc_001)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -33091,15 +26561,7 @@ TEST_F(Test_AT_CsSsNotifyEvtIndProc, Test_AT_CsSsNotifyEvtIndProc_001)
      GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsSsNotifyEvtIndProc_002
-测试用例标题      : 上报类型为+CSSU: <code2>[,<index>[,<number>,<type>[,<subaddr>,<satype>]]]
-预期结果          : 上报+CSSI
-修改历史          :
-1.日   期  : 2013-03-11
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsSsNotifyEvtIndProc, Test_AT_CsSsNotifyEvtIndProc_002)
 {
      MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -33164,15 +26626,7 @@ TEST_F(Test_AT_CsSsNotifyEvtIndProc, Test_AT_CsSsNotifyEvtIndProc_002)
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*******************************************************************
-测试用例编号      : Test_AT_CsSsNotifyEvtIndProc_003
-测试用例标题      : IMS域的SS业务上报类型为^CSSI: <code1>[,<index>]
-预期结果          : 上报^CSSI
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsSsNotifyEvtIndProc, Test_AT_CsSsNotifyEvtIndProc_003)
 {
     MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -33236,15 +26690,7 @@ TEST_F(Test_AT_CsSsNotifyEvtIndProc, Test_AT_CsSsNotifyEvtIndProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_CsSsNotifyEvtIndProc_004
-测试用例标题      : IMS域的SS业务,上报类型为^CSSU: <code2>[,<index>[,<number>,<type>[,<subaddr>,<satype>]]]
-预期结果          : 上报^CSSU
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_CsSsNotifyEvtIndProc, Test_AT_CsSsNotifyEvtIndProc_004)
 {
     MN_AT_IND_EVT_STRU                 *pMsg = VOS_NULL_PTR;
@@ -33312,14 +26758,7 @@ TEST_F(Test_AT_CsSsNotifyEvtIndProc, Test_AT_CsSsNotifyEvtIndProc_004)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_BufferMsgInTa
-功能描述 : At_BufferMsgInTa UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_BufferMsgInTa: public ::testing::Test
 {
 public:
@@ -33334,15 +26773,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_BufferMsgInTa_001
-测试用例标题      : Modem0 根据CNMI命令选择的缓存模式存储事件上报处理
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_BufferMsgInTa,Test_At_BufferMsgInTa_001)
 {
     //参数定义
@@ -33366,15 +26797,7 @@ TEST_F(Test_At_BufferMsgInTa,Test_At_BufferMsgInTa_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_BufferMsgInTa_002
-测试用例标题      : Modem1 根据CNMI命令选择的缓存模式存储事件上报处理
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_BufferMsgInTa,Test_At_BufferMsgInTa_002)
 {
     //参数定义
@@ -33400,14 +26823,7 @@ TEST_F(Test_At_BufferMsgInTa,Test_At_BufferMsgInTa_002)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_HandleSmtBuffer
-功能描述 : At_HandleSmtBuffer UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_HandleSmtBuffer: public ::testing::Test
 {
 public:
@@ -33422,15 +26838,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleSmtBuffer_001
-测试用例标题      : Modem0 处理缓存的短消息
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleSmtBuffer,Test_At_HandleSmtBuffer_001)
 {
     //参数定义
@@ -33457,15 +26865,7 @@ TEST_F(Test_At_HandleSmtBuffer,Test_At_HandleSmtBuffer_001)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_HandleSmtBuffer_002
-测试用例标题      : Modem1 处理缓存的短消息
-预期结果          : 处理成功
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleSmtBuffer,Test_At_HandleSmtBuffer_002)
 {
     //参数定义
@@ -33493,15 +26893,7 @@ TEST_F(Test_At_HandleSmtBuffer,Test_At_HandleSmtBuffer_002)
 }
 #endif
 
-/* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, begin */
-/*****************************************************************************
- 类名       : Test_AT_RcvMnCallChannelInfoInd
- 功能描述   : AT_RcvMmaAcInfoChangeInd UT工程类
- 修改历史   :
- 1.日   期  : 2013-01-05
-   作   者  : l00171473
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvMnCallChannelInfoInd: public ::testing::Test
 {
 public:
@@ -33520,15 +26912,7 @@ public:
 
 };
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMnCallChannelInfoInd_001
- 测试用例标题   : 上报的CHANNEL信息中的CODEC TYPE为无效
- 预期结果       : 不上报带宽信息
- 修改历史       :
- 1.日   期  : 2013-01-05
-   作   者  : l00171473
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_001)
 {
     MN_AT_IND_EVT_STRU                 *pstEvent;
@@ -33564,15 +26948,7 @@ TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_001)
 
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMnCallChannelInfoInd_002
- 测试用例标题   : 上报的CHANNEL信息中的CODEC TYPE为宽带,获取INDEX失败
- 预期结果       : 不上报带宽信息
- 修改历史       :
- 1.日   期  : 2013-01-05
-   作   者  : l00171473
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_002)
 {
     MN_AT_IND_EVT_STRU                 *pstEvent;
@@ -33610,15 +26986,7 @@ TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_002)
 
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMnCallChannelInfoInd_003
- 测试用例标题   : 上报的CHANNEL信息中的CODEC TYPE为AMRWB
- 预期结果       : 向AT上报宽带信息
- 修改历史       :
- 1.日   期  : 2013-01-05
-   作   者  : l00171473
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_003)
 {
     MN_AT_IND_EVT_STRU                 *pstEvent;
@@ -33652,15 +27020,7 @@ TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMnCallChannelInfoInd_004
- 测试用例标题   : 上报的CHANNEL信息中的CODEC TYPE为AMR
- 预期结果       : 向AT上报窄带信息
- 修改历史       :
- 1.日   期  : 2013-01-05
-   作   者  : l00171473
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_004)
 {
     MN_AT_IND_EVT_STRU                 *pstEvent;
@@ -33694,15 +27054,7 @@ TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMnCallChannelInfoInd_005
- 测试用例标题   : 上报的CHANNEL信息中的CODEC TYPE为AMR2
- 预期结果       : 向AT上报窄带信息
- 修改历史       :
- 1.日   期  : 2013-01-05
-   作   者  : l00171473
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_005)
 {
     MN_AT_IND_EVT_STRU                 *pstEvent;
@@ -33736,16 +27088,8 @@ TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_005)
     GlobalMockObject::verify();
 }
 
-/* Added by l00171473 for DTS2013010800120 语音带宽信息上报, 2013-1-5, end */
 
-/*****************************************************************************
- 类名       : Test_At_QryMmPlmnInfoRspProc
- 功能描述   : At_QryMmPlmnInfoRspProc UT工程类
- 修改历史   :
- 1.日   期  : 2013-01-05
-   作   者  : l00171473
-   修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryMmPlmnInfoRspProc: public ::testing::Test
 {
 public:
@@ -33763,15 +27107,7 @@ public:
     }
 
 };
-/*******************************************************************
- 测试用例编号   : Test_At_QryMmPlmnInfoRspProc_001
- 测试用例标题   : 上报的CHANNEL信息中的CODEC TYPE为AMR2
- 预期结果       : 向AT上报窄带信息
- 修改历史       :
- 1.日   期  : 2013-01-05
-   作   者  : l00171473
-   修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_QryMmPlmnInfoRspProc, Test_At_QryMmPlmnInfoRspProc_001)
 {
     TAF_MMA_MM_INFO_PLMN_NAME_STRU      stEvent;
@@ -33803,14 +27139,7 @@ TEST_F(Test_At_QryMmPlmnInfoRspProc, Test_At_QryMmPlmnInfoRspProc_001)
 
 
 
-/*****************************************************************************
-类名     : Test_AT_GetSsEventErrorCode
-功能描述 : AT_GetSsEventErrorCode UT工程类
-修改历史 :
-1.日   期  : 2013-01-18
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_GetSsEventErrorCode: public ::testing::Test
 {
 public:
@@ -33825,15 +27154,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetSsEventErrorCode_001
-测试用例标题      : OP_SsStatus存在，且原因为业务未签约
-预期结果          : 返回AT_CME_SERVICE_NOT_PROVISIONED
-修改历史          :
-1.日   期  : 2013-01-18
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSsEventErrorCode, Test_AT_GetSsEventErrorCode_001)
 {
     // 变量声明
@@ -33858,15 +27179,7 @@ TEST_F(Test_AT_GetSsEventErrorCode, Test_AT_GetSsEventErrorCode_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetSsEventErrorCode_002
-测试用例标题      : OP_SsStatus存在，业务已签约
-预期结果          : 调用At_ChgTafErrorCode接口获取错误码
-修改历史          :
-1.日   期  : 2013-01-18
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSsEventErrorCode, Test_AT_GetSsEventErrorCode_002)
 {
     // 变量声明
@@ -33896,15 +27209,7 @@ TEST_F(Test_AT_GetSsEventErrorCode, Test_AT_GetSsEventErrorCode_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_GetSsEventErrorCode_003
-测试用例标题      : OP_SsStatus不存在
-预期结果          : 调用At_ChgTafErrorCode接口获取错误码
-修改历史          :
-1.日   期  : 2013-01-18
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_GetSsEventErrorCode, Test_AT_GetSsEventErrorCode_003)
 {
     // 变量声明
@@ -33932,14 +27237,7 @@ TEST_F(Test_AT_GetSsEventErrorCode, Test_AT_GetSsEventErrorCode_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_RcvXlemaQryCnf
-功能描述 : At_RcvXlemaQryCnf 函数的UT测试类
-修改历史 :
-1.日   期  : 2013-01-24
-  作   者  : Y00213812
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_RcvXlemaQryCnf: public ::testing::Test
 {
 public:
@@ -33956,15 +27254,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvXlemaQryCnf_001
-测试用例标题      : 查询XLEMA
-预期结果          : 打印
-修改历史          :
-1.日   期  : 2013-01-24
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_RcvXlemaQryCnf, Test_At_RcvXlemaQryCnf_001)
 {
     // 变量声明
@@ -34022,15 +27312,7 @@ TEST_F(Test_At_RcvXlemaQryCnf, Test_At_RcvXlemaQryCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvXlemaQryCnf_002
-测试用例标题      : 查询XLEMA
-预期结果          :
-修改历史          :
-1.日   期  : 2013-10-27
-  作   者  : z00161729
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_RcvXlemaQryCnf, Test_At_RcvXlemaQryCnf_002)
 {
     // 变量声明
@@ -34095,14 +27377,7 @@ TEST_F(Test_At_RcvXlemaQryCnf, Test_At_RcvXlemaQryCnf_002)
 }
 
 
-/*****************************************************************************
-类名     : Test_At_PrintReportData
-功能描述 : At_PrintReportData UT工程类
-修改历史     :
-1.日   期  : 2013-04-17
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_PrintReportData: public ::testing::Test
 {
 public:
@@ -34118,15 +27393,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_PrintReportData
-测试用例标题      : CSCS的默认配置为IRA，UCS2编码短信显示为TP-UD原始码流
-预期结果          : UCS2编码短信显示为TP-UD原始码流
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PrintReportData, Test_At_PrintReportData_001)
 {
     // 变量声明
@@ -34165,15 +27432,7 @@ TEST_F(Test_At_PrintReportData, Test_At_PrintReportData_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PrintReportData
-测试用例标题      : CSCS的默认配置为IRA，7bit编码短信显示为字符串
-预期结果          : 7bit编码短信显示为字符串
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PrintReportData, Test_At_PrintReportData_002)
 {
     // 变量声明
@@ -34212,15 +27471,7 @@ TEST_F(Test_At_PrintReportData, Test_At_PrintReportData_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_PrintReportData
-测试用例标题      : CSCS的默认配置为UCS2，7bit编码短信显示为TP-UD原始码流
-预期结果          : 7bit编码短信显示为TP-UD原始码流
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_PrintReportData, Test_At_PrintReportData_003)
 {
     // 变量声明
@@ -34260,14 +27511,7 @@ TEST_F(Test_At_PrintReportData, Test_At_PrintReportData_003)
 
 }
 
-/*****************************************************************************
-类名     : Test_AT_PrintSmsLength
-功能描述 : Test_AT_PrintSmsLength UT工程类
-修改历史     :
-1.日   期  : 2013-04-17
-作   者  :   f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_PrintSmsLength: public ::testing::Test
 {
 public:
@@ -34283,15 +27527,7 @@ public:
     }
 };
 #if 1
-/*******************************************************************
-测试用例编号      : Test_AT_PrintSmsLength
-测试用例标题      : UCS2编码短信内容长度为UCS2字符长度
-预期结果          : UCS2编码短信内容长度为UCS2字符长度
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PrintSmsLength, Test_AT_PrintSmsLength_001)
 {
     // 变量声明
@@ -34330,15 +27566,7 @@ TEST_F(Test_AT_PrintSmsLength, Test_AT_PrintSmsLength_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_PrintSmsLength
-测试用例标题      : 非UCS2编码短信内容长度为ASCII码字符长度
-预期结果          : 非UCS2编码短信内容长度为ASCII码字符长度
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者         : f62575
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_PrintSmsLength, Test_AT_PrintSmsLength_002)
 {
     // 变量声明
@@ -34378,14 +27606,7 @@ TEST_F(Test_AT_PrintSmsLength, Test_AT_PrintSmsLength_002)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_GetClckClassFromBsCode
-功能描述 : At_GetClckClassFromBsCode UT工程类
-修改历史 :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_GetClckClassFromBsCode: public ::testing::Test
 {
 public:
@@ -34400,15 +27621,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_GetClckClassFromBsCode_001
-测试用例标题      : 查表成功
-预期结果          : 返回CLASS值
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_GetClckClassFromBsCode, Test_At_GetClckClassFromBsCode_001)
 {
     // 变量声明
@@ -34432,15 +27645,7 @@ TEST_F(Test_At_GetClckClassFromBsCode, Test_At_GetClckClassFromBsCode_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_GetClckClassFromBsCode_002
-测试用例标题      : 查表失败
-预期结果          : 返回错误CLASS值
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_GetClckClassFromBsCode, Test_At_GetClckClassFromBsCode_002)
 {
     // 变量声明
@@ -34464,14 +27669,7 @@ TEST_F(Test_At_GetClckClassFromBsCode, Test_At_GetClckClassFromBsCode_002)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_SsRspInterrogateCnfClckProc
-功能描述 : At_SsRspInterrogateCnfClckProc UT工程类
-修改历史 :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SsRspInterrogateCnfClckProc: public ::testing::Test
 {
 public:
@@ -34511,15 +27709,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfClckProc_001
-测试用例标题      : 存在SS STATUS，且自定义SS参数格式
-预期结果          : 打印结果
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfClckProc, Test_At_SsRspInterrogateCnfClckProc_001)
 {
     // 变量声明
@@ -34550,15 +27740,7 @@ TEST_F(Test_At_SsRspInterrogateCnfClckProc, Test_At_SsRspInterrogateCnfClckProc_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfClckProc_002
-测试用例标题      : 不存在SS STATUS
-预期结果          : 打印结果
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfClckProc, Test_At_SsRspInterrogateCnfClckProc_002)
 {
     // 变量声明
@@ -34586,14 +27768,7 @@ TEST_F(Test_At_SsRspInterrogateCnfClckProc, Test_At_SsRspInterrogateCnfClckProc_
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_SsRspInterrogateCnfCcwaProc
-功能描述 : At_SsRspInterrogateCnfCcwaProc UT工程类
-修改历史 :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SsRspInterrogateCnfCcwaProc: public ::testing::Test
 {
 public:
@@ -34633,15 +27808,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfCcwaProc_001
-测试用例标题      : 存在SS STATUS，且自定义SS参数格式
-预期结果          : 打印结果
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfCcwaProc, Test_At_SsRspInterrogateCnfCcwaProc_001)
 {
     // 变量声明
@@ -34672,15 +27839,7 @@ TEST_F(Test_At_SsRspInterrogateCnfCcwaProc, Test_At_SsRspInterrogateCnfCcwaProc_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SsRspInterrogateCnfCcwaProc_002
-测试用例标题      : 不存在SS STATUS
-预期结果          : 打印结果
-修改历史          :
-1.日   期  : 2013-04-17
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SsRspInterrogateCnfCcwaProc, Test_At_SsRspInterrogateCnfCcwaProc_002)
 {
     // 变量声明
@@ -34708,15 +27867,7 @@ TEST_F(Test_At_SsRspInterrogateCnfCcwaProc, Test_At_SsRspInterrogateCnfCcwaProc_
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
- 测试用例编号   : Test_AT_RcvMnCallChannelInfoInd_006
- 测试用例标题   : 本地回铃音上报
- 预期结果       :
- 修改历史       :
- 1.日    期   : 2013年6月11日
-   作    者   : z00161729
-   修改内容   : SVLTE 和usim接口调整修改
-*******************************************************************/
+
 TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_006)
 {
     MN_AT_IND_EVT_STRU                 *pstEvent;
@@ -34751,14 +27902,7 @@ TEST_F(Test_AT_RcvMnCallChannelInfoInd, Test_AT_RcvMnCallChannelInfoInd_006)
 }
 
 
-/*****************************************************************************
-类名     : Test_AT_RcvTafCallStartDtmfCnf
-功能描述 : AT_RcvTafCallStartDtmfCnf UT工程类
-修改历史 :
-1.日   期  : 2013-07-18
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvTafCallStartDtmfCnf: public ::testing::Test
 {
 public:
@@ -34798,15 +27942,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafCallStartDtmfCnf_001
-测试用例标题      : ClientId转Index失败
-预期结果          : 函数退出
-修改历史          :
-1.日   期  : 2013-07-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafCallStartDtmfCnf, Test_AT_RcvTafCallStartDtmfCnf_001)
 {
     // 变量声明
@@ -34839,15 +27975,7 @@ TEST_F(Test_AT_RcvTafCallStartDtmfCnf, Test_AT_RcvTafCallStartDtmfCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafCallStartDtmfCnf_002
-测试用例标题      : 操作符不匹配
-预期结果          : 函数退出
-修改历史          :
-1.日   期  : 2013-07-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafCallStartDtmfCnf, Test_AT_RcvTafCallStartDtmfCnf_002)
 {
     // 变量声明
@@ -34881,15 +28009,7 @@ TEST_F(Test_AT_RcvTafCallStartDtmfCnf, Test_AT_RcvTafCallStartDtmfCnf_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafCallStartDtmfCnf_003
-测试用例标题      : 消息回复处理成功
-预期结果          : 打印AT_OK，AT通道恢复
-修改历史          :
-1.日   期  : 2013-07-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafCallStartDtmfCnf, Test_AT_RcvTafCallStartDtmfCnf_003)
 {
     // 变量声明
@@ -34928,15 +28048,7 @@ TEST_F(Test_AT_RcvTafCallStartDtmfCnf, Test_AT_RcvTafCallStartDtmfCnf_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafCallStartDtmfCnf_004
-测试用例标题      : 消息回复处理失败
-预期结果          : 打印AT_ERROR，AT通道恢复
-修改历史          :
-1.日   期  : 2013-07-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafCallStartDtmfCnf, Test_AT_RcvTafCallStartDtmfCnf_004)
 {
     // 变量声明
@@ -34976,14 +28088,7 @@ TEST_F(Test_AT_RcvTafCallStartDtmfCnf, Test_AT_RcvTafCallStartDtmfCnf_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_RcvMmaPsInitResultIndProc
-功能描述 : At_RcvMmaPsInitResultIndProc UT工程类
-修改历史 :
-1.日    期   : 2013年08月06日
-  作    者   : w00176964
-  修改内容   : 新生成类
-*****************************************************************************/
+
 class Test_At_RcvMmaPsInitResultIndProc: public ::testing::Test
 {
 public:
@@ -35003,16 +28108,7 @@ public:
 };
 
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvMmaPsInitResultIndProc_001
-测试用例标题      : AT收到MTA TAF_MMA_EVT_PS_INIT_RESULT_IND消息,协议栈初始化成功
-预期结果          : 拉GPIO管脚通知AP侧MODEM已经OK
-                    收到PS INIT上报后写设备节点，启动成功
-修改历史          :
-1.日    期   : 2013年08月6日
-  作    者   : w00176964
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(Test_At_RcvMmaPsInitResultIndProc, Test_At_RcvMmaPsInitResultIndProc_001)
 {
     VOS_CHAR                           *pcPrintStr = "\r\n^PSINIT: 1\r\n";
@@ -35040,16 +28136,7 @@ TEST_F(Test_At_RcvMmaPsInitResultIndProc, Test_At_RcvMmaPsInitResultIndProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvMmaPsInitResultIndProc_002
-测试用例标题      : AT收到MTA TAF_MMA_EVT_PS_INIT_RESULT_IND消息,协议栈初始化失败
-预期结果          : 拉GPIO管脚通知AP侧MODEM已经OK
-                    收到PS INIT上报后写设备节点，启动成功
-修改历史          :
-1.日    期   : 2013年08月6日
-  作    者   : w00176964
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(Test_At_RcvMmaPsInitResultIndProc, Test_At_RcvMmaPsInitResultIndProc_002)
 {
     VOS_CHAR                           *pcPrintStr = "\r\n^PSINIT: 0\r\n";
@@ -35077,16 +28164,7 @@ TEST_F(Test_At_RcvMmaPsInitResultIndProc, Test_At_RcvMmaPsInitResultIndProc_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_RcvMmaPsInitResultIndProc_003
-测试用例标题      : AT收到MTA TAF_MMA_EVT_PS_INIT_RESULT_IND消息,不携带PS INIT的OP项
-预期结果          : 拉GPIO管脚通知AP侧MODEM已经OK
-                    收到PS INIT上报后写设备节点，启动成功
-修改历史          :
-1.日    期   : 2013年08月6日
-  作    者   : w00176964
-  修改内容   : 新增函数
-*******************************************************************/
+
 TEST_F(Test_At_RcvMmaPsInitResultIndProc, Test_At_RcvMmaPsInitResultIndProc_003)
 {
     VOS_CHAR                           *pcPrintStr = "^PSINIT: 1\r\n\r\nOK\r\n";
@@ -35113,16 +28191,8 @@ TEST_F(Test_At_RcvMmaPsInitResultIndProc, Test_At_RcvMmaPsInitResultIndProc_003)
 }
 
 
-/* Added by w00176964 for VoLTE_PhaseI项目, 2013-8-6, end */
 
-/*****************************************************************************
-类名     : Test_AT_RcvTafCallStopDtmfCnf
-功能描述 : AT_RcvTafCallStopDtmfCnf UT工程类
-修改历史 :
-1.日   期  : 2013-07-18
-  作   者  : l00198894
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_RcvTafCallStopDtmfCnf: public ::testing::Test
 {
 public:
@@ -35162,15 +28232,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafCallStopDtmfCnf_001
-测试用例标题      : ClientId转Index失败
-预期结果          : 函数退出
-修改历史          :
-1.日   期  : 2013-07-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafCallStopDtmfCnf, Test_AT_RcvTafCallStopDtmfCnf_001)
 {
     // 变量声明
@@ -35203,15 +28265,7 @@ TEST_F(Test_AT_RcvTafCallStopDtmfCnf, Test_AT_RcvTafCallStopDtmfCnf_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafCallStopDtmfCnf_002
-测试用例标题      : 操作符不匹配
-预期结果          : 函数退出
-修改历史          :
-1.日   期  : 2013-07-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafCallStopDtmfCnf, Test_AT_RcvTafCallStopDtmfCnf_002)
 {
     // 变量声明
@@ -35245,15 +28299,7 @@ TEST_F(Test_AT_RcvTafCallStopDtmfCnf, Test_AT_RcvTafCallStopDtmfCnf_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafCallStopDtmfCnf_003
-测试用例标题      : 消息回复处理成功
-预期结果          : 打印AT_OK，AT通道恢复
-修改历史          :
-1.日   期  : 2013-07-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafCallStopDtmfCnf, Test_AT_RcvTafCallStopDtmfCnf_003)
 {
     // 变量声明
@@ -35292,15 +28338,7 @@ TEST_F(Test_AT_RcvTafCallStopDtmfCnf, Test_AT_RcvTafCallStopDtmfCnf_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_RcvTafCallStopDtmfCnf_004
-测试用例标题      : 消息回复处理失败
-预期结果          : 打印AT_ERROR，AT通道恢复
-修改历史          :
-1.日   期  : 2013-07-19
-  作   者  : l00198894
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_AT_RcvTafCallStopDtmfCnf, Test_AT_RcvTafCallStopDtmfCnf_004)
 {
     // 变量声明
@@ -35340,16 +28378,7 @@ TEST_F(Test_AT_RcvTafCallStopDtmfCnf, Test_AT_RcvTafCallStopDtmfCnf_004)
     GlobalMockObject::verify();
 }
 
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-25, begin */
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_026
-测试用例标题      : 事件为MN_CALL_EVT_START_DTMF_RSLT
-预期结果          : AT回复OK
-修改历史     :
-1.日   期  : 2013-07-28
-作   者  :   z00161729
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_026)
 {
     /* 变量定义 */
@@ -35369,15 +28398,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_026)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CsMsgProc_027
-测试用例标题      : 事件为MN_CALL_EVT_STOP_DTMF_RSLT
-预期结果          : AT回复OK
-修改历史     :
-1.日   期  : 2013-07-28
-作   者  :   z00161729
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_027)
 {
     /* 变量定义 */
@@ -35399,14 +28420,7 @@ TEST_F(Test_At_CsMsgProc,Test_At_CsMsgProc_027)
 
 
 
-/*****************************************************************************
-类名 : Test_At_SmsDeliverErrProc
-功能描述 : At_SmsDeliverErrProc　UT工程类
-修改历史     :
-1.日   期  : 2013-09-02
-作   者  : f62575
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsDeliverErrProc: public ::testing::Test
 {
 public:
@@ -35421,17 +28435,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsDeliverErrProc_001
-测试用例标题      : 禁止本地保存短信定制开关打开，TR2M错误上报，不关闭短信上报通道
-预期结果          :
-修改历史     :
 
-1.日   期  : 2013-09-02
-作   者  : f62575
-修改内容 : 新建CASE
-
-*******************************************************************/
 TEST_F(Test_At_SmsDeliverErrProc, Test_At_SmsDeliverErrProc_001)
 {
     // 变量声明
@@ -35467,17 +28471,7 @@ TEST_F(Test_At_SmsDeliverErrProc, Test_At_SmsDeliverErrProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsDeliverErrProc_002
-测试用例标题      : 禁止本地保存短信定制开关关闭，TR2M错误上报，关闭短信上报通道
-预期结果          :
-修改历史     :
 
-1.日   期  : 2013-09-02
-作   者  : f62575
-修改内容 : 新建CASE
-
-*******************************************************************/
 TEST_F(Test_At_SmsDeliverErrProc, Test_At_SmsDeliverErrProc_002)
 {
     // 变量声明
@@ -35513,17 +28507,7 @@ TEST_F(Test_At_SmsDeliverErrProc, Test_At_SmsDeliverErrProc_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsDeliverErrProc_003
-测试用例标题      : 禁止本地保存短信定制开关关闭，非TR2M错误上报，不关闭短信上报通道
-预期结果          :
-修改历史     :
 
-1.日   期  : 2013-09-02
-作   者  : f62575
-修改内容 : 新建CASE
-
-*******************************************************************/
 TEST_F(Test_At_SmsDeliverErrProc, Test_At_SmsDeliverErrProc_003)
 {
     // 变量声明
@@ -35559,14 +28543,7 @@ TEST_F(Test_At_SmsDeliverErrProc, Test_At_SmsDeliverErrProc_003)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_At_QryParaRspPnnProc
-功能描述 : At_QryParaRspPnnProc　UT工程类
-修改历史     :
-1.日   期  : 2013-09-05
-作   者  : l00208543
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_QryParaRspPnnProc: public ::testing::Test
 {
 public:
@@ -35581,17 +28558,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_QryParaRspPnnProc_001
-测试用例标题      : mma上报了50条记录，需要继续下发查询请求
-预期结果          : 继续下发查询请求
-修改历史     :
 
-1.日   期  : 2013-09-05
-  作   者  : l00208543
-  修改内容 : 新生成函数
-
-*******************************************************************/
 TEST_F(Test_At_QryParaRspPnnProc, Test_At_QryParaRspPnnProc_001)
 {
     // 变量声明
@@ -35653,17 +28620,7 @@ TEST_F(Test_At_QryParaRspPnnProc, Test_At_QryParaRspPnnProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_QryParaRspPnnProc_002
-测试用例标题      : mma上报了49条记录，不需要继续下发查询请求
-预期结果          : 不继续下发查询请求
-修改历史     :
 
-1.日   期  : 2013-09-05
-  作   者  : l00208543
-  修改内容 : 新生成函数
-
-*******************************************************************/
 TEST_F(Test_At_QryParaRspPnnProc, Test_At_QryParaRspPnnProc_002)
 {
     // 变量声明
@@ -35733,14 +28690,7 @@ TEST_F(Test_At_QryParaRspPnnProc, Test_At_QryParaRspPnnProc_002)
 }
 
 
-/******************************************************************************
-类名     : Test_AT_PhEOPlmnQueryCnfProc
-功能描述 : AT_PhEOPlmnQueryCnfProc 函数的UT测试类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : s00190137
-  修改内容 : 新生成类
-******************************************************************************/
+
 class Test_AT_PhEOPlmnQueryCnfProc: public ::testing::Test
 {
 public:
@@ -35764,15 +28714,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_PhEOPlmnQueryCnfProc_001
-测试用例标题: 通过clientid获取index失败
-预期结果    :
-修改历史    :
-1.日   期  : 2013-10-15
-  作   者  : s00190137
-  修改内容 : 新增Case
-******************************************************************************/
+
 TEST_F(Test_AT_PhEOPlmnQueryCnfProc, Test_AT_PhEOPlmnQueryCnfProc_001)
 {
     // 变量声明
@@ -35797,15 +28739,7 @@ TEST_F(Test_AT_PhEOPlmnQueryCnfProc, Test_AT_PhEOPlmnQueryCnfProc_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PhEOPlmnQueryCnfProc_002
-测试用例标题: 当前不在等待AT_CMD_EOPLMN_QRY结果
-预期结果    :
-修改历史    :
-1.日   期  : 2013-10-15
-  作   者  : s00190137
-  修改内容 : 新增Case
-******************************************************************************/
+
 TEST_F(Test_AT_PhEOPlmnQueryCnfProc, Test_AT_PhEOPlmnQueryCnfProc_002)
 {
     // 变量声明
@@ -35835,15 +28769,7 @@ TEST_F(Test_AT_PhEOPlmnQueryCnfProc, Test_AT_PhEOPlmnQueryCnfProc_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PhEOPlmnQueryCnfProc_003
-测试用例标题: ulResult结果为失败
-预期结果    :
-修改历史    :
-1.日   期  : 2013-10-15
-  作   者  : s00190137
-  修改内容 : 新增Case
-******************************************************************************/
+
 TEST_F(Test_AT_PhEOPlmnQueryCnfProc, Test_AT_PhEOPlmnQueryCnfProc_003)
 {
     // 变量声明
@@ -35875,15 +28801,7 @@ TEST_F(Test_AT_PhEOPlmnQueryCnfProc, Test_AT_PhEOPlmnQueryCnfProc_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_PhEOPlmnQueryCnfProc_004
-测试用例标题: ulResult结果为成功
-预期结果    :
-修改历史    :
-1.日   期  : 2013-10-15
-  作   者  : s00190137
-  修改内容 : 新增Case
-******************************************************************************/
+
 TEST_F(Test_AT_PhEOPlmnQueryCnfProc, Test_AT_PhEOPlmnQueryCnfProc_004)
 {
     // 变量声明
@@ -35935,14 +28853,7 @@ TEST_F(Test_AT_PhEOPlmnQueryCnfProc, Test_AT_PhEOPlmnQueryCnfProc_004)
 
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
-类名     : Test_At_ProcQryClccResult
-功能描述 : At_ProcQryClccResult函数的UT测试类
-修改历史 :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ProcQryClccResult: public ::testing::Test
 {
 public:
@@ -35960,15 +28871,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcQryClccResult_001
-测试用例标题      : 主叫模式下存在连接时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_001)
 {
    // 参数定义
@@ -36023,15 +28926,7 @@ TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_001)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcQryClccResult_002
-测试用例标题      : 主叫模式下存在呼叫时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_002)
 {
    // 参数定义
@@ -36083,15 +28978,7 @@ TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_002)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcQryClccResult_003
-测试用例标题      : 主叫模式下连接和呼叫都不存在时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_003)
 {
    // 参数定义
@@ -36136,15 +29023,7 @@ TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_003)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcQryClccResult_004
-测试用例标题      : 被叫模式下有呼叫存在时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_004)
 {
    // 参数定义
@@ -36193,15 +29072,7 @@ TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_004)
 
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcQryClccResult_005
-测试用例标题      : 被叫模式下没有呼叫存在时
-预期结果          : 上报AT_OK
-修改历史     :
-1.日   期  : 2013-10-18
-  作   者  : Y00213812
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_005)
 {
    // 参数定义
@@ -36263,14 +29134,7 @@ TEST_F(Test_At_ProcQryClccResult,Test_At_ProcQryClccResult_005)
 #endif
 
 
-/*****************************************************************************
-类名 : Test_AT_IsClientBlock
-功能描述 : Test_AT_IsClientBlock　UT工程类
-修改历史     :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_IsClientBlock: public ::testing::Test
 {
 public:
@@ -36285,15 +29149,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_IsClientBlock_001
-测试用例标题: 端口是否BLOCK判断
-预期结果    : NV中不使能短信缓存
-修改历史    :
- 1.日   期  : 2014-01-07
-   作   者  : j00174725
-   修改内容 : 新增case
-******************************************************************************/
+
 TEST_F(Test_AT_IsClientBlock, Test_AT_IsClientBlock_001)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg;
@@ -36307,15 +29163,7 @@ TEST_F(Test_AT_IsClientBlock, Test_AT_IsClientBlock_001)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_IsClientBlock_002
-测试用例标题: 端口是否BLOCK判断，有端口处于PEND状态
-预期结果    : 函数返回TRUE
-修改历史    :
- 1.日   期  : 2014-01-07
-   作   者  : j00174725
-   修改内容 : 新增case
-******************************************************************************/
+
 TEST_F(Test_AT_IsClientBlock, Test_AT_IsClientBlock_002)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg;
@@ -36333,15 +29181,7 @@ TEST_F(Test_AT_IsClientBlock, Test_AT_IsClientBlock_002)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_IsClientBlock_003
-测试用例标题: 端口是否BLOCK判断，所有端口处于数传状态
-预期结果    : 函数返回TRUE
-修改历史    :
- 1.日   期  : 2014-01-07
-   作   者  : j00174725
-   修改内容 : 新增case
-******************************************************************************/
+
 TEST_F(Test_AT_IsClientBlock, Test_AT_IsClientBlock_003)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg;
@@ -36363,15 +29203,7 @@ TEST_F(Test_AT_IsClientBlock, Test_AT_IsClientBlock_003)
     GlobalMockObject::verify();
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_IsClientBlock_004
-测试用例标题: 端口是否BLOCK判断，端口可以发送短信
-预期结果    : 函数返回FALSE
-修改历史    :
- 1.日   期  : 2014-01-07
-   作   者  : j00174725
-   修改内容 : 新增case
-******************************************************************************/
+
 TEST_F(Test_AT_IsClientBlock, Test_AT_IsClientBlock_004)
 {
     AT_PORT_BUFF_CFG_STRU              *pstPortBuffCfg;
@@ -36393,14 +29225,7 @@ TEST_F(Test_AT_IsClientBlock, Test_AT_IsClientBlock_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名 : Test_AT_FlushSmsIndication
-功能描述 : Test_AT_FlushSmsIndication　UT工程类
-修改历史     :
-1.日   期  : 2014-01-07
-作   者  : j00174725
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_AT_FlushSmsIndication: public ::testing::Test
 {
 public:
@@ -36416,15 +29241,7 @@ public:
     }
 };
 
-/******************************************************************************
-测试用例编号: Test_AT_FlushSmsIndication_001
-测试用例标题: FLUSH短信
-预期结果    : FLUSH短信成功
-修改历史    :
- 1.日   期  : 2014-01-07
-   作   者  : j00174725
-   修改内容 : 新增case
-******************************************************************************/
+
 TEST_F(Test_AT_FlushSmsIndication, Test_AT_FlushSmsIndication_001)
 {
     VOS_UINT16                          usClientId;
@@ -36455,15 +29272,7 @@ TEST_F(Test_AT_FlushSmsIndication, Test_AT_FlushSmsIndication_001)
 
 }
 
-/******************************************************************************
-测试用例编号: Test_AT_FlushSmsIndication_002
-测试用例标题: FLUSH短信
-预期结果    : 从端口号获取modem ID1 失败
-修改历史    :
- 1.日   期  : 2014-01-07
-   作   者  : j00174725
-   修改内容 : 新增case
-******************************************************************************/
+
 TEST_F(Test_AT_FlushSmsIndication, Test_AT_FlushSmsIndication_002)
 {
     VOS_UINT16                          usClientId;

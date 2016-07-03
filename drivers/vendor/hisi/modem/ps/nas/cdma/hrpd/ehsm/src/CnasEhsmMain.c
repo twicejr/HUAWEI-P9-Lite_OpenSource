@@ -145,13 +145,11 @@ VOS_VOID CNAS_EHSM_ProcessBufferMsg( VOS_VOID )
     VOS_UINT32                          usNewStackDepth;
     VOS_UINT32                          ulRet;
 
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-17, begin */
     if (0 < CNAS_EHSM_GetCacheMsgAddr()->ucCacheMsgNum)
     {
         /* Allocate memory to copy the buffer message */
         pstEntryMsg = (CNAS_EHSM_MSG_STRU *)PS_MEM_ALLOC(UEPS_PID_EHSM, sizeof(CNAS_EHSM_MSG_STRU));
     }
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-17, end */
 
     if (VOS_NULL_PTR == pstEntryMsg)
     {
@@ -202,27 +200,7 @@ VOS_VOID CNAS_EHSM_ProcessBufferMsg( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_EHSM_MsgProc
-Description     :
-                    1) Find recieved message is from timer, if yes stop that particular time.
-                    2) Send the message to process in pre proc table.
-                    3) Send the message to process in current FSM
-                    4) Process the internal message
-                    5) If there is FSM pop then process the message in buffer message.
 
-Input parameters:   Void
-Output parameters:  None
-Return Value    :
-
-Modify History:
-    1)  Date    :   2015-05-14
-        Author  :   K00902809
-        Modify content :    Create
-    2)  Date    :   2015-12-24
-        Author  :   w00242748
-        Modify content :DTS2015121805249:副卡支持EHRPD
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_MsgProc (struct MsgCB* pstMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader = VOS_NULL_PTR;
@@ -362,9 +340,7 @@ VOS_VOID  CNAS_EHSM_RegFsm(VOS_VOID)
 VOS_UINT32  CNAS_EHSM_InitTask(VOS_VOID)
 {
     /* Init ctx for EHSM */
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, begin */
     CNAS_EHSM_InitCtx(CNAS_EHSM_INIT_CTX_STARTUP);
-    /* Modified by w00176964 for CNAS内存裁剪, 2015-9-18, end */
 
     /* EHSM FSM register */
     CNAS_EHSM_RegFsm();
@@ -404,22 +380,7 @@ VOS_UINT32 CNAS_EHSM_InitPid(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_ProcMsgPrio
- 功能描述  : 将当前收到的消息和子状态机的入口消息进行比较,并根据比较结果进行后续的动作
- 输入参数  : ulEventType:消息类型
-             pstMsg     :消息内容
- 输出参数  : 无
- 返 回 值  : VOS_TRUE: 当前消息处理完成，不需要后续处理
-             VOS_FALSE:当前消息处理完成，需要后续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月27日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32  CNAS_EHSM_ProcMsgPrio(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -454,23 +415,7 @@ VOS_UINT32  CNAS_EHSM_ProcMsgPrio(
 }
 
 
-/*****************************************************************************
- 函 数 名  : CNAS_EHSM_PostProcessMsg
- 功能描述  : EHSM状态机后处理函数,将当前收到的消息和sub状态机的入口消息进行比较,
-              判断后续的动作
- 输入参数  : ulEventType:消息类型
-             pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : 返回消息是否已经处理完成
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年5月27日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32  CNAS_EHSM_PostProcessMsg(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -483,21 +428,7 @@ VOS_UINT32  CNAS_EHSM_PostProcessMsg(
     return ulRet;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_MsgProcEntry
- 功能描述  : MMA的消息处理入口函数
- 输入参数  : pstMsg       :消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2015年6月5日
-   作    者   : h00246512
-   修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CNAS_EHSM_MsgProcEntry(
     struct MsgCB                       *pstMsg
 )

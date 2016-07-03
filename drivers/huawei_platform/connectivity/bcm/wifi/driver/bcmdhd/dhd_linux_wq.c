@@ -237,11 +237,31 @@ dhd_deferred_schedule_work(void *workq, void *event_data, u8 event,
 	deferred_event.event_handler = event_handler;
 
 	if (priority == DHD_WORK_PRIORITY_HIGH) {
+#ifdef HW_DEFERRED_WORK_BUGFIX
+		if (kfifo_avail(deferred_wq->prio_fifo) >= DEFRD_EVT_SIZE) {
+			status = kfifo_in_spinlocked(deferred_wq->prio_fifo, &deferred_event,
+				DEFRD_EVT_SIZE, &deferred_wq->work_lock);
+		} else {
+			status = 0;
+			DHD_ERROR(("%s: Not enough buf for deferred work \n", __FUNCTION__));
+		}
+#else
 		status = kfifo_in_spinlocked(deferred_wq->prio_fifo, &deferred_event,
 			DEFRD_EVT_SIZE, &deferred_wq->work_lock);
+#endif
 	} else {
+#ifdef HW_DEFERRED_WORK_BUGFIX
+		if (kfifo_avail(deferred_wq->work_fifo) >= DEFRD_EVT_SIZE) {
+			status = kfifo_in_spinlocked(deferred_wq->work_fifo, &deferred_event,
+				DEFRD_EVT_SIZE, &deferred_wq->work_lock);
+		} else {
+			status = 0;
+			DHD_ERROR(("%s: Not enough buf for deferred work \n", __FUNCTION__));
+		}
+#else
 		status = kfifo_in_spinlocked(deferred_wq->work_fifo, &deferred_event,
 			DEFRD_EVT_SIZE, &deferred_wq->work_lock);
+#endif
 	}
 
 	if (!status) {
@@ -270,6 +290,9 @@ dhd_get_scheduled_work(struct dhd_deferred_wq *deferred_wq, struct dhd_deferred_
 	ASSERT(kfifo_esize(deferred_wq->prio_fifo) == 1);
 	ASSERT(kfifo_esize(deferred_wq->work_fifo) == 1);
 
+#ifdef HW_DEFERRED_WORK_BUGFIX
+	memset(event, 0, DEFRD_EVT_SIZE);
+#endif
 	/* first read  priorit event fifo */
 	status = kfifo_out_spinlocked(deferred_wq->prio_fifo, event,
 		DEFRD_EVT_SIZE, &deferred_wq->work_lock);

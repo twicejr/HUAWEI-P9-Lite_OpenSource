@@ -1,16 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEsmBackOffAlgMain.h
-  Description     : NasEsmBackOffAlgMain.c的头文件
-  History         :
-      1.sunjitan 00193151    2015-01-12  Draft   Enact
-
-
-
-******************************************************************************/
 
 #ifndef __NASESMBACKOFFALGMAIN_H__
 #define __NASESMBACKOFFALGMAIN_H__

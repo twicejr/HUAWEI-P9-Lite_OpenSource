@@ -99,27 +99,7 @@ ULONG PTPV2_BCBuildPktFlagfield(PTPV2_PORT_S* pstPtpPort, PTPV2_MSGHEADER_S* pst
 ULONG PTPV2_OCBuildPktFlagfield(PTPV2_PORT_S* pstPtpPort, PTPV2_MSGHEADER_S* pstMsgHeader, 
                                     ULONG ulPtpMsgType);
 
-/******************************************************************************
-*Func Name   : PTPV2_PKT_HeaderCheck
-*Description : PTP消息头合法性检测总入口，所有需要检查头的均调用该接口
-*Input       : PTP_PORT_S       *pstPtpPort   时钟端口控制块指针
-*              PTP_MSGHEADER_S  *pBuffer      报文
-*              ULONG            ulPtpMsgType  报文类型(详见PTP_MSG_TYPE_E)
-*              ULONG            ulPacketLen   接收的报文长度
-*              PTP_ADDRINFO_S   *pstAddrInfo  接收到报文的地址以及UDP信息
 
-*Output      : .
-*Return      : 成功返回PTP_OK，失败返回错误码
-*Caution     :
-*Calls       :
-*Called by   :
-*-----------------------------------------------------------------------------
-*  Modification History
-*  DATE                 NAME           DESCRIPTION
-*  2008-6-5             wangchengyang  Create
-*  2009-4-28  wangchengyang-xujun62830-57575         VISPV1R8C01.消除Vc三级告警
-*  2010-12-21  wangchengyang62830         DTS2010122100198 .
-*******************************************************************************/
 /*
    Bits                                  Octets  Offset
    7     6     5     4   3   2   1   0

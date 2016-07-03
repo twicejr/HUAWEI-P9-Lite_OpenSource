@@ -61,6 +61,13 @@ extern volatile uint32_t	lostms_times;
 			printk(KERN_INFO "[SLIMbus %s:%d] "msg,	__FUNCTION__,__LINE__, ## __VA_ARGS__);	\
 	} while	(0)
 
+#define	SLIMBUS_DEV_LIMIT_ERR(msg,	...)	\
+	do {	\
+		lostms_times++; 	\
+		if (lostms_times < slimbus_drv_log_count)	\
+			printk(KERN_ERR "[SLIMbus %s:%d] "msg, __FUNCTION__,__LINE__, ## __VA_ARGS__); \
+	} while (0)
+
 #define	SLIMBUS_DEV_LOSTMS_RECOVER(msg,	...)	\
 	do {	\
 		if (lostms_times > 0)	\

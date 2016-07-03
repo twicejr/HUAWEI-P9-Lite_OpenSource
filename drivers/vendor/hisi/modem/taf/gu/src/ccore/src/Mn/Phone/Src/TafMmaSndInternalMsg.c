@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaSndInternalMsg.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年7月23日
-  最近修改   :
-  功能描述   : mma发给mma的消息的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年7月23日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -45,20 +28,7 @@ extern "C" {
 /*****************************************************************************
   4 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetNextInternalMsg
- 功能描述  : 获取内部消息队列中的下一条可用的内部消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 内部消息队列的指针
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月19日
-   作    者   : W00176964
-   修改内容   : 新生成函数
-*****************************************************************************/
 TAF_MMA_INTERNAL_MSG_BUF_STRU* TAF_MMA_GetNextInternalMsg( VOS_VOID )
 {
     TAF_MMA_INTERNAL_MSG_BUF_STRU      *pstNextMsg = VOS_NULL_PTR;
@@ -85,21 +55,7 @@ TAF_MMA_INTERNAL_MSG_BUF_STRU* TAF_MMA_GetNextInternalMsg( VOS_VOID )
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_GetIntMsgSendBuf
- 功能描述  : 从 内部消息缓存队列中获取内部消息发送缓冲区, 该缓冲区仅用于构建
-             MMA的内部消息。
- 输入参数  : VOS_UINT32 ulBufLen:缓存区大小
- 输出参数  : 无
- 返 回 值  : MsgBlock *
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月19日
-   作    者   : W00176964
-   修改内容   : 新增获取内部消息缓存队列的指针
-*****************************************************************************/
 TAF_MMA_INTERNAL_MSG_BUF_STRU *TAF_MMA_GetIntMsgSendBuf(
     VOS_UINT32                          ulLen
 )
@@ -128,22 +84,7 @@ TAF_MMA_INTERNAL_MSG_BUF_STRU *TAF_MMA_GetIntMsgSendBuf(
     return pstTafMmaMsg;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndInternalMsg
- 功能描述  : 发送内部消息
- 输入参数  : usMsgID:发送消息ID
-             usMsgLen:发送消息长度
-             pSndMsg:待发送的消息内容
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月19日
-    作    者   : W00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  TAF_MMA_SndInternalMsg(
     VOS_VOID                           *pSndMsg
 )
@@ -187,20 +128,7 @@ VOS_VOID  TAF_MMA_SndInternalMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndInterPowerInitReq
- 功能描述  : 发送内部的上电请求
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndInterPowerInitReq(VOS_VOID)
 {
     TAF_MMA_INTER_POWER_INIT_REQ_STRU  *pstPowerInitMsg = VOS_NULL_PTR;
@@ -236,21 +164,7 @@ VOS_VOID TAF_MMA_SndInterPowerInitReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndInterUsimChangeInd
- 功能描述  : 发送内部的卡状态改变指示消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndInterUsimChangeInd(VOS_VOID)
 {
     TAF_MMA_INTER_USIM_STATUS_CHANGE_IND_STRU              *pstInternalMsg = VOS_NULL_PTR;
@@ -282,21 +196,7 @@ VOS_VOID TAF_MMA_SndInterUsimChangeInd(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndSimlocakStatusChangeInd
- 功能描述  : 发送锁网锁网卡状态变化指示
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月12日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndSimlocakStatusChangeInd(VOS_VOID)
 {
     TAF_MMA_SIM_LOCK_STATUS_CHANGE_IND_STRU                *pstInternalMsg = VOS_NULL_PTR;
@@ -329,21 +229,7 @@ VOS_VOID TAF_MMA_SndSimlocakStatusChangeInd(VOS_VOID)
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndPhoneModeRsltInd
- 功能描述  : 发送phone mode状态机退出结果指示消息
- 输入参数  : enRslt:状态机退出结果消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年7月19日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndPhoneModeRsltInd(
     TAF_MMA_PHONE_MODE_RESULT_ENUM_UINT8                    enRslt
 )
@@ -378,21 +264,7 @@ VOS_VOID TAF_MMA_SndPhoneModeRsltInd(
 }
 
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndImsSwitchRsltInd
- 功能描述  : 发送ims switch状态机退出结果指示消息
- 输入参数  : enRslt:状态机退出结果消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015-02-04
-    作    者   : n00269697
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndImsSwitchRsltInd(
     TAF_MMA_IMS_SWITCH_RESULT_ENUM_UINT8                    enRslt
 )
@@ -427,21 +299,7 @@ VOS_VOID TAF_MMA_SndImsSwitchRsltInd(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndSysCfgRsltInd
- 功能描述  : 发送System Config状态机退出结果指示消息
- 输入参数  : enRslt:状态机退出结果消息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月5日
-    作    者   : h00313353
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndSysCfgRsltInd(
     TAF_MMA_SYS_CFG_RSLT_ENUM_UINT8                         enRslt,
     VOS_UINT8                                               ucIsNeedChkLock
@@ -478,21 +336,7 @@ VOS_VOID TAF_MMA_SndSysCfgRsltInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndInterSysCfgSetReq
- 功能描述  : 发送内部消息MMA_MMA_INTER_SYS_CFG_SET_REQ
- 输入参数  : TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年4月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndInterSysCfgSetReq(
     TAF_MMA_SYS_CFG_PARA_STRU          *pstSysCfg
 )
@@ -527,23 +371,7 @@ VOS_VOID TAF_MMA_SndInterSysCfgSetReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndInterMmaAbortInd
- 功能描述  : 发送内部中止指示消息给MMA, 终止当前状态机操作
- 输入参数  : VOS_UINT16                          usSid
-             VOS_UINT16                          usNid
-             VOS_UINT8                           ucPzid
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年04月09日
-    作    者   : y00245242
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndInterMmaAbortInd(VOS_VOID)
 {
     TAF_MMA_INTER_ABORT_IND_STRU        *pstSndMsg = VOS_NULL_PTR;

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafSpmFsmServiceCtrl.c
-  版 本 号   : 初稿
-  作    者   : w00176964
-  生成日期   : 2013年5月8日
-  最近修改   :
-  功能描述   : TafSpmFsmServiceCtrl.C文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年5月7日
-    作    者   : w00176964
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -37,21 +20,15 @@
 #include "TafSpmSndUsim.h"
 #include "Taf_Ssa_EncodeDef.h"
 #include "TafStdlib.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 #include "mnmsgcbencdec.h"
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 #include "NasUsimmApi.h"
 
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-24, begin */
 #include "NasStkInterface.h"
-/* Modified by z00161729 for V9R1 STK升级, 2013-7-24, end */
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
 #include "TafSpmComFunc.h"
 #include "MnCallApi.h"
 #include "NasCcIe.h"
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
 
 #ifdef __cplusplus
@@ -97,24 +74,7 @@ TAF_SPM_SS_CALL_CTRL_MODIFY_STRU        g_astTafSpmSsCallCtrlModifyTbl[] =
   6 函数实现
 *****************************************************************************/
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_StartFdnCheck_ServiceCtrl
- 功能描述  : 启动FDN检查
- 输入参数  : usClientId -- client ID
-             pstMsg     -- 消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:
-             VOS_TRUE:  启动FDN检查
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年07月30日
-   作    者   : y00245242
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_StartFdnCheck_ServiceCtrl(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
@@ -123,9 +83,7 @@ VOS_VOID TAF_SPM_StartFdnCheck_ServiceCtrl(
     VOS_UINT32                          ulRet;
 
     /* 向USIM模块发送检查请求 */
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
     ulRet = TAF_SPM_SendPbFdnCheckReq_ServiceCtrl(usClientId, pstMsg);
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
     if (VOS_FALSE == ulRet)
     {
@@ -150,23 +108,7 @@ VOS_VOID TAF_SPM_StartFdnCheck_ServiceCtrl(
     TAF_SPM_StartTimer(TI_TAF_SPM_WAIT_PB_FDN_CHECK_CNF, TI_TAF_SPM_WAIT_PB_FDN_CHECK_CNF_LEN, usClientId);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_StartCallControlCheck_ServiceCtrl
- 功能描述  : 启动call control检查
- 输入参数  : usClientId -- client ID
-             pstMsg     -- 消息指针
 
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:
-             VOS_TRUE:  启动FDN检查
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
- 1.日    期   : 2013年07月30日
-   作    者   : y00245242
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_VOID TAF_SPM_StartCallControlCheck_ServiceCtrl(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
@@ -175,9 +117,7 @@ VOS_VOID TAF_SPM_StartCallControlCheck_ServiceCtrl(
     VOS_UINT32                          ulRet;
 
     /* 向USIM模块发送检查请求 */
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
     ulRet = TAF_SPM_SendUsimEnvelopeReq_ServiceCtrl(usClientId, pstMsg);
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
     if (VOS_FALSE == ulRet)
     {
@@ -201,30 +141,8 @@ VOS_VOID TAF_SPM_StartCallControlCheck_ServiceCtrl(
     /* 启动定时器 */
     TAF_SPM_StartTimer(TI_TAF_SPM_WAIT_USIM_CALL_CTRL_CNF, TI_TAF_SPM_WAIT_USIM_CALL_CTRL_CNF_LEN, usClientId);
 }
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAtSSReqMsg_ServiceCtrl_Init
- 功能描述  : 收到AT的注册SS业务的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年5月7日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年07月23日
-   作    者   : y00245242
-   修改内容   : VOLTE开发, 调整FDN与Call control检查控制点
- 3.日    期   : 2013年12月23日
-   作    者   : s00217060
-   修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAtSSReqMsg_ServiceCtrl_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -237,8 +155,6 @@ VOS_UINT32 TAF_SPM_RcvAtSSReqMsg_ServiceCtrl_Init(
 
     usClientId = TAF_SPM_GetCurrEntityFsmClientId();
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-23, begin */
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, begin */
 
     /* 对于消息为TAF_MSG_RLEASE_MSG，TAF_MSG_PROCESS_USS_MSG消息不含USSD string
      * 不需要进行FDN与CALL control检查
@@ -259,7 +175,6 @@ VOS_UINT32 TAF_SPM_RcvAtSSReqMsg_ServiceCtrl_Init(
         TAF_SPM_StartCallControlCheck_ServiceCtrl(usClientId, pstMsg);
         return VOS_TRUE;
     }
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-23, end */
 
     /* 发送状态机退出结果消息给TAF */
     TAF_SPM_SndServiceCtrlRsltInd(TAF_SPM_SERVICE_CTRL_SUCC,
@@ -269,30 +184,11 @@ VOS_UINT32 TAF_SPM_RcvAtSSReqMsg_ServiceCtrl_Init(
 
     /* 退出状态机 */
     TAF_SPM_FSM_QuitCurrEntityFsm();
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, end */
 
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvStkSSReqMsg_ServiceCtrl_Init
- 功能描述  : 收到STK的注册SS业务的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年5月7日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年07月23日
-   作    者   : y00245242
-   修改内容   : VOLTE开发, 调整FDN与Call control检查控制点
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvStkSSReqMsg_ServiceCtrl_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -305,7 +201,6 @@ VOS_UINT32 TAF_SPM_RcvStkSSReqMsg_ServiceCtrl_Init(
 
     usClientId = TAF_SPM_GetCurrEntityFsmClientId();
 
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, begin */
     /* 是否需要进行call contrl 检查 */
     if (VOS_TRUE == TAF_SPM_IsNeedCallControl())
     {
@@ -323,31 +218,11 @@ VOS_UINT32 TAF_SPM_RcvStkSSReqMsg_ServiceCtrl_Init(
 
     /* 退出状态机 */
     TAF_SPM_FSM_QuitCurrEntityFsm();
-    /* Modified by y00245242 for VoLTE_PhaseI  项目, 2013-7-30, end */
 
     return VOS_TRUE;
 }
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-31, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAtCallReqMsg_ServiceCtrl_Init
- 功能描述  : 收到AT call请求消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年07月30日
-   作    者   : y00245242
-   修改内容   : 新建函数
- 2.日    期   : 2014年04月22日
-   作    者   : y00245242
-   修改内容   : 为eCall呼叫修改
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAtCallReqMsg_ServiceCtrl_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -363,8 +238,6 @@ VOS_UINT32 TAF_SPM_RcvAtCallReqMsg_ServiceCtrl_Init(
 
     usClientId = TAF_SPM_GetCurrEntityFsmClientId();
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-22, begin */
     /* MIEC与AIEC也属于紧急呼，不需要进行FDN与CALL CONTROL检查，对于test
      * eCall与reconfiguration ecall也不需要做FDN检查，但考虑流程一致型，
      * 不在做拦截
@@ -375,7 +248,6 @@ VOS_UINT32 TAF_SPM_RcvAtCallReqMsg_ServiceCtrl_Init(
      && (MN_CALL_TYPE_AIEC      != pstAppMsg->unParm.stOrig.enCallType)
 #endif
        )
-    /* Modified by y00245242 for V3R3C60_eCall项目, 2014-4-22, end */
     {
         /* 是否需要FDN检查 */
         if (VOS_TRUE == TAF_SPM_IsNeedCheckFdn())
@@ -395,7 +267,6 @@ VOS_UINT32 TAF_SPM_RcvAtCallReqMsg_ServiceCtrl_Init(
             return VOS_TRUE;
         }
     }
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
     /* 发送状态机退出结果消息给TAF */
     TAF_SPM_SndServiceCtrlRsltInd(TAF_SPM_SERVICE_CTRL_SUCC,
@@ -410,22 +281,7 @@ VOS_UINT32 TAF_SPM_RcvAtCallReqMsg_ServiceCtrl_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvStkCallReqMsg_ServiceCtrl_Init
- 功能描述  : 收到STK call请求消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年07月30日
-   作    者   : y00245242
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvStkCallReqMsg_ServiceCtrl_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -441,7 +297,6 @@ VOS_UINT32 TAF_SPM_RcvStkCallReqMsg_ServiceCtrl_Init(
 
     usClientId = TAF_SPM_GetCurrEntityFsmClientId();
 
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-17, begin */
     if (MN_CALL_TYPE_EMERGENCY != pstOrigParam->enCallType)
     {
         if (VOS_TRUE == TAF_SPM_IsNeedCallControl())
@@ -452,7 +307,6 @@ VOS_UINT32 TAF_SPM_RcvStkCallReqMsg_ServiceCtrl_Init(
             return VOS_TRUE;
         }
     }
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-17, end */
 
 
     /* 发送状态机退出结果消息给TAF */
@@ -467,22 +321,7 @@ VOS_UINT32 TAF_SPM_RcvStkCallReqMsg_ServiceCtrl_Init(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvAtSmsReqMsg_ServiceCtrl_Init
- 功能描述  : 收到AT SMS请求消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年07月30日
-   作    者   : y00245242
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvAtSmsReqMsg_ServiceCtrl_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -509,22 +348,7 @@ VOS_UINT32 TAF_SPM_RcvAtSmsReqMsg_ServiceCtrl_Init(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvStkSmsReqMsg_ServiceCtrl_Init
- 功能描述  : 收到STK SMS请求消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年07月30日
-   作    者   : y00245242
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvStkSmsReqMsg_ServiceCtrl_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -549,30 +373,8 @@ VOS_UINT32 TAF_SPM_RcvStkSmsReqMsg_ServiceCtrl_Init(
 
     return VOS_TRUE;
 }
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-31, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvPbFdnCheckCnf_ServiceCtrl_WaitPbFdnCheckCnf
- 功能描述  : 收到PB的FDN检查回复结果消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年5月7日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2013年07月23日
-   作    者   : y00245242
-   修改内容   : VOLTE开发, 优化函数
- 3.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvPbFdnCheckCnf_ServiceCtrl_WaitPbFdnCheckCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -647,25 +449,7 @@ VOS_UINT32 TAF_SPM_RcvPbFdnCheckCnf_ServiceCtrl_WaitPbFdnCheckCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvTiWaitPbFdnCheckCnfExpired_ServiceCtrl_WaitPbFdnCheckCnf
- 功能描述  : 收到TI_TAF_SPM_WAIT_PB_FDN_CHECK_CNF的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年5月7日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvTiWaitPbFdnCheckCnfExpired_ServiceCtrl_WaitPbFdnCheckCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -718,28 +502,7 @@ VOS_UINT32 TAF_SPM_RcvTiWaitPbFdnCheckCnfExpired_ServiceCtrl_WaitPbFdnCheckCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvUsimEnvelopeCnf_ServiceCtrl_WaitUsimCallCtrlCnf
- 功能描述  : 收到USIM的CALL CONTROL检查结果的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年5月7日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 增强型多方通话
- 3.日    期   : 2015年02月06日
-   作    者   : h00313353
-   修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvUsimEnvelopeCnf_ServiceCtrl_WaitUsimCallCtrlCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -749,13 +512,11 @@ VOS_UINT32 TAF_SPM_RcvUsimEnvelopeCnf_ServiceCtrl_WaitUsimCallCtrlCnf(
     TAF_SPM_SERVICE_CTRL_RESULT_ENUM_UINT32                 enFsmRslt;
     VOS_UINT16                                              usClientId;
     VOS_UINT32                                              ulCause;
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
     TAF_SPM_ENTRY_MSG_STRU                                 *pstEntryMsg     = VOS_NULL_PTR;
     TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8                         enSrvReqType;
 
     pstEntryMsg  = TAF_SPM_GetCurrEntityFsmEntryMsgAddr();
     enSrvReqType = TAF_SPM_GetServiceRequestType((struct MsgCB *)pstEntryMsg->aucEntryMsgBuffer);
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
     pstEnvelopeCnf  = (SI_STK_ENVELOPEDWON_CNF_STRU *)pstMsg;
     usClientId      = TAF_SPM_GetCurrEntityFsmClientId();
@@ -769,7 +530,6 @@ VOS_UINT32 TAF_SPM_RcvUsimEnvelopeCnf_ServiceCtrl_WaitUsimCallCtrlCnf(
         TAF_SPM_StopTimer(TI_TAF_SPM_WAIT_USIM_CALL_CTRL_CNF, (VOS_UINT16)pstEnvelopeCnf->stCmdResult.ulSendPara);
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
     /* 根据不同的业务请求进行不同的处理 */
     switch (enSrvReqType)
     {
@@ -796,7 +556,6 @@ VOS_UINT32 TAF_SPM_RcvUsimEnvelopeCnf_ServiceCtrl_WaitUsimCallCtrlCnf(
             break;
     }
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
 #if (FEATURE_ON == FEATURE_IMS)
     if (pstEntryMsg->ulEventType == TAF_BuildEventType(WUEPS_PID_AT, TAF_CALL_APP_ECONF_DIAL_REQ))
@@ -814,25 +573,7 @@ VOS_UINT32 TAF_SPM_RcvUsimEnvelopeCnf_ServiceCtrl_WaitUsimCallCtrlCnf(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_RcvTiWaitUsimCallCtrlCnfExpired_ServiceCtrl_WaitUsimCallCtrlCnf
- 功能描述  : 收到TI_TAF_SPM_WAIT_USIM_CALL_CTRL_CNF的消息处理
- 输入参数  : VOS_UINT32                          ulEventType
-             struct MsgCB                        *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_FALSE:消息处理未完成，需要继续处理
-             VOS_TRUE:消息处理完成，后续不需要继续处理
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年5月7日
-   作    者   : w00176964
-   修改内容   : 新生成函数
- 2.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_RcvTiWaitUsimCallCtrlCnfExpired_ServiceCtrl_WaitUsimCallCtrlCnf(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -885,31 +626,12 @@ VOS_UINT32 TAF_SPM_RcvTiWaitUsimCallCtrlCnfExpired_ServiceCtrl_WaitUsimCallCtrlC
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendPbFdnCheckReq_ServiceCtrl
- 功能描述  : 调用PB接口发送业务请求的FDN检查 请求FDN检查结果
- 输入参数  : usClientId:状态机的client ID
-             pstMsg     待FDN检查的业务请求消息
- 输出参数  : 无
- 返 回 值  : VOS_TRUE            发起SS的FDN检查请求成功
-             VOS_FALSE           发起SS的FDN检查请求失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月14日
-    作    者   : w00176964
-    修改内容   : Volte_PhaseIII 项目:增加呼叫请求的FDN处理以及修改函数名
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_SendPbFdnCheckReq_ServiceCtrl(
     VOS_UINT16                         usClientId,
     struct MsgCB                      *pstMsg
 )
 {
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
     TAF_SPM_ENTRY_MSG_STRU             *pstEntryMsg     = VOS_NULL_PTR;
     TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8     enSrvReqType;
     VOS_UINT32                          ulResult;
@@ -951,38 +673,15 @@ VOS_UINT32 TAF_SPM_SendPbFdnCheckReq_ServiceCtrl(
     }
 
     return ulResult;
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_SendUsimEnvelopeReq_ServiceCtrl
- 功能描述  : 调用USIMAPI发送业务请求的envelope消息 请求进行CALL CONTROL结果
- 输入参数  : usClientId:状态机的client ID
-             pstMsg     待CALL CONTROL的业务请求消息
- 输出参数  : 无
- 返 回 值  : VOS_FALSE : 发送USIM的envelop消息失败
-             VOS_TRUE  : 发送USIM的envelop的消息成功
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 修改函数名以及区分不同类型业务进行处理
-  3.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_SendUsimEnvelopeReq_ServiceCtrl(
     VOS_UINT16                          usClientId,
     struct MsgCB                       *pstMsg
 )
 {
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
     TAF_SPM_ENTRY_MSG_STRU             *pstEntryMsg     = VOS_NULL_PTR;
     TAF_SPM_SRV_REQ_TYPE_ENUM_UINT8     enSrvReqType;
     VOS_UINT32                          ulResult;
@@ -1022,36 +721,9 @@ VOS_UINT32 TAF_SPM_SendUsimEnvelopeReq_ServiceCtrl(
     }
 
     return ulResult;
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcUsimEnvelopeCnf
- 功能描述  : SPM模块处理USIM的envelop的回复消息
- 输入参数  : pstEnvelopeCnf--USIM的envelop的处理回复消息
- 输出参数  : penRslt----USIM的envelop的处理结果
-             pulCause-----上报给应用的cause值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月5日
-    作    者   : w00242748
-    修改内容   : SVLTE和USIM接口整合
-  3.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，MO SMS CONTROL响应消息的容错删除，由STK模块实现
-  4.日    期   : 2013年12月14日
-    作    者   : w00176964
-    修改内容   : Volte_phaseIII项目:修改函数名
-  5.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcSsEnvelopeCnf(
     SI_STK_ENVELOPEDWON_CNF_STRU                           *pstEnvelopeCnf,
     TAF_SPM_SERVICE_CTRL_RESULT_ENUM_UINT32                *penRslt,
@@ -1059,7 +731,6 @@ VOS_VOID TAF_SPM_ProcSsEnvelopeCnf(
 )
 {
     SI_STK_ENVELOPE_RSP_STRU            stCallCtrlRsp;
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
     VOS_UINT32                          ulUssdService;
     TAF_SPM_ENTRY_MSG_STRU             *pstEntryMsg     = VOS_NULL_PTR;
 
@@ -1077,14 +748,12 @@ VOS_VOID TAF_SPM_ProcSsEnvelopeCnf(
     {
         stCallCtrlRsp.uResp.CallCtrlRsp.SpecialData.ucTag = SI_CC_SS_TAG;
     }
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
     /* 不论OP项是否有效，SpecialData.ucTag始终是有效的 */
     stCallCtrlRsp.EnvelopeType                          = pstEnvelopeCnf->enEnvelopeType;
 
     /* 只有携带的数据里面显示的指示拒绝才认为检查失败,此处作为USIM卡的
        容错分支,结果不为OK或datalen为0也认为成功 */
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     if (VOS_OK != (pstEnvelopeCnf->stCmdResult.ulResult))
     {
         *pulCause = TAF_CS_CAUSE_CALL_CTRL_NOT_ALLOWED;
@@ -1101,7 +770,6 @@ VOS_VOID TAF_SPM_ProcSsEnvelopeCnf(
     }
 
     if (0 == pstEnvelopeCnf->stCnfData.ulRspDataLen)
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     {
         *pulCause  = TAF_CS_CAUSE_SUCCESS;
         *penRslt   = TAF_SPM_SERVICE_CTRL_SUCC;
@@ -1118,9 +786,7 @@ VOS_VOID TAF_SPM_ProcSsEnvelopeCnf(
 
     if (SI_STK_CTRL_ALLOW_MODIFY == stCallCtrlRsp.Result)
     {
-        /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, begin */
         TAF_SPM_ProcCallCtrlRsltAllowModify_SS(&stCallCtrlRsp, penRslt, pulCause);
-        /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-16, end */
 
         /* 如果修改后的操作超出能力，需要更新stCallCtrlRsp的结果 */
         if (TAF_CS_CAUSE_CALL_CTRL_BEYOND_CAPABILITY == *pulCause)
@@ -1150,31 +816,13 @@ VOS_VOID TAF_SPM_ProcSsEnvelopeCnf(
     NAS_STKAPI_EnvelopeRspDataFree(&stCallCtrlRsp);
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsCallCtrlModifyBeyondCapability_SS
- 功能描述  : 修改业务是否超出能力范围
- 输入参数  : SI_STK_ENVELOPE_RSP_STRU           *pstCallCtrlRsp -USIM的允许修改的CALL CTRL结果
- 输出参数  : 无
- 返 回 值  : VOS_TRUE   超出能力
-             VOS_FALSE   不超出能力
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月22日
-    作    者   : f62575
-    修改内容   : 新生成函数
-  2.日    期   : 2014年01月7日
-    作    者   : w00176964
-    修改内容   : Volte_PhaseIII项目修改:调整函数名
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsCallCtrlModifyBeyondCapability_SS(
     SI_STK_ENVELOPE_RSP_STRU           *pstCallCtrlRsp
 )
 {
     SI_CC_SPECI_TAG_ENUM_UINT8          ucCurrServiceTag;
 
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
     VOS_UINT32                          ulUssdService;
     TAF_SPM_ENTRY_MSG_STRU             *pstEntryMsg     = VOS_NULL_PTR;
 
@@ -1190,7 +838,6 @@ VOS_UINT32 TAF_SPM_IsCallCtrlModifyBeyondCapability_SS(
     {
         ucCurrServiceTag = SI_CC_SS_TAG;
     }
-    /* Modified by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
     /*
     AT发起的USSD业务要求不等网络回复就立即回复，AT退出阻塞状态
@@ -1208,24 +855,7 @@ VOS_UINT32 TAF_SPM_IsCallCtrlModifyBeyondCapability_SS(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcSsCallCtrlRsltAllowModify
- 功能描述  : SPM模块处理允许修改SS操作的CALL CTRL结果
- 输入参数  : pstCallCtrlRsp--USIM的允许修改的CALL CTRL结果
- 输出参数  : penRslt----USIM的envelop的处理结果
-             pulCause-----上报给应用的cause值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月22日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月23日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcSsCallCtrlRsltAllowModify(
     SI_STK_ENVELOPE_RSP_STRU                               *pstCallCtrlRsp,
     TAF_SPM_SERVICE_CTRL_RESULT_ENUM_UINT32                *penRslt,
@@ -1289,11 +919,9 @@ VOS_VOID TAF_SPM_ProcSsCallCtrlRsltAllowModify(
         return;
     }
 
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-23, begin */
     ulRet = TAF_STD_ConvertBcdNumberToAscii((pstCallCtrlRsp->uResp.CallCtrlRsp.SpecialData.pValue + TAF_SPM_SSC_OFFSET),
                                   (pstCallCtrlRsp->uResp.CallCtrlRsp.SpecialData.ucLen - TAF_SPM_SSC_OFFSET),
                                   pcInMmiStr);
-    /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-23, end */
 
     if (MN_ERR_NO_ERROR != ulRet)
     {
@@ -1375,24 +1003,7 @@ VOS_VOID TAF_SPM_ProcSsCallCtrlRsltAllowModify(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcUssdCallCtrlRsltAllowModify
- 功能描述  : SPM模块处理允许修改USSD操作的CALL CTRL结果
- 输入参数  : pstCallCtrlRsp--USIM的允许修改的CALL CTRL结果
- 输出参数  : penRslt----USIM的envelop的处理结果
-             pulCause-----上报给应用的cause值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月22日
-    作    者   : s46746
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcUssdCallCtrlRsltAllowModify(
     SI_STK_ENVELOPE_RSP_STRU                               *pstCallCtrlRsp,
     TAF_SPM_SERVICE_CTRL_RESULT_ENUM_UINT32                *penRslt,
@@ -1425,12 +1036,10 @@ VOS_VOID TAF_SPM_ProcUssdCallCtrlRsltAllowModify(
 
 
     PS_MEM_SET(&stDcsInfo, 0, sizeof(stDcsInfo));
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     ulRet = MN_MSG_DecodeCbsDcs(ucDcs,
                                 pstUssdInfo->stTafSsUssdReq.UssdStr.aucUssdStr,
                                 pstUssdInfo->stTafSsUssdReq.UssdStr.usCnt,
                                 &stDcsInfo);
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
     if (MN_ERR_NO_ERROR != ulRet)
     {
         TAF_WARNING_LOG(WUEPS_PID_TAF, "TAF_SPM_ProcUssdCallCtrlRsltAllowModify:WARNING: Decode Failure");
@@ -1465,24 +1074,7 @@ VOS_VOID TAF_SPM_ProcUssdCallCtrlRsltAllowModify(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCallCtrlRsltAllowModify
- 功能描述  : SPM模块处理允许修改的CALL CTRL结果
- 输入参数  : pstCallCtrlRsp--USIM的允许修改的CALL CTRL结果
- 输出参数  : penRslt----USIM的envelop的处理结果
-             pulCause-----上报给应用的cause值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月22日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : Volte_PhaseIII 项目:修改函数名
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcCallCtrlRsltAllowModify_SS(
     SI_STK_ENVELOPE_RSP_STRU                               *pstCallCtrlRsp,
     TAF_SPM_SERVICE_CTRL_RESULT_ENUM_UINT32                *penRslt,
@@ -1526,27 +1118,10 @@ VOS_VOID TAF_SPM_ProcCallCtrlRsltAllowModify_SS(
     return;
 }
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
 
-/* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 /*lint -e593  -e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ModifySsEntryMsgByCallCtrlMsg
- 功能描述  : 根据Call Control结果修改SS操作的入口消息
- 输入参数  : ulSenderPid--------发送PID
-             pstMmiOpParam
- 输出参数  : 无
- 返 回 值  : VOS_TRUE :修改消息成功
-             VOS_FALSE:修改消息失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ModifySsEntryMsgByCallCtrlMsg(
     VOS_UINT32                          ulSenderPid,
     MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam
@@ -1584,21 +1159,7 @@ VOS_UINT32 TAF_SPM_ModifySsEntryMsgByCallCtrlMsg(
 
 /*lint +e593  +e830*/
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_Modify2SsActivateMsg
- 功能描述  : 更新入口消息为激活消息
- 输入参数  : VOS_UINT32                          ulSenderPid    入口消息的发送方PID
-             MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam  新消息的参数信息
- 输出参数  : VOS_VOID                           *pMsg           新入口消息
- 返 回 值  : 当前入口消息的业务类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_Modify2SsActivateMsg(
     VOS_UINT32                          ulSenderPid,
     MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam,
@@ -1644,21 +1205,7 @@ VOS_UINT32 TAF_SPM_Modify2SsActivateMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_Modify2SsDeactivateMsg
- 功能描述  : 更新入口消息为去激活消息
- 输入参数  : VOS_UINT32                          ulSenderPid    入口消息的发送方PID
-             MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam  新消息的参数信息
- 输出参数  : VOS_VOID                           *pMsg           新入口消息
- 返 回 值  : 当前入口消息的业务类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_Modify2SsDeactivateMsg(
     VOS_UINT32                          ulSenderPid,
     MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam,
@@ -1704,21 +1251,7 @@ VOS_UINT32 TAF_SPM_Modify2SsDeactivateMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_Modify2SsInterrogateMsg
- 功能描述  : 更新入口消息为查询消息
- 输入参数  : VOS_UINT32                          ulSenderPid    入口消息的发送方PID
-             MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam  新消息的参数信息
- 输出参数  : VOS_VOID                           *pMsg           新入口消息
- 返 回 值  : 当前入口消息的业务类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_Modify2SsInterrogateMsg(
     VOS_UINT32                          ulSenderPid,
     MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam,
@@ -1764,21 +1297,7 @@ VOS_UINT32 TAF_SPM_Modify2SsInterrogateMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_Modify2SsRegisterMsg
- 功能描述  : 更新入口消息为注册消息
- 输入参数  : VOS_UINT32                          ulSenderPid    入口消息的发送方PID
-             MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam  新消息的参数信息
- 输出参数  : VOS_VOID                           *pMsg           新入口消息
- 返 回 值  : 当前入口消息的业务类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_Modify2SsRegisterMsg(
     VOS_UINT32                          ulSenderPid,
     MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam,
@@ -1824,21 +1343,7 @@ VOS_UINT32 TAF_SPM_Modify2SsRegisterMsg(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_Modify2SsEraseMsg
- 功能描述  : 更新入口消息为Erase消息
- 输入参数  : VOS_UINT32                          ulSenderPid    入口消息的发送方PID
-             MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam  新消息的参数信息
- 输出参数  : VOS_VOID                           *pMsg           新入口消息
- 返 回 值  : 当前入口消息的业务类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_Modify2SsEraseMsg(
     VOS_UINT32                          ulSenderPid,
     MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam,
@@ -1883,21 +1388,7 @@ VOS_UINT32 TAF_SPM_Modify2SsEraseMsg(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_Modify2SsRegPwdMsg
- 功能描述  : 更新入口消息为注册密码消息
- 输入参数  : VOS_UINT32                          ulSenderPid    入口消息的发送方PID
-             MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam  新消息的参数信息
- 输出参数  : VOS_VOID                           *pMsg           新入口消息
- 返 回 值  : 当前入口消息的业务类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_Modify2SsRegPwdMsg(
     VOS_UINT32                          ulSenderPid,
     MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam,
@@ -1945,21 +1436,7 @@ VOS_UINT32 TAF_SPM_Modify2SsRegPwdMsg(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_Modify2DeactivateCcbsMsg
- 功能描述  : 更新入口消息为去激活CCBS消息
- 输入参数  : VOS_UINT32                          ulSenderPid    入口消息的发送方PID
-             MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam  新消息的参数信息
- 输出参数  : VOS_VOID                           *pMsg           新入口消息
- 返 回 值  : 当前入口消息的业务类型
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月16日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_Modify2DeactivateCcbsMsg(
     VOS_UINT32                          ulSenderPid,
     MN_MMI_OPERATION_PARAM_STRU        *pstMmiOpParam,
@@ -1998,24 +1475,7 @@ VOS_UINT32 TAF_SPM_Modify2DeactivateCcbsMsg(
     return VOS_TRUE;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ModifyCallReqEntryMsgWithCallType
- 功能描述  : 修改呼叫请求的入口消息中的呼叫类型
- 输入参数  : enCallType---修改后的呼叫类型
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithCallType(
     MN_CALL_TYPE_ENUM_U8                enCallType
 )
@@ -2054,24 +1514,7 @@ VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithCallType(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ModifyCallReqEntryMsgWithDailNumber
- 功能描述  : 修改呼叫请求的入口消息中的呼叫号码
- 输入参数  : pstDialNumber---修改后的呼叫号码
-             ulIndex      ---- 修改第几个号码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithDailNumber(
     MN_CALL_CALLED_NUM_STRU            *pstDialNumber,
     VOS_UINT32                          ulIndex
@@ -2144,23 +1587,7 @@ VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithDailNumber(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ModifyCallReqEntryMsgWithEmergencyCat
- 功能描述  : 修改呼叫请求的入口消息中的紧急呼叫CAT信息
- 输入参数  : ppstEmergencyCat---修改后的紧急呼叫CAT信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithEmergencyCat(
     MN_CALL_EMERGENCY_CAT_STRU         *ppstEmergencyCat
 )
@@ -2202,24 +1629,7 @@ VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithEmergencyCat(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ModifyCallReqEntryMsgWithSubAddr
- 功能描述  : 修改呼叫请求的入口消息中的呼叫子地址
- 输入参数  : pstSubAddr---修改后的呼叫子地址
-             ulIndex   ---修改第几个号码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithSubAddr(
     MN_CALL_SUBADDR_STRU               *pstSubAddr,
     VOS_UINT32                          ulIndex
@@ -2288,23 +1698,7 @@ VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithSubAddr(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ModifyCallReqEntryMsgWithBC1Info
- 功能描述  : 修改呼叫请求的入口消息中的BC配置信息
- 输入参数  : pstDataCfgInfo---修改后的呼叫数据配置信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithBCInfo(
     const NAS_CC_IE_BC_STRU            *pstBc
 )
@@ -2361,23 +1755,7 @@ VOS_VOID TAF_SPM_ModifyCallReqEntryMsgWithBCInfo(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_IsCallCtrlModifyBeyondCapability_CALL
- 功能描述  : 根据Call control的返回结果判断修改后的呼叫信息是否超出UE的能力
- 输入参数  : pstCallCtrlRsp --- STK返回的CALL control结果
-             enCallType     ----原始呼叫类型
- 输出参数  : *penCallType-------修改后的呼叫类型
-             *pstEmergencyCat ----------STK修改后的紧急呼叫CAT信息
- 返 回 值  : VOS_TRUE:修改后的呼叫数据超出UE当前的能力
-             VOS_FALSE:修改后的呼叫数据未超出UE当前的能力
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_IsCallCtrlModifyBeyondCapability_CALL(
     SI_STK_CALLCTRL_RSP_STRU           *pstCallCtrlRsp,
     MN_CALL_TYPE_ENUM_U8                enCallType,
@@ -2453,25 +1831,7 @@ VOS_UINT32 TAF_SPM_IsCallCtrlModifyBeyondCapability_CALL(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_GetVaildBcdNum
- 功能描述  : 从Bcd码流中过滤出有效的Bcd码流，无效码流被过滤掉
- 输入参数  :  ucSrcNumLen ------输入的Bcd码长度
-             pucSrcBcdNum ------输入的Bcd码流
 
- 输出参数  :pucDestNumLen ------过滤之后的Bcd码流长度
-            pucDestBcdNum ------过滤之后的Bcd码流
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : w00242748
-    修改内容   : DTS2014052905238:CALL CONTROL功能开启，拨打IP电话，这时卡中校验，
-                 STK报给TAF的号码中，多了个F，TAF在收到STK的消息后，未进行过滤，直接
-                 将获取的信息上报给网络，导致网络将该呼叫给挂断了。
-*****************************************************************************/
 VOS_VOID TAF_SPM_GetVaildBcdNum(
     VOS_UINT8                           ucSrcNumLen,
     VOS_UINT8                          *pucSrcBcdNum,
@@ -2541,28 +1901,7 @@ VOS_VOID TAF_SPM_GetVaildBcdNum(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ModifyCallEntryMsgByCallCtrlMsg
- 功能描述  : 根据Call control的返回结果更新入口消息中的IE
- 输入参数  : pstCallCtrlRsp --- STK返回的CALL control结果
-             enCallType     ----修改后的呼叫类型
-             *pstEmergencyCat--修改后的紧急呼叫CAT信息
-             ulIndex    ---- 修改第几个号码
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年5月31日
-    作    者   : w00242748
-    修改内容   : DTS2014052905238:CALL CONTROL功能开启，拨打IP电话，这时卡中校验，
-                 STK报给TAF的号码中，多了个F，TAF在收到STK的消息后，未进行过滤，直接
-                 将获取的信息上报给网络，导致网络将该呼叫给挂断了。
-*****************************************************************************/
 VOS_VOID TAF_SPM_ModifyCallEntryMsgByCallCtrlMsg(
     SI_STK_CALLCTRL_RSP_STRU           *pstCallCtrlRsp,
     MN_CALL_TYPE_ENUM_U8                enCallType,
@@ -2640,25 +1979,7 @@ VOS_VOID TAF_SPM_ModifyCallEntryMsgByCallCtrlMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCallCtrlRsltAllowModify_CALL
- 功能描述  : SPM模块处理呼叫业务的允许修改的CALL CTRL结果
- 输入参数  : pstCallCtrlRsp--USIM的允许修改的CALL CTRL结果
- 输出参数  : penRslt    ----USIM的envelop的处理结果
-             pulCause   ----上报给应用的cause值
-             ulIndex    ---- 修改第几个号码
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月16日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcCallCtrlRsltAllowModify_CALL(
     SI_STK_ENVELOPE_RSP_STRU                               *pstCallCtrlRsp,
     TAF_SPM_SERVICE_CTRL_RESULT_ENUM_UINT32                *penRslt,
@@ -2741,20 +2062,7 @@ VOS_VOID TAF_SPM_ProcCallCtrlRsltAllowModify_CALL(
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcEconfEnvelopeCnf
- 功能描述  : SPM模块处理对呼叫业务的USIM的envelop的回复消息
- 输入参数  :
- 输出参数  :
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcEconfEnvelopeCnf(
     VOS_UINT32                          ulCause,
     VOS_UINT32                          ulIndex
@@ -2786,27 +2094,7 @@ VOS_VOID TAF_SPM_ProcEconfEnvelopeCnf(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcCallEnvelopeCnf
- 功能描述  : SPM模块处理对呼叫业务的USIM的envelop的回复消息
- 输入参数  : pstEnvelopeCnf--USIM的envelop的处理回复消息
- 输出参数  : penRslt----USIM的envelop的处理结果
-             pulCause-----上报给应用的cause值
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月14日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2014年11月28日
-    作    者   : j00174725
-    修改内容   : 增强型多方通话
-  3.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID TAF_SPM_ProcCallEnvelopeCnf(
     SI_STK_ENVELOPEDWON_CNF_STRU                           *pstEnvelopeCnf,
     TAF_SPM_SERVICE_CTRL_RESULT_ENUM_UINT32                *penRslt,
@@ -2927,22 +2215,8 @@ VOS_VOID TAF_SPM_ProcCallEnvelopeCnf(
     return;
 }
 
-/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcFdnCheckResult
- 功能描述  : FdnCheck检查结果处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcFdnCheckResult(
     VOS_UINT32                          ulRslt,
     VOS_UINT16                          usClientId,
@@ -2976,20 +2250,7 @@ VOS_UINT32 TAF_SPM_ProcFdnCheckResult(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_SPM_ProcEconfCallCtrlCheckResult
- 功能描述  : Call Ctrl检查结果处理
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年11月28日
-   作    者   : j00174725
-   修改内容   : 新建函数
-*****************************************************************************/
 VOS_UINT32 TAF_SPM_ProcEconfCallCtrlCheckResult(
     VOS_UINT32                          enRslt,
     VOS_UINT16                          usClientId,

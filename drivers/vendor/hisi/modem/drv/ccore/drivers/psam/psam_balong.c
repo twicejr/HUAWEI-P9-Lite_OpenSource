@@ -1,15 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2014, 深圳华为技术有限公司.
-*
-*   文 件 名 :  psam_balong.c
-*
-*   作    者 :  longyi
-*
-*   描    述 :  实现psam的初始化和cipher的接口
-*
-*   修改记录 :  2014年8月19日  v1.00  longyi  创建
-*                 
-*************************************************************************/
+
 
 #include "osl_malloc.h"
 #include "osl_bio.h"
@@ -406,6 +395,20 @@ int bsp_psam_idle_status(void)
 	regvalue = readl(psam_dl.regbase + HI_PSAM_SRST_OFFSET);
 	regvalue &= 0x2;
 	return (regvalue? 1 : 0);
+}
+
+/*
+**return value 
+**1: idle
+**0: busy
+*/
+int bsp_psam_cbdq_idle(void)
+{
+    unsigned int cbdq_w, l_cbdq_w;
+    
+    cbdq_w = CBDQ_WPTR_OFFSET & readl(psam_dl.regbase + HI_PSAM_CBDQ_WPTR_OFFSET);
+    l_cbdq_w = CBDQ_WPTR_OFFSET & readl(psam_dl.regbase + HI_PSAM_CBDQ_STAT_OFFSET);
+    return (cbdq_w == l_cbdq_w? 1 : 0);
 }
 
 int bsp_psam_get_cipher_bd(struct tagpsam_cipher_reg * param)

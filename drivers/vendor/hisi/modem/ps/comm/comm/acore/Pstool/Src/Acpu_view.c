@@ -258,20 +258,7 @@ void AcpuView_GetTaskName(void)
     return;
 } /* CpuView_GetTaskName */
 
-/******************************************************************************
- Prototype      : AcpuView_IsOverturn
- Description    : 判断是否发现记录翻转
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2013-03-10
-    Author      : g00178567
-    Modification: Created function
-******************************************************************************/
 ACPU_UINT32 AcpuView_IsOverturn(void)
 {
     if (g_ulAcpuViewTraceCnt == g_ulAcpuViewCnt)
@@ -1151,20 +1138,7 @@ void AcpuView_InfoPrint(void)
 }
 
 
-/******************************************************************************
- Prototype      : CpuView_TaskPrint
- Description    : 打印A核任务
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        : ---
-  1.Date        : 2007-1-24
-    Author      : g00178567
-    Modification: Created function
-******************************************************************************/
 void AcpuView_TaskPrint(void)
 {
     struct task_struct                 *pCurrenttaskId;

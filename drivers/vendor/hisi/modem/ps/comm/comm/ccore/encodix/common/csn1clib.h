@@ -8,8 +8,7 @@
 #include "ed_lib.h"
 #include "ed_user.h"
 
-/* 文件csn1_disables中定义的为hrpd消息屏蔽宏，宏定义打开后，可以屏蔽掉对应消息的编解码函数
-，用来节省内存，后续版本中务必保留包含此头文件 added by z00215022 2015/10/15 */
+
 #include "csn1_disables.h"
 
 #ifdef __cplusplus

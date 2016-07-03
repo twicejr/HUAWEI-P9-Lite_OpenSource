@@ -1,18 +1,6 @@
 
 
-/************************************************************************
-Copyright   : 2005-2008, Huawei Tech. Co., Ltd.
-File name   : Siapppb.h
-Author      : H59254
-Version     : V200R001
-Date        : 2008-10-10
-Description : 电话本的的头文件
-History     :
-History     :
-1.日    期  : 2006年11月14日
-  作    者  : H59254
-  修改内容  : Create
-************************************************************************/
+
 
 #ifndef __SIAPPPB_H__
 #define __SIAPPPB_H__
@@ -350,13 +338,7 @@ typedef struct
 }SI_PB_ECALLQRY_REQ_STRU;
 
 
-/*****************************************************************************
-结构名    : SI_PB_ECALL_NUM_STRU
-结构说明  : ecall test/recfg number信息结构体
-1.  日    期   : 2014年04月25日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 typedef struct
 {
     VOS_UINT8                           ucTon;              /* 号码类型 */
@@ -367,13 +349,7 @@ typedef struct
 }SI_PB_ECALL_NUM_STRU;
 
 
-/*****************************************************************************
-结构名    : SI_PB_QRY_ECALL_NUMBER_CNF_STRU
-结构说明  : 查询ECALL的号码回复
-1.  日    期   : 2014年04月25日
-    作    者   : h59254
-    修改内容   : Creat
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -441,16 +417,7 @@ extern VOS_UINT32 SI_PB_GetSPBFlag(VOS_VOID);
 
 /*单编译接口声明*/
 
-/*****************************************************************************
-函 数 名  :SI_PB_GetEccNumber_Instance
-功能描述  :获取ECC号码
-输入参数  :enModemID:Modem ID
-输出参数  :pstEccData:ECC号码数据结构
-修订记录  :
-1. 日    期   : 2013年5月27日
-   作    者   : h59254
-   修改内容   : Creat
-*****************************************************************************/
+
 extern VOS_UINT32 SI_PB_GetEccNumber_Instance(
     MODEM_ID_ENUM_UINT16                enModemID,
     SI_PB_ECC_DATA_STRU                *pstEccData);

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2013-2014, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafMmaSndMtc.c
-  版 本 号   : 初稿
-  作    者   : h00313353
-  生成日期   : 2015-11-03
-  最近修改   :
-  功能描述   : MMA模块发送到MTC的消息文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015-11-03
-    作    者   : h00313353
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -42,20 +25,7 @@
    3 函数实现
 *****************************************************************************/
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtcPowerStateInd
- 功能描述  : TAF MMA 通知MTC开关机状态
- 输入参数  : enStartState --开关机状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月12日
-    作    者   : j00174725
-    修改内容  : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtcPowerStateInd(MTC_MODEM_POWER_STATE_ENUM_UINT8 enPowerState)
 {
     VOS_UINT16                          ulLenth;
@@ -89,20 +59,7 @@ VOS_VOID TAF_MMA_SndMtcPowerStateInd(MTC_MODEM_POWER_STATE_ENUM_UINT8 enPowerSta
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtcRatModeInd
- 功能描述  : MMA模块通知MTC模块当前系统接入模式
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年08月19日
-    作    者   : l00198894
-    修改内容   : V9R1 干扰控制项目
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtcRatModeInd(
     TAF_SDC_SYS_MODE_ENUM_UINT8         enSysMode,
     NAS_UTRANCTRL_UTRAN_MODE_ENUM_UINT8 enUtranMode
@@ -159,21 +116,7 @@ VOS_VOID TAF_MMA_SndMtcRatModeInd(
 
     return;
 }
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtcRegStatusInd
- 功能描述  : TAF MMA 通知MTC注册状态
- 输入参数  : ucIsUsimValidFlag -- 卡是否有效
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2014年1月23日
-   作    者   : z00161729
-   修改内容   : DTS2014012305088:svlte特性开启卡无效场景mtc无需上报pstransfer:0
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtcRegStatusInd(VOS_UINT8 ucIsUsimValidFlag)
 {
     VOS_UINT16                          ulLenth;
@@ -210,20 +153,7 @@ VOS_VOID TAF_MMA_SndMtcRegStatusInd(VOS_UINT8 ucIsUsimValidFlag)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtcRatCfgInd
- 功能描述  : MMA模块通知MTC模块当前SysCfg配置的接入模式
- 输入参数  : TAF_MMA_RAT_ORDER_STRU SysCfg设置的接入制式
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年10月21日
-    作    者   : h00313353
-    修改内容   : Iteration 19 TAS
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtcRatCfgInd(
     TAF_MMA_RAT_ORDER_STRU             *pstNewRatOrder
 )
@@ -261,20 +191,7 @@ VOS_VOID TAF_MMA_SndMtcRatCfgInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtcImsaStateInd
- 功能描述  : TAF MMA 通知MTC IMSA的开关机状态
- 输入参数  : enPowerState --开关机状态
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年03月13日
-    作    者   : l00198894
-    修改内容   : VOLTE Randk1方案项目
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtcImsaStateInd(MTC_MODEM_POWER_STATE_ENUM_UINT8 enPowerState)
 {
     VOS_UINT16                          ulLenth;
@@ -308,27 +225,7 @@ VOS_VOID TAF_MMA_SndMtcImsaStateInd(MTC_MODEM_POWER_STATE_ENUM_UINT8 enPowerStat
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtcCurrCampPlmnInfoInd
- 功能描述  : MMA模块通知MTC模块当前系统接入模式
- 输入参数  : enSysMode   - 系统模式
-             enUtranMode - utran模式
-             ucForbiddenPlmnFlag - 网络是否禁止标识
-             ucPsAttachAllowFlag - ps是否允许注册标识
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月22日
-    作    者   : z00161729
-    修改内容   : SVLTE优化G-TL ps切换性能修改
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtcCurrCampPlmnInfoInd(
     MMA_MTC_CURR_CAMP_PLMN_INFO_IND_STRU                   *pstPlmnInfo
 )
@@ -372,26 +269,7 @@ VOS_VOID TAF_MMA_SndMtcCurrCampPlmnInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtcSysInfo
- 功能描述  : 通知mtc系统消息相关信息
- 输入参数  : ucIsFobbiddenPlmnFlag      -- 当前PLMN是否为禁止PLMN
-             ucPsSupportFlg             -- 当前网络是否支持PS域
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月26日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年01月17日
-    作    者   : l00198894
-    修改内容   : V9R1C53 C+L 离网重选项目
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtcSysInfo(
     VOS_UINT8                           ucIsFobbiddenPlmnFlag,
     VOS_UINT8                           ucPsSupportFlg
@@ -420,21 +298,7 @@ VOS_VOID TAF_MMA_SndMtcSysInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtcEplmnInfoInd
- 功能描述  : 通知mtc eplmn相关信息
- 输入参数  : pstEplmnInfoIndMsg - 消息内容
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月25日
-    作    者   : z00161729
-    修改内容   : SVLTE支持NCELL搜网
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtcEplmnInfoInd(
     MSCC_MMA_EPLMN_INFO_IND_STRU        *pstEplmnInfoIndMsg
 )
@@ -480,21 +344,7 @@ VOS_VOID TAF_MMA_SndMtcEplmnInfoInd(
 #endif
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_MMA_SndMtcImsVoiceCapInd
- 功能描述  : MMA给MTC发送IMS VOICE CAP通知
- 输入参数  : ucAvail---IMS VOICE是否可用
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年06月17日
-    作    者   : w00316404
-    修改内容   : 新增函数
-
-*****************************************************************************/
 VOS_VOID TAF_MMA_SndMtcImsVoiceCapInd(
     VOS_UINT8                           ucAvail
 )

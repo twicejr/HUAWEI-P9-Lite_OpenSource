@@ -1,77 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : GmmCasMain.c
-  Author       : Roger Leo
-  Version      : V200R001
-  Date         : 2005-08-25
-  Description  : 该C文件给出了GmmCasMain模块的实现
-  Function List:
-        ---
-        ---
-        ---
-  History      :
-  1. Date:2005-08-25
-     Author: Roger Leo
-     Modification:update
-  2. s46746 2006-03-08 根据问题单A32D02368修改
-  3. x51137 2006/4/28 A32D02889
-  4. s46746 2006-05-08 根据问题单A32D03487修改
-  5. 日    期   : 2006年9月19日
-     作    者   : liurui id:40632
-     修改内容   : 根据问题单号：A32D05237
-  6.日    期   : 2006年10月9日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D05744
-  7.x51137 2006/11/3 A32D06511
-  8.日    期   : 2006年11月20日
-    作    者   : s46746
-    修改内容   : 创建，根据问题单号：A32D07433
-  9.日    期   : 2007年3月30日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D09854
- 10.日    期   : 2007年10月13日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D13060
- 11.日    期   : 2007年11月22日
-    作    者   : l00107747
-    修改内容   : 问题单号:A32D13535
- 12.日    期   : 2007年12月2日
-    作    者   : s46746
-    修改内容   : 问题单号:A32D13679,GMM在悬挂状态，如果接收到SM建立请求消息，回复失败
- 13.日    期   : 2007年12月28日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D13954,修改GMM在2G3过程中缓存消息机制
- 14.日    期   : 2008年7月18日
-    作    者   : luojian 00107747
-    修改内容   : 根据问题单号：AT2D03887,修改CS无效情况下网络模式变更处理
- 15.日    期   : 2008年08月05日
-    作    者   : s46746
-    修改内容   : 问题单号:AT2D04423,提供短消息模块获取当前PS是否可用的API函数
- 16.日    期   : 2008年9月23日
-    作    者   : o00132663
-    修改内容   : 根据问题单号：AT2D05839,清除无用全局变量 ucRlsMsgFlg和状态GMM_REGISTERED_WAIT_FOR_RAU
- 17.日    期   : 2008年9月26日
-    作    者   : x00115505
-    修改内容   : 问题单号:AT2D05431
- 18.日    期    : 2008年10月15日
-    作    者    : o00132663
-    修改内容    : 问题单号:AT2D06211,增加在GMM_GPRS_SUSPENSION状态时对GMM_TIMER_5S定时器超时的处理。
- 19.日    期    : 2009年02月06日
-    作    者    : o00132663
-    修改内容    : 问题单号:AT2D08277,小区重选导致的网络模式改变后RAU流程异常。
- 20.日    期   : 2009年05月14日
-    作    者   : h44270
-    修改内容   : 问题单号:AT2D11898/AT2D11828,在IDLE态下发送PS域短信，没有按照ATTACH ACCEPT消息中Radio Priority for SMS来请求资源
- 21.日    期   : 2009年06月12日
-    作    者   : f62575
-    修改内容   : 问题单号:AT2D12345,A/Gb接入模式下通过PS域发送短信发送的短信无线优先级比实际值大1
- 22.日    期   : 2009年08月19日
-    作    者   : x00115505
-    修改内容   : 问题单号:AT2D13829,TLLI维护错误
- 23.日    期   : 2009年09月12日
-    作    者   : s46746
-    修改内容   : 问题单号：AT2D14432,HPLMN定时器在异系统重选过程中超时没有立即进行HPLMN搜索
-*****************************************************************************/
+
 
 /*****************************************************************************
    1 头文件包含
@@ -125,80 +52,7 @@ VOS_UINT8     g_GmmInterRatCellReselect = 0;
 /*---------------3.1 GMM接收消息处理        -------------*/
 /*=======================================================*/
 
-/*****************************************************************************
- Prototype      : GMM_CasMsgProc
- Description    : 双模方式下GMM接收消息的入口函数
-                  HSS 4100 V200R001 新增：
-                1.处理挂起消息RRMM_SUSPEND_IND
-                2.处理挂起恢复消息RRMM_RESUME_IND
-                3.处理GSM接入模式下，GMM的接收消息处理
-                4.挂起状态下定时器消息的事件分析转换
-                5.挂起状态下GMM消息的事件分析转换
- Input          : struct MsgCB*     pMsg            入口消息指针
- Output         :
- Return Value   : GMM_FAILURE       返回失败，
-                                    表明没有处理该消息，需要其他消息过程处理
-                  GMM_SUCCESS       返回成功
-                                    表明处理完成，不需要其他消息过程处理
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-08-25
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期    : 2007年3月30日
-    作    者    : s46746
-    修改内容    : 问题单号:A32D09854
-  3.日    期    : 2007年11月22日
-    作    者    : l00107747
-    修改内容    : 问题单号:A32D13535
-  4.日    期    : 2008年10月15日
-    作    者    : o00132663
-    修改内容    : 问题单号:AT2D06211,增加在GMM_GPRS_SUSPENSION状态时对GMM_TIMER_5S定时器超时的处理。
-  5.日    期   : 2009年5月9日
-    作    者   : l00130025
-    修改内容   : 根据问题单号：AT2D11645/AT2D11797,关机，若detach的EST_REQ失败，Gmm会反复发起EST_REQ
-  6.日    期   : 2011年3月5日
-    作    者   : 欧阳飞
-    修改内容   : DTS2011030300897，挂起态下T3312超时，未清除相应定时器运行状态全局变量。
-  7.日    期   : 2011年8月18日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII调整 HO过程中增加LMM向GMM回复安全上下文回复以及保护定时器超时消息的处理
-  8.日    期   : 2011年11月18日
-    作    者   : w00167002
-    修改内容   : DTS2011110300229:G下CSonly时，背景搜CS失败3次后用户发起ATTACH，
-                  失败4此后，用户回RPlmn，发起了PS域的注册。在GMM suspend状态，
-                  收到搜网请求后，将GMM状态迁移到搜网状态。
-  9.日    期   : 2012年02月29日
-    作    者   : l00130025
-    修改内容   : DTS2012022906401:L->W Handover SMC在系统消息前收到时没有处理，导致RAU失败
-  10.日    期   : 2012年3月7日
-    作    者   : w00167002
-    修改内容   : V7R1C50 CSFB&PPAC&ETWS&ISR:ST用例CSFB_MO_HO_SUCC001发现在L HO
-                  到W后，未上报系统消息，LAU成功，处理用户的电话业务，电话业务
-                  被释放后，GMM未清除信令连接.
-  11.日    期   : 2012年7月27日
-     作    者   : l65478
-     修改内容  : DTS2012072305591:L切换到U后第一次RAU失败，PDP drop
-  12.日    期   : 2013年02月08日
-     作    者   : l00167671
-     修改内容   : DTS2013020607201
-  13.日    期   : 2013年1月22日
-     作    者   : W00176964
-     修改内容   : DTS2013012105162:OOS流程收到PS域detach需要进行本地detach
-
-  14.日    期   : 2013年6月5日
-     作    者   : w00167002
-     修改内容   : V9R1_SVLTE:收到DETACH /ATTACH REQ消息，不进行缓存
-  15.日    期   : 2013年08月16日
-     作    者   : l65478
-     修改内容   : DTS2013091003969,L handover to W后收到鉴权消息没有处理
-  16.日    期   : 2014年3月28日
-     作    者   : w00242748
-     修改内容   : DTS2014032508763:W下正常驻留后，改变支持LTE的能力，W到G进行重选
-                  后，GMM发起RAU，报的能力与接入层报的不一致。
-*****************************************************************************/
 VOS_VOID GMM_CasMsgProc(struct MsgCB* pMsg, VOS_UINT8 *pucFollowOn)
 {
     /* 局部变量声明 */
@@ -208,9 +62,7 @@ VOS_VOID GMM_CasMsgProc(struct MsgCB* pMsg, VOS_UINT8 *pucFollowOn)
     /* 消息参数分析 */
     *pucFollowOn = GMM_FALSE;                               /* 默认不再进入原消息入口函数处理 */
 
-    /* Modified by wx270776 for OM融合, 2015-7-16, begin */
     if (WUEPS_PID_ADMIN == pMsg->ulSenderPid)
-    /* Modified by wx270776 for OM融合, 2015-7-16, end */
     {
         *pucFollowOn = GMM_TRUE;
         return;
@@ -458,40 +310,7 @@ VOS_VOID GMM_CasMsgProc(struct MsgCB* pMsg, VOS_UINT8 *pucFollowOn)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : GMM_SaveMsg
- 功能描述  : GMM缓冲收到的消息
- 输入参数  : VOS_VOID *pMsg           - 收到的消息指针
- 输出参数  : VOS_UINT8 *pucFollowOn   - 是否还需要进一步处理标志
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月17日
-    作    者   : 欧阳飞
-    修改内容   : 新生成函数
-  2.日    期   : 2010年10月29日
-    作    者   : l00167671/罗开辉
-    修改内容   : 问题单号：DTS2010100802035,添加对GMMSM_PDP_DEACTIVATED_IND的缓存
-  3.日    期   : 2011年03月3日
-    作    者   : f00179208
-    修改内容   : 问题单号：DTS2011022800037，G下ping包，然后打电话，切换到W失败后多次回退到G，挂断电话.ping包比其他场景恢复慢
-  4. 日    期   : 2011年7月10日
-     作    者   : w00166186
-     修改内容   : V7R1 PHASE II ATTACH/DETACH调整
-  5. 日    期   : 2011年12月01日
-     作    者   : w00166186
-     修改内容   : DTS2011112400118,CS语音过程发起PS ATTACH，后处理缓存时返回ERROR
-  6. 日    期   : 2012年4月20日
-     作    者   : l00130025
-     修改内容   : DTS2012031502528，GMM GPRS Suspension状态没有处理LuRsltInd，
-                  W->G Rej 11->W原小区时,没有做Attach，导致后续SM业务失败
-
- 7.  日    期   : 2012年11月08日
-	 作    者   : l00167671
-     修改内容   : DTS2012110508357,SUSPENSION状态时收到CS ONLY的设置如果GAS resume ind失败，不会做detach
-*****************************************************************************/
 VOS_VOID GMM_SaveMsg(VOS_VOID *pMsg, VOS_UINT8 *pucFollowOn)
 {
     MSG_HEADER_STRU         *pNasMsgHeader;
@@ -656,38 +475,7 @@ VOS_VOID GMM_SaveMsg(VOS_VOID *pMsg, VOS_UINT8 *pucFollowOn)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : GMM_SuspendMsgProc
- 功能描述  : GMM挂起态下收到消息的处理
- 输入参数  : struct MsgCB* pMsg           - 收到的消息指针
- 输出参数  : VOS_UINT8     *pucFollowOn   - 是否还需要进一步处理标志
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年7月17日
-    作    者   : 欧阳飞
-    修改内容   : 新生成函数
-  2.日    期   : 2011年3月5日
-    作    者   : 欧阳飞
-    修改内容   : DTS2011030300897，挂起态下T3312超时，未清除相应定时器运行状态全局变量。
-  3.日    期   : 2011年8月18日
-    作    者   : w00176964
-    修改内容   : V7R1 PhaseII调整 HO过程中增加LMM向GMM回复安全上下文回复以及保护定时器超时消息的处理
-  4.日    期   : 2011年11月22日
-    作    者   : w00166186
-    修改内容   : DTS2011112301504,BT测试W2G_HO失败
-  5.日    期   :2014年4月2日
-    作    者   :w00242748
-    修改内容   :DTS2014040310584:LTE下未与网络交互的ATTACH/TAU，不停止T3211/T3212/T3213;
-                只有与网络交互后，才将T3211/T3212/T3213停止。
-  6.日    期   : 2014年12月25日
-    作    者   : w00167002
-    修改内容   : DTS2014122201960:在L下SRVCC HO到G再HO到W,RABM触发重建，导致立即
-                 触发RAU，后续收到系统消息又再次发起RAU,导致网络REL了链路，导致
-                 掉话。修改为在HO后，启动保护定时器等系统消息。
-*****************************************************************************/
 VOS_VOID GMM_SuspendMsgProc(struct MsgCB* pMsg, VOS_UINT8 *pucFollowOn)
 {
     /* 局部变量声明 */
@@ -740,36 +528,7 @@ VOS_VOID GMM_SuspendMsgProc(struct MsgCB* pMsg, VOS_UINT8 *pucFollowOn)
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_CasNetModeChangeByRau
- Description    : 网络模式改变时GMM需要进行的RAU操作
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2006-07-26
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期   : 2006年9月19日
-    作    者   : liurui id:40632
-    修改内容   : 根据问题单号：A32D05237
-  3.日    期   : 2006年11月20日
-    作    者   : s46746
-    修改内容   : 根据问题单号：A32D07433
-  4.日    期   : 2008年7月18日
-    作    者   : luojian 00107747
-    修改内容   : 根据问题单号：AT2D03887
-  5.日    期   : 2011年7月25日
-    作    者   : h44270
-    修改内容   : V7R1 PHASEII 重构: 数据结构，全局变量初始化，魔鬼数字的调整
-  6.日    期   : 2014年3月14日
-    作    者   : w00176964
-    修改内容   : DTS2014031207844:dereg_init状态时NMO改变且LARA改变时按照24008协议需要进行RAU
-*****************************************************************************/
 VOS_VOID GMM_CasNetModeChangeByRau(
                 GMM_NETMODE_CHG_TYPE ucNetChgTyp,
                 VOS_UINT8            ucRaiChgFlg)
@@ -1002,21 +761,7 @@ VOS_VOID GMM_CasNetModeChangeByRau(
     return;
 }
 
-/*****************************************************************************
- Prototype      : GMM_CasGetNetChgType
- Description    : 判断异系统切换网络模式的改变类型
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.日    期   : 2006年10月9日
-    作    者   : s46746
-    修改内容   : 创建，根据问题单号：A32D05744
-*****************************************************************************/
 VOS_UINT8 GMM_CasGetNetChgType(VOS_UINT8 ucNewNetMod)
 {
     GMM_NETMODE_CHG_TYPE   ucNetChgType = GMM_NETMODE_CHG_NULL;
@@ -1078,24 +823,7 @@ VOS_UINT8 GMM_CasGetNetChgType(VOS_UINT8 ucNewNetMod)
     return ucNetChgType;
 }
 
-/*****************************************************************************
- Prototype      : GMM_ProcedureByNetMode
- Description    : 判断异系统切换网络模式的改变类型
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.日    期   : 2006年10月9日
-    作    者   : s46746
-    修改内容   : 创建，根据问题单号：A32D05744
-  2.日    期   : 2006年11月20日
-    作    者   : s46746
-    修改内容   : 创建，根据问题单号：A32D07433
-*****************************************************************************/
 VOS_VOID GMM_ProcedureByNetMode(VOS_UINT8 ucNetModChangeType)
 {
     if (GMM_NETMODE_CHG_I_II == ucNetModChangeType)
@@ -1149,26 +877,7 @@ VOS_VOID GMM_ProcedureByNetMode(VOS_UINT8 ucNetModChangeType)
     }
 }
 
-/*****************************************************************************
- Prototype      : GMM_CasChangSysMode
- Description    : 切换到指定的网络模式，2G/3G
-                  HSS 4100 V200R001 新增
- Input          :
- Output         :
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-12-25
-    Author      : Roger Leo
-    Modification: Created function
-
-  2. x51137 2006/4/28 A32D02889
-  3.日    期    : 2009年03月18日
-    作    者    : l65478
-    修改内容    : 根据问题单号：AT2D08671,数传状态下，W出服务区后，切到G，数传恢复失败，因为GMM没有配置LL加密算法
-*****************************************************************************/
 VOS_VOID GMM_CasChangSysMode(VOS_UINT8 ucState)
 {
     /* 与最近的网络模式相同，不做改变处理 */
@@ -1264,28 +973,7 @@ VOS_VOID GMM_CasChangSysMode(VOS_UINT8 ucState)
 /**************************************/
 /* 其它外部模块(RABM,APS)调用接口     */
 /**************************************/
-/*****************************************************************************
- Prototype      : GMM_GetCurNetwork
- Description    : 获取GMM的当前工作网络
-                  HSS 4100 V200R001 新增
-                  非GMM模块使用
- Input          :
- Output         :
- Return Value   : 当前驻留的接入技术
-                  GMM_GMM_NET_RAT_TYPE_WCDMA  3G网络
-                  GMM_GMM_NET_RAT_TYPE_GSM    2G网络
-                  GMM_GMM_NET_RAT_TYPE_LTE
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-12-08
-    Author      : Roger Leo
-    Modification: Created function
-  2.日    期    : 2011年11月28日
-    作    者    : z00161729
-    修改内容    : 增加L模的判断
-*****************************************************************************/
 VOS_UINT8 GMM_GetCurNetwork (VOS_VOID)
 {
     /* 明确的网络接入模式 */
@@ -1331,33 +1019,7 @@ VOS_UINT32 GMM_GetTlli (VOS_VOID)
     return gstGmmCasGlobalCtrl.ulTLLI;
 }
 
-/*****************************************************************************
- Prototype      : GMM_ServiceStatusForSms
- Description    : 获取GMM的当前服务是否可用
 
- Input          :
- Output         :
- Return Value   : GMM当前服务是否可用
- Calls          :
- Called By      :
-
- History        :
-  1.Date        : 2008-07-31
-    Author      : s46746
-    Modification: Created function
-  2.日    期   : 2011年12月5日
-    作    者   : z00161729
-    修改内容   : V7R1 phaseIV支持L下发短信修改
-  3.日    期   : 2012年2月15日
-    作    者   : w00166186
-    修改内容   : CSFB&PPAC&ETWS&ISR 开发
-  4.日    期   : 2012年12月11日
-    作    者   : w00176964
-    修改内容   : NAS_MML_GetPsRestrictNormalServiceFlg修改函数名
-  5.日    期   : 2013年08月16日
-    作    者   : l65478
-    修改内容   : DTS2013091003969,L handover to W后收到鉴权消息没有处理
-*****************************************************************************/
 VOS_UINT32 GMM_ServiceStatusForSms(VOS_VOID)
 {
 #if (FEATURE_ON == FEATURE_LTE)
@@ -1369,9 +1031,7 @@ VOS_UINT32 GMM_ServiceStatusForSms(VOS_VOID)
     else
 #endif
     {
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, begin */
         if (VOS_TRUE == NAS_MML_GetPsRestrictNormalServiceFlg())
-        /* Modified by w00176964 for V7R1C50_DCM接入禁止小区信息上报, 2012-12-11, end */
         {
             return GMM_SMS_SERVICE_UNAVAILABLE;
         }
@@ -1408,24 +1068,7 @@ VOS_UINT32 GMM_ServiceStatusForSms(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Prototype      : GMM_GetRaPrioForSms
- Description    : 获取GMM的当前Radio priority for SMS 值
-                  非GMM模块使用
- Input          :
- Output         :
- Return Value   : GMM当前使用的Radio priority for SMS 值
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2009-5-13
-    Author      : h44270
-    Modification: Created function
-  2.日    期   : 2013年6月05日
-    作    者   : Y00213812
-    修改内容   : DTS2013060507591,COVERITY和FORITY修改
-*****************************************************************************/
 VOS_UINT8 GMM_GetRaPrioForSms (VOS_VOID)
 {
     VOS_UINT8   ucRaPrioLevFosSms;
@@ -1435,21 +1078,7 @@ VOS_UINT8 GMM_GetRaPrioForSms (VOS_VOID)
 
 }
 
-/*****************************************************************************
- 函 数 名  : GMM_CasMsgProc_GmmSuspendNormalService
- 功能描述  : GMM在GmmSuspendNormalService状态收到消息的处理
- 输入参数  : pMsg        - 收到消息
- 输出参数  : pucFollowOn - follow on标志
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月17日
-    作    者   : w00167002
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID GMM_CasMsgProc_GmmSuspendNormalService(
     struct MsgCB                       *pMsg,
     VOS_UINT8                          *pucFollowOn

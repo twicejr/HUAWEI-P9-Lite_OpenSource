@@ -1,28 +1,4 @@
-/************************************************************************
-  Copyright   : 2005-2007, Huawei Tech. Co., Ltd.
-  File name   : GmmCasSend.h
-  Author      : Roger Leo
-  Version     : V200R001
-  Date        : 2005-10-21
-  Description : GmmCasSend模块的内部头文件
-  History     :
-  1. Date:2005-08-25
-     Author: Roger Leo
-     Modification:update
-  2. Date:2005-04-05
-     Author: Roger Leo
-     Modification:added for A32D02352
-  3. l40632 2006-05-29 根据问题单A32D03821修改
-  4.日    期   : 2006年08月09日
-    作    者   : 蒋丽萍j60010247
-    修改内容   : 问题单A32D03479，在PC机上实现时将#pragma pack(0)和#pragma pack()加编译开关
-  5.日    期   : 2007年12月14日
-    作    者   : s46746
-    修改内容   : 问题单A32D13638，保证进行RAU之前不向网侧发送其它数据，并且RAU不成功，不恢复层2
-  6.日    期   : 2011年12月29日
-    作    者   : l00130025
-    修改内容   : DTS2011082201679/DTS2011121504358,切换模式，回退后W/G下注册状态没有与NAS同步
-************************************************************************/
+
 
 #ifndef _GMM_CAS_SEND_H_
 #define _GMM_CAS_SEND_H_

@@ -1,22 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnApsMultiMode.c
-  版 本 号   : 初稿
-  作    者   : anhuiqing / 00165503
-  生成日期   : 2011年03月30日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-
-  修改历史   :
-  1.日    期   : 2011年03月30日
-    作    者   : anhuiqing / 00165503
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -63,22 +45,7 @@ extern "C" {
   3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : MN_APS_FillEsmPdpInfoIndOptActivatePara
- 功能描述  : 填写ID_SM_ESM_PDP_CONTEXT_INFO_IND消息参数
-             PDP OPTION 为 SM_ESM_PDP_OPT_ACTIVATE
- 输入参数  : pstPdpEntity       - PDP实体信息
- 输出参数  : pstEsmPdpInfoInd   - ID_SM_ESM_PDP_CONTEXT_INFO_IND消息内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月10日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_FillEsmPdpInfoIndOptActivatePara(
     SM_ESM_PDP_CONTEXT_INFO_IND_STRU   *pstEsmPdpInfoInd,
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
@@ -118,22 +85,7 @@ VOS_VOID MN_APS_FillEsmPdpInfoIndOptActivatePara(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_FillEsmPdpInfoIndOptModifyPara
- 功能描述  : 填写ID_SM_ESM_PDP_CONTEXT_INFO_IND消息参数
-             PDP OPTION 为 SM_ESM_PDP_OPT_MODIFY
- 输入参数  : pstPdpEntity       - PDP实体信息
- 输出参数  : pstEsmPdpInfoInd   - ID_SM_ESM_PDP_CONTEXT_INFO_IND消息内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月10日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_FillEsmPdpInfoIndOptModifyPara(
     SM_ESM_PDP_CONTEXT_INFO_IND_STRU   *pstEsmPdpInfoInd,
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
@@ -173,22 +125,7 @@ VOS_VOID MN_APS_FillEsmPdpInfoIndOptModifyPara(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_FillEsmPdpInfoIndOptDeactivatePara
- 功能描述  : 填写ID_SM_ESM_PDP_CONTEXT_INFO_IND消息参数
-             PDP OPTION 为 SM_ESM_PDP_OPT_DEACTIVATE
- 输入参数  : pstPdpEntity       - PDP实体信息
- 输出参数  : pstEsmPdpInfoInd   - ID_SM_ESM_PDP_CONTEXT_INFO_IND消息内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月10日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_FillEsmPdpInfoIndOptDeactivatePara(
     SM_ESM_PDP_CONTEXT_INFO_IND_STRU   *pstEsmPdpInfoInd,
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
@@ -207,22 +144,7 @@ VOS_VOID MN_APS_FillEsmPdpInfoIndOptDeactivatePara(
     MN_APS_FillEsmPdpInfoLinkedNsapi(pstEsmPdpInfoInd, pstPdpEntity);
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_FillEsmPdpInfoIndPara
- 功能描述  : 填写ID_SM_ESM_PDP_CONTEXT_INFO_IND消息内容
- 输入参数  : pstPdpEntity       - PDP实体信息
-             enPdpOption        - PDP实体更新操作(激活, 修改, 和去激活)
- 输出参数  : pstEsmPdpInfoInd   - ID_SM_ESM_PDP_CONTEXT_INFO_IND消息内容
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月10日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 MN_APS_FillEsmPdpInfoIndPara(
     SM_ESM_PDP_CONTEXT_INFO_IND_STRU   *pstEsmPdpInfoInd,
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
@@ -250,24 +172,7 @@ VOS_UINT32 MN_APS_FillEsmPdpInfoIndPara(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_FillSmBearerActivateIndPara
- 功能描述  : 填写ID_MN_SM_BEARER_ACTIVATE_IND消息内容
- 输入参数  : pstPdpEntity           - PDP实体信息
- 输出参数  : pstSmBearerActivateInd - ID_MN_SM_BEARER_ACTIVATE_IND消息内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年01月06日
-    作    者   : h44270
-    修改内容   : modified by h44270 for ps project,修改Ti的使用
-
-*****************************************************************************/
 VOS_VOID MN_APS_FillSmBearerActivateIndPara(
     SMREG_BEARER_ACTIVATE_IND_STRU     *pstSmBearerActivateInd,
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
@@ -326,24 +231,7 @@ VOS_VOID MN_APS_FillSmBearerActivateIndPara(
     /* PACKET FLOW ID未实际使用, 暂不填写 PACKET FLOW ID */
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_FillSmBearerModifyIndPara
- 功能描述  : 填写ID_MN_SM_BEARER_MODIFY_IND消息内容
- 输入参数  : pstPdpEntity           - PDP实体信息
- 输出参数  : pstSmBearerModifyInd   - ID_MN_SM_BEARER_MODIFY_IND消息内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年01月06日
-    作    者   : h44270
-    修改内容   : modified by h44270 for ps project,修改Ti的使用
-
-*****************************************************************************/
 VOS_VOID MN_APS_FillSmBearerModifyIndPara(
     SMREG_BEARER_MODIFY_IND_STRU       *pstSmBearerModifyInd,
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
@@ -373,24 +261,7 @@ VOS_VOID MN_APS_FillSmBearerModifyIndPara(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_FillSmBearerDeactivateIndPara
- 功能描述  : 填写ID_MN_SM_BEARER_DEACTIVATE_IND消息内容
- 输入参数  : pstPdpEntity               - PDP实体信息
- 输出参数  : pstSmBearerDeactivateInd   - ID_MN_SM_BEARER_DEACTIVATE_IND消息内容
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月11日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年01月06日
-    作    者   : h44270
-    修改内容   : modified by h44270 for ps project,修改Ti的使用
-
-*****************************************************************************/
 VOS_VOID MN_APS_FillSmBearerDeactivateIndPara(
     SMREG_BEARER_DEACTIVATE_IND_STRU   *pstSmBearerDeactivateInd,
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
@@ -405,24 +276,7 @@ VOS_VOID MN_APS_FillSmBearerDeactivateIndPara(
     pstSmBearerDeactivateInd->ucConnectId         = pstPdpEntity->ucPdpId;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_SndEsmPdpInfoInd
- 功能描述  : 发送ID_SM_ESM_PDP_CONTEXT_INFO_IND消息至ESM
- 输入参数  : pstPdpEntity   - PDP实体信息
-             enPdpOption    - PDP更新状态
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月10日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年12月26日
-    作    者   : m00217266
-    修改内容   : DSDA C核项目接口修改(添加系统能力判断)
-*****************************************************************************/
 VOS_VOID MN_APS_SndEsmPdpInfoInd(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_PDP_OPTION_ENUM_UINT32       enPdpOption
@@ -470,21 +324,7 @@ VOS_VOID MN_APS_SndEsmPdpInfoInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_SndSmBearerActivateInd
- 功能描述  : 发送ID_MN_SM_BEARER_ACTIVATE_IND消息至SM
- 输入参数  : pstPdpEntity   - PDP实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_SndSmBearerActivateInd(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
 )
@@ -511,21 +351,7 @@ VOS_VOID MN_APS_SndSmBearerActivateInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_SndSmSecActivateInd
- 功能描述  : 通知SM所有挂接在该缺省承载上的PDP的状态
- 输入参数  : pstPdpEntity   - PDP实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年06月5日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_SndSmAllSecPdpActivateInd(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
 )
@@ -545,21 +371,7 @@ VOS_VOID MN_APS_SndSmAllSecPdpActivateInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_SndSmBearerModifyInd
- 功能描述  : 发送ID_MN_SM_BEARER_MODIFY_IND消息至SM
- 输入参数  : pstPdpEntity   - PDP实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_SndSmBearerModifyInd(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
 )
@@ -586,21 +398,7 @@ VOS_VOID MN_APS_SndSmBearerModifyInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_SndSmBearerDeactivateInd
- 功能描述  : 发送ID_MN_SM_BEARER_DEACTIVATE_IND消息至SM
- 输入参数  : pstPdpEntity   - PDP实体信息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月8日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_SndSmBearerDeactivateInd(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity
 )
@@ -628,33 +426,7 @@ VOS_VOID MN_APS_SndSmBearerDeactivateInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_APS_ProcEsmBearerInfoIndOptActivate
- 功能描述  : 处理ESM的EPS BEARER激活指示, 更新PDP实体信息
- 输入参数  : pstEpsBearerInfoInd - ID_ESM_SM_EPS_BEARER_INFO_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2012年6月8日
-    作    者   : A00165503
-    修改内容   : DTS2012060705112: GU模下PDP激活成功, U2L后L模DEATACH导致EPS
-                 承载去激活, GU模没有同步PDP状态
-
-  3.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，如果是IMSA专用承载，发送PDP_ACTIVATE_IND给IMSA
-
-  4.日    期   : 2014年4月11日
-    作    者   : A00165503
-    修改内容   : DTS2014040802917: 保存注册承载的ESM Cause映射的错误码
-*****************************************************************************/
 VOS_VOID MN_APS_ProcEsmBearerInfoIndOptActivate(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -694,7 +466,6 @@ VOS_VOID MN_APS_ProcEsmBearerInfoIndOptActivate(
     /* 更新 QOS */
     MN_APS_UpdatePdpQosFromEpsBearer(pstPdpEntity, pstEpsBearerInfoInd);
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     /* 更新 EPS QOS */
     MN_APS_UpdateEpsQosFromEpsBearer(pstPdpEntity, pstEpsBearerInfoInd);
 
@@ -720,7 +491,6 @@ VOS_VOID MN_APS_ProcEsmBearerInfoIndOptActivate(
         pstPdpEntity->bitOpImCnSigalFlag= VOS_TRUE;
         pstPdpEntity->enImCnSignalFlg   = (VOS_UINT8)pstEpsBearerInfoInd->enImCnSignalFlag;
     }
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     if ( (TAF_APS_DEFAULT_CID == TAF_APS_GetCidFromLteBitCid(pstEpsBearerInfoInd->ulBitCid))
       && (VOS_TRUE == pstEpsBearerInfoInd->bitOpErrorCode) )
@@ -737,21 +507,7 @@ VOS_VOID MN_APS_ProcEsmBearerInfoIndOptActivate(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_ProcEsmBearerInfoIndOptModify
- 功能描述  : 处理ESM的EPS BEARER修改指示, 更新PDP实体信息
- 输入参数  : pstEpsBearerInfoInd - ID_ESM_SM_EPS_BEARER_INFO_IND消息内容
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_ProcEsmBearerInfoIndOptModify(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -794,24 +550,7 @@ VOS_VOID MN_APS_ProcEsmBearerInfoIndOptModify(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_ProcEsmBearerInfoIndOptDeactivate
- 功能描述  : 处理ESM的EPS BEARER去激活指示, 更新PDP实体信息
- 输入参数  : pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月1日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年5月11日
-    作    者   : A00165503
-    修改内容   : DTS2015042906872: CL互操作场景, 缺省PDN激活状态判断错误
-*****************************************************************************/
 VOS_VOID MN_APS_ProcEsmBearerInfoIndOptDeactivate(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -827,22 +566,7 @@ VOS_VOID MN_APS_ProcEsmBearerInfoIndOptDeactivate(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UpdatePdpActTypeFromEpsBearer
- 功能描述  : 更新PDP ACT TYPE (激活类型)
- 输入参数  : pstPdpEntity           - PDP实体
-             pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_UpdatePdpActTypeFromEpsBearer(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -859,27 +583,7 @@ VOS_VOID MN_APS_UpdatePdpActTypeFromEpsBearer(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UpdatePdpAddrFromEpsBearer
- 功能描述  : 更新PDP ADDRESS
- 输入参数  : pstPdpEntity           - PDP实体
-             pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2011年2月28日
-   作    者   : A00165503
-   修改内容   : 新生成函数
- 2.日    期   : 2012年1月6日
-   作    者   : h44270
-   修改内容   : modified for PS Project, 增加对于IPV4和IPV4V6的支持
- 3.日    期   : 2012年1月10日
-   作    者   : f00179208
-   修改内容   : modified for PS Project, 针对不同的PDP类型填写PDP类型
-*****************************************************************************/
 VOS_VOID MN_APS_UpdatePdpAddrFromEpsBearer(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -924,22 +628,7 @@ VOS_VOID MN_APS_UpdatePdpAddrFromEpsBearer(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UpdatePdpApnFromEpsBearer
- 功能描述  : 更新APN
- 输入参数  : pstPdpEntity           - PDP实体
-             pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_UpdatePdpApnFromEpsBearer(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -955,30 +644,7 @@ VOS_VOID MN_APS_UpdatePdpApnFromEpsBearer(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UpdatePdpPcoIpv4ItemFromEpsBearer
- 功能描述  : 更新PDP PCO IPV4相关参数, 包含DNS, NBNS, PEER IP等
- 输入参数  : pstPdpEntity           - PDP实体
-             pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2012080604402, GateWay的bit位没有置
-  3.日    期   : 2015年03月15日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-  4.日    期   : 2015年10月14日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015101305015, 没有携带的域需要做特殊处理
-*****************************************************************************/
 VOS_VOID MN_APS_UpdatePdpPcoIpv4ItemFromEpsBearer(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -1105,31 +771,7 @@ VOS_VOID MN_APS_UpdatePdpPcoIpv4ItemFromEpsBearer(
 }
 
 #if (FEATURE_ON == FEATURE_IPV6)
-/*****************************************************************************
- 函 数 名  : MN_APS_UpdatePdpPcoIpv6ItemFromEpsBearer
- 功能描述  : 更新PDP PCO IPV6相关参数, 包含DNS, PCSCF等
- 输入参数  : pstPdpEntity           - PDP实体
-             pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年1月18日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-  2.日    期   : 2012年7月28日
-    作    者   : A00165503
-    修改内容   : DTS2012072806289: APS处理ESP承载中IPv6 Secondary DNS标识异
-                 常, 导致IPv6 Secondary DNS无法上报
-  3.日    期   : 2012年08月07日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015031000157, 新增第三个p-cscf地址
-  4.日    期   : 2015年10月14日
-    作    者   : f00179208
-    修改内容   : 问题单:DTS2015101305015, 没有携带的域需要做特殊处理
-*****************************************************************************/
 VOS_VOID MN_APS_UpdatePdpPcoIpv6ItemFromEpsBearer(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -1205,22 +847,7 @@ VOS_VOID MN_APS_UpdatePdpPcoIpv6ItemFromEpsBearer(
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UpdatePdpQosFromEpsBearer
- 功能描述  : 更新QOS
- 输入参数  : pstPdpEntity           - PDP实体
-             pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_UpdatePdpQosFromEpsBearer(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -1235,22 +862,7 @@ VOS_VOID MN_APS_UpdatePdpQosFromEpsBearer(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UpdateEpsQosFromEpsBearer
- 功能描述  : 更新EPS QOS
- 输入参数  : pstPdpEntity           - PDP实体
-             pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年8月08日
-    作    者   : Y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_UpdateEpsQosFromEpsBearer(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -1265,22 +877,7 @@ VOS_VOID MN_APS_UpdateEpsQosFromEpsBearer(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UpdatePdpPfFromEpsBearer
- 功能描述  : 更新PACKET FILTER
- 输入参数  : pstPdpEntity           - PDP实体
-             pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_UpdatePdpPfFromEpsBearer(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -1293,22 +890,7 @@ VOS_VOID MN_APS_UpdatePdpPfFromEpsBearer(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_UpdatePdpGprsParaFromEpsBearer
- 功能描述  : 更新GPRS相关参数
- 输入参数  : pstPdpEntity           - PDP实体
-             pstEpsBearerInfoInd    - EPS Bearer信息
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年2月28日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_UpdatePdpGprsParaFromEpsBearer(
     APS_PDP_CONTEXT_ENTITY_ST          *pstPdpEntity,
     SM_ESM_EPS_BEARER_INFO_IND_STRU    *pstEpsBearerInfoInd
@@ -1344,33 +926,7 @@ VOS_VOID MN_APS_UpdatePdpGprsParaFromEpsBearer(
 }
 
 #endif
-/*****************************************************************************
- 函 数 名  : TAF_APS_MatchCallWithAttachBearer
- 功能描述  : 检查注册承载是否匹配用户拨号参数的承载
- 输入参数  : pstCtrl      --- 控制信息
-             pstDialParam --- 拨号参数
- 输出参数  : 无
- 返 回 值  : VOS_TRUE/VOS_FALSE
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年4月12日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-  2.日    期   : 2013年12月24日
-    作    者   : Y00213812
-    修改内容   : 增加LTE能力判断
-
-  3.日    期   : 2014年5月15日
-    作    者   : A00165503
-    修改内容   : DTS2014051501929: 增加承载类型(emergency)检查
-
-  4.日    期   : 2014年5月16日
-    作    者   : A00165503
-    修改内容   : DTS2014050703206: 调整函数名称及实现
-*****************************************************************************/
 VOS_UINT32 TAF_APS_MatchCallWithAttachBearer(
     CONST TAF_CTRL_STRU                *pstCtrl,
     CONST TAF_APS_MATCH_PARAM_STRU     *pstMatchParam
@@ -1448,23 +1004,7 @@ VOS_UINT32 TAF_APS_MatchCallWithAttachBearer(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsApnSameWithDefaultBearer
- 功能描述  : 查找ClientId为0xFF的PDP实体, 如果用户拨号未设置APN,或者用户拨号设置
-             APN,但APN信息与已存在的PDP完全相同,则使用已存在的PDP作为拨号连接
- 输入参数  : ucCid      - 用户拨号使用的CID
-             ucPdpId    - APS实体索引
- 输出参数  : 无
- 返 回 值  : VOS_FALSE  - 未找到匹配的PDP实体
-             VOS_TRUE   - 找到匹配的PDP实体
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月10日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsApnSameWithDefaultBearer(
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPdpId
@@ -1510,30 +1050,8 @@ VOS_UINT32 TAF_APS_IsApnSameWithDefaultBearer(
 
 }
 
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsStaticIpAddrSameWithDefaultBearer
- 功能描述  : 查找ClientId为0xFF的PDP实体, 如果用户没有设置了静态IP地址，或者设置
-             的静态IP地址与已存在的PDP的IP相同，则使用已存在的PDP作为拨号连接
- 输入参数  : ucCid      - 用户拨号使用的CID
-             ucPdpId    - APS实体索引
-             pucStaticIpAddr
- 输出参数  : pulErrCode
- 返 回 值  : VOS_FALSE  - 未找到匹配的PDP实体
-             VOS_TRUE   - 找到匹配的PDP实体
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-  2.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目，TAF_IPV4_ADDR_LEN替换原APS_IP_ADDR_LEN
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsStaticIpAddrSameWithDefaultBearer(
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPdpId,
@@ -1550,9 +1068,7 @@ VOS_UINT32 TAF_APS_IsStaticIpAddrSameWithDefaultBearer(
 
     /* 如果没有设置静态IP地址，则使用已存在的PDP作为拨号连接 */
     /* 没有设置静态IP地址，PPP DIAL REQ中IPCP带的IP地址为0.0.0.0 */
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     if (VOS_OK == VOS_MemCmp(pucStaticIpAddr, aucIpAddr, TAF_IPV4_ADDR_LEN))
-    /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
     {
         return VOS_TRUE;
     }
@@ -1560,10 +1076,8 @@ VOS_UINT32 TAF_APS_IsStaticIpAddrSameWithDefaultBearer(
     if (VOS_TRUE == TAF_APS_GetPdpEntPdpAddrFlag(ucPdpId))
     {
         pucPdpEntIpAddr = TAF_APS_GetPdpEntPdpIpAddr(ucPdpId);
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         /* 设置的静态IP地址与默认承载的IP地址进行比较 */
         if (VOS_OK == VOS_MemCmp(pucStaticIpAddr, pucPdpEntIpAddr, TAF_IPV4_ADDR_LEN))
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
         {
             return VOS_TRUE;
         }
@@ -1582,31 +1096,7 @@ VOS_UINT32 TAF_APS_IsStaticIpAddrSameWithDefaultBearer(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FindSutiablePdpForPppDial_LteMode
- 功能描述  : 查找ClientId为0xFF的PDP实体, 按照APN匹配规则决定是否使用已存在的
-             PDP作为拨号连接, 匹配规则如下:
-             (1) 用户发起的拨号的PDP类型必须是IP类型
-             (2) 用户拨号未设置APN, 直接使用已存在的PDP
-             (3) 用户拨号设置APN, 如果APN信息与已存在的PDP完全相同, 直接使用
-             (4) 如果用户没有设置了静态IP地址，或者设置的静态IP地址与已存在的
-                 PDP的IP相同，则使用已存在的PDP作为拨号连接
- 输入参数  : ucCid              - 用户拨号使用的CID
- 输出参数  : pulErrCode         - 错误码
- 返 回 值  : VOS_FALSE  - 未找到匹配的PDP实体
-             VOS_TRUE   - 找到匹配的PDP实体
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年08月13日
-    作    者   : f00179208
-    修改内容   : 新生成函数
-
-  2.日    期   : 2014年5月15日
-    作    者   : A00165503
-    修改内容   : DTS2014051501929: 增加承载类型(emergency)检查
-*****************************************************************************/
 VOS_UINT32 TAF_APS_FindSutiablePdpForPppDial_LteMode(
     TAF_PPP_DIAL_PARA_STRU             *pstPppDialParaInfo,
     VOS_UINT32                         *pulErrCode
@@ -1676,24 +1166,7 @@ VOS_UINT32 TAF_APS_FindSutiablePdpForPppDial_LteMode(
 }
 
 #if (FEATURE_ON == FEATURE_IMS)
-/*****************************************************************************
- 函 数 名  : TAF_APS_ProcImsDedicateBearer
- 功能描述  : 上报ID_EVT_TAF_PS_CALL_PDP_ACTIVATE_IND
- 输入参数  : pstPdpEntity --- PDP实体
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年07月08日
-    作    者   : Y00213812
-    修改内容   : VoLTE_PhaseI 项目新增
-    
-  2.日    期   : 2015年11月19日
-    作    者   : w00316404
-    修改内容   : modified for add ID_L4A_APS_PDP_SETUP_IND(DTS2015111808017)
-*****************************************************************************/
 VOS_VOID TAF_APS_ProcImsDedicateBearer(APS_PDP_CONTEXT_ENTITY_ST *pstPdpEntity)
 {
     VOS_UINT8                           ucPriPdpId;

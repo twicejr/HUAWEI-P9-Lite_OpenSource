@@ -372,14 +372,7 @@ typedef struct
 }DIAG_TTF_TRACECFG_REQ_STRU;
 
 
-/*****************************************************************************
-枚举名    : OM_AT_MSG_ENUM
-枚举说明  : AT给OM发送的请求消息类型
 
-  1.日    期   : 2012年4月4日
-    作    者   : h59254
-    修改内容   : V7R1C51 锁网锁卡项目新增
-*****************************************************************************/
 enum OM_AT_MSG_ENUM
 {
     AT_OM_PORT_SWITCH           = 0,    /* OM口切换请求，在USB和HSIC之间切换 */
@@ -389,14 +382,7 @@ enum OM_AT_MSG_ENUM
 };
 typedef VOS_UINT32 OM_AT_MSG_ENUM_UINT32;
 
-/*****************************************************************************
-枚举名    : OM_PORT_SWITCH_MODE_ENUM
-枚举说明  : USB SWITCH切换类型
 
-  1.日    期   : 2012年4月4日
-    作    者   : h59254
-    修改内容   : V7R1C51 可维可测项目新增
-*****************************************************************************/
 enum OM_PORT_SWITCH_MODE_ENUM
 {
     OM_PORT_SWITCH_MODEM2AP     = USB_SWITCH_OFF,
@@ -405,14 +391,7 @@ enum OM_PORT_SWITCH_MODE_ENUM
 };
 typedef VOS_UINT32 OM_PORT_SWITCH_MODE_ENUM_UINT32;
 
-/*****************************************************************************
-结构名    : OM_PORT_SWITCH_MSG_STRU
-结构说明  : AP+MODEM形态产品AP-Modem USB切换消息结构
 
-  1.日    期   : 2012年4月10日
-    作    者   : h59254
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
    VOS_MSG_HEADER
@@ -420,14 +399,7 @@ typedef struct
    OM_PORT_SWITCH_MODE_ENUM_UINT32  ulSwitchMode;   /*切换模式，从AP到Modem或Modem到AP*/
 }OM_PORT_SWITCH_MSG_STRU;
 
-/*****************************************************************************
-结构名    : OM_HSIC_CONNECT_MSG_STRU
-结构说明  : AP+MODEM形态产品AT要求关联OM和HSIC的消息结构
 
-  1.日    期   : 2012年4月10日
-    作    者   : h59254
-    修改内容   : 初始生成
-*****************************************************************************/
 typedef struct
 {
    VOS_MSG_HEADER
@@ -628,14 +600,7 @@ VOS_UINT32 DIAG_UserPlaneReport(DIAG_USER_IND_STRU *pstUser);
 *****************************************************************************/
 VOS_UINT32 DIAG_ReportVoLTELog(DIAG_VOLTE_LOG_STRU* pRptMessage);
 
-/*****************************************************************************
- Function Name   : DIAG_GetConnState
- Description     : 获取当前工具连接状态
- Return          : 1:connect; 0:disconnect
 
- History         :
-    1.c00326366      2015-6-24  Draft Enact
-*****************************************************************************/
 VOS_UINT32 DIAG_GetConnState(VOS_VOID);
 
 
@@ -649,26 +614,12 @@ extern VOS_UINT32 DIAG_ErrorLog(VOS_CHAR * cFileName,VOS_UINT32 ulFileId, VOS_UI
     DIAG_ErrorLog(__FILE__,THIS_FILE_ID,__LINE__,ulErrNo,pBuf,ulLen)
 
 
-/*****************************************************************************
- 函 数 名  : Log_GetPrintLevel
- 功能描述  : 得到模块Id、子模块Id在打印级别记录表中的索引号
- return    : PS_LOG_LEVEL_EN
- History         :
-    1.c00326366      2015-6-24  Draft Enact
-*****************************************************************************/
+
 extern VOS_UINT32 Diag_GetLogLevel(VOS_UINT32 ulPid);
 
 
 #if(VOS_OS_VER == VOS_LINUX)
-/*****************************************************************************
- Function Name   : DIAG_LogShowToFile
- Description     : 给AT命令提供的调用接口，保存DIAG的log到文件中
- Input           : bIsSendMsg 是否给A核发送消息保存A核log
- Return          : VOS_VOID
 
- History         :
-    1.c00326366      2015-6-20  Draft Enact
-*****************************************************************************/
 extern VOS_VOID DIAG_LogShowToFile(VOS_BOOL bIsSendMsg);
 #endif
 

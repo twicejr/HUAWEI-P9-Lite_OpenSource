@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : dmac_dft.c
-  版 本 号   : 初稿
-  作    者   : z00237171
-  生成日期   : 2014年8月13日
-  最近修改   :
-  功能描述   : 维测功能相关定义和实现
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年8月13日
-    作    者   : z00237171
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -75,22 +58,7 @@ OAL_STATIC oal_int32   g_al_vga_gain[DMAC_DFT_PHY_VGA_GAIN_NUM] =
 *****************************************************************************/
 #ifdef _PRE_WLAN_DFT_STAT
 #if (_PRE_MULTI_CORE_MODE_OFFLOAD_DMAC == _PRE_MULTI_CORE_MODE)
-/*****************************************************************************
- 函 数 名  : dmac_dft_set_phy_stat_node
- 功能描述  : 设置phy的统计节点，phy有16个统计节点，但是每次只有4个可以工作
-             ，需要指定工作的节点的idx,配置phy寄存器
- 输入参数  : oam_stats_phy_node_idx_stru: 保存phy当前使能的统计节点idx的结构指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月13日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_set_phy_stat_node(
                                     mac_device_stru *pst_device,
                                     oam_stats_phy_node_idx_stru *pst_phy_node_idx)
@@ -100,24 +68,7 @@ oal_uint32  dmac_dft_set_phy_stat_node(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_adc_pin
- 功能描述  : 获取phy ADC口功率, 可能是小数，做乘100处理转化成整数，界面显示再
-             转化成小数.由于从寄存器中读取出来的值单位是0.25dB，因此还要做除4
-             处理
- 输入参数  : ul_adc_pin_code_rpt:PHY bank2 ADC_PIN_CODE_RPT寄存器的值,
-                                 AGC ADC口功率与输出档位值上报
- 输出参数  : pl_adc_pin:phy ADC口功率
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月25日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_adc_pin(oal_uint32 ul_adc_pin_code_rpt,
                                                   oal_int32 *pl_adc_pin)
 {
@@ -145,21 +96,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_adc_pin(oal_uint32 ul_adc_pin_code_rpt,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_extlna_gain
- 功能描述  : 获取外置LNA增益
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_extlna_gain(mac_device_stru *pst_macdev,
                                                       oal_uint32 ul_adc_pin_code_rpt,
                                                       oal_int32 *pl_extlna_gain)
@@ -196,21 +133,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_extlna_gain(mac_device_stru *pst_macdev,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_intlna_gain
- 功能描述  : 获取内置LNA增益
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_intlna_gain(oal_uint32 ul_adc_pin_code_rpt,
                                                       oal_int32 *pl_intlna_gain)
 {
@@ -231,21 +154,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_intlna_gain(oal_uint32 ul_adc_pin_code_rpt,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_vga_gain
- 功能描述  : 计算获取vga增益值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_vga_gain(oal_uint32 ul_adc_pin_code_rpt,
                                                    oal_int32 *pl_vga_gain)
 {
@@ -266,21 +175,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_vga_gain(oal_uint32 ul_adc_pin_code_rpt,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_reference0
- 功能描述  : 获取接收天线口功率参考值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_reference0(mac_device_stru *pst_macdev,
                                                      oal_int32 *pl_reference0)
 {
@@ -299,21 +194,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_reference0(mac_device_stru *pst_macdev,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_calcu_antenna_power
- 功能描述  : tbtt中断到来的时候，计算天线口功率
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月29日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_dft_calcu_antenna_power(mac_device_stru *pst_macdev)
 {
     oal_uint32          ul_adc_pin_code_rpt;       /* PHY bank2 ADC_PIN_CODE_RPT寄存器的值 */
@@ -348,22 +229,7 @@ oal_void  dmac_dft_calcu_antenna_power(mac_device_stru *pst_macdev)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_antenna_power
- 功能描述  : 获取天线口功率,计算方法参考<<Hi1151 V100 DFT软件设计说明书>>
-             "3.5.7.3	DBB PHY天线口功率上报"
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_get_antenna_power(mac_device_stru *pst_macdev,
                                                           oal_int32 *pl_antenna_power)
 {
@@ -372,21 +238,7 @@ oal_uint32  dmac_dft_get_antenna_power(mac_device_stru *pst_macdev,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_chan_stat_result
- 功能描述  : 获取mac和phy信道测量的结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月3日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_chan_stat_result(
                                     mac_device_stru  *pst_macdev,
                                     oam_stats_dbb_env_param_stru  *pst_dbb_env_param)
@@ -426,21 +278,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_chan_stat_result(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_dbb_env_param
- 功能描述  : 获取统计数据，上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_report_dbb_env_param(mac_device_stru *pst_macdev)
 {
     oam_stats_dbb_env_param_stru        st_dbb_env_param;
@@ -477,21 +315,7 @@ OAL_STATIC oal_uint32  dmac_dft_report_dbb_env_param(mac_device_stru *pst_macdev
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_collect_dbb_env_param_timeout
- 功能描述  : 空口环境维测参数采集定时器超时处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_collect_dbb_env_param_timeout(oal_void *p_arg)
 {
     mac_device_stru         *pst_macdev;
@@ -540,21 +364,7 @@ OAL_STATIC oal_uint32  dmac_dft_collect_dbb_env_param_timeout(oal_void *p_arg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_start_report_dbb_env
- 功能描述  : 开始上报空口环境类维测参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_start_report_dbb_env(mac_vap_stru *pst_mac_vap)
 {
     mac_device_stru *pst_device;
@@ -586,21 +396,7 @@ oal_uint32  dmac_dft_start_report_dbb_env(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_stop_report_dbb_env
- 功能描述  : 停止上报空口环境类的维测参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_stop_report_dbb_env(mac_vap_stru *pst_mac_vap)
 {
     mac_device_stru *pst_device;
@@ -634,22 +430,7 @@ oal_uint32  dmac_dft_stop_report_dbb_env(mac_vap_stru *pst_mac_vap)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_mgmt_stat_incr
- 功能描述  : 管理帧统计计数加1
- 输入参数  : puc_mac_hdr_addr: 帧头地址
-             en_type         : 统计类型(位置:发送，发送完成，接收)
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月1日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_mgmt_stat_incr(
                                     mac_device_stru   *pst_mac_dev,
                                     oal_uint8   *puc_mac_hdr_addr,
@@ -702,21 +483,7 @@ oal_uint32  dmac_dft_mgmt_stat_incr(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_machw_stat_info
- 功能描述  : 从mac寄存器获取收发包数目统计值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_get_machw_stat_info(
                                     hal_to_dmac_device_stru   *pst_dev,
                                     oam_stats_machw_stat_stru *pst_machw_stat)
@@ -733,21 +500,7 @@ oal_uint32  dmac_dft_get_machw_stat_info(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_print_all_Para
- 功能描述  : 日志方式上报维测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年08月13日
-    作    者   : c00221210
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_dft_print_mac_phy_rf(mac_device_stru *pst_mac_dev)
 {
     /* 打印mac维测信息，上报寄存器可增加*/
@@ -760,21 +513,7 @@ oal_void  dmac_dft_print_mac_phy_rf(mac_device_stru *pst_mac_dev)
     hal_dft_print_rfhw_stat(pst_mac_dev->pst_device_stru);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_print_all_Para
- 功能描述  : 日志方式上报维测信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月8日
-    作    者   : z00285102
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_dft_print_all_para(dmac_vap_stru *pst_dmac_sta, oal_bool_enum_uint8 en_all_info)
 {
     mac_device_stru                 *pst_mac_dev;
@@ -831,21 +570,7 @@ oal_void  dmac_dft_print_all_para(dmac_vap_stru *pst_dmac_sta, oal_bool_enum_uin
     hal_dft_print_rfhw_stat(pst_mac_dev->pst_device_stru);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_all_ota_state
- 功能描述  : 通过OTA上报统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月8日
-    作    者   : z00285102
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_dft_report_all_ota_state(mac_vap_stru *pst_mac_sta)
 {
     mac_device_stru                 *pst_mac_dev;
@@ -861,21 +586,7 @@ oal_void  dmac_dft_report_all_ota_state(mac_vap_stru *pst_mac_sta)
     hal_dft_report_all_reg_state(pst_mac_dev->pst_device_stru);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_all_para
- 功能描述  : 异常上报维测信息,包括日志打印和OTA上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月8日
-    作    者   : z00285102
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_dft_report_all_para(dmac_vap_stru *pst_dmac_sta,oal_uint8 uc_ota_switch)
 {
 
@@ -890,21 +601,7 @@ oal_void dmac_dft_report_all_para(dmac_vap_stru *pst_dmac_sta,oal_uint8 uc_ota_s
 
 //oal_module_symbol(dmac_dft_report_all_para);
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_set_simple_vap_info
- 功能描述  : 设置OTA上报的vap结构体信息
- 输入参数  : dmac_vap_dft_stru *pst_dmac_vap_dft, mac_vap_stru  *pst_mac_vap
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_dft_set_simple_vap_info(dmac_vap_dft_stru *pst_dmac_vap_dft, mac_vap_stru  *pst_mac_vap)
 {
     dmac_vap_stru       *pst_dmac_vap;
@@ -972,21 +669,7 @@ OAL_STATIC oal_void dmac_dft_set_simple_vap_info(dmac_vap_dft_stru *pst_dmac_vap
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_dmac_vap_info
- 功能描述  : OTA上报dmac vap结构体信息
- 输入参数  : mac_vap_stru  *pst_mac_vap
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_dft_report_dmac_vap_info(mac_vap_stru  *pst_mac_vap)
 {
     dmac_vap_dft_stru   st_dmac_vap_dft;
@@ -1003,21 +686,7 @@ oal_void dmac_dft_report_dmac_vap_info(mac_vap_stru  *pst_mac_vap)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_set_simple_user_info
- 功能描述  : 设置OTA上报的dmac user结构体信息
- 输入参数  : dmac_user_dft_stru *pst_dmac_user_dft, dmac_user_stru  *pst_dmac_user
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void dmac_dft_set_simple_user_info(dmac_user_dft_stru *pst_dmac_user_dft, dmac_user_stru  *pst_dmac_user)
 {
     mac_user_stru       *pst_mac_user;
@@ -1082,21 +751,7 @@ OAL_STATIC oal_void dmac_dft_set_simple_user_info(dmac_user_dft_stru *pst_dmac_u
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_dmac_user_info
- 功能描述  : OTA上报dmac user结构体信息
- 输入参数  : mac_vap_stru  *pst_mac_vap
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_dft_report_dmac_user_info(mac_vap_stru  *pst_mac_vap)
 {
     oal_dlist_head_stru     *pst_entry;
@@ -1120,21 +775,7 @@ oal_void dmac_dft_report_dmac_user_info(mac_vap_stru  *pst_mac_vap)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_dmac_event_info
- 功能描述  : OTA上报dmac事件信息
- 输入参数  : mac_vap_stru  *pst_mac_vap
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_dft_report_dmac_event_info(mac_vap_stru  *pst_mac_vap)
 {
     frw_event_mgmt_stru    *pst_event_mgmt;
@@ -1161,21 +802,7 @@ oal_void dmac_dft_report_dmac_event_info(mac_vap_stru  *pst_mac_vap)
 }
 
 extern oal_netbuf_pool_stru g_st_netbuf_pool;
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_dmac_memory_info
- 功能描述  : OTA上报dmac事件信息
- 输入参数  : mac_vap_stru  *pst_mac_vap
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_dft_report_dmac_memory_info(mac_vap_stru  *pst_mac_vap)
 {
     mem_pool_dft_stru          ast_mem_poop_dft_info[OAL_MEM_POOL_ID_BUTT];
@@ -1259,21 +886,7 @@ oal_void dmac_dft_report_dmac_memory_info(mac_vap_stru  *pst_mac_vap)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_mac_hardware_info
- 功能描述  : OTA上报mac硬件相关信息
- 输入参数  : mac_vap_stru  *pst_mac_vap
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_dft_report_mac_hardware_info(mac_vap_stru  *pst_mac_vap)
 {
     hal_device_dft_stru          st_hal_device_info;
@@ -1325,21 +938,7 @@ oal_void dmac_dft_report_mac_hardware_info(mac_vap_stru  *pst_mac_vap)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_dmac_queue_info
- 功能描述  : OTA上报队列相关信息(TID队列，省电队列报文信息)
- 输入参数  : mac_vap_stru  *pst_mac_vap
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年7月21日
-    作    者   : l00279018
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void dmac_dft_report_dmac_queue_info(mac_vap_stru  *pst_mac_vap)
 {
     oal_dlist_head_stru                    *pst_entry;
@@ -1369,22 +968,7 @@ oal_void dmac_dft_report_dmac_queue_info(mac_vap_stru  *pst_mac_vap)
 }
 
 #else
-/*****************************************************************************
- 函 数 名  : dmac_dft_set_phy_stat_node
- 功能描述  : 设置phy的统计节点，phy有16个统计节点，但是每次只有4个可以工作
-             ，需要指定工作的节点的idx,配置phy寄存器
- 输入参数  : oam_stats_phy_node_idx_stru: 保存phy当前使能的统计节点idx的结构指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月13日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_set_phy_stat_node(
                                     mac_device_stru *pst_device,
                                     oam_stats_phy_node_idx_stru *pst_phy_node_idx)
@@ -1428,24 +1012,7 @@ oal_uint32  dmac_dft_set_phy_stat_node(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_adc_pin
- 功能描述  : 获取phy ADC口功率, 可能是小数，做乘100处理转化成整数，界面显示再
-             转化成小数.由于从寄存器中读取出来的值单位是0.25dB，因此还要做除4
-             处理
- 输入参数  : ul_adc_pin_code_rpt:PHY bank2 ADC_PIN_CODE_RPT寄存器的值,
-                                 AGC ADC口功率与输出档位值上报
- 输出参数  : pl_adc_pin:phy ADC口功率
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月25日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_adc_pin(oal_uint32 ul_adc_pin_code_rpt,
                                                   oal_int32 *pl_adc_pin)
 {
@@ -1473,21 +1040,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_adc_pin(oal_uint32 ul_adc_pin_code_rpt,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_extlna_gain
- 功能描述  : 获取外置LNA增益
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_extlna_gain(mac_device_stru *pst_macdev,
                                                       oal_uint32 ul_adc_pin_code_rpt,
                                                       oal_int32 *pl_extlna_gain)
@@ -1526,21 +1079,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_extlna_gain(mac_device_stru *pst_macdev,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_intlna_gain
- 功能描述  : 获取内置LNA增益
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_intlna_gain(oal_uint32 ul_adc_pin_code_rpt,
                                                       oal_int32 *pl_intlna_gain)
 {
@@ -1561,21 +1100,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_intlna_gain(oal_uint32 ul_adc_pin_code_rpt,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_vga_gain
- 功能描述  : 计算获取vga增益值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_vga_gain(oal_uint32 ul_adc_pin_code_rpt,
                                                    oal_int32 *pl_vga_gain)
 {
@@ -1596,21 +1121,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_vga_gain(oal_uint32 ul_adc_pin_code_rpt,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_reference0
- 功能描述  : 获取接收天线口功率参考值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月26日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_reference0(mac_device_stru *pst_macdev,
                                                      oal_int32 *pl_reference0)
 {
@@ -1631,21 +1142,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_reference0(mac_device_stru *pst_macdev,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_calcu_antenna_power
- 功能描述  : tbtt中断到来的时候，计算天线口功率
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月29日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_dft_calcu_antenna_power(mac_device_stru *pst_macdev)
 {
     oal_uint32          ul_adc_pin_code_rpt;       /* PHY bank2 ADC_PIN_CODE_RPT寄存器的值 */
@@ -1680,22 +1177,7 @@ oal_void  dmac_dft_calcu_antenna_power(mac_device_stru *pst_macdev)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_antenna_power
- 功能描述  : 获取天线口功率,计算方法参考<<Hi1151 V100 DFT软件设计说明书>>
-             "3.5.7.3	DBB PHY天线口功率上报"
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_get_antenna_power(mac_device_stru *pst_macdev,
                                                           oal_int32 *pl_antenna_power)
 {
@@ -1704,21 +1186,7 @@ oal_uint32  dmac_dft_get_antenna_power(mac_device_stru *pst_macdev,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_chan_stat_result
- 功能描述  : 获取mac和phy信道测量的结果
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月3日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_get_chan_stat_result(
                                     mac_device_stru  *pst_macdev,
                                     oam_stats_dbb_env_param_stru  *pst_dbb_env_param)
@@ -1758,21 +1226,7 @@ OAL_STATIC oal_uint32  dmac_dft_get_chan_stat_result(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_dbb_env_param
- 功能描述  : 获取统计数据，上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_report_dbb_env_param(mac_device_stru *pst_macdev)
 {
     oam_stats_dbb_env_param_stru        st_dbb_env_param;
@@ -1809,21 +1263,7 @@ OAL_STATIC oal_uint32  dmac_dft_report_dbb_env_param(mac_device_stru *pst_macdev
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_collect_dbb_env_param_timeout
- 功能描述  : 空口环境维测参数采集定时器超时处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_collect_dbb_env_param_timeout(oal_void *p_arg)
 {
     mac_device_stru         *pst_macdev;
@@ -1872,21 +1312,7 @@ OAL_STATIC oal_uint32  dmac_dft_collect_dbb_env_param_timeout(oal_void *p_arg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_start_report_dbb_env
- 功能描述  : 开始上报空口环境类维测参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_start_report_dbb_env(mac_vap_stru *pst_mac_vap)
 {
     mac_device_stru *pst_device;
@@ -1912,21 +1338,7 @@ oal_uint32  dmac_dft_start_report_dbb_env(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_stop_report_dbb_env
- 功能描述  : 停止上报空口环境类的维测参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月16日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_stop_report_dbb_env(mac_vap_stru *pst_mac_vap)
 {
     mac_device_stru *pst_device;
@@ -1953,21 +1365,7 @@ oal_uint32  dmac_dft_stop_report_dbb_env(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_clear_usr_queue_stat
- 功能描述  : 清零用户队列统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_clear_usr_queue_stat(dmac_user_stru  *pst_dmac_user)
 {
     oal_uint8    uc_tid_no;
@@ -2001,21 +1399,7 @@ oal_uint32  dmac_dft_clear_usr_queue_stat(dmac_user_stru  *pst_dmac_user)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_usr_queue_stat
- 功能描述  : 上报用户队列统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月18日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_report_usr_queue_stat(dmac_user_stru  *pst_dmac_user)
 {
     oam_stats_usr_queue_stat_stru       st_usr_queue_stats;
@@ -2061,22 +1445,7 @@ oal_uint32  dmac_dft_report_usr_queue_stat(dmac_user_stru  *pst_dmac_user)
                                  OAM_OTA_TYPE_USR_QUEUE_STAT);
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_mgmt_stat_incr
- 功能描述  : 管理帧统计计数加1
- 输入参数  : puc_mac_hdr_addr: 帧头地址
-             en_type         : 统计类型(位置:发送，发送完成，接收)
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月1日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_mgmt_stat_incr(
                                     mac_device_stru   *pst_mac_dev,
                                     oal_uint8   *puc_mac_hdr_addr,
@@ -2129,21 +1498,7 @@ oal_uint32  dmac_dft_mgmt_stat_incr(
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_get_machw_stat_info
- 功能描述  : 从mac寄存器获取收发包数目统计值
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月4日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_get_machw_stat_info(
                                     hal_to_dmac_device_stru   *pst_dev,
                                     oam_stats_machw_stat_stru *pst_machw_stat)
@@ -2181,21 +1536,7 @@ oal_uint32  dmac_dft_get_machw_stat_info(
 
     return OAL_SUCC;
 }
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_all_ota_state
- 功能描述  : 通过OTA上报统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年5月8日
-    作    者   : z00285102
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  dmac_dft_report_all_ota_state(mac_vap_stru *pst_mac_sta)
 {
 }
@@ -2207,21 +1548,7 @@ oal_void dmac_dft_report_all_para(dmac_vap_stru *pst_dmac_sta,oal_uint8 uc_ota_s
 
 #endif
 #if 0
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_vap_stat
- 功能描述  : 周期上报vap吞吐统计信息超时处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  dmac_dft_report_vap_stat(oal_void *p_arg)
 {
     mac_vap_stru            *pst_mac_vap;
@@ -2259,21 +1586,7 @@ OAL_STATIC oal_uint32  dmac_dft_report_vap_stat(oal_void *p_arg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_start_report_vap_stat
- 功能描述  : 开始统计vap吞吐统计信息，并启动定时器周期上报
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_start_report_vap_stat(mac_vap_stru *pst_mac_vap)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_mac_vap))
@@ -2310,21 +1623,7 @@ oal_uint32  dmac_dft_start_report_vap_stat(mac_vap_stru *pst_mac_vap)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_stop_report_vap_stat
- 功能描述  : 停止上报vap吞吐统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月19日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_stop_report_vap_stat(mac_vap_stru *pst_mac_vap)
 {
     if (OAL_UNLIKELY(OAL_PTR_NULL == pst_mac_vap))
@@ -2338,21 +1637,7 @@ oal_uint32  dmac_dft_stop_report_vap_stat(mac_vap_stru *pst_mac_vap)
 #endif
 #endif
 #ifdef  _PRE_DEBUG_MODE
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_all_ampdu_stat
- 功能描述  : 上报或者清零某一个用户所有tid下ampdu业务流程统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月27日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_report_all_ampdu_stat(dmac_user_stru  *pst_dmac_user,
                                                    oal_uint8        uc_param)
 {
@@ -2402,21 +1687,7 @@ oal_uint32  dmac_dft_report_all_ampdu_stat(dmac_user_stru  *pst_dmac_user,
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : dmac_dft_report_ampdu_stat
- 功能描述  : 上报获取清零某一个tid的ampdu业务流程统计信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年8月27日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  dmac_dft_report_ampdu_stat(dmac_tid_stru  *pst_tid,
                                                oal_uint8      auc_macaddr[],
                                                oal_uint8      uc_param)

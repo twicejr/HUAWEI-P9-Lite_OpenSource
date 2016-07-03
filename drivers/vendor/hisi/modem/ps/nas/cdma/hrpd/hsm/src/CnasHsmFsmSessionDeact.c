@@ -62,23 +62,7 @@ VOS_VOID CNAS_HSM_QuitFsmScpDeactiveReq(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_IsNeedSendSessionClose_SessionDeact
-Description     :   判断session deact流程是否需要发送session close消息
-Input parameters:   enCloseReasonSendAn      -----发送给网侧sessionclose原因值
-Outout parameters:  None
-Return Value    :   VOS_TRUE -------需要发送sessionclose消息到网侧
-                    VOS_FALSE-------不需要发送sessionclose消息到网侧
 
-Modify History  :
-1)  Date           : 2015-11-19
-    Author         : y00307564
-    Modify content : Create
-
-2)  Date           : 2015-12-28
-    Author         : w00351686
-    Modify content : Eliminate Coverity Warnings
-*****************************************************************************/
 VOS_UINT8 CNAS_HSM_IsNeedSendSessionClose_SessionDeact(
     CNAS_HSM_SESSION_CLOSE_PROTOCOL_REASON_ENUM_UINT8       enCloseReasonSendAn
 )
@@ -110,39 +94,7 @@ VOS_UINT8 CNAS_HSM_IsNeedSendSessionClose_SessionDeact(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_RcvInterSessionDeactReq_SessionDeact_Init
-Description     :   process ID_CNAS_HSM_HSM_SESSION_DEACTIVE_REQ msg in substate
-                    CNAS_HSM_SS_SESSION_DEACT_INIT
-Input parameters:   ulEventType-----message ID +pid
-                    pstMsg     -----message content
-Outout parameters:  None
-Return Value    :   CNAS_HSM_FSM_EVENT_HANDLED-------the current event is processed finished
-                    CNAS_HSM_FSM_EVENT_NOT_HANDLED---the current event need to further process
 
-Modify History  :
-1)  Date           : 2015-02-04
-    Author         : m00312079
-    Modify content : Create
-2)  Date           : 2015-05-30
-    Author         : y00174758
-    Modify content : Iteration 12: Add logic off session close reason
-3)  Date           : 2015-06-01
-    Author         : t00323010
-    Modify content : Iteration 12: Add Session Begin Notify
-4)  Date           : 2015-09-23
-    Author         : t00323010
-    Modify content : HSM MNTN(DTS2015092201636): modify whether send session close msg judge
-5)  Date           : 2015-11-06
-    Author         : y00307564
-    Modify content : DTS2015110404494: modify wait hrpd conn close ind timer length
-6)  Date           : 2015-11-19
-    Author         : y00307564
-    Modify content : DTS2015111903421: 增加在有网状态下才能下发session close判断逻辑
-7)  Date           : 2015-12-28
-    Author         : w00351686
-    Modify content : DTS2015081904804: Eliminate Coverity Warnings
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_RcvInterSessionDeactReq_SessionDeact_Init(
     VOS_UINT32                          ulEventType,
     struct MsgCB                       *pstMsg
@@ -746,19 +698,7 @@ VOS_UINT32 CNAS_HSM_RcvHsdOhmInd_SessionDeact_WaitScpDeactiveCnf(
     return CNAS_HSM_FSM_EVENT_HANDLED;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_GetSessionCloseWaitSnpDataCnfTimerLen_SessionDeact
-Description     :   获取发送session close后等待snp data cnf定时器需启动的时长
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   VOS_UINT32
 
-Modify History  :
-1)  Date           : 2011-11-06
-    Author         : y00307564
-    Modify content : Create
-
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_GetSessionCloseWaitSnpDataCnfTimerLen_SessionDeact(VOS_VOID)
 {
     VOS_UINT32                                              ulTimerLen;
@@ -785,18 +725,7 @@ VOS_UINT32 CNAS_HSM_GetSessionCloseWaitSnpDataCnfTimerLen_SessionDeact(VOS_VOID)
     return ulTimerLen;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_GetConnCloseWaitConnCloseIndTimerLen_SessionDeact
-Description     :   获取conn close req后等待conn close ind定时器需启动的时长
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   VOS_UINT32
 
-Modify History  :
-1)  Date           : 2015-11-06
-    Author         : y00307564
-    Modify content : Create
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_GetConnCloseWaitConnCloseIndTimerLen_SessionDeact(VOS_VOID)
 {
     VOS_UINT32                                              ulTimerLen;
@@ -823,18 +752,7 @@ VOS_UINT32 CNAS_HSM_GetConnCloseWaitConnCloseIndTimerLen_SessionDeact(VOS_VOID)
     return ulTimerLen;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_GetScpDeactiveWaitScpDeactiveCnfTimerLen_SessionDeact
-Description     :   获取发送scp deactive req后等待scp deactive cnf定时器需启动的时长
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   VOS_UINT32
 
-Modify History  :
-1)  Date           : 2015-11-06
-    Author         : y00307564
-    Modify content : Create
-*****************************************************************************/
 VOS_UINT32 CNAS_HSM_GetScpDeactiveWaitScpDeactiveCnfTimerLen_SessionDeact(VOS_VOID)
 {
     VOS_UINT32                                              ulTimerLen;
@@ -860,18 +778,7 @@ VOS_UINT32 CNAS_HSM_GetScpDeactiveWaitScpDeactiveCnfTimerLen_SessionDeact(VOS_VO
     return ulTimerLen;
 }
 
-/*****************************************************************************
-Function Name   :   CNAS_HSM_GetScpDeactiveWaitScpDeactiveCnfTimerLen_SessionDeact
-Description     :   获取发送scp deactive req后等待scp deactive cnf定时器需启动的时长
-Input parameters:   None
-Outout parameters:  None
-Return Value    :   VOS_UINT32
 
-Modify History  :
-1)  Date           : 2015-11-06
-    Author         : y00307564
-    Modify content : Create
-*****************************************************************************/
 CNAS_HSM_SESSION_DEACT_REVISE_TIMER_SCENE_ENUM_UINT8 CNAS_HSM_GetStartReviseTimerSceneBySessionDeactReason_SessionDeact(
     CNAS_HSM_SESSION_DEACT_REASON_ENUM_UINT8                enSessionDeactReason
 )

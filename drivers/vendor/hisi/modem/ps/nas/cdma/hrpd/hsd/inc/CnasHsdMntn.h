@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CnasHsdMntn.h
-  版 本 号   : 初稿
-  作    者   : d00212987
-  生成日期   : 2014年12月16日
-  最近修改   :
-  功能描述   : CnasHsdMntn.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月16日
-    作    者   : d00212987
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __CNAS_HSD_MNTN_H__
 #define __CNAS_HSD_MNTN_H__
@@ -54,13 +37,7 @@ extern "C" {
 /*****************************************************************************
   3 枚举定义
 *****************************************************************************/
-/*****************************************************************************
- 枚举名    : CNAS_HSD_MNTN_MSG_ID_ENUM
- 结构说明  : CNAS HSD模块发送给OM的可维可测消息
-  1.日    期   : 2014年12月16日
-    作    者   : d00212987
-    修改内容   : CNAS XSD模块发送给OM的可维可测消息
-*****************************************************************************/
+
 enum CNAS_HSD_MNTN_MSG_ID_ENUM
 {
     ID_CNAS_HSD_MNTN_LOG_SCAN_FREQ_LIST_IND                 = ID_CNAS_MNTN_HSD_MSG_BASE,    /*_H2ASN_MsgChoice  CNAS_HSD_LOG_SCAN_CHNNEL_LIST_MSG_STRU */
@@ -87,13 +64,7 @@ enum CNAS_HSD_MNTN_MSG_ID_ENUM
 };
 typedef VOS_UINT32 CNAS_HSD_MNTN_MSG_ID_ENUM_UINT32;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_MNTN_MRU_LOG_TYPE_ENUM
- 结构说明  : CNAS HSD模块发送给OM的可维可测消息
-  1.日    期   : 2014年12月16日
-    作    者   : d00212987
-    修改内容   : CNAS XSD模块发送给OM的可维可测消息
-*****************************************************************************/
+
 enum CNAS_HSD_MNTN_MRU_LOG_TYPE_ENUM
 {
     ID_CNAS_HSD_MNTN_MRU_LOG_TYPE_READ_NV =0,
@@ -104,13 +75,7 @@ enum CNAS_HSD_MNTN_MRU_LOG_TYPE_ENUM
 };
 typedef VOS_UINT8 CNAS_HSD_MNTN_MRU_LOG_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : CNAS_HSD_PRL_SOURCE_TYPE_ENUM_UINT8
- 结构说明  : PRL源类型，即PRL是来源与EPRL文件，PRL文件，NVRAM或HARD CODE
-  1.日    期   : 2015年08月18日
-    作    者   : x00306642
-    修改内容   : 新建
-*****************************************************************************/
+
 enum CNAS_HSD_PRL_SOURCE_TYPE_ENUM
 {
     CNAS_HSD_PRL_TYPE_EPRL_FILE,
@@ -140,13 +105,7 @@ typedef VOS_UINT8 CNAS_HSD_PRL_SOURCE_TYPE_ENUM_UINT8;
 /*****************************************************************************
   7 STRUCT定义
 *****************************************************************************/
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_SCAN_FREQ_LIST_MSG_STRU
- 结构说明  : 输出到SDT的扫描频点列表消息结构体
- 1.日    期   : 2014年12月18日
-   作    者   : d00212987
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -159,13 +118,7 @@ typedef struct
 }CNAS_HSD_LOG_SCAN_FREQ_LIST_MSG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_ACQ_SYSTEM_LIST_MSG_STRU
- 结构说明  : 输出到SDT的捕获系统列表消息结构体
- 1.日    期   : 2014年12月18日
-   作    者   : d00212987
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -176,13 +129,7 @@ typedef struct
 }CNAS_HSD_LOG_HRPD_SYS_LIST_MSG_STRU;
 
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_MRU_LIST_MSG_STRU
- 结构说明  : 输出到SDT的MRU列表消息结构体
- 1.日    期   : 2014年12月18日
-   作    者   : d00212987
-   修改内容   : 新增
-*****************************************************************************/
+
 
 typedef struct
 {
@@ -193,13 +140,7 @@ typedef struct
     CNAS_PRL_HRPD_SYSTEM_STRU                               astSystem[CNAS_HSD_MAX_MRU_SYS_NUM];
 }CNAS_HSD_LOG_MRU_LIST_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_OOC_TIMER_SCHEDULE_INFO_MSG_STRU
- 结构说明  : 输出到SDT的OOC timer调度消息结构体
- 1.日    期   : 2015年01月13日
-   作    者   : z00316370
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -209,13 +150,7 @@ typedef struct
     CNAS_HSD_OOC_TIMER_INFO_STRU                            astOocTimerInfo[CNAS_HSD_MAX_OOC_SCHEDULE_PHASE_NUM];
 }CNAS_HSD_LOG_OOC_TIMER_SCHEDULE_INFO_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_OOC_CTX_INFO_MSG_STRU
- 结构说明  : 输出到SDT的OOC上下文消息结构体
- 1.日    期   : 2015年02月05日
-   作    者   : z00316370
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -226,13 +161,7 @@ typedef struct
     VOS_UINT8                           aucReserved[3];
 }CNAS_HSD_LOG_OOC_CTX_INFO_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_AVOID_FREQ_LIST_MSG_STRU
- 结构说明  : 输出到SDT的avoid频点列表消息结构体
- 1.日    期   : 2015年01月07日
-   作    者   : x00306642
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                                         stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/
@@ -242,13 +171,7 @@ typedef struct
     CNAS_HSD_AVOID_FREQ_INFO_STRU                           astAvoidFreqInfo[CNAS_HSD_MAX_AVOID_FREQ_NUM];
 }CNAS_HSD_LOG_AVOID_FREQ_LIST_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_REDIRCT_MSG_STRU
- 结构说明  : 将收到的重定向频点法向LOG工具中
- 1.日    期   : 2015年1月18s日
-   作    者   : d00212987
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER
@@ -260,13 +183,7 @@ typedef struct
     CAS_CNAS_HRPD_DERECTION_CHANNEL_STRU                    aulChannel[CAS_CNAS_HRPD_MAX_REDIRECT_CH_NUM];
 } CNAS_HSD_LOG_REDIRCT_MSG_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_OPER_LOCK_WHITE_SID_LIST_STRU
- 结构说明  : 输出到SDT的OPER LOCK WHITE SID LIST
- 1.日    期   : 2015年8月1日
-   作    者   : x00306642
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头 */ /*_H2ASN_Skip*/
@@ -276,13 +193,7 @@ typedef struct
     CNAS_CCB_SYS_INFO_STRU              astSysInfo[CNAS_CCB_MAX_WHITE_LOCK_SYS_NUM];
 }CNAS_HSD_LOG_OPER_LOCK_SYS_WHITE_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_CTCC_CUSTOMIZE_FREQ_LIST_STRU
- 结构说明  : 输出到SDT的CTCC自定义频点列表
- 1.日    期   : 2015年8月1日
-   作    者   : x00306642
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头 */ /*_H2ASN_Skip*/
@@ -292,13 +203,7 @@ typedef struct
     CNAS_CCB_FREQENCY_CHANNEL_STRU      astFreqList[CNAS_CCB_MAX_FREQ_NUM];
 }CNAS_HSD_LOG_CTCC_CUSTOMIZE_FREQ_LIST_STRU;
 
-/*****************************************************************************
- 结构名    : CNAS_HSD_LOG_PRL_SOURCE_TYPE_MSG_STRU
- 结构说明  : 输出到SDT的prl源类型
- 1.日    期   : 2015年08月18日
-   作    者   : x00306642
-   修改内容   : 新增
-*****************************************************************************/
+
 typedef struct
 {
     MSG_HEADER_STRU                     stMsgHeader;/* 消息头                                   */ /*_H2ASN_Skip*/

@@ -1,14 +1,4 @@
-/******************************************************************************
 
-   Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasERabmCdsMsgProc.c
-  Description     : 该C文件给出了CDS_MSG模块的实现
-  History         :
-     1.lihong 00150010      2011-12-05  Draft Enact
-
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -45,16 +35,7 @@ extern "C" {
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ERABM_CdsMsgDistr()
- Description     : ERABM模块CDS消息分发处理
- Input           : VOS_VOID *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
- History         :
-      1.lihong 00150010      2011-12-05  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ERABM_CdsMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU                 *pSmMsg;
@@ -82,17 +63,7 @@ VOS_VOID NAS_ERABM_CdsMsgDistr( VOS_VOID *pRcvMsg )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_IsEmcService
- Description     : 判断是否是紧急业务数据包
- Input           : ulEpsbId----------------承载号
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-     1.lihong00150010      2012-12-14  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_ERABM_IsEmcService
 (
     VOS_UINT8                           ucEpsbId
@@ -114,18 +85,7 @@ VOS_UINT32  NAS_ERABM_IsEmcService
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_RcvCdsErabmServiceNotify
- Description     : ERABM模块CDS_ERABM_SERVICE_NOTIFY消息分发处理
- Input           : CDS_ERABM_SERVICE_NOTIFY_STRU *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
 
- History         :
-     1.lihong00150010      2011-12-06  Draft Enact
-     2.lihong00150010      2012-12-14  Modify:Emergency
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_RcvCdsErabmServiceNotify
 (
     const CDS_ERABM_SERVICE_NOTIFY_STRU    *pRcvMsg
@@ -190,16 +150,7 @@ VOS_VOID  NAS_ERABM_RcvCdsErabmServiceNotify
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndErabmCdsSndBuffDataInd
- Description     : 构建和发送ERABM_CDS_SEND_BUFF_DATA_IND消息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
- History         :
-     1.lihong 00150010      2011-12-09  Draft Enact
 
-*****************************************************************************/
 /*lint -e960*/
 /*lint -e961*/
 VOS_VOID NAS_ERABM_SndErabmCdsSndBuffDataInd
@@ -234,16 +185,7 @@ VOS_VOID NAS_ERABM_SndErabmCdsSndBuffDataInd
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndErabmCdsFreeBuffDataInd
- Description     : 构建和发送ERABM_CDS_FREE_BUFF_DATA_IND消息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
- History         :
-     1.lihong 00150010      2011-12-09  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndErabmCdsFreeBuffDataInd( VOS_VOID )
 {
 
@@ -271,16 +213,7 @@ VOS_VOID NAS_ERABM_SndErabmCdsFreeBuffDataInd( VOS_VOID )
 
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndErabmCdsRabCreatInd
- Description     : 构建和发送,CDS_ERABM_RAB_CREATE_IND消息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
- History         :
-     1.niuxiufan 00181501      2012-02-02  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndErabmCdsRabCreatInd( VOS_UINT32 ulEpsbId )
 {
 #if (VOS_OS_VER != VOS_WIN32)
@@ -324,16 +257,7 @@ VOS_VOID NAS_ERABM_SndErabmCdsRabCreatInd( VOS_UINT32 ulEpsbId )
     NAS_ERABM_SND_MSG(pstRabCreatInd);
 #endif
 }
-/*****************************************************************************
- Function Name   : NAS_ERABM_SndErabmCdsRabReleaseInd
- Description     : 构建和发送CDS_ERABM_RAB_RELEASE_IND消息
- Input           : VOS_VOID
- Output          : None
- Return          : VOS_VOID
- History         :
-     1.niuxiufan 00181501      2012-02-02  Draft Enact
 
-*****************************************************************************/
 VOS_VOID NAS_ERABM_SndErabmCdsRabReleaseInd( VOS_UINT32 ulEpsbId )
 {
 #if (VOS_OS_VER != VOS_WIN32)
@@ -367,16 +291,7 @@ VOS_VOID NAS_ERABM_SndErabmCdsRabReleaseInd( VOS_UINT32 ulEpsbId )
 }
 
 
-/*****************************************************************************
- Function Name   : CDS_ERABM_GetIpFragEpsbId
- Description     : ERABM对分片包进行源IP地址匹配，返回匹配成功的承载号
- Input           : VOS_VOID *pRcvMsg-----------消息指针
- Output          : VOS_VOID
- Return          : VOS_VOID
- History         :
-      1.lihong 00150010      2011-12-06  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 CDS_ERABM_GetIpFragEpsbId
 (
     VOS_UINT8                           *pucEpsbId,
@@ -460,16 +375,7 @@ VOS_UINT32 CDS_ERABM_GetIpFragEpsbId
     }
 }
 
-/*****************************************************************************
- Function Name   : CDS_ERABM_GetDrbId
- Description     : 将承载号转为对应的DRB号，并返回DRB的状态。
- Input           : ucEpsbId--------------------承载号
- Output          : pucDrbId--------------------DRB ID指针
- Return          : CDS_ERABM_TRANSFER_RESULT_ENUM_UINT32
- History         :
-      1.lihong 00150010      2011-12-06  Draft Enact
 
-*****************************************************************************/
 CDS_ERABM_TRANSFER_RESULT_ENUM_UINT32 CDS_ERABM_GetDrbId
 (
     VOS_UINT8                           ucEpsbId,
@@ -578,17 +484,7 @@ CDS_ERABM_TRANSFER_RESULT_ENUM_UINT32 CDS_ERABM_GetDrbId
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_GetEpsbIdByDrbId
- Description     : 根据DRB号获取EPS承载号
- Input           : ulRbId-------------------DRB号
- Output          : pulEpsbId----------------承载号指针
- Return          : VOS_UINT32
 
- History         :
-    1.lihong00150010      2011-12-06  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32 NAS_ERABM_GetEpsbIdByDrbId
 (
     VOS_UINT32                           ulRbId,
@@ -617,16 +513,7 @@ VOS_UINT32 NAS_ERABM_GetEpsbIdByDrbId
 /*lint +e961*/
 /*lint +e960*/
 
-/*****************************************************************************
- Function Name   : CDS_ERABM_GetDefaultEpsbId
- Description     : 获取DRB对应的缺省承载号
- Input           : ucDrbId---------------------DRB ID
- Output          : pucDeftEpsbId---------------缺省承载号指针
- Return          : VOS_UINT32
- History         :
-      1.lihong 00150010      2011-12-06  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 CDS_ERABM_GetDefaultEpsbId
 (
     VOS_UINT8                           ucDrbId,
@@ -665,16 +552,7 @@ VOS_UINT32 CDS_ERABM_GetDefaultEpsbId
     return PS_SUCC ;
 }
 
-/*****************************************************************************
- Function Name   : CDS_ERABM_GetEpsbId
- Description     : 获取DRB对应的承载号
- Input           : ucDrbId---------------------DRB ID
- Output          : pucEpsbId-------------------承载号指针
- Return          : VOS_UINT32
- History         :
-      1.lihong 00150010      2011-12-24  Draft Enact
 
-*****************************************************************************/
 VOS_UINT32 CDS_ERABM_GetEpsbId
 (
     VOS_UINT8                           ucDrbId,

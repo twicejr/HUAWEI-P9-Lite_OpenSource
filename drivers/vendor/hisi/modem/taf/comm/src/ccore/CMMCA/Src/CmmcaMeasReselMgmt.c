@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : CmmcaMeasResel.c
-  版 本 号   : 初稿
-  作    者   : l60609
-  生成日期   : 2014年01月08日
-  最近修改   :
-  功能描述   : CMMCA模块测量重选相关的处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年01月08日
-    作    者   : l60609
-    修改内容   : 新生成
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -70,21 +53,7 @@ const VOS_UINT32 g_ulCmmcaCmdIdToErrcMsgIdMapTblSize  = sizeof(g_astCmmcaCmdIdTo
 /*****************************************************************************
   3 函数定义
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : CMMCA_SndMmcResumeInd
- 功能描述  : 处理CMMC发过来的System change rsp消息，发给Mmc
- 输入参数  : CBPCA_DATA_IND_MSG_STRU            *pstDataInd
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年02月08日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_SndMmcResumeInd(
     CBPCA_DATA_IND_MSG_STRU            *pstDataInd
 )
@@ -116,21 +85,7 @@ VOS_VOID CMMCA_SndMmcResumeInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_RcvCmmcMeasReselReq
- 功能描述  : 处理CMMC发过来的meas和resel相关的消息，内容不做解析，直接发给LRRC
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月9日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_RcvCmmcMeasReselReq(VOS_VOID *pMsg)
 {
     CBPCA_DATA_IND_MSG_STRU                *pstDataInd = VOS_NULL_PTR;
@@ -191,21 +146,7 @@ VOS_VOID CMMCA_RcvCmmcMeasReselReq(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_RcvCmmcSystemChgRsp
- 功能描述  : 处理CMMC发过来的system chg rsp消息，透传给LRRC，如果system change回复成功消息，则发送至MMC
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年03月11日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_RcvCmmcSystemChgRsp(VOS_VOID *pMsg)
 {
     CBPCA_DATA_IND_MSG_STRU                *pstDataInd = VOS_NULL_PTR;
@@ -266,22 +207,7 @@ VOS_VOID CMMCA_RcvCmmcSystemChgRsp(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_GetCmdIdFromErrcMsgId
- 功能描述  : 根据ERRC的MSG ID获取对应的CMD ID
- 输入参数  : LRRC_CMMCA_MSG_TYPE_ENUM_UINT32     enMsgId
-             CMMCA_MMC_RAT_CMD_ID_ENUM_UINT16   *penCmdId
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年2月10日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 CMMCA_GetCmdIdFromErrcMsgId(
     LRRC_CMMCA_MSG_TYPE_ENUM_UINT32     enMsgId,
     CMMCA_MMC_RAT_CMD_ID_ENUM_UINT16   *penCmdId
@@ -301,21 +227,7 @@ VOS_UINT32 CMMCA_GetCmdIdFromErrcMsgId(
     return VOS_ERR;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_RcvCmmcOtherRatInfoInd
- 功能描述  : 处理CMMC发过来的另外一个RAT的信息，对消息进行解析，发送至MTC
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年1月24日
-    作    者   : l60609
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_RcvCmmcOtherRatInfoInd(VOS_VOID *pMsg)
 {
     CBPCA_DATA_IND_MSG_STRU            *pstDataInd = VOS_NULL_PTR;
@@ -363,21 +275,7 @@ VOS_VOID CMMCA_RcvCmmcOtherRatInfoInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_RcvCdmaConnStateInfoInd
- 功能描述  : 处理外挂CDMA发过来的状态信息，对消息进行解析，转发送至MTC
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月29日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_RcvCdmaConnStateInfoInd(VOS_VOID *pMsg)
 {
     CBPCA_DATA_IND_MSG_STRU            *pstDataInd          = VOS_NULL_PTR;
@@ -420,21 +318,7 @@ VOS_VOID CMMCA_RcvCdmaConnStateInfoInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_RcvCdmaMeasurementInfoInd
- 功能描述  : 处理外挂CDMA发过来的测量消息，转发到rcm模块
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月29日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_RcvCdmaMeasurementInfoInd(VOS_VOID *pMsg)
 {
     CBPCA_DATA_IND_MSG_STRU                *pstDataInd              = VOS_NULL_PTR;
@@ -480,21 +364,7 @@ VOS_VOID CMMCA_RcvCdmaMeasurementInfoInd(VOS_VOID *pMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : CMMCA_RcvCdmaEventInfoInd
- 功能描述  : 处理外挂CDMA发过来的事件消息，转发到rcm模块
- 输入参数  : VOS_VOID *pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年09月29日
-    作    者   : j00174725
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID CMMCA_RcvCdmaEventInfoInd(VOS_VOID *pMsg)
 {
     CBPCA_DATA_IND_MSG_STRU                *pstDataInd        = VOS_NULL_PTR;

@@ -75,17 +75,7 @@ VOS_UINT32        g_ulImsaSpmCallMsgActTblLen = sizeof(g_stImsaSpmCallMsgActTbl)
 *****************************************************************************/
 
 /*lint -e961*/
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmClprCnf
- Description    : IMSA给SPM回复的CLPR结果
- Input          : pstMsg          具体回复的内容
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.liuhua 212067      2013-07-27  Draft Enact
-      2.lihong 00150010    2013-10-12  Modify
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmClprCnf
 (
     const IMSA_SPM_CALL_GET_CLPR_CNF_STRU  *pstMsg
@@ -120,16 +110,7 @@ VOS_UINT32 IMSA_CallSendSpmClprCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgGetClprInfo
- Description    : SPM下发的CLPR请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.lihong 00150010      2013-10-12  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgGetClprInfo
 (
     VOS_VOID     *pMsg
@@ -163,17 +144,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgGetClprInfo
     return ulResult;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmClccInfoCnf
- Description    : IMSA给SPM回复的CLCC结果
- Input          : pstMsg          具体回复的内容
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.liuhua 212067      2013-07-27  Draft Enact
-      2.lihong 00150010    2013-10-12  Modify
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmClccInfoCnf
 (
     const IMSA_SPM_CALL_GET_CALL_INFO_CNF_STRU *pstMsg
@@ -207,16 +178,7 @@ VOS_UINT32 IMSA_CallSendSpmClccInfoCnf
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmGetEconfInfoCnf
- Description    : IMSA给SPM回复的查询多方通话与会者状态结果
- Input          : pstMsg          具体回复的内容
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.wangchen 00209181   2014-12-11  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmGetEconfInfoCnf
 (
     const IMSA_SPM_CALL_GET_ECONF_CALLED_INFO_CNF_STRU *pstMsg
@@ -251,17 +213,7 @@ VOS_UINT32 IMSA_CallSendSpmGetEconfInfoCnf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgGetInfo
- Description    : SPM下发的Get Info请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-10-12  Modify
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgGetInfo
 (
     VOS_VOID *pMsg
@@ -302,16 +254,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgGetInfo
 
     return ulResult;
 }
-/*****************************************************************************
- Function Name  : IMSA_SpmGetCallInfo
- Description    : 提供API函数，用于SPM调用，获取IMS域内CALL信息
- Input          :
- Output         :
- Return Value   :
 
- History        :
-      1.wangchen 00209181 2014-05-26  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SpmGetCallInfo(IMSA_SPM_CALL_GET_CALL_INFO_IND_STRU *pstCallInfo)
 {
     IMSA_CALL_MANAGER_STRU *pstCallCtx = IMSA_CallCtxGet();
@@ -341,19 +284,7 @@ VOS_UINT32 IMSA_SpmGetCallInfo(IMSA_SPM_CALL_GET_CALL_INFO_IND_STRU *pstCallInfo
     return IMSA_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmStartDtmfCnfMsg
- Description    : IMSA给SPM回复的Start dtmf 临时结果
- Input          : usClientId--------------CLIENT ID
-                  ucOpId------------------OPID
-                  ucCallId----------------CALL ID
-                  ulResult----------------结果
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.lihong 00150010      2013-10-14  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmStartDtmfCnfMsg
 (
     VOS_UINT16                          usClientId,
@@ -397,19 +328,7 @@ VOS_UINT32 IMSA_CallSendSpmStartDtmfCnfMsg
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmStopDtmfCnfMsg
- Description    : IMSA给SPM回复的Stop dtmf 临时结果
- Input          : usClientId--------------CLIENT ID
-                  ucOpId------------------OPID
-                  ucCallId----------------CALL ID
-                  ulResult----------------结果
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.lihong 00150010      2013-10-14  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmStopDtmfCnfMsg
 (
     VOS_UINT16                          usClientId,
@@ -454,17 +373,7 @@ VOS_UINT32 IMSA_CallSendSpmStopDtmfCnfMsg
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgSupsRelHeldOrUdub
- Description    : SPM下发的发起DTMF请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-10-14  Modify:dtmf buffer in imsa
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgStartDtmf
 (
     VOS_VOID* pMsg
@@ -568,17 +477,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgStartDtmf
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgStopDtmf
- Description    : SPM下发的停止DTMF请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-10-14  Modify:dtmf buffer in imsa
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgStopDtmf
 (
     VOS_VOID* pMsg
@@ -813,19 +712,7 @@ VOS_UINT32 IMSA_CallSendSpmOrigCnfMsg(VOS_UINT16 usClientId,
                                           MN_CALL_EVT_CALL_ORIG_CNF,
                                           ulResult);
 }
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmEconfDialCnfMsg
- Description    : IMSA给SPM回复拉会议第三方呼叫结果
- Input          : VOS_UINT16                          usClientId
-                  VOS_UINT32                          ulOpId
-                  VOS_UINT32                          ulCallId
-                  TAF_CS_CAUSE_ENUM_UINT32            ulResult
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.wangchen 00209181   2014-12-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmEconfDialCnfMsg
 (
     VOS_UINT16                          usClientId,
@@ -868,19 +755,7 @@ VOS_UINT32 IMSA_CallSendSpmEconfDialCnfMsg
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmEconfDialCnfMsg
- Description    : IMSA给SPM回复拉会议第三方呼叫结果
- Input          : VOS_UINT16                          usClientId
-                  VOS_UINT32                          ulOpId
-                  VOS_UINT32                          ulCallId
-                  TAF_CS_CAUSE_ENUM_UINT32            ulResult
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.wangchen 00209181   2014-12-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmEconfAddUserCnfMsg
 (
     VOS_UINT16                          usClientId,
@@ -920,16 +795,7 @@ VOS_UINT32 IMSA_CallSendSpmEconfAddUserCnfMsg
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallSaveEconfallInfoAndSendCnf
- Description    : SPM下发的呼叫建立请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181 2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSaveEconfallInfoAndSendCnf
 (
     SPM_IMSA_CALL_ECONF_DIAL_REQ_STRU   *pstAppMsg,
@@ -996,16 +862,7 @@ VOS_UINT32 IMSA_CallSaveEconfallInfoAndSendCnf
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgNormalOrig
- Description    : SPM下发的呼叫建立请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181 2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgOrigContinue
 (
     SPM_IMSA_CALL_ORIG_REQ_STRU        *pstAppMsg,
@@ -1100,16 +957,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgOrigContinue
     }
     return IMSA_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgNormalOrig
- Description    : SPM下发的呼叫建立请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181 2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgNormalOrig(VOS_VOID* pMsg)
 {
     VOS_UINT32                          ulCheckRet      = 0;
@@ -1266,16 +1114,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgNormalOrig(VOS_VOID* pMsg)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgNormalOrig
- Description    : SPM下发的呼叫建立请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181 2015-11-28  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgEmcOrig(VOS_VOID* pMsg)
 {
     VOS_UINT32                          ulCheckRet      = 0;
@@ -1500,18 +1339,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgEmcOrig(VOS_VOID* pMsg)
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgOrig
- Description    : SPM下发的呼叫建立请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-12-20  Modify:Redial
-      3.wangchen 00209181  2014-06-18  Modify:VTLTE
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgOrig(VOS_VOID* pMsg)
 {
     MN_CALL_ORIG_PARAM_STRU            *pstOrigParam    = VOS_NULL_PTR;
@@ -1574,16 +1402,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgOrig(VOS_VOID* pMsg)
 
     return ulResult;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgEconfDialWhenContinue
- Description    : SPM下发的增强多方通话建立请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181  2015-12-01  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgEconfDialWhenContinue
 (
     SPM_IMSA_CALL_ECONF_DIAL_REQ_STRU *pstAppMsg
@@ -1688,17 +1507,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgEconfDialWhenContinue
 
     return IMSA_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgEconfDial
- Description    : SPM下发的增强多方通话建立请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181  2014-12-10  Draft Enact
-      2.wangchen 00209181  2015-11-29   Modify:volte dsds
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgEconfDial(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulCheckRet      = 0;
@@ -1808,16 +1617,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgEconfDial(VOS_VOID *pMsg)
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgEconfDial
- Description    : SPM下发的增强多方通话建立请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181  2014-12-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgEconfAddUser(VOS_VOID *pMsg)
 {
     VOS_UINT32                          ulResult        = VOS_TRUE;
@@ -1897,17 +1697,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgEconfAddUser(VOS_VOID *pMsg)
     return ulResult;
 
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgGetInfo
- Description    : SPM下发的Get Info请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.liuhua 212067      2013-07-18  Draft Enact
-      2.lihong 00150010    2013-10-12  Modify
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgGetEconfInfo
 (
     VOS_VOID *pMsg
@@ -1996,19 +1786,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgGetEconfInfo
     return ulResult;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmInviteNewPtptCnfMsg
- Description    : IMSA给SPM回复拉会议第三方呼叫结果
- Input          : VOS_UINT16                          usClientId
-                  VOS_UINT32                          ulOpId
-                  VOS_UINT32                          ulCallId
-                  TAF_CS_CAUSE_ENUM_UINT32            ulResult
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.xiongxianghui 00253310      2014-02-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmInviteNewPtptCnfMsg
 (
     VOS_UINT16                          usClientId,
@@ -2052,21 +1830,7 @@ VOS_UINT32 IMSA_CallSendSpmInviteNewPtptCnfMsg
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmCallTypeChangeInfoIndMsg
- Description    : IMSA给SPM发送呼叫类型变化的消息
- Input          : VOS_UINT16                          usClientId
-                  VOS_UINT32                          ulOpId
-                  VOS_UINT32                          ulCallId
-                  IMSA_IMS_EMERGENCY_TYPE_ENUM_UINT8  EmcSubType
-                  TAF_CS_CAUSE_ENUM_UINT32            ulResult
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.wangchen 00209181 2014-07-19  Draft Enact
-      2.mengchao 00277840 2014-09-09  CMCC requirement phase I
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmCallTypeChangeInfoIndMsg
 (
     VOS_UINT16                          usClientId,
@@ -2115,19 +1879,7 @@ VOS_UINT32 IMSA_CallSendSpmCallTypeChangeInfoIndMsg
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmModifyCnfMsg
- Description    : IMSA给SPM回复voice<->video切换
- Input          : VOS_UINT16                          usClientId
-                  VOS_UINT32                          ulOpId
-                  VOS_UINT32                          ulCallId
-                  TAF_CS_CAUSE_ENUM_UINT32            ulResult
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.wangchen 00209181 2014-06-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmModifyCnfMsg
 (
     VOS_UINT16                          usClientId,
@@ -2169,19 +1921,7 @@ VOS_UINT32 IMSA_CallSendSpmModifyCnfMsg
 
     return VOS_TRUE;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallSendSpmAnswerRemoteModifyCnfMsg
- Description    : IMSA给SPM回复voice<->video切换
- Input          : VOS_UINT16                          usClientId
-                  VOS_UINT32                          ulOpId
-                  VOS_UINT32                          ulCallId
-                  TAF_CS_CAUSE_ENUM_UINT32            ulResult
- Output         : VOS_VOID
- Return Value   : 发送结果
 
- History        :
-      1.wangchen 00209181 2014-06-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallSendSpmAnswerRemoteModifyCnfMsg
 (
     VOS_UINT16                          usClientId,
@@ -2227,16 +1967,7 @@ VOS_UINT32 IMSA_CallSendSpmAnswerRemoteModifyCnfMsg
 
 
 
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgInviteNewPtpt
- Description    : SPM下发的拉会议第三方请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.xiongxianghui00253310      2014-07-10  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgInviteNewPtpt(VOS_VOID *pMsg)
 {
     VOS_UINT32 ulResult     = VOS_FALSE;
@@ -2306,17 +2037,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgInviteNewPtpt(VOS_VOID *pMsg)
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_InsertSrvccBuff
- Description    : 往SRVCC缓存中插入记录
- Input          : pucData-----------------数据首指针
-                  ulDataLen---------------数据长度
- Output         : None
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-12-18  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_InsertSrvccBuff
 (
     const VOS_UINT8                    *pucData,
@@ -2356,16 +2077,7 @@ VOS_UINT32 IMSA_InsertSrvccBuff
     return IMSA_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallOrigReqSrvccingProc
- Description    : ORIG REQ消息在SRVCC过程中的处理
- Input          : pstCallOrigReq---------------消息指针
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallOrigReqSrvccingProc
 (
     const SPM_IMSA_CALL_ORIG_REQ_STRU  *pstCallOrigReq
@@ -2387,16 +2099,7 @@ VOS_VOID IMSA_CallOrigReqSrvccingProc
     TLPS_PRINT2LAYER_INFO(IMSA_CallOrigReqSrvccingProc_ENUM, LNAS_SUCC);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSupsCmdReqSrvccingProc
- Description    : SUPS CMD REQ消息在SRVCC过程中的处理
- Input          : pstCallOrigReq---------------消息指针
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallSupsCmdReqSrvccingProc
 (
     const SPM_IMSA_CALL_SUPS_CMD_REQ_STRU  *pstCallSupsCmdReq
@@ -2418,16 +2121,7 @@ VOS_VOID IMSA_CallSupsCmdReqSrvccingProc
     TLPS_PRINT2LAYER_INFO(IMSA_CallSupsCmdReqSrvccingProc_ENUM, LNAS_SUCC);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallStartDtmfReqSrvccingProc
- Description    : START DTMF REQ消息在SRVCC过程中的处理
- Input          : pstCallStartDtmfReq---------------消息指针
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallStartDtmfReqSrvccingProc
 (
     const SPM_IMSA_CALL_START_DTMF_REQ_STRU  *pstCallStartDtmfReq
@@ -2449,16 +2143,7 @@ VOS_VOID IMSA_CallStartDtmfReqSrvccingProc
     TLPS_PRINT2LAYER_INFO(IMSA_CallStartDtmfReqSrvccingProc_ENUM, LNAS_SUCC);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallStopDtmfReqSrvccingProc
- Description    : STOP DTMF REQ消息在SRVCC过程中的处理
- Input          : pstCallStopDtmfReq---------------消息指针
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallStopDtmfReqSrvccingProc
 (
     const SPM_IMSA_CALL_STOP_DTMF_REQ_STRU  *pstCallStopDtmfReq
@@ -2480,16 +2165,7 @@ VOS_VOID IMSA_CallStopDtmfReqSrvccingProc
     TLPS_PRINT2LAYER_INFO(IMSA_CallStopDtmfReqSrvccingProc_ENUM, LNAS_SUCC);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_UssdProcUssdReqSrvccingProc
- Description    : PROCESS USSD REQ消息在SRVCC过程中的处理
- Input          : pstProcUssdReq---------------消息指针
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_UssdProcUssdReqSrvccingProc
 (
     const SPM_IMSA_PROCESS_USSD_REQ_STRU  *pstProcUssdReq
@@ -2509,16 +2185,7 @@ VOS_VOID IMSA_UssdProcUssdReqSrvccingProc
     TLPS_PRINT2LAYER_INFO(IMSA_UssdProcUssdReqSrvccingProc_ENUM, LNAS_SUCC);
 }
 
-/*****************************************************************************
- Function Name  : IMSA_ClearSrvccBuff
- Description    : 清除SRVCC过程缓存
- Input          : None
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-18  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_ClearSrvccBuff( VOS_VOID )
 {
     IMSA_MEM_SET_S( IMSA_GetSrvccBuffAddress(),
@@ -2527,16 +2194,7 @@ VOS_VOID IMSA_ClearSrvccBuff( VOS_VOID )
                     sizeof(IMSA_SRVCC_BUFFER_STRU));
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SrvccingBufferMsgProc
- Description    : SRVCC中缓存消息处理
- Input          : pBuffMsg-------------缓存消息指针
- Output         : None
- Return Value   : VOS_UINT32
 
- History        :
-      1.lihong 00150010      2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_SrvccingBufferMsgProc( const VOS_VOID *pBuffMsg )
 {
     /* 定义消息头指针*/
@@ -2587,17 +2245,7 @@ VOS_UINT32 IMSA_SrvccingBufferMsgProc( const VOS_VOID *pBuffMsg )
     return IMSA_MSG_PROCED;
 }
 
-/*****************************************************************************
- Function Name  : IMSA_CallSendCallMsgSyncInd
- Description    : SRVCC成功后给CALL模块发送SRVCC过程缓存消息
- Input          : ulSynMsgNum-----------------消息个数
-                  pulSynMsgIndexArray---------消息索引数组
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010     2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_CallSendCallMsgSyncInd
 (
     VOS_UINT32                          ulSynMsgNum,
@@ -2651,60 +2299,6 @@ VOS_VOID IMSA_CallSendCallMsgSyncInd
 }
 
 
-/*****************************************************************************
- Function Name  : IMSA_CallSendCcwaCapInfo
- Description    : IMSA向CALL模块通告CCWA配置，
- Input          : ucCcwacap---------------CCWA配置信息
-                  0:不支持CCWA
-                  1:支持CCWA
- Output         : None
- Return Value   :
-                  失败:VOS_FALSE ;
-                  成功:VOS_TRUE
- History        :
-      1.jiaguocai 00355737     2015-08-27  Draft Enact
-*****************************************************************************/
-
-VOS_VOID IMSA_CallSendCcwaCapInfo(VOS_UINT8 ucCcwacap)
-{
-    IMSA_CALL_CCWA_CAP_NOTIFY_STRU  *pstCcwaCapNotify = VOS_NULL_PTR;
-
-    IMSA_INFO_LOG("IMSA_CallSendCcwaCapInfo is entered!");
-
-    pstCcwaCapNotify = (VOS_VOID *)IMSA_ALLOC_MSG(sizeof(IMSA_CALL_CCWA_CAP_NOTIFY_STRU));
-
-    if (VOS_NULL_PTR == pstCcwaCapNotify)
-    {
-        IMSA_ERR_LOG("IMSA_CallSendCcwaCapInfo: alloc memory fail");
-        return ;
-    }
-
-    IMSA_MEM_SET_S( IMSA_GET_MSG_ENTITY(pstCcwaCapNotify),
-                    IMSA_GET_MSG_LENGTH(pstCcwaCapNotify),
-                    0,
-                    IMSA_GET_MSG_LENGTH(pstCcwaCapNotify));
-
-    /* 填写消息头 */
-    IMSA_WRITE_CALL_MSG_HEAD(pstCcwaCapNotify, ID_IMSA_CALL_CCWA_CAP_NOTIFY);
-
-    pstCcwaCapNotify->ucCcwaCap = ucCcwacap;
-
-    /* 调用消息发送函数 */
-    IMSA_SND_MSG(pstCcwaCapNotify);
-}
-
-
-
-/*****************************************************************************
- Function Name  : IMSA_SrvccSuccBuffProc
- Description    : SRVCC成功时SRVCC过程缓存处理
- Input          : None
- Output         : None
- Return Value   : VOS_VOID
-
- History        :
-      1.lihong 00150010      2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SrvccSuccBuffProc( VOS_VOID )
 {
     IMSA_SRVCC_BUFFER_STRU             *pstSrvccBuff    = VOS_NULL_PTR;
@@ -2755,16 +2349,7 @@ VOS_VOID IMSA_SrvccSuccBuffProc( VOS_VOID )
     IMSA_ClearSrvccBuff();
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SrvccFailBuffProc
- Description    : SRVCC失败时SRVCC过程缓存处理
- Input          : None
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SrvccFailBuffProc( VOS_VOID )
 {
     IMSA_SRVCC_BUFFER_STRU             *pstSrvccBuff    = VOS_NULL_PTR;
@@ -2826,16 +2411,7 @@ VOS_VOID IMSA_SrvccFailBuffProc( VOS_VOID )
     IMSA_ClearSrvccBuff();
 }
 
-/*****************************************************************************
- Function Name  : IMSA_SrvccAbormalClearBuff
- Description    : SRVCC异常(例如关机，DEREG REQ，状态迁离CONN+REG)，清缓存
- Input          : ulAbnormalType---------------异常类型
- Output         : None
- Return Value   : VOS_VOID
 
- History        :
-      1.lihong 00150010      2013-12-19  Draft Enact
-*****************************************************************************/
 VOS_VOID IMSA_SrvccAbormalClearBuff
 (
     IMSA_SRVCC_ABNORMAL_TYPE_ENUM_UINT32    enAbnormalType
@@ -2922,16 +2498,7 @@ VOS_VOID IMSA_SrvccAbormalClearBuff
     /* 清缓存 */
     IMSA_ClearSrvccBuff();
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgModifyReq
- Description    : SPM下发的voice<->video切换请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181  2014-06-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgModifyReq
 (
     VOS_VOID *pMsg
@@ -2970,16 +2537,7 @@ VOS_UINT32 IMSA_CallProcSpmMsgModifyReq
 
     return ulResult;
 }
-/*****************************************************************************
- Function Name  : IMSA_CallProcSpmMsgAnswerRemoteModifyReq
- Description    : SPM响应对端的voice<->video切换请求处理
- Input          : pstAppMsg      SPM下发的命令及参数
- Output         : VOS_VOID
- Return Value   : 处理结果
 
- History        :
-      1.wangchen 00209181  2014-06-19  Draft Enact
-*****************************************************************************/
 VOS_UINT32 IMSA_CallProcSpmMsgAnswerRemoteModifyReq
 (
     VOS_VOID *pMsg

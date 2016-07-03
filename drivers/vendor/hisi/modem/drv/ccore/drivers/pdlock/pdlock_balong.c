@@ -1,14 +1,4 @@
-/*************************************************************************
-*	版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*	文 件 名 :	pdlock_balong.h
-*
-*	作	  者 :	l00312158
-*
-*	描	  述 :	本文件主要完成总线防挂死
-*
-*	修改记录 :	2015年5月11日  v1.00  l00312158  创建
-*************************************************************************/
+
 #ifdef __cplusplus
 		extern "C" {
 #endif
@@ -35,21 +25,7 @@ struct pdlock_state g_pdlock_state = {0,0};
 struct pdlock_dump_record *g_pdlock_dump_record = NULL;
 u32 *g_pdlock_dump_head = NULL;
 
-/*************************************************************************
- 函 数 名	: hi_pdlock_get_reg
- 功能描述	: 获取寄存器值
- 输入参数	: unsigned int *value
-			  unsigned int base_addr 基址
-			  u32 *pstreg	pstreg[0]寄存器偏移，pstreg[1]起始位，pstreg[2]终止位
 
- 返 回 值	: 无
-
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
-
-*************************************************************************/
 
 static inline void hi_pdlock_get_reg(unsigned int *value,unsigned int base_address, u32 *pstreg)
  {
@@ -63,21 +39,7 @@ static inline void hi_pdlock_get_reg(unsigned int *value,unsigned int base_addre
 	 *value = (*value) >> pstreg[1];
  }
 
-/*************************************************************************
- 函 数 名	: hi_pdlock_set_reg
- 功能描述	: 将值写入寄存器
- 输入参数	: unsigned int	value
-			  unsigned int base_addr 基址
-			  u32 *pstreg	pstreg[0]寄存器偏移，pstreg[1]起始位，pstreg[2]终止位
 
- 返 回 值	: 无
-
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
-
-*************************************************************************/
 
 static inline void hi_pdlock_set_reg(unsigned int value, unsigned int base_address, u32 *pstreg)
 {
@@ -91,22 +53,7 @@ static inline void hi_pdlock_set_reg(unsigned int value, unsigned int base_addre
 	writel(value  ,reg);
 }
 
-/*************************************************************************
- 函 数 名	: pdlock_reg_enable
- 功能描述	: 配置总线防挂死寄存器。将总线防挂死寄存器置1，slave active寄存器置0
- 输入参数	: struct device_node *child  子节点
-			  u32  base_addr
-			  u32  *enable_reg
-			  u32  reg_sum	 需要配置的寄存器总数
 
- 返 回 值	: 成功返回0，失败返回-1
-
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
-
-*************************************************************************/
 s32 pdlock_reg_enable(struct device_node *child, u32 vir_enable_addr, u32 *enable_reg, u32 reg_sum)
 {
 	u32 i = 0, u = 0;
@@ -135,21 +82,7 @@ s32 pdlock_reg_enable(struct device_node *child, u32 vir_enable_addr, u32 *enabl
 	return pdlock_ok;
 }
 
-/*************************************************************************
- 函 数 名	: pdlock_get_state_reg
- 功能描述	: 读取总线防挂死错误状态寄存器地址，包括偏移、起始位、终止位。
- 输入参数	: struct device_node *child  子节点
-			  u32  id		bus_id
-			  u32  state_reg_sum   错误状态寄存器总数
 
- 返 回 值	: 成功返回0，失败返回-1
-
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
-
-*************************************************************************/
 s32 pdlock_get_state_reg(struct device_node *child, u32 id, u32 state_reg_sum, u32 sysctrl_type)
 {
 	u32 i = 0, j = 0, u = 0;
@@ -200,19 +133,7 @@ s32 pdlock_get_state_reg(struct device_node *child, u32 id, u32 state_reg_sum, u
 	return pdlock_ok;
 }
 
-/*************************************************************************
- 函 数 名	: pdlock_sysctrl_free
- 功能描述	: sysctrl初始化失败时，释放之前申请的空间
- 输入参数	: u32 sysctrl_type
-			  u32 *enable_reg
-			  u32 bus_sum
- 返 回 值	: 无
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
 
-*************************************************************************/
 void pdlock_sysctrl_free(u32 sysctrl_type, u32 *enable_reg, u32 bus_sum)
 {
 	u32 i;
@@ -228,17 +149,7 @@ void pdlock_sysctrl_free(u32 sysctrl_type, u32 *enable_reg, u32 bus_sum)
 		pdlock_free(g_sysctrl[sysctrl_type].bus);
 }
 
-/*************************************************************************
- 函 数 名	: pdlock_sysctrl_init_free
- 功能描述	: sysctrl_init初始化失败时，释放之前申请的空间
- 输入参数	: u32 sysctrl_type
- 返 回 值	: 无
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
 
-*************************************************************************/
 void pdlock_sysctrl_init_free(u32 sysctrl_type)
 {
 	u32 i;
@@ -253,17 +164,7 @@ void pdlock_sysctrl_init_free(u32 sysctrl_type)
 }
 
 /*lint -save -e801*/
-/*************************************************************************
- 函 数 名	: pdlock_sysctrl_pd_setup
- 功能描述	: 配置sysctrl_pd部分的防挂死寄存器，并将错误状态寄存器的地址读入全局变量
- 输入参数	: 无
- 返 回 值	: 成功返回0，失败返回-1
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
 
-*************************************************************************/
 s32 pdlock_sysctrl_pd_setup(void)
 {
 	struct device_node *dev = NULL,*child = NULL;
@@ -304,7 +205,8 @@ s32 pdlock_sysctrl_pd_setup(void)
 		g_sysctrl[pd_glb].reset_reg_addr[start_bit] = reg_addr[2];
 		g_sysctrl[pd_glb].reset_reg_addr[end_bit] = reg_addr[3];
 
-		/*V7R5版本在M3 boot里将复位置为1*/
+		/*在初始化的时候，需要保证系统中不会遗留上一次未清掉的状态*/
+        hi_pdlock_set_reg(1, g_sysctrl[pd_glb].reset_reg_addr[base_addr], (g_sysctrl[pd_glb].reset_reg_addr + 1));
 		hi_pdlock_set_reg(0, g_sysctrl[pd_glb].reset_reg_addr[base_addr], (g_sysctrl[pd_glb].reset_reg_addr + 1));
 
 		g_sysctrl[pd_glb].bus = (struct pdlock_bus *)pdlock_malloc(bus_sum*(sizeof(struct pdlock_bus)));
@@ -395,17 +297,7 @@ error_free:
 	return pdlock_error;
 }
 
-/*************************************************************************
- 函 数 名	: pdlock_sysctrl_modem_setup
- 功能描述	: 配置sysctrl_modem部分的防挂死寄存器，并将错误状态寄存器的地址读入全局变量
- 输入参数	: 无
- 返 回 值	: 成功返回0，失败返回-1
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
 
-*************************************************************************/
 s32 pdlock_sysctrl_modem_setup(void)
 {
 	struct device_node *dev = NULL,*child = NULL;
@@ -445,6 +337,10 @@ s32 pdlock_sysctrl_modem_setup(void)
 		g_sysctrl[modem_glb].reset_reg_addr[addr_offset] = reg_addr[1];
 		g_sysctrl[modem_glb].reset_reg_addr[start_bit] = reg_addr[2];
 		g_sysctrl[modem_glb].reset_reg_addr[end_bit] = reg_addr[3];
+
+        /*在初始化的时候，需要保证系统中不会遗留上一次未清掉的状态*/
+        hi_pdlock_set_reg(1, g_sysctrl[modem_glb].reset_reg_addr[base_addr], (g_sysctrl[modem_glb].reset_reg_addr + 1));
+		hi_pdlock_set_reg(0, g_sysctrl[modem_glb].reset_reg_addr[base_addr], (g_sysctrl[modem_glb].reset_reg_addr + 1));
 
 		g_sysctrl[modem_glb].bus = (struct pdlock_bus *)pdlock_malloc(bus_sum*(sizeof(struct pdlock_bus)));
 		if(!g_sysctrl[modem_glb].bus)
@@ -532,17 +428,7 @@ error_free:
 	return pdlock_error;
 }
 
-/*************************************************************************
- 函 数 名	: pdlock_sysctrl_pcie_setup
- 功能描述	: 配置sysctrl_pcie部分的防挂死寄存器，并将错误状态寄存器的地址读入全局变量
- 输入参数	: 无
- 返 回 值	: 成功返回0，失败返回-1
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
 
-*************************************************************************/
 s32 pdlock_sysctrl_pcie_setup(void)
 {
 	struct device_node *dev = NULL,*child = NULL;
@@ -586,6 +472,10 @@ s32 pdlock_sysctrl_pcie_setup(void)
 		g_sysctrl[pcie_glb].reset_reg_addr[addr_offset] = reg_addr[1];
 		g_sysctrl[pcie_glb].reset_reg_addr[start_bit] = reg_addr[2];
 		g_sysctrl[pcie_glb].reset_reg_addr[end_bit] = reg_addr[3];
+
+        /*在初始化的时候，需要保证系统中不会遗留上一次未清掉的状态*/
+        hi_pdlock_set_reg(1, g_sysctrl[pcie_glb].reset_reg_addr[base_addr], (g_sysctrl[pcie_glb].reset_reg_addr + 1));
+		hi_pdlock_set_reg(0, g_sysctrl[pcie_glb].reset_reg_addr[base_addr], (g_sysctrl[pcie_glb].reset_reg_addr + 1));
 
 		g_sysctrl[pcie_glb].bus = (struct pdlock_bus *)pdlock_malloc(bus_sum*(sizeof(struct pdlock_bus)));
 		if(!g_sysctrl[pcie_glb].bus)
@@ -678,17 +568,7 @@ error_free:
 	return pdlock_error;
 }
 
-/*************************************************************************
- 函 数 名	: pdlock_sysctrl_pcie_setup
- 功能描述	: 配置sysctrl_pcie部分的防挂死寄存器，并将错误状态寄存器的地址读入全局变量
- 输入参数	: 无
- 返 回 值	: 成功返回0，失败返回-1
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
 
-*************************************************************************/
 s32 pdlock_sysctrl_ao_setup(void)
 {
 	struct device_node *dev = NULL,*child = NULL;
@@ -728,6 +608,10 @@ s32 pdlock_sysctrl_ao_setup(void)
 		g_sysctrl[ao_glb].reset_reg_addr[addr_offset] = reg_addr[1];
 		g_sysctrl[ao_glb].reset_reg_addr[start_bit] = reg_addr[2];
 		g_sysctrl[ao_glb].reset_reg_addr[end_bit] = reg_addr[3];
+
+        /*在初始化的时候，需要保证系统中不会遗留上一次未清掉的状态*/
+        hi_pdlock_set_reg(1, g_sysctrl[ao_glb].reset_reg_addr[base_addr], (g_sysctrl[ao_glb].reset_reg_addr + 1));
+		hi_pdlock_set_reg(0, g_sysctrl[ao_glb].reset_reg_addr[base_addr], (g_sysctrl[ao_glb].reset_reg_addr + 1));
 
 		g_sysctrl[ao_glb].bus = (struct pdlock_bus *)pdlock_malloc(bus_sum*(sizeof(struct pdlock_bus)));
 		if(!g_sysctrl[ao_glb].bus)
@@ -817,17 +701,7 @@ error_free:
 }
 /*lint -restore*/
 
-/*************************************************************************
- 函 数 名	: pdlock_int_handler
- 功能描述	: 中断处理函数。在串口打印异常信息，并在dump空间中保存异常信息
- 输入参数	: 无
- 返 回 值	: 成功返回IRQ_HANDLED
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
 
-*************************************************************************/
 static irqreturn_t pdlock_int_handler(void *arg)
 {
 	u32 i, j, k;
@@ -892,18 +766,7 @@ static irqreturn_t pdlock_int_handler(void *arg)
 	return IRQ_HANDLED;
 }
 
-/*************************************************************************
- 函 数 名	: pdlock_dump_handler
- 功能描述	: dump回调函数。在临终打印里显示异常信息，并在dump空间中保存异常信息
-			  触发防挂死逻辑时，如果先进入data abort，就会在dump模块中回调此函数
- 输入参数	: 无
- 返 回 值	: 成功返回0
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
 
-*************************************************************************/
 u32 pdlock_dump_handler(void)
 {
 	u32 i, j, k;
@@ -960,17 +823,7 @@ u32 pdlock_dump_handler(void)
 	return pdlock_ok;
 }
 
-/*************************************************************************
- 函 数 名	: bsp_pdlock_init
- 功能描述	: 初始化函数
- 输入参数	: 无
- 返 回 值	: 成功返回0，失败返回-1
- 修改历史	:
- 日    期	: 2015年6月10日
- 作    者	: l00312158
- 修改内容	:
 
-*************************************************************************/
 s32 bsp_pdlock_init(void)
 {
 	struct device_node *dev = NULL;

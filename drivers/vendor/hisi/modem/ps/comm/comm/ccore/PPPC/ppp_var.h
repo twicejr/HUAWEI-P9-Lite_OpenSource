@@ -1,26 +1,5 @@
 
-/************************************************************************
- *                                                                      *
- *                             ppp_var.h                                *
- *                                                                      *
- *  Project Code:       VRP3.0                                          *
- *  Create Date:        2000/03/27                                      *
- *  Author:             Deng Yi Ou                                      *
- *  Modify Date:                                                        *
- *  Document:                                                           *
- *  Function:           PPP模块私有全局变量的引用说明                   *
- *  Others:                                                             *
- *----------------------------------------------------------------------*
- *                                                                      *
- *  Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc. *
- *                      ALL RIGHTS RESERVED                             *
- *                                                                      *
- *----------------------------------------------------------------------*
- *                                                                      *
- *   这个文件包含了PPP模块对所有私有全局变量的应用说明                  *
- *   其他任何地方不能再出现对私有全局变量的extern引用                   *
- *                                                                      *
- ************************************************************************/
+
 
 #ifndef      _PPP_VAR_H_
 #define      _PPP_VAR_H_
@@ -171,7 +150,7 @@ extern VOS_UINT32 g_ulPppDhcpQueID;/* DHCP消息队列 */
 extern VOS_UINT32 g_ulPppPcrfcQueID;
 extern VOS_UINT32 g_ulPppTimeQueID;/* 定时器消息队列 */
 extern VOS_UINT32 g_ulPppCcpQueID;       /* 压缩数据消息队列 */ /*WGGSN_B03_L2TP_PPPC_COMP*/
-extern VOS_UINT32 g_ulPppGspcQueID;     /* 接收GSPC IPC消息队列 *//* Added by liutao 38563 at 2004-09-22 V800R002 for PPP压缩移植 */
+extern VOS_UINT32 g_ulPppGspcQueID;
 extern LONG g_ulPppL2tpMaxUserNum; /* L2TP最大用户数 */
 extern LONG g_ulPppCcpMaxUserNum;
 extern LONG g_ulPppVjMaxUserNum;

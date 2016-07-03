@@ -46,7 +46,6 @@ extern struct IIF_VRF_ComIntFUNVtbl                 *g_pstPingVrfComFunTable ;
 
 extern struct IIF_VRF6_ComIntFUNVtbl                 *g_pstPingVrf6ComFunTable ;
 
-/*Added by w00207740, DTS2013032900271,路由模式下使用ping，指定出接口与下一跳，不指定源IP时，不能发送报文, 2013/6/26 */
 extern struct IIF_IP6_ND_COMMONVtbl            *g_pstIpv6NDCommonPingVtbl ;
 
 /* 同步D21代码  x36530  2004-9-11  */
@@ -90,7 +89,6 @@ LONG PING_DoPing(ULONG ulExecID, Ping_Comm_S  *stPingParam);
 VOID PIN_Finish ( PingParam_S *, ULONG );
 
 LONG PIN_Ping ( ULONG ulExecID, PingParam_S  *stPingData);
-/*Modified by zhongyu206043, 修改返回值为ULONG型，支持ping报文DF标识 for S.PING.1.1, 2012/8/18 */
 LONG PIN_Pinger ( PingParam_S *, ULONG );
 LONG PIN_PrintPacket ( PingParam_S * , CHAR * , LONG , struct sockaddr_in * ,ULONG ,ULONG ,ULONG);
 CHAR * PIN_PrintAddr ( PingParam_S * , ULONG, CHAR* );
@@ -108,7 +106,6 @@ ULONG PING_SetTos(UCHAR ucTos);
 ULONG PING_GetTos(UCHAR *pucTos);
 LONG PIN_CheckAndSetParam( PingParam_S *stPingParam ,PingParam_S *pstPingData);
 
-/* Added by y00176567, at 2011-05-27. 修改原因: 消除VC三级告警 */
 extern LONG isxdigit(CHAR);
 
 #ifdef __cplusplus

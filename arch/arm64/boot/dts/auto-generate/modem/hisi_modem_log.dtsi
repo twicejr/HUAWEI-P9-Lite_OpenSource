@@ -6,6 +6,6 @@
 
 /{
 	hisi_mdmlog{
-		time = <0x258>;
+		time = <0x3c>;
 	};
 };

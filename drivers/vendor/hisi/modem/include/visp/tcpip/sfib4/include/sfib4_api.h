@@ -86,7 +86,6 @@ extern "C"{
 #define RIB4_ERR_NO_USE_ENTRY      (VOS_ERR + 48)     /* 没有可用的下一个路由节点*/
 /* 新增错误码请加到FIB_ERROR_CODE_E中 */
 
-/*added by zhangliangzhi 00187023, SRM-RIB6查询, 2011/8/12   问题单号:C06新需求 */
 #define  TCPIP_RIB4_MAX_VRFNAME_LENGTH   31      /*和TCPIP_MAX_VRFNAME_LENGTH保持一致*/
 
 typedef struct tagTCPIP_RIB_RT4_ENTRY
@@ -102,7 +101,6 @@ typedef struct tagTCPIP_RIB_RT4_ENTRY
     ULONG  ulPmtu;
     CHAR   szVrfName[TCPIP_RIB4_MAX_VRFNAME_LENGTH + 1];        /* VRF名称 */
 } TCPIP_RIB_RT4_ENTRY_S;
-/*End of added by zhangliangzhi 00187023, 2011/8/12   问题单号:C06新需求 */
 
 
 /* ZENGSHAOYANG:路由模块的错误码都用宏定义来表示，且比较分散，不方便后续添加及维护
@@ -162,7 +160,6 @@ typedef enum tagRouteStrategy
     RS_PRI_BASED,         /* 3 接口优先级最高有效 */
     RS_BFCR,              /* 4 五元组报文流保序 */
     RS_RTPRI,             /* 5 路由优先级 */
-    /*Added by likaikun00213099, DTS2014052908384 新增平衡路由算法, 2014/6/6 */
     RS_BFCR_DSCP,         /* 6 三元组和DSCP 报文流保序 */
     RS_END
 }ROUTE_STRATEGY_E;
@@ -234,7 +231,6 @@ typedef struct tagTCPIP_RT4_ENTRY
      ULONG  ulPmtu;
 } TCPIP_RT4_ENTRY_S;
 /* ---------------------------------------SGSN路由维测需求--------------------------------------------- */
-/*Added by by pengbinquan pKF34550, 增加查询所有功能, 2011/02/18 问题单号:DTS2011022100676 */
 #define SFIB4_VRF_MAX_VRFNAME_LENGTH    31
 
 #define FIB4_SEARCH_ALL                0x00    /*查询所有VRF全部路由 */
@@ -290,14 +286,12 @@ typedef struct tagTCPIP_RT4_ENTRY_BY_VRF
      ULONG  ulVrfIndex;         /* VRF Index*/
      ULONG  ulPmtu;
 } TCPIP_RT4_ENTRY_BY_VRF_S;
-/* End of Added by pengbinquan pKF34550, 2011/02/18   问题单号:DTS2011022100676 */
 
 /*  One of the data stores maintained by FIB6Agent for providing search interface
     to external modules */
 typedef struct tagTCPIP_ROUTE4
 {
      USHORT        usZoneID;       /* zone ID */
-     /* Modified by likaikun00213099, DTS2014052908384新增平衡路由策略，查询时可以将DSCP作为关键字, 2014/6/6 */
      UCHAR         ucTos;          /* 8bit IP首部TOS字段，如果是DSCP值则需要转换为TOS格式，只有在平衡路由策略为RS_BFCR_DSCP才有意义，其他平衡路由策略下TOS值不起作用*/
      UCHAR         ucPadding_1[1];
      ULONG         ulDestination;
@@ -330,7 +324,6 @@ typedef struct tagPacketInfo
     ULONG  ulProtocol;      /* FIB查询入参时 主机序 */
     USHORT usSrcPort;       /* FIB查询入参时 网络序 */
     USHORT usDstPort;       /* FIB查询入参时 网络序 */
-    /* Added by likaikun00213099, DTS2014052908384新增平衡路由策略，查询时可以将DSCP作为关键字, 2014/6/6 */
     UCHAR  ucTos;          /* 8bit IP首部TOS字段，如果是DSCP值则需要转换为TOS格式，只有在平衡路由策略为RS_BFCR_DSCP才有意义，其他平衡路由策略下TOS值不起作用*/
     UCHAR  ucPadding_1[3];
 }PACKETINFO_S;
@@ -1197,101 +1190,19 @@ extern ULONG TCPIP_Reg_VpnFib(TCPIP_SEARCH_VPN_FIB_FUN pfSearchFib);
 *******************************************************************************/
 extern ULONG TCPIP_Search_VispFIB (ROUTE4_S* pstRoute);
 
-/*******************************************************************************
-*    Func Name: TCPIP_OpenRib4Table
-* Date Created: 2011-08-12
-*       Author: zhangliangzhi00187023
-*  Description:  通过传入的VRF名称，获取查询句柄。
-*        Input:  CHAR * pszVrfName  : 传入VRF的名称
-*       Output: ULONG *pulWaitlist : 传出句柄
-*       Return: RIB4_OK,RIB4_ERR_GET_VRFINDEX,RIB4_ERR_NULL_POINTER,
-*                     RIB4_ERR_VRFID_OUT_BOUND,RIB4_ERR_MALLOC_FAIL
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-08-12   zhangliangzhi00187023                 Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_OpenRib4Table(UINTPTR *pulWaitlist, CHAR *pszVrfName);
 
-/******************************************************************************
-*
-*    Func Name: TCPIP_GetRib4Entry
-* Date Created: 2011-08-12
-*       Author: zhangliangzhi00187023
-*  Description:  通过查询句柄，获取下一个节点。
-*       Input:  ULONG ulWaitlist  : 查询句柄
-*       Output:  TCPIP_RIB_RT4_ENTRY_S *pstRtEntry : 查询出来的下一个节点
-*       Return: RIB4_OK,RIB4_ERR_NULL_INPUT,RIB4_ERR_GET_VRFINDEX,RIB4_ERR_NO_USE_ENTRY
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-08-12   zhangliangzhi00187023                 Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_GetRib4Entry(UINTPTR ulWaitlist, TCPIP_RIB_RT4_ENTRY_S *pstRtEntry);
 
-/*******************************************************************************
-*    Func Name: TCPIP_CloseRib4Table
-* Date Created: 2011-08-12
-*       Author: zhangliangzhi00187023
-*  Description:  关闭 查询句柄。
-*        Input:  ULONG ulWaitlist: 查询句柄
-*       Output: 
-*       Return: RIB4_OK,RIB4_ERR_HANDLE
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-08-12   zhangliangzhi00187023                 Create
-*
-*******************************************************************************/
+
 ULONG TCPIP_CloseRib4Table(UINTPTR ulWaitlist);
 
-/*******************************************************************************
-*    Func Name: TCPIP_ShowRib4ByVrfName
-* Date Created: 2011-08-12
-*       Author: zhangliangzhi00187023
-*  Description: 显示IPv4 RIB路由表项信息。
-*        Input: CHAR *pszVrfName: VRF的名称
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2011-08-12   zhangliangzhi00187023                 Create
-*
-*******************************************************************************/
+
 VOID TCPIP_ShowRib4ByVrfName(CHAR *pszVrfName);
 
-/*******************************************************************************
-*    Func Name: TCPIP_OpenRibTableByFilter
-* Date Created: 2012-09-18
-*       Author: zhongyu206043
-*  Description: 打开查询Rib路由的句柄，支持过滤查询
-*        Input: TCPIP_RIB_FILTER_API_S *pstFilter:过滤条件，当前仅支持目的地址、
-*               掩码长度、下一跳、出接口索引、VPN名字。其中目的地址、掩码作、
-*               VPN名字为必须的匹配条件；
-*               下一跳和出接口索引支持为0，为0时不匹配，非0则进行匹配；
-*       Output: ULONG *pulHandle: 查询句柄
-*       Return: FIB4_OK          成功
-*               其他             失败
-*      Caution: 如果目的VRF名称、地址或者掩码长度为0，则按照0来进行匹配，不支持这3
-*               个字段的模糊查询
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME                    DESCRIPTION
-*  ----------------------------------------------------------------------------
-*  2012-09-18   zhongyu206043           Create
-*               zhangliangzhi(187023)
-*******************************************************************************/
+
 ULONG TCPIP_OpenRibTableByFilter(UINTPTR *pulHandle,TCPIP_RIB_FILTER_API_S *pstFilter);
 
 /*******************************************************************************

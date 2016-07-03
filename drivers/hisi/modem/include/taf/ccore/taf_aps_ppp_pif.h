@@ -94,13 +94,7 @@ enum TAF_APS_PPP_RAT_MODE_ENUM
 };
 typedef VOS_UINT8 TAF_APS_PPP_RAT_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_APS_PPP_CDATA_DIAL_MODE_ENUM_UINT8
- 结构说明  : 当前的接入技术
- 1.日    期   : 2015年07月01日
-   作    者   : y00314741
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_APS_PPP_CDATA_DIAL_MODE_ENUM
 {
     TAF_APS_PPP_CDATA_DIAL_MODE_ASYNC_CALL   = 0x00,
@@ -110,13 +104,7 @@ enum TAF_APS_PPP_CDATA_DIAL_MODE_ENUM
 };
 typedef VOS_UINT8 TAF_APS_PPP_CDATA_DIAL_MODE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_APS_PPP_LINK_STATUS_ENUM
- 结构说明  : 链路建链情况枚举
- 1.日    期   : 2015年11月09日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_APS_PPP_LINK_STATUS_ENUM
 {
     TAF_APS_PPP_LINK_NOT_EXISTED             = 0x00,                                 /* 链路不存在 */
@@ -129,13 +117,7 @@ enum TAF_APS_PPP_LINK_STATUS_ENUM
 
 typedef VOS_UINT8 TAF_APS_PPP_LINK_STATUS_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_APS_PPP_AUTH_TYPE_ENUM
- 结构说明  : 鉴权类型枚举
- 1.日    期   : 2015年11月09日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_APS_PPP_AUTH_TYPE_ENUM
 {
     TAF_APS_PPP_AUTH_TYPE_NONE              = 0x00,
@@ -148,13 +130,7 @@ enum TAF_APS_PPP_AUTH_TYPE_ENUM
 
 typedef VOS_UINT8 TAF_APS_PPP_AUTH_TYPE_ENUM_UINT8;
 
-/*****************************************************************************
- 枚举名    : TAF_APS_PPP_NAI_FROM_ENUM
- 结构说明  : 鉴权参数来源枚举
- 1.日    期   : 2015年11月09日
-   作    者   : y00322978
-   修改内容   : 新建
-*****************************************************************************/
+
 enum TAF_APS_PPP_NAI_FROM_ENUM
 {
     TAF_APS_PPP_NAI_FROM_AP              = 0x00,

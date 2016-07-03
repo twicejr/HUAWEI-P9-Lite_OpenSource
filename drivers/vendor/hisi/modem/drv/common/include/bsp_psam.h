@@ -165,6 +165,7 @@ int psam_init(void);
 int bsp_psam_set_ipf_para(struct tagpsam_ipf_reg *para);
 void bsp_psam_config_adthred(unsigned int u32DlADThr);
 int bsp_psam_idle_status(void);
+int bsp_psam_cbdq_idle(void);
 #else
 static inline int bsp_psam_get_cipher_bd(struct tagpsam_cipher_reg * param)
 {
@@ -228,6 +229,11 @@ static inline void bsp_psam_config_adthred(unsigned int u32DlADThr)
 static inline int bsp_psam_idle_status(void)
 {
 	return 0;
+}
+
+static inline int bsp_psam_cbdq_idle(void)
+{
+    return 1;
 }
 #endif
 #endif

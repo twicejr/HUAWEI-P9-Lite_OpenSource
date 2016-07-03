@@ -101,31 +101,7 @@ extern "C" {
  */
 #define OS_ERRNO_HUNT_NAME_ALLOC_FAILED              SRE_ERRNO_OS_ERROR(OS_MID_HUNT, 0x07)
 
-/**
-* @ingroup sre_hunt
-* @brief 通过进程ID及线程名获取线程ID。
-*
-* @par 描述:
-* 通过进程ID及线程名(软中断或任务)获取线程ID。
-* @attention
-* <ul>
-* <li>本核调用#SRE_HuntMature后调用该接口，会检查目的核是否调用#SRE_HuntMature，如果调用了，则继续进行查询操作，否则一直等待。</li>
-* <li>本核调用#SRE_HuntMature之前调用该接口，不关注目的核是否调用#SRE_HuntMature，直接进行查询操作。</li>
-* </ul>
-*
-* @param uwProcessID  [IN] 类型为#UINT32，对于裸核来说为核号(SD6183为硬线程号)，对于多进程(KOS或者UOS进程)来说为查询线程所在的进程ID(COREID | INDEX): bit0~bit7: 进程索引Index; bit8~bit15:核号；其他位保留。
-* @param pcThreadName [IN] 类型为#CHAR*，线程名长度范围[1,15]。
-* @param puwTID [OUT] 类型为#UINT32*，线程TID。
-*
-* @retval #OS_ERRNO_HUNT_THREAD_NOT_CREAT 0x02001f02，该线程未创建或已删除。
-* @retval #OS_ERRNO_HUNT_ILLEGAL_INPUT    0x02001f03，入参非法。
-* @retval #OS_ERRNO_HUNT_NOT_INIT         0x02001f04，hunt还表没有初始化。
-* @retval #SRE_OK                         0x00000000，获取PID成功。
-* @par 依赖:
-* <ul><li>sre_hunt.h：该接口声明所在的头文件。</li></ul>
-* @since RTOSck V100R003C00
-* @see SRE_HuntPidByName
-*/
+
 extern UINT32 SRE_HuntByName(UINT32 uwProcessID, CHAR *pcThreadName, UINT32 *puwTID);
 
 

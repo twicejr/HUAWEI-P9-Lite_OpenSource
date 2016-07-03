@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hut_main.c
-  版 本 号   : 初稿
-  作    者   : mayuan
-  生成日期   : 2013年10月15日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2013年10月15日
-    作    者   : mayuan
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -182,22 +165,7 @@ hut_intr_queue       g_st_intr_queue;
 /*****************************************************************************
   6 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : hut_read_reg
- 功能描述  : 读寄存器
- 输入参数  : puc_data: 输入数据
- 输出参数  : 无
- 返 回 值  : 成功: 发送的字节数(netlink头 + payload + padding)
-             失败: 其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32  hut_read_reg(oal_uint8 *puc_data)
 {
     hal_to_dmac_device_stru   *pst_hal_device;
@@ -237,21 +205,7 @@ OAL_STATIC oal_int32  hut_read_reg(oal_uint8 *puc_data)
                     OAL_SIZEOF(st_frag_hdr), OAL_SIZEOF(ul_val), OAM_NL_CMD_HUT);
 }
 
-/*****************************************************************************
- 函 数 名  : hut_write_reg
- 功能描述  : 写寄存器
- 输入参数  : puc_data: 输入数据
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32  hut_write_reg(oal_uint8 *puc_data)
 {
     hal_to_dmac_device_stru   *pst_hal_device;
@@ -275,21 +229,7 @@ OAL_STATIC oal_int32  hut_write_reg(oal_uint8 *puc_data)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hut_read_mem
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月26日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32  hut_read_mem(oal_uint8 *puc_data)
 {
     hut_rx_node   *pst_rx_node;
@@ -312,21 +252,7 @@ OAL_STATIC oal_int32  hut_read_mem(oal_uint8 *puc_data)
     return oal_queue_work(g_st_hut_workqueue.pst_rx_workqueue, &g_st_hut_workqueue.rx_work);
 }
 
-/*****************************************************************************
- 函 数 名  : hut_write_mem
- 功能描述  : 写内存
- 输入参数  : puc_data: 输入数据
- 输出参数  : 无
- 返 回 值  : OAL_SUCC
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32  hut_write_mem(oal_uint8 *puc_data)
 {
     hut_cmd_fmt_stru   *pst_cmd_fmt;
@@ -351,22 +277,7 @@ OAL_STATIC oal_int32  hut_write_mem(oal_uint8 *puc_data)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hut_read_start_mem_addr
- 功能描述  : 读内存起始地址
- 输入参数  : puc_data: 输入数据
- 输出参数  : 无
- 返 回 值  : 成功: 发送的字节数(netlink头 + payload + padding)
-             失败: 其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32  hut_read_start_mem_addr(oal_uint8 *puc_data)
 {
     hut_frag_hdr_stru   st_frag_hdr;
@@ -392,21 +303,7 @@ OAL_STATIC oal_int32  hut_read_start_mem_addr(oal_uint8 *puc_data)
                     OAL_SIZEOF(st_frag_hdr), OAL_SIZEOF(st_cmd_fmt), OAM_NL_CMD_HUT);
 }
 
-/*****************************************************************************
- 函 数 名  : hut_irq_isr_all
- 功能描述  : HUT中断服务程序入口(中断上半部)
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 #if 0
 OAL_STATIC oal_void  hut_irq_isr_all(oal_void)
 {
@@ -549,21 +446,7 @@ OAL_STATIC oal_void  hut_irq_isr_all(oal_void)
     oal_task_sched(&g_st_hut_tasklet);
 }
 
-/*****************************************************************************
- 函 数 名  : hut_report_in
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月1日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hut_report_in(hut_rx_node *pst_rx_node)
 {
     hal_to_dmac_device_stru   *pst_hal_device;
@@ -646,21 +529,7 @@ oal_void  hut_report_in(hut_rx_node *pst_rx_node)
                     OAL_SIZEOF(st_frag_hdr), OAL_SIZEOF(auc_buf), OAM_NL_CMD_HUT);
 }
 
-/*****************************************************************************
- 函 数 名  : hut_tasklet_handler
- 功能描述  : HUT中断服务程序下半部(用于上报中断)
- 输入参数  : l_data
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hut_tasklet_handler(oal_uint l_data)
 {
     oal_dlist_head_stru   *pst_entry;
@@ -688,21 +557,7 @@ oal_void  hut_tasklet_handler(oal_uint l_data)
     oal_spin_unlock_irq_restore(&g_st_intr_queue.st_spin_lock, &ul_flag);
 }
 
-/*****************************************************************************
- 函 数 名  : hut_get_cmd_name
- 功能描述  : 将命令字从目的地址拷贝到源地址
- 输入参数  : pc_src: 源地址
- 输出参数  : pc_dst: 目的地址
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void hut_get_cmd_name(oal_int8 *pc_dst, oal_int8 *pc_src)
 {
     pc_dst[0] = pc_src[0];
@@ -710,21 +565,7 @@ OAL_STATIC OAL_INLINE oal_void hut_get_cmd_name(oal_int8 *pc_dst, oal_int8 *pc_s
     pc_dst[2] = '\0';
 }
 
-/*****************************************************************************
- 函 数 名  : hut_get_cmd_id
- 功能描述  : 根据命令字获取命令ID
- 输入参数  : puc_data  : 输入数据
- 输出参数  : puc_cmd_id: 命令ID
- 返 回 值  : 成功: OAL_SUCC
- 调用函数  : 失败: OAL_FAIL
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月16日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  hut_get_cmd_id(oal_uint8 *puc_data, oal_uint8 *puc_cmd_id)
 {
     oal_uint8   uc_cmd_idx;
@@ -747,21 +588,7 @@ OAL_STATIC OAL_INLINE oal_uint32  hut_get_cmd_id(oal_uint8 *puc_data, oal_uint8 
     return OAL_FAIL;
 }
 
-/*****************************************************************************
- 函 数 名  : hut_non_frag_msg_recv
- 功能描述  : 处理未分段帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月22日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hut_non_frag_msg_recv(oal_uint8 *puc_data, oal_uint32 ul_len)
 {
     oal_uint8    uc_cmd_id;
@@ -786,21 +613,7 @@ OAL_STATIC oal_uint32  hut_non_frag_msg_recv(oal_uint8 *puc_data, oal_uint32 ul_
     return (oal_uint32)g_ast_hut_cmd_ops[uc_cmd_id].p_hut_cmd_func(puc_data + 2);
 }
 
-/*****************************************************************************
- 函 数 名  : hut_frag_write_mem
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月23日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32  hut_1st_frag_write_mem(oal_uint8 *puc_data, oal_void *p_param)
 {
     hut_frag_hdr_stru   *pst_frag_hdr;
@@ -840,21 +653,7 @@ OAL_STATIC oal_int32  hut_1st_frag_write_mem(oal_uint8 *puc_data, oal_void *p_pa
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hut_2nd_frag_write_mem
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月23日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32  hut_2nd_frag_write_mem(oal_uint8 *puc_data, oal_void *p_param)
 {
     hut_frag_hdr_stru   *pst_frag_hdr;
@@ -885,21 +684,7 @@ OAL_STATIC oal_int32  hut_2nd_frag_write_mem(oal_uint8 *puc_data, oal_void *p_pa
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hut_frag_msg_recv
- 功能描述  : 处理分段帧
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月22日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hut_frag_msg_recv(oal_uint8 *puc_data, oal_uint32 ul_len)
 {
     /* 目前分段的帧只有写内存(wm) */
@@ -907,21 +692,7 @@ OAL_STATIC oal_uint32  hut_frag_msg_recv(oal_uint8 *puc_data, oal_uint32 ul_len)
 }
 
 #ifdef _PRE_DEBUG_MODE
-/*****************************************************************************
- 函 数 名  : hut_debug_info
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月25日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hut_debug_info(oal_uint8 *puc_data, oal_uint32 ul_len)
 {
     hut_frag_hdr_stru   *pst_frag_hdr;
@@ -944,22 +715,7 @@ OAL_STATIC oal_void  hut_debug_info(oal_uint8 *puc_data, oal_uint32 ul_len)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : hut_receive_msg
- 功能描述  : HUT模块netlink接收处理入口函数
- 输入参数  : puc_data: 输入数据
-             ul_len  : 数据长度
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_uint32  hut_receive_msg(oal_uint8 *puc_data, oal_uint32 ul_len)
 {
     hut_frag_hdr_stru   *pst_frag_hdr;
@@ -990,21 +746,7 @@ oal_uint32  hut_receive_msg(oal_uint8 *puc_data, oal_uint32 ul_len)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hut_fsm_null_fn
- 功能描述  : 空函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月23日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_int32  hut_fsm_null_fn(oal_uint8 *puc_data, oal_void *p_param)
 {
     /* 什么都不做 */
@@ -1012,21 +754,7 @@ OAL_STATIC oal_int32  hut_fsm_null_fn(oal_uint8 *puc_data, oal_void *p_param)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hut_read_mem_and_report
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月26日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hut_report_mem(oal_uint8 *puc_data)
 {
     hut_frag_hdr_stru    st_frag_hdr;
@@ -1157,21 +885,7 @@ oal_void  hut_report_mem(oal_uint8 *puc_data)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hut_workqueu_handler
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月28日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hut_workqueu_handler(oal_work_stru *pst_work)
 {
     oal_dlist_head_stru   *pst_entry;
@@ -1196,21 +910,7 @@ oal_void  hut_workqueu_handler(oal_work_stru *pst_work)
 }
 
 
-/*****************************************************************************
- 函 数 名  : hut_fsm_init
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月23日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_void  hut_fsm_init(hut_fsm_stru *pst_fsm)
 {
     hut_fsm_state_enum_uint8        en_state;
@@ -1239,21 +939,7 @@ OAL_STATIC oal_void  hut_fsm_init(hut_fsm_stru *pst_fsm)
     pst_fsm->en_state = HUT_FSM_STATE_INIT;
 }
 
-/*****************************************************************************
- 函 数 名  : hut_set_rx_dscr_queue_circle
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hut_set_rx_dscr_queue_circle(oal_void)
 {
     hal_to_dmac_device_stru         *pst_hal_device;
@@ -1274,21 +960,7 @@ oal_void  hut_set_rx_dscr_queue_circle(oal_void)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hut_set_rx_dscr_queue_uncircle
- 功能描述  :
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年11月21日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hut_set_rx_dscr_queue_uncircle(void)
 {
     hal_to_dmac_device_stru         *pst_hal_device;
@@ -1308,22 +980,7 @@ oal_void  hut_set_rx_dscr_queue_uncircle(void)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hut_main_init
- 功能描述  : HUT模块初始化总入口
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 成功: OAL_SUCC
-             失败: 其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_int32 hut_main_init(oal_void)
 {
     oal_uint8 *puc_base_addr = OAL_PTR_NULL;
@@ -1382,21 +1039,7 @@ oal_int32 hut_main_init(oal_void)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hut_main_exit
- 功能描述  : HUT模块卸载函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年10月15日
-    作    者   : mayuan
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hut_main_exit(oal_void)
 {
     if (OAL_PTR_NULL != g_st_base_addr.puc_base_addr_origin)

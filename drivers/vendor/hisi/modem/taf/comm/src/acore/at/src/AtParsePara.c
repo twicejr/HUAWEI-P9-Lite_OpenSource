@@ -385,21 +385,7 @@ AT_MAIN_STATE_STRU AT_MAIN_PARA_STATE_TAB[] =
 
 pAtChkFuncType      pgAtCheckFunc   = NULL;
 
-/******************************************************************************
- 函数名称: atCmparePara
- 功能描述: 参数比较
 
- 参数说明:
-  This function has no arguments.
-
- 返 回 值:
-    AT_SUCCESS: 成功
-    AT_FAILURE: 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 
 VOS_UINT32 atCmparePara(VOS_VOID)
 {
@@ -442,22 +428,7 @@ VOS_UINT32 atCmparePara(VOS_VOID)
     }
 }
 
-/******************************************************************************
- 函数名称: atParsePara
- 功能描述: 解析参数脚本字符串,与命令解析得出的参数进行比较,并返回结果
 
- 参数说明:
-   pData [in] 输入的字符串
-   usLen [in] 字符串的长度
-
- 返 回 值:
-    AT_SUCCESS: 成功
-    AT_FAILURE: 失败
-
- 调用要求: TODO: ...
- 调用举例: TODO: ...
- 作    者: 崔军强/00064416 [2009-08-11]
-******************************************************************************/
 
 VOS_UINT32 atParsePara( VOS_UINT8 * pData, VOS_UINT16 usLen)
 {

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmSwitchOn.h
-  版 本 号   : 初稿
-  作    者   : luokaihui / 00167671
-  生成日期   : 2011年4月7日
-  最近修改   :
-  功能描述   : NasMmcFsmSwitchOn.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年4月7日
-    作    者   : luokaihui / 00167671
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 其他头文件包含
@@ -178,17 +161,13 @@ VOS_VOID NAS_MMC_RcvStartCnf_SwitchOn_ProcAsRatCapabilityStatus (VOS_VOID);
 
 VOS_VOID NAS_MMC_RcvStartCnf_SwitchOn_InitRatForbidListCfg (VOS_VOID);
 
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 VOS_VOID NAS_MMC_SavePlmnRatPrio_SwitchOn(
     MSCC_MMC_PLMN_RAT_PRIO_STRU          *pRcvPlmnRatPrio
 );
-/* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, Begin */
 VOS_VOID NAS_MMC_Save3Gpp2RatPrio_SwitchOn(
     MSCC_MMC_3GPP2_RAT_STRU             *pst3Gpp2Rat
 );
-/* Added by s00246516 for L-C互操作项目, 2014-01-28, End */
 
 VOS_VOID NAS_MMC_SaveAllowRegDomain_SwitchOn(
     NAS_MSCC_PIF_ALLOWED_REG_DOMAIN_ENUM_UINT8                   enRegDomain

@@ -1,33 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnTask.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2008年1月10日
-  最近修改   : 2008年1月10日
-  功能描述   : TAF FID入口，执行FID初始化和消息分发操作
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-  2.日    期   : 2008年10月10日
-    作    者   : f62575
-    修改内容   : 问题单号：AT2D06152（AT2D06151）, USIMM优化合入后，SMSP文件相关读写操作失败
-  3.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : AT2D16304, STK PP DOWN功能完善和SMS相关的(U)SIM文件REFRESH
-  4.日    期   : 2010年2月21日
-    作    者   : f62575
-    修改内容   : 问题单号: AT2D16941,短信功能任意点回放
-
-  5.日    期   : 2010年3月2日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS R7协议升级
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -39,9 +10,7 @@
 #include "Ssa_Define.h"
 #include "MnCall.h"
 #include "Taf_Aps.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include "TafMmcInterface.h"
 #include "MnMsgExt.h"
 #include "UsimPsInterface.h"
@@ -50,9 +19,7 @@
 #include "MnCallTimer.h"
 #include "RabmTafInterface.h"
 #include "MmaAppLocal.h"
-/* Added by L60609 for AT Project，2011-10-05,  Begin*/
 #include "TafDrvAgentMain.h"
-/* Added by L60609 for AT Project，2011-10-05,  End*/
 #include "MnCallReqProc.h"
 #include "TafApsMain.h"
 #include "MnCallCtx.h"
@@ -69,14 +36,10 @@
 
 #include "NasUsimmApi.h"
 
- /* Added by l00208543 for V9R1 STK升级, 2013-07-10, begin */
 #include "TafCbaProcUsim.h"
- /* Added by l00208543 for V9R1 STK升级, 2013-07-10, end */
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-05, begin */
 #include "MnCallImsaProc.h"
 #include "TafMntn.h"
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-10-05, end */
 
 #include "TafCsCallMain.h"
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
@@ -108,7 +71,6 @@ extern VOS_VOID TAF_XSMS_PidMsgProc(MsgBlock* pstMsg);
 
 VOS_UINT8                               g_ucMnOmConnectFlg       = VOS_FALSE;   /* UE与PC工具的连接标志, VOS_TRUE: 已连接; VOS_FALSE: 未连接 */
 VOS_UINT8                               g_ucMnOmPcRecurEnableFlg = VOS_FALSE;   /* PC工具配置的发送NAS PC回放消息的使能标志 */
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
 MN_STK_MSG_FUNC_MAP_STRU                g_astTafStkMsgFuncMap[] =
 {
     {STK_MSG_SEND_REQ,         MN_MSG_MSGTYPE_SEND_RPDATA_DIRECT, MN_MSG_ProcAppSend},
@@ -125,40 +87,12 @@ MN_STK_MSG_FUNC_MAP_STRU                g_astTafStkMsgFuncMap[] =
     {STK_SS_USSD_REQ,          TAF_MSG_PROCESS_USS_MSG,           MN_SndAppMsgToSs},
     {SI_STK_ENVELOPE_CNF,    SI_STK_ENVELOPE_CNF,              TAF_ProcStkEnvelopeCnf}
 };
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 /*****************************************************************************
    2 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : MN_Init
- 功能描述  : 初始化TAF的各个模块
- 输入参数  : 略
- 返 回 值  : 略
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年4月20日
-    作    者   : z00161729
-    修改内容   : 修改问题单AT2D18405
-  3.日    期   : 2011年12月2日
-    作    者   : L00171473
-    修改内容   : 补上流控初始化For DTS2011120201716
-  4.日    期   : 2012年12月26日
-    作    者   : s46746
-    修改内容   : DSDA GUNAS C CORE项目，增加SDC初始化
-  5.日    期   : 2013年5月9日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:增加SPM的初始化
-  6.日    期   : 2013年6月17日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-*****************************************************************************/
 VOS_UINT32  MN_Init(enum VOS_INIT_PHASE_DEFINE  ip)
 {
     TAF_SDC_CTX_STRU                    *pstSdcCtx = VOS_NULL_PTR;
@@ -258,55 +192,10 @@ VOS_VOID Taf_ProcCallCtrlNotAllow(struct MsgCB * pstMsg)
 VOS_VOID Taf_ProcCallCtrlAllowWithModification(struct MsgCB * pstMsg)
 {
 
-/*
-    调用数据转换函数
 
-    switch 操作类型
-        case 呼叫:
-            if (找到处于CCA_CALL_CTRL_PROCEEDING状态的呼叫实体)
-            {
-                更新对应实体的状态信息
-                调用Cca_CallOrigReqProc
-            }
-            break;
-
-        case 补充业务:
-        case USSD业务:
-            if (之前的操作是并不是SSA发起的Call control操作)
-            {
-                清空对应发起操作实体的状态(CCA或者APS)
-            }
-
-            调用公共处理函数(MMI字串解析函数，该函数的实现方式待定,
-                             等CCA编码完成后，再行确定)
-            调用SSA的接口(此处还需要依据新版的SSA的实现方式来确定)
-            break;
-
-        case 数传:
-            调用APS的PDP激活接口(此处还需要依据新版的APS的实现方式来确定)
-            break;
-
-        default:
-            break;
-
-    上报事件，告知应用由于call control的原因，呼叫发生了改变
-
-*/
 }
 
-/*****************************************************************************
- 函 数 名  : Taf_ProcSimaMsg
- 功能描述  : 处理来自Sima的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  Taf_ProcSimaMsg (struct MsgCB * pstMsg)
 {
 /*
@@ -341,25 +230,7 @@ VOS_VOID  Taf_ProcSimaMsg (struct MsgCB * pstMsg)
 */
 }
 
-/*****************************************************************************
- 函 数 名  : MN_ProcTimerMsg
- 功能描述  : 处理定时器消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2008年1月10日
-   作    者   : 丁庆 49431
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月19日
-   作    者   : h44270
-   修改内容   : modified by PS Project，修改消息入口函数
- 3.日    期   : 2014年11月17日
-   作    者   : w00176964
-   修改内容   : CDMA 1x项目迭代5修改
-*****************************************************************************/
 VOS_VOID  MN_ProcTimerMsg (struct MsgCB * pstMsg)
 {
     REL_TIMER_MSG * pstTmrMsg = (REL_TIMER_MSG *)pstMsg;
@@ -396,32 +267,7 @@ VOS_VOID  MN_ProcTimerMsg (struct MsgCB * pstMsg)
 
 /* 删除原 MN_GetUsimMsgClient接口函数 */
 
-/*****************************************************************************
- 函 数 名  : MN_GetUsimMsgServerType
- 功能描述  : 从USIM过来的消息中抽取业务类型
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期  : 2012年12月26日
-    作    者  : 张鹏 id:00214637
-    修改内容  : 参考 MN_GetUsimMsgClient 重写，提取消息业务类型
-  2.日    期  : 2013年5月15日
-    作    者  : w00176964
-    修改内容  : SS FDN&Call Control项目:fdn回复结果统一使用client ID,后续CALL/MSG的
-                FDN检查放到SPM中可以统一在SPM中处理
-  3.日    期   : 2013年6月5日
-    作    者   : z00161729
-    修改内容   : SVLTE 和usim接口调整修改
-  4.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-  5.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_UINT32 MN_GetUsimMsgServerType(struct MsgCB * pstMsg)
 {
     VOS_UINT32                          ulServerType;
@@ -457,34 +303,7 @@ VOS_UINT32 MN_GetUsimMsgServerType(struct MsgCB * pstMsg)
     return ulServerType;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_ProcUsimMsg
- 功能描述  : 处理来自USIM的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2009年12月16日
-    作    者   : f62575
-    修改内容   : 增加对PS_USIM_REFRESH_FILE_IND事件 的处理
-  3.日    期   : 2011年6月24日
-    作    者   : 傅映君/f62575
-    修改内容   : DTS2011062201273 MO SMS CONTROL
-  4.日    期   : 2012年02月24日
-    作    者   : 傅映君/f62575
-    修改内容   : C50_IPC Project    为适配FDN业务USIM消息处理过程按客户分类处理
-  5.日    期   : 2012年12月26日
-    作    者   : 张鹏 id:00214637
-    修改内容   : USIM 上报消息的分发处理
-  6.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-*****************************************************************************/
 VOS_VOID  MN_ProcUsimMsg (struct MsgCB * pstMsg)
 {
     VOS_UINT32                          ulServerType;
@@ -521,22 +340,7 @@ VOS_VOID  MN_ProcUsimMsg (struct MsgCB * pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_ProcPihMsg
- 功能描述  : 处理来自Pih的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  2.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID  MN_ProcPihMsg (struct MsgCB * pstMsg)
 {
     MSG_HEADER_STRU                    *pstMsgHeader = VOS_NULL_PTR;
@@ -552,29 +356,7 @@ VOS_VOID  MN_ProcPihMsg (struct MsgCB * pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_ProcMmcMsg
- 功能描述  : 处理来自Mmc的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 傅映君 62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 支持ALS特性
-  3. 日    期   : 2010年12月27日
-     作    者   : h44270
-     修改内容   : Modified by PS Project, 增加新的消息处理函数入口，删除来自SPY的消息
-  4.日    期   : 2012年4月5日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-*****************************************************************************/
 VOS_VOID  MN_ProcMmcMsg (struct MsgCB * pstMsg)
 {
     switch (((MSG_HEADER_STRU *)pstMsg)->ulMsgName)
@@ -596,19 +378,7 @@ VOS_VOID  MN_ProcMmcMsg (struct MsgCB * pstMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_ProcOmMsg
- 功能描述  : 处理来自Mmc的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目新增函数
-*****************************************************************************/
 VOS_VOID  MN_ProcOmMsg (struct MsgCB * pstMsg)
 {
     ID_NAS_OM_INQUIRE_STRU              *pstOmInquire;
@@ -632,56 +402,21 @@ VOS_VOID  MN_ProcOmMsg (struct MsgCB * pstMsg)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_ProcUsimStatus
- 功能描述  : 处理来自MMA发送的卡在位消息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年3月28日
-    作    者   : zhoujun /40661
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  3.日    期   : 2012年4月5日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-  4.日    期   : 2013年7月9日
-    作    者   : l00208543
-    修改内容   : for V9R1 STK升级项目
-  5.日    期   : 2013年8月30日
-    作    者   : l00208543
-    修改内容   : DTS2013082902121
-  6.日    期   : 2013年9月10日
-    作    者   : z00161729
-    修改内容   : 支持ss重发
-  7.日    期   : 2015年03月14日
-    作    者   : y00245242
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID MN_ProcUsimStatus(
     struct MsgCB                        * pstMsg
 )
 {
     MNPH_USIM_STATUS_IND_STRU           *pstUsimStatus;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-09, begin */
     MN_MSG_SetSmsFileRefreshFlag(USIMM_USIM_EFSMSS_ID, VOS_TRUE);
     MN_MSG_SetSmsFileRefreshFlag(USIMM_USIM_EFSMS_ID, VOS_TRUE);
     MN_MSG_SetSmsFileRefreshFlag(USIMM_USIM_EFSMSP_ID, VOS_TRUE);
     MN_MSG_SetSmsFileRefreshFlag(USIMM_USIM_EFSMSR_ID, VOS_TRUE);
-    /* Added by l00208543 for V9R1 STK升级, 2013-07-09, end */
 
     pstUsimStatus = (MNPH_USIM_STATUS_IND_STRU *)pstMsg;
     MN_MSG_CfgDataInit(pstUsimStatus->enUsimStatus);
@@ -692,12 +427,10 @@ VOS_VOID MN_ProcUsimStatus(
 
 #endif
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if (MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucAlsSupportFlg )
     {
         MN_CALL_LineInfo(pstUsimStatus->enUsimStatus);
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     /* 在PID init读取呼叫重建nv的时候判断是否是测试卡，但可能由于时序问题导致判断结果错误，
        因此在运行时再读调用一次读取NV的函数，在函数中判断是否是测试卡 */
@@ -715,21 +448,7 @@ VOS_VOID MN_ProcUsimStatus(
 }
 
 #ifndef __PS_WIN32_RECUR__
-/*****************************************************************************
- 函 数 名  : TAF_RcvMmaOmMaintainInfoInd
- 功能描述  : 处理来自MMA的PC工具可谓可测配置信息
- 输入参数  : pstMsg
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年4月24日
-    作    者   : l00171473
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_RcvMmaOmMaintainInfoInd(
     struct MsgCB                       *pstMsg
 )
@@ -751,44 +470,7 @@ VOS_VOID TAF_RcvMmaOmMaintainInfoInd(
     }
 }
 #endif
-/*****************************************************************************
- 函 数 名  : MN_ProcMmaMsg
- 功能描述  : 处理来自Mma的消息
- 输入参数  : pstMsg - 收到的消息
- 输出参数  : 无
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年2月11日
-    作    者   : f62575
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年5月13日
-    作    者   : zhoujun /z40661
-    修改内容   : NAS支持CBS
-
-  3.日    期   : 2011年3月28日
-    作    者   : zhoujun /40661
-    修改内容   : USIM的状态通知修改为由MMA模块通知
-  4.日    期   : 2012年4月24日
-    作    者   : l00171473
-    修改内容   : DTS2012041805606
-  5.日    期   : 2013年6月4日
-    作    者   : s00217060
-    修改内容   : for V9R1_SVLTE:MSG收到MMA CS域服务能力变更消息的处理
-  6.日    期   : 2014年04月26日
-    作    者   : y00245242
-    修改内容   : 为eCall feature增加
-
-  7.日    期   : 2014年10月17日
-    作    者   : y00218312
-    修改内容   : 增加MMA通知APS服务变化的处理
-  8.日    期   : 2014年11月17日
-    作    者   : w00176964
-    修改内容   : CDMA 1x项目迭代5修改
-*****************************************************************************/
 VOS_VOID  MN_ProcMmaMsg (
     struct MsgCB                        *pstMsg
 )
@@ -812,9 +494,7 @@ VOS_VOID  MN_ProcMmaMsg (
 
         case MMA_TAF_POWER_OFF_IND:
             Aps_PowerOff();
-            /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-29, begin */
             TAF_CSCALL_ProcMmaMsg(pstMsg);
-            /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-29, end */
             break;
 
         case ID_MMA_TAF_POWER_ON_IND:
@@ -856,33 +536,16 @@ VOS_VOID  MN_ProcMmaMsg (
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_SndAppMsgToSs
- 功能描述  : 将AT或STK来的消息发给SS
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年5月17日
-    作    者   : w00176964
-    修改内容   : 新生成函数
-  2.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，修改函数入口参数
-*****************************************************************************/
 VOS_VOID  MN_SndAppMsgToSs (struct MsgCB *pstMsg)
 {
     MN_APP_REQ_MSG_STRU                *pstSsMsg    = VOS_NULL_PTR;
     VOS_UINT32                          ulRet;
     VOS_UINT32                          ulMsgLen;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     MN_APP_REQ_MSG_STRU                *pstAppMsg = VOS_NULL_PTR;
 
     pstAppMsg   = (MN_APP_REQ_MSG_STRU *)pstMsg;
     ulMsgLen    = pstAppMsg->ulLength;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     /* 申请消息 */
     pstSsMsg = (MN_APP_REQ_MSG_STRU *)PS_ALLOC_MSG(WUEPS_PID_TAF, ulMsgLen);
@@ -911,68 +574,25 @@ VOS_VOID  MN_SndAppMsgToSs (struct MsgCB *pstMsg)
 }
 
 
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, begin */
-/*****************************************************************************
- 函 数 名  : TAF_ProcStkEnvelopeCnf
- 功能描述  : 分发来自STK的
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，新增
-  2.日    期   : 2015年02月06日
-    作    者   : h00313353
-    修改内容   : USIMM卡接口调整
-*****************************************************************************/
 VOS_VOID TAF_ProcStkEnvelopeCnf(struct MsgCB * pstMsg)
 {
     SI_STK_ENVELOPEDWON_CNF_STRU       *pstEnvelope = VOS_NULL_PTR;
 
     pstEnvelope = (SI_STK_ENVELOPEDWON_CNF_STRU *)pstMsg;
 
-    /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, begin */
     if (SI_STK_ENVELOPE_CALLCRTL != pstEnvelope->enEnvelopeType)
     {
         MN_MSG_RcvUsimEnvelopeCnf(pstMsg);
     }
-    /* Deleted by w00176964 for VoLTE_PhaseIII 项目, 2013-12-14, end */
 
     return;
 }
-/* Added by f62575 for V9R1 STK升级, 2013-6-26, end */
 
-/*****************************************************************************
- 函 数 名  : MN_DispatchStkMsg
- 功能描述  : 分发来自STK的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年11月10日
-    作    者   : f62575
-    修改内容   : 新生成函数
-                 DTS2011111004869AT PROJECT 处理来自STK的业务请求消息
-                 由原来的虚拟TAF过来修改为实际的STK模块发过来
-  2.日    期   : 2012年09月20日
-    作    者   : f62575
-    修改内容   : STK&DCM 项目
-  3.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目
-  4.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级，修改消息分发机制
-*****************************************************************************/
 
 VOS_VOID MN_DispatchStkMsg(struct MsgCB * pstMsg)
 {
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     VOS_UINT32                          ulLoop;
     VOS_UINT32                          ulFuncNum;
     MSG_HEADER_STRU                    *pstMsgHeader = VOS_NULL_PTR;
@@ -1006,24 +626,10 @@ VOS_VOID MN_DispatchStkMsg(struct MsgCB * pstMsg)
     pStkMsgFunc(pstMsg);
 
     return;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
 }
 
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, begin */
-/*****************************************************************************
- 函 数 名  : MN_DispatchTafMsg
- 功能描述  : 分发来自TAF的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年9月25日
-    作    者   : s00217060
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_VOID  MN_DispatchTafMsg (struct MsgCB * pstMsg)
 {
     /* TAF->TAF的消息定义一个统一的结构体,取出消息分段 */
@@ -1044,11 +650,9 @@ VOS_VOID  MN_DispatchTafMsg (struct MsgCB * pstMsg)
             TAF_MSG_ProcTafMsg(pstMsg);
             break;
 
-        /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-26, begin */
         case ID_TAF_CALL_INTERNAL_BASE:
             TAF_CALL_ProcTafMsg(pstMsg);
             break;
-        /* Added by y00245242 for V3R3C60_eCall项目, 2014-4-26, end */
 
         /* 其他消息不需要处理 */
         default:
@@ -1058,36 +662,8 @@ VOS_VOID  MN_DispatchTafMsg (struct MsgCB * pstMsg)
 
     return;
 }
-/* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, end */
 
-/*****************************************************************************
- 函 数 名  : MN_DispatchAppMsg
- 功能描述  : 分发来自应用层的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2011年11月07日
-    作    者   : f00179208
-    修改内容   : AT Project, 删除了MN_APP_MSG_CLASS_QRY分支中的处理
-  3.日    期   : 2011年12月19日
-    作    者   : h44270
-    修改内容   : PS Project, 修改MN_APP_MSG_CLASS_PS分支的处理，调用新的处理函数
-  4.日    期   : 2013年5月19日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:SPM处理完的输出消息需要发送到SSA继续处理
-  5.日    期   : 2013年6月26日
-    作    者   : f62575
-    修改内容   : V9R1 STK升级
-  6.日    期   : 2013年10月05日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseII项目
-*****************************************************************************/
 VOS_VOID  MN_DispatchAppMsg (struct MsgCB * pstMsg)
 {
     MN_APP_REQ_MSG_STRU * pstAppMsg = (MN_APP_REQ_MSG_STRU *)pstMsg;
@@ -1105,18 +681,14 @@ VOS_VOID  MN_DispatchAppMsg (struct MsgCB * pstMsg)
 
     case MN_APP_MSG_CLASS_SSA:
         /* 来自SSA API的消息，交给SSA处理 */
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
         MN_SndAppMsgToSs(pstMsg);
-        /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
         break;
 
     case MN_APP_MSG_CLASS_MMA:
         /* 来自MMA API的消息，交给MMA处理 */
         break;
 
-    /* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-10-05, begin */
     /* 移到MN_DispatchTafMsg中处理 */
-    /* Deleted by s00217060 for VoLTE_PhaseII  项目, 2013-10-05, end */
 
     case MN_APP_MSG_CLASS_QRY:
         /* AT与MN模块间查询操作相关消息 */
@@ -1131,22 +703,7 @@ VOS_VOID  MN_DispatchAppMsg (struct MsgCB * pstMsg)
 
 
 
-/*****************************************************************************
- 函 数 名  : MN_DispatchAppMsg
- 功能描述  : 分发来自应用层的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2008年1月10日
-   作    者   : 丁庆 49431
-   修改内容   : 新生成函数
- 2.日    期   : 2011年12月24日
-   作    者   : h44270
-   修改内容   : modified by PS Project,修改消息入口函数，此处不能直接替换
-*****************************************************************************/
 VOS_VOID  MN_DispatchRabmMsg (
     VOS_VOID                            *pstMsg
 )
@@ -1167,24 +724,8 @@ VOS_VOID  MN_DispatchRabmMsg (
 
 }
 
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
 #if (FEATURE_IMS == FEATURE_ON)
-/*****************************************************************************
- 函 数 名  : MN_DispatchImsaMsg
- 功能描述  : 分发来自IMSA的消息
- 输入参数  : pMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
- 1.日    期   : 2013年7月11日
-   作    者   : y00245242
-   修改内容   : 新生成函数
- 2.日    期   : 2013年9月24日
-   作    者   : w00176964
-   修改内容   : VoLTE_PhaseII 项目修改:增加SRVCC相关消息的处理
-*****************************************************************************/
 VOS_VOID MN_DispatchImsaMsg (
     VOS_VOID                           *pMsg
 )
@@ -1200,35 +741,18 @@ VOS_VOID MN_DispatchImsaMsg (
             TAF_MSG_ProcImsaMsg(pstImsaMsg);
             break;
 
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, begin */
         case TAF_CALL_IMSA_MSG_BASE:
             TAF_CALL_ProcImsaMsg(pstImsaMsg);
             break;
-        /* Added by w00176964 for VoLTE_PhaseII 项目, 2013-9-24, end */
 
         default:
             break;
     }
 }
 #endif
-/* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- 函 数 名  : MN_DispatchXccMsg
- 功能描述  : 把XCC的消息进行分发处理
- 输入参数  : struct MsgCB * pstMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年9月25日
-    作    者   : y00213812
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID  MN_DispatchXccMsg (struct MsgCB * pstMsg)
 {
     /* XCC->TAF的消息定义一个统一的结构体,取出消息分段 */
@@ -1257,56 +781,7 @@ VOS_VOID  MN_DispatchXccMsg (struct MsgCB * pstMsg)
 }
 #endif
 
-/*****************************************************************************
- 函 数 名  : MN_DispatchMsg
- 功能描述  : 分发TAF FID收到的消息
- 输入参数  : pstMsg - 收到的消息
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-  2.日    期   : 2010年2月23日
-    作    者   : f62575
-    修改内容   : 问题单号AT2D17029：增加短信功能任意点回放功能
-  3.日    期   : 2011年11月07日
-    作    者   : f00179208
-    修改内容   : AT Project, 修改AT虚拟的WUEPS_PID_TAF为WUEPS_PID_AT
-  4.日    期   : 2011年11月10日
-    作    者   : f62575
-    修改内容   : DTS2011111004869 STK业务请求消息源PID由原来的TAF变更为MAPS_STK_PID，
-                 增加MAPS_STK_PID事件处理分支
-  5. 日    期   : 2010年12月27日
-     作    者   : h44270
-     修改内容   : Modified by PS Project, 增加新的消息处理函数入口，删除来自SPY的消息
-  6.日    期   : 2012年4月5日
-    作    者   : l00171473
-    修改内容   : for V7R1C50 CSFB&PPAC&ETWS&ISR
-  7.日    期   : 2012年7月13日
-    作    者   : w00167002
-    修改内容   : V7R1C50_GUTL_PhaseI:支持TD-SCDMA特性时，需对消息进行适配处理
-  8.日    期   : 2012年11月09日
-    作    者   : l00198894
-    修改内容   : Probe路测工具对接项目扩展OM消息的处理
-  9.日    期   : 2013年5月08日
-    作    者   : w00176964
-    修改内容   : SS FDN&Call Control项目:发送到MN的消息都先经过SPM模块先处理
-  10.日    期   : 2013年6月4日
-     作    者   : z00161729
-     修改内容   : SVLTE 和usim接口调整修改
-  11.日    期   : 2013年6月26日
-     作    者   : f62575
-     修改内容   : V9R1 STK升级
-  12.日    期 : 2013年07月08日
-     作    者 : Y00213812
-     修改内容 : VoLTE_PhaseI 项目，增加TAF模块的消息处理
-  13.日    期   : 2013年09月24日
-     作    者   : s00217060
-     修改内容   : VoLTE_PhaseII项目
-*****************************************************************************/
 VOS_VOID  MN_DispatchMsg (struct MsgCB * pstMsg)
 {
     struct MsgCB                      *pstSrcMsg = VOS_NULL_PTR;
@@ -1354,13 +829,9 @@ VOS_VOID  MN_DispatchMsg (struct MsgCB * pstMsg)
         MN_DispatchStkMsg(pstDestMsg);
         break;
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     case WUEPS_PID_TAF:
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
-        /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, begin */
         MN_DispatchTafMsg(pstDestMsg);
         break;
-        /* Added by s00217060 for VoLTE_PhaseII  项目, 2013-09-24, end */
 
     case WUEPS_PID_AT:
         MN_DispatchAppMsg(pstDestMsg);
@@ -1388,13 +859,11 @@ VOS_VOID  MN_DispatchMsg (struct MsgCB * pstMsg)
         MN_MSG_ProcSmsMsg((VOS_VOID*)pstDestMsg);
         break;
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, begin */
 #if (FEATURE_IMS == FEATURE_ON)
     case PS_PID_IMSA:
         MN_DispatchImsaMsg((VOS_VOID*)pstDestMsg);
         break;
 #endif
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-11, end */
 
     case WUEPS_PID_SM:
         TAF_APS_ProcMsg(pstDestMsg);
@@ -1423,21 +892,17 @@ VOS_VOID  MN_DispatchMsg (struct MsgCB * pstMsg)
     case MAPS_PB_PID:
         MN_ProcUsimMsg(pstDestMsg);
         break;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, begin */
     case MAPS_PIH_PID:
         MN_ProcPihMsg(pstDestMsg);
         break;
-    /* Modified by f62575 for V9R1 STK升级, 2013-6-26, end */
 
     case MSP_PID_DIAG_APP_AGENT:
         MN_ProcOmMsg(pstDestMsg);
         break;
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     case WUEPS_PID_VC:
          TAF_CSCALL_ProcVcMsg(pstDestMsg);
         break;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
 #if ((FEATURE_ON == FEATURE_GCBS) || (FEATURE_ON == FEATURE_WCBS))
@@ -1456,11 +921,9 @@ VOS_VOID  MN_DispatchMsg (struct MsgCB * pstMsg)
         TAF_APS_ProcMsg(pstDestMsg);
         break;
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     case ACPU_PID_TAFAGENT:
         TAF_APS_ProcMsg(pstDestMsg);
         break;
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
@@ -1508,21 +971,7 @@ VOS_VOID  MN_DispatchMsg (struct MsgCB * pstMsg)
 }
 
 
-/*****************************************************************************
- 函 数 名  : WuepsTafFidInit
- 功能描述  : 初始化TAF FID
- 输入参数  : 略
- 返 回 值  : 略
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
-/* Deleted by wx270776 for OM融合, 2015-7-16, begin */
-/* Deleted by wx270776 for OM融合, 2015-7-16, end */
 
 extern VOS_UINT32 WuepsVCPidInit ( enum VOS_INIT_PHASE_DEFINE ip );
 extern VOS_VOID  APP_VC_MsgProc(MsgBlock* pMsg);
@@ -1532,40 +981,7 @@ extern VOS_VOID   At_MsgProc(MsgBlock* pMsg);
 extern VOS_UINT32 At_PidInit(enum VOS_INIT_PHASE_DEFINE enPhase);
 #endif
 
-/*****************************************************************************
- 函 数 名  : WuepsTafFidInit
- 功能描述  : TAF FID初始化函数
- 输入参数  : ip - 初始化阶段
- 输出参数  : 无
- 返 回 值  : 初始化结果
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年5月26日
-    作    者   : o00132663
-    修改内容   : AT2D19540, 将信号量g_ATCtrSendSem提前到TAF_FID初始化函数中
-                 创建，防止出现未创建先使用导致系统挂死的问题。
-
-  2.日    期   : 2010年7月20日
-    作    者   : s62952
-    修改内容   : DTS2010071302886
-
-  3.日    期   : 2011年10月3日
-    作    者   : 鲁琳/l60609
-    修改内容   : AT Project: AT PID注册从TAF FID中删除，并将自处理任务删除；增加AT AGENT pid
-  4.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-  5.日    期   : 2012年5月9日
-    作    者   : z60575
-    修改内容   : DTS2012050905268, C核任务优先级调整
-
-  6.日    期   : 2012年6月30日
-    作    者   : y00213812
-    修改内容   : V7R1C50 A-GPS项目增加MTA模块的初始化和消息处理注册
-
-*****************************************************************************/
 VOS_UINT32 WuepsTafFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
 {
 
@@ -1574,9 +990,7 @@ VOS_UINT32 WuepsTafFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
     switch( ip )
     {
         case   VOS_IP_LOAD_CONFIG:
-            /* Deleted by wx270776 for OM融合, 2015-7-16, begin */
 
-            /* Deleted by wx270776 for OM融合, 2015-7-16, end */
 
             ulRslt = VOS_RegisterPIDInfo(WUEPS_PID_TAF,
                                         (Init_Fun_Type) MN_Init,
@@ -1594,7 +1008,6 @@ VOS_UINT32 WuepsTafFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
                 return VOS_ERR;
             }
 
-            /* Added by l60609 for AT Project，2011-10-03,  Begin*/
             ulRslt = VOS_RegisterPIDInfo(WUEPS_PID_DRV_AGENT,
                                          (Init_Fun_Type)DRVAGENT_Init,
                                          (Msg_Fun_Type)DRVAGENT_DispatchMsg  );
@@ -1603,9 +1016,7 @@ VOS_UINT32 WuepsTafFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
                 return VOS_ERR;
             }
 
-            /* Added by l60609 for AT Project，2011-10-03,  End*/
             #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-            /* Added by h00300778 for 1XSMS Project，2014-11-02,  Begin*/
             ulRslt = VOS_RegisterPIDInfo(UEPS_PID_XSMS,
                                          (Init_Fun_Type)TAF_XSMS_PidInit,
                                          (Msg_Fun_Type)TAF_XSMS_PidMsgProc);
@@ -1615,9 +1026,7 @@ VOS_UINT32 WuepsTafFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
                 return VOS_ERR;
             }
             #endif
-            /* Added by h00300778 for 1XSMS Project，2014-11-02,  End*/
 
-            /* Added by L60609 for AT Project，2011-10-20,  Begin*/
             #if (VOS_WIN32 == VOS_OS_VER)
             ulRslt = VOS_RegisterPIDInfo(WUEPS_PID_AT,
                                          (Init_Fun_Type)At_PidInit,
@@ -1628,7 +1037,6 @@ VOS_UINT32 WuepsTafFidInit ( enum VOS_INIT_PHASE_DEFINE ip )
                 return VOS_ERR;
             }
             #endif
-            /* Added by L60609 for AT Project，2011-10-20,  Begin*/
 
 
             ulRslt = VOS_RegisterMsgTaskPrio(WUEPS_FID_TAF, VOS_PRIORITY_M5);

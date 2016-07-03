@@ -1,20 +1,6 @@
 
 
-/************************************************************************
-Copyright   : 2005-2008, Huawei Tech. Co., Ltd.
-File name   : STKApi.c
-Author      : m00128685
-Version     : V200R001
-Date        : 2008-12-28
-Description : 该文件定义了STK模块的对外接口
 
-Description :
-History     :
-
-1.日    期  : 2008年12月28日
-  作    者  : m00128685
-  修改内容  : Create
-************************************************************************/
 
 #include "siappstk.h"
 #include "si_stk.h"
@@ -38,19 +24,7 @@ extern "C" {
 #define    THIS_FILE_ID PS_FILE_ID_STK_API_C
 /*lint +e767*/
 
-/*****************************************************************************
-函 数 名  : GetMainMenu
-功能描述  : 获取STK功能的主菜单
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年7月6日
-  作    者  : H9254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SendReqMsg(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId, 
@@ -131,19 +105,7 @@ VOS_UINT32 SI_STK_SendReqMsg(
 }
 
 #if  ((OSA_CPU_ACPU == VOS_OSA_CPU) || (defined(DMT)))
-/*****************************************************************************
-函 数 名  : GetMainMenu
-功能描述  : 获取STK功能的主菜单
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年7月6日
-  作    者  : H9254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_GetMainMenu(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId)
@@ -151,19 +113,7 @@ VOS_UINT32 SI_STK_GetMainMenu(
     return SI_STK_SendReqMsg(ClientId,OpId, SI_STK_GETMAINMNUE, SI_STK_NOCMDDATA,0,VOS_NULL_PTR);
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_GetSTKCommand
-功能描述  : 获取缓存的STK主动命令
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月18日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_GetSTKCommand(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
@@ -172,19 +122,7 @@ VOS_UINT32 SI_STK_GetSTKCommand(
     return SI_STK_SendReqMsg(ClientId,OpId, SI_STK_GETCOMMAND, CmdType,0,VOS_NULL_PTR);
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_QuerySTKCommand
-功能描述  : 查询最后一次SIM卡上报的主动命令
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月18日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_QuerySTKCommand(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId)
@@ -196,19 +134,7 @@ VOS_UINT32 SI_STK_QuerySTKCommand(
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_DataSendSimple
-功能描述  : 终端给予下发数据函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月18日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_DataSendSimple(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
@@ -219,19 +145,7 @@ VOS_UINT32 SI_STK_DataSendSimple(
     return SI_STK_SendReqMsg(ClientId,OpId, SI_STK_SIMPLEDOWN,SendType,DataLen,pData);
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_TerminalResponse
-功能描述  : 终端给予响应函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月18日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_TerminalResponse(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId,
@@ -253,19 +167,7 @@ VOS_UINT32 SI_STK_TerminalResponse(
 }
 
 
-/*****************************************************************************
-函 数 名  : SI_STKDualIMSIChangeReq
-功能描述  : 触发IMSI切换流程，沃达丰定制流程
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年02月10日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKDualIMSIChangeReq(
     MN_CLIENT_ID_T                      ClientId,
     MN_OPERATION_ID_T                   OpId)
@@ -298,19 +200,7 @@ VOS_UINT32 SI_STKDualIMSIChangeReq(
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : SI_STKIsDualImsiSupport
-功能描述  : 判断是否支持Dual IMSI切换
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年02月11日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STKIsDualImsiSupport(VOS_VOID)
 {
 #if (( FEATURE_MULTI_MODEM == FEATURE_ON )&&(!defined(DMT)))
@@ -333,19 +223,7 @@ VOS_UINT32 SI_STKIsDualImsiSupport(VOS_VOID)
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_MenuSelection
-功能描述  : STK功能ENVELOP下载函数
-输入参数  : 无
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2008年10月18日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_UINT32 SI_STK_MenuSelection(
     MN_CLIENT_ID_T                      ClientId,
@@ -366,19 +244,7 @@ VOS_UINT32 SI_STK_MenuSelection(
 #endif
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SetUpCallConfirm
-功能描述  : 用户回复是否允许发起呼叫
-输入参数  : ulAction -- 用户回复结果
-输出参数  : 无
-返 回 值  : 执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2012年9月14日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_SetUpCallConfirm(
     MN_CLIENT_ID_T                      ClientId, 
     SI_STK_SETUPCALLCONFIRM_ENUM_UINT32 enAction)
@@ -396,19 +262,7 @@ VOS_UINT32 SI_STK_SetUpCallConfirm(
 #endif
 
 #if ((OSA_CPU_CCPU == VOS_OSA_CPU) || (defined(DMT)))
-/*****************************************************************************
-函 数 名  : SI_STKGetCurImsiSign
-功能描述  : 获取当前IMSI对应的符号
-输入参数  : 无
-输出参数  : 0或1
-返 回 值  : 执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年02月11日
-  作    者  : m00128685
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STKGetCurImsiSign(
     VOS_UINT16                          *pusDualIMSIEnable, 
     VOS_UINT32                          *pulCurImsiSign)
@@ -448,17 +302,7 @@ VOS_VOID SI_STKGetCurImsiSign(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_CCResultInd
-功能描述  : 将MO CALL CONTROL的结果广播上报给AT
-输入参数  : pstRspData--指向CALL CONTROL的解码后码流
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2012年09月14日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_CCResultInd(
     SI_STK_ENVELOPE_RSP_STRU            *pstRspData)
 {
@@ -523,17 +367,7 @@ VOS_VOID SI_STK_CCResultInd(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_SMSCtrlResultInd
-功能描述  : 将MO SMS CONTROL的结果广播上报给AT
-输入参数  : pstRspData--指向SMS CONTROL的解码后码流
-输出参数  : 无
-返 回 值  : 执行结果
-History     :
-1.日    期  : 2012年09月14日
-  作    者  : j00168360
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_SMSCtrlResultInd(
     SI_STK_ENVELOPE_RSP_STRU            *pstRspData)
 {
@@ -602,20 +436,7 @@ VOS_VOID SI_STK_SMSCtrlResultInd(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_DecodeCCRspSpecial
-功能描述  : STK功能ENVELOP回复数据解码
-输入参数  : ulDataLen:  需要解码的数据长度
-            pucData:    需要解码的数据内容
-输出参数  : pstRspData: 解码后的数据内容
-返 回 值  : VOS_VOID
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年06月02日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_DecodeCCRspSpecial(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                           *pucCmdData,
@@ -653,20 +474,7 @@ VOS_VOID SI_STK_DecodeCCRspSpecial(
     return;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_DecodeMoSmsRspSpecial
-功能描述  : STK功能ENVELOP回复数据解码
-输入参数  : ulDataLen:  需要解码的数据长度
-            pucData:    需要解码的数据内容
-输出参数  : pstRspData: 解码后的数据内容
-返 回 值  : VOS_VOID
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年06月02日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_DecodeMoSmsRspSpecial(
     VOS_UINT32                          ulDataLen,
     VOS_UINT8                           *pucCmdData,
@@ -718,21 +526,7 @@ VOS_VOID SI_STK_DecodeMoSmsRspSpecial(
 }
 
 
-/*****************************************************************************
-函 数 名  : SI_STK_EnvelopeRsp_Decode
-功能描述  : STK功能ENVELOP回复数据解码
-输入参数  : enDataType: 解码的信封命令数据类型
-            ulDataLen:  需要解码的数据长度
-            pucData:    需要解码的数据内容
-输出参数  : pstRspData: 解码后的数据内容
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年06月02日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_UINT32 SI_STK_EnvelopeRsp_Decode(
     SI_STK_ENVELOPE_TYPE_UINT32         enDataType,
@@ -795,21 +589,7 @@ VOS_UINT32 SI_STK_EnvelopeRsp_Decode(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_EnvelopeData_Code
-功能描述  : STK功能ENVELOP下载数据编码
-输入参数  : pstENStru: 下发的信封命令数据结构
-输出参数  : pulDataLen: 编码后的数据长度
-            pucData:    编码后的数据内容，输入数据空间要求至少要256个字节
-            pulDataOffset: 编码后的有效数据起始偏移
-返 回 值  : VOS_UINT32函数执行结果
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2010年06月02日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 
 VOS_UINT32 SI_STK_EnvelopeData_Code(
     SI_STK_ENVELOPE_STRU                *pstENStru,
@@ -868,19 +648,7 @@ VOS_UINT32 SI_STK_EnvelopeData_Code(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  :
-功能描述  :
-输入参数  :
-输出参数  :
-返 回 值  :
-调用函数  : 无
-被调函数  : 外部接口
-History     :
-1.日    期  : 2009年07月03日
-  作    者  : z00100318
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_EnvelopeRspDataFree(
     SI_STK_ENVELOPE_RSP_STRU                *pstData)
 {
@@ -941,18 +709,7 @@ VOS_VOID SI_STK_EnvelopeRspDataFree(
     return ;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_CLSndTrMsg
-功能描述  : C+L共SIM卡CBP发送TERMINAL RESPONSE
-输入参数  : DataLen:数据长度
-            pData:数据内容
-输出参数  : 无
-返 回 值  : VOS_UINT32函数执行结果
-History     :
-1.日    期  : 2013年12月20日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_UINT32 SI_STK_CLSndTrMsg(
     VOS_UINT32                          ulDataLen, 
     VOS_UINT8                           *pucData)
@@ -989,17 +746,7 @@ VOS_UINT32 SI_STK_CLSndTrMsg(
     return VOS_OK;
 }
 
-/*****************************************************************************
-函 数 名  : SI_STK_CbpSetupEventListCmdSnd
-功能描述  : C+L共SIM卡BALONG向CBP发送SETUP EVENT LIST命令
-输入参数  : 无
-输出参数  : 无
-返 回 值  : 无
-History     :
-1.日    期  : 2014年01月22日
-  作    者  : h59254
-  修改内容  : Create
-*****************************************************************************/
+
 VOS_VOID SI_STK_CbpSetupEventListCmdSnd(VOS_VOID)
 {
     if ((VOS_NULL_PTR == g_stCbpEventList.pucCmd)

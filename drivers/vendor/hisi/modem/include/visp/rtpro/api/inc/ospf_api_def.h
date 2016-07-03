@@ -77,7 +77,6 @@ extern "C"{
 #define OSPF_CFG_NSSAOPT_DEFAULT    0x01 /* bring default Type-7LSA to area NSSA  */
 #define OSPF_CFG_NSSAOPT_NOIMPORT   0x02 /* no import exterior route to NSSA area */
 #define OSPF_CFG_NSSAOPT_NOSUMMARY  0x04 /* forbid ABR send Summary LSA to NSSA area */
-/*Add by q62011 for DTS2010090302774:【OSPF】增加实现 路由器的 no-import-route 选项的功能*/
 #define OSPF_CFG_NSSAOPT_TRANSLATE_ROLE_ALWAYS 0x08 /*translation of type-7 LSAs into type-5 LSAs.*/
 
 
@@ -85,10 +84,7 @@ extern "C"{
 #define OSPF_CFG_IF_AUTH_SIMPLE       0x1
 #define OSPF_CFG_IF_AUTH_MD5          0x2
 #define OSPF_CFG_IF_AUTH_HMAC         0x3
-/*Added by guo00178934, 新增最大有效认证方式定义, 2011/3/3   问题单号:DTS2011030200955  */
 #define OSPF_CFG_IF_AUTH_MAX          OSPF_CFG_IF_AUTH_HMAC
-/* End of Added by guo00178934, 2011/3/3   问题单号:DTS2011030200955  */
-/*Modified by lKF35457, DTS2010101601584  新增未配置认证方式的定义 for v1r8c01, 2010/10/19 */
 #define OSPF_CFG_IF_AUTH_NOCFG        0xff 
 
 #define OSPF_IF_PASSWORD_PLAIN        0x01
@@ -97,10 +93,8 @@ extern "C"{
 #define OSPF_AREA_PASSWORD_PLAIN    0x01
 #define OSPF_AREA_PASSWORD_CIPHER   0x02
 
-/*Modified by lKF35457, , 2011/5/25   问题单号:OSPF_20110521_01 */
 #define OSPF_AUTH_SIMPLE_PW_LEN_MAX   8
 #define OSPF_AUTH_MD5_PW_LEN_MAX      255 
-/*End of Modified by lKF35457, 2011/5/25   问题单号:OSPF_20110521_01 */
 
 #define OSPF_PREFERENCE_SWITH_INT   0x01
 #define OSPF_PREFERENCE_SWITH_EXT   0x02
@@ -200,12 +194,10 @@ typedef enum tagOSPF_RPM_METRICTYPE
 #define OSPF_IF_STATE_BACKUP_DESIGNTD_RTR  ((LONG)6)
 #define OSPF_IF_STATE_OTHER_DESIGNATD_RTR  ((LONG)7)
 
-/*Added by guojianjun178934, 【DOPRA IP V3R2C10-同步问题单-DTS2014040401470】【SGSN产品：OSPF】linux x86 系统函数times存在bug，需要VISP提供规避方案 , 2014/6/3   问题单号:DTS2014052908271 */
 /*OSPF定时器只用的时钟函数类型定义*/
 /*注意：定时器类型定义修改时，需同步修改NBB_TIMER_TYPE_***中的定义*/
 #define OSPF_TIMER_TYPE_LINUX         1    /*OSPF使用Linux系统提供的时钟函数*/
 #define OSPF_TIMER_TYPE_LINUX_EXT     2    /*OSPF使用Linux提供的时钟函数*/
-/* End of Added by guojianjun178934, 2014/6/3   问题单号:DTS2014052908271 */
 
 /*ospf模块的错误码*/
 typedef enum tagOSPF_ERROR_CODE
@@ -273,7 +265,7 @@ typedef enum tagOSPF_ERROR_CODE
     OSPF_ERR_CFG_PREFERENCE_EXT,         /*144*/
     OSPF_ERR_MODULE_NOT_REGISTERED,      /*145*/
     
-    OSPF_ERR_MEM_RELEASE,                /*146 释放内存有误 BC3D01051 l00147446 09-01-08*/
+    OSPF_ERR_MEM_RELEASE,
     OSPF_ERR_INVALID_GR_PERIOD,          /*147 Invalid Gr period BC3D01086 liangjicheng 09-01-14*/
 
     /* Begin:VISP1.7C03 VRF qinyun , 2009-01-20 */
@@ -294,11 +286,9 @@ typedef enum tagOSPF_ERROR_CODE
     OSPF_ERR_INVALID_STATIC_RPAID,       /*158 无效静态协议引入ID */
     OSPF_ERR_INVALID_DYNAMIC_RPAID,      /*159 无效动态协议引入ID */
     
-    /*Added by guojianjun178934, V2同步问题单的处理--同步错误码, 2013/9/18   问题单号:T.OSPF.DTS2013081601109 */
     OSPF_ERR_WAIT_RTM_JOIN_STATUS_TIMEOUT, /*160 等待OSPF同RTM Join 状态超时 */
     OSPF_ERR_WAIT_RTM_JOIN_ACTIVE_TIMEOUT,      /*161 等待OSPF同RTM Join UP超时 */
     OSPF_ERR_WAIT_RTM_JOIN_GONE_TIMEOUT,    /*162 等待OSPF同RTM GONE UP超时 */
-    /* End of Added by guojianjun178934, 2013/9/18   问题单号:T.OSPF.DTS2013081601109 */
     OSPF_ERR_END                         
 }OSPF_ERROR_E;
 

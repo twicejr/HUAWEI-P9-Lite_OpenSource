@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 1987-2013, 深圳华为技术有限公司.
-*
-*   文 件 名 :  Drvinterface.h
-*
-*   作    者 :  wangxiandong
-*
-*   描    述 :  本文件命名为"Drvinterface.h", 给出V7R1底软和协议栈之间的API接口统计
-*
-*   修改记录 :  2013年1月21日  v1.00  wangxiandong 创建
-*************************************************************************/
+
 #ifndef __BSP_CIPHER_H__
 #define __BSP_CIPHER_H__
 
@@ -28,7 +18,8 @@ int cipher_init(void);
 int cipher_init(void)
 {return 0;}
 #endif
-int cipher_start_channel(unsigned int chn, unsigned int num, CIPHER_SUBMIT_TYPE_E subm_attr);
+int cipher_start_channel(unsigned int chn, unsigned int num,
+			unsigned int *roll_back, CIPHER_SUBMIT_TYPE_E subm_attr);
 int mdrv_cipher_chn_idle(unsigned int chn);
 int kdf_rw_key (KDF_OPS kdf_op, void * pDestAddr, unsigned int u32KeyIndex ,unsigned int u32ReadLength);
 int mdrv_cipher_gen_key(KEY_CONFIG_INFO_S * pstKeyCfgInfo, S_CONFIG_INFO_S * pstSCfgInfo,

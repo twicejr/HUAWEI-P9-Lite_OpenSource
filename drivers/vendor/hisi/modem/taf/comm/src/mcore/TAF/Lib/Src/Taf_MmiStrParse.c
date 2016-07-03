@@ -134,20 +134,7 @@ MN_CALL_CLIR_CFG_ENUM_U8  f_enClirOperate = MN_CALL_CLIR_AS_SUBS;
 /*****************************************************************************
   6 函数实现
 *****************************************************************************/
-/**********************************************************
- 函 数 名  : MMI_GetOporationTypeTblSize
- 功能描述  : 获取补充业务操作码映射表的容量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 补充业务操作码映射表的容量
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，
-*************************************************************/
 
 VOS_UINT32 MMI_GetOporationTypeTblSize(VOS_VOID)
 {
@@ -158,40 +145,13 @@ VOS_UINT32 MMI_GetOporationTypeTblSize(VOS_VOID)
     return ulTblSize;
 }
 
-/**********************************************************
- 函 数 名  : MMI_GetOporationTypeTblAddr
- 功能描述  : 获取通用补充业务操作码映射表的地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 通用补充业务操作码映射表的地址
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，
-*************************************************************/
 MN_MMI_SS_OP_Tbl_STRU *MMI_GetOporationTypeTblAddr(VOS_VOID)
 {
     return g_astTafMmiOporationTypeTbl;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_GetBSTblSize
- 功能描述  : 获取BS表容量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BS表容量
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MMI_GetBSTblSize(VOS_VOID)
 {
     VOS_UINT32                          ulTblSize;
@@ -201,41 +161,13 @@ VOS_UINT32 MMI_GetBSTblSize(VOS_VOID)
     return ulTblSize;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_GetBSTblAddr
- 功能描述  : 获取BS表地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : BS表地址
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_MMI_BS_TABLE_STRU *MMI_GetBSTblAddr(VOS_VOID)
 {
     return f_stMmiBSInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_GetSCTblSize
- 功能描述  : 获取SC表容量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : SC表容量
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MMI_GetSCTblSize(VOS_VOID)
 {
     VOS_UINT32                          ulTblSize;
@@ -245,41 +177,13 @@ VOS_UINT32 MMI_GetSCTblSize(VOS_VOID)
     return ulTblSize;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_GetSCTblSize
- 功能描述  : 获取SC表地址
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : SC表地址
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2013年5月06日
-    作    者   : f62575
-    修改内容   : 新生成函数
-*****************************************************************************/
 MN_MMI_SC_TABLE_STRU *MMI_GetSCTblAddr(VOS_VOID)
 {
     return f_stMmiScInfo;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_AtoI
- 功能描述  : 将数字字符串转换成对应的整数
- 输入参数  : pcSrc - 待转换的数字字符窜
- 输出参数  : 无
- 返 回 值  : 转换后的整数
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 MMI_AtoI(
     const VOS_CHAR                      *pcSrc
 )
@@ -298,23 +202,7 @@ LOCAL VOS_UINT32 MMI_AtoI(
 
 
 
-/*****************************************************************************
- 函 数 名  : MMI_StrChr
- 功能描述  : 在一定范围内的字符串中查找指定的字符
- 输入参数  : pcFrom - 字符串的起始位置
-             pcTo   - 字符串的终止位置
-             char   - 待查找的字符
- 输出参数  : 无
- 返 回 值  : 返回所找到的字符串中的字符的地址，未查找到，则返回空指针
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_CHAR* MMI_StrChr(
     const VOS_CHAR                      *pcFrom,
     const VOS_CHAR                      *pcTo,
@@ -344,45 +232,13 @@ LOCAL VOS_CHAR* MMI_StrChr(
 
 
 
-/*****************************************************************************
- 函 数 名  : MMI_Max
- 功能描述  : 取得两个无符号整型数据中的较大值
- 输入参数  : ulNumbera
-             ulNumberb
- 输出参数  : 无
- 返 回 值  : 返回两个无符号整型数据中的较大值
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年4月19日
-    作    者   : L47619
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 MMI_Max(const VOS_UINT32 ulNumbera, const VOS_UINT32 ulNumberb)
 {
     return ((ulNumbera > ulNumberb) ? ulNumbera : ulNumberb);
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_DecodeScAndSi
- 功能描述  : 对MMI字符串中的Sc和Si进行解析，输出解析后的内容
- 输入参数  : pInMmiStr   - 待解析的MMI字符串
-             pMmiOpParam - 指示对应的操作
- 输出参数  : pstScSiPara - 解析后的Sc和Si的数据类型
-             ppOutMmiStr - 剩余字符串的起始地址
- 返 回 值  : VOS_TRUE    - 解析成功
-             VOS_FALSE   - 解析失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_BOOL MMI_DecodeScAndSi(
     VOS_CHAR                            *pInMmiStr,
     MN_MMI_OPERATION_PARAM_STRU         *pMmiOpParam,
@@ -474,25 +330,7 @@ VOS_BOOL MMI_DecodeScAndSi(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MMI_JudgePinOperation
- 功能描述  : 判断字符串对应的操作是不是进行pin码操作，如果是pin码操作，填写对应的参数
- 输入参数  : pMmiStr         - 待解析的字符串
- 输出参数  : ppOutRestMmiStr - 剩余字符串的起始地址
-             pMmiOpParam     - pin操作相关的参数
-             pulErrorNo      - 在解析出是pin码操作的情况下，如果后面的参数有错误，
-                               那么输出对应的错误码，无错误时，填MN_ERR_NO_ERROR
- 返 回 值  : VOS_TRUE        - 是pin码操作
-             VOS_FALSE       - 不是pin码操作
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL  VOS_BOOL MMI_JudgePinOperation(
     VOS_CHAR                            *pMmiStr,
     MN_MMI_OPERATION_PARAM_STRU         *pMmiOpParam,
@@ -583,25 +421,7 @@ LOCAL  VOS_BOOL MMI_JudgePinOperation(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_JudgePwdOperation
- 功能描述  : 判断字符串对应的操作是不是进行密码操作，如果是密码操作，填写对应的参数
- 输入参数  : pMmiStr         - 待解析的字符串
- 输出参数  : ppOutRestMmiStr - 剩余字符串的起始地址
-             pMmiOpParam     - 密码操作相关的参数
-             pulErrorNo      - 在解析出是密码操作的情况下，如果后面的参数有错误，
-                               那么输出对应的错误码，无错误时，填MN_ERR_NO_ERROR
- 返 回 值  : VOS_TRUE        - 是密码操作
-             VOS_FALSE       - 不是密码操作
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL  VOS_BOOL MMI_JudgePwdOperation(
     VOS_CHAR                            *pMmiStr,
     MN_MMI_OPERATION_PARAM_STRU         *pMmiOpParam,
@@ -701,23 +521,7 @@ LOCAL  VOS_BOOL MMI_JudgePwdOperation(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MMI_JudgeTmpModeClirOp
- 功能描述  : 判断字符串对应的操作是不是CLIR临时模式下的抑制或调用操作。
- 输入参数  : pMmiStr         - 待解析的字符串
- 输出参数  : ppOutRestMmiStr - 剩余字符串的起始地址
-             pMmiOpParam     - 密码操作相关的参数
- 返 回 值  : VOS_TRUE        - 是线路相关操作
-             VOS_FALSE       - 不是线路相关操作
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL  VOS_BOOL MMI_JudgeTmpModeClirOp(
     VOS_CHAR                            *pInMmiStr,
     VOS_CHAR                            **ppOutRestMmiStr,
@@ -747,23 +551,7 @@ LOCAL  VOS_BOOL MMI_JudgeTmpModeClirOp(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MMI_JudgeImeiOperation
- 功能描述  : 判断字符串对应的操作是否是显示IMEI
- 输入参数  : pMmiStr         - 待解析的字符串
- 输出参数  : ppOutRestMmiStr - 剩余字符串的起始地址
-             pMmiOpParam     - 密码操作相关的参数
- 返 回 值  : VOS_TRUE        - 是显示IMEI操作
-             VOS_FALSE       - 不是显示IMEI操作
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL  VOS_BOOL MMI_JudgeImeiOperation(
     VOS_CHAR                            *pcInMmiStr,
     VOS_CHAR                            **ppcOutRestMmiStr,
@@ -782,21 +570,7 @@ LOCAL  VOS_BOOL MMI_JudgeImeiOperation(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_JudgeUssdOperation
- 功能描述  : 判断字符串对应的操作是否是USSD操作
- 输入参数  : pMmiStr         - 待解析的字符串
- 输出参数  : 无
- 返 回 值  : VOS_TRUE        - 是显示IMEI操作
-             VOS_FALSE       - 不是显示IMEI操作
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
  VOS_BOOL MMI_JudgeUssdOperation(
     VOS_CHAR                            *pcMmiStr
 )
@@ -819,21 +593,7 @@ LOCAL  VOS_BOOL MMI_JudgeImeiOperation(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_TransMmiSsCodeToNetSsCode
- 功能描述  : 将Mmi字串中的Ss Code转换成网络定义的Ss Code
- 输入参数  : pstScSiPara  - MMI定义的Sc和Si的定义
- 输出参数  : pucNetSsCode - 转换后的网络定义的Ss Code
- 返 回 值  : VOS_OK       - 转换成功
-             VOS_ERR    - 转换失败
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MMI_TransMmiSsCodeToNetSsCode(
     MN_MMI_SC_SI_PARA_STRU              *pstScSiPara,
     VOS_UINT8                           *pucNetSsCode
@@ -862,24 +622,7 @@ VOS_UINT32 MMI_TransMmiSsCodeToNetSsCode(
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_TransMmiBsCodeToNetBsCode
- 功能描述  : 将Mmi字串中的Bs Code转换成网络定义的Bs Code
- 输入参数  : pstScSiPara  - MMI定义的Sc和Si的定义
-             ucNetSsCode  - 网络定义的Ss Code
- 输出参数  : pucNetBsCode - 转换后的网络定义的Bs Code
-             pucNetBsType - 转换后的网络定义的Bs Type
- 返 回 值  : VOS_OK       - 转换成功
-             VOS_ERR    - 转换失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 MMI_TransMmiBsCodeToNetBsCode(
     VOS_UINT8                           ucNetSsCode,
     MN_MMI_SC_SI_PARA_STRU              *pstScSiPara,
@@ -933,29 +676,7 @@ LOCAL VOS_UINT32 MMI_TransMmiBsCodeToNetBsCode(
     /* BS Code 的转换完成 */
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_FillInRegisterSSPara
- 功能描述  : 填写RegisterSS操作需要的参数
- 输入参数  : pstScSiPara   - 输入解析后的Sc和Si的数据类型
- 输出参数  : pstMmiOpParam - RegisterSS操作类型相应的参数
-             pucErrCode    - 剩余字符串的起始地址
- 返 回 值  : VOS_TRUE      - 填写参数成功
-             其余值        - 参数有错误
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2008年09月02日
-    作    者   : h44270
-    修改内容   : AT2D05318
-  3.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS密码下移到SS模块
-*****************************************************************************/
 VOS_UINT32 MMI_FillInRegisterSSPara(
     MN_MMI_SC_SI_PARA_STRU              *pstScSiPara,
     MN_MMI_OPERATION_PARAM_STRU         *pMmiOpParam,
@@ -1047,26 +768,7 @@ VOS_UINT32 MMI_FillInRegisterSSPara(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_FillInEraseSSPara
- 功能描述  : 填写EraseSS操作需要的参数
- 输入参数  : pstScSiPara   - 输入解析后的Sc和Si的数据类型
- 输出参数  : pstMmiOpParam - EraseSS操作类型相应的参数
-             pucErrCode    - 剩余字符串的起始地址
- 返 回 值  : VOS_TRUE      - 填写参数成功
-             其余值        - 参数有错误
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS密码下移到SS模块
-*****************************************************************************/
 VOS_UINT32 MMI_FillInEraseSSPara(
     MN_MMI_SC_SI_PARA_STRU              *pstScSiPara,
     MN_MMI_OPERATION_PARAM_STRU         *pstMmiOpParam,
@@ -1129,26 +831,7 @@ VOS_UINT32 MMI_FillInEraseSSPara(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_FillInActivateSSPara
- 功能描述  : 填写ActivateSS操作需要的参数
- 输入参数  : pstScSiPara   - 输入解析后的Sc和Si的数据类型
- 输出参数  : pstMmiOpParam - ActivateSS操作类型相应的参数
-             pucErrCode    - 剩余字符串的起始地址
- 返 回 值  : VOS_TRUE      - 填写参数成功
-             其余值        - 参数有错误
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS密码下移到SS模块
-*****************************************************************************/
 VOS_UINT32 MMI_FillInActivateSSPara(
     MN_MMI_SC_SI_PARA_STRU             *pstScSiPara,
     MN_MMI_OPERATION_PARAM_STRU        *pMmiOpParam,
@@ -1235,21 +918,7 @@ VOS_UINT32 MMI_FillInActivateSSPara(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_FillInDeactivateCCBSPara
- 功能描述  : 填写DeactivateSS操作需要的参数
- 输入参数  : pstScSiPara   - 输入解析后的Sc和Si的数据类型
- 输出参数  : pstMmiOpParam - DeactivateSS操作类型相应的参数
- 返 回 值  : VOS_TRUE      - 填写参数成功
-             其余值        - 参数有错误
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月24日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 MMI_FillInDeactivateCCBSPara(
     MN_MMI_SC_SI_PARA_STRU              *pstScSiPara,
     MN_MMI_OPERATION_PARAM_STRU         *pMmiOpParam,
@@ -1281,26 +950,7 @@ LOCAL VOS_UINT32 MMI_FillInDeactivateCCBSPara(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_FillInDeactivateSSPara
- 功能描述  : 填写DeactivateSS操作需要的参数
- 输入参数  : pstScSiPara   - 输入解析后的Sc和Si的数据类型
- 输出参数  : pstMmiOpParam - DeactivateSS操作类型相应的参数
-             pucErrCode    - 剩余字符串的起始地址
- 返 回 值  : VOS_TRUE      - 填写参数成功
-             其余值        - 参数有错误
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS密码下移到SS模块
-*****************************************************************************/
 VOS_UINT32 MMI_FillInDeactivateSSPara(
     MN_MMI_SC_SI_PARA_STRU              *pstScSiPara,
     MN_MMI_OPERATION_PARAM_STRU         *pMmiOpParam,
@@ -1371,23 +1021,7 @@ VOS_UINT32 MMI_FillInDeactivateSSPara(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_FillInInterrogateSSPara
- 功能描述  : 填写InterrogateSS操作需要的参数
- 输入参数  : pstScSiPara   - 输入解析后的Sc和Si的数据类型
- 输出参数  : pstMmiOpParam - InterrogateSS操作类型相应的参数
-             pucErrCode    - 剩余字符串的起始地址
- 返 回 值  : VOS_TRUE      - 填写参数成功
-             其余值        - 参数有错误
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 VOS_UINT32 MMI_FillInInterrogateSSPara(
     MN_MMI_SC_SI_PARA_STRU              *pstScSiPara,
     MN_MMI_OPERATION_PARAM_STRU         *pstMmiOpParam,
@@ -1448,26 +1082,7 @@ VOS_UINT32 MMI_FillInInterrogateSSPara(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_FillInProcessUssdReqPara
- 功能描述  : 填写ProcessUssdReq操作需要的参数
- 输入参数  : pcInMmiStr       - MMI字串
- 输出参数  : pstMmiOpParam    - ProcessUssdReq操作类型相应的参数
-             ppcOutRestMmiStr - 剩余字符串的起始地址
- 返 回 值  : VOS_TRUE      - 填写参数成功
-             其余值        - 参数有错误
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-*****************************************************************************/
 VOS_UINT32 MMI_FillInProcessUssdReqPara(
     VOS_CHAR                            *pcInMmiStr,
     VOS_CHAR                            **ppcOutRestMmiStr,
@@ -1507,32 +1122,7 @@ VOS_UINT32 MMI_FillInProcessUssdReqPara(
 
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_FillInCallOrigPara
- 功能描述  : 填写发起呼叫所需要的相关参数
- 输入参数  : pcMmiStr        - 输入的MMI字串
- 输出参数  : pstMmiOpParam   - 操作类型及其相应的参数
-             ppOutRestMmiStr - 剩余字符串的起始地址
- 返 回 值  : MN_ERR_NO_ERROR - 填写参数成功
-             其余值          - 参数有错误
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2008年09月05日
-    作    者   : h44270
-    修改内容   : 问题单号：AT2D05508
-  3.日    期   : 2011年10月26日
-    作    者   : f00179208
-    修改内容   : AT移植项目, 使用A核的API:AT_AsciiNumberToBcd替换之前的MN_AsciiNumberToBcd
-  4.日    期   : 2013年12月24日
-    作    者   : s00217060
-    修改内容   : VoLTE_PhaseIII项目
-*****************************************************************************/
 LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
     VOS_CHAR                            *pcMmiStr,
     MN_MMI_OPERATION_PARAM_STRU         *pstMmiOpParam,
@@ -1551,22 +1141,18 @@ LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
     if ('+' == pcMmiStr[0])
     {
         /*将Ascii码转换成对应的BCD码*/
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         ulRslt = TAF_STD_ConvertAsciiNumberToBcd(pcMmiStr + 1,
                                      pstMmiOpParam->MnCallOrig.stDialNumber.aucBcdNum,
                                      &pstMmiOpParam->MnCallOrig.stDialNumber.ucNumLen);
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         pstMmiOpParam->MnCallOrig.stDialNumber.enNumType =
                              (VOS_UINT8)(0x80 | (MN_CALL_TON_INTERNATIONAL << 4) | MN_CALL_NPI_ISDN);
     }
     else
     {
         /*将Ascii码转换成对应的BCD码*/
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, begin */
         ulRslt = TAF_STD_ConvertAsciiNumberToBcd(pcMmiStr,
                                  pstMmiOpParam->MnCallOrig.stDialNumber.aucBcdNum,
                                  &pstMmiOpParam->MnCallOrig.stDialNumber.ucNumLen);
-        /* Modified by s00217060 for VoLTE_PhaseIII  项目, 2013-12-24, end */
         pstMmiOpParam->MnCallOrig.stDialNumber.enNumType =
                              (VOS_UINT8)(0x80 | (MN_CALL_TON_UNKNOWN << 4) | MN_CALL_NPI_ISDN);
     }
@@ -1594,28 +1180,7 @@ LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
     return MN_ERR_NO_ERROR;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_JudgeMmiOperationType
- 功能描述  : 判断MMI字串操作类型
- 输入参数  : pInMmiStr  - 输入的MMI字串
- 输出参数  : pstMmiOpParam - 操作类型及其相应的参数
-             pstScSiPara - 解析后的Sc和Si的数据类型
-             ppOutRestMmiStr - 剩余字符串的起始地址
-             pulErrCode    - 在解析出是CHLD操作的情况下，如果后面的参数有错误，
-                             那么输出对应的错误码，无错误时，填MN_ERR_NO_ERROR
-             pucNetSsCode - 转换后的网络定义的Ss Code
- 返 回 值  : 无
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目:删除特性宏
-*****************************************************************************/
  VOS_VOID MMI_JudgeMmiOperationType(
     VOS_CHAR                            *pInMmiStr,
     MN_MMI_OPERATION_PARAM_STRU         *pMmiOpParam,
@@ -1625,9 +1190,7 @@ LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
     VOS_UINT8                           ucNetSsCode
 )
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
 
     switch(pMmiOpParam->MmiOperationType)
@@ -1659,13 +1222,11 @@ LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
                                                    pMmiOpParam);
         break;
 
-     /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
      case TAF_MMI_DEACTIVATE_CCBS:
         *pulErrCode = MMI_FillInDeactivateCCBSPara(pstScSiPara,
                                                    pMmiOpParam,
                                                    ucNetSsCode);
         break;
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     default:
         break;
@@ -1674,31 +1235,7 @@ LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MMI_MatchSsOpTbl
- 功能描述  : 判断是否是呼叫无关补充业务相关的操作(register password除外),
-             解析操作参数
- 输入参数  : pInMmiStr  - 输入的MMI字串
- 输出参数  : pstMmiOpParam - 操作类型及其相应的参数
-             pstScSiPara - 解析后的Sc和Si的数据类型
-             ppOutRestMmiStr - 剩余字符串的起始地址
-             pulErrCode    - 在解析出是CHLD操作的情况下，如果后面的参数有错误，
-                             那么输出对应的错误码，无错误时，填MN_ERR_NO_ERROR
-             pucNetSsCode - 转换后的网络定义的Ss Code
- 返 回 值  : VOS_TRUE - 成功
-             VOS_FALSE - 失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2009年12月25日
-    作    者   : z00161729
-    修改内容   : 新生成函数
-  2.日    期   : 2012年03月03日
-    作    者   : s62952
-    修改内容   : BalongV300R002 Build优化项目
-*****************************************************************************/
  VOS_BOOL MMI_MatchSsOpTbl(
     VOS_CHAR                            *pInMmiStr,
     MN_MMI_OPERATION_PARAM_STRU         *pMmiOpParam,
@@ -1708,9 +1245,7 @@ LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
     VOS_UINT8                           *pucNetSsCode
 )
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     /* 获取特性控制NV地址 */
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     if (VOS_FALSE == MMI_DecodeScAndSi(pInMmiStr, pMmiOpParam, pstScSiPara, ppOutRestMmiStr))
     {
@@ -1728,7 +1263,6 @@ LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
         pMmiOpParam->MmiOperationType = TAF_MMI_PROCESS_USSD_REQ;
     }
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     if ((TAF_MMI_DEACTIVATE_SS == pMmiOpParam->MmiOperationType) && (TAF_CCBS_A_SS_CODE == *pucNetSsCode))
     {
         pMmiOpParam->MmiOperationType = TAF_MMI_DEACTIVATE_CCBS;
@@ -1741,38 +1275,13 @@ LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
     {
         ;
     }
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     return VOS_TRUE;
 
 }
 
 
-/*****************************************************************************
- 函 数 名  : MMI_JudgeChldOperation
- 功能描述  : 判断是否是呼叫无关补充业务相关的操作(register password除外)
- 输入参数  : pcInMmiStr    - 输入的MMI字串
- 输出参数  : pstMmiOpParam - 操作类型及其相应的参数
-             pucErrCode    - 在解析出是CHLD操作的情况下，如果后面的参数有错误，
-                             那么输出对应的错误码，无错误时，填MN_ERR_NO_ERROR
- 返 回 值  : VOS_TRUE      - 是CHLD操作
-             VOS_FALSE     - 不是CHLD操作
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-
-  2.日    期   : 2010年3月1日
-    作    者   : zhoujun /z40661
-    修改内容   : 圈复杂度修改
-  3.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，
-*****************************************************************************/
  VOS_BOOL MMI_JudgeSsOperation(
     VOS_CHAR                            *pInMmiStr,
     VOS_CHAR                            **ppOutRestMmiStr,
@@ -1835,24 +1344,7 @@ LOCAL VOS_UINT32 MMI_FillInCallOrigPara(
 }
 
 
-/*****************************************************************************
- 函 数 名  : MMI_JudgeChldOperation
- 功能描述  : 判断是否是CHLD操作
- 输入参数  : pcInMmiStr    - 输入的MMI字串
- 输出参数  : pstMmiOpParam - 操作类型及其相应的参数
-             pucErrCode    - 在解析出是CHLD操作的情况下，如果后面的参数有错误，
-                             那么输出对应的错误码，无错误时，填MN_ERR_NO_ERROR
- 返 回 值  : VOS_TRUE      - 是CHLD操作
-             VOS_FALSE     - 不是CHLD操作
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_BOOL MMI_JudgeChldOperation(
     VOS_CHAR                            *pcInMmiStr,
     MN_MMI_OPERATION_PARAM_STRU         *pstMmiOpParam,
@@ -1957,36 +1449,7 @@ LOCAL VOS_BOOL MMI_JudgeChldOperation(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_MmiStringParse
- 功能描述  : 将Mmi字串进行解析，将当前的MMI字串解析成对应的操作，以及操作需要的参数
- 输入参数  : pInMmiStr       - 输入的MMI字串
-             inCall          - 当前呼叫的状态，是处于呼叫状态，还是处于空闲状态
- 输出参数  : ppOutRestMmiStr - 剩余字符串的起始地址
-             pMmiOpParam     - 操作类型及其相应的参数
- 返 回 值  : MN_ERR_NO_ERROR - 解析成功
-             其余返回值      - 解析失败
 
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2008年3月17日
-    作    者   : h44270
-    修改内容   : 新生成函数
-  2.日    期   : 2011年10月06日
-    作    者   : f00179208
-    修改内容   : AT移植项目:将变量f_enClirOperate的赋值移到本函数中
-  3.日    期   : 2012年02月23日
-    作    者   : l65478
-    修改内容   : DTS2012021604543,GCF测试，CMMI命令发送数据错误
-  4.日    期   : 2013年05月06日
-    作    者   : f62575
-    修改内容   : SS FDN&Call Control项目，SS密码下移到SS模块
-  5.日    期   : 2013年8月3日
-    作    者   : z60575
-    修改内容   : TQE修改
-*****************************************************************************/
 TAF_UINT32 MN_MmiStringParse(
     TAF_CHAR                            *pInMmiStr,
     TAF_BOOL                            inCall,

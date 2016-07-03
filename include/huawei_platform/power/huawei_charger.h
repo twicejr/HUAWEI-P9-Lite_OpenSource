@@ -112,6 +112,7 @@ enum usb_charger_type{
     CHARGER_TYPE_FCP,          //FCP
     CHARGER_REMOVED,           //not connected
     USB_EVENT_OTG_ID,
+    CHARGER_TYPE_VR,           //VR charger
 };
 
 enum charge_fault_type{
@@ -146,6 +147,8 @@ enum charge_sysfs_type{
     CHARGE_SYSFS_ICHG_ADC,
     CHARGE_SYSFS_ICHG_REG_AUX,
     CHARGE_SYSFS_ICHG_ADC_AUX,
+    CHARGE_SYSFS_ADC_CONV_RATE,
+    CHARGE_SYSFS_VR_CHARGER_TYPE,
 };
 enum charge_done_type{
     CHARGE_DONE_NON = 0,
@@ -178,6 +181,7 @@ static const char* const fcp_check_stage[] = {
 };
 
 struct charge_sysfs_data{
+    unsigned int adc_conv_rate;
     unsigned int iin_thl;
     unsigned int ichg_thl;
     unsigned int iin_thl_main;
@@ -192,6 +196,7 @@ struct charge_sysfs_data{
     unsigned int charge_enable;
     unsigned int batfet_disable;
     unsigned int hiz_enable;
+    unsigned int vr_charger_type;
     enum charge_done_type charge_done_status;
     enum charge_done_sleep_type charge_done_sleep_status;
     int ibus;
@@ -217,6 +222,8 @@ struct charge_core_data{
     unsigned int ichg_nonstd;
     unsigned int iin_bc_usb;
     unsigned int ichg_bc_usb;
+    unsigned int iin_vr;
+    unsigned int ichg_vr;
     unsigned int iin_fcp;
     unsigned int ichg_fcp;
     unsigned int iterm;
@@ -233,6 +240,7 @@ struct charge_core_data{
 
 struct charge_device_ops{
     int (*chip_init)(void);
+    int (*set_adc_conv_rate)(int rate_mode);
     int (*set_input_current)(int value);
     void (*set_input_current_thermal)(int val1, int val2);
     int (*set_charge_current)(int value);

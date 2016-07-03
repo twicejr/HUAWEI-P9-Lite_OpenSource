@@ -1,0 +1,19 @@
+
+/**
+ * Copyright (C) 2014 Hisilicon Ltd.
+ *
+ *  This program is free software; you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License version 2 as
+ *  publishhed by the Free Software Foundation.
+ */
+
+/dts-v1/;
+/include/ "fastboot.dtsi"
+/include/ "hi6250_udp_default_config.dtsi"
+/include/ "hi6250_udp_noRF_modem_pin.dtsi"
+/include/ "hi6250_udp_noRF_pin.dtsi"
+/ {
+	hisi,boardid = <4 0 0 0>;
+	hisi,boardname = "hi6250_udp_noRF";
+
+};

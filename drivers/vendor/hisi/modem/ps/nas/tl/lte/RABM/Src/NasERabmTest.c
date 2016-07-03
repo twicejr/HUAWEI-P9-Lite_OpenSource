@@ -30,16 +30,7 @@ NAS_ERABM_DL_DATA_TRANS_INFO_STRU    g_stERabmDlDataTransInfo;
 /*****************************************************************************
   3 Function
 *****************************************************************************/
-/*****************************************************************************
- Function Name   : NAS_ERABM_DebugInit
- Description     : 清除统计信息
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-09-17  Draft Enact
-
-*****************************************************************************/
 /*lint -e960*/
 VOS_VOID NAS_ERABM_DebugInit(VOS_VOID)
 {
@@ -49,16 +40,7 @@ VOS_VOID NAS_ERABM_DebugInit(VOS_VOID)
                         sizeof(NAS_ERABM_UL_DATA_TRANS_INFO_STRU));
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_CmdHelp
- Description     : RABM模块命令显示
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-1-8  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_CmdHelp( VOS_VOID )
 {
     (VOS_VOID)vos_printf("\r\n");
@@ -76,17 +58,7 @@ VOS_VOID  NAS_ERABM_CmdHelp( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_ShowEpsBearerDataTransInfo
- Description     : 显示承载信息
- Input           : VOS_UINT32
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-9-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_ShowEpsBearerDataTransInfo( VOS_UINT32 ulEspbId )
 {
     NAS_ERABM_BERER_DATA_TRANS_INFO_STRU    *pstEpsBearerDataTransInfo   = VOS_NULL_PTR;
@@ -136,17 +108,7 @@ VOS_VOID NAS_ERABM_ShowEpsBearerDataTransInfo( VOS_UINT32 ulEspbId )
     (VOS_VOID)vos_printf("因承载关联DRB不存在而丢弃的数据包个数:%d\r\n",pstEpsBearerDataTransInfo->ulEpsbNoDrbDiscPackageNum);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_ShowActiveEpsBearerDataTransInfo
- Description     : 显示所有激活承载的数传信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-9-18  Draft Enact
-
-*****************************************************************************/
 VOS_VOID NAS_ERABM_ShowActiveEpsBearerDataTransInfo( VOS_VOID )
 {
     VOS_UINT32                 ulEpsbId;
@@ -173,17 +135,7 @@ VOS_VOID NAS_ERABM_ShowActiveEpsBearerDataTransInfo( VOS_VOID )
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_ShowEpsbTftInfo
- Description     : 统计EPS承载的TFT信息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.yangqianhui 00135146      2009-1-8  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_ShowEpsbTftInfo( VOS_UINT32 ulEspbId )
 {
     ESM_ERABM_TFT_PF_STRU           *pstEpsbTft = VOS_NULL_PTR;
@@ -299,17 +251,7 @@ VOS_VOID  NAS_ERABM_ShowEpsbTftInfo( VOS_UINT32 ulEspbId )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_ShowUlDataTransInfo
- Description     : 显示上行数传信息
- Input           : VOS_UINT32
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-9-17  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_ShowUlDataTransInfo( VOS_VOID )
 {
     NAS_ERABM_UL_DATA_TRANS_INFO_STRU *pstUlDataTransInfo = VOS_NULL_PTR;
@@ -332,17 +274,7 @@ VOS_VOID  NAS_ERABM_ShowUlDataTransInfo( VOS_VOID )
     NAS_ERABM_ShowActiveEpsBearerDataTransInfo();
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_ShowDlDataTransInfo
- Description     : 显示下行数传信息
- Input           : VOS_UINT32
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.lihong00150010      2009-9-18  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_ShowDlDataTransInfo( VOS_VOID )
 {
     NAS_ERABM_DL_DATA_TRANS_INFO_STRU *pstDlDataTransInfo = VOS_NULL_PTR;
@@ -355,17 +287,7 @@ VOS_VOID  NAS_ERABM_ShowDlDataTransInfo( VOS_VOID )
     (VOS_VOID)vos_printf("下行丢弃总数据包数:%d\r\n",pstDlDataTransInfo->ulDiscPackageNum);
 }
 
-/*****************************************************************************
- Function Name   : NAS_ERABM_ShowUlFilterInfo
- Description     : 显示上行过滤器信息
- Input           : VOS_UINT32
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.niuxiufan 00181501      2012-02-02  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_ERABM_ShowUlFilterInfo(VOS_UINT32 ulFilterId)
 {
     IPF_FILTER_CONFIG_S *pstFilterInfo = VOS_NULL_PTR;

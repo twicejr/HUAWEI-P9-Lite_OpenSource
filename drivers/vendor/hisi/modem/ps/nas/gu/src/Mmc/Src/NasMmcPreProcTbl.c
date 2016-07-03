@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : NasMmcFsmTbl.c
-  版 本 号   : 初稿
-  作    者   : zhoujun /40661
-  生成日期   : 2010年11月12日
-  最近修改   :
-  功能描述   : NAS 层状态机
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2010年11月12日
-    作    者   : zhoujun /40661
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -24,9 +7,7 @@
 
 #include "NasFsm.h"
 #include "NasMmcTimerMgmt.h"
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
 #include "MsccMmcInterface.h"
-/* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
 #include "NasMmcPreProcAct.h"
 #include "NasMmcPreProcTbl.h"
@@ -38,9 +19,7 @@
 #endif
 #include "NasOmInterface.h"
 #include "NasMmcCtx.h"
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, begin */
 /* 删除ExtAppMmcInterface.h*/
-/* Deleted by z00161729 for 主动上报AT命令控制下移至C核, 2013-4-7, end */
 #include "NasMmcSndOm.h"
 #include "NasMmcSndInternalMsg.h"
 #include "NasMmcFsmMainTbl.h"
@@ -73,7 +52,6 @@ NAS_FSM_DESC_STRU                       g_stNasMmcPreFsmDesc;
 /* 不进状态机处理的消息 动作表 */
 NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
 {
-   /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_ATTACH_REQ,
                       NAS_MMC_RcvMsccAttachReq_PreProc),
@@ -106,11 +84,9 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       TI_NAS_MMC_AVAILABLE_TIMER,
                       NAS_MMC_RcvTiAvailTimerExpired_PreProc),
 
-    /* Added by c00318887 for 预置频点搜网优化, 2015-8-26, begin */
     NAS_ACT_TBL_ITEM( VOS_PID_TIMER,
                      TI_NAS_MMC_PLMN_SEARCH_PHASE_ONE_TOTAL_TIMER,
                      NAS_MMC_RcvTiPlmnSearchPhaseOneTotalTimerExpired_PreProc),
-    /* Added by c00318887 for 预置频点搜网优化, 2015-8-26, end */
 
     NAS_ACT_TBL_ITEM( VOS_PID_TIMER,
                       TI_NAS_MMC_PERIOD_TRYING_USER_PLMN_LIST,
@@ -148,7 +124,6 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_SPEC_PLMN_SEARCH_ABORT_REQ,
                       NAS_MMC_RcvTafSpecPlmnSearchAbortReq_PreProc),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_STOP_GET_GEO_REQ,
@@ -196,12 +171,10 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       NAS_MMC_RcvGmmTinInd_PreProc ),
 #endif
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, begin */
     NAS_ACT_TBL_ITEM( WUEPS_PID_GMM,
                       GMMMMC_NETWORK_CAPABILITY_INFO_IND,
                       NAS_MMC_RcvGmmNetworkCapabilityInfoInd_PreProc ),
 
-    /* Added by y00245242 for VoLTE_PhaseI  项目, 2013-7-13, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_GMM,
                       MMCGMM_INFO_IND,
@@ -212,16 +185,12 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       NAS_MMC_RcvGmmPdpStatusInd_PreProc ),
 
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MM,
                       MMCMM_INFO_IND,
                       NAS_MMC_RcvMmInfo_PreProc ),
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, begin */
 
-    /* Deleted by s00261364 for V3R360_eCall项目, 2014-4-15, end */
 
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MM,
@@ -343,13 +312,11 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
     NAS_ACT_TBL_ITEM( PS_PID_MM,
                       ID_LMM_MMC_SUSPEND_CNF,
                       NAS_MMC_RcvLmmSuspendCnf_PreProc),
-    /* Modified by z40661 for V7R1 点灯 , 2012-02-20, begin */
 
     NAS_ACT_TBL_ITEM( PS_PID_MM,
                       ID_LMM_MMC_STATUS_IND,
                       NAS_MMC_RcvLmmMmcStatusInd_PreProc),
 
-    /* Modified by z40661 for V7R1 点灯 , 2012-02-20, end */
 
     /* 收到LMM T3412或T3423定时器运行状态消息的预处理 */
     NAS_ACT_TBL_ITEM( PS_PID_MM,
@@ -361,11 +328,9 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       ID_LMM_MMC_NOT_CAMP_ON_IND,
                       NAS_MMC_RcvLmmMmcNotCampOnInd_PreProc),
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-28, begin */
     NAS_ACT_TBL_ITEM( PS_PID_MM,
                       ID_LMM_MMC_SERVICE_RESULT_IND,
                       NAS_MMC_RcvLmmServiceRsltInd_PreProc),
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-28, end */
 
     NAS_ACT_TBL_ITEM( PS_PID_MM,
                       ID_LMM_MMC_EMM_INFO_IND,
@@ -373,11 +338,9 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
 
 
 
-    /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-13, begin */
     NAS_ACT_TBL_ITEM( PS_PID_MM,
                       ID_LMM_MMC_EMC_PDP_STATUS_NOTIFY,
                       NAS_MMC_RcvLmmEmcPdpStatusNotify_PreProc),
-    /* Added by s00217060 for VoLTE_PhaseIII  项目, 2013-12-13, end */
 
     NAS_ACT_TBL_ITEM( PS_PID_MM,
                       ID_LMM_MMC_AREA_LOST_IND,
@@ -392,13 +355,10 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       NAS_MMC_RcvLmmCellSignReportInd_PreProc),
 #endif
 
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_SYS_CFG_SET_REQ,
                       NAS_MMC_RcvTafSysCfgReq_PreProc),
-    /* Modified by l00167671 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
-    /* Added by s00261364 for L-C互操作项目, 2014-3-13, begin */
 
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_ACQ_REQ,
@@ -408,7 +368,6 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       ID_MSCC_MMC_REG_REQ,
                       NAS_MMC_RcvTafRegReq_PreProc),
 
-    /* Added by s00261364 for L-C互操作项目, 2014-3-13, end */
     NAS_ACT_TBL_ITEM( MSP_PID_DIAG_APP_AGENT,
                       OM_NAS_OTA_REQ,
                       NAS_MMC_RcvOmOtaReq_PreProc),
@@ -417,11 +376,9 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       ID_NAS_OM_MM_INQUIRE,
                       NAS_MMC_RcvOmInquireReq_PreProc),
 
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, begin */
     NAS_ACT_TBL_ITEM( MSP_PID_DIAG_APP_AGENT,
                       ID_NAS_OM_CONFIG_TIMER_REPORT_REQ,
                       NAS_MMC_RcvOmConfigTimerReportReq_PreProc),
-/* added  by l00167671 for v9r1 dcm logger可维可测项目, 2013-06-27, end */
 
 #ifdef __PS_WIN32_RECUR__
     NAS_ACT_TBL_ITEM( WUEPS_PID_MMC,
@@ -450,17 +407,13 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       ID_MSCC_MMC_OM_MAINTAIN_INFO_IND,
                       NAS_MMC_RcvTafOmMaintainInfoInd_PreProc),
 
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, begin */
     NAS_ACT_TBL_ITEM( WUEPS_PID_GMM,
                       MMCGMM_GPRS_SERVICE_IND,
                       NAS_MMC_RcvGmmGprsServiceInd_PreProc),
-    /* Modified by z00161729 for DCM定制需求和遗留问题, 2012-8-15, end */
 
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_SIGN_REPORT_REQ,
                       NAS_MMC_RcvMsccSignReportReq_PreProc),
-    /* Modified by z00161729 for 主动上报AT命令控制下移至C核, 2013-3-30, end */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_MM,
                       MMCMM_SIM_AUTH_FAIL_IND,
@@ -501,7 +454,6 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       NAS_MMC_RcvMsccPsTransferInd_PreProc),
 #endif
 
-/* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-6, begin */
     NAS_ACT_TBL_ITEM( WUEPS_PID_MM,
                       MMCMM_CM_SERVICE_REJECT_IND,
                       NAS_MMC_RcvCmServiceRejectInd_PreProc),
@@ -519,7 +471,6 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
                       NAS_MMC_RcvCustomizedForbLaTimerExpired_PreProc),
 
 #if   (FEATURE_ON == FEATURE_LTE)
-    /* Modified by w00176964 for V3R3C60_eCall项目, 2014-5-6, end */
     NAS_ACT_TBL_ITEM( WUEPS_PID_MM,
                       MMMMC_ABORT_IND,
                       NAS_MMC_RcvMmAbortInd_PreProc),
@@ -593,22 +544,18 @@ NAS_ACT_STRU        g_astNasMmcPreProcessActTbl[]   =
     NAS_ACT_TBL_ITEM( UEPS_PID_GAS,
                       RRMM_NCELL_MONITOR_IND,
                       NAS_MMC_RcvGasNcellMonitorInd_PreProc),
-	/* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, begin */
     NAS_ACT_TBL_ITEM( UEPS_PID_MSCC,
                       ID_MSCC_MMC_IMS_VOICE_CAP_NOTIFY,
                       NAS_MMC_RcvMsccImsVoiceCapInd_PreProc),
-    /* Added by w00176964 for VoLTE_PhaseIII 项目, 2013-12-10, end */
 
      NAS_ACT_TBL_ITEM( WUEPS_PID_GMM,
                       GMMMMC_SERVICE_REQUEST_RESULT_IND,
                       NAS_MMC_RcvGmmServiceRequestResultInd_PreProc),
 
 
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, Begin */
     NAS_ACT_TBL_ITEM( WUEPS_PID_GMM,
                       MMCGMM_SIGNALING_STATUS_IND,
                       NAS_MMC_RcvGmmSigStateInd_PreProc),
-    /* Add by j00174725 for K3V3 多模多天线特性, 2014-06-16, End */
 
     NAS_ACT_TBL_ITEM( WUEPS_PID_WRR,
                       RRMM_AREA_LOST_IND,
@@ -745,42 +692,14 @@ NAS_STA_STRU        g_astNasMmcPreProcessFsmTbl[]   =
                       g_astNasMmcPreProcessActTbl ),
 };
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPreProcessStaTblSize
- 功能描述  : 获取预处理状态机的大小
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : VOS_UINT32:预处理状态机的大小
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 NAS_MMC_GetPreProcessStaTblSize( VOS_VOID  )
 {
     return (sizeof(g_astNasMmcPreProcessFsmTbl)/sizeof(NAS_STA_STRU));
 }
 /*lint +e553*/
 
-/*****************************************************************************
- 函 数 名  : NAS_MMC_GetPreFsmDescAddr
- 功能描述  : 获取预处理状态机的描述表
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : NAS_FSM_DESC_STRU:指向预处理状态机的描述表
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年5月9日
-    作    者   : zhoujun 40661
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 NAS_FSM_DESC_STRU * NAS_MMC_GetPreFsmDescAddr(VOS_VOID)
 {
     return (&g_stNasMmcPreFsmDesc);

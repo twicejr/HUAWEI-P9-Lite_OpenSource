@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : hmac_edca_opt.c
-  版 本 号   : 初稿
-  作    者   : xiechunhui
-  生成日期   : 2014年12月1日
-  最近修改   :
-  功能描述   :
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年12月1日
-    作    者   : xiechunhui
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 
 #ifdef __cplusplus
@@ -72,19 +55,7 @@ OAL_STATIC oal_uint32  hmac_edca_opt_adj_param_ap(hmac_vap_stru *pst_hmac_vap, o
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : hmac_check_is_tcp_data
- 功能描述  : 检查是否为tcp data报文
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
 
- 修改历史      :
-  1.日    期   : 2014年12月1日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_bool_enum_uint8 hmac_edca_opt_check_is_tcp_data(mac_ip_header_stru *pst_ip)
 {
     oal_uint8   *puc_ip             = (oal_uint8 *)pst_ip;
@@ -114,21 +85,7 @@ OAL_STATIC oal_bool_enum_uint8 hmac_edca_opt_check_is_tcp_data(mac_ip_header_str
     }
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_edca_opt_stat_traffic_num
- 功能描述  : edca调整统计上/下行，TCP/UDP流数目
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月1日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_edca_opt_stat_traffic_num(hmac_vap_stru *pst_hmac_vap, oal_uint8 (*ppuc_traffic_num)[WLAN_TXRX_DATA_BUTT])
 {
     mac_user_stru   *pst_user;
@@ -197,21 +154,7 @@ OAL_STATIC oal_uint32  hmac_edca_opt_stat_traffic_num(hmac_vap_stru *pst_hmac_va
 }
 
 #if 0//验收通过后，此函数会删除-wanran
-/*****************************************************************************
- 函 数 名  : hmac_edca_opt_adj_param_ap
- 功能描述  : 根据edca调整统计上/下行，TCP/UDP流数目，调整edca参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月1日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC oal_uint32  hmac_edca_opt_adj_param_ap(hmac_vap_stru *pst_hmac_vap, oal_uint8 (*ppuc_traffic_num)[WLAN_TXRX_DATA_BUTT])
 {
     oal_uint8        uc_ac_idx       = 0;
@@ -304,24 +247,7 @@ OAL_STATIC oal_uint32  hmac_edca_opt_adj_param_ap(hmac_vap_stru *pst_hmac_vap, o
     return OAL_SUCC;
 }
 #endif
-/*****************************************************************************
- 函 数 名  : hmac_edca_opt_timeout_fn
- 功能描述  : edca调整定时器到期处理函数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月1日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-  2.日    期   : 2015年5月5日
-    作    者   : wanran
-    修改内容   : 增加抛事件，将参数调整下调到alg
-
-*****************************************************************************/
 oal_uint32  hmac_edca_opt_timeout_fn(oal_void *p_arg)
 {
     oal_uint8        aast_uc_traffic_num[WLAN_WME_AC_BUTT][WLAN_TXRX_DATA_BUTT];
@@ -382,21 +308,7 @@ oal_uint32  hmac_edca_opt_timeout_fn(oal_void *p_arg)
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : hmac_edca_opt_rx_pkts_stat
- 功能描述  : edca调整特性统计发送报文数量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月1日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_edca_opt_rx_pkts_stat(oal_uint16 us_assoc_id,oal_uint8 uc_tidno, mac_ip_header_stru *pst_ip)
 {
     hmac_user_stru  *pst_hmac_user = OAL_PTR_NULL;
@@ -436,21 +348,7 @@ oal_void  hmac_edca_opt_rx_pkts_stat(oal_uint16 us_assoc_id,oal_uint8 uc_tidno, 
 }
 
 
-/*****************************************************************************
- 函 数 名  : hmac_edca_opt_tx_pkts_stat
- 功能描述  : edca调整特性统计发送报文数量
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月1日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_edca_opt_tx_pkts_stat(mac_tx_ctl_stru  *pst_tx_ctl,oal_uint8 uc_tidno, mac_ip_header_stru *pst_ip)
 {
     hmac_user_stru  *pst_hmac_user = OAL_PTR_NULL;
@@ -492,21 +390,7 @@ oal_void  hmac_edca_opt_tx_pkts_stat(mac_tx_ctl_stru  *pst_tx_ctl,oal_uint8 uc_t
 
 #if 0//验收通过后，此函数会删除-wanran
 
-/*****************************************************************************
- 函 数 名  : hmac_edca_opt_adj_param_sta
- 功能描述  : sta调整edca参数
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年12月3日
-    作    者   : xiechunhui
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 oal_void  hmac_edca_opt_adj_param_sta(oal_void *pst_void)
 {
     oal_uint32  ul_new_set           = 0;

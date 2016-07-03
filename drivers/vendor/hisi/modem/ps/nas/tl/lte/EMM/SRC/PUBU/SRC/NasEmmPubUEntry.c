@@ -116,17 +116,7 @@ VOS_UINT32 NAS_EMM_MsgProcessInFsm(     MsgBlock           *pMsg,
 }
 
 
-/*****************************************************************************
- Function Name  :NAS_EMM_MsgPreProcess
- Discription    :
- Input          :
- Output         : None
- Return         : 该消息是否被处理
- History:
-      1.  hanlufeng 41410  Draft Enact
-      2.  zhengjunyan 00148421 2010-12-29 Mod:ID_EMM_ERABM_REL_REQ功能修改，
-                                          不做为严重异常处理
-*****************************************************************************/
+
 VOS_UINT32  NAS_EMM_MsgPreProcess(  NAS_EMM_EVENT_TYPE_ENUM_UINT32      ulEt,
                                     MsgBlock                           *pMsg )
 {
@@ -232,19 +222,7 @@ VOS_UINT32  NAS_EMM_MsgPreProcess(  NAS_EMM_EVENT_TYPE_ENUM_UINT32      ulEt,
     return  ulRet;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_SmRabmAbnarmalProc
- Description     : 向SM发送ID_EMM_ESM_STATUS_IND,清空资源，EMM，MMC状态机转换
-                   到准备搜网的状态，发送内部搜网请求
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.qilili 00145085      2009-1-17  Draft Enact
-    2.X00148705            2009-09-23 直接向RRC发 REL_REQ消息
-    3.l00132387            2011-06-03 修改收到ESM/ERABM异常的处理
-*****************************************************************************/
 VOS_VOID    NAS_EMM_SmRabmAbnarmalProc( VOS_VOID )
 {
 
@@ -257,17 +235,7 @@ VOS_VOID    NAS_EMM_SmRabmAbnarmalProc( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PUB_SendMmcStartReq
- Description     : 向MMC发送MMC_EMM_START_REQ消息
- Input           : None
- Output          : None
- Return          :
 
- History         :
-    1.qilili00145085     2009-01-23 Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PUB_SendMmcStartReq( VOS_UINT32 encause  )
 {
     EMMC_EMM_START_REQ_STRU              *pstMmcStartReqMsg;
@@ -346,15 +314,7 @@ VOS_VOID    NAS_EMM_PUB_SendEsmStatusInd
 }
 
 #if (FEATURE_LPP == FEATURE_ON)
-/*****************************************************************************
- Function Name   : NAS_LMM_SndLmmLppDataInd
- Description     : 向LPP发送ID_LMM_LPP_DATA_IND
- Input           :
- Output          :
- Return          : 处理结果
- History         :
-    lifuxin 00253982 2015-07-17  新开发
-*****************************************************************************/
+
 VOS_VOID NAS_LMM_SndLmmLppDataInd
 (
     NAS_EMM_ADDITIONAL_INFOR_STRU               *pstAdditionalInfo,
@@ -417,16 +377,7 @@ VOS_VOID NAS_LMM_SndLmmLppDataInd
 }
 #endif
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgDlNasGenericTransport
- Description     : LMM收到downlink generic transport消息的处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lifuxin    00253982      2015-07-25  Draft Enact
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgDlNasGenericTransport( NAS_EMM_CN_MSG_STRU_UNION  * pCnMsg )
 {
 #if (FEATURE_LPP == FEATURE_ON)
@@ -633,16 +584,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgDlNasTransport( NAS_EMM_CN_MSG_STRU_UNION  * pCnMs
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_ProcMsgCsSerNotification
- Description     : 直接处理下行CS SERVICE NOTIFCATION消息
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.sunjitan 00193151    2015-07-09   Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_EMM_ProcMsgCsSerNotification(
     NAS_EMM_CN_CS_SER_NOTIFICAIOTN_STRU          *pstCsSerNotification
 )
@@ -670,17 +612,7 @@ VOS_VOID  NAS_EMM_ProcMsgCsSerNotification(
 
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgCsSerNotification
- Description     : 预处理解码后的下行CS SERVICE NOTIFCATION消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.lihong 00150010      2012-02-23  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgCsSerNotification
 (
     NAS_EMM_CN_MSG_STRU_UNION           *pCnMsg
@@ -900,20 +832,7 @@ VOS_VOID   NAS_EMM_CompCnEmmStatus( LRRC_LNAS_MSG_STRU    *pEmmStatus,
 
 *****************************************************************************/
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcMmcDisableReq
- Description     : 收到MMC Disable LTE的命令的处理
 
- Input           : None
- Output          : None
- Return          : VOS_UINT32
-
- History         :
-    1.zhengjunyan      2011-11-7  Draft Enact
-    2.sunjitan 00193151   2012-05-24 增加清除Resume触发和类型记录信息
-    3.houzhiyuan 00285180   2015-01-05 LTE #14拒绝优化:DTS2015010401946
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_PreProcMmcDisableReq( MsgBlock  *pMsg )
 {
     /* 注册/服务状态上报上移MMC，删除注册/服务状态相关代码 */
@@ -1013,17 +932,7 @@ VOS_UINT32  NAS_LMM_PreProcMmcEnableReq( MsgBlock  *pMsg )
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsBearIsrActBefore
- Description     : 判断该承载是否为ISR激活前建立
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsBearIsrActBefore
 (
     VOS_UINT32      ulEpsId
@@ -1052,17 +961,7 @@ VOS_UINT32  NAS_EMM_IsBearIsrActBefore
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_IsBearIsrActAfter
- Description     : 判断该承载是否为ISR激活后建立
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387      2012-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_IsBearIsrActAfter(VOS_VOID)
 {
     VOS_UINT32                          ulRslt;
@@ -1086,17 +985,7 @@ VOS_UINT32  NAS_EMM_IsBearIsrActAfter(VOS_VOID)
     }
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_UpdateBearISRFlag
- Description     : 判断该承载是否为ISR激活前建立
- Input           : None
- Output          : None
- Return          : VOS_VOID
 
- History         :
-    1.leili 00132387      2012-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_EMM_UpdateBearISRFlag(NAS_MML_PS_BEARER_CONTEXT_STRU  *pstBearerCtx)
 {
      VOS_UINT32                          i = NAS_EMM_NULL;
@@ -1170,18 +1059,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgEsmBearModifyReq
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgT3412Exp
- Description     : T3412超时处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387    2012-2-28  Draft Enact
-    2.lihong00150010    2012-12-18 Modify:Emergency
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgT3412Exp(MsgBlock *          pMsg )
 {
     EMMC_EMM_FORBIDDEN_INFO_ENUM_UINT32           ulForbdInfo;
@@ -1259,17 +1137,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgT3412Exp(MsgBlock *          pMsg )
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgT3423Exp
- Description     : T3412超时处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387    2012-2-28  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgT3423Exp(MsgBlock *          pMsg )
 {
     NAS_MML_PS_BEARER_CONTEXT_STRU      *pstPsBearerCtx = NAS_EMM_NULL_PTR;
@@ -1300,17 +1168,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgT3423Exp(MsgBlock *          pMsg )
     /*不需要进入状态机处理*/
     return NAS_LMM_MSG_HANDLED;
 }
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgGmmTimerStateNotifyMsg
- Description     : 记录T3312定时器状态
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387    2013-1-29  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgGmmTimerStateNotifyMsg(MsgBlock *    pMsg )
 {
 
@@ -1334,17 +1192,7 @@ VOS_UINT32  NAS_EMM_PreProcMsgGmmTimerStateNotifyMsg(MsgBlock *    pMsg )
 }
 
 #if (FEATURE_ON == FEATURE_DSDS)
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcDsdsBeginSessionNotify
- Description     : 处理来自MMC/MM/GMM/ESM模块发送的业务通知开始消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00134407    2014-7-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_PreProcDsdsBeginSessionNotify(MsgBlock *          pMsg)
 {
     VOS_UINT32    ulSenderPid;
@@ -1387,17 +1235,7 @@ VOS_UINT32  NAS_LMM_PreProcDsdsBeginSessionNotify(MsgBlock *          pMsg)
     return NAS_LMM_MSG_HANDLED;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_PreProcDsdsEndSessionNotify
- Description     : 处理来自MMC/MM/GMM/ESM模块发送的业务通知结束消息
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.c00134407    2014-7-9  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_LMM_PreProcDsdsEndSessionNotify(MsgBlock *          pMsg)
 {
     VOS_UINT32    ulSenderPid;
@@ -1481,17 +1319,7 @@ VOS_VOID    NAS_EMM_PUB_SendEsmExportCtx(VOS_VOID)
 }
 
 
-/*****************************************************************************
- Function Name   : NAS_EMM_PreProcMsgReplay
- Description     : HSO的连接消息处理
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.leili 00132387    2013-4-1  Draft Enact
-
-*****************************************************************************/
 VOS_UINT32  NAS_EMM_PreProcMsgReplay(MsgBlock *          pMsg )
 {
     (void)pMsg;

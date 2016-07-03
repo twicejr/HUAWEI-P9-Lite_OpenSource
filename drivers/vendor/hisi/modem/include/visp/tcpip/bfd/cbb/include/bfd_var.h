@@ -36,7 +36,6 @@ extern BFD_HA_GET_DBG_SWITCH    g_pfHaGetDbgSwitch;
 extern BFD_HA_CANNOT_CFG        g_pfHaCannotCfg;
 extern BFD_HA_DBG_OUTPUT        g_pfBfdHaDbgOutput;
 extern BFD_STATE_NOTIFYVRRP     g_pfBfdStateNotifyVRRP;
-/*Modified by qinyun62011, DTS2010092600602 BFD去使能时，没有删除对应的静态路由关联表项。 for VISP1.8C01, 2010/9/29 */
 extern BFD_STATE_NOTIFYEXT     g_pfBfdStateNotifyExt;
 
 
@@ -70,7 +69,6 @@ extern ULONG g_ulBfdNsrQueId;
 
 extern ULONG g_ulBfdTimerQueId;
 
-/* Add for DTS2011021002203, by chenyaoKF34558, at 2011-02-28. 修改原因: 重新设计license功能 */
 extern ULONG g_ulBfdLicenseTimerQueId;
 extern ULONG g_ulBfd6LicenseTimerQueId;
 
@@ -125,7 +123,6 @@ extern BFD_NOTIFY_BYVRF_HOOK_S *g_pfBfdNotifyByVrfHookFunc;
 extern BFD_GET_LICENSE_STATE_FUNC g_pfBfdLicenseHook;
 extern BFD_GET_LICENSE_STATE_FUNC g_pfBfd6LicenseHook;
 
-/*添加BFD PPI下发可测试性相关变量及宏定义,add by wuhailan,2008-04-11.*/
 typedef struct tagBFD_CPUTICK
 {
     ULONG  ulLowTick;   
@@ -170,12 +167,9 @@ extern BFD_PPI_TIME_S g_ulBFDPpiTime;/*BFD下发耗时统计处理变量*/
     }\
 }
 
-/* Add for DTS2011021503236, by baiweiqiang（00177000）, at 2011-02-22. 修改原因: 多跳会话发送报文时的TTL取值 */
 extern UCHAR g_ucMultiHopTtl;
-/* Add for DTS2011021700157 , by baiweiqiang（00177000）, at 2011-02-22. 修改原因: 支持用户预配置BFD session numuber */
 extern ULONG g_ulBFDTotalSession;
 
-/*Added by z00208058/w00207740, BFD会话规格扩展, 2012/5/8 */
 extern ULONG g_ulBFDMaxSessionNum;
 
 extern ULONG g_ulBfdPReTranMode; /*Added by luogaowei  PF 增强处理开关， 默认关闭*/
@@ -184,7 +178,6 @@ extern ULONG g_ulBfdPFProcMaxNum; /*Added by luogaowei  PF 增强处理 定时器次数*/
 
 extern ULONG g_ulBfdPFTimerId[BFD_PF_TIMER_NUM];   /*BFD PF 处理定时器个数，不能轻易修改，修改后 需要重新计算BFD 定时器索引值*/
 
-/* Modified by l61496, DTS2013032200589 ,g_ulBfdPFSessionInfo全局变量会导致编译生成的bin文件增大8K, 2013/3/30 */
 extern ULONG *g_pulBfdPFSessionInfo;  /*高16位保存vrf 索引，低16位保存BFD 会话id*/
 
 extern ULONG g_ulGateValue;
@@ -192,7 +185,6 @@ extern ULONG g_ulGateValue;
 extern BFD_PPI_HOOK_FUNC        g_pfNsrBfdPpiDownloadHook ;
 extern BFD6_PPI_HOOK_FUNC       g_pfNsrBfd6PpiDownloadHook;
 
-/*Added by w00207740, NSR TRUNK,添加与NSR模块配合需要的虚表, 2013/10/9 */
 extern struct IIF_COMP_NSR_ComIntFUNVtbl *g_pstNsrBfdFunTable;
 
 /* 收到对端的F 标记报文，清除本端P标记 并下发NP处理控制开关，默认0 -不打开*/

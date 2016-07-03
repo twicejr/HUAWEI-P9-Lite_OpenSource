@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLcsEmmMsgProc.c
-    Description : 处理EMM发给LCS的消息
-    History     :
-            1.lihong  00150010       2015-09-28  Draft Enact
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -48,16 +39,7 @@ extern "C" {
   3 Function
 *****************************************************************************/
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndLmmEstReq
-Description    : 给LMM发送LCS_LMM_EST_REQ，请求建链
-Input          : ulOpid---------------opid
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-29  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndLmmEstReq
 (
     VOS_UINT32                          ulOpid
@@ -84,18 +66,7 @@ VOS_VOID  NAS_LCS_SndLmmEstReq
     NAS_LCS_SND_MSG(pstLmmEstReq);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_SndLmmDataReq
-Description    : 给LMM发送LCS_LMM_DATA_REQ
-Input          : ulOpid------------------opid
-                 ulLength----------------消息长度
-                 pucSendMsg--------------发送消息指针
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-16  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_SndLmmDataReq
 (
     VOS_UINT32                          ulOpid,
@@ -151,17 +122,7 @@ VOS_VOID  NAS_LCS_SndLmmDataReq
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LCS_TryToChangeDomain
-Description    : 尝试换域
-Input          : ulIndex-------------实体索引
-                 enTafLcsCause-------原因值
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-30  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_TryToChangeDomain
 (
     VOS_UINT32                          ulIndex,
@@ -191,16 +152,7 @@ VOS_VOID  NAS_LCS_TryToChangeDomain
     NAS_LCS_SetEntityConnState(ulIndex, NAS_LCS_CONN_STATE_ESTING);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvLmmEstCnf
-Description    : LMM_LCS_EST_CNF消息处理函数
-Input          : VOS_VOID *pstEstCnf
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-30  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvLmmEstCnf
 (
     const LMM_LCS_EST_CNF_STRU         *pstEstCnf
@@ -261,16 +213,7 @@ VOS_VOID  NAS_LCS_RcvLmmEstCnf
     NAS_LCS_TryToChangeDomain(ulIndex, enTafLcsCause);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvLmmDataCnf
-Description    : LMM_LCS_DATA_CNF消息处理函数
-Input          : VOS_VOID *pstDataCnf
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-28  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvLmmDataCnf
 (
     const LMM_LCS_DATA_CNF_STRU        *pstDataCnf
@@ -325,16 +268,7 @@ VOS_VOID  NAS_LCS_RcvLmmDataCnf
     NAS_LCS_TryToChangeDomain(ulIndex, enTafLcsCause);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvLmmDataInd
-Description    : LMM_LCS_DATA_IND消息处理函数
-Input          : VOS_VOID *pstDataInd
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-08  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvLmmDataInd
 (
     LMM_LCS_DATA_IND_STRU              *pstDataInd
@@ -351,16 +285,7 @@ VOS_VOID  NAS_LCS_RcvLmmDataInd
                         NAS_LCS_DOMAIN_TYPE_EPC_LCS);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvLmmPosCapInfoInd
-Description    : LMM_LCS_POS_CAP_INFO_IND消息处理函数
-Input          : VOS_VOID *pstPosCapInfoInd
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-28  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvLmmPosCapInfoInd
 (
     const LMM_LCS_POS_CAP_INFO_IND_STRU    *pstPosCapInfoInd
@@ -400,16 +325,7 @@ VOS_VOID  NAS_LCS_RcvLmmPosCapInfoInd
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_RcvLmmRelInd
-Description    : LMM_LCS_REL_IND消息处理函数
-Input          : VOS_VOID *pstRelInd
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-10-09  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LCS_RcvLmmRelInd
 (
     const LMM_LCS_REL_IND_STRU         *pstRelInd
@@ -470,16 +386,7 @@ VOS_VOID  NAS_LCS_RcvLmmRelInd
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LCS_EmmMsgDistr
-Description    : LCS模块EMM消息处理函数
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lihong 00150010 2015-9-28  新开发
-*****************************************************************************/
 VOS_VOID NAS_LCS_EmmMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pEmmMsg  = VOS_NULL_PTR;

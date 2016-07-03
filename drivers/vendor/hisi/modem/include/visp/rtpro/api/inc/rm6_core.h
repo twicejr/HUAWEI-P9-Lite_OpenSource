@@ -181,11 +181,8 @@ extern ULONG RPM_Acl6MatchByDestIp (ULONG ulACLNumber, UCHAR ucAddr[LEN_16], ULO
 extern ULONG RM6_GetAclByRpmId(ULONG ulDestType, ULONG  ulDestId, ULONG *pulAcl6GroupNum);
 
 /*************************************************************/
-/* Modified by jijianhua00169178, 消除coverity告警, 2011/8/12*/
-/* 延时不能使用for,           问题单号:DTS2011081606263 */
 /*************************************************************/
 extern VOS_VOID VOS_T_Delay( VOS_UINT32 ulMillisecond );
-/*End of Modified by jijianhua00169178, 2011/8/12   问题单号:DTS2011081606263 */
 
 #ifdef  __cplusplus
 }

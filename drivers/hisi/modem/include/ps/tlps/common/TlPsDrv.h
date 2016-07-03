@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TlPsDrv.h
-  版 本 号   : 初稿
-  作    者   : 翟鹏 00282933
-  生成日期   : 2014年9月1日
-  最近修改   :
-  功能描述   : 协议栈封装底软API接口
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2014年9月1日
-    作    者   : 翟鹏 00282933
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __TLPS_DRV_H__
 #define __TLPS_DRV_H__
@@ -43,13 +26,11 @@ extern "C" {
 /*****************************************************************************
   2 宏定义
 *****************************************************************************/
-/*z00282933, 多模OM融合添加 - BEGIN*/
 #define LPS_OM_ID(pid, log_type)    DIAG_GEN_LOG_MODULE(MODEM_ID_0, DIAG_MODE_LTE, log_type)
 
 #define TPS_OM_ID(pid, log_type)    DIAG_GEN_LOG_MODULE(MODEM_ID_0, DIAG_MODE_TDS, log_type)
 
 #define COMM_OM_ID(pid, log_type)   DIAG_GEN_LOG_MODULE(MODEM_ID_0, DIAG_MODE_COMM, log_type)
-/*z00282933, 多模OM融合添加 - END*/
 
 #define LDRV_OM_SYSTEM_ERROR                    mdrv_om_system_error
 
@@ -133,7 +114,6 @@ extern "C" {
 
 #define LDRV_DIAG_DSPINITFINISHED               DIAG_DspInitFinished
 
-/*z00282933, 多模OM融合添加 - BEGIN*/
 #define LDRV_DIAG_LOGREPORT                     DIAG_LogReport
 
 #define LDRV_DIAG_EVENTREPORT                   DIAG_EventReport
@@ -143,7 +123,6 @@ extern "C" {
 #define LDRV_DIAG_USERPLANEREPORT               DIAG_UserPlaneReport
 
 #define LDRV_DIAG_COMMONREPORT                  DIAG_TransReport
-/*z00282933, 多模OM融合添加 - END*/
 
 #define LDRV_TLSLEEP_ACTIVATEHW                 TLSLEEP_ActivateHw
 
@@ -220,22 +199,18 @@ extern "C" {
 
 #define TDRV_DIAG_TRACEREPORT                   DIAG_ReportLayerMessageLog
 
-/*z00282933，多模OM融合添加 - BEGIN*/
 #define TDRV_DIAG_LOGREPORT                     DIAG_LogReport
 
 #define TDRV_DIAG_EVENTREPORT                   DIAG_EventReport
 
 #define TDRV_DIAG_COMMONREPORT                  DIAG_TransReport
-/*z00282933, 多模OM融合添加 - END*/
 
 #define TDRV_MISC_GET_IP_BASEADDR               mdrv_misc_get_ip_baseaddr
 
 
 #define TDRV_PMU_DISABLE_APT                    mdrv_pmu_disable_apt
 
-/*z00282933, 多模OM融合添加 - BEGIN*/
 #define COMMDRV_DIAG_COMMONREPORT               DIAG_TransReport
-/*z00282933, 多模OM融合添加 - END*/
 
 /*****************************************************************************
   3 枚举定义

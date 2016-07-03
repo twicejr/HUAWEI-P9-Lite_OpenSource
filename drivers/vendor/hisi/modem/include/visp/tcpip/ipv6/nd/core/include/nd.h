@@ -228,31 +228,23 @@ extern ULONG    EXEC_OutString(ULONG,CHAR *);
 #define ND_SET_MAXENTRYLIMIT    1025
 #define ND_SET_MAXDADATTEMPT    600
 
-/* Modified by guojianjun178934, 【检视发现问题-ND间隔不准】邻居请求的重传间隔不准，有0.5s的误差 , 2014/1/21   问题单号:DTS2014011003946  */
 #define ND_NBTIMER_INTERVAL     200
-/*End of Modified by guojianjun178934, 2014/1/21   问题单号:DTS2014011003946  */
-/* Modified by guojianjun178934, IPV6 DAD探测定时器修改方案变更, 2014/2/12   问题单号:S-IP-003-PUBLIC-FUNC-005  */
 #define IP6_ND_DAD_INTERVAL     100
-/*End of Modified by guojianjun178934, 2014/2/12   问题单号:S-IP-003-PUBLIC-FUNC-005  */
 
 /* RFC 2461: RETRANS_TIMER  1,000 milliseconds */
 #define ND_DADTIMER_INTERVAL            1000
 
-/*modified for DTS2014051400943 2014-05-14 修改免费NA定时器时长为10ms，解决hert倒换丢包问题--start */
 #define ND_NATIMER_INTERVAL             10
 
 #define ND_NBFORCEDELTIMER_INTERVAL     100
 
-/*Added by guojianjun178934, 接口状态变化或physical地址变化主动发送通告NA报文 , 2014/1/26   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 #define ND_NA_DELAY_MIN     ND_NATIMER_INTERVAL   /*首个NA报文最小发送时延*/
 
-/*modified for DTS2014051400943 2014-05-14 修改首个免费NA延时时间为10ms，解决hert倒换丢包问题--start */
 #define ND_NA_DELAY_MAX     100        /*首个NA报文最大发送时延*/
 
 #define ND_SET_MAXNAATTEMPT 10        /*NA报文最大发送次数*/
 #define ND_NA_INTERVAL_MIN  1000      /*NA报文发送的最小时间间隔*/
 #define ND_NA_INTERVAL_MAX  5000      /*NA报文发送的最大时间间隔*/
-/* End of Added by guojianjun178934, 2014/1/26   问题单号:S-IP-005-PUBLIC-FUNC-003 */
 
 
 #if (VRP_YES == IPB_IR_IPV6_MODULE_IND)

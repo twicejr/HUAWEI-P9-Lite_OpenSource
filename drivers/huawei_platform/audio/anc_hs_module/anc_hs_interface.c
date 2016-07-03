@@ -78,6 +78,20 @@ bool anc_hs_interface_plug_enable(void)
     return g_anc_ops->anc_hs_plug_enable();
 }
 
+void anc_hs_interface_invert_hs_control(int connect)
+{
+    if(NULL == g_anc_ops || NULL == g_anc_ops->anc_hs_invert_hs_control)
+        return;
+    g_anc_ops->anc_hs_invert_hs_control(connect);
+}
+
+void anc_hs_interface_refresh_headset_type(int headset_type)
+{
+    if(NULL == g_anc_ops || NULL == g_anc_ops->anc_hs_refresh_headset_type)
+        return;
+    g_anc_ops->anc_hs_refresh_headset_type(headset_type);
+}
+
 /**********************************************************
 *  Function:       anc_hs_ops_register
 *  Discription:    register the handler ops for anc_hs

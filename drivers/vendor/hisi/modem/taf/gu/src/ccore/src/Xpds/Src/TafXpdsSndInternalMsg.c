@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsSndInternalMsg.c
-  版 本 号   : 初稿
-  作    者   : g00261581
-  生成日期   : 2015年8月21日
-  最近修改   :
-  功能描述   : XPDS发送给XPDS的消息处理
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年8月21日
-    作    者   : g00261581
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 /*****************************************************************************
   1 头文件包含
@@ -44,20 +27,7 @@ extern "C" {
 /*****************************************************************************
   3 函数实现
 *****************************************************************************/
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalServerBindOperReq
- 功能描述  : XPDS模块发送内部消息控制MPC/PDE的Socket链路
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalServerBindOperReq(
     TAF_XPDS_SERVER_BIND_OPER_ENUM_UINT8                    enMpcBindOpt,
     TAF_XPDS_SERVER_BIND_OPER_ENUM_UINT8                    enPdeBindOpt
@@ -94,21 +64,7 @@ VOS_VOID TAF_XPDS_SndInternalServerBindOperReq(
 
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalServerBindRsltCnf
- 功能描述  : XPDS Snd Server Bind Result to XPDS
- 输入参数  : TAF_XPDS_OPER_RESULT_ENUM_UINT32    enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月26日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalServerBindRsltCnf(
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32  enRslt
 )
@@ -143,21 +99,7 @@ VOS_VOID TAF_XPDS_SndInternalServerBindRsltCnf(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalPdeProcStartReq
- 功能描述  : XPDS send PDE proc start to XPDS
- 输入参数  : enFixMode - Fix mode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月28日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalPdeProcStartReq(
     TAF_XPDS_FIX_MODE_ENUM_UINT8                            enFixMode
 )
@@ -191,21 +133,7 @@ VOS_VOID TAF_XPDS_SndInternalPdeProcStartReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalPdeProcRsltInd
- 功能描述  : XPDS Snd Server PDE Result to XPDS
- 输入参数  : TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32    enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月26日
-    作    者   : x00314862
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalPdeProcRsltInd(
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32                      enRslt
 )
@@ -238,21 +166,7 @@ VOS_VOID TAF_XPDS_SndInternalPdeProcRsltInd(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalCpPdeProcRsltInd
- 功能描述  : XPDS Snd control plane Server PDE Result to XPDS
- 输入参数  : TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32    enRslt
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月09日
-    作    者   : l00902690
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalCpPdeProcRsltInd(
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32                      enRslt
 )
@@ -286,21 +200,7 @@ VOS_VOID TAF_XPDS_SndInternalCpPdeProcRsltInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalForwardPdeDataInd
- 功能描述  : 发送ID_TAF_XPDS_XPDS_FORWARD_PDE_DATA_IND内部消息
- 输入参数  : ulDataMask - PDE data mask
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : y00174758
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalForwardPdeDataInd(
     VOS_UINT32                                              ulDataMask,
     TAF_XPDS_CALL_TYPE_ENUM_UINT8                           enCallType
@@ -335,21 +235,7 @@ VOS_VOID TAF_XPDS_SndInternalForwardPdeDataInd(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalStartMpcProcess
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalStartMpcProcess(
     TAF_XPDS_MPC_OPER_TYPE_ENUM_UINT32                      enMpcOperation
 )
@@ -388,21 +274,7 @@ VOS_VOID TAF_XPDS_SndInternalStartMpcProcess(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalMpcRslt
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalMpcRslt(
     TAF_XPDS_MPC_OPER_TYPE_ENUM_UINT32                      enMpcOperation,
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32                      enMpcOperRslt
@@ -438,21 +310,7 @@ VOS_VOID TAF_XPDS_SndInternalMpcRslt(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalMpcStartPosResp
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalMpcStartPosResp(
     TAF_XPDS_MPC_START_POS_RSP_STRU                         *pstStartPosRsp
 )
@@ -487,21 +345,7 @@ VOS_VOID TAF_XPDS_SndInternalMpcStartPosResp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalMpcPosReportResp
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalMpcPosReportResp(
     TAF_XPDS_MPC_POS_REPORT_RSP_STRU                        *pstPosReportRsp
 )
@@ -536,21 +380,7 @@ VOS_VOID TAF_XPDS_SndInternalMpcPosReportResp(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalXsmsCancelNiTracking
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalXsmsCancelNiTracking(
     VOS_VOID
 )
@@ -583,21 +413,7 @@ VOS_VOID TAF_XPDS_SndInternalXsmsCancelNiTracking(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalXsmsRefreshMrTracking
- 功能描述  :
- 输入参数  :
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月27日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalXsmsRefreshMrTracking(
     TAF_XPDS_REJ_MR_TRACK_CAUSE_CODE_ENUM_UINT8             enCauseCode
 )
@@ -632,21 +448,7 @@ VOS_VOID TAF_XPDS_SndInternalXsmsRefreshMrTracking(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalPdeProcStartReq
- 功能描述  : XPDS send PDE proc start to XPDS
- 输入参数  : enFixMode - Fix mode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月28日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalCpPdeProcStartReq(
     VOS_VOID
 )
@@ -680,21 +482,7 @@ VOS_VOID TAF_XPDS_SndInternalCpPdeProcStartReq(
 }
 
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalPpmCompleteMsg
- 功能描述  : procedure to send the message TAF_XPDS_XPDS_PPM_COMPLETE_MSG_STRU
- 输入参数  : None
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年8月28日
-    作    者   : c00299064
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalPpmCompleteMsg(
     VOS_VOID
 )
@@ -726,21 +514,7 @@ VOS_VOID TAF_XPDS_SndInternalPpmCompleteMsg(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_XPDS_SndInternalAbnormalAbortAgpsSessionInd
- 功能描述  : 发送内部消息，通知异常Abort Agps Session会话
- 输入参数  : TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32                      enAbortScene
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2015年9月9日
-    作    者   : g00261581
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_XPDS_SndInternalAbnormalAbortAgpsSessionInd(
     TAF_XPDS_POS_PROC_RSLT_ENUM_UINT32                      enAbortScene
 )

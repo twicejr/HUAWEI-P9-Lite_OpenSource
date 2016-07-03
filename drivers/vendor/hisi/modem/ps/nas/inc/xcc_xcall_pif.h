@@ -414,13 +414,7 @@ typedef struct
     VOS_UINT8                           aucDigit[XCC_XCALL_MAX_DISPALY_CHARI_OCTET_NUM];
 }XCC_XCALL_DISPLAY_INFO_STRU;
 
-/*****************************************************************************
-结构名      : TAF_CALL_EVT_EXT_DISPLAY_INFO_DATA_STRU
-结构说明    : EXT DISPLAY INFO 中display_tag,display_len,ichar结构内容
-1.日    期  : 2014年11月12日
-  作    者  : y00307564
-  修改内容  : 1X SS Project
-*****************************************************************************/
+
 typedef struct
 {
     XCC_XCALL_DISPLAY_TAG_ENUM_UINT8    enDisplayTag;

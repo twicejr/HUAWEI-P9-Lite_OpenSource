@@ -1,20 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : MnCallFacilityDecode.c
-  版 本 号   : 初稿
-  作    者   : 丁庆 49431
-  生成日期   : 2007年9月20日
-  最近修改   : 2007年9月20日
-  功能描述   : 实现CS呼叫相关的API接口函数
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2007年9月20日
-    作    者   : 丁庆 49431
-    修改内容   : 创建文件
-******************************************************************************/
 
 /*****************************************************************************
    1 头文件包含
@@ -62,20 +46,7 @@ MN_CALL_SS_ID_TABLE_STRU    g_stCallInvokeIdTable[MN_CALL_MAX_INVOKE_NUM];
   6 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : MN_CALL_SsCdArgEncode
- 功能描述  : 编码呼叫偏转参数
- 输入参数  : pArg - 要编码的呼叫偏转参数
- 输出参数  : pDest - 编码的目的缓存
- 返 回 值  : 编码后参数的长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年1月10日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_SsCdArgEncode(
     const MN_CALL_SS_CD_ARG_STRU        *pstArg,
     VOS_UINT8                           *pucDest
@@ -123,20 +94,7 @@ LOCAL VOS_UINT32 MN_CALL_SsCdArgEncode(
 }
 
 #if 0
-/*****************************************************************************
- 函 数 名  : MN_CALL_SsRegCcEntryArgEncode
- 功能描述  : 编码accessRegisterCCEntry(注册CCBS)参数
- 输入参数  : 无
- 输出参数  : pDest - 编码的目的缓存
- 返 回 值  : 编码后参数的长度
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2007年1月12日
-    作    者   : 丁庆 49431
-    修改内容   : 新生成函数
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_SsRegCcEntryArgEncode(
     VOS_UINT8                           *pucDest
 )
@@ -150,32 +108,7 @@ LOCAL VOS_UINT32 MN_CALL_SsRegCcEntryArgEncode(
 }
 #endif
 
-/*****************************************************************************
- Prototype      : MN_CALL_SsCugInfoArgEncode
- Description    : 编码Cug-info参数
- Input          : pDest - 编码的目的缓存
-                  pArg - 要编码的CUG参数
- Output         :
- Return Value   : 编码后参数的长度
- Calls          : ---
- Called By      : ---
 
- History        :
-  1.Date        : 2006-02-28
-    Author      : D49431
-    Modification: Created function
-
-  2.Date        : 2006-04-14
-    Author      : D49431
-    Modification: 根据问题单A32D02961修改
-
-  3.Date        : 2006-12-11
-    Author      : D49431
-    Modification: 根据问题单A32D07850修改
-  4.Date        : 2007-04-04
-    Author      : h44270
-    Modification: modified for A32D10114
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_SsCugInfoArgEncode(
     VOS_UINT8                           *pucDest,
     const MN_CALL_CUG_CFG_STRU          *pstArg
@@ -227,36 +160,17 @@ LOCAL VOS_UINT32 MN_CALL_SsCugInfoArgEncode(
 }
 
 
-/*****************************************************************************
- Prototype      : MN_CALL_SsInvokeArgEncode
- Description    : 编码Invoke参数
- Input          : ucOpCode - 操作码
-                  punArg   - 要编码的CUG参数
- Output         : pucDest  - 编码结果的目的缓存
- Return Value   : 编码结果
- Calls          : ---
- Called By      : ---
 
- History        :
-  1.Date        : 2008-02-26
-    Author      : D49431
-    Modification: Created function
-  2.日    期   : 2012年03月03日
-   作    者   : s62952
-   修改内容   : BalongV300R002 Build优化项目
-*****************************************************************************/
 LOCAL VOS_UINT32 MN_CALL_SsInvokeArgEncode(
     VOS_UINT8                            ucOpCode,
     const MN_CALL_SS_COMPONENT_ARG_UNION *punArg,
     VOS_UINT8                            *pucDest
 )
 {
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     MN_CALL_CUSTOM_CFG_INFO_STRU        *pstCustomCfgAddr;
 
     /* 获取特性控制NV地址 */
     pstCustomCfgAddr                    = MN_CALL_GetCustomCfgInfo();
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     if (punArg == VOS_NULL_PTR)
     {
@@ -268,7 +182,6 @@ LOCAL VOS_UINT32 MN_CALL_SsInvokeArgEncode(
     case MN_CALL_SS_CUG_OPERATION:
         return MN_CALL_SsCugInfoArgEncode(pucDest, &punArg->cugInfoArg);
 
-    /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, begin */
     case MN_CALL_SS_CD_OPERATION:
         if (MN_CALL_NV_ITEM_ACTIVE == pstCustomCfgAddr->ucCallDeflectionSupportFlg )
         {
@@ -289,7 +202,6 @@ LOCAL VOS_UINT32 MN_CALL_SsInvokeArgEncode(
             return 0;
         }
 
-   /* Modified by s62952 for BalongV300R002 Build优化项目 2012-02-28, end */
 
     default:
         return 0;
@@ -361,24 +273,7 @@ LOCAL VOS_UINT32 MN_CALL_SsComponentEncode(
 
 
 
-/*****************************************************************************
- Prototype      : MN_CALL_FacilityEncode()
- Description    : Facility消息编码
- Input          : punComponent - 需要编码的component的内容
-                : ucTi         - Ti值
- Output         : pucDest      - 编码后的缓存指针
- Return Value   :
- Calls          :
- Called By      :
 
- History        :
-  1.Date        : 2005-08-19
-    Author      : cjh
-    Modification: Created function
-  2.Date        : 2007-04-04
-    Author      : h44270
-    Modification: modified for A32D10114
-*****************************************************************************/
 VOS_UINT32 MN_CALL_FacilityEncode(
     VOS_UINT8                           *pucDest,
     const MN_CALL_SS_COMPONENT_UNION    *punComponent
@@ -387,24 +282,7 @@ VOS_UINT32 MN_CALL_FacilityEncode(
     return MN_CALL_SsComponentEncode(&pucDest[0], punComponent);
 }
 
-/*****************************************************************************
- Prototype      : MN_CALL_SimpleFacilityEncode()
- Description    : Facility消息编码
- Input          : punComponent - 需要编码的component的内容
 
- Output         : pucDest      - 编码后的缓存指针
- Return Value   :
- Calls          :
- Called By      :
-
- History        :
-  1.Date        : 2005-08-19
-    Author      : cjh
-    Modification: Created function
-  2.Date        : 2007-04-04
-    Author      : h44270
-    Modification: modified for A32D10114
-*****************************************************************************/
 VOS_VOID MN_CALL_SimpleFacilityEncode(
     VOS_UINT8                           *pucDest,
     const MN_CALL_SS_COMPONENT_UNION    *punComponent

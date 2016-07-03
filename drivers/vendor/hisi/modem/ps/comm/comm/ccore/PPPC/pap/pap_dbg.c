@@ -1,24 +1,4 @@
-/************************************************************************
-*                                                                      *
-*                             pap_dbg.c                                *
-*                                                                      *
-*  Project Code:       VRP3.0                                          *
-*  Create Date:        2000/06/14                                      *
-*  Author:             Zhu Feng Zhi                                    *
-*  Modify Date:                                                        *
-*  Document:                                                           *
-*  Function:           PAP模块的debug信息处理                          *
-*  Others:                                                             *
-*----------------------------------------------------------------------*
-*                                                                      *
-* Copyright 2000-2002 VRP3.0 Team Beijing Institute HuaWei Tech, Inc.  *
-*                     ALL RIGHTS RESERVED                              *
-*                                                                      *
-*----------------------------------------------------------------------*
-*                                                                      *
-*   这个文件包括了PAP模块debug信息处理的全部代码                       *
-*                                                                      *
-************************************************************************/
+
 
 
 
@@ -93,20 +73,7 @@ CHAR *cPap_Debug_Event[] =
 *****************************************************************************/
 /*lint -save -e958 */
 /*lint -e813*/
-/****************************************************************************
-* CREATE DATE  ：2000/06/14                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：输出关于报文的调试信息,只针对符合PPP状态机的控制协议       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块                                       *
-*                pPacket:报文头位置                                         *
-*                ulLen:报文长度                                             *
-*                ucIsInPacket:是否是输入报文                                *
-*                usProtocol:报文协议号                                      *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：PPP_LCP_ReceivePacket等                                    *
-****************************************************************************/
+
 VOID PAP_Debug_Packet(PPPINFO_S* pstPppInfo, UCHAR *pPacket, VOS_UINT32 ulLen, VOS_UINT16 usProtocol, UCHAR ucIsInPacket)
 {
     PPPPAPINFO_S *pstPapInfo   = pstPppInfo->pstPapInfo;
@@ -170,7 +137,6 @@ VOID PAP_Debug_Packet(PPPINFO_S* pstPppInfo, UCHAR *pPacket, VOS_UINT32 ulLen, V
     PPP_GETSHORT(sFrameLen, pPacket);
 
     /* 显示当前状态,Code,id以及长度 */
-    /*区分是server状态还是client状态 added by guoning 20021022 D7169*/
     if (((ucIsInPacket == 1) && (ucCode == PAP_AUTHREQ))
        || ((ucIsInPacket != 1) && (ucCode == PAP_AUTHACK))
        || ((ucIsInPacket != 1) && (ucCode == PAP_AUTHNAK)))
@@ -250,18 +216,7 @@ VOID PAP_Debug_Packet(PPPINFO_S* pstPppInfo, UCHAR *pPacket, VOS_UINT32 ulLen, V
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/14                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：输出子协议状态转换的调试信息                               *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPapInfo:PAP控制块指针                                 *
-*                ucNewState:状态机新状态                                    *
-*                 ucType: Client状态或Server状态                                *
-* OUTPUT       ：                                                           *
-* RETURN       ：0                                                          *
-* CALLED BY    ：                                                            *
-****************************************************************************/
+
 VOID PAP_Debug_StateChange(PPPINFO_S *pstPppInfo, UCHAR ucNewState, UCHAR ucType)
 {
     PPPPAPINFO_S *pstPapInfo = pstPppInfo->pstPapInfo;
@@ -362,17 +317,7 @@ VOID PAP_Debug_StateChange(PPPINFO_S *pstPppInfo, UCHAR ucNewState, UCHAR ucType
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/14                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：输出PAP子协议发生外部事件的调试信息                       *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPapInfo: PAP控制块指针                                *
-*                ulEvent:状态机事件                                         *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                            *
-* CALLED BY    ：                                                            *
-****************************************************************************/
+
 VOID PAP_Debug_Event(PPPINFO_S* pstPppInfo, UCHAR ucEvent)
 {
     PPPPAPINFO_S *pstPapInfo   = pstPppInfo->pstPapInfo;
@@ -477,18 +422,7 @@ VOID PAP_Debug_Event(PPPINFO_S* pstPppInfo, UCHAR ucEvent)
     return;
 }
 
-/****************************************************************************
-* CREATE DATE  ：2000/06/14                                                 *
-* CREATED BY   ：Zhu Feng Zhi                                               *
-* FUNCTION     ：输出子协议PAP的错误信息                                    *
-* MODIFY DATE  ：                                                           *
-* INPUT        ：pstPppInfo:PPP控制块指针                                   *
-*                usLogLevel:LOG级别                                         *
-*                pString   :要输出的字串                                    *
-* OUTPUT       ：                                                           *
-* RETURN       ：                                                           *
-* CALLED BY    ：PAP 各处理函数                                            *
-****************************************************************************/
+
 VOID PAP_Debug_Error(PPPINFO_S *pstPppInfo, VOS_UINT16 usLogLevel, CHAR *pString)
 {
     CHAR szDebugBuf[1024];

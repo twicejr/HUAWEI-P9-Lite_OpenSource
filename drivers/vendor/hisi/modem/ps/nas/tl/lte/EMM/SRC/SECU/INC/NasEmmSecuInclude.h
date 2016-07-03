@@ -1,14 +1,4 @@
-/******************************************************************************
 
-  Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-  File Name       : NasEmmSecuInclude.h
-  Description     : SECUÄ£¿é header file
-  History         :
-      1.zhengjunyan 00148421       2010-3-4   Draft Enact
-
-******************************************************************************/
 
 #ifndef __NASEMMSECUINCLUDE_H__
 #define __NASEMMSECUINCLUDE_H__

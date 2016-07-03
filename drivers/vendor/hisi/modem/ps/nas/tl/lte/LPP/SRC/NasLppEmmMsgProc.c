@@ -1,13 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLppEmmMsgProc.c
-    Description : 处理EMM发给LPP的消息
-    History     :
-    lifuxin 00253982 2015-7-7  新开发
-******************************************************************************/
 
 
 /*****************************************************************************
@@ -54,16 +45,7 @@ static  VOS_UINT32              g_ulEmmLppOpId = 0;
   3 Function
 *****************************************************************************/
 /*lint -e701*/
-/*****************************************************************************
- Function Name  : NAS_LPP_SndAllUplinkMsg
- Description    : 取出buffer中的直传消息依次发送给LMM
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-30  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SndAllUplinkMsg(VOS_VOID)
 {
     NAS_LPP_UP_MSG_BUFF_POOL_STRU   *pstUpMsgBuffPool   = NAS_LPP_NULL_PTR;
@@ -134,16 +116,7 @@ VOS_VOID  NAS_LPP_SndAllUplinkMsg(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_ConnFailHandle
- Description    : 连接FAIL之后的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_ConnFailHandle(VOS_VOID)
 {
     NAS_LPP_INFO_LOG("NAS_LPP_ConnFailHandle enter!");
@@ -156,16 +129,7 @@ VOS_VOID  NAS_LPP_ConnFailHandle(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvLppEmmEstCnf
- Description    : LPP模块收到建链回复消息
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_RcvLppEmmEstCnf(const LMM_LPP_EST_CNF_STRU *stEstCnf)
 {
     NAS_LPP_INFO_LOG("NAS_LPP_RcvLppEmmEstCnf is entered!");
@@ -225,16 +189,7 @@ VOS_VOID  NAS_LPP_RcvLppEmmEstCnf(const LMM_LPP_EST_CNF_STRU *stEstCnf)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppMsgIndentityByOpId
- Description    : 通过OPID找到LppMsgIndentity
- Input          : LMM_LPP_DATA_CNF_STRU *pstDataCnf
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-30  新开发
-*****************************************************************************/
 NAS_LPP_MSG_IDENTITY_STRU*  NAS_LPP_GetLppMsgIndentityByOpId
 (
     VOS_UINT32              ulLmmLppOpId
@@ -266,16 +221,7 @@ NAS_LPP_MSG_IDENTITY_STRU*  NAS_LPP_GetLppMsgIndentityByOpId
     return pstLppMsgIndentity;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppMsgUpBuffByOpId
- Description    : 通过OPID找到上行缓存buffer
- Input          : LMM_LPP_DATA_CNF_STRU *pstDataCnf
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-30  新开发
-*****************************************************************************/
 LPP_UPLINK_MSG_BUF_STRU*  NAS_LPP_GetLppMsgUpBuffByOpId
 (
     VOS_UINT32              ulLmmLppOpId
@@ -303,16 +249,7 @@ LPP_UPLINK_MSG_BUF_STRU*  NAS_LPP_GetLppMsgUpBuffByOpId
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppMsgSendFlagByOpId
- Description    : 通过OPID找到SendFlag
- Input          : LMM_LPP_DATA_CNF_STRU *pstDataCnf
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-30  新开发
-*****************************************************************************/
 VOS_BOOL  NAS_LPP_GetLppMsgSendFlagByOpId
 (
     VOS_UINT32              ulLmmLppOpId
@@ -340,16 +277,7 @@ VOS_BOOL  NAS_LPP_GetLppMsgSendFlagByOpId
     return bSendFlag;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_GetLppMsgSendFlagByOpId
- Description    : 通过OPID找到SendFlag
- Input          : LMM_LPP_DATA_CNF_STRU *pstDataCnf
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-30  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SetLppMsgSendFlagByOpId
 (
     VOS_UINT32                  ulLmmLppOpId,
@@ -380,16 +308,7 @@ VOS_VOID  NAS_LPP_SetLppMsgSendFlagByOpId
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_IsAckDataCnf
- Description    : 判断发送的消息是否就是ack消息
- Input          : pstLppMsgIdentity
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_BOOL  NAS_LPP_IsAckDataCnf
 (
     NAS_LPP_MSG_IDENTITY_STRU           *pstLppMsgIdentity
@@ -403,16 +322,7 @@ VOS_BOOL  NAS_LPP_IsAckDataCnf
     return PS_FALSE;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_AckDataCnfSuccHandle
- Description    : LPP收到ACK消息的data cnf之后的处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_AckDataCnfSuccHandle
 (
     VOS_UINT32          ulOpId
@@ -434,16 +344,7 @@ VOS_VOID  NAS_LPP_AckDataCnfSuccHandle
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvLppEmDataCnf
- Description    : LPP模块收到直传回复的消息处理
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_RcvLppEmDataCnf(const LMM_LPP_DATA_CNF_STRU *pstDataCnf)
 {
     NAS_LPP_MSG_IDENTITY_STRU           *pstLppMsgIdentity  = NAS_LPP_NULL_PTR;
@@ -529,16 +430,7 @@ VOS_VOID  NAS_LPP_RcvLppEmDataCnf(const LMM_LPP_DATA_CNF_STRU *pstDataCnf)
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_CheckEcidDownLinkMsg
- Description    : 校验ECID下行空口消息
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-22  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_CheckEcidDownLinkMsg(LPP_REQ_LOCATION_INFO_R9_IES_STRU *pstReqLocInfoR9Ies)
 {
     NAS_LPP_NORM_LOG("NAS_LPP_CheckEcidDownLinkMsg is entered!");
@@ -561,15 +453,7 @@ VOS_UINT32  NAS_LPP_CheckEcidDownLinkMsg(LPP_REQ_LOCATION_INFO_R9_IES_STRU *pstR
 }
 
 
-/*****************************************************************************
- Function Name  : NAS_LPP_CheckEcidDownLinkMsg
- Description    : 校验公共的下行空口消息
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
- History        :
-      lifuxin 00253982 2015-7-22  新开发
-*****************************************************************************/
+
 VOS_UINT32  NAS_LPP_CheckCommomDownLinkMsg(LPP_MESSAGE_STRU *pstLppMsg)
 {
     LPP_REQ_LOCATION_INFO_R9_IES_STRU  *pstReqLocInfoR9Ies = NAS_LPP_NULL_PTR;
@@ -648,32 +532,14 @@ VOS_UINT32  NAS_LPP_CheckCommomDownLinkMsg(LPP_MESSAGE_STRU *pstLppMsg)
     return NAS_LPP_MSG_VERIFY_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_CheckOtdoaDownLinkMsg
- Description    : 校验OTDOA下行空口消息
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-22  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_CheckOtdoaDownLinkMsg(LPP_REQ_LOCATION_INFO_R9_IES_STRU *pstReqLocInfoR9Ies)
 {
 
     return NAS_LPP_MSG_VERIFY_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_CheckGnssDownLinkMsg
- Description    : 校验GNSS下行空口消息
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-22  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_CheckGnssDownLinkMsg(LPP_REQ_LOCATION_INFO_R9_IES_STRU *pstReqLocInfoR9Ies)
 {
     if(NAS_LPP_NO_SLCT == pstReqLocInfoR9Ies->bitOpAGNSSReqLocationInfo)
@@ -1035,16 +901,7 @@ VOS_UINT32  NAS_LPP_CheckReqLocationInfo( LPP_MESSAGE_REQUEST_LOCATION_INFO_STRU
     return NAS_LPP_MSG_VERIFY_SUCC;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_CheckDownLinkMsg
- Description    : 校验下行空口消息
- Input          : VOS_VOID *pRcvMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-22  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_CheckDownLinkMsg(LPP_MESSAGE_STRU *pstLppMsg)
 {
     VOS_UINT32              ulRslt = NAS_LPP_MSG_VERIFY_SUCC;
@@ -1098,17 +955,7 @@ VOS_UINT32  NAS_LPP_CheckDownLinkMsg(LPP_MESSAGE_STRU *pstLppMsg)
     return ulRslt;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvAckTransNotEndHandle
- Description    : 收到ack的消息，但是对应transaction还没有结束处理,需要根据
-                  当前transaction的主状态子状态去确定一下步动作
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvAckTransInLocationProvideProcess
 (
     NAS_LPP_REPORT_LOCATION_TYPE_ENUM_UINT8 enLocationReportType,
@@ -1156,17 +1003,7 @@ VOS_VOID NAS_LPP_RcvAckTransInLocationProvideProcess
     }
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvAckTransNotEndHandle
- Description    : 收到ack的消息，但是对应transaction还没有结束处理,需要根据
-                  当前transaction的主状态子状态去确定一下步动作
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvAckTransNotEndHandle
 (
     VOS_UINT8                           ucSessionIndx,
@@ -1231,17 +1068,7 @@ VOS_VOID NAS_LPP_RcvAckTransNotEndHandle
     }
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_NwMsgProcess
- Description    : NAS_LPP_NwMsgProcess
- Input          : pstLppMsg     下行LPP消息
-                  ulSessionId   下行LPP流程所在session的ID
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_NwMsgWithAckIeHandle
 (
     NAS_LPP_MSG_HEAD_STRU              *pstMsgHead,
@@ -1319,16 +1146,7 @@ VOS_VOID NAS_LPP_NwMsgWithAckIeHandle
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_EncodeAckMsg
- Description    : 编码上行ack消息
- Input          : pstLppMsg
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_UINT8 NAS_LPP_EncodeAckMsgWithMsgIndentiy
 (
     NAS_LPP_MSG_HEAD_STRU              *pstLppHead,
@@ -1399,16 +1217,7 @@ VOS_UINT8 NAS_LPP_EncodeAckMsgWithMsgIndentiy
     return NAS_LPP_SUCCESS;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SaveUpMsgBufferIndex
- Description    : 存储缓存buffer的索引值
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-9-2  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_SaveUpMsgBufferIndex(VOS_UINT8 ucUplinkBuffIndx)
 {
     NAS_LPP_UP_MSG_BUFF_POOL_STRU  *pstUpMsgBuffPool    = NAS_LPP_NULL_PTR;
@@ -1434,16 +1243,7 @@ VOS_VOID NAS_LPP_SaveUpMsgBufferIndex(VOS_UINT8 ucUplinkBuffIndx)
 
 /*lint -e661*/
 /*lint -e662*/
-/*****************************************************************************
- Function Name  : NAS_LPP_PushUplinkMsgToBuff
- Description    : 将上行空口消息放到上行缓存buffer
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_UINT16 NAS_LPP_PushUplinkMsgToBuff
 (
     VOS_UINT32                          ulDataReqSize,
@@ -1536,16 +1336,7 @@ VOS_UINT32  NAS_LPP_AllocEmmLppOpId( VOS_VOID )
     return  (g_ulEmmLppOpId);
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_FillWithLppDataReqMsg
- Description    : 填充发送给LMM的DATA REQ消息
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_FillWithLppDataReqMsg
 (
     VOS_UINT32                          ulLppMsgLen,
@@ -1573,16 +1364,7 @@ VOS_VOID NAS_LPP_FillWithLppDataReqMsg
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_LppLmmEstReq
- Description    : LPP给LMM发起建链请求消息
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_LppLmmEstReq( VOS_VOID )
 {
     LPP_LMM_EST_REQ_STRU               *pstEstReqMsg;
@@ -1608,16 +1390,7 @@ VOS_VOID NAS_LPP_LppLmmEstReq( VOS_VOID )
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_LppLmmDataReq
- Description    : LPP给LMM发送直传消息
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_LppLmmDataReq
 (
     VOS_UINT32                          ulSessionId,
@@ -1681,16 +1454,7 @@ VOS_VOID NAS_LPP_LppLmmDataReq
 
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_SendUplinkMsg
- Description    : 发送上行的空口消息
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_SendUplinkMsg
 (
     VOS_UINT32                          ulSessionId,
@@ -2070,16 +1834,7 @@ VOS_VOID  NAS_LPP_SetGnssCapData
     }
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_EncodeCapabilityProvideMsg
- Description    : 编码能力提供消息
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_UINT8 NAS_LPP_EncodeCapabilityProvideMsgWithIndentityInfo
 (
     NAS_LPP_MSG_HEAD_STRU              *pstLppMsg,
@@ -2405,16 +2160,7 @@ VOS_VOID  NAS_LPP_StopTechLocForLackOfAssistData( VOS_VOID )
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_VerifyOrCreateTransaction
-Description    : 创建transaction
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 NAS_LPP_TRANSACTION_ELEMENT_ENTITY_STRU* NAS_LPP_VerifyOrCreateTransaction
 (
     NAS_LPP_MSG_HEAD_STRU              *pstLppMsgHead,
@@ -2516,16 +2262,7 @@ NAS_LPP_TRANSACTION_ELEMENT_ENTITY_STRU* NAS_LPP_VerifyOrCreateTransaction
     return pstTransEntity;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SndUplinkProvideCapbilityMsg
-Description    : 发送上行的能力提供消息
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_UINT8 NAS_LPP_SndUplinkProvideCapbilityMsg
 (
     NAS_LPP_MSG_HEAD_STRU              *pstLppMsgHead,
@@ -2582,16 +2319,7 @@ VOS_UINT8 NAS_LPP_SndUplinkProvideCapbilityMsg
     return NAS_LPP_SUCCESS;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvCapabitlityRequestHandle
-Description    : 处理网络侧下发的能力请求消息
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvCapabitlityRequestHandle
 (
     NAS_LPP_MSG_HEAD_STRU              *pstLppMsgHead,
@@ -2835,16 +2563,7 @@ VOS_VOID  NAS_LPP_RcvGnssAssistDataHandle( VOS_UINT8 ucSessionIndx )
 {
     /*  透传给 MTA，无需处理*/
 }
-/***************z**************************************************************
-Function Name  : NAS_LPP_RcvAssistDataProvideHandle
-Description    : 处理网络侧下发的辅助信息提供消息
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvAssistDataProvideHandle
 (
     NAS_LPP_MSG_HEAD_STRU              *pstMsgHead,
@@ -3004,16 +2723,7 @@ VOS_UINT32  NAS_LPP_ProvideAssistDataConflictProcess
     return NAS_LPP_SUCCESS;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SndLppMtaGnssMeasReq
-Description    : 给MTA发送GNSS的测量请求
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-10-19 新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_SndLppMtaGnssMeasReq
 (
     VOS_UINT8                           ucSessionIndx,
@@ -3058,16 +2768,7 @@ VOS_VOID NAS_LPP_SndLppMtaGnssMeasReq
     return;
 }
 
-/*****************************************************************************
- Function Name  : NAS_LPP_RcvLocationReqForOtdoaHandle
- Description    : 收到OTDOA位置信息请求的处理
- Input          :
- Output         : VOS_VOID
- Return Value   : VOS_VOID
 
- History        :
-      lifuxin 00253982 2015-11-06  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvLocationReqForOtdoaHandle
 (
     VOS_UINT32                      ulSessionId,
@@ -3135,16 +2836,7 @@ VOS_VOID NAS_LPP_RcvLocationReqForOtdoaHandle
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvLocationRequestHandle
-Description    : 处理网络侧下发的位置信息请求消息
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvLocationRequestHandle
 (
     NAS_LPP_MSG_HEAD_STRU              *pstLppMsgHead,
@@ -3283,16 +2975,7 @@ VOS_VOID NAS_LPP_RcvLocationRequestHandle
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvAortHandle
-Description    : 处理网络侧下发的Abort的消息
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvAortHandle
 (
     NAS_LPP_MSG_HEAD_STRU              *pstLppMsgHead,
@@ -3361,16 +3044,7 @@ VOS_VOID  NAS_LPP_SndMtaResetGnssMeasAbortInd(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
-Function Name   : NAS_LPP_GnssRcvAbortHandle
-Description     : 收到GNSS abort的处理
-Input           : None
-Output          : None
-Return          : VOS_VOID
 
-History         :
-1.lifuxin 00253982      2015-10-21  Draft Enact
-*****************************************************************************/
 VOS_VOID  NAS_LPP_GnssRcvAbortHandle
 (
     VOS_UINT8                           ucSessionIndex,
@@ -3434,16 +3108,7 @@ VOS_VOID  NAS_LPP_AbortAndErrorProcess
     }
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvErrorHandle
-Description    : 处理网络侧下发的Error消息的处理
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-24  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvErrorHandle
 (
     NAS_LPP_MSG_HEAD_STRU              *pstLppMsgHead,
@@ -3481,16 +3146,7 @@ VOS_VOID NAS_LPP_RcvErrorHandle
 return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_PassCheckLppDownLinkMsgHandle
-Description    : 处理经过了各种检测之后的LPP空口消息
-Input          :
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_PassCheckLppDownLinkMsgHandle
 (
     NAS_LPP_MSG_HEAD_STRU              *pstMsgHead,
@@ -3538,16 +3194,7 @@ VOS_VOID NAS_LPP_PassCheckLppDownLinkMsgHandle
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_NwMsgProcess
-Description    : NAS_LPP_NwMsgProcess
-Input          : pstLppMsg     下行LPP消息
-              ulSessionId   下行LPP流程所在session的ID
-Output         : VOS_VOID
-Return Value   : VOS_VOID
-History        :
-  lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
+
 VOS_UINT8 NAS_LPP_SndUplinkAckMsg
 (
     NAS_LPP_MSG_HEAD_STRU              *pstMsgHead,
@@ -3675,16 +3322,7 @@ VOS_UINT32  NAS_LPP_NwMsgPreProcess
 }
 
 
-/*****************************************************************************
-Function Name  : NAS_LPP_NwMsgProcess
-Description    : NAS_LPP_NwMsgProcess
-Input          : pstLppMsg     下行LPP消息
-              ulSessionId   下行LPP流程所在session的ID
-Output         : VOS_VOID
-Return Value   : VOS_VOID
-History        :
-  lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
+
 VOS_VOID NAS_LPP_NwMsgProcess
 (
 NAS_LPP_MSG_HEAD_STRU              *pstMsgHead,
@@ -3717,16 +3355,7 @@ NAS_LPP_TRANS_INDEX_STRU           *pstLppTransIndex
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SaveDownLinkCapReqMsg
-Description    : LPP模块收到下行空口消息的保存
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_SaveDownLinkCapReqMsg
 (
     LPP_MESSAGE_STRU                       *pstLppMsg,
@@ -4417,17 +4046,7 @@ VOS_UINT32  NAS_LPP_SaveGnssAssistData
     return NAS_LPP_SUCCESS;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SaveDownLinkAssistDataProvideMsg
-Description    : LPP模块收到下行空口消息的保存
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-13  新开发
-  xiaojun 2015-8-14
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_SaveDownLinkAssistDataProvideMsg
 (
     LPP_MESSAGE_STRU                       *pstLppMsg,
@@ -4616,17 +4235,7 @@ VOS_VOID  NAS_LPP_SaveCommCfgInfo
 
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_CheckUPrunningEcidPosTech
-Description    : LPP 用户面下ECID是否在执行，如果执行就清空
-Input          : VOS_VOID
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  WANGENSHENG 00324863 2015-12-2  新开发
-  lifuxin  2015-12-7              逻辑修改
-*****************************************************************************/
 VOS_VOID NAS_LPP_CheckUPrunningPosTech
 (
     LPP_MESSAGE_STRU                   *pstLppMsg
@@ -4684,16 +4293,7 @@ VOS_VOID NAS_LPP_CheckUPrunningPosTech
 
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SaveDownLinkLoctionReqMsg
-Description    : LPP模块收到下行空口消息的保存
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  wangensheng 00324863 2015-12-16  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_SaveRunTechInfo
 (
     LPP_MESSAGE_STRU                           *pstLppMsg,
@@ -4758,16 +4358,7 @@ VOS_VOID NAS_LPP_SaveRunTechInfo
         NAS_LPP_AddRunningPositionTech(NAS_LPP_POSITION_TECH_GNSS,ucSessionIndx,ucSessionTransIndx,ucTransIndx);
     }
 }
-/*****************************************************************************
-Function Name  : NAS_LPP_SaveDownLinkLoctionReqMsg
-Description    : LPP模块收到下行空口消息的保存
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_SaveDownLinkLoctionReqMsg
 (
     LPP_MESSAGE_STRU                       *pstLppMsg,
@@ -4898,16 +4489,7 @@ VOS_UINT32  NAS_LPP_SaveDownLinkLoctionReqMsg
     return  NAS_LPP_MSG_VERIFY_SUCC;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SaveDownLinkMsg
-Description    : LPP模块收到下行空口消息的保存
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_UINT32  NAS_LPP_SaveDownLinkMsg
 (
     LPP_MESSAGE_STRU                       *pstLppMsg,
@@ -4958,16 +4540,7 @@ VOS_UINT32  NAS_LPP_SaveDownLinkMsg
 
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_SaveLppMsgHead
-Description    : 得到LPP消息头
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_SaveLppMsgHead
 (
     NAS_LPP_MSG_HEAD_STRU              *pstMsgHead,
@@ -5176,16 +4749,7 @@ VOS_VOID NAS_LPP_DownLinkMsgFailProcess
     NAS_LPP_SetEndTransFlg(ucSessionIndx, ucSessionTransIndx, VOS_TRUE);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvLppEmmDataInd
-Description    : LPP模块收到LMM data ind的处理(下行空口的处理)
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-13  新开发
-*****************************************************************************/
 VOS_VOID  NAS_LPP_RcvLppEmmDataInd(LMM_LPP_DATA_IND_STRU *pRcvMsg )
 {
     VOS_UINT32                              ulRslt          = 0;
@@ -5341,16 +4905,7 @@ VOS_VOID  NAS_LPP_RcvLppEmmDataInd(LMM_LPP_DATA_IND_STRU *pRcvMsg )
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvLppEmmStartInd
-Description    : LPP模块EMM消息处理函数
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-8-4  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvLppEmmStartInd( LMM_LPP_START_IND_STRU *pRcvMsg )
 {
     NAS_LPP_NORM_LOG("NAS_LPP_RcvLppEmmStartInd is entered!");
@@ -5374,16 +4929,7 @@ VOS_VOID NAS_LPP_RcvLppEmmStartInd( LMM_LPP_START_IND_STRU *pRcvMsg )
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvLppEmmStopInd
-Description    : LPP模块EMM消息处理函数
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-8-4  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvLppEmmStopInd( LMM_LPP_STOP_IND_STRU *pRcvMsg )
 {
     NAS_LPP_NORM_LOG("NAS_LPP_RcvLppEmmStopInd is entered!");
@@ -5433,16 +4979,7 @@ VOS_VOID  NAS_LPP_RcvLppEmmCellChngInd( LMM_LPP_CELL_CHANGE_IND *pRcvMsg)
     NAS_LPP_MEM_CPY_S(pstServingCell->aucPlmnId,3,pRcvMsg->aucPlmnId, 3);
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_RcvLppEmmRelInd
-Description    : LPP模块EMM消息处理函数
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-8-4  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_RcvLppEmmRelInd( LMM_LPP_START_IND_STRU *pRcvMsg )
 {
     NAS_LPP_UP_POS_REQ_TECH_TYPE_ENUM_UINT8        enEcidReqPosType = NAS_LPP_UP_POS_REQ_TECH_TYPE_BUTT;
@@ -5475,16 +5012,7 @@ VOS_VOID NAS_LPP_RcvLppEmmRelInd( LMM_LPP_START_IND_STRU *pRcvMsg )
     return;
 }
 
-/*****************************************************************************
-Function Name  : NAS_LPP_EmmMsgDistr
-Description    : LPP模块EMM消息处理函数
-Input          : VOS_VOID *pRcvMsg
-Output         : VOS_VOID
-Return Value   : VOS_VOID
 
-History        :
-  lifuxin 00253982 2015-7-7  新开发
-*****************************************************************************/
 VOS_VOID NAS_LPP_EmmMsgDistr( VOS_VOID *pRcvMsg )
 {
     PS_MSG_HEADER_STRU         *pEmmMsg  = VOS_NULL_PTR;

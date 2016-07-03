@@ -1,14 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
-******************************************************************************
-    File Name       : NasLmmPubMNvimOsa.h
-    Description     : NasLmmPubMNvimOsa.h header file
-    History     :
-    1.zhengjunyan 00148421  2011-05-28 文件名由 NasMmPubMNvimOsa.h修改为
-                                        NasLmmPubMNvimOsa.h
-******************************************************************************/
 
 #ifndef __NASLMMPUBMNVIMOSA_H__
 #define __NASLMMPUBMNVIMOSA_H__

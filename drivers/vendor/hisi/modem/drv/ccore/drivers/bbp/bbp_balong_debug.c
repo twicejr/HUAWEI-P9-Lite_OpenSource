@@ -1,14 +1,4 @@
-/*************************************************************************
-*   版权所有(C) 2008-2013, 深圳华为技术有限公司.
-*
-*   文 件 名    :  bbp_balong_debug.c
-*
-*   作    者    :  x00195528
-*
-*   描    述    :  本文件主要实现BBP debug 功能
-*
-*   修改记录    :  2014年2月20日 创建
-*************************************************************************/
+
 /*lint -save -e537 -e656 -e801 */
 #include <bsp_bbp.h>
 #include <bbp_balong.h>
@@ -657,28 +647,28 @@ void bbp_clk_stamp_show(void)
 }
 void bbp_dpm_stamp_show(void)
 {
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_PREPAIR_IN"            ,g_bbpinfo.om->stamp_tdstf[BBP_PREPAIR_IN]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_PREPAIR_END"           ,g_bbpinfo.om->stamp_tdstf[BBP_PREPAIR_END]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_SUSPEND_IN"            ,g_bbpinfo.om->stamp_tdstf[BBP_SUSPEND_IN]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_SUSPEND_BBCRST"        ,g_bbpinfo.om->stamp_tdstf[BBP_SUSPEND_BBCRST]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_SUSPEND_END"           ,g_bbpinfo.om->stamp_tdstf[BBP_SUSPEND_END]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_PREPAIR_IN"            ,g_bbpinfo.om->stamp_suspend[BBP_PREPAIR_IN]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_PREPAIR_END"           ,g_bbpinfo.om->stamp_suspend[BBP_PREPAIR_END]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_SUSPEND_IN"            ,g_bbpinfo.om->stamp_suspend[BBP_SUSPEND_IN]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_SUSPEND_BBCRST"        ,g_bbpinfo.om->stamp_suspend[BBP_SUSPEND_BBCRST]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_SUSPEND_END"           ,g_bbpinfo.om->stamp_suspend[BBP_SUSPEND_END]);
 
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_RESUME_IN"             ,g_bbpinfo.om->stamp_tdstf[BBP_RESUME_IN]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_RESUME_BBCUNRST"       ,g_bbpinfo.om->stamp_tdstf[BBP_RESUME_BBCUNRST]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_RESUME_END"            ,g_bbpinfo.om->stamp_tdstf[BBP_RESUME_END]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_COMPLETE_IN"           ,g_bbpinfo.om->stamp_tdstf[BBP_COMPLETE_IN]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_COMPLETE_END"          ,g_bbpinfo.om->stamp_tdstf[BBP_COMPLETE_END]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_RESUME_IN"             ,g_bbpinfo.om->stamp_resume[BBP_RESUME_IN]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_RESUME_BBCUNRST"       ,g_bbpinfo.om->stamp_resume[BBP_RESUME_BBCUNRST]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_RESUME_END"            ,g_bbpinfo.om->stamp_resume[BBP_RESUME_END]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_COMPLETE_IN"           ,g_bbpinfo.om->stamp_resume[BBP_COMPLETE_IN]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_COMPLETE_END"          ,g_bbpinfo.om->stamp_resume[BBP_COMPLETE_END]);
 }
 void bbp_dma_stamp_show(void)
 {
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMATRAN_IN"            ,g_bbpinfo.om->stamp_tdstf[BBP_DMATRAN_IN]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMATRAN_CLKEN"         ,g_bbpinfo.om->stamp_tdstf[BBP_DMATRAN_CLKEN]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMATRAN_ADDR"          ,g_bbpinfo.om->stamp_tdstf[BBP_DMATRAN_ADDR]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMATRAN_END"           ,g_bbpinfo.om->stamp_tdstf[BBP_DMATRAN_END]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMAFINISH_IN"          ,g_bbpinfo.om->stamp_tdstf[BBP_DMAFINISH_IN]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMAFINISH_BUSY"        ,g_bbpinfo.om->stamp_tdstf[BBP_DMAFINISH_BUSY]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMAFINISH_END"         ,g_bbpinfo.om->stamp_tdstf[BBP_DMAFINISH_END]);
-    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMACONFIG"             ,g_bbpinfo.om->stamp_tdstf[BBP_DMACONFIG]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMATRAN_IN"            ,g_bbpinfo.om->stamp_dma[BBP_DMATRAN_IN]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMATRAN_CLKEN"         ,g_bbpinfo.om->stamp_dma[BBP_DMATRAN_CLKEN]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMATRAN_ADDR"          ,g_bbpinfo.om->stamp_dma[BBP_DMATRAN_ADDR]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMATRAN_END"           ,g_bbpinfo.om->stamp_dma[BBP_DMATRAN_END]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMAFINISH_IN"          ,g_bbpinfo.om->stamp_dma[BBP_DMAFINISH_IN]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMAFINISH_BUSY"        ,g_bbpinfo.om->stamp_dma[BBP_DMAFINISH_BUSY]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMAFINISH_END"         ,g_bbpinfo.om->stamp_dma[BBP_DMAFINISH_END]);
+    bbp_print_dbg("%-30s,0x%-20x \n","BBP_DMACONFIG"             ,g_bbpinfo.om->stamp_dma[BBP_DMACONFIG]);
 }
 void bbp_stamp_show(void)
 {

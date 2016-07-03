@@ -132,7 +132,7 @@ typedef struct tagOSPF_AREA_KEY
 {
     UCHAR ucAreaId[4];
     ULONG ulProcessId;    
-    ULONG ulGetAreaFlag;  /* DTS2010093002164 liangjicheng 2010-10-12 增加标志区分是否已经获取*/
+    ULONG ulGetAreaFlag;
 }OSPF_AREA_KEY_S;
 
 /*此数据结构包括ospf if metric mib中的所有not-accessiable项*/
@@ -154,7 +154,6 @@ typedef struct tagOSPF_AREA_AGG_KEY
     ULONG ulProcessId;             /*process id*/
 }OSPF_AREA_AGG_KEY_S;
 
-/*Added by guo00178934, OSPF区域配置参数和区域状态, 2011/11/25   问题单号:DTS2011092904809  */
 typedef struct tagOSPF_CFGAREA_LOG
 {
     ULONG  ulAreaId;                    /*区域ID*/ 
@@ -162,7 +161,6 @@ typedef struct tagOSPF_CFGAREA_LOG
     USHORT usProcessId;                 /*进程id*/
     ULONG  ulAreaStatus;                /*row_status|admin_status|oper_status|ambl_state*/
 }OSPF_CFGAREA_LOG_S;
-/* End of Added by guo00178934, 2011/11/25   问题单号:DTS2011092904809  */
 
 
 #ifdef __cplusplus

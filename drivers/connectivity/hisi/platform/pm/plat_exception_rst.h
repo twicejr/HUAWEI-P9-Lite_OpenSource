@@ -40,6 +40,11 @@
 #define IR_RESET_CMD_LEN           (4)
 #define NFC_RESET_CMD_LEN          (4)
 
+#define SDIO_STORE_BFGX_REGMEM     "readm_bfgx_sdio"
+#define UART_STORE_BFGX_STACK      "readm_bfgx_uart"
+#define UART_STORE_WIFI_MEM        "readm_wifi_uart"
+#define SDIO_STORE_WIFI_MEM        "readm_wifi_sdio"
+
 /*****************************************************************************
   3 STRUCT DEFINE
 *****************************************************************************/

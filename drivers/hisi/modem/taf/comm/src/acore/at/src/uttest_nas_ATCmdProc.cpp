@@ -42,14 +42,7 @@ extern "C" {
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_HandleApModemSpecialCmd
-功能描述 : At_HandleApModemSpecialCmd UT工程类
-修改历史 :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_HandleApModemSpecialCmd: public ::testing::Test
 {
 public:
@@ -75,15 +68,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_000
-测试用例标题      : 非SYSTEM_APP_ANDROID形态
-预期结果          : 返回AT_FAILURE
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_000)
 {
     // 变量声明
@@ -103,15 +88,7 @@ TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_000)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_001
-测试用例标题      : 输入参数为合法的AT^FACAUTHPUBKEY设置命令
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_001)
 {
     // 变量声明
@@ -173,15 +150,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_002
-测试用例标题      : 输入参数为非法的AT^FACAUTHPUBKEY设置命令，原因为命令长度不正确
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_002)
 {
     // 变量声明
@@ -232,15 +201,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_003
-测试用例标题      : 输入参数为非法的AT^FACAUTHPUBKEY设置命令，原因为申请pucDataPara失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_003)
 {
     // 变量声明
@@ -295,15 +256,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_004
-测试用例标题      : 输入参数为非法的AT^FACAUTHPUBKEY设置命令，原因为命令名不正确
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_004)
 {
     // 变量声明
@@ -356,15 +309,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_005
-测试用例标题      : 输入参数为非法的AT^FACAUTHPUBKEY设置命令，原因为逗号个数不正确
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_005)
 {
     // 变量声明
@@ -416,15 +361,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_006
-测试用例标题      : 输入参数为非法的AT^FACAUTHPUBKEY设置命令，原因为参数长度不正确
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_006)
 {
     // 变量声明
@@ -476,15 +413,7 @@ abababababababababababababababababababababababababababababababababababababababab
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_007
-测试用例标题      : 输入参数为非法的AT^FACAUTHPUBKEY设置命令，申请参数解析缓存结构失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_007)
 {
     // 变量声明
@@ -535,15 +464,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_008
-测试用例标题      : 输入参数为非法的AT^FACAUTHPUBKEY设置命令，原因为非HSIC通道下发的
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_008)
 {
     // 变量声明
@@ -606,15 +527,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_009
-测试用例标题      : 输入参数为非法的AT^FACAUTHPUBKEY设置命令，原因为参数1有非法字符
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_009)
 {
     // 变量声明
@@ -671,15 +584,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_010
-测试用例标题      : 输入参数为非法的AT^FACAUTHPUBKEY设置命令，原因为参数2有非法字符
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_010)
 {
     // 变量声明
@@ -735,15 +640,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdzdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_011
-测试用例标题      : 输入参数为合法的AT^FACAUTHPUBKEY设置命令，但发送跨核消息失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_011)
 {
     // 变量声明
@@ -809,15 +706,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_012
-测试用例标题      : 输入参数为合法的AT^FACAUTHPUBKEY设置命令，但启动定时器失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_012)
 {
     // 变量声明
@@ -884,15 +773,7 @@ cdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcd";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_013
-测试用例标题      : 输入参数为合法的AT^SIMLOCKDATAWRITE设置命令
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_013)
 {
     // 变量声明
@@ -952,15 +833,7 @@ abababababababababababababababababababababababab";
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_014
-测试用例标题      : 输入参数为非法的AT^SIMLOCKDATAWRITE设置命令，原因为命令总长错误
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_014)
 {
     // 变量声明
@@ -1019,15 +892,7 @@ abababababababababababababababababababababababab";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_015
-测试用例标题      : 输入参数为非法的AT^SIMLOCKDATAWRITE设置命令，原因为申请内存失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_015)
 {
     // 变量声明
@@ -1087,15 +952,7 @@ abababababababababababababababababababababababab";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_016
-测试用例标题      : 输入参数为非法的AT^SIMLOCKDATAWRITE设置命令，原因为命令名错误
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_016)
 {
     // 变量声明
@@ -1151,16 +1008,7 @@ abababababababababababababababababababababababab";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_017
-测试用例标题      : 输入参数为合法的AT^SIMLOCKDATAWRITE设置命令，但申请
-                                           AT_SIMLOCKDATAWRITE_SET_REQ_STRU内存失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_017)
 {
     // 变量声明
@@ -1206,15 +1054,7 @@ abababababababababababababababababababababababab";
 
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_018
-测试用例标题      : 输入参数为合法的AT^SIMLOCKDATAWRITE设置命令，但不是从HSIC通道下发的
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_018)
 {
     // 变量声明
@@ -1271,15 +1111,7 @@ abababababababababababababababababababababababab";
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_019
-测试用例标题      : 输入参数为合法的AT^SIMLOCKDATAWRITE设置命令，但命令参数有问题
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_019)
 {
     // 变量声明
@@ -1333,15 +1165,7 @@ abababababababababababababababababababababababab";
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_020
-测试用例标题      : 输入参数为合法的AT^SIMLOCKDATAWRITE设置命令，但发送跨核消息失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_020)
 {
     // 变量声明
@@ -1404,15 +1228,7 @@ abababababababababababababababababababababababab";
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_HandleApModemSpecialCmd_021
-测试用例标题      : 输入参数为合法的AT^SIMLOCKDATAWRITE设置命令，但启动定时器失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日   期  : 2012-04-21
-  作   者  : L47619
-  修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_HandleApModemSpecialCmd, Test_At_HandleApModemSpecialCmd_021)
 {
     // 变量声明
@@ -1479,14 +1295,7 @@ abababababababababababababababababababababababab";
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_ProcXmlText
-功能描述 : At_ProcXmlText UT工程类
-修改历史 :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*****************************************************************************/
+
 class Test_At_ProcXmlText: public ::testing::Test
 {
 public:
@@ -1519,15 +1328,7 @@ public:
 
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcXmlText_001
-测试用例标题      : 收到"Ctrl-Z"字符，申请内存失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_At_ProcXmlText, Test_At_ProcXmlText_001)
 {
     // 变量声明
@@ -1558,15 +1359,7 @@ TEST_F(Test_At_ProcXmlText, Test_At_ProcXmlText_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcXmlText_002
-测试用例标题      : 收到"ESC"字符，发送消息失败
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_At_ProcXmlText, Test_At_ProcXmlText_002)
 {
     // 变量声明
@@ -1593,15 +1386,7 @@ TEST_F(Test_At_ProcXmlText, Test_At_ProcXmlText_002)
 }
 
 
-/*******************************************************************
-测试用例编号      : Test_At_ProcXmlText_003
-测试用例标题      : 收到非"Ctrl-Z"/<CR>/"ESC"字符，
-预期结果          : 返回AT_ERROR
-修改历史          :
-1.日    期   : 2012年07月03日
-  作    者   : y00213812
-  修改内容   : V7R1C50 A-GPS项目新增函数
-*******************************************************************/
+
 TEST_F(Test_At_ProcXmlText, Test_At_ProcXmlText_003)
 {
     // 变量声明
@@ -1626,14 +1411,7 @@ TEST_F(Test_At_ProcXmlText, Test_At_ProcXmlText_003)
 
 
 #if (FEATURE_ON == FEATURE_AT_HSIC)
-/*****************************************************************************
-类名     : Test_AT_HandleApSecCmd
-功能描述 : AT_HandleApSecCmd UT工程类
-修改历史 :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*****************************************************************************/
+
 class Test_AT_HandleApSecCmd: public ::testing::Test
 {
 public:
@@ -1653,15 +1431,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSecCmd_001
-测试用例标题  : 命令下发通道错误
-预期结果      : 返回AT_FAILURE
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_001)
 {
     // 变量声明
@@ -1688,15 +1458,7 @@ TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSecCmd_002
-测试用例标题  : 命令长度过长
-预期结果      : 返回AT_FAILURE
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_002)
 {
     // 变量声明
@@ -1723,15 +1485,7 @@ TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSecCmd_003
-测试用例标题  : 命令长度过短
-预期结果      : 返回AT_FAILURE
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_003)
 {
     // 变量声明
@@ -1758,15 +1512,7 @@ TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSecCmd_004
-测试用例标题  : 命令查表成功，命令处理失败
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_004)
 {
     // 变量声明
@@ -1804,15 +1550,7 @@ TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSecCmd_005
-测试用例标题  : 命令查表成功，命令处理成功
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_005)
 {
     // 变量声明
@@ -1849,15 +1587,7 @@ TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSecCmd_006
-测试用例标题  : 命令名错误
-预期结果      : 返回AT_FAILURE
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_006)
 {
     // 变量声明
@@ -1884,15 +1614,7 @@ TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSecCmd_007
-测试用例标题  : 命令查表失败
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_007)
 {
     // 变量声明
@@ -1927,14 +1649,7 @@ TEST_F(Test_AT_HandleApSecCmd, Test_AT_HandleApSecCmd_007)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_AT_HandleApSndApduCmd
-功能描述 : AT_HandleApSndApduCmd UT工程类
-修改历史 :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*****************************************************************************/
+
 class Test_AT_HandleApSndApduCmd: public ::testing::Test
 {
 public:
@@ -1954,15 +1669,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSndApduCmd_001
-测试用例标题  : 命令下发通道错误
-预期结果      : 返回AT_FAILURE
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_001)
 {
     // 变量声明
@@ -1992,15 +1699,7 @@ TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSndApduCmd_002
-测试用例标题  : 命令名错误
-预期结果      : 返回AT_FAILURE
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_002)
 {
     // 变量声明
@@ -2027,15 +1726,7 @@ TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSndApduCmd_003
-测试用例标题  : 命令名参数过多
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_003)
 {
     // 变量声明
@@ -2065,15 +1756,7 @@ TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSndApduCmd_004
-测试用例标题  : 命令参数缺少结尾双引号
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_004)
 {
     // 变量声明
@@ -2103,15 +1786,7 @@ TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_004)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSndApduCmd_005
-测试用例标题  : 命令名参数1不为数字
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_005)
 {
     // 变量声明
@@ -2141,15 +1816,7 @@ TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_005)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSndApduCmd_006
-测试用例标题  : 命令名查表失败
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_006)
 {
     // 变量声明
@@ -2183,15 +1850,7 @@ TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_006)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSndApduCmd_007
-测试用例标题  : 命令处理失败
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_007)
 {
     // 变量声明
@@ -2229,15 +1888,7 @@ TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_007)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSndApduCmd_008
-测试用例标题  : 命令处理成功
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_008)
 {
     // 变量声明
@@ -2274,15 +1925,7 @@ TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_008)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号  : Test_AT_HandleApSndApduCmd_009
-测试用例标题  : 测试命令
-预期结果      : 返回AT_SUCCESS
-修改历史      :
-1.日    期    : 2012年09月01日
-  作    者    : l00198894
-  修改内容    : V7R1C50 安全存储项目新增
-*******************************************************************/
+
 TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_009)
 {
     // 变量声明
@@ -2320,14 +1963,7 @@ TEST_F(Test_AT_HandleApSndApduCmd, Test_AT_HandleApSndApduCmd_009)
 
 
 
-/*****************************************************************************
-类名     : Test_At_InterTimerOutProc
-功能描述 : At_InterTimerOutProc UT工程类
-修改历史 :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
-*****************************************************************************/
+
 class Test_At_InterTimerOutProc: public ::testing::Test
 {
 public:
@@ -2370,19 +2006,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号  : Test_At_InterTimerOutProc_001
-测试用例标题  : 进入列表搜的打断处理, 返回异步
-预期结果      : 当前操作类型更新为列表搜打断处理
-修改历史      :
-1.日    期    : 2012年09月26日
-  作    者    : l00171473
-  修改内容    : V7R1C50_At_Abort, AT打断项目
 
-2.日    期   : 2013年11月1日
-  作    者   : w00167002
-  修改内容   : NETSCAN:确保用例能执行打断，否则在125ms内直接丢弃打断。
-*******************************************************************/
 TEST_F(Test_At_InterTimerOutProc, Test_At_InterTimerOutProc_001)
 {
     VOS_UINT8                           aucMsgCops[] =
@@ -2460,15 +2084,7 @@ TEST_F(Test_At_InterTimerOutProc, Test_At_InterTimerOutProc_001)
     EXPECT_STREQ((char*)pgucAtSndCodeAddr, (char*)aucDataAt);
 
 }
-/*******************************************************************
-测试用例编号  : Test_At_InterTimerOutProc_002
-测试用例标题  : AT_CMD_CUSD_REQ命令发送超时
-预期结果      : ucCusdStateInd为AT_CUSD_MT_IDL_STATE
-修改历史      :
-1.日    期    : 2013年03月08日
-  作    者    : z00220246
-  修改内容    :
-*******************************************************************/
+
 TEST_F(Test_At_InterTimerOutProc, Test_At_InterTimerOutProc_002)
 {
     VOS_UINT8                           ucIndex = 0;
@@ -2502,15 +2118,7 @@ TEST_F(Test_At_InterTimerOutProc, Test_At_InterTimerOutProc_002)
 }
 
 
-/*******************************************************************
-测试用例编号  : Test_At_InterTimerOutProc_003
-测试用例标题  : ABORT NETSCAN命令发送超时
-预期结果      :
-修改历史      :
-1.日    期    : 2013年03月08日
-  作    者    : w00242748
-  修改内容    :
-*******************************************************************/
+
 TEST_F(Test_At_InterTimerOutProc, Test_At_InterTimerOutProc_003)
 {
     VOS_UINT8                           ucIndex = 0;
@@ -2538,15 +2146,7 @@ TEST_F(Test_At_InterTimerOutProc, Test_At_InterTimerOutProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号    : Test_At_InterTimerOutProc_004
-测试用例标题    : ATH挂断PPP拨号连接超时
-预期结果        : 上报ERROR
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_InterTimerOutProc, Test_At_InterTimerOutProc_004)
 {
     // 变量声明
@@ -2585,14 +2185,7 @@ TEST_F(Test_At_InterTimerOutProc, Test_At_InterTimerOutProc_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_SendPduMsgAck
-功能描述 : At_SendPduMsgAck UT工程类
-修改历史 :
-1.日   期  : 2012-11-10
-  作   者  : f62575
-  修改内容 : DTS2012111201995
-*****************************************************************************/
+
 class Test_At_SendPduMsgAck: public ::testing::Test
 {
 public:
@@ -2606,15 +2199,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SendPduMsgAck_001
-测试用例标题      : 指示MODEM发送短信接收确认消息给网络，用户下发的TPDU的TP-FCS为0XD3
-预期结果          : RP-CAUSE为22
-修改历史          :
-1.日   期  : 2012-11-10
-  作   者  : f62575
-  修改内容 : DTS2012111201995
-*******************************************************************/
+
 TEST_F(Test_At_SendPduMsgAck, Test_At_SendPduMsgAck_001)
 {
     // 变量声明
@@ -2649,14 +2234,7 @@ TEST_F(Test_At_SendPduMsgAck, Test_At_SendPduMsgAck_001)
 
 
 
-/*****************************************************************************
-类名     : Test_At_ClientIdToUserId
-功能描述 : At_ClientIdToUserId UT工程类
-修改历史     :
-1.日   期  : 2013-01-05
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_ClientIdToUserId: public ::testing::Test
 {
 public:
@@ -2670,15 +2248,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_ClientIdToUserId_001
-测试用例标题      : 当前为Modem0广播client id
-预期结果          : 返回AT_SUCCESS，输出值为AT_BROADCAST_CLIENT_INDEX_MODEM_0
-修改历史     :
-1.日   期  : 2013-01-05
-作   者  :   z00220246
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ClientIdToUserId,Test_At_ClientIdToUserId_001)
 {
     TAF_UINT16                              usClientId;
@@ -2709,15 +2279,7 @@ TEST_F(Test_At_ClientIdToUserId,Test_At_ClientIdToUserId_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ClientIdToUserId_002
-测试用例标题      : 当前为Modem1广播client id
-预期结果          : 返回AT_SUCCESS，输出值为AT_BROADCAST_CLIENT_INDEX_MODEM_1
-修改历史     :
-1.日   期  : 2013-01-05
-作   者  :   z00220246
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ClientIdToUserId,Test_At_ClientIdToUserId_002)
 {
     TAF_UINT16                              usClientId;
@@ -2748,15 +2310,7 @@ TEST_F(Test_At_ClientIdToUserId,Test_At_ClientIdToUserId_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ClientIdToUserId_003
-测试用例标题      : 当前为Modem0的AT_CLIENT_ID_APP
-预期结果          : 返回AT_SUCCESS，输出值为AT_CLIENT_TAB_APP_INDEX
-修改历史     :
-1.日   期  : 2013-01-05
-作   者  :   z00220246
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ClientIdToUserId,Test_At_ClientIdToUserId_003)
 {
     TAF_UINT16                              usClientId;
@@ -2787,15 +2341,7 @@ TEST_F(Test_At_ClientIdToUserId,Test_At_ClientIdToUserId_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_ClientIdToUserId_004
-测试用例标题      : 当前cLientID为AT_CLIENT_ID_BUTT
-预期结果          : 返回AT_FAILURE
-修改历史     :
-1.日   期  : 2013-01-05
-作   者  :   z00220246
-修改内容 : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_ClientIdToUserId,Test_At_ClientIdToUserId_004)
 {
     TAF_UINT16                              usClientId;
@@ -2825,14 +2371,7 @@ TEST_F(Test_At_ClientIdToUserId,Test_At_ClientIdToUserId_004)
     GlobalMockObject::verify();
 }
 
-/*****************************************************************************
-类名     : Test_At_CheckUsimStatus
-功能描述 : At_CheckUsimStatus UT工程类
-修改历史     :
-1.日   期  : 2013-01-10
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_CheckUsimStatus: public ::testing::Test
 {
 public:
@@ -2846,15 +2385,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUsimStatus_001
-测试用例标题      : 获取modemId失败，默认Modem0
-预期结果          : 返回AT_ERROR
-修改历史
-  1.日    期: 2013年1月10日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CheckUsimStatus,Test_At_CheckUsimStatus_001)
 {
     // 参数定义
@@ -2884,15 +2415,7 @@ TEST_F(Test_At_CheckUsimStatus,Test_At_CheckUsimStatus_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUsimStatus_002
-测试用例标题      : modemId0，CMGL命令
-预期结果          : 返回AT_SUCCESS
-修改历史
-  1.日    期: 2013年1月10日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CheckUsimStatus,Test_At_CheckUsimStatus_002)
 {
     // 参数定义
@@ -2944,15 +2467,7 @@ TEST_F(Test_At_CheckUsimStatus,Test_At_CheckUsimStatus_002)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_CheckUsimStatus_003
-测试用例标题      : modemId0，COPS命令
-预期结果          : 返回AT_CME_SIM_PIN_REQUIRED
-修改历史
-  1.日    期: 2013年1月10日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CheckUsimStatus,Test_At_CheckUsimStatus_003)
 {
     // 参数定义
@@ -3001,15 +2516,7 @@ TEST_F(Test_At_CheckUsimStatus,Test_At_CheckUsimStatus_003)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_CheckUsimStatus_004
-测试用例标题      : modemId1，COPS命令
-预期结果          : 返回AT_SUCCESS
-修改历史
-  1.日    期: 2013年1月10日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_CheckUsimStatus,Test_At_CheckUsimStatus_004)
 {
     // 参数定义
@@ -3055,14 +2562,7 @@ TEST_F(Test_At_CheckUsimStatus,Test_At_CheckUsimStatus_004)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_TimeOutProc
-功能描述 : At_TimeOutProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   z00220246
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_TimeOutProc: public ::testing::Test
 {
 public:
@@ -3076,15 +2576,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_TimeOutProc_003
-测试用例标题      : modem0的S0命令超时，发送MN_CALL_Sups成功
-预期结果          : 停止S0的定时器
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_TimeOutProc, Test_At_TimeOutProc_003)
 {
     REL_TIMER_MSG                        *pMsg;
@@ -3124,15 +2616,7 @@ TEST_F(Test_At_TimeOutProc, Test_At_TimeOutProc_003)
 }
 
 #if(FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_TimeOutProc_004
-测试用例标题      : modem1的S0命令超时，发送MN_CALL_Sups成功
-预期结果          : 停止S0的定时器
-修改历史          :
-1.日   期  : 2013-03-07
-  作   者         : z00220246
-  修改内容        : 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_TimeOutProc, Test_At_TimeOutProc_004)
 {
     REL_TIMER_MSG                        *pMsg;
@@ -3170,14 +2654,7 @@ TEST_F(Test_At_TimeOutProc, Test_At_TimeOutProc_004)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_SmsProc
-功能描述 : At_SmsProc UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SmsProc: public ::testing::Test
 {
 public:
@@ -3191,15 +2668,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsProc_001
-测试用例标题      : 获取Modem0当前短信模式为TXT，短信TEXT处理结果AT_WAIT_SMS_INPUT
-预期结果          : 返回AT_WAIT_SMS_INPUT
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsProc,Test_At_SmsProc_001)
 {
     // 参数定义
@@ -3242,15 +2711,7 @@ TEST_F(Test_At_SmsProc,Test_At_SmsProc_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsProc_002
-测试用例标题      : 获取Modem0当前短信模式为PDU，短信PDU处理失败
-预期结果          : 返回AT_ERROR
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsProc,Test_At_SmsProc_002)
 {
     // 参数定义
@@ -3291,15 +2752,7 @@ TEST_F(Test_At_SmsProc,Test_At_SmsProc_002)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SmsProc_003
-测试用例标题      : 获取Modem1当前短信模式为TXT，短信TEXT处理结果AT_WAIT_SMS_INPUT
-预期结果          : 返回AT_WAIT_SMS_INPUT
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsProc,Test_At_SmsProc_003)
 {
     // 参数定义
@@ -3339,15 +2792,7 @@ TEST_F(Test_At_SmsProc,Test_At_SmsProc_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SmsProc_004
-测试用例标题      : 获取Modem1当前短信模式为PDU， 短信PDU处理失败
-预期结果          : 返回AT_ERROR
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SmsProc,Test_At_SmsProc_004)
 {
     // 参数定义
@@ -3386,14 +2831,7 @@ TEST_F(Test_At_SmsProc,Test_At_SmsProc_004)
     GlobalMockObject::verify();
 }
 #endif
-/*****************************************************************************
-类名     : Test_At_SendTextMsgOrCmd
-功能描述 : At_SendTextMsgOrCmd UT工程类
-修改历史     :
-1.日   期  : 2013-03-07
-作   者  :   l00227485
-修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SendTextMsgOrCmd: public ::testing::Test
 {
 public:
@@ -3407,15 +2845,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SendTextMsgOrCmd_001
-测试用例标题      : Modem0　SMS上下文BcdLen为0
-预期结果          : 返回AT_CMS_SMSC_ADDRESS_UNKNOWN
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendTextMsgOrCmd,Test_At_SendTextMsgOrCmd_001)
 {
     // 参数定义
@@ -3459,15 +2889,7 @@ TEST_F(Test_At_SendTextMsgOrCmd,Test_At_SendTextMsgOrCmd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendTextMsgOrCmd_002
-测试用例标题      : Modem 0SMS上下文BcdLen不为0，当前用户的命令操作类型为AT_CMD_CMGS_TEXT_SET
-预期结果          : 返回AT_CMS_INVALID_TEXT_MODE_PARAMETER
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendTextMsgOrCmd,Test_At_SendTextMsgOrCmd_002)
 {
     // 参数定义
@@ -3509,15 +2931,7 @@ TEST_F(Test_At_SendTextMsgOrCmd,Test_At_SendTextMsgOrCmd_002)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SendTextMsgOrCmd_003
-测试用例标题      : Modem1　SMS上下文BcdLen为0
-预期结果          : 返回AT_CMS_SMSC_ADDRESS_UNKNOWN
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendTextMsgOrCmd,Test_At_SendTextMsgOrCmd_003)
 {
     // 参数定义
@@ -3560,15 +2974,7 @@ TEST_F(Test_At_SendTextMsgOrCmd,Test_At_SendTextMsgOrCmd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendTextMsgOrCmd_004
-测试用例标题      : Modem 1SMS上下文BcdLen不为0，当前用户的命令操作类型为AT_CMD_CMGS_TEXT_SET
-预期结果          : 返回执行结果
-修改历史
-  1.日    期: 2013年3月7日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendTextMsgOrCmd,Test_At_SendTextMsgOrCmd_004)
 {
     // 参数定义
@@ -3613,14 +3019,7 @@ TEST_F(Test_At_SendTextMsgOrCmd,Test_At_SendTextMsgOrCmd_004)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_WriteTextMsgToMem
-功能描述 : At_WriteTextMsgToMem UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_WriteTextMsgToMem: public ::testing::Test
 {
 public:
@@ -3634,15 +3033,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_WriteTextMsgToMem_001
-测试用例标题      : Modem0 写TEXT消息到存储器，BCD码长度为0
-预期结果          : 返回AT_ERROR
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_WriteTextMsgToMem,Test_At_WriteTextMsgToMem_001)
 {
     // 参数定义
@@ -3685,15 +3076,7 @@ TEST_F(Test_At_WriteTextMsgToMem,Test_At_WriteTextMsgToMem_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_WriteTextMsgToMem_002
-测试用例标题      : Modem0 写TEXT消息到存储器，SM状态为MN_MSG_STATUS_MO_NOT_SENT或MN_MSG_STATUS_MO_SENT
-预期结果          : 返回执行结果AT_CMS_INVALID_TEXT_MODE_PARAMETER
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_WriteTextMsgToMem,Test_At_WriteTextMsgToMem_002)
 {
     // 参数定义
@@ -3737,15 +3120,7 @@ TEST_F(Test_At_WriteTextMsgToMem,Test_At_WriteTextMsgToMem_002)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_WriteTextMsgToMem_003
-测试用例标题      : Modem1 写TEXT消息到存储器，BCD码长度不为0
-预期结果          : 返回AT_ERROR
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_WriteTextMsgToMem,Test_At_WriteTextMsgToMem_003)
 {
     // 参数定义
@@ -3791,15 +3166,7 @@ TEST_F(Test_At_WriteTextMsgToMem,Test_At_WriteTextMsgToMem_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_WriteTextMsgToMem_004
-测试用例标题      : Modem1 写TEXT消息到存储器，SM状态为MN_MSG_STATUS_MO_NOT_SENT或MN_MSG_STATUS_MO_SENT
-预期结果          : 返回执行结果AT_CMS_INVALID_TEXT_MODE_PARAMETER
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_WriteTextMsgToMem,Test_At_WriteTextMsgToMem_004)
 {
     // 参数定义
@@ -3849,14 +3216,7 @@ TEST_F(Test_At_WriteTextMsgToMem,Test_At_WriteTextMsgToMem_004)
 #endif
 
 
-/*****************************************************************************
-类名     : Test_At_SendPduMsgOrCmd
-功能描述 : At_SendPduMsgOrCmd UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SendPduMsgOrCmd: public ::testing::Test
 {
 public:
@@ -3870,15 +3230,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_SendPduMsgOrCmd_001
-测试用例标题      : Modem0 PDU短消息或命令发送，短信中心地址BCD码长度为0，发送存储介质为SIM
-预期结果          : 返回AT_CMS_SMSC_ADDRESS_UNKNOWN
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendPduMsgOrCmd,Test_At_SendPduMsgOrCmd_001)
 {
     // 参数定义
@@ -3925,15 +3277,7 @@ TEST_F(Test_At_SendPduMsgOrCmd,Test_At_SendPduMsgOrCmd_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendPduMsgOrCmd_002
-测试用例标题      : Modem0 PDU短消息或命令发送，ucBcdLen不为0，短信中心地址BCD码长度不为0，发送存储介质非法
-预期结果          : 返回AT_CMS_INVALID_PDU_MODE_PARAMETER
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendPduMsgOrCmd,Test_At_SendPduMsgOrCmd_002)
 {
     // 参数定义
@@ -3980,15 +3324,7 @@ TEST_F(Test_At_SendPduMsgOrCmd,Test_At_SendPduMsgOrCmd_002)
 }
 
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_SendTextMsgOrCmd_003
-测试用例标题      : Modem1 PDU短消息或命令发送，短信中心地址BCD码长度为0，发送存储介质为SIM
-预期结果          : 返回AT_CMS_SMSC_ADDRESS_UNKNOWN
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendPduMsgOrCmd,Test_At_SendPduMsgOrCmd_003)
 {
     // 参数定义
@@ -4035,15 +3371,7 @@ TEST_F(Test_At_SendPduMsgOrCmd,Test_At_SendPduMsgOrCmd_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_SendPduMsgOrCmd_004
-测试用例标题      : Modem1 PDU短消息或命令发送，ucBcdLen不为0，短信中心地址BCD码长度不为0，发送存储介质非法
-预期结果          : 返回AT_CMS_INVALID_PDU_MODE_PARAMETER
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_SendPduMsgOrCmd,Test_At_SendPduMsgOrCmd_004)
 {
     // 参数定义
@@ -4091,14 +3419,7 @@ TEST_F(Test_At_SendPduMsgOrCmd,Test_At_SendPduMsgOrCmd_004)
 }
 #endif
 
-/*****************************************************************************
-类名     : Test_At_WritePduMsgToMem
-功能描述 : At_WritePduMsgToMem UT工程类
-修改历史     :
-1.日   期  : 2013-03-11
-  作   者  : l00227485
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_WritePduMsgToMem: public ::testing::Test
 {
 public:
@@ -4112,15 +3433,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_At_WritePduMsgToMem_001
-测试用例标题      : Modem0 写TEXT消息到存储器，短信中心地址BCD码长度为0，发送存储介质为SIM
-预期结果          : 返回AT_ERROR
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_WritePduMsgToMem,Test_At_WritePduMsgToMem_001)
 {
     // 参数定义
@@ -4167,15 +3480,7 @@ TEST_F(Test_At_WritePduMsgToMem,Test_At_WritePduMsgToMem_001)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_WritePduMsgToMem_002
-测试用例标题      : Modem0 写TEXT消息到存储器，短信中心地址BCD码长度不为0，发送存储介质非法
-预期结果          : 返回执行结果AT_ERROR
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_WritePduMsgToMem,Test_At_WritePduMsgToMem_002)
 {
     // 参数定义
@@ -4223,15 +3528,7 @@ TEST_F(Test_At_WritePduMsgToMem,Test_At_WritePduMsgToMem_002)
     GlobalMockObject::verify();
 }
 #if (FEATURE_ON == FEATURE_MULTI_MODEM)
-/*******************************************************************
-测试用例编号      : Test_At_WritePduMsgToMem_003
-测试用例标题      : Modem1 写TEXT消息到存储器，短信中心地址BCD码长度为0，发送存储介质为SIM
-预期结果          : 返回AT_ERROR
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_WritePduMsgToMem,Test_At_WritePduMsgToMem_003)
 {
     // 参数定义
@@ -4280,15 +3577,7 @@ TEST_F(Test_At_WritePduMsgToMem,Test_At_WritePduMsgToMem_003)
     GlobalMockObject::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_At_WritePduMsgToMem_004
-测试用例标题      : Modem1 写TEXT消息到存储器，BCD码长度不为0，PDU码有效性检查成功，写短信失败
-预期结果          : 返回AT_ERROR
-修改历史
-  1.日    期: 2013年3月11日
-    作    者: l00227485
-    修改内容: 新建CASE
-*******************************************************************/
+
 TEST_F(Test_At_WritePduMsgToMem,Test_At_WritePduMsgToMem_004)
 {
     // 参数定义
@@ -4342,14 +3631,7 @@ TEST_F(Test_At_WritePduMsgToMem,Test_At_WritePduMsgToMem_004)
 /* 删除私有解析器的UT用例 */
 
 
-/*****************************************************************************
-类名     : Test_At_SetMode
-功能描述 : Test_At_SetMode UT工程类
-修改历史 :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*****************************************************************************/
+
 class Test_At_SetMode: public ::testing::Test
 {
 public:
@@ -4367,15 +3649,7 @@ public:
     }
 };
 
-/*******************************************************************
-测试用例编号    : Test_At_SetMode_001
-测试用例标题    : ONLINE-DATA模式切换至ONLINE-COMMAND模式
-预期结果        : 通道模式为ONLINE-COMMAND, 数据模式不变
-修改历史        :
-1.日   期  : 2013-10-15
-  作   者  : A00165503
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_At_SetMode, Test_At_SetMode_001)
 {
     // 变量声明
@@ -4408,14 +3682,7 @@ TEST_F(Test_At_SetMode, Test_At_SetMode_001)
 
 #if 0
 
-/*****************************************************************************
-类名     : Test_AT_MapCallTypeModeToClccMode
-功能描述 : AT_MapCallTypeModeToClccMode UT工程类
-修改历史 :
-1.日    期   : 2014年04月25日
-  作    者   : n00269697
-  修改内容   : ecall 新生成类
-*****************************************************************************/
+
 class Test_AT_MapCallTypeModeToClccMode: public ::testing::Test
 {
     void SetUp()
@@ -4429,15 +3696,7 @@ class Test_AT_MapCallTypeModeToClccMode: public ::testing::Test
     }
 };
 
-/*******************************************************************
-测试用例编号      : Test_AT_MapCallTypeModeToClccMode_001
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_VOICE
-预期结果          : enClccMode为0
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_001)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -4455,15 +3714,7 @@ TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_001)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_MapCallTypeModeToClccMode_002
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_EMERGENCY
-预期结果          : enClccMode为0
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_002)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -4481,15 +3732,7 @@ TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_002)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_MapCallTypeModeToClccMode_003
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_MIEC
-预期结果          : enClccMode为0
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_003)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -4507,15 +3750,7 @@ TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_003)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_MapCallTypeModeToClccMode_004
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_AIEC
-预期结果          : enClccMode为0
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_004)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -4533,15 +3768,7 @@ TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_004)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_MapCallTypeModeToClccMode_005
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_TEST
-预期结果          : enClccMode为0
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_005)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -4559,15 +3786,7 @@ TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_005)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_MapCallTypeModeToClccMode_006
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_RECFGURATION
-预期结果          : enClccMode为0
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_006)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -4585,15 +3804,7 @@ TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_006)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_MapCallTypeModeToClccMode_007
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_PSAP_ECALL
-预期结果          : enClccMode为0
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_007)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -4611,15 +3822,7 @@ TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_007)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_MapCallTypeModeToClccMode_008
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_FAX
-预期结果          : enClccMode为0
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_008)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;
@@ -4637,15 +3840,7 @@ TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_008)
     LLT_GLOBALOBJMOCKER::verify();
 }
 
-/*******************************************************************
-测试用例编号      : Test_AT_MapCallTypeModeToClccMode_009
-测试用例标题      : 呼叫类型是MN_CALL_TYPE_BUTT
-预期结果          : enClccMode为0
-修改历史   :
-1.日   期  : 2014-04-25
-  作   者  : n00269697
-  修改内容 : 新生成类
-*******************************************************************/
+
 TEST_F(Test_AT_MapCallTypeModeToClccMode, Test_AT_MapCallTypeModeToClccMode_009)
 {
     MN_CALL_TYPE_ENUM_U8                enCallType;

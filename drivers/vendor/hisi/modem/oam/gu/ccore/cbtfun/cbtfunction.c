@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名      : Om.c
-  版 本 号      : 初稿
-  作    者      : 甘兰47350
-  生成日期      : 2008年5月3日
-  最近修改      :
-  功能描述      : 该C文件给出了OM模块的实现
-  函数列表      :
-  修改历史      :
-  1.日    期    : 2008年5月3日
-    作    者    : 甘兰47350
-    修改内容    : 创建文件
-
-******************************************************************************/
 /*****************************************************************************
   1 头文件包含
 *****************************************************************************/
@@ -91,19 +74,7 @@ VOS_RATMODE_ENUM_UINT32                 g_ulCBTMasterModeBackup = VOS_RATMODE_BU
 
 VOS_RATMODE_ENUM_UINT32                 g_ulOMMasterModeBackup  = VOS_RATMODE_BUTT;
 
-/*****************************************************************************
- Prototype       : CBT_SysCtrlCmd
- Description     : 给MMA发送消息进行系统控制
- Input           : ulPid -- 发送消息PID.
-                   ulMode -- 系统控制类型
- Output          : None
- Return Value    : VOS_UINT32
 
- History         : ---
-    Date         : 2015-3-2
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_UINT32 CBT_SysCtrlCmd(VOS_UINT16 usClientId, VOS_UINT32 ulMode, MODEM_ID_ENUM_UINT16 enModemID)
 {
     MN_APP_PHONE_MODE_SET_REQ_STRU * pstMsg;
@@ -744,19 +715,7 @@ VOS_UINT32 CBT_QueryMisc(CBT_UNIFORM_MSG_STRU * pstPcToCbtMsg, VOS_UINT16 usRetu
     /*lint +e534*/
     return VOS_OK;
 }
-/*****************************************************************************
- Prototype       : CBT_QueryPaTempByPhyChan
- Description     : 通过物理通道查询PA的温度
- Input           : pstAppToOmMsg  - The input msg received from APP side.
-                   usReturnPrimId - The value of the returned PrimId.
- Output          : None.
- Return Value    : VOS_OK  - Success.
 
- History         : ---
-    Date         : 2015-03-26
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_UINT32 CBT_QueryPaTempByPhyChan(CBT_UNIFORM_MSG_STRU * pstPcToCbtMsg, VOS_UINT16 usReturnPrimId)
 {
     CBT_UNIFORM_MSG_STRU            *pstCbtToPcMsg;
@@ -997,19 +956,7 @@ VOS_UINT32 CBT_ComposeSendMsg(CBT_UNIFORM_MSG_STRU * pstUniformMsg, VOS_UINT32 u
     return VOS_OK;
 }
 
-/*****************************************************************************
- Prototype       :   CBT_PsMsgProc
- Description     :   工具侧发往OM的射频消息处理函数
- Input           :   pRspPacket  - The pointer of the msg.
-                     pRspFuncPtr - It's not used.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-04-06
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID CBT_PsMsgProc(CBT_UNIFORM_MSG_STRU * pstUniformMsg)
 {
     VOS_UINT32                          ulReceivePid;
@@ -1030,19 +977,7 @@ VOS_VOID CBT_PsMsgProc(CBT_UNIFORM_MSG_STRU * pstUniformMsg)
 
     return;
 }
-/*****************************************************************************
- Prototype       :   CBT_PsMsgProc
- Description     :   工具侧透传给其它模块的消息处理函数
- Input           :   pRspPacket  - The pointer of the msg.
-                     pRspFuncPtr - It's not used.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-08-22
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID CBT_TransMsgProc(CBT_UNIFORM_MSG_STRU * pstUniformMsg)
 {
     VOS_UINT32                          ulLength;
@@ -1164,18 +1099,7 @@ VOS_VOID CBT_NoSigMsgProc(CBT_UNIFORM_MSG_STRU * pRspPacket)
 
     return;
 }
-/*****************************************************************************
- Prototype       :   CBT_MMAMsgProc
- Description     :   将CBT接收到的消息交给mma处理
- Input           :   pMsg  - The pointer of the msg.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-03-13
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID CBT_MMAMsgProc(MsgBlock* pMsg)
 {
     MN_APP_PHONE_EVENT_INFO_STRU     *pstEvent;
@@ -1249,18 +1173,7 @@ VOS_UINT8 CBT_CompModeToSsId(VOS_UINT8 ucCompMode)
     return ucSsid;
 }
 
-/*****************************************************************************
- Prototype       :   CBT_GutlcPsMsgProc
- Description     :   将CBT接收到的消息交给发送给PC处理
- Input           :   pMsg  - The pointer of the msg.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-07-9
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID CBT_GutlcPsMsgProc(MsgBlock* pMsg)
 {
     VOS_UINT8                           ucModemStru;
@@ -1305,18 +1218,7 @@ VOS_VOID CBT_GutlcPsMsgProc(MsgBlock* pMsg)
     VOS_MemFree(CCPU_PID_CBT, pstCbtToAppMsg);
     /*lint +e534*/
 }
-/*****************************************************************************
- Prototype       :   CBT_TraceConfirm
- Description     :   处理Trace消息的回复消息
- Input           :   pMsg  - The pointer of the msg.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-07-08
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID CBT_TraceConfirm(MsgBlock* pMsg)
 {
     VOS_UINT16                          usPrimId;
@@ -1355,18 +1257,7 @@ VOS_VOID CBT_TraceConfirm(MsgBlock* pMsg)
     }
     return;
 }
-/*****************************************************************************
- Prototype       :   CBT_GeBer
- Description     :   处理Ge模 帧消息
- Input           :   pMsg  - The pointer of the msg.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-06-04
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID CBT_GeBer(MsgBlock* pMsg)
 {
     /*lint -e813*/
@@ -1397,18 +1288,7 @@ VOS_VOID CBT_GeBer(MsgBlock* pMsg)
 }
 
 #if (FEATURE_ON == FEATURE_UE_MODE_CDMA)
-/*****************************************************************************
- Prototype       :   CBT_SendCSyncStatus
- Description     :   处理X模 帧消息
- Input           :   pMsg  - The pointer of the msg.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-08-18
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID CBT_SendCSyncStatus(MsgBlock *pMsg)
 {
     VOS_UINT16                              usFrameIndex;
@@ -1442,18 +1322,7 @@ VOS_VOID CBT_SendCSyncStatus(MsgBlock *pMsg)
     CBT_SendResultChannel(g_stListmodeCtrl.stModemSsid, g_stListmodeCtrl.stCompMode, OM_APP_NON_SIG_BT_C_SYNC_CNF, (VOS_UINT32)CBT_C_SYNC_STATUS_SYNC);
     return;
 }
-/*****************************************************************************
- Prototype       :   CBT_CFrameMsg
- Description     :   处理X模 帧消息
- Input           :   pMsg  - The pointer of the msg.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-06-04
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID CBT_CFrameMsg(MsgBlock *pMsg)
 {
     VOS_UINT16                              usFrameIndex;
@@ -1500,18 +1369,7 @@ VOS_VOID CBT_CFrameMsg(MsgBlock *pMsg)
         /* for pclint */
     }
 }
-/*****************************************************************************
- Prototype       :   CBT_RcvLacSyncSendSetTimingReq
- Description     :   调用Cas的接口 进行时间转换，然后模拟CAS发送ID_CAS_CPROC_1X_SET_TIMING_REQ
- Input           :   pMsg  - The pointer of the msg.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-08-07
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID  CBT_RcvLacSyncSendSetTimingReq(MsgBlock* pMsg)
 {
     CAS_CPROC_1X_SET_TIMING_REQ_STRU        *pstSetTimingReq;
@@ -1544,18 +1402,7 @@ VOS_VOID  CBT_RcvLacSyncSendSetTimingReq(MsgBlock* pMsg)
 
 #endif
 
-/*****************************************************************************
- Prototype       :   CBT_ListmodeTransProc
- Description     :   接收来自PHY非透传消息
- Input           :   pMsg  - The pointer of the msg.
- Output          :   void
- Return Value    :   void
 
- History         : ---
-    Date         : 2015-06-04
-    Author       : x00263027
-    Modification : Created function
- *****************************************************************************/
 VOS_VOID CBT_ListmodeTransProc(MsgBlock* pMsg)
 {
     VOS_UINT16                              usPrimId;

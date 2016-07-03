@@ -81,17 +81,7 @@ extern int test_NFExt_BrForwardFlowCtrlHook_002(void);
 #endif
 
 /* 以下是用例 */
-/*****************************************************************************
- 被测函数  : test_NFExt_IsOmData
- 被测功能  : 对桩test_NFExt_IsOmData测试
- 用例条件  : 待勾取的报文是UDP报文
 
- 修改历史      :
-  1.日    期   : 2014年5月17日
-    作    者   : liukai
-    修改内容   : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_IsOmData, NFExt_IsOmData_001)
 {
     int result;
@@ -122,17 +112,7 @@ TEST(test_test_NFExt_IsOmData, NFExt_IsOmData_001)
     GlobalMockObject::reset();
  }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_IsOmData
- 被测功能   : 对桩test_NFExt_IsOmData测试
- 用例条件   : 待勾取的报文是TCP报文且目的端口和ip和OM匹配
 
- 修改历史       :
- 1.日    期 : 2014年5月17日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_IsOmData, NFExt_IsOmData_002)
 {
     unsigned int result;
@@ -163,17 +143,7 @@ TEST(test_test_NFExt_IsOmData, NFExt_IsOmData_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_IsOmData
- 被测功能   : 对桩test_NFExt_IsOmData测试
- 用例条件   : 待勾取的报文是TCP报文且目的和源端口和ip和OM均不匹配
 
- 修改历史       :
- 1.日    期 : 2014年5月17日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_IsOmData, NFExt_IsOmData_003)
 {
     unsigned int result;
@@ -204,17 +174,7 @@ TEST(test_test_NFExt_IsOmData, NFExt_IsOmData_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_IsOmData
- 被测功能   : 对桩test_NFExt_IsOmData测试
- 用例条件   : 将勾取网桥中转报文导出到SDT
 
- 修改历史       :
- 1.日    期 : 2014年5月17日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrDataExport, NFExt_IsOmData_001)
 {
     /*************************************************************************
@@ -245,17 +205,7 @@ TEST(test_test_NFExt_BrDataExport, NFExt_IsOmData_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_IsOmData
- 被测功能   : 对桩test_NFExt_IsOmData测试
- 用例条件   : 将勾取网桥中转报文导出到SDT
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrDataExport, NFExt_IsOmData_002)
 {
     /*************************************************************************
@@ -287,17 +237,7 @@ TEST(test_test_NFExt_BrDataExport, NFExt_IsOmData_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_ArpDataExport
- 被测功能   : 对桩test_NFExt_ArpDataExport测试
- 用例条件   : 将勾取ARP报文导出到SDT
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ArpDataExport, NFExt_ArpDataExport_001)
 {
     /*************************************************************************
@@ -329,17 +269,7 @@ TEST(test_test_NFExt_ArpDataExport, NFExt_ArpDataExport_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_IpDataExport
- 被测功能   : 对桩test_NFExt_IpDataExport测试
- 用例条件   : 将勾取ARP报文导出到SDT
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_IpDataExport, NFExt_IpDataExport_001)
 {
     /*************************************************************************
@@ -367,17 +297,7 @@ TEST(test_test_NFExt_IpDataExport, NFExt_IpDataExport_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_IpDataExport
- 被测功能   : 对桩test_NFExt_IpDataExport测试
- 用例条件   : 将勾取ARP报文导出到SDT
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_IpDataExport, NFExt_IpDataExport_002)
 {
     /*************************************************************************
@@ -406,17 +326,7 @@ TEST(test_test_NFExt_IpDataExport, NFExt_IpDataExport_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_IpDataExport
- 被测功能   : 对桩test_NFExt_IpDataExport测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_IpDataExport, NFExt_IpDataExport_003)
 {
     /*************************************************************************
@@ -447,17 +357,7 @@ TEST(test_test_NFExt_IpDataExport, NFExt_IpDataExport_003)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrPreRoutingHook
- 被测功能   : 对桩test_NFExt_BrPreRoutingHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrPreRoutingHook, NFExt_BrPreRoutingHook_001)
 {
     unsigned int result     = 0;
@@ -488,17 +388,7 @@ TEST(test_test_NFExt_BrPreRoutingHook, NFExt_BrPreRoutingHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrPreRoutingHook
- 被测功能   : 对桩test_NFExt_BrPreRoutingHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrPreRoutingHook, NFExt_BrPreRoutingHook_002)
 {
     unsigned int result     = 0;
@@ -530,17 +420,7 @@ TEST(test_test_NFExt_BrPreRoutingHook, NFExt_BrPreRoutingHook_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrPostRoutingHook
- 被测功能   : 对桩test_NFExt_BrPostRoutingHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrPostRoutingHook, NFExt_BrPostRoutingHook_001)
 {
     /*************************************************************************
@@ -568,17 +448,7 @@ TEST(test_test_NFExt_BrPostRoutingHook, NFExt_BrPostRoutingHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrPostRoutingHook
- 被测功能   : 对桩test_NFExt_BrPostRoutingHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrPostRoutingHook, NFExt_BrPostRoutingHook_002)
 {
     /*************************************************************************
@@ -607,17 +477,7 @@ TEST(test_test_NFExt_BrPostRoutingHook, NFExt_BrPostRoutingHook_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrLocalInHook
- 被测功能   : 对桩test_NFExt_BrLocalInHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrLocalInHook, NFExt_BrLocalInHook_001)
 {
     unsigned int result     = 0;
@@ -648,17 +508,7 @@ TEST(test_test_NFExt_BrLocalInHook, NFExt_BrLocalInHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrLocalInHook
- 被测功能   : 对桩test_NFExt_BrLocalInHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrLocalInHook, NFExt_BrLocalInHook_002)
 {
     unsigned int result     = 0;
@@ -690,17 +540,7 @@ TEST(test_test_NFExt_BrLocalInHook, NFExt_BrLocalInHook_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrLocalOutHook
- 被测功能   : 对桩test_NFExt_BrLocalOutHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrLocalOutHook_001, NFExt_BrLocalOutHook_001)
 {
     unsigned int result     = 0;
@@ -731,17 +571,7 @@ TEST(test_test_NFExt_BrLocalOutHook_001, NFExt_BrLocalOutHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrLocalOutHook
- 被测功能   : 对桩test_NFExt_BrLocalOutHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrLocalOutHook_002, NFExt_BrLocalOutHook_002)
 {
     unsigned int result     = 0;
@@ -773,17 +603,7 @@ TEST(test_test_NFExt_BrLocalOutHook_002, NFExt_BrLocalOutHook_002)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrForwardHook
- 被测功能   : 对桩test_NFExt_BrForwardHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrForwardHook_001, NFExt_BrForwardHook_001)
 {
     unsigned int result     = 0;
@@ -814,17 +634,7 @@ TEST(test_test_NFExt_BrForwardHook_001, NFExt_BrForwardHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_ArpInHook
- 被测功能   : 对桩test_NFExt_ArpInHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ArpInHook_001, NFExt_ArpInHook_001)
 {
     unsigned int result     = 0;
@@ -855,17 +665,7 @@ TEST(test_test_NFExt_ArpInHook_001, NFExt_ArpInHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_ArpOutHook_001
- 被测功能   : 对桩test_NFExt_ArpOutHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_ArpOutHook_001, NFExt_ArpOutHook_001)
 {
     unsigned int result     = 0;
@@ -896,17 +696,7 @@ TEST(test_test_NFExt_ArpOutHook_001, NFExt_ArpOutHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip4PreRoutingHook_001
- 被测功能   : 对桩test_NFExt_Ip4PreRoutingHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月19日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip4PreRoutingHook_001, NFExt_Ip4PreRoutingHook_001)
 {
     unsigned int result     = 0;
@@ -937,17 +727,7 @@ TEST(test_test_NFExt_Ip4PreRoutingHook_001, NFExt_Ip4PreRoutingHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip4PostRoutingHook_001
- 被测功能   : 对桩test_NFExt_Ip4PostRoutingHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月22日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip4PostRoutingHook_001, NFExt_Ip4PostRoutingHook_001)
 {
     unsigned int result     = 0;
@@ -979,17 +759,7 @@ TEST(test_test_NFExt_Ip4PostRoutingHook_001, NFExt_Ip4PostRoutingHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip4LocalInHook_001
- 被测功能   : 对桩test_NFExt_Ip4LocalInHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip4LocalInHook_001, NFExt_Ip4LocalInHook_001)
 {
     unsigned int result     = 0;
@@ -1021,17 +791,7 @@ TEST(test_test_NFExt_Ip4LocalInHook_001, NFExt_Ip4LocalInHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip4LocalOutHook_001
- 被测功能   : 对桩test_NFExt_Ip4LocalOutHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip4LocalOutHook_001, NFExt_Ip4LocalOutHook_001)
 {
     unsigned int result     = 0;
@@ -1063,17 +823,7 @@ TEST(test_test_NFExt_Ip4LocalOutHook_001, NFExt_Ip4LocalOutHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip4ForwardHook_001
- 被测功能   : 对桩test_NFExt_Ip4ForwardHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip4ForwardHook_001, NFExt_Ip4ForwardHook_001)
 {
     unsigned int result     = 0;
@@ -1105,17 +855,7 @@ TEST(test_test_NFExt_Ip4ForwardHook_001, NFExt_Ip4ForwardHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip6PreRoutingHook_001
- 被测功能   : 对桩test_NFExt_Ip4ForwardHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip6PreRoutingHook_001, NFExt_Ip6PreRoutingHook_001)
 {
     unsigned int result     = 0;
@@ -1147,17 +887,7 @@ TEST(test_test_NFExt_Ip6PreRoutingHook_001, NFExt_Ip6PreRoutingHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip6PostRoutingHook_001
- 被测功能   : 对桩test_NFExt_Ip4ForwardHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip6PostRoutingHook_001, NFExt_Ip6PostRoutingHook_001)
 {
     unsigned int result     = 0;
@@ -1189,17 +919,7 @@ TEST(test_test_NFExt_Ip6PostRoutingHook_001, NFExt_Ip6PostRoutingHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip6LocalInHook_001
- 被测功能   : 对桩test_NFExt_Ip6LocalInHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip6LocalInHook_001, NFExt_Ip6LocalInHook_001)
 {
     unsigned int result     = 0;
@@ -1231,17 +951,7 @@ TEST(test_test_NFExt_Ip6LocalInHook_001, NFExt_Ip6LocalInHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip6LocalOutHook_001
- 被测功能   : 对桩test_NFExt_Ip6LocalOutHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip6LocalOutHook_001, NFExt_Ip6LocalOutHook_001)
 {
     unsigned int result     = 0;
@@ -1273,17 +983,7 @@ TEST(test_test_NFExt_Ip6LocalOutHook_001, NFExt_Ip6LocalOutHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_Ip6ForwardHook_001
- 被测功能   : 对桩test_NFExt_Ip6ForwardHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_Ip6ForwardHook_001, NFExt_Ip6ForwardHook_001)
 {
     unsigned int result     = 0;
@@ -1315,17 +1015,7 @@ TEST(test_test_NFExt_Ip6ForwardHook_001, NFExt_Ip6ForwardHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrForwardFlowCtrlHook_001
- 被测功能   : 对桩test_NFExt_BrForwardFlowCtrlHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrForwardFlowCtrlHook_001, NFExt_BrForwardFlowCtrlHook_001)
 {
     int result     = 0;
@@ -1355,17 +1045,7 @@ TEST(test_test_NFExt_BrForwardFlowCtrlHook_001, NFExt_BrForwardFlowCtrlHook_001)
     GlobalMockObject::reset();
 }
 
-/*****************************************************************************
- 被测函数   : test_NFExt_BrForwardFlowCtrlHook_002
- 被测功能   : 对桩test_NFExt_BrForwardFlowCtrlHook测试
- 用例条件   :
 
- 修改历史       :
- 1.日    期 : 2014年5月20日
-   作    者 : liukai
-   修改内容 : 新生成linux WinGDB UT用例
-
-*****************************************************************************/
 TEST(test_test_NFExt_BrForwardFlowCtrlHook_002, NFExt_BrForwardFlowCtrlHook_002)
 {
     int result     = 0;

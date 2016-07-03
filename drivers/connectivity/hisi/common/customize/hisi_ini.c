@@ -1,19 +1,11 @@
 
 
-#ifdef __cplusplus
-#if __cplusplus
-extern "C" {
-#endif
-#endif
-
-
-
 /*
  * 1 Header File Including
  */
 
 #define INI_KO_MODULE
-//#define HISI_NVRAM_SUPPORT
+#define HISI_NVRAM_SUPPORT
 
 #ifdef INI_KO_MODULE
 #include <linux/module.h>
@@ -30,10 +22,13 @@ extern "C" {
 #include "hisi_ini.h"
 
 
-#define CUST_COMP_NODE "hi1102,customize"
+#define CUST_COMP_NODE             "hi1102,customize"
+#define PROC_NAME_INI_FILE_NAME    "ini_file_name"
+#define CUST_PATH_SPEC             "/cust_spec"     /*某运营商在不同产品的差异配置*/
+#define CUST_PATH_COMM             "/data/cust"     /*某运营商在所有产品的相同配置*/
 /* mutex for open ini file */
 struct mutex        file_mutex;
-int8 g_ini_file_name[INI_FILE_PATH_LEN];
+int8 g_ini_file_name[INI_FILE_PATH_LEN] = {0};
 INI_BOARD_VERSION_STRU g_board_version;
 EXPORT_SYMBOL(g_board_version);
 
@@ -175,6 +170,31 @@ static int32 ini_file_close(INI_FILE * fp)
     fclose(fp);
 #endif
     return INI_SUCC;
+}
+
+
+static bool ini_file_exist(int8 *file_path)
+{
+    INI_FILE *fp = NULL;
+
+    if (NULL == file_path)
+    {
+        INI_ERROR("para file_path is NULL\n");
+        return false;
+    }
+
+    fp = ini_file_open(file_path, "rt");
+    if (NULL == fp)
+    {
+        INI_DEBUG("%s not exist\n", file_path);
+        return false;
+    }
+
+    ini_file_close(fp);
+
+    INI_DEBUG("%s exist\n", file_path);
+
+    return true;
 }
 
 
@@ -328,7 +348,7 @@ static int32 ini_check_value(int8 *puc_value)
 }
 
 
-static int32 ini_find_mode(INI_FILE *fp, int32 modu, int8 *puc_var, int8 *puc_value)
+static int32 ini_find_mode(INI_FILE *fp, int32 modu, int8 *puc_var, int8 *puc_value, uint32 size)
 {
     int32 ret;
 	int8 auc_tmp[MAX_READ_LINE_NUM];
@@ -400,7 +420,7 @@ static int32 ini_find_mode(INI_FILE *fp, int32 modu, int8 *puc_var, int8 *puc_va
 		return INI_FAILED;
 	}
 
-	strcpy(puc_value, puc_val + 1);
+	strncpy(puc_value, puc_val + 1, size);
 	if (0 == strcmp(auc_mode_var, puc_var))
 	{
 		return INI_SUCC_MODE_VAR;			
@@ -537,7 +557,7 @@ static int32 ini_find_modu(INI_FILE *fp, int32 modu, int8 * puc_var, int8 *puc_v
 }
 
 
-static int32 ini_find_var(INI_FILE *fp, int32 modu, int8 * puc_var, int8 *puc_value)
+static int32 ini_find_var(INI_FILE *fp, int32 modu, int8 * puc_var, int8 *puc_value, uint32 size)
 {
 	int32 ret;
 	int8 auc_tmp[MAX_READ_LINE_NUM];
@@ -571,7 +591,7 @@ static int32 ini_find_var(INI_FILE *fp, int32 modu, int8 * puc_var, int8 *puc_va
         if (INI_SUCC == ret)
         {
             //INI_DEBUG("have found %s", puc_var);
-            strcpy(puc_value, &auc_tmp[search_var_len+1]);
+            strncpy(puc_value, &auc_tmp[search_var_len+1], size);
             break;
         }
         else
@@ -584,10 +604,11 @@ static int32 ini_find_var(INI_FILE *fp, int32 modu, int8 * puc_var, int8 *puc_va
 
 #ifndef HISI_NVRAM_SUPPORT
 
-int32 read_conf_from_file(int8 * name, int8* pc_arr)
+int32 read_conf_from_file(int8 * name, int8* pc_arr, uint32 size)
 {
     INI_FILE * fp;
     int32 len;
+    uint32 read_len = 0;
 
 #ifdef INI_KO_MODULE
     fp = filp_open(NVRAM_CUST_FILE, O_RDONLY, 0660);
@@ -608,7 +629,8 @@ int32 read_conf_from_file(int8 * name, int8* pc_arr)
     INI_DEBUG("open %s succ", NVRAM_CUST_FILE);
 
 #ifdef INI_KO_MODULE
-    len = kernel_read(fp, 0, pc_arr, NUM_OF_NV_PARAMS);
+    read_len = INI_MIN(size, NUM_OF_NV_PARAMS);
+    len = kernel_read(fp, 0, pc_arr, read_len);
 #else
     len = fread(pc_arr, 1, HISI_CUST_NVRAM_LEN,  fp);
 #endif
@@ -664,12 +686,15 @@ int32 write_conf_to_file(int8* name, int8 * pc_arr)
 }
 #else
 
-int32 read_conf_from_nvram(int8 * name, int8 * pc_out)
+int32 read_conf_from_nvram(int8 * name, int8 * pc_out, uint32 size)
 {
 #ifdef	INI_KO_MODULE
     struct hisi_nve_info_user  info;
+    uint32 len = 0;
 #endif
+#ifndef	INI_KO_MODULE
     int8 buff[HISI_CUST_NVRAM_LEN] = {0};
+#endif
     int32 ret = -1;
 
 #ifndef	INI_KO_MODULE
@@ -693,7 +718,8 @@ int32 read_conf_from_nvram(int8 * name, int8 * pc_out)
     }
     else
     {
-        memcpy(pc_out, info.nv_data, NUM_OF_NV_PARAMS);
+        len = INI_MIN(size, NUM_OF_NV_PARAMS);
+        memcpy(pc_out, info.nv_data, len);
     }
 #endif
     return INI_SUCC;
@@ -704,8 +730,6 @@ int32 write_conf_to_nvram(int8 * name, int8 * pc_arr)
 #ifdef	INI_KO_MODULE
     struct hisi_nve_info_user  info;
 #endif
-    int8 buff[HISI_CUST_NVRAM_LEN] = {0};
-    int8 save_buff[HISI_CUST_NVRAM_LEN] = {0};
     int32 ret = -1;
 
 #ifndef	INI_KO_MODULE
@@ -721,7 +745,7 @@ int32 write_conf_to_nvram(int8 * name, int8 * pc_arr)
     info.nv_number = HISI_CUST_NVRAM_NUM;
     info.valid_size = HISI_CUST_NVRAM_LEN;
     info.nv_operation = HISI_CUST_NVRAM_WRITE;
-    memcpy(info.data, pc_arr, HISI_CUST_NVRAM_LEN);
+    memcpy(info.nv_data, pc_arr, HISI_CUST_NVRAM_LEN);
 
     ret = hisi_nve_direct_access( &info );
     if (ret < -1) {
@@ -829,7 +853,7 @@ int32 write_conf_to_nvram(int8 * name, int8 * pc_arr)
  }
 #endif
 
-int32 get_cust_conf_string(int32 modu, int8 * puc_var, int8* puc_value)
+int32 get_cust_conf_string(int32 modu, int8 * puc_var, int8* puc_value, uint32 size)
 {
     int32 ret = 0;
 
@@ -874,9 +898,9 @@ int32 get_cust_conf_string(int32 modu, int8 * puc_var, int8* puc_value)
 #endif
         case CUST_MODU_NVRAM:
             #ifdef HISI_NVRAM_SUPPORT
-            ret = read_conf_from_nvram(puc_var, puc_value);
+            ret = read_conf_from_nvram(puc_var, puc_value, size);
             #else
-            ret = read_conf_from_file(puc_var, puc_value);
+            ret = read_conf_from_file(puc_var, puc_value, size);
             #endif
             if (ret < 0)
             {
@@ -887,7 +911,7 @@ int32 get_cust_conf_string(int32 modu, int8 * puc_var, int8* puc_value)
 
         default:
         {
-            return ini_find_var_value(modu, puc_var, puc_value);
+            return ini_find_var_value(modu, puc_var, puc_value, size);
         }
     }
     return INI_SUCC;
@@ -949,7 +973,7 @@ int32 get_cust_conf_int32(int32 modu, int8 * puc_var, int32* puc_value)
         {
             int8  out_str[INI_READ_VALUE_LEN] = {0};
 
-            ret = ini_find_var_value(modu, puc_var, out_str);
+            ret = ini_find_var_value(modu, puc_var, out_str, sizeof(out_str));
             if (ret < 0)
             {
                 /* ini_find_var_value has error log, delete this log */
@@ -989,7 +1013,7 @@ void print_device_version(INI_FILE *fp)
     int8  version_buff[INI_VERSION_STR_LEN] = {0};
     int32 l_ret;
 
-    l_ret = ini_find_var(fp, INI_MODU_PLAT, INI_VAR_PLAT_BOARD, version_buff);
+    l_ret = ini_find_var(fp, INI_MODU_PLAT, INI_VAR_PLAT_BOARD, version_buff, sizeof(version_buff));
     if (INI_FAILED == l_ret)
     {
         version_buff[0] = '\0';
@@ -1005,7 +1029,7 @@ void print_device_version(INI_FILE *fp)
     INI_INFO("::g_board_version.board_version = %s::", g_board_version.board_version);
     fp->f_pos = 0;
 
-    l_ret = ini_find_var(fp, INI_MODU_PLAT, INI_VAR_PLAT_PARAM, version_buff);
+    l_ret = ini_find_var(fp, INI_MODU_PLAT, INI_VAR_PLAT_PARAM, version_buff, sizeof(version_buff));
     if (INI_FAILED == l_ret)
     {
         version_buff[0] = '\0';
@@ -1024,7 +1048,7 @@ void print_device_version(INI_FILE *fp)
 }
 #endif
 
-int32 ini_find_var_value(int32 modu, int8 * puc_var, int8* puc_value)
+int32 ini_find_var_value(int32 modu, int8 * puc_var, int8* puc_value, uint32 size)
 {
 	INI_FILE *fp = NULL;
 
@@ -1084,7 +1108,7 @@ int32 ini_find_var_value(int32 modu, int8 * puc_var, int8* puc_value)
 	}
 #endif
 
-	l_ret = ini_find_mode(fp, modu, puc_var, puc_value);
+	l_ret = ini_find_mode(fp, modu, puc_var, puc_value, size);
 	if (INI_FAILED == l_ret)
 	{
         ini_file_close(fp);
@@ -1100,7 +1124,7 @@ int32 ini_find_var_value(int32 modu, int8 * puc_var, int8* puc_value)
 	}
 	
 	/* find puc_var in .ini return puc_value */
-	l_ret = ini_find_var(fp, modu, puc_var, puc_value);
+	l_ret = ini_find_var(fp, modu, puc_var, puc_value, size);
 	if (INI_FAILED == l_ret)
 	{
 		puc_value[0] = '\0';
@@ -1133,9 +1157,11 @@ EXPORT_SYMBOL(ini_find_var_value);
 #ifdef INI_KO_MODULE
 int ini_cfg_init(void)
 {
-
 //	int8 auc_value[20];
     int32 ret;
+    int8 auc_dts_ini_path[INI_FILE_PATH_LEN]  = {0};
+    int8 auc_cust_spec_ini_path[INI_FILE_PATH_LEN] = {0};
+    int8 auc_cust_comm_ini_path[INI_FILE_PATH_LEN] = {0};
 
 #ifdef CONFIG_HWCONNECTIVITY
     if (!isMyConnectivityChip(CHIP_TYPE_HI110X)) {
@@ -1146,16 +1172,36 @@ int ini_cfg_init(void)
     }
 #endif
 
-	INI_DEBUG("k3v2 .ini config search init!\n");
+    INI_DEBUG("hi110x ini config search init!\n");
 
-    ret = get_cust_conf_string(CUST_MODU_DTS, "ini_file_name", g_ini_file_name);
+    ret = get_cust_conf_string(CUST_MODU_DTS, PROC_NAME_INI_FILE_NAME, auc_dts_ini_path, sizeof(auc_dts_ini_path));
     if ( 0 > ret )
     {
-        INI_DEBUG("can't find ini_file_name node");
+        INI_ERROR("can't find dts proc %s\n", PROC_NAME_INI_FILE_NAME);
+        return INI_FAILED;
     }
 
-    INI_DEBUG("ini_file_name@%s ", g_ini_file_name);
-    /*init mutex*/
+    snprintf(auc_cust_spec_ini_path, sizeof(auc_cust_spec_ini_path), "%s%s", CUST_PATH_SPEC, auc_dts_ini_path);
+    snprintf(auc_cust_comm_ini_path, sizeof(auc_cust_comm_ini_path), "%s%s", CUST_PATH_COMM, auc_dts_ini_path);
+
+    /*如果ini文件在cust中，则使用cust中的ini文件，否则使用dts中配置的ini文件*/
+    /*recovery 模式下，此时ini文件可能不能访问，这种情况下，使用dts里配置的值为默认值*/
+    if (ini_file_exist(auc_cust_spec_ini_path))
+    {
+        snprintf(g_ini_file_name, sizeof(g_ini_file_name), "%s", auc_cust_spec_ini_path);
+        INI_INFO("%s@%s\n", PROC_NAME_INI_FILE_NAME, g_ini_file_name);
+    }
+    else if (ini_file_exist(auc_cust_comm_ini_path))
+    {
+        snprintf(g_ini_file_name, sizeof(g_ini_file_name), "%s", auc_cust_comm_ini_path);
+        INI_INFO("%s@%s\n", PROC_NAME_INI_FILE_NAME, g_ini_file_name);
+    }
+    else
+    {
+        snprintf(g_ini_file_name, sizeof(g_ini_file_name), "%s", auc_dts_ini_path);
+        INI_INFO("%s@%s\n", PROC_NAME_INI_FILE_NAME, g_ini_file_name);
+    }
+
     INI_INIT_MUTEX(&file_mutex);
 
 #ifdef INI_TEST
@@ -1192,7 +1238,7 @@ EXPORT_SYMBOL(ini_cfg_init);
 void ini_cfg_exit(void)
 {
 
-	INI_DEBUG("k3v2 .ini config search exit!\n");
+	INI_DEBUG("hi110x ini config search exit!\n");
 }
 EXPORT_SYMBOL(ini_cfg_exit);
 

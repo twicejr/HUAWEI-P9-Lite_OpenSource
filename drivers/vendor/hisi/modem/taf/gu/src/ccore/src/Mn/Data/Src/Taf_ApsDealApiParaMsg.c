@@ -1,63 +1,4 @@
-/************************************************************************
-  Copyright    : 2005-2007, Huawei Tech. Co., Ltd.
-  File name    : Aps_DealApiParaMsg.c
-  Author       : 韩鲁峰
-  Version      : V200R001
-  Date         : 2005-0
-  Description  : 对FLASH中数据表的处理，包括读写修改
-  Function List:
-        ---Aps_DefPsPdpContext()
-        ---Aps_ChngPdpPri
-        ---Aps_DefPdpPri
-        ---Aps_DefPsPdpAuth
-        ---Aps_ChngAuth
 
-        ---Aps_DefPsSecPdpContext
-        ---Aps_ChngSecPara
-        ---Aps_DefSecPara
-        ---Aps_DefPsTft
-        ---Aps_ChngTft
-
-        ---Aps_JudgeTftItemCombin
-        ---Aps_DefPs3gReqQos
-        ---Aps_ChngQos
-        ---Aps_DefQos
-        ---Aps_DefPs3gMinAcceptQos
-
-        ---Aps_ChngMinQos
-        ---Aps_DefMinQos
-        ---Aps_DbQuery
-        ---Aps_DbQueryButt
-        ---Aps_QuePri
-
-        ---Aps_QueSec
-        ---Aps_QueTft
-        ---Aps_QueState
-        ---Aps_NvimAct
-        ---Aps_JudegNvimActType
-
-  History      :
-  1. Date:2005-0
-     Author: ---
-     Modification:Create
-  2. 2006-02-23 modify by 韩鲁峰 FOR A32D02144
-  3. 2006-03-03 MODIFY BY H41410 FOR A32D02345
-  4. 2006-04-14 modify by h41410 for A32D03182
-  5. 2006-10-23 modify by L47619 for A32D06872
-  6.日    期 : 2006-12-07
-    作    者 : 韩鲁峰
-    修改内容 : A32D07824 增加CGEQNEG的处理
-  7.日    期 : 2007年09月26日
-    作    者 : l00107747
-    修改内容 : 问题单号：A32D12931,查询API接口增加错误码上报
-  8.日    期   : 2009年5月20日
-    作    者   : h44270
-    修改内容   : 问题单号：AT2D11987,修改NV项头文件，将PS/SYS/RF的NV项拆分出来，以便于维护
-  9.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 删除Taf_DbPdpProc, Aps_DbQuery, Aps_DbQueryButt,
-                 Aps_GetParaPointer
-************************************************************************/
 
 
 /*****************************************************************************
@@ -102,41 +43,7 @@ TAF_PDP_TABLE_STRU                      g_TmpPdpTab;
    3 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- Prototype      : Aps_DefPsPdpContext()
- Description    : 定义，修改，删除PDP CONTEXT.包括对两个数据结构的操作,FLASH中
-                  PDP数据表和全局变量数据表.
- Input          : ClientId, 识别某个应用程序;
-                  OpId, 识别某个应用程序中的某次呼叫;
-                  pPara,指向PDP CONTEXT主结构的指针;
-                        没有PDP CONTEXT主结构参数IE，表示删除PDP CONTEXT;
-                        有PDP CONTEXT主结构参数IE，表示定义或修改PDP CONTEXT，
-                        已经定义了PDP CONTEXT则为修改，否则，为定义。
- Output         : NO
- Return Value   :
- Calls          : VOS_UINT16 NV_Read();
-                  VOS_UINT16 NV_Write();
 
- Called By      : TAFM
- Pseudocode     :
- History        : ---
-  1.Date        : 2005-
-    Author      : 韩鲁峰
-    Modification: Created function
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-  3.日    期   : 2012年01月02日
-    作    者   : s46746
-    修改内容   : DTS2012010200121: cgdcont不能删除二次PDP上下文,cgdscont不能
-                 删除主PDP上下文,只能定义主PDP已经定义的二次上下文
-
-  4.日    期   : 2012年5月26日
-    作    者   : A00165503
-    修改内容   : DTS2012052404203: +CGDCONT命令增加对<CID 0>的支持
-*****************************************************************************/
 VOS_VOID Aps_DefPsPdpContext (
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -253,31 +160,7 @@ VOS_VOID Aps_DefPsPdpContext (
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_ChngPdpPri
- Description    : APP修改PdpPri参数时,用此函数将传入的参数填入PDP表中.
- Input          : pPara
-                  ucCid
- Output         :
- Return Value   :
- Data Access    :
- Data Update    : g_TafCidTab[ucCid]
- Calls          :
- Called By      : Aps_DefPsPdpContext
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-  3.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，协议升级，增加enImCnSignalFlg和enPcscfDiscovery
-
-*****************************************************************************/
 VOS_UINT32  Aps_ChngPdpPri(
     TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pPdpPriPara,
     VOS_UINT8                           ucCid
@@ -347,33 +230,7 @@ VOS_UINT32  Aps_ChngPdpPri(
     return  TAF_APS_SUCC;
 }
 
-/*****************************************************************************
- Prototype      : Aps_DefPdpPri
- Description    : APP定义PdpPri参数时,对于没有输入的参数，用此函数进行缺省定义。
- Input          : pPara
-                  ucCid
- Output         :
- Return Value   :
- Data Access    :
- Data Update    : g_TafCidTab[ucCid]
- Calls          :
- Called By      : Aps_DefPsPdpContext
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  3.日    期   : 2012年5月18日
-    作    者   : z60575
-    修改内容   : DTS2012051706679 添加ucIpv4AddrAlloc和ucEmergency
-  4.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，协议升级，增加enImCnSignalFlg和enPcscfDiscovery
-
-*****************************************************************************/
 VOS_VOID  Aps_DefPdpPri(
     TAF_PDP_PRIM_CONTEXT_EXT_STRU      *pPdpPriPara,
     VOS_UINT8                           ucCid
@@ -438,41 +295,7 @@ VOS_VOID  Aps_DefPdpPri(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_DefPsSecPdpContext()
- Description    : 定义、修改、删除Secondary PDP Context。定义二次PDP，要求该
-                  PDP已经被定义过，通过此函数将它转换为二次PDP项，关联到一个
-                  主PDP上。注意二次激活关联到的主激活必须是IP类型,不能是PPP类型
- Input          : ClientId, 识别某个应用程序;
-                  OpId, 识别某个应用程序中的某次呼叫;
-                  pPara,指向TAF_PDP_SEC_EXT_STRU结构的指针;
-                        没有TAF_PDP_SEC_EXT_STRU结构参数IE，表示删除;
-                        有TAF_PDP_SEC_EXT_STRU结构参数IE，表示定义或修改，
-                        已经定义了TAF_PDP_SEC_EXT_STRU则为修改，否则，为定义。
- Output         :
- Return Value   : 0--定义、修改、删除操作成功;
-                  1--定义、修改、删除操作失败;
- Data Access    :
- Data Update    : g_TafCidTab[]
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  3.日    期   : 2012年01月02日
-    作    者   : s46746
-    修改内容   : DTS2012010200121: cgdcont不能删除二次PDP上下文,cgdscont不能
-                 删除主PDP上下文,只能定义主PDP已经定义的二次上下文
-  4.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，协议升级，结构变更
-
-*****************************************************************************/
 VOS_VOID Aps_DefPsSecPdpContext (
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -566,30 +389,7 @@ VOS_VOID Aps_DefPsSecPdpContext (
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_ChngSecPara
- Description    : APP修改PdpPri参数时,用此函数将传入的参数填入PDP表中.
- Input          : pPara
- Output         :
- Return Value   :
- Data Access    :
- Data Update    : g_TafCidTab[ucCid]
- Calls          :
- Called By      : Aps_DefPsPdpContext
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-  3.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，协议升级，增加enImCnSignalFlg和enPcscfDiscovery
-
-*****************************************************************************/
 VOS_VOID  Aps_ChngSecPara(TAF_PDP_SEC_CONTEXT_EXT_STRU   *pSecPara )
 {
     if ( pSecPara->bitOpLinkdCid)
@@ -613,31 +413,7 @@ VOS_VOID  Aps_ChngSecPara(TAF_PDP_SEC_CONTEXT_EXT_STRU   *pSecPara )
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_DefSecPara
- Description    : APP定义PdpPri参数时,对于没有输入的参数，用此函数进行缺省定义。
- Input          : pPara
-                  ucCid
- Output         :
- Return Value   :
- Data Access    :
- Data Update    : g_TafCidTab[ucCid]
- Calls          :
- Called By      : Aps_DefPsPdpContext
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-  3.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，结构变更
-
-*****************************************************************************/
 VOS_VOID  Aps_DefSecPara( TAF_PDP_SEC_CONTEXT_EXT_STRU   *pSecPara )
 {
     g_TafCidTab[pSecPara->ucCid].ucUsed            = VOS_TRUE;
@@ -658,39 +434,9 @@ VOS_VOID  Aps_DefSecPara( TAF_PDP_SEC_CONTEXT_EXT_STRU   *pSecPara )
     return;
 }
 
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
-/* Deleted by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
 
-/*****************************************************************************
- Prototype      : Aps_DefPsDns()
- Description    : 定义、修改、删除DNS的鉴权信息。
- Input          : ClientId, 识别某个应用程序;
-                  OpId, 识别某个应用程序中的某次呼叫;
-                  pPara,指向TAF_PDP_AUTH_EXT_STRU结构的指针;
-                        没有TAF_PDP_AUTH_EXT_STRU结构参数IE，表示删除;
-                        有TAF_PDP_AUTH_EXT_STRU结构参数IE，表示定义或修改，
-                        已经定义了TAF_PDP_AUTH_EXT_STRU则为修改，否则，为定义。
-                  ucCid:[1,11]
- Output         :
- Return Value   : 0--定义、修改、删除操作成功;
-                  1--定义、修改、删除操作失败;
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-  3.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，结构变更
-
-*****************************************************************************/
 VOS_VOID Aps_DefPsDns(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -764,31 +510,7 @@ VOS_VOID Aps_DefPsDns(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_ChngDns
- Description    : APP修改TFT参数时,用此函数将传入的参数填入PDP表中.
- Input          : pPara
-                  ucCid
- Output         :
- Return Value   :
- Data Access    :
- Data Update    : g_TafCidTab[ucCid]
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-  3.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，结构变更
-
-*****************************************************************************/
 VOS_UINT32  Aps_ChngDns(
     TAF_PDP_DNS_EXT_STRU               *pDnsPara,
     VOS_UINT8                           ucCid
@@ -817,30 +539,7 @@ VOS_UINT32  Aps_ChngDns(
 
     return  TAF_APS_SUCC;
 }
-/*****************************************************************************
- Prototype      : Aps_DefPs3gReqQos()
- Description    : 定义、修改、删除PDP Context中的3G QOS参数
- Input          : ClientId, 识别某个应用程序;如果CID不指定，表示删除所有定义的CID
-                  OpId, 识别某个应用程序中的某次呼叫;
-                  pPara,指向TAF_PDP_QOS_EXT_STRU结构的指针;
-                        没有TAF_PDP_QOS_EXT_STRU结构参数IE，表示删除;
-                        有TAF_PDP_QOS_EXT_STRU结构参数IE，表示定义或修改，
-                        已经定义了TAF_PDP_QOS_EXT_STRU则为修改，否则，为定义。
- Output         :
- Return Value   : 0--定义、修改、删除操作成功;
-                  1--定义、修改、删除操作失败;
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-*****************************************************************************/
 VOS_VOID Aps_DefPs3gReqQos(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -901,29 +600,7 @@ VOS_VOID Aps_DefPs3gReqQos(
 
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_ChngQos
- 功能描述  : APP修改QOS参数时,用此函数将传入的参数填入PDP表中.
- 输入参数  : pPara
-             ucCid
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  3.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
-
-*****************************************************************************/
 VOS_VOID  Aps_ChngQos(
     TAF_UMTS_QOS_EXT_STRU              *pQosPara,
     VOS_UINT8                           ucCid
@@ -1006,29 +683,7 @@ VOS_VOID  Aps_ChngQos(
 
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_DefQos
- 功能描述  : 定义QOS时，对于没有输入的参数，用此函数进行缺省定义。
- 输入参数  : pPara
-             ucCid
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  3.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
-
-*****************************************************************************/
 VOS_VOID  Aps_DefQos(
     TAF_UMTS_QOS_EXT_STRU              *pQosPara,
     VOS_UINT8                           ucCid
@@ -1112,31 +767,7 @@ VOS_VOID  Aps_DefQos(
     return;
 
 }
-/*****************************************************************************
- Prototype      : Aps_DefPs3gMinAcceptQos()
- Description    : 定义、修改、删除PDP Context中的3G最小可接受QOS参数。实现过程
-                  与定义QOS非常类似。
- Input          : ClientId, 识别某个应用程序;
-                  OpId, 识别某个应用程序中的某次呼叫;
-                  pPara,指向TAF_PDP_QOS_EXT_STRU结构的指针;
-                        没有TAF_PDP_QOS_EXT_STRU结构参数IE，表示删除MINQOS;
-                        有TAF_PDP_QOS_EXT_STRU结构参数IE，表示定义或修改MINQOS，
-                        已经定义了TAF_PDP_QOS_EXT_STRU则为修改，否则，为定义。
- Output         :
- Return Value   : 0--定义、修改、删除操作成功;
-                  1--定义、修改、删除操作失败;
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-*****************************************************************************/
 VOS_VOID Aps_DefPs3gMinAcceptQos(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -1200,29 +831,7 @@ VOS_VOID Aps_DefPs3gMinAcceptQos(
 
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_ChngMinQos
- 功能描述  : APP修改QOS参数时,用此函数将传入的参数填入PDP表中.
- 输入参数  : pPara
-             ucCid
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  3.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
-
-*****************************************************************************/
 VOS_VOID  Aps_ChngMinQos(
     TAF_UMTS_QOS_EXT_STRU              *pQosPara,
     VOS_UINT8                           ucCid
@@ -1305,30 +914,7 @@ VOS_VOID  Aps_ChngMinQos(
 
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_DefMinQos
- 功能描述  : 定义MINQOS时，对于没有输入的参数，用此函数进行缺省定义,缺省
-             值为网络协商,即网络返回任何值都接受。
- 输入参数  : pPara
-             ucCid
- 输出参数  :
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2010年1月14日
-    作    者   : L47619
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  3.日    期   : 2015年4月7日
-    作    者   : w00316404
-    修改内容   : M project A characeristic AT part
-
-*****************************************************************************/
 VOS_VOID  Aps_DefMinQos(
     TAF_UMTS_QOS_EXT_STRU              *pQosPara,
     VOS_UINT8                           ucCid
@@ -1412,39 +998,7 @@ VOS_VOID  Aps_DefMinQos(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_DefNdisAuthdata()
- Description    : 定义，修改，删除NDIS的AUTHDATA.包括对两个数据结构的操作,FLASH中
-                  AUTHDATA数据表和全局变量数据表.
- Input          : ClientId, 识别某个应用程序;
-                  OpId, 识别某个应用程序中的某次呼叫;
-                  pPara,指向AUTHDATA主结构的指针;
-                        没有AUTHDATA主结构参数IE，表示删除AUTHDATA;
-                        有AUTHDATA主结构参数IE，表示定义或修改AUTHDATA，
-                        已经定义了AUTHDATA则为修改，否则，为定义。
- Output         : NO
- Return Value   :
- Calls          :
- History        :
-  1.Date        : 2009-09-02
-    Author      : L47619
-    Modification: Created function
 
-  2.Date        : 2011-07-21
-    Author      : k66584
-    Modification: 问题单号: DTS2011040706046，更新暂不使用的NV项UENDIS_AUTHDATA_0
-
-  3.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  4.日    期   : 2012年1月27日
-    作    者   : h44270
-    修改内容   : PS融合项目，删除冗余代码和全局变量
-
-  5.日    期   : 2013年12月25日
-    作    者   : A00165503
-    修改内容   : DTS2013122403650: ^AUTHDATA命令支持CID0
-*****************************************************************************/
 VOS_VOID    Aps_DefNdisAuthdata (
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -1534,27 +1088,7 @@ VOS_VOID    Aps_DefNdisAuthdata (
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_ChngAuthdata
- Description    : APP修改authdata参数时,用此函数将传入的参数填入PDP表中.
- Input          : pPara
-                  ucCid
- Output         :
- Return Value   :
- Data Access    :
- Data Update    : g_ApsNdisAuthdataTab[ucCid]
- Calls          :
- Called By      : Aps_DefNdisAuthdata
- History        : ---
-  1.Date        : 2009-09-02
-    Author      : L47619
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-*****************************************************************************/
 VOS_UINT32  Aps_ChngAuthdata(
     TAF_AUTHDATA_EXT_STRU              *pAuthdataPara,
     VOS_UINT8                           ucCid
@@ -1589,27 +1123,7 @@ VOS_UINT32  Aps_ChngAuthdata(
     return  TAF_APS_SUCC;
 }
 
-/*****************************************************************************
- Prototype      : Aps_DefAuthdata
- Description    : APP定义AUTHDATA参数时,对于没有输入的参数，用此函数进行缺省定义。
- Input          : pPara
-                  ucCid
- Output         :
- Return Value   :
- Data Access    :
- Data Update    : g_ApsNdisAuthdataTab[ucCid]
- Calls          :
- Called By      : Aps_DefNdisAuthdata
- History        : ---
-  1.Date        : 2009-09-02
-    Author      : L47619
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-*****************************************************************************/
 VOS_VOID  Aps_DefAuthdata(
     TAF_AUTHDATA_EXT_STRU              *pAuthdataPara,
     VOS_UINT8                           ucCid
@@ -1644,33 +1158,7 @@ VOS_VOID  Aps_DefAuthdata(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_QuePri()
- Description    :
- Input          : ucCid
- Output         : PdpPriExtPara,
-                  pucErrorCode
- Return Value   :
- Data Access    : g_TafCidTab
- Data Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  3.日    期   : 2012年5月18日
-    作    者   : z60575
-    修改内容   : DTS2012051706679 添加ucIpv4AddrAlloc和ucEmergency
-    3.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，结构变更
-
-*****************************************************************************/
 VOS_VOID Aps_QuePri(
     VOS_UINT8                           ucCid,
     TAF_PRI_PDP_QUERY_INFO_STRU        *pPdpPriPara,
@@ -1731,34 +1219,13 @@ VOS_VOID Aps_QuePri(
     pPdpPriPara->stPriPdpInfo.enIpv4AddrAlloc  = g_TafCidTab[ucCid].CidTab.enIpv4AddrAlloc;
     pPdpPriPara->stPriPdpInfo.enEmergencyInd   = g_TafCidTab[ucCid].CidTab.enEmergencyInd;
 
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
     pPdpPriPara->stPriPdpInfo.enImCnSignalFlg  = g_TafCidTab[ucCid].CidTab.enImCnSignalFlg;
     pPdpPriPara->stPriPdpInfo.enPcscfDiscovery = g_TafCidTab[ucCid].CidTab.enPcscfDiscovery;
-    /* Added by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
 
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_QueSec();
- Description    :
- Input          :
- Output         :
- Return Value   :
- Data Access    :
- Data Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-*****************************************************************************/
 VOS_VOID Aps_QueSec(
     VOS_UINT8                           ucCid,
     TAF_PDP_SEC_CONTEXT_STRU           *pPdpSecPara,
@@ -1791,33 +1258,7 @@ VOS_VOID Aps_QueSec(
 }
 
 
-/*****************************************************************************
- Prototype      : Aps_QueState
- Description    :
- Input          :
- Output         :
- Return Value   :
- Data Access    :
- Data Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2012年06月25日
-    作    者   : f62575
-    修改内容   : DTS2012062802463, CGACT查询命令仅输出CGDCONT配置过的INDEX的拨号状态；
-
-  3.日    期   : 2012年06月25日
-    作    者   : z60575
-    修改内容   : DTS2012120801696, 网测激活的CID需要能查询到
-
-  4.日    期   : 2015年3月2日
-    作    者   : A00165503
-    修改内容   : DTS2015021101062: PDP修改过程中查询PDP状态异常
-*****************************************************************************/
 VOS_VOID Aps_QueState(
     VOS_UINT8                           ucCid,
     TAF_CID_STATE_STRU                 *pPsState,
@@ -1864,35 +1305,7 @@ VOS_VOID Aps_QueState(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : Aps_QueRealIpAddr
- 功能描述  : 查询CID对应的PDP实体的IP地址
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_PDP_ADDR_QUERY_INFO_STRU    *paucIpAddr
-             VOS_UINT8                          *pucErrorCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2005年
-    作    者   : ---
-    修改内容   : 新生成函数
-
-  2.日    期   : 2011年6月3日
-    作    者   : A00165503
-    修改内容   : 增加IPV6地址的处理
-
-
-  3.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  4. 日    期   : 2010年12月27日
-     作    者   : h44270
-     修改内容   : Modified by PS Project, 查询状态的函数修改，删除middle pdp id的概念
-
-*****************************************************************************/
 VOS_VOID Aps_QueRealIpAddr(
     VOS_UINT8                           ucCid,
     TAF_PDP_ADDR_QUERY_INFO_STRU       *paucIpAddr,
@@ -1972,30 +1385,7 @@ VOS_VOID Aps_QueRealIpAddr(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_QueQosNeg
- Description    : 查询PDP协商后实际使用的QOS
- Input          : ucCid
- Output         : pQosNeg
-                  pucErrorCode
- Return Value   :
- Data Access    :
- Data Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2006-11-08
-    Author      : h41410
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-  3. 日    期   : 2010年12月27日
-     作    者   : h44270
-     修改内容   : Modified by PS Project, 查询状态的函数修改，删除middle pdp id的概念
-
-*****************************************************************************/
 VOS_VOID Aps_QueQosNeg(
     VOS_UINT8                           ucCid,
     TAF_UMTS_QOS_QUERY_INFO_STRU       *pQosNeg,
@@ -2032,30 +1422,7 @@ VOS_VOID Aps_QueQosNeg(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_QueDns
- Description    :
- Input          :
- Output         :
- Return Value   :
- Data Access    :
- Data Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-  3.日    期 : 2013年07月08日
-    作    者 : Y00213812
-    修改内容 : VoLTE_PhaseI 项目，结构变更
-
-*****************************************************************************/
 VOS_VOID Aps_QueDns(
     VOS_UINT8                           ucCid,
     TAF_DNS_QUERY_INFO_STRU            *paucDns,
@@ -2109,26 +1476,7 @@ VOS_VOID Aps_QueDns(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_QueAuthdata
- Description    :
- Input          :
- Output         :
- Return Value   :
- Data Access    :
- Data Update    :
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2009-09-07
-    Author      : L47619
-    Modification: Created function
 
-  2.日    期   : 2011年10月20日
-    作    者   : A00165503
-    修改内容   : AT Project: 修改入参结构体
-
-*****************************************************************************/
 VOS_VOID Aps_QueAuthdata(
     VOS_UINT8                           ucCid,
     TAF_AUTHDATA_QUERY_INFO_STRU       *pAuthDataPara,
@@ -2195,39 +1543,7 @@ VOS_VOID Aps_QueAuthdata(
     return;
 }
 
-/*****************************************************************************
- Prototype      : Aps_NvimAct()
- Description    : 对NVIM的操作，包括读、定义、修改。所有对参数的操作都会涉及到
-                  对NVIM的操作。对NVIM操作的直接原因是全局变量表的修改。因此参
-                  数操作接口函数完成对全局变量表的操作后，就会调用此函数来实现
-                  对NVIM的操作。
-                  操作成功,则更新g_TafCidTab中的index号码
- Input          : ucCid
- Output         : NO
- Return Value   : TAF_APS_SUCC,
-                  TAF_APS_FAIL
- Data Access    : g_TmpPdpTab,
-                  g_TafCidTab[pPara->ucCid]
- Data Update    :
- Calls          : NV_Write
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
 
-  2.日    期   : 2011年12月24日
-    作    者   : o00132663
-    修改内容   : PS融合项目，PDPTBL局部变量太大，改为动态申请内存
-
-  3.日    期   : 2012年3月6日
-    作    者   : z40661/anhuiqing
-    修改内容   : NVIM失败后继续向下执行，DTS2012030203625
-
-  4.日    期   : 2014年3月3日
-    作    者   : A00165503
-    修改内容   : DTS2014030404070: APS本地结构适配NV结构
-*****************************************************************************/
 VOS_UINT32 Aps_NvimAct(VOS_UINT8 ucCid)
 {
     TAF_PDP_TABLE_STRU                 *pstTmpLocalPdpTbl;
@@ -2383,24 +1699,7 @@ APS_NVIM_ACT_TYPE   Aps_JudegNvimActType ( VOS_UINT8        ucCid   )
     }
 }
 
-/*****************************************************************************
- Prototype      : Aps_SetPsAnsMode
- Description    :
- Input          :
- Output         :
- Return Value   :
- Data Access    :
- Data Update    : g_PsAnsMode
- Calls          :
- Called By      :
- History        : ---
-  1.Date        : 2005-
-    Author      : ---
-    Modification: Created function
-  2.日    期   : 2012年1月27日
-    作    者   : h44270
-    修改内容   : PS融合项目，删除冗余代码和全局变量
-*****************************************************************************/
+
 VOS_VOID Aps_SetPsAnsMode(
     VOS_UINT16                          ClientId,
     VOS_UINT8                           OpId,
@@ -2439,23 +1738,7 @@ VOS_VOID Aps_SetPsAnsMode(
     }
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_GetUtmsQosInfo
- 功能描述  :
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_UMTS_QOS_EXT_STRU              *pstUmtsQosInfo
-             VOS_UINT32                         *pulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_GetUtmsQosInfo(
     VOS_UINT8                           ucCid,
     TAF_UMTS_QOS_QUERY_INFO_STRU       *pstUmtsQosQueryInfo,
@@ -2477,23 +1760,7 @@ VOS_VOID MN_APS_GetUtmsQosInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : MN_APS_GetUtmsQosMinInfo
- 功能描述  :
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_UMTS_QOS_EXT_STRU              *pstUmtsQosInfo
-             VOS_UINT32                         *pulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年10月19日
-    作    者   : A00165503
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID MN_APS_GetUtmsQosMinInfo(
     VOS_UINT8                           ucCid,
     TAF_UMTS_QOS_QUERY_INFO_STRU       *pstUmtsQosQueryInfo,
@@ -2518,23 +1785,7 @@ VOS_VOID MN_APS_GetUtmsQosMinInfo(
 
 
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_QueryPfInTft
- 功能描述  : 查询TFT参数, 并从中获取PfId对应的索引
- 输入参数  : VOS_UINT8                  ucCid,
-             VOS_UINT8                  ucPacketFilterId,
- 输出参数  : VOS_UINT8                 *pucPfIndex
- 返 回 值  : VOS_TRUE                   - 索引查询成功
-             VOS_FALSE                  - 没有查询到PfId对应的索引
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_QueryPfIdInTft(
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPacketFilterId,
@@ -2563,22 +1814,7 @@ VOS_UINT32 TAF_APS_QueryPfIdInTft(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_IsSetTftInfoValid
- 功能描述  : 检查TFT参数本身的有效性
- 输入参数  : TAF_TFT_EXT_STRU          *pstTftInfo
- 输出参数  : 无
- 返 回 值  : VOS_TRUE       - TFT参数有效
-             VOS_FALSE      - TFT参数无效
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_IsSetTftInfoValid(
     TAF_TFT_EXT_STRU                   *pstTftInfo
 )
@@ -2594,22 +1830,7 @@ VOS_UINT32 TAF_APS_IsSetTftInfoValid(
     return VOS_FALSE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_CheckTftInfoValid
- 功能描述  : 检查TFT参数的有效性及可设置性
- 输入参数  : TAF_TFT_EXT_STRU          *pstTftInfo
- 输出参数  : VOS_UINT8                 *pucPfIndex      -返回可用的PF索引值
- 返 回 值  : VOS_TRUE       - TFT参数有效
-             VOS_FALSE      - TFT参数不可用
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 TAF_APS_CheckTftInfoValid(
     TAF_TFT_EXT_STRU                   *pstTftInfo,
     VOS_UINT8                          *pucPfIndex
@@ -2653,9 +1874,7 @@ VOS_UINT32 TAF_APS_CheckTftInfoValid(
                                             pucPfIndex))
     {
         /* 若指定PF不存在，或者PF数已满，则返回设置错误 */
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         if (g_TafCidTab[pstTftInfo->ucCid].ucPfNum >= TAF_MAX_SDF_PF_NUM)
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
         {
             TAF_PS_WARN_LOG("TAF_APS_CheckTftInfoValid: Pf number is full!");
             return VOS_FALSE;
@@ -2671,27 +1890,7 @@ VOS_UINT32 TAF_APS_CheckTftInfoValid(
     return VOS_TRUE;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FillTftInfo
- 功能描述  : 将设置参数填充进PDP表全局变量
- 输入参数  : VOS_UINT8                           ucCid
-             VOS_UINT8                           ucPfIndex
-             TAF_TFT_EXT_STRU                   *pstTftInfo
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年9月28日
-    作    者   : W00316404
-    修改内容   : R11 TFT 协议升级
-
-*****************************************************************************/
 VOS_VOID TAF_APS_FillTftInfo(
     VOS_UINT8                           ucCid,
     VOS_UINT8                           ucPfIndex,
@@ -2873,24 +2072,7 @@ VOS_VOID TAF_APS_FillTftInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetTftInfo
- 功能描述  : 定义、修改、删除PDP Context中的TFT参数
- 输入参数  : TAF_TFT_EXT_STRU                   *pstTftInfo
-             VOS_UINT32                         *pulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-  2.日    期   : 2012年04月23日
-    作    者   : z60575
-    修改内容   : DTS2012042304705修改，删除CID的TFT信息时需要写NV项
-*****************************************************************************/
 VOS_VOID TAF_APS_SetTftInfo(
     TAF_TFT_EXT_STRU                   *pstTftInfo,
     VOS_UINT32                         *pulErrCode
@@ -2931,11 +2113,9 @@ VOS_VOID TAF_APS_SetTftInfo(
         g_TafCidTab[pstTftInfo->ucCid].ucPfTabFlag  = VOS_FALSE;
         g_TafCidTab[pstTftInfo->ucCid].ucPfNum      = VOS_NULL;
 
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, begin */
         PS_MEM_SET((VOS_UINT32 *)(g_TafCidTab[pstTftInfo->ucCid].astPfTab),
                    VOS_NULL,
                    sizeof(TAF_PDP_PF_STRU) * TAF_MAX_SDF_PF_NUM);
-        /* Modified by Y00213812 for VoLTE_PhaseI 项目, 2013-07-08, end */
         *pulErrCode = TAF_PARA_OK;
     }
     else
@@ -2975,25 +2155,7 @@ VOS_VOID TAF_APS_SetTftInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_FillTftQryParam
- 功能描述  : 查询PDP Context中的TFT参数
- 输入参数  : VOS_UINT8                           ucCid
- 输出参数  : TAF_TFT_QUREY_INFO_STRU            *pPdpTftPara
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年01月07日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-  2.日    期   : 2015年9月28日
-    作    者   : W00316404
-    修改内容   : R11 TFT 协议升级
-
-*****************************************************************************/
 VOS_VOID TAF_APS_FillTftQryParam(
     VOS_UINT8                           ucCid,
     TAF_TFT_QUREY_INFO_STRU            *pPdpTftPara
@@ -3077,22 +2239,7 @@ VOS_VOID TAF_APS_FillTftQryParam(
 }
 
 #if (FEATURE_ON == FEATURE_LTE)
-/*****************************************************************************
- 函 数 名  : TAF_APS_SetEpsQosInfo
- 功能描述  : 设置, 修改, 删除EPS QOS参数NV项及全局变量
- 输入参数  : TAF_EPS_QOS_EXT_STRU               *pstEpsQosInfo
-             VOS_UINT32                         *pulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月25日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_SetEpsQosInfo(
     TAF_EPS_QOS_EXT_STRU               *pstEpsQosInfo,
     VOS_UINT32                         *pulErrCode
@@ -3177,23 +2324,7 @@ VOS_VOID TAF_APS_SetEpsQosInfo(
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : TAF_APS_QueEpsQosInfo
- 功能描述  : 查询EPS QOS参数
- 输入参数  : VOS_UINT8                           ucCid
-             TAF_EPS_QOS_EXT_STRU               *pstEpsQosInfo
-             VOS_UINT32                         *pulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2011年12月27日
-    作    者   : l00198894
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID TAF_APS_QueEpsQosInfo(
     VOS_UINT8                           ucCid,
     TAF_EPS_QOS_EXT_STRU               *pstEpsQosInfo,
@@ -3227,26 +2358,7 @@ VOS_VOID TAF_APS_QueEpsQosInfo(
     return;
 }
 
-/* Add by w00199382 for V7代码同步, 2012-04-07, Begin   */
-/*****************************************************************************
- 函 数 名  : Aps_DefPsPdprofmod
- 功能描述  : 设置PDPROFMOD参数
- 输入参数  :
-             VOS_UINT8                                     ucCid
-             VOS_UINT8                                     OpId
-             TAF_PDP_PROFILE_EXT_STRU         *pPara
-             VOS_UINT32                                 *pulErrCode
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年03月15日
-    作    者   : x00126983
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 
 VOS_VOID    Aps_DefPsPdprofmod (
     VOS_UINT16                          ClientId,
@@ -3316,26 +2428,10 @@ VOS_VOID    Aps_DefPsPdprofmod (
     *pulErrCode = ulTmpErrCode;
     return;
 }
-/* Add by w00199382 for V7代码同步, 2012-04-07, End   */
 
 #endif
 
-/*****************************************************************************
- 函 数 名  : Aps_DeleteLinkedCidSecPdpContext
- 功能描述  : 删除某个主Cid下面的所有二次PDP上下文
- 输入参数  : VOS_UINT8                           ucCid
 
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
-
- 修改历史      :
-  1.日    期   : 2012年1月2日
-    作    者   : s46746
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID Aps_DeleteLinkedCidSecPdpContext(
     VOS_UINT8                           ucCid
 )

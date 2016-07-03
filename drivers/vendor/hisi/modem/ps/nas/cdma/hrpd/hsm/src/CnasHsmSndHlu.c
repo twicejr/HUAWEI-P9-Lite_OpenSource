@@ -54,12 +54,10 @@ VOS_VOID CNAS_HSM_SndHluHandOffReq(
         return;
     }
 
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-17, begin */
     NAS_MEM_SET_S(((VOS_UINT8 *)pstHluHandOffReq + VOS_MSG_HEAD_LENGTH),
                   ulLen,
                   0x00,
                   ulLen);
-    /* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-17, end */
 
     CNAS_CFG_MSG_HDR(pstHluHandOffReq,
                      UEPS_PID_HSM,
@@ -100,12 +98,10 @@ VOS_VOID CNAS_HSM_SndHluSessionChangedInd(
         return;
     }
 
-/* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-17, begin */
     NAS_MEM_SET_S(((VOS_UINT8 *)pstSessionChangedInd + VOS_MSG_HEAD_LENGTH),
                   ulLen,
                   0x00,
                   ulLen);
-/* Modified by w00176964 for CNASÄÚ´æ²Ã¼ô, 2015-9-17, end */
 
     CNAS_CFG_MSG_HDR(pstSessionChangedInd,
                      UEPS_PID_HSM,

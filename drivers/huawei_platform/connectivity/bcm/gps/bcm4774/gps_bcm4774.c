@@ -716,17 +716,20 @@ static const struct of_device_id gps_power_match_table[] =
 
 MODULE_DEVICE_TABLE(of, gps_power_match_table);
 
+int bcm4774_resume(struct platform_device *p);
+int bcm4774_suspend(struct platform_device *p, pm_message_t state);
 static struct platform_driver k3_gps_bcm_driver =
 {
-    .probe          = k3_gps_bcm_probe,
-    .suspend        = NULL,
-    .remove         = NULL,
-    .shutdown       = K3_gps_bcm_shutdown,
-    .driver = {
-        .name = "huawei,gps_power_4774",
-        .owner = THIS_MODULE,
-        .of_match_table = of_match_ptr(gps_power_match_table), // dts required code
-    },
+	.probe = k3_gps_bcm_probe,
+	.suspend = bcm4774_suspend,
+	.remove = NULL,
+	.resume = bcm4774_resume,
+	.shutdown = K3_gps_bcm_shutdown,
+	.driver = {
+		   .name = "huawei,gps_power_4774",
+		   .owner = THIS_MODULE,
+		   .of_match_table = of_match_ptr(gps_power_match_table),	/*dts required code*/
+	},
 };
 
 static int __init k3_gps_bcm_init(void)

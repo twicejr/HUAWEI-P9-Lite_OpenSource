@@ -25,7 +25,13 @@ extern struct dsm_client *lcd_dclient;
 
 struct class *lm36923_class;
 struct lm36923_chip_data *g_pchip;
+/*
+** for debug, S_IRUGO
+** /sys/module/hisifb/parameters
+*/
 unsigned lm36923_msg_level = 7;
+module_param_named(debug_lm36923_msg_level, lm36923_msg_level, int, 0644);
+MODULE_PARM_DESC(debug_lm36923_msg_level, "backlight lm36923 msg level");
 uint32_t last_brightness = -1;
 
 /* initialize chip */
@@ -146,28 +152,40 @@ ssize_t lm36923_set_backlight_reg(uint32_t bl_level)
 	uint32_t level = 0;
 	int bl_msb = 0;
 	int bl_lsb = 0;
+	static int last_level = -1;
 
 	level = bl_level;
 
 	if (level < BL_MIN)
 		level = BL_MIN;
 
-	if (level > BL_MAX)
+	if (level > BL_MAX) {
 		level = BL_MAX;
+	}
 
 	/* 11-bit brightness code */
 	bl_msb = level >> 3;
 	bl_lsb = level & 0x07;
 
-	LM36923_INFO("level = %d, bl_msb = %d, bl_lsb = %d\n", level, bl_msb, bl_lsb);
+	if ((BL_MIN == last_level && LOG_LEVEL_INFO == lm36923_msg_level)
+		|| (BL_MIN == level && LOG_LEVEL_INFO == lm36923_msg_level)
+		|| (-1 == last_level)) {
+		LM36923_INFO("level = %d, bl_msb = %d, bl_lsb = %d\n", level, bl_msb, bl_lsb);
+	}
+
+	LM36923_DEBUG("level = %d, bl_msb = %d, bl_lsb = %d\n", level, bl_msb, bl_lsb);
 
 	ret = regmap_update_bits(g_pchip->regmap, REG_BRT_VAL_L, MASK_BL_LSB,bl_lsb);
-	if (ret < 0)
+	if (ret < 0) {
 		goto i2c_error;
+	}
 
 	ret = regmap_write(g_pchip->regmap, REG_BRT_VAL_M, bl_msb);
-	if (ret < 0)
+	if (ret < 0) {
 		goto i2c_error;
+	}
+
+	last_level = level;
 
 	return ret;
 

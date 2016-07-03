@@ -1,15 +1,4 @@
-/******************************************************************************
 
-        @(#)Copyright(C)2008,Hisilicon Co. LTD.
-
- ******************************************************************************
-    File name   : NasLmmPubMIntraMsg.c
-    Description : MM模块内部消息操作
-    History     :
-      1.  Name+ID  yyyy-mm-dd  Draft Enact
-      2.zhengjunyan 00148421   2011-05-28 文件名由 NasMmPubMIntraMsg.c修改为
-                                           NasLmmPubMIntraMsg.c
-******************************************************************************/
 
 /*****************************************************************************
   1 Include HeadFile
@@ -239,19 +228,7 @@ VOS_VOID NAS_LMM_DeQueue(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_GetLmmMmcMsgBuf
- Description     : LMM发给MMC的消息通过该函数申请MMC内部消息队列的地址
-                   PC环境下:仍然申请Dopra消息队列
-                   单板环境下:申请MMC内部消息队列
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-12-27  Draft Enact
-
-*****************************************************************************/
 MsgBlock *  NAS_LMM_GetLmmMmcMsgBuf( VOS_UINT32 ulBuffSize )
 {
     MsgBlock                           *pstLmmMmcIntraMsg = VOS_NULL_PTR;
@@ -274,19 +251,7 @@ MsgBlock *  NAS_LMM_GetLmmMmcMsgBuf( VOS_UINT32 ulBuffSize )
     return pstLmmMmcIntraMsg;
 }
 
-/*****************************************************************************
- Function Name   : NAS_LMM_SendMmcIntraMsgBuf
- Description     : 发送LMM->MMC的消息
-                   PC环境下:调用Dopra消息发送函数
-                   单板环境下:调用MMC内部消息发送函数
- Input           : None
- Output          : None
- Return          : VOS_UINT32
 
- History         :
-    1.zhengjunyan 00148421      2011-12-27  Draft Enact
-
-*****************************************************************************/
 VOS_VOID  NAS_LMM_SendLmmMmcMsg( const VOS_VOID *pstLmmMmcMsg )
 {
     NAS_LMM_PUBM_LOG_INFO("NAS_LMM_SendLmmMmcMsg entered.");

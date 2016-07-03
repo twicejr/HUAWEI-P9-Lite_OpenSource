@@ -169,7 +169,6 @@
 #define OSPFV3_TRUE     1
 #define OSPFV3_FALSE    0
 
-/*Added by guojianjun178934, OSPFV3添加接口和邻居状态机状态和事件定义, 2014/7/3   问题单号:DTS2014070303605 */
 /*邻居状态定义*/
 #define OSPF6_NBR_STATE_DOWN                ((LONG)1)
 #define OSPF6_NBR_STATE_ATTEMPT             ((LONG)2)
@@ -222,7 +221,6 @@
 #define OSPF6_IF_INPUT_UNLOOP_IND               0x0A
 #define OSPF6_IF_INPUT_INTERFACE_DOWN            0x0B
 #define OSPF6_IF_INPUT_MULTI_IF_TO_LINK         0x0C
-/* End of Added by guojianjun178934, 2014/7/3   问题单号:DTS2014070303605 */
 
 /*ERRORCODE<OSPF6错误码>*/
 typedef enum tagOSPF6_ERROR_CODE
@@ -315,12 +313,9 @@ typedef enum tagOSPF6_ERROR_CODE
     OSPF6_ERR_END                                   /*0x0E3D00AD <目前错误码上限>*/
 }OSPF6_ERROR_E;
 
-/* Added by likaikun00213099, 基于接口统计各状态的邻居, 2014/4/15 */
 /* Number of states. */
 #define OSPF6_NBR_MAX_STATES  8
-/* End of Added by likaikun00213099, 基于接口统计各状态的邻居, 2014/4/15 */
 
-/*Added by guojianjun178934, OSPFV3告警类型定义, 2014/5/12   问题单号:S-IP-005-OSPFv3-005  */
 typedef enum tagOSPFV3_WARNING_TYPE
 {
     OSPFV3_WARNING_IF_EVENT = 1,    /*接口事件告警*/
@@ -332,7 +327,6 @@ typedef enum tagOSPFV3_WARNING_TYPE
 typedef ULONG (*OSPFV3_WARNING_HOOK_FUNC)(ULONG ulWarningType, VOID *pWarningInfo);
 
 #include "ospf6_api_01.h"
-/* End of Added by guojianjun178934, 2014/5/12   问题单号:S-IP-005-OSPFv3-005  */
 #include "ospf6_cfg_api.h"
 #include "ospf6_cmm_api.h"
 

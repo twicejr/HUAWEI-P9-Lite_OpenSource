@@ -875,11 +875,10 @@ static int hisifb_dirty_region_updt_set(struct fb_info *info, void __user *argp)
 		&& !hisifd->sbl_enable
 		&& !hisifd->color_temperature_flag
 		&& hisifd->ce_ctrl.ctrl_enabled != 1
+		&& !hisifd->esd_happened
 		&& (DSS_SEC_DISABLE == hisifd->secure_ctrl.secure_event)) {
 		enable = 1;
 	}
-
-	hisifd->dirty_region_updt_enable = enable;
 
 	if (NULL == argp) {
 		HISI_FB_ERR("NULL Pointer!\n");
@@ -1371,138 +1370,6 @@ static void hisifb_sysfs_remove(struct platform_device *pdev)
 	hisifb_sysfs_init(hisifd);
 }
 
-
-/*******************************************************************************
-**
-*/
-#define HISI_ESD_RECOVER_MAX_COUNT	(5)
-#define HISI_ESD_CHECK_MAX_COUNT	(3)
-
-#if defined (CONFIG_HUAWEI_DSM)
-int dsm_lcd_esd_recover = -1;
-#endif
-
-static void hisifb_esd_recover(struct hisi_fb_data_type *hisifd)
-{
-	int ret = 0;
-	uint32_t bl_level_cur = 0;
-
-	if (hisifd == NULL) {
-		HISI_FB_ERR("hisifd is null");
-		return ;
-	}
-
-	bl_level_cur = hisifd->bl_level;
-	down(&hisifd->brightness_esd_sem);
-	hisifb_set_backlight(hisifd, 0);
-	up(&hisifd->brightness_esd_sem);
-
-	down(&hisifd->blank_sem);
-	if (!hisifd->panel_power_on) {
-		HISI_FB_ERR("panel is off\n");
-		up(&hisifd->blank_sem);
-		return ;
-	}
-
-	hisifb_activate_vsync(hisifd);
-	/*lcd panel off*/
-	ret = panel_next_off(hisifd->pdev);
-	if (ret != 0) {
-		HISI_FB_ERR("fb%d, blank_mode(%d) failed!\n", hisifd->index, FB_BLANK_POWERDOWN);
-	}
-	/*lcd panel on*/
-	ret = panel_next_on(hisifd->pdev);
-	if (ret != 0) {
-		HISI_FB_ERR("fb%d, blank_mode(%d) failed!\n", hisifd->index, FB_BLANK_UNBLANK);
-	}
-	/*cmd panel need to update frame*/
-	if (is_mipi_cmd_panel(hisifd)) {
-		single_frame_update(hisifd);
-	}
-	hisifb_deactivate_vsync(hisifd);
-	up(&hisifd->blank_sem);
-
-	/*backlight on*/
-	mdelay(100);
-	down(&hisifd->brightness_esd_sem);
-	hisifb_set_backlight(hisifd, bl_level_cur);
-	up(&hisifd->brightness_esd_sem);
-
-	return ;
-}
-
-static void hisifb_frame_end_wq_handler(struct work_struct *work)
-{
-	struct hisi_fb_data_type *hisifd = NULL;
-	int ret = 0;
-	int recover_count = 0;
-	int esd_check_count = 0;
-
-	hisifd = container_of(work, struct hisi_fb_data_type, frame_end_work);
-	BUG_ON(hisifd == NULL);
-
-	if (!hisifd->panel_info.esd_enable)
-		return ;
-
-	while (recover_count < HISI_ESD_RECOVER_MAX_COUNT) {
-		if (esd_check_count < HISI_ESD_CHECK_MAX_COUNT) {
-			if (DSS_SEC_RUNNING == hisifd->secure_ctrl.secure_status)
-				break;
-
-			if ((DSS_SEC_IDLE == hisifd->secure_ctrl.secure_status)
-				&& (DSS_SEC_ENABLE == hisifd->secure_ctrl.secure_event))
-				break;
-
-			ret = hisifb_ctrl_esd(hisifd);
-			if (ret) {
-				esd_check_count++;
-				HISI_FB_INFO("esd check abnormal, esd_check_count:%d!\n", esd_check_count);
-			} else {
-				break;
-			}
-		} else {
-			HISI_FB_ERR("esd recover panel, recover_count:%d!\n",recover_count);
-			hisifb_esd_recover(hisifd);
-			esd_check_count = 0;
-			recover_count++;
-		#if 0
-		#if defined (CONFIG_HUAWEI_DSM)
-			if (dsm_lcd_esd_recover >= 0) {
-				dsm_client_record(lcd_dclient,"[%s]ESD recovery count: %d.\n",
-					__func__, recover_count);
-				dsm_lcd_esd_recover++;
-			}
-		#endif
-		#endif
-		}
-	}
-
-	// recover count equate 5, we disable esd check function
-	if (recover_count >= HISI_ESD_RECOVER_MAX_COUNT) {
-		hrtimer_cancel(&hisifd->esd_hrtimer);
-		hisifd->panel_info.esd_enable = 0;
-		HISI_FB_ERR("esd recover %d count, disable esd function\n", HISI_ESD_RECOVER_MAX_COUNT);
-	}
-}
-
-static enum hrtimer_restart hisifb_esd_hrtimer_fnc(struct hrtimer *timer)
-{
-	struct hisi_fb_data_type *hisifd = NULL;
-
-	hisifd  = container_of(timer, struct hisi_fb_data_type, esd_hrtimer);
-	BUG_ON(hisifd == NULL);
-
-	if (hisifd->panel_info.esd_enable) {
-		if (hisifd->frame_end_wq) {
-			queue_work(hisifd->frame_end_wq, &(hisifd->frame_end_work));
-		}
-	}
-	hrtimer_start(&hisifd->esd_hrtimer, ktime_set(ESD_CHECK_TIME_PERIOD / 1000,
-		(ESD_CHECK_TIME_PERIOD % 1000) * 1000000), HRTIMER_MODE_REL);
-
-	return HRTIMER_NORESTART;
-}
-
 /*******************************************************************************
 **
 */
@@ -1868,18 +1735,8 @@ static int hisi_fb_register(struct hisi_fb_data_type *hisifd)
 		hisifd->secure_register = NULL;
 		hisifd->secure_unregister = NULL;
 	#endif
-		if (hisifd->panel_info.esd_enable) {
-			hisifd->frame_end_wq= create_singlethread_workqueue("dss_frame_end");
-			if (!hisifd->frame_end_wq)
-				HISI_FB_ERR("create dss frame end failed\n");
-			INIT_WORK(&hisifd->frame_end_work, hisifb_frame_end_wq_handler);
-
-			/* hrtimer for ESD timing */
-			hrtimer_init(&hisifd->esd_hrtimer, CLOCK_MONOTONIC, HRTIMER_MODE_REL);
-			hisifd->esd_hrtimer.function = hisifb_esd_hrtimer_fnc;
-				hrtimer_start(&hisifd->esd_hrtimer, ktime_set(ESD_CHECK_TIME_PERIOD / 1000,
-					(ESD_CHECK_TIME_PERIOD % 1000) * 1000000), HRTIMER_MODE_REL);
-		}
+		hisifd->esd_register = hisifb_esd_register;
+		hisifd->esd_unregister = hisifb_esd_unregister;
 
 #if defined (CONFIG_HUAWEI_DSM)
 		hisifd->dss_underflow_debug_workqueue= create_singlethread_workqueue("dss_underflow_debug");
@@ -1928,6 +1785,8 @@ static int hisi_fb_register(struct hisi_fb_data_type *hisifd)
 		hisifd->buf_sync_suspend = hisifb_buf_sync_suspend;
 		hisifd->secure_register = NULL;
 		hisifd->secure_unregister = NULL;
+		hisifd->esd_register = NULL;
+		hisifd->esd_unregister = NULL;
 	} else {
 		hisifd->fb_mem_free_flag = true;
 
@@ -1962,6 +1821,8 @@ static int hisi_fb_register(struct hisi_fb_data_type *hisifd)
 		hisifd->buf_sync_suspend = NULL;
 		hisifd->secure_register = NULL;
 		hisifd->secure_unregister = NULL;
+		hisifd->esd_register = NULL;
+		hisifd->esd_unregister = NULL;
 	}
 
 #ifdef CONFIG_HISI_FB_6250
@@ -2003,6 +1864,9 @@ static int hisi_fb_register(struct hisi_fb_data_type *hisifd)
 	/* fb sysfs create */
 	if (hisifd->sysfs_create_fnc)
 		hisifd->sysfs_create_fnc(hisifd->pdev);
+	/* lcd check esd register */
+	if (hisifd->esd_register)
+		hisifd->esd_register(hisifd->pdev);
 
 	HISI_FB_INFO("FrameBuffer[%d] %dx%d size=%d bytes phy_addr=%lu virt_addr=%p "
 		"is registered successfully!\n",
@@ -2384,6 +2248,9 @@ static int hisi_fb_remove(struct platform_device *pdev)
 	/* fb sysfs remove */
 	if (hisifd->sysfs_remove_fnc)
 		hisifd->sysfs_remove_fnc(hisifd->pdev);
+	/* lcd check esd remove */
+	if (hisifd->esd_unregister)
+		hisifd->esd_unregister(hisifd->pdev);
 
 	HISI_FB_DEBUG("fb%d, -.\n", hisifd->index);
 

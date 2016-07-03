@@ -279,8 +279,6 @@ static int mipi_dsi_read_add(uint32_t *out, struct dsi_cmd_desc *cm, char __iome
 				inp32(dsi_base + MIPIDSI_INT_ST1_OFFSET));
 			return -1;
 		}
-		/*switch to lp mode*/
-		set_reg(dsi_base + MIPIDSI_VID_MODE_CFG_OFFSET, 0x1, 1, 15);
 		/*send read cmd to fifo*/
 		set_reg(dsi_base + MIPIDSI_GEN_HDR_OFFSET, ((cm->payload[0] << 8) | cm->dtype), 24, 0);
 
@@ -296,8 +294,6 @@ static int mipi_dsi_read_add(uint32_t *out, struct dsi_cmd_desc *cm, char __iome
 		} while (time_after(dw_jiffies, jiffies));
 
 		if (is_timeout) {
-			/*switch to hs mode*/
-			set_reg(dsi_base + MIPIDSI_VID_MODE_CFG_OFFSET, 0x0, 1, 15);
 			HISI_FB_ERR("mipi_dsi_read timeout :0x%x \n \
 				MIPIDSI_CMD_PKT_STATUS = 0x%x \n \
 				MIPIDSI_PHY_STATUS = 0x%x \n",
@@ -308,8 +304,6 @@ static int mipi_dsi_read_add(uint32_t *out, struct dsi_cmd_desc *cm, char __iome
 		}
 		/*get read data*/
 		*out = inp32(dsi_base + MIPIDSI_GEN_PLD_DATA_OFFSET);
-		/*switch to hs mode*/
-		set_reg(dsi_base + MIPIDSI_VID_MODE_CFG_OFFSET, 0x0, 1, 15);
 	} else {
 		ret = -1;
 		HISI_FB_ERR("dtype=%x NOT supported!\n", cm->dtype);

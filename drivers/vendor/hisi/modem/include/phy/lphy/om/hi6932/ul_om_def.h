@@ -1,53 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : UL_om_def.h
-  版 本 号   : 初稿
-  作    者   : l00131321
-  生成日期   : 2011年3月15日
-  最近修改   :
-  功能描述   : 定义上行模块OM需要上报的结构体,该文件最终会交付给HiStudio使用
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2011年3月15日
-    作    者   : l00131321
-    修改内容   : 创建文件
-  -------------------------------------------------------------------------------
-  2.日    期   : 2011年6月28日
-    作    者   : l00131321
-    修改内容   : [DTS2011062802382]OM新增需求合入
- -------------------------------------------------------------------------------
-  3.日    期   : 2011年8月23日
-    作    者   : l00131321
-    修改内容   : [DTS2011082402841]合入OM 统计MAC数据无效
- -------------------------------------------------------------------------------
-  4.日    期   : 2011年11月16日
-   作    者   : sunyanjie
-   修改内容   : [DTS2011111602553]同步合入V1问题单
--------------------------------------------------------------------------------
-  5.日    期   : 2011年11月24日
-    作    者   : c00174696
-    修改内容   : [DTS2011112307116]合入半静态及TTI Bundling新特性
--------------------------------------------------------------------------------
-  6.日    期   : 2011年10月25日
-    作    者   : sunyanjie
-    修改内容   : [DTS2011102502995]合入TTI_BUNDLING新特性
--------------------------------------------------------------------------------
- 7.日    期   : 2012年05月2日
-  作    者   : yushujing
-  修改内容   : [DTS2012042705688]上下行半静态并发时，pdcch存在误码问题修改
--------------------------------------------------------------------------------
-  8.日    期   : 2012年4月18日
-     作    者   : sunyanjie，yushujing，xueqiuyan
-     修改内容   : [DTS2012041802974]OM优化修改
--------------------------------------------------------------------------------
-  9.日    期   : 2012年9月7日
-    作    者   : xueqiuyan
-    修改内容   : [CMCC_DT]CMCC路测版本开发
-
-  ******************************************************************************/
 
 /************************************************************
                      包含其它模块的头文件
@@ -89,7 +40,6 @@ extern "C"{
 
 #define PWR_VALID(sPwr) ((sPwr >= UL_MIN_PWR)&&(sPwr <= UL_MAX_PWR))
 
-/* BEGIN: Added by l00131321, 2011/6/28   问题单号:DTS2011062802382*/
 #define UL_OM_RPT_PERIOD 1000
 
 
@@ -125,7 +75,6 @@ typedef enum __LPHY_REQ_MSGID_UL__
     LPHY_REQ_UL_POWER_CONFIG            =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_REQ, 0x8),
     LPHY_REQ_UL_PHR_INFO                =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_REQ, 0x9),
 
-    /* BEGIN: Added by l00131321, 2011/6/7   问题单号:DTS2011062802382*/
     LPHY_REQ_UL_SCHEDUL_STATIC_INFO     =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_REQ, 0xa),
     LPHY_REQ_UL_HARQBLER_INFO           =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_REQ, 0xb),
     LPHY_REQ_UL_PD_INFO                 =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_REQ, 0xd),
@@ -135,7 +84,6 @@ typedef enum __LPHY_REQ_MSGID_UL__
     LPHY_SG_UL_PUSCH_INFO_REQ           =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_REQ, 0x10),
     //LPHY_SG_UL_ACCESS_INFO_REQ          =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_REQ, 0x11),
 
-    /* BEGIN: Added by m00128895, 2015/10/16   PN:HP 降SAR特性开发*/
     LPHY_REQ_UL_HP_SAR_INFO             =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_REQ, 0x11),
 
     LPHY_DT_UL_POWER_INFO_REQ           =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_REQ, 0x100),
@@ -281,7 +229,6 @@ typedef struct
  ASN.1描述 :
  结构说明  : OMCQI上报信息结构
 *****************************************************************************/
-/* BEGIN: Added by l00131321, 2011/9/21   问题单号:DTS2011092100251*/
 #if 0
 typedef struct
 {
@@ -383,7 +330,6 @@ typedef struct __LPHY_REQ_UL_PHR_INFO_STRU__
     UINT16    usReportPeriod;
 } LPHY_REQ_UL_PHR_INFO_STRU;
 
-/* BEGIN: Added by l00131321, 2011/6/7   问题单号:DTS2011062802382*/
 typedef struct __LPHY_REQ_UL_SCHEDUl_STATIC_INFO_STRU__
 {
     OM_REQ_ENABLE_ENUM_UINT16   enEna;
@@ -397,7 +343,6 @@ typedef struct __LPHY_REQ_UL_HARQBLER_INFO_STRU__
 } LPHY_REQ_UL_HARQBLER_INFO_STRU;
 
 
-/* BEGIN: Added by l00131321, 2012/12/13   问题单号:V7R2_MODIFY*/
 /*SRS配置参数结构*/
 typedef struct
 {
@@ -406,7 +351,6 @@ typedef struct
     LRRC_LPHY_SRS_COMM_INFO_STRU          stSrsCommInfo;
     LRRC_LPHY_SRS_DEDICATED_INFO_STRU     stSrsDedicatedInfo;
 
-    /* BEGIN: Added by l00131321, 2012/11/9   问题单号:V7R2_MODIFY*/
     /*增加非周期SRS专有部分参数*/
     LRRC_LPHY_PARA_VALID_FLAG_ENUM_UINT16 enSrsDedicatedAperiodicInfoValidFlg;  /* R10 非周期专有SRS参数是否有效 */
     LRRC_LPHY_SRS_DEDI_APERIOD_INFO_STRU  stSrsDedicatedAperiodicInfo;          /* R10 非周期专有SRS参数 */
@@ -415,7 +359,6 @@ typedef struct
     UINT16                              usSrsPeriod;
     UINT16                              ausSrsOffset[2];
 
-    /* BEGIN: Added by l00131321, 2012/11/9   问题单号:V7R2_MODIFY*/
     UINT16                              usApSrsPeriod;
     UINT16                              ausApSrsOffset[2];
 }UL_SRS_CFG_PARA_STRU;
@@ -443,7 +386,6 @@ typedef enum __LPHY_IND_MSGID_UL__
     LPHY_IND_UL_PUSCH_CAPTURE_INFO     = OM_CMD_ID(LPHY_UL_MID, OM_TYPE_IND, 0xa),
     LPHY_IND_UL_SRS_CAPTURE_INFO       = OM_CMD_ID(LPHY_UL_MID, OM_TYPE_IND, 0xb),
     LPHY_IND_UL_PHR_INFO               = OM_CMD_ID(LPHY_UL_MID, OM_TYPE_IND, 0xc),
-    /* BEGIN: Added by l00131321, 2011/6/8   问题单号:DTS2011062802382*/
     LPHY_IND_UL_SCHEUL_STATIC_INFO     = OM_CMD_ID(LPHY_UL_MID, OM_TYPE_IND, 0xd),
     LPHY_IND_UL_HARQBLER_INFO          = OM_CMD_ID(LPHY_UL_MID, OM_TYPE_IND, 0xe),
     LPHY_IND_UL_PD_INFO                = OM_CMD_ID(LPHY_UL_MID, OM_TYPE_IND, 0xf),
@@ -459,7 +401,6 @@ typedef enum __LPHY_IND_MSGID_UL__
     LPHY_UL_ACCESS_INFO_IND             =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_IND, 0x15),
 	#endif
     //LPHY_PUSCH_HARQ_BLER_STAT_IND       =  OM_CMD_ID(LPHY_UL_MID, OM_TYPE_IND, 0x16)
-    /* BEGIN: Added by m00128895, 2015/10/16   PN:HP 降SAR特性开发*/
     LPHY_IND_UL_HP_SAR_INFO                = OM_CMD_ID(LPHY_UL_MID, OM_TYPE_IND, 0x20)
 }LPHY_IND_MSGID_UL_ENUM;
 
@@ -506,7 +447,6 @@ typedef struct
 {
     UL_PUCCH_33A_TPC_PARA_STRU astPucch33aTpcPara[UL_MAX_SUBFRAME_NUM][UL_TDD_MAX_DL_SUBFRAME_NUM];
     UL_PUCCH_33A_TPC_PARA_STRU stPucch33aTemp;  //用于保存 配比5 子帧9 的备份信息
-    /* BEGIN: Added by l00131321, 2012/12/3   问题单号:V7R2_MODIFY*/
 
     UINT16 usCnt[UL_MAX_SUBFRAME_NUM];
     UINT16 usDci3CalcFlag;
@@ -532,7 +472,6 @@ enum UL_SRS_SYMBOL_IND_ENUM
 typedef UINT16 UL_SRS_SYMBOL_IND_ENUM_UINT16;
 
 
-/* BEGIN: Added by l00131321, 2012/11/12   问题单号:V7R2_MODIFY*/
 enum UL_SRS_TYPE_ENUM
 {
     PERIOD_SRS = 0,
@@ -575,9 +514,7 @@ typedef struct
     INT16               sTransPwr;               /*发送功率保存*/
     INT16               sPhr;
 
-    /* BEGIN: Added by l00131321, 2012/11/23   问题单号:V7R2_MODIFY*/
     INT16               sPucPusTotalPwr;
-    /* BEGIN: Added by l00131321, 2012/12/4   问题单号:V7R2_MODIFY*/
     //UINT16              usRevd;
     INT16              sPhr2;                   /*Type2PHR*/
     INT16              sPmax;
@@ -717,7 +654,6 @@ typedef struct
     UL_ENABLE_ENUM_UINT16 enAckTranEn;
     UL_STATE_ENUM_UINT16  enUlCurState;
     UL_VALID_ENUM_UINT16  enSrsSchedValid; /*SRS周期调度有效标识*/
-    /* BEGIN: Added by l00131321, 2012/11/12   问题单号:V7R2_MODIFY*/
     UL_VALID_ENUM_UINT16  enSrsApSchedValid; /*SRS非周期调度有效标识*/
 
 
@@ -789,7 +725,7 @@ typedef   struct
     UL_CQI_RPT_TYPE_ENUM_UINT16 enCqiRptType;
     //UINT16                 usRev;
     UINT8                       ucCellIndex;  /*dci0中带CqiReq的载波索引,非周期时cqi有效*/
-    UINT8                       enCc;         //DTS2014081602301 PCQI上报对应载波索引
+    UINT8                       enCc;
     UINT32          aulCqiData[UL_CQI_DATA_LEN];
     UINT32          ulCqiLen ;
     UINT32          ulRiData;
@@ -799,7 +735,6 @@ typedef   struct
     UINT16          usCqiTranSfn;   /*由CQI模块确定*/
     UINT16          usCqiTranSbfn;
 
-    /* BEGIN: Added by d00130305, 2012/11/24   问题单号:V7R2_MODIFY*/
 //    UINT8   ucPmiValid;             /*PMI是否有效标记*/
 //    UINT8   ucSubbandNum;           /*子带个数*/
 //    UINT8   ucSubbandWidth;         /*子带大小*/
@@ -822,7 +757,7 @@ typedef   struct
     UL_ENABLE_ENUM_UINT16  enAckEn;
     UL_CQI_RPT_TYPE_ENUM_UINT16 enCqiRptType;
     UINT8                       ucCellIndex;  /*dci0中带CqiReq的载波索引,非周期时cqi有效*/
-    UINT8                       enCc;         //DTS2014081602301 PCQI上报对应载波索引
+    UINT8                       enCc;
     UINT32          aulCqiData[UL_CQI_DATA_LEN];
     UINT32          ulCqiLen ;
     UINT32          ulRiData;
@@ -832,7 +767,6 @@ typedef   struct
     UINT16          usCqiTranSfn;   /*由CQI模块确定*/
     UINT16          usCqiTranSbfn;
 
-    /* End: Added by d00130305, 2013/3/24   问题单号:V7R2_MODIFY*/
     UINT16  usAckChSel;
     UINT16  usRiChSel;
     UINT16  usCqiChSel;
@@ -1145,7 +1079,6 @@ typedef struct
 {
     UINT32 ulSrsCfgReqCount;             /*SRS配置请求计数*/
     UINT32 ulSrsSchedCount;              /*SRS调度有效计数*/
-    /* BEGIN: Added by l00131321, 2012/12/18   问题单号:V7R2_MODIFY*/
     UINT32 ulApSrsSchedCount;
     UINT32 ulSrsModParaCalCount;         /*SRS调制参数计算计数 */
     UINT32 ulSrsModParaCalErrCount;      /*SRS调制参数计算错误计数 */
@@ -1409,7 +1342,6 @@ enum UL_PUCCH_FORMAT_ENUM
     PUCCH_FORMAT_2,
     PUCCH_FORMAT_2a,
     PUCCH_FORMAT_2b,
-    /* BEGIN: Added by l00131321, 2012/11/24   问题单号:V7R2_MODIFY*/
     PUCCH_FORMAT_3,
     PUCCH_FORMAT_INVALID
 };
@@ -1468,7 +1400,6 @@ typedef struct
     UINT16  usRsv;
 }UL_OM_CTRL_INFO_STRU;
 
-/* BEGIN: Added by m00128895, 2015/10/16   PN:HP 降SAR特性开发*/
 typedef struct UL_OM_HP_SAR_INFO
 {
     UINT16 usDprOnFlag;      /*当前DPR开关状态*/
@@ -1491,7 +1422,6 @@ typedef struct
     UINT16 usCtrlInfoActFlg;
     UINT16 usAckInfoActFlg;
     UINT32 ulUciBitMap;
-/* BEGIN: Added by m00128895, 2015/10/16   PN:HP 降SAR特性开发*/
 #ifdef LPHY_FEATURE_LOWER_SAR_ENABLE
     UINT32 enHpSarInfoFlag;  /*HP降SAR信息OM开关*/
 #endif
@@ -1641,7 +1571,6 @@ typedef struct
     UINT32 ulQ_PUSCH_EVEN           :11;
     UINT32                          :1;
     UINT32 ulN_DMRS_EVEN_PUSCH      :4;
-    /* BEGIN: Added by l00131321, 2012/11/22   问题单号:V7R2_MODIFY*/
     //UINT32 ulRB_START_EVEN          :7;
     //UINT32                          :1;
     UINT32 ulPUS_EVEN_NPRB_STYLE    :1;
@@ -1652,7 +1581,6 @@ typedef struct
     UINT32 ulQ_PUSCH_ODD            :11;
     UINT32                          :1;
     UINT32 ulN_DMRS_ODD_PUSCH       :4;
-    /* BEGIN: Added by l00131321, 2012/11/22   问题单号:V7R2_MODIFY*/
     //UINT32 ulRB_START_ODD           :7;
     //UINT32                          :1;
     UINT32 ulPUS_ODD_NPRB_STYLE       :1;
@@ -1716,7 +1644,6 @@ typedef struct
     UINT16 usDaiInfo;        /*DAI信息域*/
 }UL_OM_DCI0_STRU;
 #endif
-/* BEGIN: Added by l00131321, 2012/12/13   问题单号:V7R2_MODIFY*/
 enum UL_RB_ALLOC_TYPE_ENUM
 {
     UL_RB_ALLOC_TYPE0 = 0,
@@ -1823,7 +1750,6 @@ typedef struct
     UINT16 usDaiInfo;        /*DAI信息域*/
     UINT16 usOnlyUciInfoFlg;
     UINT16 usRnti;
-    /* BEGIN: Added by l00131321, 2012/12/17   问题单号:V7R2_MODIFY*/
     UL_RB_ALLOC_TYPE_ENUM_UINT16 enRbAllocType;
     UINT32 ulRbAssign;
     UINT16 usRbNum0;
@@ -1883,7 +1809,6 @@ typedef struct
     UINT32 ulODD_N_SF_PUCCH   :3;                       /*奇时隙PUCCH格式指示*/
     UINT32                    :13;
 
-    /* BEGIN: Added by l00131321, 2012/11/24   问题单号:V7R2_MODIFY*/
     /*PUCCH23_SCRAMBL_REG*/
     UINT32 ulPUCCH2_SCRAMBL   :31;                       /*PUCCH格式23扰码初相*/
     UINT32                    :1;
@@ -1967,7 +1892,6 @@ typedef struct
    UINT32 ulM_SC_B      :11;
    UINT32               :9;
 
-   /* BEGIN: Added by l00131321, 2012/11/24   问题单号:V7R2_MODIFY*/
    /*SRS_AMP_REG*/
    UINT32 ulSRS_AMP_B   :17;
    UINT32               :15;
@@ -2002,7 +1926,6 @@ typedef struct __LPHY_IND_UL_PUSCH_CAPTURE_INFO_STRU__
     UINT16 usSfn;
     UINT16 usSbfn;
     UINT16 usPuschRate;
-    /* BEGIN: Added by l00131321, 2011/8/24   问题单号:DTS2011082402841*/
     //UINT32 ulMacDataInvalid;
     UINT32 ulWarningReg;
     INT16 sPuschTransPwr;
@@ -2029,12 +1952,10 @@ typedef struct __LPHY_IND_UL_SRS_CAPTURE_INFO_STRU__
     UINT16 usSbfn;
     /* UINT16 usRev; */
     INT16 sSrsTransPwr;
-    /* BEGIN: Added by l00131321, 2012/12/6   问题单号:V7R2_MODIFY*/
     //UL_SRS_CFG_PARA_STRU stSrsCfg;
     UL_MOD_SRS_BBP_PARA_STRU stSrsBbpPara;
 }LPHY_IND_UL_SRS_CAPTURE_INFO_STRU;
 
-/* BEGIN: Added by l00131321, 2011/6/7   问题单号:DTS2011062802382*/
 
 typedef struct
 {
@@ -2147,7 +2068,6 @@ typedef UINT16 UL_MSG3_STATUS_ENUM_UINT16;
 
 typedef struct
 {
-    /* BEGIN: Added by sunyanjie, 2011/11/14   问题单号:DTS2011111602553*/
     //UINT16 usMsg3SndFlg;
     UL_MSG3_STATUS_ENUM_UINT16 enMsg3SndFlg;
     UINT16 usAccessMode;

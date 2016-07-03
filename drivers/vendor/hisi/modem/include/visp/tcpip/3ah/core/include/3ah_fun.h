@@ -52,7 +52,6 @@ ULONG OAM_3AH_SetLbTestMode (ULONG ulIfIndex, ULONG ulLbTestMode);
 ULONG OAM_3AH_NotifyCriticalLinkEvent(ULONG ulIfIndex, ULONG ulCriticalEventType, ULONG ulState);
 ULONG OAM_3AH_OccurErroredLinkEvent(ULONG ulIfIndex, ULONG ulErroredType, OAM3AH_LINKEVT_PARAM_S *pstErrPrdParam);
 ULONG OAM_3AH_EventEnable (ULONG ulIfIndex, ULONG ulEventEnable);
-/* Modified by z00208058/w00207740, 3AH链路事件窗口和门限规格扩展, 2012/5/12 */
 ULONG OAM_3AH_SetErroredWinThres(ULONG ulIfIndex,ULONG ulLinkEventType, DULONG_S stdulErrWindow, DULONG_S stdulErrThres);
 LONG  OAM_3AH_fnEntryIndexCmp(VOID * val, DLL_NODE_S * pNode);
 VOID  *OAM_3AH_GetWtLstNext(VOID *pCur,VOID **ppNext);
@@ -175,7 +174,6 @@ ULONG ImplOAM3AHFactoryCreateInstance(IComponentFactory *This,  COMP_IID iid, VO
 /* 3ah_sh_disp.c */
 VOID  OAM_3AH_ShowAllInfo(VOID);
 
-/*Added by wangtong207740, DTS2012102202389 ,设置是否处理带VLAN的OAMPUD, 2012/10/22 */
 ULONG OAM_3AH_SetDealPacketWithVlanSwitch(ULONG ulSwitch);
 ULONG OAM_3AH_GetDealPacketWithVlanSwitch(ULONG *pulSwitch);
 

@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2012, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : TafXpdsMntn.h
-  版 本 号   : 初稿
-  作    者   : 谷传征
-  生成日期   : 2015年7月13日
-  最近修改   :
-  功能描述   : CDMA AGPS Mntn header file
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2015年7月13日
-    作    者   : g00261581
-    修改内容   : CDMA-AGPS项目新增
-
-******************************************************************************/
 
 #ifndef __TAFXPDSMNTN_H__
 #define __TAFXPDSMNTN_H__
@@ -23,9 +6,7 @@
 /*****************************************************************************
   1 Header File Include
 *****************************************************************************/
-/* Added by wx270776 for OM融合, 2015-6-27, begin */
 #include "TafLog.h"
-/* Added by wx270776 for OM融合, 2015-6-27, end */
 
 #include "TafXpdsEncode.h"
 #include "TafXpdsDecode.h"
@@ -66,13 +47,7 @@ extern "C" {
   3 The Enumeration Define
 *****************************************************************************/
 
-/*****************************************************************************
- 枚举名    : CNAS_MNTN_MSG_ID_ENUM
- 结构说明  : CAGPS模块发送给OM的可维可测消息
-  1.日    期   : 2015年07月31日
-    作    者   : g00261581
-    修改内容   : CAGPS模块发送给OM的可维可测消息
-*****************************************************************************/
+
 enum TAF_XPDS_MNTN_MSG_ID_ENUM
 {
     ID_TAF_XPDS_MNTN_LOG_FSM_INFO_IND                   = TAF_XPDS_MNTN_MSG_ID_BASE + 1,    /* _H2ASN_MsgChoice TAF_XPDS_MNTN_LOG_FSM_INFO_STRU */
@@ -117,13 +92,7 @@ typedef VOS_UINT32 TAF_XPDS_MNTN_MSG_ID_ENUM_UINT32;
   7 The Struct Define
 *****************************************************************************/
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_LOG_FSM_INFO_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_LOG_FSM_INFO_STRU的消息结构
- 1.日    期   : 2015年08月22日
-   作    者   : g00256031
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                              /* 消息头 */    /* _H2ASN_Skip */
@@ -133,13 +102,7 @@ typedef struct
     VOS_UINT32                          ulCurFsmState;
 }TAF_XPDS_MNTN_LOG_FSM_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_SESSION_BEGIN_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_SESSION_BEGIN_IND的消息结构
- 1.日    期   : 2015年07月31日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -147,13 +110,7 @@ typedef struct
     TAF_XPDS_CFG_INFO_STRU                                  stCagpsCfg;
 }TAF_XPDS_MNTN_SESSION_BEGIN_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_SESSION_END_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_SESSION_END_IND的消息结构
- 1.日    期   : 2015年07月31日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -161,13 +118,7 @@ typedef struct
     VOS_UINT8                                               aucReserved[4];
 }TAF_XPDS_MNTN_SESSION_END_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_REVERSE_MSG_INFO_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_REVERSE_MSG_INFO_IND的消息结构
- 1.日    期   : 2015年07月31日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -175,13 +126,7 @@ typedef struct
     TAF_XPDS_ENCODE_RL_INFO_STRU                       stRlMsgInfo;
 }TAF_XPDS_MNTN_REVERSE_MSG_INFO_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_FORWARD_MSG_INFO_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_FORWARD_MSG_INFO_IND的消息结构
- 1.日    期   : 2015年07月31日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -216,13 +161,7 @@ typedef struct
     TAF_XPDS_PILOT_INFO_STRU            astAddPilotRec[TAF_XPDS_RL_PHASE_PILREC_MAX];
 } TAF_XPDS_MNTN_PILOT_INFO_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_PILOT_INFO_CTX_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_PILOT_INFO_CTX_IND的消息结构
- 1.日    期   : 2015年07月31日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -230,13 +169,7 @@ typedef struct
     TAF_XPDS_MNTN_PILOT_INFO_STRU                      stPilotInfo;                            /* Get Info From CAS, And need to send to PDE */
 }TAF_XPDS_MNTN_PILOT_INFO_CTX_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_PSEU_RANGE_INFO_CTX_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_PSEU_RANGE_INFO_CTX_IND的消息结构
- 1.日    期   : 2015年07月31日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -244,13 +177,7 @@ typedef struct
     TAF_XPDS_REVLINK_RSP_PSEU_RANGE_MEAS_STRU          stRspPrmInfo;                           /* Get Info From GPS, And need to send to PDE */
 }TAF_XPDS_MNTN_PSEU_RANGE_INFO_CTX_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_ASSIST_DATA_CTX_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_ASSIST_DATA_CTX_IND的消息结构
- 1.日    期   : 2015年07月31日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -258,13 +185,7 @@ typedef struct
     TAF_XPDS_FWDLINK_RSP_GPS_ACQ_ASSIST_STRU           stProvAcqAssist;
 }TAF_XPDS_MNTN_ASSIST_DATA_CTX_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_POS_INFO_CTX_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_POS_INFO_CTX_IND的消息结构
- 1.日    期   : 2015年07月31日
-   作    者   : g00261581
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                                                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -272,13 +193,7 @@ typedef struct
     TAF_XPDS_FWDLINK_RSP_LOC_RESP_STRU                 stProvLocRsp;
 }TAF_XPDS_MNTN_POS_INFO_CTX_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_EPH_INFO_CTX_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_EPH_INFO_CTX_IND的消息结构
- 1.日    期   : 2015年08月03日
-   作    者   : y00174758
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -286,13 +201,7 @@ typedef struct
     TAF_XPDS_FWDLINK_RSP_GPS_EPH_STRU   stProvEph;
 }TAF_XPDS_MNTN_EPH_INFO_CTX_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_ALM_INFO_CTX_IND_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_ALM_INFO_CTX_IND的消息结构
- 1.日    期   : 2015年08月03日
-   作    者   : y00174758
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -300,13 +209,7 @@ typedef struct
     TAF_XPDS_FWDLINK_RSP_GPS_ALM_STRU   stProvAlm;
 }TAF_XPDS_MNTN_ALM_INFO_CTX_IND_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_FORWARD_PDE_MSG_HEADER_IND_STRU_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_FORWARD_PDE_HEADER_INFO_IND的消息结构
- 1.日    期   : 2015年09月25日
-   作    者   : y00174758
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -314,13 +217,7 @@ typedef struct
     TAF_XPDS_PD_MSG_HEADER_STRU         stPdMsgHeader;
 }TAF_XPDS_MNTN_FORWARD_PDE_MSG_HEADER_IND_STRU_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_REVERSE_PDE_MSG_HEADER_IND_STRU_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_REVERSE_PDE_HEADER_INFO_IND的消息结构
- 1.日    期   : 2015年09月25日
-   作    者   : y00174758
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -328,13 +225,7 @@ typedef struct
     TAF_XPDS_PD_MSG_HEADER_STRU         stPdMsgHeader;
 }TAF_XPDS_MNTN_REVERSE_PDE_MSG_HEADER_IND_STRU_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_REVERSE_START_DELIVER_DATA_IND_STRU_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_REVERSE_START_DELIVER_DATA_IND的消息结构
- 1.日    期   : 2015年09月25日
-   作    者   : y00174758
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -342,13 +233,7 @@ typedef struct
     TAF_XPDS_START_DELV_DATA_STRU       stStartDelvData;
 }TAF_XPDS_MNTN_REVERSE_START_DELIVER_DATA_IND_STRU_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_REVERSE_MPC_START_POS_REQ_IND_STRU_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_REVERSE_MPC_START_POS_REQ_IND的消息结构
- 1.日    期   : 2015年09月25日
-   作    者   : y00174758
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -356,13 +241,7 @@ typedef struct
     TAF_XPDS_MPC_START_POS_REQ_STRU     stStartPosReq;
 }TAF_XPDS_MNTN_REVERSE_MPC_START_POS_REQ_IND_STRU_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_REVERSE_MPC_POS_REPORT_REQ_IND_STRU_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_REVERSE_MPC_POS_REPORT_REQ_IND的消息结构
- 1.日    期   : 2015年09月25日
-   作    者   : y00174758
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                  /* 消息头 */    /* _H2ASN_Skip */
@@ -370,13 +249,7 @@ typedef struct
     TAF_XPDS_MPC_POS_REPORT_STRU        stPosReportReq;
 }TAF_XPDS_MNTN_REVERSE_MPC_POS_REPORT_REQ_IND_STRU_STRU;
 
-/*****************************************************************************
- 结构名    : TAF_XPDS_MNTN_REVERSE_PDE_REJ_RSP_IND_STRU_STRU
- 结构说明  : ID_TAF_XPDS_MNTN_REVERSE_PDE_REJ_RSP_IND的消息结构
- 1.日    期   : 2015年09月25日
-   作    者   : y00174758
-   修改内容   : 新建
-*****************************************************************************/
+
 typedef struct
 {
     VOS_MSG_HEADER                                  /* 消息头 */    /* _H2ASN_Skip */

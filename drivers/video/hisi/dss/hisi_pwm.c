@@ -81,7 +81,7 @@ int hisi_pwm_set_backlight(struct hisi_fb_data_type *hisifd, uint32_t bl_level)
 		bl_level = pinfo->bl_max;
 	}
 
-	if (bl_level < pinfo->bl_min) {
+	if ((bl_level < pinfo->bl_min) && bl_level) {
 		bl_level = pinfo->bl_min;
 	}
 

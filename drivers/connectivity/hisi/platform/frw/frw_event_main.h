@@ -1,21 +1,4 @@
-/******************************************************************************
 
-                  版权所有 (C), 2001-2011, 华为技术有限公司
-
- ******************************************************************************
-  文 件 名   : frw_event_main.h
-  版 本 号   : 初稿
-  作    者   : mayuan m00212148
-  生成日期   : 2012年10月12日
-  最近修改   :
-  功能描述   : frw_event_main.c 的头文件
-  函数列表   :
-  修改历史   :
-  1.日    期   : 2012年10月12日
-    作    者   : mayuan m00212148
-    修改内容   : 创建文件
-
-******************************************************************************/
 
 #ifndef __FRW_EVENT_MAIN_H__
 #define __FRW_EVENT_MAIN_H__
@@ -154,21 +137,7 @@ extern oal_uint32  frw_event_queue_info(oal_void);
   9 OTHERS定义
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : frw_event_to_queue_id
- 功能描述  : 根据事件内容获取相应的事件队列ID
- 输入参数  : pst_event_mem: 指向事件内存块的指针
- 输出参数  : pus_qid      : 队列ID
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月5日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  frw_event_to_qid(frw_event_mem_stru *pst_event_mem, oal_uint16 *pus_qid)
 {
     oal_uint16            us_qid;
@@ -198,21 +167,7 @@ OAL_STATIC OAL_INLINE oal_uint32  frw_event_to_qid(frw_event_mem_stru *pst_event
     return OAL_SUCC;
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_report
- 功能描述  : 将WiTP内存各层之间的事件上报SDT
- 输入参数  : pst_event_mem: 指向事件内存块的指针
- 输出参数  : 无
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2013年12月3日
-    作    者   : z00237171
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_void  frw_event_report(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_stru      *pst_event;
@@ -226,21 +181,7 @@ OAL_STATIC OAL_INLINE oal_void  frw_event_report(frw_event_mem_stru *pst_event_m
     FRW_EVENT_INTERNAL(BROADCAST_MACADDR, 0, OAM_EVENT_INTERNAL, auc_event);
 }
 
-/*****************************************************************************
- 函 数 名  : frw_event_process
- 功能描述  : 根据事件分段号，处理事件
- 输入参数  : pst_event_mem: 指向事件内存块的指针
- 输出参数  : 无
- 返 回 值  : OAL_SUCC 或其它错误码
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2012年11月13日
-    作    者   : mayuan m00212148
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 OAL_STATIC OAL_INLINE oal_uint32  frw_event_process(frw_event_mem_stru *pst_event_mem)
 {
     frw_event_hdr_stru   *pst_event_hrd;

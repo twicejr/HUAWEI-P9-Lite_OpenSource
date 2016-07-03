@@ -35,35 +35,9 @@ OM_VCOM_DEBUG_INFO                      g_stVComDebugInfo[3];
   4 函数实现
 *****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  :
- 功能描述  :
- 输入参数  :
- 输出参数  :
- 返 回 值  :
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月31日
-    作    者   : XXXXXXXX
-    修改内容   : V8R1 OM_Optimize项目新增
 
-*****************************************************************************/
 
-/*****************************************************************************
- 函 数 名  : PPM_VComCfgSendData
- 功能描述  : 从VCOM端口发送配置数据
- 输入参数  : pucVirAddr:   数据虚地址
-             pucPhyAddr:   数据实地址
-             ulDataLen: 数据长度
- 输出参数  : 无
- 返 回 值  : CPM_SEND_ERR/CPM_SEND_OK
- 修改历史  :
-   1.日    期  : 2014年5月26日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
 VOS_UINT32 PPM_VComCfgSendData(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr, VOS_UINT32 ulDataLen)
 {
     g_stVComDebugInfo[OM_LOGIC_CHANNEL_CNF].ulVCOMSendNum++;
@@ -79,18 +53,7 @@ VOS_UINT32 PPM_VComCfgSendData(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr, VOS
 
     return CPM_SEND_OK;
 }
-/*****************************************************************************
- 函 数 名  : PPM_VComCfgEvtCB
- 功能描述  : 用于VCOM通道打开关闭回调
- 输入参数  : ulChan :通道号
-             ulEvent:   打开或者关闭
- 输出参数  : 无
- 返 回 值  : CPM_SEND_ERR/CPM_SEND_OK
- 修改历史  :
-   1.日    期  : 2014年5月26日
-     作    者  : h59254
-     修改内容  : Creat Function
-*****************************************************************************/
+
 VOS_VOID PPM_VComEvtCB(VOS_UINT32 ulChan, VOS_UINT32 ulEvent)
 {
     OM_LOGIC_CHANNEL_ENUM_UINT32        enChannel;
@@ -138,19 +101,7 @@ VOS_VOID PPM_VComEvtCB(VOS_UINT32 ulChan, VOS_UINT32 ulEvent)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : GU_OamVComCfgReadData
- 功能描述  : NAS把收到数据调用OM 接口发走
- 输入参数  :  ucDevIndex: 物理端口
-              pData    : 收到数据
-              uslength : 数据长度
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 修改历史  :
-  1.日    期   : 2014年5月25日
-    作    者   : h59254
-    修改内容   : V8R1 OM_Optimize项目新增
-*****************************************************************************/
+
 VOS_UINT32 PPM_VComCfgReadData(VOS_UINT32 ulDevIndex, VOS_UINT8 *pData, VOS_UINT32 uslength)
 {
     if (ulDevIndex != DMS_VCOM_OM_CHAN_CTRL)
@@ -187,21 +138,7 @@ VOS_UINT32 PPM_VComCfgReadData(VOS_UINT32 ulDevIndex, VOS_UINT8 *pData, VOS_UINT
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : PPM_VComIndSendData
- 功能描述  : Vcom口承载的OM IND端口收到数据，调NAS接收
- 输入参数  : pucVirAddr:   数据虚地址
-             pucPhyAddr:   数据实地址
-             ulDataLen:    数据长度
- 输出参数  : 无
- 返 回 值  : VOS_ERR/VOS_OK
- 调用函数  :
- 被调函数  :
- 修改历史  :
-  1.日    期   : 2014年5月25日
-    作    者   : h59254
-    修改内容   : V8R1 OM_Optimize项目新增
-*****************************************************************************/
+
 VOS_UINT32 PPM_VComIndSendData(VOS_UINT8 *pucVirAddr, VOS_UINT8 *pucPhyAddr, VOS_UINT32 ulDataLen)
 {
     VOS_UINT32          ulInSlice;
@@ -243,18 +180,7 @@ OM_VCOM_DEBUG_INFO *PPM_VComGetIndInfo(VOS_VOID)
 }
 
 
-/*****************************************************************************
- 函 数 名  : PPM_VComCfgPortInit
- 功能描述  : 用于 Vcom 口OM CFG通道的初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史  :
-  1.日    期   : 2014年5月25日
-    作    者   : h59254
-    修改内容   : V8R1 OM_Optimize项目新增
-*****************************************************************************/
 VOS_VOID PPM_VComCfgPortInit(VOS_VOID)
 {
     /* 配置数据走VCOM28，会有数据下发 */
@@ -267,18 +193,7 @@ VOS_VOID PPM_VComCfgPortInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPM_VComIndPortInit
- 功能描述  : 用于 Vcom 口OM IND通道的初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史  :
-  1.日    期   : 2014年5月25日
-    作    者   : h59254
-    修改内容   : V8R1 OM_Optimize项目新增
-*****************************************************************************/
 VOS_VOID PPM_VComIndPortInit(VOS_VOID)
 {
     /* 可维可测数据数据上报走VCOM31，不会有数据下发 */
@@ -291,18 +206,7 @@ VOS_VOID PPM_VComIndPortInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPM_VComPortInit
- 功能描述  : 用于 Vcom 口各通道的初始化
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史  :
-  1.日    期   : 2014年5月25日
-    作    者   : L00256032
-    修改内容   : V8R1 OM_Optimize项目新增
-*****************************************************************************/
 VOS_VOID PPM_VComPortInit(VOS_VOID)
 {
     /*lint -e534*/
@@ -321,18 +225,7 @@ VOS_VOID PPM_VComPortInit(VOS_VOID)
     return;
 }
 
-/*****************************************************************************
- 函 数 名  : PPM_VComInfoShow
- 功能描述  : 用于打印 Vcom 口通道发送信息
- 输入参数  : 无
- 输出参数  : 无
- 返 回 值  : 无
 
- 修改历史  :
-  1.日    期   : 2014年5月25日
-    作    者   : L00256032
-    修改内容   : V8R1 OM_Optimize项目新增
-*****************************************************************************/
 VOS_VOID PPM_VComInfoShow(VOS_VOID)
 {
     /*lint -e534*/

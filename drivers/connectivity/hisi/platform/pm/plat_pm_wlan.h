@@ -138,6 +138,7 @@ extern struct wlan_pm_s*  wlan_pm_get_drv(oal_void);
 extern oal_void wlan_pm_debug_sleep(void);
 extern oal_void wlan_pm_debug_wakeup(void);
 extern void wlan_pm_dump_host_info(void);
+extern oal_int32 wlan_pm_host_info_print(struct wlan_pm_s *pst_wlan_pm,char* buf,oal_int32 buf_len);
 extern void wlan_pm_dump_device_info(void);
 extern oal_void wlan_pm_debug_wake_lock(void);
 extern oal_void wlan_pm_debug_wake_unlock(void);

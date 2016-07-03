@@ -36,21 +36,7 @@ VOS_VOID BASTET_CommRegRecvCallBack(RECV_MSG_PROC pFunc)
     pRecvMsgProc = pFunc;
 }
 
-/*****************************************************************************
- 函 数 名  : BASTET_CommPidInit
- 功能描述  : BASTET消息处理PID初始化
- 输入参数  : enum VOS_INIT_PHASE_DEFINE enPhase
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月14日
-    作    者   : 彭钰/00188486
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 BASTET_CommPidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
 {
     switch ( enPhase )
@@ -65,21 +51,7 @@ VOS_UINT32 BASTET_CommPidInit(enum VOS_INIT_PHASE_DEFINE enPhase)
     return VOS_OK;
 }
 
-/*****************************************************************************
- 函 数 名  : BASTET_CommProcMsg
- 功能描述  : BASTET消息处理
- 输入参数  : MsgBlock* pMsg
- 输出参数  : 无
- 返 回 值  : VOS_VOID
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月14日
-    作    者   : 彭钰/00188486
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_VOID BASTET_CommProcMsg(MsgBlock* pMsg)
 {
     if (VOS_NULL_PTR == pMsg)
@@ -93,21 +65,7 @@ VOS_VOID BASTET_CommProcMsg(MsgBlock* pMsg)
     }
 }
 
-/*****************************************************************************
- 函 数 名  : BASTET_CommFidInit
- 功能描述  : BASTET处理任务初始化函数
- 输入参数  : enum VOS_INIT_PHASE_DEFINE ip
- 输出参数  : 无
- 返 回 值  : VOS_UINT32
- 调用函数  :
- 被调函数  :
 
- 修改历史      :
-  1.日    期   : 2014年5月14日
-    作    者   : 彭钰/00188486
-    修改内容   : 新生成函数
-
-*****************************************************************************/
 VOS_UINT32 BASTET_CommFidInit(enum VOS_INIT_PHASE_DEFINE ip)
 {
     VOS_UINT32                          ulRslt;

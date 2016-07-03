@@ -93,7 +93,6 @@ typedef ULONG fd_mask;
 
 typedef  struct tagFD_SET 
 {
-    /*Added by zhoushisong202096, 支持大规格SOCKET, 2013/11/7 */
 #ifdef TCPIP_NOVRP_HUGE_SOCKET
     fd_mask fds_bits[4097]; /* HOWMANY(FILENUM, NFDBITS) */
 #else

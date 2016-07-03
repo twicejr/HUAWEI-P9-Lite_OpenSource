@@ -22,6 +22,9 @@
 #include <linux/irqchip/arm-gic.h>
 #include <linux/hw_power_monitor.h>
 #include <linux/console.h>
+#include <soc_crgperiph_interface.h>
+#include <soc_uart_interface.h>
+#include <soc_sctrl_interface.h>
 #include "hisi_lpregs.h"
 /*lint -e322 -esym(750,*) */
 #include "hisi_gpio_auto_gen.h"
@@ -136,27 +139,6 @@
 #define DEBG_SUSPEND_CLK_SHOW	(1<<10)
 #define DEBG_SUSPEND_IPC_DATA_SHOW	(1<<11)
 #define DEBUG_INFO				(1<<31)
-
-#define REG_SCLPM3CLKEN_OFFSET	(0x500)
-#define REG_SCLPM3RSTEN_OFFSET	(0x504)
-
-#define REG_SCLPM3RSTDIS_OFFSET	(0x508)
-
-#define BIT_CLK_UART_SHIFT			(1 << 8)
-#define BIT_RST_UART_SHIFT			(1 << 9)
-
-#define REG_PEREN2_OFFSET	(0x020)
-#define REG_PERDIS2_OFFSET	(0x024)
-#define REG_PERRSTEN2_OFFSET	(0x078)
-#define REG_PERRSTDIS2_OFFSET	(0x07C)
-#define BIT_UART0_SHIFT		(10)
-
-#define IOMG_066_OFFSET	(0x108)
-#define IOMG_067_OFFSET	(0x10C)
-#define IOMG_030_OFFSET	(0x078)
-#define IOMG_031_OFFSET	(0x07C)
-#define IOC_UART6_VAL		(0x1)
-#define IOC_UART0_VAL		(0x2)
 
 /* pmu */
 #define PMU_CTRL_END_A		0x117
@@ -917,74 +899,52 @@ void debuguart_reinit(void)
 		return;
 
 	uart_idx = get_console_index();
+
 	if (uart_idx == 6) {
-		/*Config necessary IOMG configuration*/
-		writel(IOC_UART6_VAL, (sysreg_base.ioc_base + IOMG_066_OFFSET));
-		writel(IOC_UART6_VAL, (sysreg_base.ioc_base + IOMG_067_OFFSET));
-		/*disable clk*/
-		uregv = readl(sysreg_base.sysctrl_base + REG_SCLPM3CLKEN_OFFSET)
-						& (~BIT_CLK_UART_SHIFT);
+		/* enable clk */
+		uregv = readl(SOC_SCTRL_SCLPMCUCLKEN_ADDR(sysreg_base.sysctrl_base))
+				| BIT(SOC_SCTRL_SCLPMCUCLKEN_uart_clk_clkoff_sys_n_START);
 		writel(uregv,
-			(sysreg_base.sysctrl_base + REG_SCLPM3CLKEN_OFFSET));
-		/*enable clk*/
-		uregv = readl(sysreg_base.sysctrl_base + REG_SCLPM3CLKEN_OFFSET)
-						| (BIT_CLK_UART_SHIFT);
-		writel(uregv,
-			(sysreg_base.sysctrl_base + REG_SCLPM3CLKEN_OFFSET));
-		/*reset undo*/
-		writel(BIT_RST_UART_SHIFT,
-			(sysreg_base.sysctrl_base + REG_SCLPM3RSTEN_OFFSET));
-		writel(BIT_RST_UART_SHIFT,
-			(sysreg_base.sysctrl_base + REG_SCLPM3RSTDIS_OFFSET));
+			SOC_SCTRL_SCLPMCUCLKEN_ADDR(sysreg_base.sysctrl_base));
+
+		/* reset undo */
+		writel(BIT(SOC_SCTRL_SCLPMCURSTDIS_uart_soft_rst_req_START),
+			SOC_SCTRL_SCLPMCURSTDIS_ADDR(sysreg_base.sysctrl_base));
 	} else if (uart_idx == 0) {
-		/* Config necessary IOMG configuration */
-		writel(IOC_UART0_VAL, (sysreg_base.ioc_base + IOMG_030_OFFSET));
-		writel(IOC_UART0_VAL, (sysreg_base.ioc_base + IOMG_031_OFFSET));
+		/* enable clk */
+		writel(BIT(SOC_CRGPERIPH_PEREN2_gt_clk_uart0_START),
+				SOC_CRGPERIPH_PEREN2_ADDR(sysreg_base.crg_base));
 
-		uregv = (1 << (uart_idx + BIT_UART0_SHIFT));
-		writel(uregv, (sysreg_base.crg_base + REG_PERDIS2_OFFSET));
-		/*@ enable clk*/
-		writel(uregv, (sysreg_base.crg_base + REG_PEREN2_OFFSET));
-
-		/*reset undo*/
-		writel(uregv, (sysreg_base.crg_base + REG_PERRSTEN2_OFFSET));
-		writel(uregv, (sysreg_base.crg_base + REG_PERRSTDIS2_OFFSET));
+		/* reset undo */
+		writel(BIT(SOC_CRGPERIPH_PERRSTDIS2_ip_rst_uart0_START),
+				SOC_CRGPERIPH_PERRSTDIS2_ADDR(sysreg_base.crg_base));
 	} else {
 		return;
 	}
 
-	/*@;disable recieve and send*/
-	uregv = 0x0;
-	writel(uregv, (sysreg_base.uart_base + 0x30));
+	/* disable uart */
+	writel(0x0, SOC_UART_UARTCR_ADDR(sysreg_base.uart_base));
 
-	/*@;enable FIFO*/
-	uregv = 0x70;
-	writel(uregv, (sysreg_base.uart_base + 0x2c));
+	/* enable FIFO */
+	writel(0x70, SOC_UART_UARTLCR_H_ADDR(sysreg_base.uart_base));
 
-	/*@;set baudrate*/
-	uregv = 0xA;
-	writel(uregv, (sysreg_base.uart_base + 0x24));
+	/* set baudrate: 19.2M 115200 */
+	writel(0xa, SOC_UART_UARTIBRD_ADDR(sysreg_base.uart_base));
+	writel(0x1b, SOC_UART_UARTFBRD_ADDR(sysreg_base.uart_base));
 
-	uregv = 0x1B;
-	writel(uregv, (sysreg_base.uart_base + 0x28));
+	/* set FIFO depth: 1/2 */
+	writel(0x92, SOC_UART_UARTIFLS_ADDR(sysreg_base.uart_base));
 
-	/*@;clear buffer*/
-	uregv = readl(sysreg_base.uart_base);
+	/* set int mask */
+	uregv = BIT(SOC_UART_UARTIMSC_rtim_START)
+		| BIT(SOC_UART_UARTIMSC_rxim_START);
+	writel(uregv, SOC_UART_UARTIMSC_ADDR(sysreg_base.uart_base));
 
-	/*@;enable FIFO*/
-	uregv = 0x70;
-	writel(uregv, (sysreg_base.uart_base + 0x2C));
-
-	/*@;set FIFO depth*/
-	uregv = 0x10A;
-	writel(uregv, (sysreg_base.uart_base + 0x34));
-
-	uregv = 0x50;
-	writel(uregv, (sysreg_base.uart_base + 0x38));
-
-	/*@;enable uart trans*/
-	uregv = 0x301;
-	writel(uregv, (sysreg_base.uart_base + 0x30));
+	/* enable uart trans */
+	uregv = BIT(SOC_UART_UARTCR_uarten_START)
+			| BIT(SOC_UART_UARTCR_rxe_START)
+			| BIT(SOC_UART_UARTCR_txe_START);
+	writel(uregv, SOC_UART_UARTCR_ADDR(sysreg_base.uart_base));
 }
 
 

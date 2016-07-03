@@ -28,11 +28,9 @@
 extern "C" {
 #endif
 
-/*Added by guojianjun178934, BFD6和OSPFv3联动，要做刷新动作, 2014/9/16   问题单号:DTS2014090205788 */
 /*BFD Ext的网络类型转换为BFD对应的IP版本*/
 #define BFD_EXT_IP_VERTION_MAP(IP_VERTION)  \
   (((IP_VERTION) == BFD_EXT_TABLE_IPV4) ? BFD_OVER_IPV4 : BFD_OVER_IPV6)
-/* End of Added by guojianjun178934, 2014/9/16   问题单号:DTS2014090205788 */
 
 typedef struct tagBfdOspfRuleEntry
 {
@@ -50,12 +48,10 @@ typedef struct tagBfdOspfRuleEntry
 
 typedef struct tagBfdOspfRuleTable
 {
-    /*Modified by liangjicheng 00103192, , 2011/10/27   问题单号: REQ-201108278323-BFD-SPEC */
     /* ULONG   ulBlockNumber;    */        
     /* ULONG   ulRuleNumber;     */  
     ULONG   ulProcNumber;
     ULONG   ulIntfNumber;
-    /*End of Modified by liangjicheng 00103192, 2011/10/27   问题单号: REQ-201108278323-BFD-SPEC */
     struct tagBfdOspfRuleEntry   stRelatingRule;        
 }BFD_OSPF_RULE_TABLE_S;
 
@@ -88,10 +84,8 @@ extern VOID * Extern_BFD_GetNextOspfRelationByFilter(VOID *pFilter,VOID *pCurEnt
 /*Begin BC3D02903 liangjicheng 2010-04-19 */
 extern VOID Extern_BFD_ProcOSPFRuleUpdate(BFD_EXT_OSPF_RULE_MSG *pstOSPFRuleMsg);
 /*End   BC3D02903 liangjicheng 2010-04-19 */
-/*Added by guojianjun178934, BFD6和OSPFv3联动，要做刷新动作, 2014/9/12   问题单号:S-IP-C20-003-OSPFv3.001  */
 extern VOID Extern_BFD_ProcOSPFV2RuleUpdate();
 extern VOID Extern_BFD_ProcOSPFV3RuleUpdate(BFD_EXT_OSPF_RULE_MSG *pstOSPFRuleUpdateMsg);
-/* End of Added by guojianjun178934, 2014/9/12   问题单号:S-IP-C20-003-OSPFv3.001  */
 
 #ifdef __cplusplus
 }

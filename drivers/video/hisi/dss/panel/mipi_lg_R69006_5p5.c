@@ -1664,7 +1664,7 @@ static int mipi_lg_probe(struct platform_device *pdev)
 	pinfo->color_temperature_support = 1;
 	pinfo->comform_mode_support = 1;
 	pinfo->panel_effect_support = 1;
-	g_support_mode = COMFORM_MODE | LED_RG_COLOR_TEMP_MODE;
+	g_support_mode = COMFORM_MODE | LED_RG_COLOR_TEMP_MODE | GAMMA_MAP;
 	g_led_rg_para1 = 7;
 	g_led_rg_para2 = 30983;
 
@@ -1675,8 +1675,8 @@ static int mipi_lg_probe(struct platform_device *pdev)
 		pinfo->color_temp_rectify_support = 1;
 	}
 	pinfo->color_temp_rectify_R = 32768; /*1*/
-	pinfo->color_temp_rectify_G = 32097; /*0.9795*/
-	pinfo->color_temp_rectify_B = 32116; /*0.9801*/
+	pinfo->color_temp_rectify_G = 31306; /*0.9554, 0.9795*/
+	pinfo->color_temp_rectify_B = 31349; /*0.9567, 0.9801*/
 
 	//prefix ce & sharpness
 	pinfo->prefix_ce_support = 0;
@@ -1858,6 +1858,15 @@ static int mipi_lg_probe(struct platform_device *pdev)
 		pinfo->panel_effect_support = 0;
 		pinfo->color_temp_rectify_support = 0;
 		g_support_mode = 0;
+		pinfo->color_temp_rectify_G = 32097; /*0.9795*/
+		pinfo->color_temp_rectify_B = 32116; /*0.9801*/
+		pinfo->gamma_lut_table_R = gamma_lut_table_R_default;
+		pinfo->gamma_lut_table_G = gamma_lut_table_G_default;
+		pinfo->gamma_lut_table_B = gamma_lut_table_B_default;
+		pinfo->igm_lut_table_R = igm_lut_table_R_default;
+		pinfo->igm_lut_table_G = igm_lut_table_G_default;
+		pinfo->igm_lut_table_B = igm_lut_table_B_default;
+		pinfo->gmp_lut_table_low32bit = &gmp_lut_table_low32bit_default[0][0][0];
 	}
 
 	//The host processor must wait for more than 15us from the end of write data transfer to a command 2Ah/2Bh

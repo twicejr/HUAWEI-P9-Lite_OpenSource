@@ -78,7 +78,6 @@ typedef struct tagMPSTATISTIC_S
     ULONG ulUnassignedPkts;         /* 接收方向等待重组的分片数 */
     ULONG ulInterleavedPkts;        /* 发送方向LFI的分片个数 */
     
-     /* Added by z43740 for A82D20089: 增加重组方式统计,2007-09-13 */
     ULONG ulWindowMatchPkts;        /* 匹配重组窗口报文个数 */
     ULONG ulWindowInPkts;           /* 落在重组窗口中报文个数 */
     ULONG ulWindowBehindPkts;       /* 落后重组窗口报文个数 */
@@ -867,20 +866,7 @@ extern VOID  TCPIP_ShowMpInfo(VOID);
 *
 *******************************************************************************/
 extern VOID  TCPIP_ShowMpStatistic(CHAR *pName);
-/*******************************************************************************
-*    Func Name: TCPIP_ShowPrefixEInfo
-*  Description: 显示MP前缀信息
-*        Input: CHAR *pszIfName:接口名称 
-*       Output: 
-*       Return: VOID
-*      Caution: 
-*------------------------------------------------------------------------------
-*  Modification History
-*  DATE         NAME             DESCRIPTION    
-*  ----------------------------------------------------------------------------
-*  2008-3-8    yebo(62007)      Create the first version.
-*  2008-5-27   y62007           Modify for A82D26203 添加组件虚表非空判断
-*******************************************************************************/
+
 extern VOID  TCPIP_ShowPrefixEInfo(CHAR *pszIfName);
 /*******************************************************************************
 *    Func Name: TCPIP_MpIsEnableLFI

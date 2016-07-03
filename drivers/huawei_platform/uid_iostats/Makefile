@@ -3,4 +3,4 @@
 #
 
 
-obj-y += uid_iostats.o
+obj-$(CONFIG_HUAWEI_UID_IO_STATS) += uid_iostats.o
