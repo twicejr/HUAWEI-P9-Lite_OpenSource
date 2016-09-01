@@ -157,3 +157,5 @@ MODULE_AUTHOR("Alexander Boyko <alexander_boyko@xyratex.com>");
 MODULE_DESCRIPTION("CRC32 calculations wrapper for lib/crc32");
 MODULE_LICENSE("GPL");
 MODULE_ALIAS_CRYPTO("crc32");
+MODULE_ALIAS_CRYPTO("crc32");
+MODULE_ALIAS_CRYPTO("crc32");

@@ -185,3 +185,5 @@ MODULE_LICENSE("GPL v2");
 MODULE_DESCRIPTION("Michael MIC");
 MODULE_AUTHOR("Jouni Malinen <j@w1.fi>");
 MODULE_ALIAS_CRYPTO("michael_mic");
+MODULE_ALIAS_CRYPTO("michael_mic");
+MODULE_ALIAS_CRYPTO("michael_mic");

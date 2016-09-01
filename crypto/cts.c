@@ -351,3 +351,5 @@ module_exit(crypto_cts_module_exit);
 MODULE_LICENSE("Dual BSD/GPL");
 MODULE_DESCRIPTION("CTS-CBC CipherText Stealing for CBC");
 MODULE_ALIAS_CRYPTO("cts");
+MODULE_ALIAS_CRYPTO("cts");
+MODULE_ALIAS_CRYPTO("cts");

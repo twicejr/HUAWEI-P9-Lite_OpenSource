@@ -290,3 +290,5 @@ module_exit(crypto_cbc_module_exit);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("CBC block cipher algorithm");
 MODULE_ALIAS_CRYPTO("cbc");
+MODULE_ALIAS_CRYPTO("cbc");
+MODULE_ALIAS_CRYPTO("cbc");

@@ -112,3 +112,9 @@ source "lib/Kconfig"
 
 config NO_IOMEM
        def_bool y
+
+config NO_IOMEM
+       def_bool y
+
+config NO_IOMEM
+       def_bool y

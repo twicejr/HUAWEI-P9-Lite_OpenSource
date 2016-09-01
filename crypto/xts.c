@@ -363,3 +363,5 @@ module_exit(crypto_module_exit);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("XTS block cipher mode");
 MODULE_ALIAS_CRYPTO("xts");
+MODULE_ALIAS_CRYPTO("xts");
+MODULE_ALIAS_CRYPTO("xts");

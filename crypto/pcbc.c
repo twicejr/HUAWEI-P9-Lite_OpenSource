@@ -296,3 +296,5 @@ module_exit(crypto_pcbc_module_exit);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("PCBC block cipher algorithm");
 MODULE_ALIAS_CRYPTO("pcbc");
+MODULE_ALIAS_CRYPTO("pcbc");
+MODULE_ALIAS_CRYPTO("pcbc");

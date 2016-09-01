@@ -401,3 +401,5 @@ module_exit(crypto_module_exit);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("LRW block cipher mode");
 MODULE_ALIAS_CRYPTO("lrw");
+MODULE_ALIAS_CRYPTO("lrw");
+MODULE_ALIAS_CRYPTO("lrw");

@@ -272,3 +272,5 @@ module_exit(hmac_module_exit);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("HMAC hash algorithm");
 MODULE_ALIAS_CRYPTO("hmac");
+MODULE_ALIAS_CRYPTO("hmac");
+MODULE_ALIAS_CRYPTO("hmac");

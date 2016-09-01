@@ -360,3 +360,5 @@ module_exit(chainiv_module_exit);
 MODULE_LICENSE("GPL");
 MODULE_DESCRIPTION("Chain IV Generator");
 MODULE_ALIAS_CRYPTO("chainiv");
+MODULE_ALIAS_CRYPTO("chainiv");
+MODULE_ALIAS_CRYPTO("chainiv");
